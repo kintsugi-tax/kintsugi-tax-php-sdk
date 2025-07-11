@@ -51,7 +51,7 @@ To install the SDK first add the below to your `composer.json` file:
     "repositories": [
         {
             "type": "github",
-            "url": "<UNSET>.git"
+            "url": "https://github.com/kintsugi-tax/kintsugi-tax-php-sdk.git"
         }
     ],
     "require": {
