@@ -1176,6 +1176,7 @@ paths:
   "/v1/admin/organizations/search": {}
   "/v1/admin/organization_details": {}
   "/v1/admin/bank_details": {}
+  "/v1/admin/reports/stable-setup": {}
   "/v1/products/":
     get:
       tags:
@@ -6556,6 +6557,188 @@ components:
         - "is_local"
         - "upload_url_config"
       title: "FileUploadURLs"
+    "FilingAdminDetailsRead":
+      properties:
+        "status": {"$ref": "#/components/schemas/FilingStatusEnum", "description": "Filing status. Possible values:\n                                    UNFILED, FILING, FILED.", "default": "UNFILED"}
+        "start_date":
+          type: "string"
+          format: "date"
+          title: "Start Date"
+          description: "The start date of the filing period."
+        "end_date":
+          type: "string"
+          format: "date"
+          title: "End Date"
+          description: "The end date of the filing period."
+        "due_date":
+          anyOf:
+            - type: "string"
+              format: "date"
+            - type: "null"
+          title: "Due Date"
+          description: "The due date of the filing."
+        "date_filed":
+          anyOf:
+            - type: "string"
+              format: "date"
+            - type: "null"
+          title: "Date Filed"
+          description: "The date the filing was completed, if applicable."
+        "is_manual":
+          anyOf:
+            - type: "boolean"
+            - type: "null"
+          title: "Is Manual"
+          description: "Indicates if the filing was done manually."
+        "state_code":
+          anyOf:
+            - type: "string"
+            - type: "null"
+          title: "State Code"
+          description: "The code of the state associated with the filing (e.g., IA, NY)."
+        "state_name":
+          anyOf:
+            - type: "string"
+            - type: "null"
+          title: "State Name"
+          description: "The name of the state associated with the filing\n        (e.g., Iowa, New York)."
+        "country_code": {"$ref": "#/components/schemas/CountryCodeEnum", "description": "Country code in ISO 3166-1 alpha-2 format (e.g., US)."}
+        "jira_issue_key":
+          anyOf:
+            - type: "string"
+            - type: "null"
+          title: "Jira Issue Key"
+          description: "The associated JIRA issue key for tracking the filing,\n        if available. Can be null."
+        "auto_approved":
+          anyOf:
+            - type: "boolean"
+            - type: "null"
+          title: "Auto Approved"
+          description: "Indicates if the filing was auto-approved. Defaults to false."
+          default: false
+        "amount_calculated":
+          type: "string"
+          title: "Amount Calculated"
+          description: "The calculated amount for the filing. Defaults to 0.00."
+          default: "0.00"
+        "amount_adjusted":
+          type: "string"
+          title: "Amount Adjusted"
+          description: "Adjusted amount, if any."
+          default: "0.00"
+        "amount_discounts":
+          type: "string"
+          title: "Amount Discounts"
+          description: "Discounts applied to the filing."
+          default: "0.00"
+        "amount_fees":
+          type: "string"
+          title: "Amount Fees"
+          description: "Discounts applied to the amount."
+          default: "0.00"
+        "amount_penalties":
+          type: "string"
+          title: "Amount Penalties"
+          description: "Penalties applied to the filing."
+          default: "0.00"
+        "amount_tax_collected":
+          type: "string"
+          title: "Amount Tax Collected"
+          description: "Total tax collected during the filing period."
+          default: "0.00"
+        "amount_sales":
+          type: "string"
+          title: "Amount Sales"
+          description: "Total sales amount during the filing period."
+          default: "0.00"
+        "amount":
+          type: "string"
+          title: "Amount"
+          description: "Final amount due for the filing."
+          default: "0.00"
+        "total_tax_liability":
+          type: "string"
+          title: "Total Tax Liability"
+          description: "Total tax liability for the filing."
+          default: "0.00"
+        "transaction_count":
+          type: "integer"
+          title: "Transaction Count"
+          description: "Total number of transactions associated with the filing."
+          default: 0
+        "internal_notes":
+          anyOf:
+            - type: "string"
+            - type: "null"
+          title: "Internal Notes"
+          description: "Notes or comments related to the filing."
+        "recent_details_report_link":
+          anyOf:
+            - type: "string"
+            - type: "null"
+          title: "Recent Details Report Link"
+        "tax_remitted":
+          type: "string"
+          title: "Tax Remitted"
+          description: "The amount of tax remitted."
+          default: "0.00"
+        "return_confirmation_id":
+          anyOf:
+            - type: "string"
+            - type: "null"
+          title: "Return Confirmation Id"
+          description: "Return confirmation ID, if applicable."
+        "payment_confirmation_id":
+          anyOf:
+            - type: "string"
+            - type: "null"
+          title: "Payment Confirmation Id"
+          description: "Payment confirmation ID, if applicable."
+        "block_approval":
+          anyOf:
+            - type: "boolean"
+            - type: "null"
+          title: "Block Approval"
+          description: "Indicates if the filing can be approved."
+        "currency":
+          anyOf:
+            - {"$ref": "#/components/schemas/CurrencyEnum"}
+            - type: "null"
+          description: "Currency code for the filing (e.g., USD, CAD)."
+        "id":
+          type: "string"
+          title: "Id"
+          description: "Unique identifier for the filing."
+        "registration_id":
+          type: "string"
+          title: "Registration Id"
+          description: "Identifier for the registration associated with the filing."
+        "attachments":
+          anyOf:
+            - additionalProperties:
+                type: "string"
+              type: "object"
+            - type: "null"
+          title: "Attachments"
+          description: "List of attachments associated with the filing, if any."
+        "credits_utilized":
+          type: "string"
+          title: "Credits Utilized"
+          default: "0.00"
+        "filing_website_url":
+          anyOf:
+            - type: "string"
+            - type: "null"
+          title: "Filing Website Url"
+          description: "Website URL for the filing's jurisdiction, if available."
+      type: "object"
+      required:
+        - "start_date"
+        - "end_date"
+        - "country_code"
+        - "id"
+        - "registration_id"
+      title: "FilingAdminDetailsRead"
     "FilingCountByJurisdiction":
       properties:
         "country_code": {"$ref": "#/components/schemas/CountryCodeEnum", "description": "Country code"}
@@ -8715,6 +8898,12 @@ components:
               format: "date-time"
             - type: "null"
           title: "Last Processed At"
+        "last_tax_liability_processed_at":
+          anyOf:
+            - type: "string"
+              format: "date-time"
+            - type: "null"
+          title: "Last Tax Liability Processed At"
         "periods":
           anyOf:
             - items:

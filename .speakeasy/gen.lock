@@ -1,12 +1,15 @@
 lockVersion: 2.0.0
 id: fdb4bdf9-63b7-4d28-815c-b04a56c0369b
 management:
-  docChecksum: 21cc094adda452fc5c197731871f1237
+  docChecksum: da2c74e9be015c2b624dc256e9e3f51d
   docVersion: 1.0.0
   speakeasyVersion: 1.581.0
   generationVersion: 2.656.5
-  releaseVersion: 0.1.4
-  configChecksum: 5f4d5764f66936eee8fe1661592003eb
+  releaseVersion: 0.1.5
+  configChecksum: 2c74fb59ab1ee4b82088ad684429676e
+  repoURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk.git
+  installationURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk
+  published: true
 features:
   php:
     constsAndDefaults: 0.2.0
