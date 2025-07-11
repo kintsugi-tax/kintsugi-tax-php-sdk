@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class PageProductRead
@@ -17,7 +17,7 @@ class PageProductRead
      * @var array<ProductRead> $items
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('items')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\OpenAPI\OpenAPI\Models\Components\ProductRead>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\ProductRead>')]
     public array $items;
 
     /**

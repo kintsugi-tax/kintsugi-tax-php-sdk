@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class TransactionEstimateResponseAddress
@@ -19,7 +19,7 @@ class TransactionEstimateResponseAddress
      * @var TransactionEstimateResponseType $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\TransactionEstimateResponseType')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionEstimateResponseType')]
     public TransactionEstimateResponseType $type;
 
     /**

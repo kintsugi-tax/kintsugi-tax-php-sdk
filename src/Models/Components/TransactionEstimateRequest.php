@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 /**
@@ -37,7 +37,7 @@ class TransactionEstimateRequest
      * @var CurrencyEnum $currency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CurrencyEnum')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum')]
     public CurrencyEnum $currency;
 
     /**
@@ -46,7 +46,7 @@ class TransactionEstimateRequest
      * @var array<TransactionEstimateRequestAddress> $addresses
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('addresses')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\OpenAPI\OpenAPI\Models\Components\TransactionEstimateRequestAddress>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionEstimateRequestAddress>')]
     public array $addresses;
 
     /**
@@ -55,7 +55,7 @@ class TransactionEstimateRequest
      * @var array<TransactionItemEstimateBase> $transactionItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('transaction_items')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\OpenAPI\OpenAPI\Models\Components\TransactionItemEstimateBase>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionItemEstimateBase>')]
     public array $transactionItems;
 
     /**
@@ -84,7 +84,7 @@ class TransactionEstimateRequest
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\SourceEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?SourceEnum $source = null;
 
@@ -103,7 +103,7 @@ class TransactionEstimateRequest
      * @var ?CustomerBaseInput $customer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CustomerBaseInput|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBaseInput|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CustomerBaseInput $customer = null;
 

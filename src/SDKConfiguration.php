@@ -6,8 +6,8 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Utils\Retry\RetryConfig;
+namespace KintsugiTax\SDK;
+use KintsugiTax\SDK\Utils\Retry\RetryConfig;
 
 class SDKConfiguration
 {
@@ -24,11 +24,11 @@ class SDKConfiguration
 
     public string $openapiDocVersion = '1.0.0';
 
-    public string $sdkVersion = '0.1.1';
+    public string $sdkVersion = '0.1.3';
 
-    public string $genVersion = '2.654.2';
+    public string $genVersion = '2.656.5';
 
-    public string $userAgent = 'speakeasy-sdk/php 0.1.1 2.654.2 1.0.0 openapi/openapi';
+    public string $userAgent = 'speakeasy-sdk/php 0.1.3 2.656.5 1.0.0 kintsugi-tax/tax-platform-sdk';
 
     public ?RetryConfig $retryConfig = null;
 

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class AttachmentRead
@@ -26,7 +26,7 @@ class AttachmentRead
      * @var RelatedEntityType $relatedEntityType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('related_entity_type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\RelatedEntityType')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\RelatedEntityType')]
     public RelatedEntityType $relatedEntityType;
 
     /**

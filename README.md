@@ -53,7 +53,7 @@ To install the SDK first add the below to your `composer.json` file:
         }
     ],
     "require": {
-        "openapi/openapi": "*"
+        "kintsugi-tax/tax-platform-sdk": "*"
     }
 }
 ```
@@ -75,11 +75,11 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Components;
-use OpenAPI\OpenAPI\Models\Operations;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Models\Operations;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 $request = new Components\AddressBase(
     phone: '555-123-4567',
@@ -129,11 +129,11 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Components;
-use OpenAPI\OpenAPI\Models\Operations;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Models\Operations;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 $request = new Components\AddressBase(
     phone: '555-123-4567',
@@ -251,12 +251,12 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Components;
-use OpenAPI\OpenAPI\Models\Errors;
-use OpenAPI\OpenAPI\Models\Operations;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Models\Errors;
+use KintsugiTax\SDK\Models\Operations;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 try {
     $request = new Components\AddressBase(

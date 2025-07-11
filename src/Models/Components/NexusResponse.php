@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 use Brick\DateTime\LocalDate;
-use OpenAPI\OpenAPI\Utils;
+use KintsugiTax\SDK\Utils;
 class NexusResponse
 {
     /**
@@ -17,7 +17,7 @@ class NexusResponse
      * @var CountryCodeEnum $countryCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country_code')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CountryCodeEnum')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum')]
     public CountryCodeEnum $countryCode;
 
     /**
@@ -39,7 +39,7 @@ class NexusResponse
      * @var TreatmentEnum $treatmentOfExemptTransactions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('treatment_of_exempt_transactions')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\TreatmentEnum')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TreatmentEnum')]
     public TreatmentEnum $treatmentOfExemptTransactions;
 
     /**
@@ -54,7 +54,7 @@ class NexusResponse
      * @var SalesOrTransactionsEnum $salesOrTransactions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('sales_or_transactions')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\SalesOrTransactionsEnum')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SalesOrTransactionsEnum')]
     public SalesOrTransactionsEnum $salesOrTransactions;
 
     /**
@@ -76,7 +76,7 @@ class NexusResponse
      * @var PeriodModelEnum $periodModel
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('period_model')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\PeriodModelEnum')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\PeriodModelEnum')]
     public PeriodModelEnum $periodModel;
 
     /**
@@ -133,7 +133,7 @@ class NexusResponse
      * @var NexusTypeEnum $nexusType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('nexus_type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\NexusTypeEnum')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\NexusTypeEnum')]
     public NexusTypeEnum $nexusType;
 
     /**
@@ -169,7 +169,7 @@ class NexusResponse
      * @var ?NexusStatusEnum $processingStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('processing_status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\NexusStatusEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\NexusStatusEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?NexusStatusEnum $processingStatus = null;
 
@@ -178,7 +178,7 @@ class NexusResponse
      * @var ?NexusStateEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\NexusStateEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\NexusStateEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?NexusStateEnum $status = null;
 
@@ -323,7 +323,7 @@ class NexusResponse
      * @var ?CurrencyEnum $currency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CurrencyEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CurrencyEnum $currency = null;
 
@@ -342,7 +342,7 @@ class NexusResponse
      * @var ?RegistrationsRegimeEnum $registrationRegime
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registration_regime')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\RegistrationsRegimeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?RegistrationsRegimeEnum $registrationRegime = null;
 

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class CreditNoteItemCreateUpdate
@@ -61,7 +61,7 @@ class CreditNoteItemCreateUpdate
      * @var ?array<TaxItemBuilder> $taxItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\OpenAPI\OpenAPI\Models\Components\TaxItemBuilder>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $taxItems = null;
 
@@ -110,7 +110,7 @@ class CreditNoteItemCreateUpdate
      * @var ?TaxExemptionEnum $taxExemption
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_exemption')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\TaxExemptionEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxExemptionEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?TaxExemptionEnum $taxExemption = null;
 

@@ -6,9 +6,9 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI;
+namespace KintsugiTax\SDK;
 
-use OpenAPI\OpenAPI\Utils\Retry;
+use KintsugiTax\SDK\Utils\Retry;
 
 /**
  * SDKBuilder is used to configure and build an instance of the SDK.

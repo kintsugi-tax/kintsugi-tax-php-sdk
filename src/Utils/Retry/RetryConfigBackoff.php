@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Utils\Retry;
+namespace KintsugiTax\SDK\Utils\Retry;
 
 class RetryConfigBackoff extends RetryConfig
 {

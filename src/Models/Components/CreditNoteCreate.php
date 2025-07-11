@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class CreditNoteCreate
@@ -33,7 +33,7 @@ class CreditNoteCreate
      * @var Status $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\Status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\Status')]
     public Status $status;
 
     /**
@@ -41,7 +41,7 @@ class CreditNoteCreate
      * @var CurrencyEnum $currency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CurrencyEnum')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum')]
     public CurrencyEnum $currency;
 
     /**
@@ -50,7 +50,7 @@ class CreditNoteCreate
      * @var array<CreditNoteItemCreateUpdate> $transactionItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('transaction_items')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\OpenAPI\OpenAPI\Models\Components\CreditNoteItemCreateUpdate>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\CreditNoteItemCreateUpdate>')]
     public array $transactionItems;
 
     /**
@@ -117,7 +117,7 @@ class CreditNoteCreate
      * @var ?array<TransactionAddressBuilder> $addresses
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('addresses')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\OpenAPI\OpenAPI\Models\Components\TransactionAddressBuilder>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionAddressBuilder>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $addresses = null;
 

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class AddressBase
@@ -80,7 +80,7 @@ class AddressBase
      * @var ?CountryCodeEnum $country
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CountryCodeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CountryCodeEnum $country = null;
 

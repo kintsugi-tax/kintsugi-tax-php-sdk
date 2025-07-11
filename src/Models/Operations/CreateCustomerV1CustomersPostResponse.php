@@ -6,9 +6,9 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Operations;
+namespace KintsugiTax\SDK\Models\Operations;
 
-use OpenAPI\OpenAPI\Models\Components;
+use KintsugiTax\SDK\Models\Components;
 class CreateCustomerV1CustomersPostResponse
 {
     /**

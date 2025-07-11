@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class TransactionItemEstimateBase
@@ -90,7 +90,7 @@ class TransactionItemEstimateBase
      * @var ?SourceEnum $productSource
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_source')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\SourceEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?SourceEnum $productSource = null;
 
@@ -102,7 +102,7 @@ class TransactionItemEstimateBase
      * @var ?ProductSubCategoryEnum $productSubcategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_subcategory')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ProductSubCategoryEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ProductSubCategoryEnum $productSubcategory = null;
 
@@ -114,7 +114,7 @@ class TransactionItemEstimateBase
      * @var ?ProductCategoryEnum $productCategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_category')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ProductCategoryEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductCategoryEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ProductCategoryEnum $productCategory = null;
 

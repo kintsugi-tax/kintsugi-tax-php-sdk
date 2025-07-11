@@ -1,9 +1,9 @@
 {
-  "name": "openapi/openapi",
+  "name": "kintsugi-tax/tax-platform-sdk",
   "type": "library",
   "autoload": {
     "psr-4": {
-      "OpenAPI\\OpenAPI\\": "src/"
+      "KintsugiTax\\SDK\\": "src/"
     }
   },
   "license": "MIT",

@@ -1,0 +1,1121 @@
+lockVersion: 2.0.0
+id: fdb4bdf9-63b7-4d28-815c-b04a56c0369b
+management:
+  docChecksum: 21cc094adda452fc5c197731871f1237
+  docVersion: 1.0.0
+  speakeasyVersion: 1.581.0
+  generationVersion: 2.656.5
+  releaseVersion: 0.1.3
+  configChecksum: 30828e7d7ffe78a665ec2de4b0a408fc
+features:
+  php:
+    constsAndDefaults: 0.2.0
+    core: 3.8.6
+    deprecations: 2.81.1
+    flattening: 2.81.1
+    globalSecurity: 2.81.8
+    globalSecurityFlattening: 0.1.2
+    globalServerURLs: 2.82.2
+    groups: 2.81.2
+    methodArguments: 0.1.0
+    methodSecurity: 2.82.2
+    nameOverrides: 2.81.2
+    nullables: 1.0.1
+    responseFormat: 0.1.0
+    unions: 0.1.5
+generatedFiles:
+  - .gitattributes
+  - USAGE.md
+  - composer.json
+  - docs/Models/Components/AddressBase.md
+  - docs/Models/Components/AddressInput.md
+  - docs/Models/Components/AddressResponseData.md
+  - docs/Models/Components/AddressSearchResponse.md
+  - docs/Models/Components/AddressStatus.md
+  - docs/Models/Components/AddressSubmittedResponse.md
+  - docs/Models/Components/AddressType.md
+  - docs/Models/Components/AppliedTo.md
+  - docs/Models/Components/AttachmentRead.md
+  - docs/Models/Components/BackendSrcAddressValidationResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcCustomersResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcExemptionsModelsExemptionRead.md
+  - docs/Models/Components/BackendSrcExemptionsResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcExemptionsSerializersExemptionRead.md
+  - docs/Models/Components/BackendSrcProductsResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcTaxEstimationResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcTransactionsResponsesValidationErrorItem.md
+  - docs/Models/Components/BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost.md
+  - docs/Models/Components/Code.md
+  - docs/Models/Components/CountryCodeEnum.md
+  - docs/Models/Components/CreditNoteCreate.md
+  - docs/Models/Components/CreditNoteCreateTaxAmountImported.md
+  - docs/Models/Components/CreditNoteCreateTaxRateImported.md
+  - docs/Models/Components/CreditNoteCreateTaxableAmount.md
+  - docs/Models/Components/CreditNoteCreateTotalAmount.md
+  - docs/Models/Components/CreditNoteItemCreateUpdate.md
+  - docs/Models/Components/CreditNoteItemCreateUpdateAmount.md
+  - docs/Models/Components/CreditNoteItemCreateUpdateQuantity.md
+  - docs/Models/Components/CreditNoteItemCreateUpdateTaxAmountImported.md
+  - docs/Models/Components/CreditNoteItemCreateUpdateTaxRateImported.md
+  - docs/Models/Components/CreditNoteItemCreateUpdateTaxableAmount.md
+  - docs/Models/Components/CurrencyEnum.md
+  - docs/Models/Components/Customer.md
+  - docs/Models/Components/CustomerBaseBase.md
+  - docs/Models/Components/CustomerBaseInput.md
+  - docs/Models/Components/CustomerBaseOutput.md
+  - docs/Models/Components/CustomerCreate.md
+  - docs/Models/Components/CustomerRead.md
+  - docs/Models/Components/CustomerUpdate.md
+  - docs/Models/Components/DiscountAmount.md
+  - docs/Models/Components/DiscountBuilder.md
+  - docs/Models/Components/Exemption.md
+  - docs/Models/Components/ExemptionCreate.md
+  - docs/Models/Components/ExemptionRequired.md
+  - docs/Models/Components/ExemptionStatus.md
+  - docs/Models/Components/ExemptionType.md
+  - docs/Models/Components/FastapiPaginationDefaultPageExemptionRead2.md
+  - docs/Models/Components/File.md
+  - docs/Models/Components/JurisdictionType.md
+  - docs/Models/Components/Loc.md
+  - docs/Models/Components/NexusResponse.md
+  - docs/Models/Components/NexusStateEnum.md
+  - docs/Models/Components/NexusStatusEnum.md
+  - docs/Models/Components/NexusTypeEnum.md
+  - docs/Models/Components/PageCustomerRead.md
+  - docs/Models/Components/PageNexusResponse.md
+  - docs/Models/Components/PageProductRead.md
+  - docs/Models/Components/PageTransactionEstimateResponse.md
+  - docs/Models/Components/PageTransactionRead.md
+  - docs/Models/Components/PeriodModelEnum.md
+  - docs/Models/Components/ProcessingStatusEnum.md
+  - docs/Models/Components/ProductCategories.md
+  - docs/Models/Components/ProductCategoryEnum.md
+  - docs/Models/Components/ProductCodeEnum.md
+  - docs/Models/Components/ProductCreateManual.md
+  - docs/Models/Components/ProductCreateManualProductCategory.md
+  - docs/Models/Components/ProductCreateManualProductSubcategory.md
+  - docs/Models/Components/ProductRead.md
+  - docs/Models/Components/ProductReadProductCategory.md
+  - docs/Models/Components/ProductReadProductSubcategory.md
+  - docs/Models/Components/ProductStatusEnum.md
+  - docs/Models/Components/ProductSubCategory.md
+  - docs/Models/Components/ProductSubCategoryEnum.md
+  - docs/Models/Components/ProductUpdate.md
+  - docs/Models/Components/ProductUpdateV2.md
+  - docs/Models/Components/QuantityOfTheProduct.md
+  - docs/Models/Components/Rate.md
+  - docs/Models/Components/RegistrationsRegimeEnum.md
+  - docs/Models/Components/RelatedEntityType.md
+  - docs/Models/Components/SalesOrTransactionsEnum.md
+  - docs/Models/Components/Security.md
+  - docs/Models/Components/SourceEnum.md
+  - docs/Models/Components/Status.md
+  - docs/Models/Components/StatusEnum.md
+  - docs/Models/Components/TaxExemptionEnum.md
+  - docs/Models/Components/TaxItemBuilder.md
+  - docs/Models/Components/TaxItemBuilderAmount.md
+  - docs/Models/Components/TaxItemBuilderConvertedAmount.md
+  - docs/Models/Components/TaxItemEstimate.md
+  - docs/Models/Components/TaxItemRead.md
+  - docs/Models/Components/TaxItemReturnReasonEnum.md
+  - docs/Models/Components/TaxItemTypeEnum.md
+  - docs/Models/Components/TaxLiabilitySourceEnum.md
+  - docs/Models/Components/TotalAmountOfTheTransactionAfterDiscounts.md
+  - docs/Models/Components/TotalAmountOfThisTransactionItemAfterDiscounts.md
+  - docs/Models/Components/TransactionAddressBuilder.md
+  - docs/Models/Components/TransactionAddressPublic.md
+  - docs/Models/Components/TransactionAddressReadOutput.md
+  - docs/Models/Components/TransactionCreate.md
+  - docs/Models/Components/TransactionCreateAddresses.md
+  - docs/Models/Components/TransactionCreateConversionRate.md
+  - docs/Models/Components/TransactionCreateConvertedSubtotal.md
+  - docs/Models/Components/TransactionCreateConvertedTaxableAmount.md
+  - docs/Models/Components/TransactionCreateConvertedTotalAmount.md
+  - docs/Models/Components/TransactionCreateConvertedTotalDiscount.md
+  - docs/Models/Components/TransactionCreateConvertedTotalTaxAmountCalculated.md
+  - docs/Models/Components/TransactionCreateConvertedTotalTaxAmountImported.md
+  - docs/Models/Components/TransactionCreateConvertedTotalTaxLiabilityAmount.md
+  - docs/Models/Components/TransactionCreateTaxRateCalculated.md
+  - docs/Models/Components/TransactionCreateTaxRateImported.md
+  - docs/Models/Components/TransactionCreateTaxableAmount.md
+  - docs/Models/Components/TransactionCreateTotalAmount.md
+  - docs/Models/Components/TransactionCreateTotalTaxAmountCalculated.md
+  - docs/Models/Components/TransactionCreateTotalTaxAmountImported.md
+  - docs/Models/Components/TransactionCreateTotalTaxLiabilityAmount.md
+  - docs/Models/Components/TransactionEstimateRequest.md
+  - docs/Models/Components/TransactionEstimateRequestAddress.md
+  - docs/Models/Components/TransactionEstimateRequestType.md
+  - docs/Models/Components/TransactionEstimateResponse.md
+  - docs/Models/Components/TransactionEstimateResponseAddress.md
+  - docs/Models/Components/TransactionEstimateResponseType.md
+  - docs/Models/Components/TransactionExemptStatusEnum.md
+  - docs/Models/Components/TransactionImportCustomer.md
+  - docs/Models/Components/TransactionItemBuilder.md
+  - docs/Models/Components/TransactionItemBuilderAmount.md
+  - docs/Models/Components/TransactionItemBuilderConvertedAmount.md
+  - docs/Models/Components/TransactionItemBuilderConvertedSubtotal.md
+  - docs/Models/Components/TransactionItemBuilderConvertedTaxAmountCalculated.md
+  - docs/Models/Components/TransactionItemBuilderConvertedTaxAmountImported.md
+  - docs/Models/Components/TransactionItemBuilderConvertedTaxableAmount.md
+  - docs/Models/Components/TransactionItemBuilderConvertedTotalDiscount.md
+  - docs/Models/Components/TransactionItemBuilderQuantity.md
+  - docs/Models/Components/TransactionItemBuilderTaxAmountCalculated.md
+  - docs/Models/Components/TransactionItemBuilderTaxAmountImported.md
+  - docs/Models/Components/TransactionItemBuilderTaxRateCalculated.md
+  - docs/Models/Components/TransactionItemBuilderTaxRateImported.md
+  - docs/Models/Components/TransactionItemBuilderTaxableAmount.md
+  - docs/Models/Components/TransactionItemCreateUpdate.md
+  - docs/Models/Components/TransactionItemCreateUpdateAmount.md
+  - docs/Models/Components/TransactionItemCreateUpdateConvertedAmount.md
+  - docs/Models/Components/TransactionItemCreateUpdateConvertedSubtotal.md
+  - docs/Models/Components/TransactionItemCreateUpdateConvertedTaxAmountCalculated.md
+  - docs/Models/Components/TransactionItemCreateUpdateConvertedTaxAmountImported.md
+  - docs/Models/Components/TransactionItemCreateUpdateConvertedTaxableAmount.md
+  - docs/Models/Components/TransactionItemCreateUpdateConvertedTotalDiscount.md
+  - docs/Models/Components/TransactionItemCreateUpdateQuantity.md
+  - docs/Models/Components/TransactionItemCreateUpdateTaxAmountCalculated.md
+  - docs/Models/Components/TransactionItemCreateUpdateTaxAmountImported.md
+  - docs/Models/Components/TransactionItemCreateUpdateTaxRateCalculated.md
+  - docs/Models/Components/TransactionItemCreateUpdateTaxRateImported.md
+  - docs/Models/Components/TransactionItemCreateUpdateTaxableAmount.md
+  - docs/Models/Components/TransactionItemEstimateBase.md
+  - docs/Models/Components/TransactionItemEstimateResponse.md
+  - docs/Models/Components/TransactionItemRead.md
+  - docs/Models/Components/TransactionPublicRequest.md
+  - docs/Models/Components/TransactionPublicRequestTaxRateCalculated.md
+  - docs/Models/Components/TransactionPublicRequestTaxRateImported.md
+  - docs/Models/Components/TransactionPublicRequestTaxableAmount.md
+  - docs/Models/Components/TransactionPublicRequestTotalAmount.md
+  - docs/Models/Components/TransactionPublicRequestTotalTaxAmountCalculated.md
+  - docs/Models/Components/TransactionPublicRequestTotalTaxAmountImported.md
+  - docs/Models/Components/TransactionPublicRequestTotalTaxLiabilityAmount.md
+  - docs/Models/Components/TransactionRead.md
+  - docs/Models/Components/TransactionRefundStatus.md
+  - docs/Models/Components/TransactionStatusEnum.md
+  - docs/Models/Components/TransactionTypeEnum.md
+  - docs/Models/Components/TransactionUpdate.md
+  - docs/Models/Components/TransactionUpdateAddresses.md
+  - docs/Models/Components/TransactionUpdateConversionRate.md
+  - docs/Models/Components/TransactionUpdateConvertedSubtotal.md
+  - docs/Models/Components/TransactionUpdateConvertedTaxableAmount.md
+  - docs/Models/Components/TransactionUpdateConvertedTotalAmount.md
+  - docs/Models/Components/TransactionUpdateConvertedTotalDiscount.md
+  - docs/Models/Components/TransactionUpdateConvertedTotalTaxAmountCalculated.md
+  - docs/Models/Components/TransactionUpdateConvertedTotalTaxAmountImported.md
+  - docs/Models/Components/TransactionUpdateConvertedTotalTaxLiabilityAmount.md
+  - docs/Models/Components/TransactionUpdateTaxRateCalculated.md
+  - docs/Models/Components/TransactionUpdateTaxRateImported.md
+  - docs/Models/Components/TransactionUpdateTaxableAmount.md
+  - docs/Models/Components/TransactionUpdateTotalAmount.md
+  - docs/Models/Components/TransactionUpdateTotalTaxAmountCalculated.md
+  - docs/Models/Components/TransactionUpdateTotalTaxAmountImported.md
+  - docs/Models/Components/TransactionUpdateTotalTaxLiabilityAmount.md
+  - docs/Models/Components/TreatmentEnum.md
+  - docs/Models/Components/ValidationAddress.md
+  - docs/Models/Components/ValidationError.md
+  - docs/Models/Errors/BackendSrcAddressValidationResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcCustomersResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcProductsResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcTransactionsResponsesValidationErrorResponse.md
+  - docs/Models/Errors/ErrorResponse.md
+  - docs/Models/Errors/HTTPValidationError.md
+  - docs/Models/Operations/CountryCode.md
+  - docs/Models/Operations/CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostRequest.md
+  - docs/Models/Operations/CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostResponse.md
+  - docs/Models/Operations/CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostSecurity.md
+  - docs/Models/Operations/CreateCustomerV1CustomersPostRequest.md
+  - docs/Models/Operations/CreateCustomerV1CustomersPostResponse.md
+  - docs/Models/Operations/CreateCustomerV1CustomersPostSecurity.md
+  - docs/Models/Operations/CreateExemptionV1ExemptionsPostRequest.md
+  - docs/Models/Operations/CreateExemptionV1ExemptionsPostResponse.md
+  - docs/Models/Operations/CreateExemptionV1ExemptionsPostSecurity.md
+  - docs/Models/Operations/CreateProductV1ProductsPostRequest.md
+  - docs/Models/Operations/CreateProductV1ProductsPostResponse.md
+  - docs/Models/Operations/CreateProductV1ProductsPostSecurity.md
+  - docs/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest.md
+  - docs/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse.md
+  - docs/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostSecurity.md
+  - docs/Models/Operations/CreateTransactionV1TransactionsPostRequest.md
+  - docs/Models/Operations/CreateTransactionV1TransactionsPostResponse.md
+  - docs/Models/Operations/CreateTransactionV1TransactionsPostSecurity.md
+  - docs/Models/Operations/EstimateTaxV1TaxEstimatePostRequest.md
+  - docs/Models/Operations/EstimateTaxV1TaxEstimatePostResponse.md
+  - docs/Models/Operations/EstimateTaxV1TaxEstimatePostSecurity.md
+  - docs/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest.md
+  - docs/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse.md
+  - docs/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetSecurity.md
+  - docs/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetRequest.md
+  - docs/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse.md
+  - docs/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetSecurity.md
+  - docs/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetRequest.md
+  - docs/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetResponse.md
+  - docs/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetSecurity.md
+  - docs/Models/Operations/GetCustomersV1Country.md
+  - docs/Models/Operations/GetCustomersV1Request.md
+  - docs/Models/Operations/GetCustomersV1Response.md
+  - docs/Models/Operations/GetCustomersV1Security.md
+  - docs/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetRequest.md
+  - docs/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetResponse.md
+  - docs/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetSecurity.md
+  - docs/Models/Operations/GetExemptionsV1ExemptionsGetRequest.md
+  - docs/Models/Operations/GetExemptionsV1ExemptionsGetResponse.md
+  - docs/Models/Operations/GetExemptionsV1ExemptionsGetSecurity.md
+  - docs/Models/Operations/GetNexusForOrgV1NexusGetRequest.md
+  - docs/Models/Operations/GetNexusForOrgV1NexusGetResponse.md
+  - docs/Models/Operations/GetNexusForOrgV1NexusGetSecurity.md
+  - docs/Models/Operations/GetProductByIdV1ProductsProductIdGetRequest.md
+  - docs/Models/Operations/GetProductByIdV1ProductsProductIdGetResponse.md
+  - docs/Models/Operations/GetProductByIdV1ProductsProductIdGetSecurity.md
+  - docs/Models/Operations/GetProductCategoriesV1ProductsCategoriesGetRequest.md
+  - docs/Models/Operations/GetProductCategoriesV1ProductsCategoriesGetResponse.md
+  - docs/Models/Operations/GetProductCategoriesV1ProductsCategoriesGetSecurity.md
+  - docs/Models/Operations/GetProductsV1ProductsGetRequest.md
+  - docs/Models/Operations/GetProductsV1ProductsGetResponse.md
+  - docs/Models/Operations/GetProductsV1ProductsGetSecurity.md
+  - docs/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest.md
+  - docs/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse.md
+  - docs/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetSecurity.md
+  - docs/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetRequest.md
+  - docs/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetResponse.md
+  - docs/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetSecurity.md
+  - docs/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest.md
+  - docs/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse.md
+  - docs/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetSecurity.md
+  - docs/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetRequest.md
+  - docs/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse.md
+  - docs/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetSecurity.md
+  - docs/Models/Operations/GetTransactionsV1TransactionsGetCountry.md
+  - docs/Models/Operations/GetTransactionsV1TransactionsGetRequest.md
+  - docs/Models/Operations/GetTransactionsV1TransactionsGetResponse.md
+  - docs/Models/Operations/GetTransactionsV1TransactionsGetSecurity.md
+  - docs/Models/Operations/Product.md
+  - docs/Models/Operations/SearchV1AddressValidationSearchPostResponse.md
+  - docs/Models/Operations/SearchV1AddressValidationSearchPostSecurity.md
+  - docs/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostRequest.md
+  - docs/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostResponse.md
+  - docs/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostSecurity.md
+  - docs/Models/Operations/UpdateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesCreditNoteIdPutRequest.md
+  - docs/Models/Operations/UpdateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesCreditNoteIdPutResponse.md
+  - docs/Models/Operations/UpdateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesCreditNoteIdPutSecurity.md
+  - docs/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutRequest.md
+  - docs/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutResponse.md
+  - docs/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutSecurity.md
+  - docs/Models/Operations/UpdateProductV1ProductsProductIdPutRequest.md
+  - docs/Models/Operations/UpdateProductV1ProductsProductIdPutResponse.md
+  - docs/Models/Operations/UpdateProductV1ProductsProductIdPutSecurity.md
+  - docs/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutRequest.md
+  - docs/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutResponse.md
+  - docs/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutSecurity.md
+  - docs/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest.md
+  - docs/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse.md
+  - docs/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostSecurity.md
+  - docs/sdks/addressvalidation/README.md
+  - docs/sdks/customers/README.md
+  - docs/sdks/exemptions/README.md
+  - docs/sdks/nexus/README.md
+  - docs/sdks/products/README.md
+  - docs/sdks/sdk/README.md
+  - docs/sdks/taxestimation/README.md
+  - docs/sdks/transactions/README.md
+  - phpstan.neon
+  - phpunit.xml
+  - pint.json
+  - rector.php
+  - src/AddressValidation.php
+  - src/Customers.php
+  - src/Exemptions.php
+  - src/Hooks/AfterErrorContext.php
+  - src/Hooks/AfterErrorHook.php
+  - src/Hooks/AfterSuccessContext.php
+  - src/Hooks/AfterSuccessHook.php
+  - src/Hooks/BeforeRequestContext.php
+  - src/Hooks/BeforeRequestHook.php
+  - src/Hooks/Credentials.php
+  - src/Hooks/ErrorResponseContext.php
+  - src/Hooks/FailEarlyException.php
+  - src/Hooks/HookContext.php
+  - src/Hooks/Hooks.php
+  - src/Hooks/SDKHooks.php
+  - src/Hooks/SDKInitHook.php
+  - src/Hooks/Session.php
+  - src/Hooks/TokenResponse.php
+  - src/Models/Components/AddressBase.php
+  - src/Models/Components/AddressInput.php
+  - src/Models/Components/AddressResponseData.php
+  - src/Models/Components/AddressSearchResponse.php
+  - src/Models/Components/AddressStatus.php
+  - src/Models/Components/AddressSubmittedResponse.php
+  - src/Models/Components/AddressType.php
+  - src/Models/Components/AppliedTo.php
+  - src/Models/Components/AttachmentRead.php
+  - src/Models/Components/BackendSrcAddressValidationResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcCustomersResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcExemptionsModelsExemptionRead.php
+  - src/Models/Components/BackendSrcExemptionsResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcExemptionsSerializersExemptionRead.php
+  - src/Models/Components/BackendSrcProductsResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcTaxEstimationResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcTransactionsResponsesValidationErrorItem.php
+  - src/Models/Components/BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost.php
+  - src/Models/Components/CountryCodeEnum.php
+  - src/Models/Components/CreditNoteCreate.php
+  - src/Models/Components/CreditNoteItemCreateUpdate.php
+  - src/Models/Components/CurrencyEnum.php
+  - src/Models/Components/CustomerBaseBase.php
+  - src/Models/Components/CustomerBaseInput.php
+  - src/Models/Components/CustomerBaseOutput.php
+  - src/Models/Components/CustomerCreate.php
+  - src/Models/Components/CustomerRead.php
+  - src/Models/Components/CustomerUpdate.php
+  - src/Models/Components/DiscountBuilder.php
+  - src/Models/Components/Exemption.php
+  - src/Models/Components/ExemptionCreate.php
+  - src/Models/Components/ExemptionRequired.php
+  - src/Models/Components/ExemptionStatus.php
+  - src/Models/Components/ExemptionType.php
+  - src/Models/Components/FastapiPaginationDefaultPageExemptionRead2.php
+  - src/Models/Components/File.php
+  - src/Models/Components/JurisdictionType.php
+  - src/Models/Components/NexusResponse.php
+  - src/Models/Components/NexusStateEnum.php
+  - src/Models/Components/NexusStatusEnum.php
+  - src/Models/Components/NexusTypeEnum.php
+  - src/Models/Components/PageCustomerRead.php
+  - src/Models/Components/PageNexusResponse.php
+  - src/Models/Components/PageProductRead.php
+  - src/Models/Components/PageTransactionEstimateResponse.php
+  - src/Models/Components/PageTransactionRead.php
+  - src/Models/Components/PeriodModelEnum.php
+  - src/Models/Components/ProcessingStatusEnum.php
+  - src/Models/Components/ProductCategories.php
+  - src/Models/Components/ProductCategoryEnum.php
+  - src/Models/Components/ProductCodeEnum.php
+  - src/Models/Components/ProductCreateManual.php
+  - src/Models/Components/ProductRead.php
+  - src/Models/Components/ProductStatusEnum.php
+  - src/Models/Components/ProductSubCategory.php
+  - src/Models/Components/ProductSubCategoryEnum.php
+  - src/Models/Components/ProductUpdate.php
+  - src/Models/Components/ProductUpdateV2.php
+  - src/Models/Components/RegistrationsRegimeEnum.php
+  - src/Models/Components/RelatedEntityType.php
+  - src/Models/Components/SalesOrTransactionsEnum.php
+  - src/Models/Components/Security.php
+  - src/Models/Components/SourceEnum.php
+  - src/Models/Components/Status.php
+  - src/Models/Components/StatusEnum.php
+  - src/Models/Components/TaxExemptionEnum.php
+  - src/Models/Components/TaxItemBuilder.php
+  - src/Models/Components/TaxItemEstimate.php
+  - src/Models/Components/TaxItemRead.php
+  - src/Models/Components/TaxItemReturnReasonEnum.php
+  - src/Models/Components/TaxItemTypeEnum.php
+  - src/Models/Components/TaxLiabilitySourceEnum.php
+  - src/Models/Components/TransactionAddressBuilder.php
+  - src/Models/Components/TransactionAddressPublic.php
+  - src/Models/Components/TransactionAddressReadOutput.php
+  - src/Models/Components/TransactionCreate.php
+  - src/Models/Components/TransactionEstimateRequest.php
+  - src/Models/Components/TransactionEstimateRequestAddress.php
+  - src/Models/Components/TransactionEstimateRequestType.php
+  - src/Models/Components/TransactionEstimateResponse.php
+  - src/Models/Components/TransactionEstimateResponseAddress.php
+  - src/Models/Components/TransactionEstimateResponseType.php
+  - src/Models/Components/TransactionExemptStatusEnum.php
+  - src/Models/Components/TransactionImportCustomer.php
+  - src/Models/Components/TransactionItemBuilder.php
+  - src/Models/Components/TransactionItemCreateUpdate.php
+  - src/Models/Components/TransactionItemEstimateBase.php
+  - src/Models/Components/TransactionItemEstimateResponse.php
+  - src/Models/Components/TransactionItemRead.php
+  - src/Models/Components/TransactionPublicRequest.php
+  - src/Models/Components/TransactionRead.php
+  - src/Models/Components/TransactionRefundStatus.php
+  - src/Models/Components/TransactionStatusEnum.php
+  - src/Models/Components/TransactionTypeEnum.php
+  - src/Models/Components/TransactionUpdate.php
+  - src/Models/Components/TreatmentEnum.php
+  - src/Models/Components/ValidationAddress.php
+  - src/Models/Components/ValidationError.php
+  - src/Models/Errors/APIException.php
+  - src/Models/Errors/BackendSrcAddressValidationResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcAddressValidationResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcCustomersResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcCustomersResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcProductsResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcProductsResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcTransactionsResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcTransactionsResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/ErrorResponse.php
+  - src/Models/Errors/ErrorResponseThrowable.php
+  - src/Models/Errors/HTTPValidationError.php
+  - src/Models/Errors/HTTPValidationErrorThrowable.php
+  - src/Models/Operations/CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostRequest.php
+  - src/Models/Operations/CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostResponse.php
+  - src/Models/Operations/CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostSecurity.php
+  - src/Models/Operations/CreateCustomerV1CustomersPostRequest.php
+  - src/Models/Operations/CreateCustomerV1CustomersPostResponse.php
+  - src/Models/Operations/CreateCustomerV1CustomersPostSecurity.php
+  - src/Models/Operations/CreateExemptionV1ExemptionsPostRequest.php
+  - src/Models/Operations/CreateExemptionV1ExemptionsPostResponse.php
+  - src/Models/Operations/CreateExemptionV1ExemptionsPostSecurity.php
+  - src/Models/Operations/CreateProductV1ProductsPostRequest.php
+  - src/Models/Operations/CreateProductV1ProductsPostResponse.php
+  - src/Models/Operations/CreateProductV1ProductsPostSecurity.php
+  - src/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest.php
+  - src/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse.php
+  - src/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostSecurity.php
+  - src/Models/Operations/CreateTransactionV1TransactionsPostRequest.php
+  - src/Models/Operations/CreateTransactionV1TransactionsPostResponse.php
+  - src/Models/Operations/CreateTransactionV1TransactionsPostSecurity.php
+  - src/Models/Operations/EstimateTaxV1TaxEstimatePostRequest.php
+  - src/Models/Operations/EstimateTaxV1TaxEstimatePostResponse.php
+  - src/Models/Operations/EstimateTaxV1TaxEstimatePostSecurity.php
+  - src/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest.php
+  - src/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse.php
+  - src/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetSecurity.php
+  - src/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetRequest.php
+  - src/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse.php
+  - src/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetSecurity.php
+  - src/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetRequest.php
+  - src/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetResponse.php
+  - src/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetSecurity.php
+  - src/Models/Operations/GetCustomersV1Request.php
+  - src/Models/Operations/GetCustomersV1Response.php
+  - src/Models/Operations/GetCustomersV1Security.php
+  - src/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetRequest.php
+  - src/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetResponse.php
+  - src/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetSecurity.php
+  - src/Models/Operations/GetExemptionsV1ExemptionsGetRequest.php
+  - src/Models/Operations/GetExemptionsV1ExemptionsGetResponse.php
+  - src/Models/Operations/GetExemptionsV1ExemptionsGetSecurity.php
+  - src/Models/Operations/GetNexusForOrgV1NexusGetRequest.php
+  - src/Models/Operations/GetNexusForOrgV1NexusGetResponse.php
+  - src/Models/Operations/GetNexusForOrgV1NexusGetSecurity.php
+  - src/Models/Operations/GetProductByIdV1ProductsProductIdGetRequest.php
+  - src/Models/Operations/GetProductByIdV1ProductsProductIdGetResponse.php
+  - src/Models/Operations/GetProductByIdV1ProductsProductIdGetSecurity.php
+  - src/Models/Operations/GetProductCategoriesV1ProductsCategoriesGetRequest.php
+  - src/Models/Operations/GetProductCategoriesV1ProductsCategoriesGetResponse.php
+  - src/Models/Operations/GetProductCategoriesV1ProductsCategoriesGetSecurity.php
+  - src/Models/Operations/GetProductsV1ProductsGetRequest.php
+  - src/Models/Operations/GetProductsV1ProductsGetResponse.php
+  - src/Models/Operations/GetProductsV1ProductsGetSecurity.php
+  - src/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest.php
+  - src/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse.php
+  - src/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetSecurity.php
+  - src/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetRequest.php
+  - src/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetResponse.php
+  - src/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetSecurity.php
+  - src/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest.php
+  - src/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse.php
+  - src/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetSecurity.php
+  - src/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetRequest.php
+  - src/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse.php
+  - src/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetSecurity.php
+  - src/Models/Operations/GetTransactionsV1TransactionsGetRequest.php
+  - src/Models/Operations/GetTransactionsV1TransactionsGetResponse.php
+  - src/Models/Operations/GetTransactionsV1TransactionsGetSecurity.php
+  - src/Models/Operations/SearchV1AddressValidationSearchPostResponse.php
+  - src/Models/Operations/SearchV1AddressValidationSearchPostSecurity.php
+  - src/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostRequest.php
+  - src/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostResponse.php
+  - src/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostSecurity.php
+  - src/Models/Operations/UpdateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesCreditNoteIdPutRequest.php
+  - src/Models/Operations/UpdateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesCreditNoteIdPutResponse.php
+  - src/Models/Operations/UpdateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesCreditNoteIdPutSecurity.php
+  - src/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutRequest.php
+  - src/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutResponse.php
+  - src/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutSecurity.php
+  - src/Models/Operations/UpdateProductV1ProductsProductIdPutRequest.php
+  - src/Models/Operations/UpdateProductV1ProductsProductIdPutResponse.php
+  - src/Models/Operations/UpdateProductV1ProductsProductIdPutSecurity.php
+  - src/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutRequest.php
+  - src/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutResponse.php
+  - src/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutSecurity.php
+  - src/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest.php
+  - src/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse.php
+  - src/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostSecurity.php
+  - src/Nexus.php
+  - src/Products.php
+  - src/SDK.php
+  - src/SDKBuilder.php
+  - src/SDKConfiguration.php
+  - src/TaxEstimation.php
+  - src/Transactions.php
+  - src/Utils/BigDecimalHandler.php
+  - src/Utils/BigIntHandler.php
+  - src/Utils/DateHandler.php
+  - src/Utils/DateTimeHandler.php
+  - src/Utils/DefaultRequest.php
+  - src/Utils/DefaultResponse.php
+  - src/Utils/DefaultStream.php
+  - src/Utils/DefaultUri.php
+  - src/Utils/EnumHandler.php
+  - src/Utils/FormMetadata.php
+  - src/Utils/Headers.php
+  - src/Utils/JSON.php
+  - src/Utils/MixedJSONHandler.php
+  - src/Utils/MultipartMetadata.php
+  - src/Utils/Options.php
+  - src/Utils/ParamsMetadata.php
+  - src/Utils/PathParameters.php
+  - src/Utils/PhpDocTypeParser.php
+  - src/Utils/QueryParameters.php
+  - src/Utils/RequestBodies.php
+  - src/Utils/RequestMetadata.php
+  - src/Utils/Retry/PermanentError.php
+  - src/Utils/Retry/RetryConfig.php
+  - src/Utils/Retry/RetryConfigBackoff.php
+  - src/Utils/Retry/RetryConfigNone.php
+  - src/Utils/Retry/RetryStrategy.php
+  - src/Utils/Retry/RetryUtils.php
+  - src/Utils/Retry/TemporaryError.php
+  - src/Utils/Security.php
+  - src/Utils/SecurityClient.php
+  - src/Utils/SecurityMetadata.php
+  - src/Utils/ServerDetails.php
+  - src/Utils/SpeakeasyMetadata.php
+  - src/Utils/UnionHandler.php
+  - src/Utils/Utils.php
+examples:
+  search_v1_address_validation_search_post:
+    speakeasy-default-search-v1-address-validation-search-post:
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: [{"address_submitted": {}, "response_address": {}, "verification_status": "<value>", "enrich_fields": ["<value 1>", "<value 2>"]}]
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+  suggestions_v1_address_validation_suggestions_post:
+    speakeasy-default-suggestions-v1-address-validation-suggestions-post:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: "<value>"
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>", "<value 2>"], "msg": "<value>", "input": "<value>", "ctx": {"key": "<value>", "key1": "<value>", "key2": "<value>"}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  get_customers_v1:
+    speakeasy-default-get-customers-v1:
+      parameters:
+        query:
+          search_query: "John"
+          country: ["US"]
+          state: "CA"
+          source__in: "SHOPIFY,API"
+          order_by: "created_at,street_1,street_2,city,state,postal_code,country,status"
+          page: 1
+          size: 50
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: {"items": [{"id": "<id>", "organization_id": "<id>"}], "total": 719000, "page": 273955, "size": 335750}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+  create_customer_v1_customers_post:
+    speakeasy-default-create-customer-v1-customers-post:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "organization_id": "<id>"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+  get_customer_by_id_v1_customers__customer_id__get:
+    speakeasy-default-get-customer-by-id-v1-customers-customer-id-get:
+      parameters:
+        path:
+          customer_id: "cust_abc123"
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "organization_id": "<id>"}
+        "422":
+          application/json: {}
+  update_customer_v1_customers__customer_id__put:
+    speakeasy-default-update-customer-v1-customers-customer-id-put:
+      parameters:
+        path:
+          customer_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "organization_id": "<id>"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>"], "msg": "<value>", "input": "<value>", "ctx": {"key": "<value>"}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  get_customer_by_external_id_v1_customers_external__external_id__get:
+    speakeasy-default-get-customer-by-external-id-v1-customers-external-external-id-get:
+      parameters:
+        path:
+          external_id: "external_12345"
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "organization_id": "<id>"}
+        "422":
+          application/json: {}
+  get_transactions_by_customer_id_v1_customers__customer_id__transactions_get:
+    speakeasy-default-get-transactions-by-customer-id-v1-customers-customer-id-transactions-get:
+      parameters:
+        path:
+          customer_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: [{"organization_id": "<id>", "external_id": "<id>", "date": "2023-02-17T13:13:59.050Z", "total_amount": "0.00", "total_tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "total_tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "total_tax_liability_amount": "0.00", "taxable_amount": "0.00", "locked": false, "id": "<id>", "addresses": [{"type": "SHIP_TO"}], "transaction_items": [{"organization_id": "<id>", "date": "2024-01-20T22:07:20.889Z", "external_product_id": "<id>", "quantity": "1.0", "amount": "0.00", "tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "taxable_amount": "0.00", "exempt": false, "id": "<id>", "tax_items": [{"rule_id": "0000", "rate": "<value>", "amount": "954.69", "name": "<value>"}]}], "type": "ARCHIVE"}]
+        "422":
+          application/json: {}
+  create_transaction_by_customer_id_v1_customers__customer_id__transactions_post:
+    speakeasy-default-create-transaction-by-customer-id-v1-customers-customer-id-transactions-post:
+      parameters:
+        path:
+          customer_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2023-02-16T04:36:50.697Z", "locked": false, "addresses": [], "transaction_items": [{"organization_id": "<id>", "date": "2024-05-13T04:49:24.946Z", "external_product_id": "<id>", "exempt": false}]}
+      responses:
+        "200":
+          application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2024-03-26T21:54:40.067Z", "total_amount": "0.00", "total_tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "total_tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "total_tax_liability_amount": "0.00", "taxable_amount": "0.00", "locked": false, "id": "<id>", "addresses": [], "transaction_items": [{"organization_id": "<id>", "date": "2025-07-02T12:31:43.127Z", "external_product_id": "<id>", "quantity": "1.0", "amount": "0.00", "tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "taxable_amount": "0.00", "exempt": false, "id": "<id>", "tax_items": [{"rule_id": "0000", "rate": "<value>", "amount": "817.28", "name": "<value>"}]}], "type": "PARTIAL_CREDIT_NOTE"}
+        "422":
+          application/json: {}
+  get_exemptions_v1_exemptions_get:
+    speakeasy-default-get-exemptions-v1-exemptions-get:
+      parameters:
+        query:
+          search_query: "John"
+          country_code: ["US"]
+          jurisdiction: "CA"
+          start_date: "2024-01-01"
+          end_date: "2024-01-01"
+          customer_id: "cust_1234"
+          transaction_id: "trans_1234"
+          page: 1
+          size: 50
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: {"items": [], "total": 809509, "page": 948427, "size": null}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>", "<value 2>"], "msg": "<value>", "input": "<value>", "ctx": {"key": "<value>"}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  create_exemption_v1_exemptions_post:
+    speakeasy-default-create-exemption-v1-exemptions-post:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"exemption_type": "customer", "start_date": "2023-03-27", "customer_id": "<id>", "reseller": false, "FEIN": "<value>", "sales_tax_id": "<id>", "status": "ACTIVE"}
+      responses:
+        "200":
+          application/json: {"start_date": "2025-05-21", "reseller": false, "id": "<id>", "exemption_type": "transaction", "status": "ARCHIVED"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>"], "msg": "<value>", "input": "<value>", "ctx": {"key": "<value>"}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  get_exemption_by_id_v1_exemptions__exemption_id__get:
+    speakeasy-default-get-exemption-by-id-v1-exemptions-exemption-id-get:
+      parameters:
+        path:
+          exemption_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: {"exemption_type": "transaction", "start_date": "2024-02-13", "reseller": false, "id": "<id>"}
+        "404":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+  upload_exemption_certificate_v1_exemptions__exemption_id__attachments_post:
+    speakeasy-default-upload-exemption-certificate-v1-exemptions-exemption-id-attachments-post:
+      parameters:
+        path:
+          exemption_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        multipart/form-data: {"file": "x-file: example.file"}
+      responses:
+        "200":
+          application/json: {"related_entity_id": "<id>", "related_entity_type": "EXEMPTION", "id": "<id>"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+  get_attachments_for_exemption_v1_exemptions__exemption_id__attachments_get:
+    speakeasy-default-get-attachments-for-exemption-v1-exemptions-exemption-id-attachments-get:
+      parameters:
+        path:
+          exemption_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: [{"related_entity_id": "<id>", "related_entity_type": "EXEMPTION", "id": "<id>"}]
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>", "<value 2>"], "msg": "<value>", "input": "<value>", "ctx": {"key": "<value>", "key1": "<value>"}}]}
+  get_nexus_for_org_v1_nexus_get:
+    speakeasy-default-get-nexus-for-org-v1-nexus-get:
+      parameters:
+        query:
+          page: 1
+          size: 50
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: {"items": [{"country_code": "CN", "state_code": "<value>", "state_name": "<value>", "treatment_of_exempt_transactions": "YES_SALES_NO_TRANSACTIONS", "trigger": "<value>", "sales_or_transactions": "SALES", "threshold_sales": 476092, "threshold_transactions": 144398, "start_date": "2025-03-09", "transaction_count": 0, "transactions_amount": "0.00", "previous_transaction_count": 0, "previous_transactions_amount": "0.00", "tax_liability": "0.00", "nexus_met": false, "economic_nexus_met": false, "physical_nexus_met": false, "collected_tax_enabled": false, "period_model": "PRECEDING_YEAR_QUARTERLY_OFFSET", "period_start_date": "2024-12-20", "period_end_date": "2023-10-25", "previous_period_start_date": "2023-02-23", "previous_period_end_date": "2023-05-08", "earliest_collected_date": "2018-01-01T00:00:00", "id": "<id>", "created_at": "2025-07-27T10:58:50.049Z", "updated_at": "2024-12-31T08:38:28.993Z", "organization_id": "<id>", "is_vda_eligible": false, "nexus_type": "STATE", "total_transactions": 218796, "total_transactions_included": 800733, "total_transactions_exempted": 990975, "total_transactions_marketplace": 980208}], "total": null, "page": 886833, "size": 272984}
+        "422":
+          application/json: {}
+  get_products_v1_products__get:
+    speakeasy-default-get-products-v1-products-get:
+      parameters:
+        query:
+          page: 1
+          size: 50
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: {"items": [{"id": "<id>", "external_id": "<id>", "sku": ["<value 1>"], "code": "CODE_3006", "name": "<value>", "description": "furthermore suckle whose", "status": "APPROVED", "product_category": "MISCELLANEOUS", "product_subcategory": "COMMERCIAL_CONSTRUCTION_EXISTING_BUILDINGS_LABOR", "tax_exempt": true, "source": "RECURLY", "connection_id": "<id>", "classification_failed": true}], "total": 158694, "page": null, "size": 727379}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>"], "msg": "<value>", "input": "<value>", "ctx": {"key": "<value>", "key1": "<value>"}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  create_product_v1_products__post:
+    speakeasy-default-create-product-v1-products-post:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"external_id": "<id>", "name": "<value>", "product_category": "<value>", "product_subcategory": "<value>", "tax_exempt": true}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "external_id": "<id>", "sku": ["<value 1>", "<value 2>"], "code": "CODE_3009", "name": "<value>", "description": "huzzah incidentally below pfft under stitcher", "status": "PARTIALLY_APPROVED", "product_category": "<value>", "product_subcategory": "FOOD_VENDING_MACHINE", "tax_exempt": true, "source": "OTHER", "connection_id": "<id>", "classification_failed": null}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": [], "msg": "<value>", "input": "<value>", "ctx": {}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  get_product_by_id_v1_products__product_id__get:
+    speakeasy-default-get-product-by-id-v1-products-product-id-get:
+      parameters:
+        path:
+          product_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "external_id": "<id>", "sku": null, "code": "<value>", "name": "<value>", "description": "once unnaturally unlike pulverize", "status": "PARTIALLY_APPROVED", "product_category": "SERVICE", "product_subcategory": "CATERING", "tax_exempt": false, "source": "DEEL", "connection_id": "<id>", "classification_failed": false}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>", "<value 2>", "<value 3>"], "msg": "<value>", "input": "<value>", "ctx": {"key": "<value>", "key1": "<value>", "key2": "<value>"}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  update_product_v1_products__product_id__put:
+    speakeasy-default-update-product-v1-products-product-id-put:
+      parameters:
+        path:
+          product_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"name": "<value>", "product_category": "SERVICE", "product_subcategory": "CUSTOMIZATION_OF_SOFTWARE", "tax_exempt": true}
+      responses:
+        "200":
+          application/json: {"id": "<id>", "external_id": "<id>", "sku": ["<value 1>", "<value 2>"], "code": "<value>", "name": "<value>", "description": "pfft clearly before evince hmph", "status": "PARTIALLY_APPROVED", "product_category": "<value>", "product_subcategory": "<value>", "tax_exempt": true, "source": "POS", "connection_id": "<id>", "classification_failed": false}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>", "<value 2>", "<value 3>"], "msg": "<value>", "input": "<value>", "ctx": {"key": "<value>"}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  get_product_categories_v1_products_categories__get:
+    speakeasy-default-get-product-categories-v1-products-categories-get:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: [{"name": "<value>", "subcategories": []}]
+        "422":
+          application/json: {}
+  get_transactions_v1_transactions_get:
+    speakeasy-default-get-transactions-v1-transactions-get:
+      parameters:
+        query:
+          page: 1
+          size: 50
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: {"items": [], "total": null, "page": 659955, "size": 969694}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>", "<value 2>"], "msg": "<value>", "input": "<value>", "ctx": {"key": "<value>", "key1": "<value>"}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  create_transaction_v1_transactions_post:
+    speakeasy-default-create-transaction-v1-transactions-post:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2025-11-05T23:48:53.053Z", "locked": false, "addresses": [], "transaction_items": [], "customer": {}, "type": "ARCHIVE"}
+      responses:
+        "202":
+          application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2025-09-02T23:33:30.843Z", "total_amount": "0.00", "total_tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "total_tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "total_tax_liability_amount": "0.00", "taxable_amount": "0.00", "locked": false, "id": "<id>", "addresses": [{"type": "SHIP_FROM"}], "transaction_items": [{"organization_id": "<id>", "date": "2023-08-29T15:50:05.795Z", "external_product_id": "<id>", "quantity": "1.0", "amount": "0.00", "tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "taxable_amount": "0.00", "exempt": false, "id": "<id>", "tax_items": []}], "type": "FULL_CREDIT_NOTE"}
+        "400":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+    duplicate_external_id:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2025-11-05T23:48:53.053Z", "locked": false, "addresses": [], "transaction_items": [], "customer": {}, "type": "ARCHIVE"}
+      responses:
+        "400":
+          application/json: {"detail": "Duplicate external id (ORDER_XYZ_789) for the given transaction not allowed."}
+        "500":
+          application/json: {"detail": "Duplicate external id (ORDER_XYZ_789) for the given transaction not allowed."}
+    missing_product_external_id:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2025-11-05T23:48:53.053Z", "locked": false, "addresses": [], "transaction_items": [], "customer": {}, "type": "ARCHIVE"}
+      responses:
+        "400":
+          application/json: {"detail": "[orgn_YourOrgIdHere] Product does not have an external id"}
+        "500":
+          application/json: {"detail": "[orgn_YourOrgIdHere] Product does not have an external id"}
+    connection_mismatch:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2025-11-05T23:48:53.053Z", "locked": false, "addresses": [], "transaction_items": [], "customer": {}, "type": "ARCHIVE"}
+      responses:
+        "400":
+          application/json: {"detail": "Connection mismatch between transaction and customer"}
+        "500":
+          application/json: {"detail": "Connection mismatch between transaction and customer"}
+    invalid_address:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2025-11-05T23:48:53.053Z", "locked": false, "addresses": [], "transaction_items": [], "customer": {}, "type": "ARCHIVE"}
+      responses:
+        "400":
+          application/json: {"detail": "Address validation failed: missing required fields"}
+        "500":
+          application/json: {"detail": "Address validation failed: missing required fields"}
+    missing_org_id:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2025-11-05T23:48:53.053Z", "locked": false, "addresses": [], "transaction_items": [], "customer": {}, "type": "ARCHIVE"}
+      responses:
+        "422":
+          application/json: {"detail": [{"type": "missing", "loc": ["header", "x-organization-id"], "msg": "Field required", "input": "<value>", "ctx": {"key": "<value>"}}]}
+    missing_required_field:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2025-11-05T23:48:53.053Z", "locked": false, "addresses": [], "transaction_items": [], "customer": {}, "type": "ARCHIVE"}
+      responses:
+        "422":
+          application/json: {"detail": [{"type": "missing", "loc": ["body", "external_id"], "msg": "Field required", "input": "<value>", "ctx": {"key": "<value>", "key1": "<value>", "key2": "<value>"}}]}
+    invalid_enum_value:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2025-11-05T23:48:53.053Z", "locked": false, "addresses": [], "transaction_items": [], "customer": {}, "type": "ARCHIVE"}
+      responses:
+        "422":
+          application/json: {"detail": [{"type": "enum", "loc": ["body", "currency"], "msg": "Input should be 'USD', 'CAD', 'EUR'...", "input": "INVALID", "ctx": {"expected": "one of USD, CAD, EUR..."}}]}
+    invalid_date_format:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2025-11-05T23:48:53.053Z", "locked": false, "addresses": [], "transaction_items": [], "customer": {}, "type": "ARCHIVE"}
+      responses:
+        "422":
+          application/json: {"detail": [{"type": "datetime_parsing", "loc": ["body", "date"], "msg": "Input should be a valid datetime, invalid format", "input": "2023-13-45", "ctx": {}}]}
+  get_transaction_by_external_id_v1_transactions_external__external_id__get:
+    speakeasy-default-get-transaction-by-external-id-v1-transactions-external-external-id-get:
+      parameters:
+        path:
+          external_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2024-07-02T09:59:25.499Z", "total_amount": "0.00", "total_tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "total_tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "total_tax_liability_amount": "0.00", "taxable_amount": "0.00", "locked": false, "id": "<id>", "addresses": [], "transaction_items": [{"organization_id": "<id>", "date": "2025-02-10T16:56:41.984Z", "external_product_id": "<id>", "quantity": "1.0", "amount": "0.00", "tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "taxable_amount": "0.00", "exempt": false, "id": "<id>", "tax_items": [{"rule_id": "0000", "rate": "<value>", "amount": "530.73", "name": "<value>"}]}], "type": "PARTIAL_CREDIT_NOTE"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>", "<value 2>", "<value 3>"], "msg": "<value>", "input": "<value>", "ctx": {}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  update_transaction_v1_transactions__transaction_id__put:
+    speakeasy-default-update-transaction-v1-transactions-transaction-id-put:
+      parameters:
+        path:
+          transaction_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2024-09-25T05:56:56.167Z", "locked": false, "addresses": [], "transaction_items": [{"organization_id": "<id>", "date": "2024-12-29T19:13:48.302Z", "external_product_id": "<id>", "exempt": false}], "customer": {}}
+      responses:
+        "200":
+          application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2024-09-25T16:52:09.866Z", "total_amount": "0.00", "total_tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "total_tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "total_tax_liability_amount": "0.00", "taxable_amount": "0.00", "locked": false, "id": "<id>", "addresses": [{"type": "SHIP_FROM"}], "transaction_items": [{"organization_id": "<id>", "date": "2025-08-27T16:42:02.917Z", "external_product_id": "<id>", "quantity": "1.0", "amount": "0.00", "tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "taxable_amount": "0.00", "exempt": false, "id": "<id>", "tax_items": [{"rule_id": "0000", "rate": "<value>", "amount": "391.29", "name": "<value>"}]}], "type": "FULL_CREDIT_NOTE"}
+        "422":
+          application/json: {}
+  get_transaction_by_id_v1_transactions__transaction_id__get:
+    speakeasy-default-get-transaction-by-id-v1-transactions-transaction-id-get:
+      parameters:
+        path:
+          transaction_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2024-08-13T05:12:45.031Z", "total_amount": "0.00", "total_tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "total_tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "total_tax_liability_amount": "0.00", "taxable_amount": "0.00", "locked": false, "id": "<id>", "addresses": [{"type": "BILL_TO"}], "transaction_items": [], "type": "ARCHIVE"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": [], "msg": "<value>", "input": "<value>", "ctx": {}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  get_transactions_by_filing_id_v1_transactions_filings__filing_id__get:
+    speakeasy-default-get-transactions-by-filing-id-v1-transactions-filings-filing-id-get:
+      parameters:
+        path:
+          filing_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      responses:
+        "200":
+          application/json: [{"organization_id": "<id>", "external_id": "<id>", "date": "2023-04-06T23:55:54.854Z", "total_amount": "0.00", "total_tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "total_tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "total_tax_liability_amount": "0.00", "taxable_amount": "0.00", "locked": false, "id": "<id>", "addresses": [{"type": "SHIP_FROM"}], "transaction_items": [], "type": "SALE"}]
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+  create_credit_note_by_transaction_id_v1_transactions__original_transaction_id__credit_notes_post:
+    speakeasy-default-create-credit-note-by-transaction-id-v1-transactions-original-transaction-id-credit-notes-post:
+      parameters:
+        path:
+          original_transaction_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"external_id": "<id>", "date": "2023-02-14T16:33:11.373Z", "status": "COMMITTED", "currency": "SAR", "transaction_items": [{"external_id": "<id>", "date": "2025-10-23T02:20:00.049Z", "external_product_id": "<id>"}]}
+      responses:
+        "200":
+          application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2025-04-11T07:36:34.923Z", "total_amount": "0.00", "total_tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "total_tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "total_tax_liability_amount": "0.00", "taxable_amount": "0.00", "locked": false, "id": "<id>", "addresses": [{"type": "BILL_FROM"}], "transaction_items": [{"organization_id": "<id>", "date": "2025-03-22T02:57:08.436Z", "external_product_id": "<id>", "quantity": "1.0", "amount": "0.00", "tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "taxable_amount": "0.00", "exempt": false, "id": "<id>", "tax_items": [{"rule_id": "0000", "rate": "<value>", "amount": "927.80", "name": "<value>"}]}], "type": "ARCHIVE"}
+        "422":
+          application/json: {}
+  update_credit_note_by_transaction_id_v1_transactions__original_transaction_id__credit_notes__credit_note_id__put:
+    speakeasy-default-update-credit-note-by-transaction-id-v1-transactions-original-transaction-id-credit-notes-credit-note-id-put:
+      parameters:
+        path:
+          original_transaction_id: "<id>"
+          credit_note_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"external_id": "<id>", "date": "2023-04-03T14:25:55.241Z", "status": "PENDING", "currency": "JOD", "transaction_items": [{"external_id": "<id>", "date": "2024-04-29T01:52:56.740Z", "external_product_id": "<id>"}]}
+      responses:
+        "200":
+          application/json: "<value>"
+        "422":
+          application/json: {}
+  estimate_tax_v1_tax_estimate_post:
+    speakeasy-default-estimate-tax-v1-tax-estimate-post:
+      parameters:
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"date": "2025-10-15T06:09:56.760Z", "external_id": "<id>", "currency": "WST", "addresses": [{"type": "BILL_TO", "state": "Virginia", "postal_code": "53776-2466", "country": "Wallis and Futuna"}], "transaction_items": [{"date": "2023-10-09T10:49:19.753Z", "amount": "612.37", "exempt": false}]}
+      responses:
+        "200":
+          application/json: {"items": [], "total": 610767, "page": 61497, "size": 435684}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>"], "msg": "<value>", "input": "<value>", "ctx": {"key": "<value>", "key1": "<value>", "key2": "<value>"}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+examplesVersion: 1.0.2

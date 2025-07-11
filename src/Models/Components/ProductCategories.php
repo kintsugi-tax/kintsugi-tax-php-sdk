@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class ProductCategories
@@ -27,7 +27,7 @@ class ProductCategories
      * @var array<ProductSubCategory> $subcategories
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('subcategories')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\OpenAPI\OpenAPI\Models\Components\ProductSubCategory>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\ProductSubCategory>')]
     public array $subcategories;
 
     /**

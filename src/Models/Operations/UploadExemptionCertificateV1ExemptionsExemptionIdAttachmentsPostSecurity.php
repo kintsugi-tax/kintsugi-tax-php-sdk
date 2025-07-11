@@ -6,9 +6,9 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Operations;
+namespace KintsugiTax\SDK\Models\Operations;
 
-use OpenAPI\OpenAPI\Utils\SpeakeasyMetadata;
+use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostSecurity
 {
     /**
