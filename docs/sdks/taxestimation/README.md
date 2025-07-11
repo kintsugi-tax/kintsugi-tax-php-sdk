@@ -20,12 +20,12 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Components;
-use OpenAPI\OpenAPI\Models\Operations;
-use OpenAPI\OpenAPI\Utils;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Utils;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 $transactionEstimateRequest = new Components\TransactionEstimateRequest(
     date: Utils\Utils::parseDateTime('2025-01-23T13:01:29.949Z'),

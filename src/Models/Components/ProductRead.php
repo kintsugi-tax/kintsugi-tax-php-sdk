@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class ProductRead
@@ -30,7 +30,7 @@ class ProductRead
      * @var ProductCodeEnum|string $code
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('code')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ProductCodeEnum|string')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductCodeEnum|string')]
     public ProductCodeEnum|string $code;
 
     /**
@@ -45,7 +45,7 @@ class ProductRead
      * @var ProductStatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ProductStatusEnum')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductStatusEnum')]
     public ProductStatusEnum $status;
 
     /**
@@ -53,7 +53,7 @@ class ProductRead
      * @var ProductCategoryEnum|string $productCategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_category')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ProductCategoryEnum|string')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductCategoryEnum|string')]
     public ProductCategoryEnum|string $productCategory;
 
     /**
@@ -61,7 +61,7 @@ class ProductRead
      * @var ProductSubCategoryEnum|string $productSubcategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_subcategory')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ProductSubCategoryEnum|string')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum|string')]
     public ProductSubCategoryEnum|string $productSubcategory;
 
     /**
@@ -76,7 +76,7 @@ class ProductRead
      * @var SourceEnum $source
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\SourceEnum')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum')]
     public SourceEnum $source;
 
     /**

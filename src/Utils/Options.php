@@ -6,9 +6,9 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Utils;
+namespace KintsugiTax\SDK\Utils;
 
-use OpenAPI\OpenAPI\Utils\Retry\RetryConfig;
+use KintsugiTax\SDK\Utils\Retry\RetryConfig;
 
 class Options
 {

@@ -49,4 +49,4 @@ php:
   methodArguments: infer-optional-args
   namespace: KintsugiTax\SDK
   outputModelSuffix: output
-  packageName: kintsugi-tax/tax-platform-sdk 
+  packageName: kintsugi-tax/tax-platform-sdk

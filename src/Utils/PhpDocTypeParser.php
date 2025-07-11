@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Utils;
+namespace KintsugiTax\SDK\Utils;
 
 use phpDocumentor\Reflection\Type;
 use Speakeasy\Serializer\Type\ParserInterface;

@@ -18,10 +18,10 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Operations;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Operations;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 $request = new Operations\GetNexusForOrgV1NexusGetRequest(
     xOrganizationId: 'org_12345',

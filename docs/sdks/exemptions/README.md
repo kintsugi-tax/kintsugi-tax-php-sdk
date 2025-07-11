@@ -23,12 +23,13 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Brick\DateTime\LocalDate;
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Operations;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Operations;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 $request = new Operations\GetExemptionsV1ExemptionsGetRequest(
+    searchQuery: 'John',
     countryCode: [
         'U',
         'S',
@@ -88,11 +89,11 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use Brick\DateTime\LocalDate;
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Components;
-use OpenAPI\OpenAPI\Models\Operations;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Models\Operations;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 $exemptionCreate = new Components\ExemptionCreate(
     exemptionType: Components\ExemptionType::Wholesale,
@@ -158,10 +159,10 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Operations;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Operations;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 
 $requestSecurity = new Operations\GetExemptionByIdV1ExemptionsExemptionIdGetSecurity(
@@ -215,11 +216,11 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Components;
-use OpenAPI\OpenAPI\Models\Operations;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Models\Operations;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost = new Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost(
     file: new Components\File(
@@ -280,10 +281,10 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Operations;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Operations;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 
 $requestSecurity = new Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetSecurity(

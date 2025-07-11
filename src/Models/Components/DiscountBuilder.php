@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class DiscountBuilder
@@ -16,7 +16,7 @@ class DiscountBuilder
      * @var AppliedTo $appliedTo
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('applied_to')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\AppliedTo')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AppliedTo')]
     public AppliedTo $appliedTo;
 
     /**

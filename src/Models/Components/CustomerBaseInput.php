@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class CustomerBaseInput
@@ -16,7 +16,7 @@ class CustomerBaseInput
      * @var ?StatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\StatusEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\StatusEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?StatusEnum $status = null;
 
@@ -25,7 +25,7 @@ class CustomerBaseInput
      * @var ?AddressStatus $addressStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\AddressStatus|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?AddressStatus $addressStatus = null;
 
@@ -98,7 +98,7 @@ class CustomerBaseInput
      * @var ?CountryCodeEnum $country
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CountryCodeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CountryCodeEnum $country = null;
 
@@ -144,7 +144,7 @@ class CustomerBaseInput
      * @var ?SourceEnum $source
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\SourceEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?SourceEnum $source = null;
 

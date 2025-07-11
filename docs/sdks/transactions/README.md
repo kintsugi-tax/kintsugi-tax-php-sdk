@@ -26,10 +26,10 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Operations;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Operations;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 $request = new Operations\GetTransactionsV1TransactionsGetRequest(
     xOrganizationId: 'org_12345',
@@ -79,12 +79,12 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Components;
-use OpenAPI\OpenAPI\Models\Operations;
-use OpenAPI\OpenAPI\Utils;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Utils;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 $transactionPublicRequest = new Components\TransactionPublicRequest(
     organizationId: 'orgn_YourOrgIdHere',
@@ -168,10 +168,10 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Operations;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Operations;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 
 $requestSecurity = new Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetSecurity(
@@ -222,12 +222,12 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Components;
-use OpenAPI\OpenAPI\Models\Operations;
-use OpenAPI\OpenAPI\Utils;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Utils;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 $transactionUpdate = new Components\TransactionUpdate(
     organizationId: 'orgn_argaLQwMy2fJc',
@@ -296,10 +296,10 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Operations;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Operations;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 
 $requestSecurity = new Operations\GetTransactionByIdV1TransactionsTransactionIdGetSecurity(
@@ -350,10 +350,10 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Operations;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Operations;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 
 $requestSecurity = new Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetSecurity(
@@ -404,12 +404,12 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Components;
-use OpenAPI\OpenAPI\Models\Operations;
-use OpenAPI\OpenAPI\Utils;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Utils;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 $creditNoteCreate = new Components\CreditNoteCreate(
     externalId: 'CN-12345',
@@ -476,12 +476,12 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
-use OpenAPI\OpenAPI;
-use OpenAPI\OpenAPI\Models\Components;
-use OpenAPI\OpenAPI\Models\Operations;
-use OpenAPI\OpenAPI\Utils;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Utils;
 
-$sdk = OpenAPI\SDK::builder()->build();
+$sdk = SDK\SDK::builder()->build();
 
 $creditNoteCreate = new Components\CreditNoteCreate(
     externalId: '<id>',

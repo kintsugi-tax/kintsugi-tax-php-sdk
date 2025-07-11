@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 use Brick\DateTime\LocalDate;
 class TransactionPublicRequest
@@ -41,7 +41,7 @@ class TransactionPublicRequest
      * @var array<TransactionAddressPublic> $addresses
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('addresses')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\OpenAPI\OpenAPI\Models\Components\TransactionAddressPublic>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionAddressPublic>')]
     public array $addresses;
 
     /**
@@ -50,7 +50,7 @@ class TransactionPublicRequest
      * @var array<TransactionItemBuilder> $transactionItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('transaction_items')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\OpenAPI\OpenAPI\Models\Components\TransactionItemBuilder>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionItemBuilder>')]
     public array $transactionItems;
 
     /**
@@ -58,7 +58,7 @@ class TransactionPublicRequest
      * @var CustomerBaseBase|TransactionImportCustomer $customer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CustomerBaseBase|\OpenAPI\OpenAPI\Models\Components\TransactionImportCustomer')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBaseBase|\KintsugiTax\SDK\Models\Components\TransactionImportCustomer')]
     public CustomerBaseBase|TransactionImportCustomer $customer;
 
     /**
@@ -66,7 +66,7 @@ class TransactionPublicRequest
      * @var TransactionTypeEnum $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\TransactionTypeEnum')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionTypeEnum')]
     public TransactionTypeEnum $type;
 
     /**
@@ -74,7 +74,7 @@ class TransactionPublicRequest
      * @var ?TransactionStatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\TransactionStatusEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionStatusEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?TransactionStatusEnum $status = null;
 
@@ -153,7 +153,7 @@ class TransactionPublicRequest
      * @var ?CurrencyEnum $currency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CurrencyEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CurrencyEnum $currency = null;
 
@@ -162,7 +162,7 @@ class TransactionPublicRequest
      * @var ?SourceEnum $source
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\SourceEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?SourceEnum $source = null;
 
@@ -172,7 +172,7 @@ class TransactionPublicRequest
      * @var ?ExemptionRequired $requiresExemption
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('requires_exemption')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ExemptionRequired|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionRequired|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ExemptionRequired $requiresExemption = null;
 
@@ -209,7 +209,7 @@ class TransactionPublicRequest
      * @var ?TransactionRefundStatus $refundStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('refund_status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\TransactionRefundStatus|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionRefundStatus|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?TransactionRefundStatus $refundStatus = null;
 
@@ -237,7 +237,7 @@ class TransactionPublicRequest
      * @var ?TransactionExemptStatusEnum $exempt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exempt')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\TransactionExemptStatusEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionExemptStatusEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?TransactionExemptStatusEnum $exempt = null;
 
@@ -247,7 +247,7 @@ class TransactionPublicRequest
      * @var ?array<Exemption> $exemptions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exemptions')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\OpenAPI\OpenAPI\Models\Components\Exemption>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\Exemption>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $exemptions = null;
 
@@ -293,7 +293,7 @@ class TransactionPublicRequest
      * @var ?TaxLiabilitySourceEnum $taxLiabilitySource
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_liability_source')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\TaxLiabilitySourceEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxLiabilitySourceEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?TaxLiabilitySourceEnum $taxLiabilitySource = null;
 
@@ -348,7 +348,7 @@ class TransactionPublicRequest
      * @var ?CountryCodeEnum $country
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CountryCodeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CountryCodeEnum $country = null;
 

@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class ProductCreateManual
@@ -33,7 +33,7 @@ class ProductCreateManual
      * @var ProductCategoryEnum|string $productCategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_category')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ProductCategoryEnum|string')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductCategoryEnum|string')]
     public ProductCategoryEnum|string $productCategory;
 
     /**
@@ -42,7 +42,7 @@ class ProductCreateManual
      * @var ProductSubCategoryEnum|string $productSubcategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_subcategory')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ProductSubCategoryEnum|string')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum|string')]
     public ProductSubCategoryEnum|string $productSubcategory;
 
     /**
@@ -58,7 +58,7 @@ class ProductCreateManual
      * @var ?ProductStatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ProductStatusEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductStatusEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ProductStatusEnum $status = null;
 
@@ -67,7 +67,7 @@ class ProductCreateManual
      * @var ?SourceEnum $source
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\SourceEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?SourceEnum $source = null;
 

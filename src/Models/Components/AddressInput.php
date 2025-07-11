@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class AddressInput
@@ -16,7 +16,7 @@ class AddressInput
      * @var AddressType $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\AddressType')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressType')]
     public AddressType $type;
 
     /**
@@ -41,7 +41,7 @@ class AddressInput
      * @var ?AddressStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\AddressStatus|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?AddressStatus $status = null;
 
@@ -123,7 +123,7 @@ class AddressInput
      * @var ?CountryCodeEnum $country
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CountryCodeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CountryCodeEnum $country = null;
 

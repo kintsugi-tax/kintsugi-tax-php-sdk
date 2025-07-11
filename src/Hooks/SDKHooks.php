@@ -7,9 +7,9 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Hooks;
+namespace KintsugiTax\SDK\Hooks;
 
-use OpenAPI\OpenAPI\SDKConfiguration;
+use KintsugiTax\SDK\SDKConfiguration;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 

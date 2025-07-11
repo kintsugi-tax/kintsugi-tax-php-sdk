@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class TransactionItemRead
@@ -41,7 +41,7 @@ class TransactionItemRead
      * @var array<TaxItemRead> $taxItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\OpenAPI\OpenAPI\Models\Components\TaxItemRead>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemRead>')]
     public array $taxItems;
 
     /**
@@ -112,7 +112,7 @@ class TransactionItemRead
      * @var ?CurrencyEnum $originalCurrency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('original_currency')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CurrencyEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CurrencyEnum $originalCurrency = null;
 
@@ -122,7 +122,7 @@ class TransactionItemRead
      * @var ?CurrencyEnum $destinationCurrency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destination_currency')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CurrencyEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CurrencyEnum $destinationCurrency = null;
 
@@ -186,7 +186,7 @@ class TransactionItemRead
      * @var ?TaxExemptionEnum $taxExemption
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_exemption')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\TaxExemptionEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxExemptionEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?TaxExemptionEnum $taxExemption = null;
 

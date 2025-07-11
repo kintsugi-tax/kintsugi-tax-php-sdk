@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class ProductUpdate
@@ -24,7 +24,7 @@ class ProductUpdate
      * @var ProductCategoryEnum $productCategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_category')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ProductCategoryEnum')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductCategoryEnum')]
     public ProductCategoryEnum $productCategory;
 
     /**
@@ -32,7 +32,7 @@ class ProductUpdate
      * @var ProductSubCategoryEnum $productSubcategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_subcategory')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ProductSubCategoryEnum')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum')]
     public ProductSubCategoryEnum $productSubcategory;
 
     /**
@@ -48,7 +48,7 @@ class ProductUpdate
      * @var ?ProductStatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ProductStatusEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductStatusEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ProductStatusEnum $status = null;
 

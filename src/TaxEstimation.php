@@ -6,12 +6,12 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI;
+namespace KintsugiTax\SDK;
 
-use OpenAPI\OpenAPI\Hooks\HookContext;
-use OpenAPI\OpenAPI\Models\Components;
-use OpenAPI\OpenAPI\Models\Operations;
-use OpenAPI\OpenAPI\Utils\Options;
+use KintsugiTax\SDK\Hooks\HookContext;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Utils\Options;
 use Speakeasy\Serializer\DeserializationContext;
 
 class TaxEstimation
@@ -57,7 +57,7 @@ class TaxEstimation
      * @param  ?string  $xOrganizationId
      * @param  ?bool  $simulateNexusMet
      * @return Operations\EstimateTaxV1TaxEstimatePostResponse
-     * @throws \OpenAPI\OpenAPI\Models\Errors\APIException
+     * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function estimateTax(Operations\EstimateTaxV1TaxEstimatePostSecurity $security, Components\TransactionEstimateRequest $transactionEstimateRequest, ?string $xOrganizationId = null, ?bool $simulateNexusMet = null, ?Options $options = null): Operations\EstimateTaxV1TaxEstimatePostResponse
     {
@@ -114,7 +114,7 @@ class TaxEstimation
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\OpenAPI\OpenAPI\Models\Components\PageTransactionEstimateResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\PageTransactionEstimateResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\EstimateTaxV1TaxEstimatePostResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -123,7 +123,7 @@ class TaxEstimation
 
                 return $response;
             } else {
-                throw new \OpenAPI\OpenAPI\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['401'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -131,11 +131,11 @@ class TaxEstimation
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\OpenAPI\OpenAPI\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $obj->rawResponse = $httpResponse;
                 throw $obj->toException();
             } else {
-                throw new \OpenAPI\OpenAPI\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['422'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -143,11 +143,11 @@ class TaxEstimation
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\OpenAPI\OpenAPI\Models\Errors\BackendSrcTaxEstimationResponsesValidationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\BackendSrcTaxEstimationResponsesValidationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $obj->rawResponse = $httpResponse;
                 throw $obj->toException();
             } else {
-                throw new \OpenAPI\OpenAPI\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['500'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -155,18 +155,18 @@ class TaxEstimation
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\OpenAPI\OpenAPI\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $obj->rawResponse = $httpResponse;
                 throw $obj->toException();
             } else {
-                throw new \OpenAPI\OpenAPI\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['404', '4XX'])) {
-            throw new \OpenAPI\OpenAPI\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
-            throw new \OpenAPI\OpenAPI\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         } else {
-            throw new \OpenAPI\OpenAPI\Models\Errors\APIException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 

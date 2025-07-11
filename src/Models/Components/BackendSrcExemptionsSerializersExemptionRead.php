@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 use Brick\DateTime\LocalDate;
 class BackendSrcExemptionsSerializersExemptionRead
@@ -32,7 +32,7 @@ class BackendSrcExemptionsSerializersExemptionRead
      * @var ExemptionType $exemptionType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exemption_type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ExemptionType')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionType')]
     public ExemptionType $exemptionType;
 
     /**
@@ -40,7 +40,7 @@ class BackendSrcExemptionsSerializersExemptionRead
      * @var ExemptionStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ExemptionStatus')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionStatus')]
     public ExemptionStatus $status;
 
     /**
@@ -49,7 +49,7 @@ class BackendSrcExemptionsSerializersExemptionRead
      * @var ?CountryCodeEnum $countryCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country_code')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CountryCodeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CountryCodeEnum $countryCode = null;
 
@@ -104,7 +104,7 @@ class BackendSrcExemptionsSerializersExemptionRead
      * @var ?CustomerRead $customer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CustomerRead|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerRead|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CustomerRead $customer = null;
 
@@ -114,7 +114,7 @@ class BackendSrcExemptionsSerializersExemptionRead
      * @var ?array<AttachmentRead> $attachment
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('attachment')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\OpenAPI\OpenAPI\Models\Components\AttachmentRead>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\AttachmentRead>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $attachment = null;
 
