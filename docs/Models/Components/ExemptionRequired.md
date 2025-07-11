@@ -1,0 +1,14 @@
+# ExemptionRequired
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `jurisdiction`                                                           | *?string*                                                                | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `customerId`                                                             | *?string*                                                                | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `organizationId`                                                         | *string*                                                                 | :heavy_check_mark:                                                       | N/A                                                                      |
+| `exemptionType`                                                          | [Components\ExemptionType](../../Models/Components/ExemptionType.md)     | :heavy_check_mark:                                                       | N/A                                                                      |
+| `startDate`                                                              | [\DateTime](https://www.php.net/manual/en/class.datetime.php)            | :heavy_check_mark:                                                       | N/A                                                                      |
+| `status`                                                                 | [Components\ExemptionStatus](../../Models/Components/ExemptionStatus.md) | :heavy_check_mark:                                                       | N/A                                                                      |
+| `reseller`                                                               | *bool*                                                                   | :heavy_check_mark:                                                       | N/A                                                                      |

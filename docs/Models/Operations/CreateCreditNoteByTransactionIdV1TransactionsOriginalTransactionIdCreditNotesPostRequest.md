@@ -1,0 +1,10 @@
+# CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostRequest
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                | Example                                                                    |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `originalTransactionId`                                                    | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |                                                                            |
+| `xOrganizationId`                                                          | *string*                                                                   | :heavy_check_mark:                                                         | The unique identifier for the organization making the request              | org_12345                                                                  |
+| `creditNoteCreate`                                                         | [Components\CreditNoteCreate](../../Models/Components/CreditNoteCreate.md) | :heavy_check_mark:                                                         | N/A                                                                        |                                                                            |

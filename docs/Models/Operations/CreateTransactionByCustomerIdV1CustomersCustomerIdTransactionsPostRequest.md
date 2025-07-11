@@ -1,0 +1,10 @@
+# CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  | Example                                                                      |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `customerId`                                                                 | *string*                                                                     | :heavy_check_mark:                                                           | N/A                                                                          |                                                                              |
+| `xOrganizationId`                                                            | *string*                                                                     | :heavy_check_mark:                                                           | The unique identifier for the organization making the request                | org_12345                                                                    |
+| `transactionCreate`                                                          | [Components\TransactionCreate](../../Models/Components/TransactionCreate.md) | :heavy_check_mark:                                                           | N/A                                                                          |                                                                              |

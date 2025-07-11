@@ -1,0 +1,10 @@
+# UpdateCustomerV1CustomersCustomerIdPutRequest
+
+
+## Fields
+
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            | Example                                                                |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `customerId`                                                           | *string*                                                               | :heavy_check_mark:                                                     | Unique identifier of the customer to be retrieved.                     |                                                                        |
+| `xOrganizationId`                                                      | *string*                                                               | :heavy_check_mark:                                                     | The unique identifier for the organization making the request          | org_12345                                                              |
+| `customerUpdate`                                                       | [Components\CustomerUpdate](../../Models/Components/CustomerUpdate.md) | :heavy_check_mark:                                                     | N/A                                                                    |                                                                        |

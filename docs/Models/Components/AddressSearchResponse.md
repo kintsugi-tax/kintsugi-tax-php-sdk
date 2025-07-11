@@ -1,0 +1,11 @@
+# AddressSearchResponse
+
+
+## Fields
+
+| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `addressSubmitted`                                                                         | [Components\AddressSubmittedResponse](../../Models/Components/AddressSubmittedResponse.md) | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `responseAddress`                                                                          | [Components\AddressResponseData](../../Models/Components/AddressResponseData.md)           | :heavy_check_mark:                                                                         | N/A                                                                                        |
+| `verificationStatus`                                                                       | *string*                                                                                   | :heavy_check_mark:                                                                         | Indicates if the address was VERIFIED, PARTIALLY_VERIFIED, INVALID, UNVERIFIABLE, BLANK    |
+| `enrichFields`                                                                             | array<*string*>                                                                            | :heavy_check_mark:                                                                         | List of additional fields added to enrich the address                                      |

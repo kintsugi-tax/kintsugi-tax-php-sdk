@@ -1,0 +1,57 @@
+# SourceEnum
+
+
+## Values
+
+| Name              | Value             |
+| ----------------- | ----------------- |
+| `Bigcommerce`     | BIGCOMMERCE       |
+| `Chargebee`       | CHARGEBEE         |
+| `Shopify`         | SHOPIFY           |
+| `Stripe`          | STRIPE            |
+| `Amazon`          | AMAZON            |
+| `Tiktok`          | TIKTOK            |
+| `Custom`          | CUSTOM            |
+| `Unknown`         | UNKNOWN           |
+| `Import`          | IMPORT            |
+| `Zuora`           | ZUORA             |
+| `Apideck`         | APIDECK           |
+| `Quickbooks`      | QUICKBOOKS        |
+| `Api`             | API               |
+| `AppleAppStore`   | APPLE_APP_STORE   |
+| `GoogleAppStore`  | GOOGLE_APP_STORE  |
+| `Walmart`         | WALMART           |
+| `Paypal`          | PAYPAL            |
+| `Netsuite`        | NETSUITE          |
+| `Xero`            | XERO              |
+| `Maxio`           | MAXIO             |
+| `Recurly`         | RECURLY           |
+| `Salesforce`      | SALESFORCE        |
+| `Etsy`            | ETSY              |
+| `Ebay`            | EBAY              |
+| `Wix`             | WIX               |
+| `Squarespace`     | SQUARESPACE       |
+| `Woocommerce`     | WOOCOMMERCE       |
+| `Magento`         | MAGENTO           |
+| `BillingPlatform` | BILLING_PLATFORM  |
+| `Deel`            | DEEL              |
+| `Rippling`        | RIPPLING          |
+| `Gusto`           | GUSTO             |
+| `Facebook`        | FACEBOOK          |
+| `Other`           | OTHER             |
+| `Instagram`       | INSTAGRAM         |
+| `Pinterest`       | PINTEREST         |
+| `Wayfair`         | WAYFAIR           |
+| `Wish`            | WISH              |
+| `Pos`             | POS               |
+| `Target`          | TARGET            |
+| `Newegg`          | NEWEGG            |
+| `Groupon`         | GROUPON           |
+| `GoogleExpress`   | GOOGLE_EXPRESS    |
+| `Nocnoc`          | NOCNOC            |
+| `MercadoLibre`    | MERCADO_LIBRE     |
+| `Modalyst`        | MODALYST          |
+| `Nordstrom`       | NORDSTROM         |
+| `Faire`           | FAIRE             |
+| `Shopware`        | SHOPWARE          |
+| `Zoho`            | ZOHO              |
