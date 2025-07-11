@@ -1,0 +1,45 @@
+speakeasyVersion: 1.581.0
+sources:
+    kintsugi-overlay:
+        sourceNamespace: kintsugi-overlay
+        sourceRevisionDigest: sha256:de1d190ea9f742e082d4d6aa89e90cbf38f1a2fab582a758868e09327e686ee9
+        sourceBlobDigest: sha256:34ceb584e69d2bcad036ee23a58398937b5438200dec07c863a43b53800e5c42
+        tags:
+            - latest
+            - speakeasy-sdk-regen-1752274373
+            - 1.0.0
+targets:
+    php:
+        source: kintsugi-overlay
+        sourceNamespace: kintsugi-overlay
+        sourceRevisionDigest: sha256:de1d190ea9f742e082d4d6aa89e90cbf38f1a2fab582a758868e09327e686ee9
+        sourceBlobDigest: sha256:34ceb584e69d2bcad036ee23a58398937b5438200dec07c863a43b53800e5c42
+        codeSamplesNamespace: kintsugi-overlay-php-code-samples
+        codeSamplesRevisionDigest: sha256:863f6a50d062bcc7c1ff643d8ec730528fa23ee03ad18472c0ee4e4f99c19449
+workflow:
+    workflowVersion: 1.0.0
+    speakeasyVersion: latest
+    sources:
+        kintsugi-overlay:
+            inputs:
+                - location: https://api.trykintsugi.com/openapi.json
+            overlays:
+                - location: ./overlay.yaml
+                - location: .speakeasy/speakeasy-modifications-overlay.yaml
+            output: output.yaml
+            registry:
+                location: registry.speakeasyapi.dev/kintsugi-ai/tax-platform/kintsugi-overlay
+    targets:
+        php:
+            target: php
+            source: kintsugi-overlay
+            publish:
+                packagist:
+                    username: $PACKAGIST_USERNAME
+                    token: $PACKAGIST_TOKEN
+            codeSamples:
+                registry:
+                    location: registry.speakeasyapi.dev/kintsugi-ai/tax-platform/kintsugi-overlay-php-code-samples
+                labelOverride:
+                    fixedValue: PHP (SDK)
+                blocking: false

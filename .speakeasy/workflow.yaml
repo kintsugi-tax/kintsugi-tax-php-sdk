@@ -16,8 +16,8 @@ targets:
         source: kintsugi-overlay
         publish:
             packagist:
-                token: $PACKAGIST_TOKEN
                 username: $PACKAGIST_USERNAME
+                token: $PACKAGIST_TOKEN
         codeSamples:
             registry:
                 location: registry.speakeasyapi.dev/kintsugi-ai/tax-platform/kintsugi-overlay-php-code-samples
