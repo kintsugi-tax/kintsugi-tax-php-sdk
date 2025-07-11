@@ -19,4 +19,4 @@ targets:
                 location: registry.speakeasyapi.dev/kintsugi-ai/tax-platform/kintsugi-overlay-php-code-samples
             labelOverride:
                 fixedValue: PHP (SDK)
-            blocking: false 
+            blocking: false

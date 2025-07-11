@@ -6,9 +6,9 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
-use OpenAPI\OpenAPI\Utils\SpeakeasyMetadata;
+use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost
 {
     /**

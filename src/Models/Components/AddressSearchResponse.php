@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class AddressSearchResponse
@@ -16,7 +16,7 @@ class AddressSearchResponse
      * @var AddressSubmittedResponse $addressSubmitted
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('address_submitted')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\AddressSubmittedResponse')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressSubmittedResponse')]
     public AddressSubmittedResponse $addressSubmitted;
 
     /**
@@ -24,7 +24,7 @@ class AddressSearchResponse
      * @var AddressResponseData $responseAddress
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('response_address')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\AddressResponseData')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressResponseData')]
     public AddressResponseData $responseAddress;
 
     /**

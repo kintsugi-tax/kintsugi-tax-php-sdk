@@ -6,11 +6,11 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI;
+namespace KintsugiTax\SDK;
 
-use OpenAPI\OpenAPI\Hooks\HookContext;
-use OpenAPI\OpenAPI\Models\Operations;
-use OpenAPI\OpenAPI\Utils\Options;
+use KintsugiTax\SDK\Hooks\HookContext;
+use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Utils\Options;
 use Speakeasy\Serializer\DeserializationContext;
 
 class Nexus
@@ -52,7 +52,7 @@ class Nexus
      * @param  Operations\GetNexusForOrgV1NexusGetSecurity  $security
      * @param  Operations\GetNexusForOrgV1NexusGetRequest  $request
      * @return Operations\GetNexusForOrgV1NexusGetResponse
-     * @throws \OpenAPI\OpenAPI\Models\Errors\APIException
+     * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function list(Operations\GetNexusForOrgV1NexusGetSecurity $security, Operations\GetNexusForOrgV1NexusGetRequest $request, ?Options $options = null): Operations\GetNexusForOrgV1NexusGetResponse
     {
@@ -99,7 +99,7 @@ class Nexus
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\OpenAPI\OpenAPI\Models\Components\PageNexusResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\PageNexusResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\GetNexusForOrgV1NexusGetResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -108,7 +108,7 @@ class Nexus
 
                 return $response;
             } else {
-                throw new \OpenAPI\OpenAPI\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['422'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
@@ -116,18 +116,18 @@ class Nexus
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\OpenAPI\OpenAPI\Models\Errors\HTTPValidationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\HTTPValidationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $obj->rawResponse = $httpResponse;
                 throw $obj->toException();
             } else {
-                throw new \OpenAPI\OpenAPI\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
-            throw new \OpenAPI\OpenAPI\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
-            throw new \OpenAPI\OpenAPI\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         } else {
-            throw new \OpenAPI\OpenAPI\Models\Errors\APIException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         }
     }
 

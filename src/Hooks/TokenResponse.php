@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Hooks;
+namespace KintsugiTax\SDK\Hooks;
 
 class TokenResponse
 {

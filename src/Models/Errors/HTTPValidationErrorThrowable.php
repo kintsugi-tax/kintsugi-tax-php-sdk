@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Errors;
+namespace KintsugiTax\SDK\Models\Errors;
 
 class HTTPValidationErrorThrowable extends \RuntimeException
 {

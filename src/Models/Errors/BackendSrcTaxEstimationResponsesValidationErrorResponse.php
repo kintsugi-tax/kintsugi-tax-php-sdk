@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Errors;
+namespace KintsugiTax\SDK\Models\Errors;
 
-use OpenAPI\OpenAPI\Models\Components;
-use OpenAPI\OpenAPI\Utils;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Utils;
 class BackendSrcTaxEstimationResponsesValidationErrorResponse
 {
     /**
@@ -18,7 +18,7 @@ class BackendSrcTaxEstimationResponsesValidationErrorResponse
      * @var array<Components\BackendSrcTaxEstimationResponsesValidationErrorItem> $detail
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('detail')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\OpenAPI\OpenAPI\Models\Components\BackendSrcTaxEstimationResponsesValidationErrorItem>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\BackendSrcTaxEstimationResponsesValidationErrorItem>')]
     public array $detail;
 
     /**

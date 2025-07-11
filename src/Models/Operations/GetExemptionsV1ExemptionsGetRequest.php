@@ -6,11 +6,11 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Operations;
+namespace KintsugiTax\SDK\Models\Operations;
 
 use Brick\DateTime\LocalDate;
-use OpenAPI\OpenAPI\Models\Components;
-use OpenAPI\OpenAPI\Utils\SpeakeasyMetadata;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class GetExemptionsV1ExemptionsGetRequest
 {
     /**
@@ -20,6 +20,14 @@ class GetExemptionsV1ExemptionsGetRequest
      */
     #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
     public ?string $xOrganizationId;
+
+    /**
+     * Search term to filter exemptions by exemption ID, customer name, or customer email
+     *
+     * @var ?string $searchQuery
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=search_query')]
+    public ?string $searchQuery = null;
 
     /**
      * Filter exemptions by their status
@@ -105,6 +113,7 @@ class GetExemptionsV1ExemptionsGetRequest
      * @param  ?int  $page
      * @param  ?int  $size
      * @param  ?string  $xOrganizationId
+     * @param  ?string  $searchQuery
      * @param  ?string  $statusIn
      * @param  ?array<Components\CountryCodeEnum|string>  $countryCode
      * @param  ?string  $jurisdiction
@@ -115,9 +124,10 @@ class GetExemptionsV1ExemptionsGetRequest
      * @param  ?string  $orderBy
      * @phpstan-pure
      */
-    public function __construct(?string $xOrganizationId = null, ?string $statusIn = null, ?array $countryCode = null, ?string $jurisdiction = null, ?LocalDate $startDate = null, ?LocalDate $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $orderBy = null, ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $xOrganizationId = null, ?string $searchQuery = null, ?string $statusIn = null, ?array $countryCode = null, ?string $jurisdiction = null, ?LocalDate $startDate = null, ?LocalDate $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $orderBy = null, ?int $page = 1, ?int $size = 50)
     {
         $this->xOrganizationId = $xOrganizationId;
+        $this->searchQuery = $searchQuery;
         $this->statusIn = $statusIn;
         $this->countryCode = $countryCode;
         $this->jurisdiction = $jurisdiction;

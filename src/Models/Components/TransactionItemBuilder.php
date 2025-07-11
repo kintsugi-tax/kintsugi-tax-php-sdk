@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class TransactionItemBuilder
@@ -111,7 +111,7 @@ class TransactionItemBuilder
      * @var ?array<TaxItemBuilder> $taxItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\OpenAPI\OpenAPI\Models\Components\TaxItemBuilder>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $taxItems = null;
 
@@ -175,7 +175,7 @@ class TransactionItemBuilder
      * @var ?CurrencyEnum $originalCurrency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('original_currency')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CurrencyEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CurrencyEnum $originalCurrency = null;
 
@@ -185,7 +185,7 @@ class TransactionItemBuilder
      * @var ?CurrencyEnum $destinationCurrency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destination_currency')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CurrencyEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CurrencyEnum $destinationCurrency = null;
 
@@ -255,7 +255,7 @@ class TransactionItemBuilder
      * @var ?TaxExemptionEnum $taxExemption
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_exemption')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\TaxExemptionEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxExemptionEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?TaxExemptionEnum $taxExemption = null;
 
@@ -264,7 +264,7 @@ class TransactionItemBuilder
      * @var ?DiscountBuilder $discountBuilder
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('discount_builder')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\DiscountBuilder|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\DiscountBuilder|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?DiscountBuilder $discountBuilder = null;
 

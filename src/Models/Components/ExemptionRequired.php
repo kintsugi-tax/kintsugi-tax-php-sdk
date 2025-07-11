@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 
 class ExemptionRequired
@@ -23,7 +23,7 @@ class ExemptionRequired
      * @var ExemptionType $exemptionType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exemption_type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ExemptionType')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionType')]
     public ExemptionType $exemptionType;
 
     /**
@@ -38,7 +38,7 @@ class ExemptionRequired
      * @var ExemptionStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ExemptionStatus')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionStatus')]
     public ExemptionStatus $status;
 
     /**

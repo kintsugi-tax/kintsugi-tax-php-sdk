@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Utils;
+namespace KintsugiTax\SDK\Utils;
 
 use Speakeasy\Serializer\Context;
 use Speakeasy\Serializer\Exception\NotAcceptableException;

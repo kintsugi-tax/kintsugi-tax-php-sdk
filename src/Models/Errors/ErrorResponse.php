@@ -6,9 +6,9 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Errors;
+namespace KintsugiTax\SDK\Models\Errors;
 
-use OpenAPI\OpenAPI\Utils;
+use KintsugiTax\SDK\Utils;
 class ErrorResponse
 {
     /**

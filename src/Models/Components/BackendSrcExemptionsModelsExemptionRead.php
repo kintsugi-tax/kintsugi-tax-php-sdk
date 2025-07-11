@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Components;
+namespace KintsugiTax\SDK\Models\Components;
 
 use Brick\DateTime\LocalDate;
 class BackendSrcExemptionsModelsExemptionRead
@@ -16,7 +16,7 @@ class BackendSrcExemptionsModelsExemptionRead
      * @var ExemptionType $exemptionType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exemption_type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ExemptionType')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionType')]
     public ExemptionType $exemptionType;
 
     /**
@@ -49,7 +49,7 @@ class BackendSrcExemptionsModelsExemptionRead
      * @var ?CountryCodeEnum $countryCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country_code')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\CountryCodeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CountryCodeEnum $countryCode = null;
 
@@ -110,7 +110,7 @@ class BackendSrcExemptionsModelsExemptionRead
      * @var ?ExemptionStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\OpenAPI\OpenAPI\Models\Components\ExemptionStatus|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionStatus|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ExemptionStatus $status = null;
 

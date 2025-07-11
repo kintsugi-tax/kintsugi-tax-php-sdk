@@ -6,11 +6,11 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Models\Operations;
+namespace KintsugiTax\SDK\Models\Operations;
 
 use Brick\DateTime\LocalDate;
-use OpenAPI\OpenAPI\Models\Components;
-use OpenAPI\OpenAPI\Utils\SpeakeasyMetadata;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class GetTransactionsV1TransactionsGetRequest
 {
     /**

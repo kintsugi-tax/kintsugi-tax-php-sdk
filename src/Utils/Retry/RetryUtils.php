@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Utils\Retry;
+namespace KintsugiTax\SDK\Utils\Retry;
 
 use Brick\DateTime\DateTimeException;
 use Brick\DateTime\LocalDateTime;

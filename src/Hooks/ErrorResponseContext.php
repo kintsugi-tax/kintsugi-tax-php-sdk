@@ -7,7 +7,7 @@
 
 declare(strict_types=1);
 
-namespace OpenAPI\OpenAPI\Hooks;
+namespace KintsugiTax\SDK\Hooks;
 use Psr\Http\Message\ResponseInterface;
 
 class ErrorResponseContext
