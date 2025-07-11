@@ -1,9 +1,9 @@
-# openapi/openapi
+# kintsugi-tax/tax-platform-sdk
 
-Developer-friendly & type-safe Php SDK specifically catered to leverage Kintsugi's tax API.
+Developer-friendly & type-safe Php SDK specifically catered to leverage *kintsugi-tax/tax-platform-sdk* API.
 
 <div align="left">
-    <a href="https://www.speakeasy.com/?utm_source=openapi/openapi&utm_campaign=php"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
+    <a href="https://www.speakeasy.com/?utm_source=kintsugi-tax/tax-platform-sdk&utm_campaign=php"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
     <a href="https://opensource.org/licenses/MIT">
         <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
     </a>
@@ -11,6 +11,8 @@ Developer-friendly & type-safe Php SDK specifically catered to leverage Kintsugi
 
 
 <br /><br />
+> [!IMPORTANT]
+> This SDK is not yet ready for production use. To complete setup please follow the steps outlined in your [workspace](https://app.speakeasy.com/org/kintsugi-ai/tax-platform). Delete this section before > publishing to a package manager.
 
 <!-- Start Summary [summary] -->
 ## Summary
@@ -21,7 +23,7 @@ Developer-friendly & type-safe Php SDK specifically catered to leverage Kintsugi
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
 <!-- $toc-max-depth=2 -->
-* [openapi/openapi](#openapiopenapi)
+* [kintsugi-tax/tax-platform-sdk](#kintsugi-taxtax-platform-sdk)
   * [SDK Installation](#sdk-installation)
   * [SDK Example Usage](#sdk-example-usage)
   * [Authentication](#authentication)
@@ -313,4 +315,4 @@ looking for the latest version.
 While we value open-source contributions to this SDK, this library is generated programmatically. Any manual changes added to internal files will be overwritten on the next generation. 
 We look forward to hearing your feedback. Feel free to open a PR or an issue with a proof of concept and we'll do our best to include it in a future release. 
 
-### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=openapi/openapi&utm_campaign=php)
+### SDK Created by [Speakeasy](https://www.speakeasy.com/?utm_source=kintsugi-tax/tax-platform-sdk&utm_campaign=php)
