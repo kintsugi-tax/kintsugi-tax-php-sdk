@@ -103,15 +103,6 @@ class TransactionAddressPublic
     public ?string $fullAddress = null;
 
     /**
-     * Optional additional enriched data for the address.
-     *
-     * @var ?string $enrichedFields
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('enriched_fields')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $enrichedFields = null;
-
-    /**
      * @param  AddressType  $type
      * @param  ?string  $phone
      * @param  ?string  $street1
@@ -122,10 +113,9 @@ class TransactionAddressPublic
      * @param  ?string  $postalCode
      * @param  ?CountryCodeEnum  $country
      * @param  ?string  $fullAddress
-     * @param  ?string  $enrichedFields
      * @phpstan-pure
      */
-    public function __construct(AddressType $type, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $enrichedFields = null)
+    public function __construct(AddressType $type, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null)
     {
         $this->type = $type;
         $this->phone = $phone;
@@ -137,6 +127,5 @@ class TransactionAddressPublic
         $this->postalCode = $postalCode;
         $this->country = $country;
         $this->fullAddress = $fullAddress;
-        $this->enrichedFields = $enrichedFields;
     }
 }

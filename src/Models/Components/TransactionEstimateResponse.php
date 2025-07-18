@@ -36,15 +36,6 @@ class TransactionEstimateResponse
     public CurrencyEnum $currency;
 
     /**
-     * List of addresses related to the transaction. At least one BILL_TO or SHIP_TO address must be provided. The address will be validated during estimation, and the transaction may be rejected if the address does not pass validation. The SHIP_TO will be preferred to use for determining tax liability. **Deprecated:** Use of `address.status` in estimate api is ignored and will be removed in the future status will be considered UNVERIFIED by default and always validated
-     *
-     * @var array<TransactionEstimateResponseAddress> $addresses
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('addresses')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionEstimateResponseAddress>')]
-    public array $addresses;
-
-    /**
      * $transactionItems
      *
      * @var array<TransactionItemEstimateResponse> $transactionItems
@@ -52,6 +43,15 @@ class TransactionEstimateResponse
     #[\Speakeasy\Serializer\Annotation\SerializedName('transaction_items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionItemEstimateResponse>')]
     public array $transactionItems;
+
+    /**
+     * List of addresses related to the transaction. At least one BILL_TO or SHIP_TO address must be provided. The address will be validated during estimation, and the transaction may be rejected if the address does not pass validation. The SHIP_TO will be preferred to use for determining tax liability. **Deprecated:** Use of `address.status` in estimate api is ignored and will be removed in the future status will be considered UNVERIFIED by default and always validated
+     *
+     * @var array<TransactionEstimateResponseAddress> $addresses
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('addresses')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionEstimateResponseAddress>')]
+    public array $addresses;
 
     /**
      * An optional description of the transaction.
@@ -85,12 +85,12 @@ class TransactionEstimateResponse
     /**
      * Details about the customer. If the customer is not found, it will be ignored.
      *
-     * @var ?CustomerBaseOutput $customer
+     * @var ?CustomerBase $customer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBaseOutput|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBase|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CustomerBaseOutput $customer = null;
+    public ?CustomerBase $customer = null;
 
     /**
      * Total amount of the transaction.
@@ -151,8 +151,8 @@ class TransactionEstimateResponse
      * @param  \DateTime  $date
      * @param  string  $externalId
      * @param  CurrencyEnum  $currency
-     * @param  array<TransactionEstimateResponseAddress>  $addresses
      * @param  array<TransactionItemEstimateResponse>  $transactionItems
+     * @param  array<TransactionEstimateResponseAddress>  $addresses
      * @param  ?string  $totalAmount
      * @param  ?string  $totalTaxAmountCalculated
      * @param  ?string  $taxableAmount
@@ -162,16 +162,16 @@ class TransactionEstimateResponse
      * @param  ?string  $description
      * @param  ?SourceEnum  $source
      * @param  ?bool  $marketplace
-     * @param  ?CustomerBaseOutput  $customer
+     * @param  ?CustomerBase  $customer
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $addresses, array $transactionItems, ?string $description = null, ?SourceEnum $source = null, ?bool $marketplace = null, ?CustomerBaseOutput $customer = null, ?string $totalAmount = '0.0', ?string $totalTaxAmountCalculated = '0.00', ?string $taxableAmount = '0.00', ?string $taxRateCalculated = '0.00', ?bool $nexusMet = false, ?bool $hasActiveRegistration = false)
+    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, ?string $description = null, ?SourceEnum $source = null, ?bool $marketplace = null, ?CustomerBase $customer = null, ?string $totalAmount = '0.0', ?string $totalTaxAmountCalculated = '0.00', ?string $taxableAmount = '0.00', ?string $taxRateCalculated = '0.00', ?bool $nexusMet = false, ?bool $hasActiveRegistration = false)
     {
         $this->date = $date;
         $this->externalId = $externalId;
         $this->currency = $currency;
-        $this->addresses = $addresses;
         $this->transactionItems = $transactionItems;
+        $this->addresses = $addresses;
         $this->description = $description;
         $this->source = $source;
         $this->marketplace = $marketplace;

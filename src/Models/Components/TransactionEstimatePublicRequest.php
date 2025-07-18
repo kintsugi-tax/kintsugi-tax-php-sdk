@@ -10,11 +10,11 @@ namespace KintsugiTax\SDK\Models\Components;
 
 
 /**
- * TransactionEstimateRequest - Request model for tax estimation, including all fields from TransactionEstimateBase
+ * TransactionEstimatePublicRequest - Public request model for tax estimation API documentation.
  *
- * and an additional field to simulate nexus being met.
+ * This model excludes internal fields like enriched_fields that should not be exposed in API docs.
  */
-class TransactionEstimateRequest
+class TransactionEstimatePublicRequest
 {
     /**
      * The date of the transaction in ISO 8601 format (e.g., 2025-01-25T12:00:00Z).
@@ -41,15 +41,6 @@ class TransactionEstimateRequest
     public CurrencyEnum $currency;
 
     /**
-     * List of addresses related to the transaction. At least one BILL_TO or SHIP_TO address must be provided. The address will be validated during estimation, and the transaction may be rejected if the address does not pass validation. The SHIP_TO will be preferred to use for determining tax liability. **Deprecated:** Use of `address.status` in estimate api is ignored and will be removed in the future status will be considered UNVERIFIED by default and always validated
-     *
-     * @var array<TransactionEstimateRequestAddress> $addresses
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('addresses')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionEstimateRequestAddress>')]
-    public array $addresses;
-
-    /**
      * List of items involved in the transaction.
      *
      * @var array<TransactionItemEstimateBase> $transactionItems
@@ -57,6 +48,15 @@ class TransactionEstimateRequest
     #[\Speakeasy\Serializer\Annotation\SerializedName('transaction_items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionItemEstimateBase>')]
     public array $transactionItems;
+
+    /**
+     * List of addresses related to the transaction. At least one BILL_TO or SHIP_TO address must be provided. The address will be validated during estimation, and the transaction may be rejected if the address does not pass validation. The SHIP_TO will be preferred to use for determining tax liability.
+     *
+     * @var array<TransactionEstimatePublicRequestAddress> $addresses
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('addresses')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionEstimatePublicRequestAddress>')]
+    public array $addresses;
 
     /**
      * Total amount of the transaction.
@@ -100,62 +100,37 @@ class TransactionEstimateRequest
     /**
      * Details about the customer. If the customer is not found, it will be ignored.
      *
-     * @var ?CustomerBaseInput $customer
+     * @var ?CustomerBasePublic $customer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBaseInput|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBasePublic|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CustomerBaseInput $customer = null;
-
-    /**
-     * If True, assumes active registration is met for tax estimation.
-     *
-     * @var ?bool $simulateActiveRegistration
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('simulate_active_registration')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $simulateActiveRegistration = null;
-
-    /**
-     * Use simulate_active_registration instead.
-     *
-     *         This field will be removed in future releases.
-     *
-     * @var ?bool $simulateNexusMet
-     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('simulate_nexus_met')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $simulateNexusMet = null;
+    public ?CustomerBasePublic $customer = null;
 
     /**
      * @param  \DateTime  $date
      * @param  string  $externalId
      * @param  CurrencyEnum  $currency
-     * @param  array<TransactionEstimateRequestAddress>  $addresses
      * @param  array<TransactionItemEstimateBase>  $transactionItems
+     * @param  array<TransactionEstimatePublicRequestAddress>  $addresses
      * @param  float|string|null  $totalAmount
      * @param  ?string  $description
      * @param  ?SourceEnum  $source
      * @param  ?bool  $marketplace
-     * @param  ?CustomerBaseInput  $customer
-     * @param  ?bool  $simulateActiveRegistration
-     * @param  ?bool  $simulateNexusMet
+     * @param  ?CustomerBasePublic  $customer
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $addresses, array $transactionItems, float|string|null $totalAmount = null, ?string $description = null, ?SourceEnum $source = null, ?bool $marketplace = null, ?CustomerBaseInput $customer = null, ?bool $simulateActiveRegistration = null, ?bool $simulateNexusMet = null)
+    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, float|string|null $totalAmount = null, ?string $description = null, ?SourceEnum $source = null, ?bool $marketplace = null, ?CustomerBasePublic $customer = null)
     {
         $this->date = $date;
         $this->externalId = $externalId;
         $this->currency = $currency;
-        $this->addresses = $addresses;
         $this->transactionItems = $transactionItems;
+        $this->addresses = $addresses;
         $this->totalAmount = $totalAmount;
         $this->description = $description;
         $this->source = $source;
         $this->marketplace = $marketplace;
         $this->customer = $customer;
-        $this->simulateActiveRegistration = $simulateActiveRegistration;
-        $this->simulateNexusMet = $simulateNexusMet;
     }
 }

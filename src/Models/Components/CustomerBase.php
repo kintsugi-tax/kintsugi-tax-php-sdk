@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace KintsugiTax\SDK\Models\Components;
 
 
-class CustomerBaseOutput
+class CustomerBase
 {
     /**
      *

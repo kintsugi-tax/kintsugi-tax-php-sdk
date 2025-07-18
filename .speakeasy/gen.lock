@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: fdb4bdf9-63b7-4d28-815c-b04a56c0369b
 management:
-  docChecksum: da2c74e9be015c2b624dc256e9e3f51d
+  docChecksum: f400455b19ae3ea3a1c7941292d77ecf
   docVersion: 1.0.0
-  speakeasyVersion: 1.581.0
-  generationVersion: 2.656.5
-  releaseVersion: 0.1.5
-  configChecksum: 2c74fb59ab1ee4b82088ad684429676e
+  speakeasyVersion: 1.583.0
+  generationVersion: 2.658.3
+  releaseVersion: 0.1.6
+  configChecksum: 0905d51cb4ce4d8df3f0d048d7838b1b
   repoURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk.git
   installationURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk
   published: true
@@ -63,9 +63,9 @@ generatedFiles:
   - docs/Models/Components/CreditNoteItemCreateUpdateTaxableAmount.md
   - docs/Models/Components/CurrencyEnum.md
   - docs/Models/Components/Customer.md
+  - docs/Models/Components/CustomerBase.md
   - docs/Models/Components/CustomerBaseBase.md
-  - docs/Models/Components/CustomerBaseInput.md
-  - docs/Models/Components/CustomerBaseOutput.md
+  - docs/Models/Components/CustomerBasePublic.md
   - docs/Models/Components/CustomerCreate.md
   - docs/Models/Components/CustomerRead.md
   - docs/Models/Components/CustomerUpdate.md
@@ -145,9 +145,9 @@ generatedFiles:
   - docs/Models/Components/TransactionCreateTotalTaxAmountCalculated.md
   - docs/Models/Components/TransactionCreateTotalTaxAmountImported.md
   - docs/Models/Components/TransactionCreateTotalTaxLiabilityAmount.md
-  - docs/Models/Components/TransactionEstimateRequest.md
-  - docs/Models/Components/TransactionEstimateRequestAddress.md
-  - docs/Models/Components/TransactionEstimateRequestType.md
+  - docs/Models/Components/TransactionEstimatePublicRequest.md
+  - docs/Models/Components/TransactionEstimatePublicRequestAddress.md
+  - docs/Models/Components/TransactionEstimatePublicRequestType.md
   - docs/Models/Components/TransactionEstimateResponse.md
   - docs/Models/Components/TransactionEstimateResponseAddress.md
   - docs/Models/Components/TransactionEstimateResponseType.md
@@ -366,9 +366,9 @@ generatedFiles:
   - src/Models/Components/CreditNoteCreate.php
   - src/Models/Components/CreditNoteItemCreateUpdate.php
   - src/Models/Components/CurrencyEnum.php
+  - src/Models/Components/CustomerBase.php
   - src/Models/Components/CustomerBaseBase.php
-  - src/Models/Components/CustomerBaseInput.php
-  - src/Models/Components/CustomerBaseOutput.php
+  - src/Models/Components/CustomerBasePublic.php
   - src/Models/Components/CustomerCreate.php
   - src/Models/Components/CustomerRead.php
   - src/Models/Components/CustomerUpdate.php
@@ -420,9 +420,9 @@ generatedFiles:
   - src/Models/Components/TransactionAddressPublic.php
   - src/Models/Components/TransactionAddressReadOutput.php
   - src/Models/Components/TransactionCreate.php
-  - src/Models/Components/TransactionEstimateRequest.php
-  - src/Models/Components/TransactionEstimateRequestAddress.php
-  - src/Models/Components/TransactionEstimateRequestType.php
+  - src/Models/Components/TransactionEstimatePublicRequest.php
+  - src/Models/Components/TransactionEstimatePublicRequestAddress.php
+  - src/Models/Components/TransactionEstimatePublicRequestType.php
   - src/Models/Components/TransactionEstimateResponse.php
   - src/Models/Components/TransactionEstimateResponseAddress.php
   - src/Models/Components/TransactionEstimateResponseType.php
@@ -1111,7 +1111,7 @@ examples:
         header:
           x-organization-id: "org_12345"
       requestBody:
-        application/json: {"date": "2025-10-15T06:09:56.760Z", "external_id": "<id>", "currency": "WST", "addresses": [{"type": "BILL_TO", "state": "Virginia", "postal_code": "53776-2466", "country": "Wallis and Futuna"}], "transaction_items": [{"date": "2023-10-09T10:49:19.753Z", "amount": "612.37", "exempt": false}]}
+        application/json: {"date": "2025-10-15T06:09:56.760Z", "external_id": "<id>", "currency": "WST", "transaction_items": [{"date": "2023-10-09T10:49:19.753Z", "amount": "612.37", "exempt": false}], "addresses": [{"type": "BILL_TO", "state": "Virginia", "postal_code": "53776-2466", "country": "Wallis and Futuna"}]}
       responses:
         "200":
           application/json: {"items": [], "total": 610767, "page": 61497, "size": 435684}

@@ -14,10 +14,10 @@ class EstimateTaxV1TaxEstimatePostRequest
 {
     /**
      *
-     * @var Components\TransactionEstimateRequest $transactionEstimateRequest
+     * @var Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Components\TransactionEstimateRequest $transactionEstimateRequest;
+    public Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest;
 
     /**
      * **Deprecated:** Use `simulate_active_registration` in the request body instead.
@@ -37,14 +37,14 @@ class EstimateTaxV1TaxEstimatePostRequest
     public ?string $xOrganizationId;
 
     /**
-     * @param  Components\TransactionEstimateRequest  $transactionEstimateRequest
+     * @param  Components\TransactionEstimatePublicRequest  $transactionEstimatePublicRequest
      * @param  ?bool  $simulateNexusMet
      * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(Components\TransactionEstimateRequest $transactionEstimateRequest, ?bool $simulateNexusMet = null, ?string $xOrganizationId = null)
+    public function __construct(Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest, ?bool $simulateNexusMet = null, ?string $xOrganizationId = null)
     {
-        $this->transactionEstimateRequest = $transactionEstimateRequest;
+        $this->transactionEstimatePublicRequest = $transactionEstimatePublicRequest;
         $this->simulateNexusMet = $simulateNexusMet;
         $this->xOrganizationId = $xOrganizationId;
     }

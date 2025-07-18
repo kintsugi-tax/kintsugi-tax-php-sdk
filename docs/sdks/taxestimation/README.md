@@ -27,20 +27,10 @@ use KintsugiTax\SDK\Utils;
 
 $sdk = SDK\SDK::builder()->build();
 
-$transactionEstimateRequest = new Components\TransactionEstimateRequest(
+$transactionEstimatePublicRequest = new Components\TransactionEstimatePublicRequest(
     date: Utils\Utils::parseDateTime('2025-01-23T13:01:29.949Z'),
     externalId: 'txn_12345',
     currency: Components\CurrencyEnum::Usd,
-    addresses: [
-        new Components\TransactionEstimateRequestAddress(
-            type: Components\TransactionEstimateRequestType::ShipTo,
-            street1: '789 Pine St',
-            city: 'Austin',
-            state: 'TX',
-            postalCode: '78701',
-            country: 'US',
-        ),
-    ],
     transactionItems: [
         new Components\TransactionItemEstimateBase(
             externalId: 'item_A',
@@ -57,6 +47,16 @@ $transactionEstimateRequest = new Components\TransactionEstimateRequest(
             amount: 75.5,
         ),
     ],
+    addresses: [
+        new Components\TransactionEstimatePublicRequestAddress(
+            type: Components\TransactionEstimatePublicRequestType::ShipTo,
+            street1: '789 Pine St',
+            city: 'Austin',
+            state: 'TX',
+            postalCode: '78701',
+            country: 'US',
+        ),
+    ],
 );
 $requestSecurity = new Operations\EstimateTaxV1TaxEstimatePostSecurity(
     apiKeyHeader: '<YOUR_API_KEY_HERE>',
@@ -65,7 +65,7 @@ $requestSecurity = new Operations\EstimateTaxV1TaxEstimatePostSecurity(
 $response = $sdk->taxEstimation->estimateTax(
     security: $requestSecurity,
     xOrganizationId: 'org_12345',
-    transactionEstimateRequest: $transactionEstimateRequest
+    transactionEstimatePublicRequest: $transactionEstimatePublicRequest
 
 );
 
@@ -80,7 +80,7 @@ if ($response->pageTransactionEstimateResponse !== null) {
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `security`                                                                                                                                                                                               | [Operations\EstimateTaxV1TaxEstimatePostSecurity](../../Models/Operations/EstimateTaxV1TaxEstimatePostSecurity.md)                                                                                       | :heavy_check_mark:                                                                                                                                                                                       | The security requirements to use for the request.                                                                                                                                                        |                                                                                                                                                                                                          |
 | `xOrganizationId`                                                                                                                                                                                        | *string*                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                       | The unique identifier for the organization making the request                                                                                                                                            | org_12345                                                                                                                                                                                                |
-| `transactionEstimateRequest`                                                                                                                                                                             | [Components\TransactionEstimateRequest](../../Models/Components/TransactionEstimateRequest.md)                                                                                                           | :heavy_check_mark:                                                                                                                                                                                       | N/A                                                                                                                                                                                                      |                                                                                                                                                                                                          |
+| `transactionEstimatePublicRequest`                                                                                                                                                                       | [Components\TransactionEstimatePublicRequest](../../Models/Components/TransactionEstimatePublicRequest.md)                                                                                               | :heavy_check_mark:                                                                                                                                                                                       | N/A                                                                                                                                                                                                      |                                                                                                                                                                                                          |
 | `simulateNexusMet`                                                                                                                                                                                       | *?bool*                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                       | : warning: ** DEPRECATED **: This will be removed in a future release, please migrate away from it as soon as possible.<br/><br/>**Deprecated:** Use `simulate_active_registration` in the request body instead. |                                                                                                                                                                                                          |
 
 ### Response
