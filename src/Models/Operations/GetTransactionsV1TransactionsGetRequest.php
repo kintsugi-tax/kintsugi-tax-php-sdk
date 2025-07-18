@@ -152,6 +152,16 @@ class GetTransactionsV1TransactionsGetRequest
     public ?bool $marketplace = null;
 
     /**
+     * Filter transactions by exemption status.
+     *
+     *         Multiple values can be passed as a comma-separated list (e.g., EXEMPT,TAXABLE).
+     *
+     * @var ?string $exemptIn
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=exempt__in')]
+    public ?string $exemptIn = null;
+
+    /**
      * Page number
      *
      * @var ?int $page
@@ -185,9 +195,10 @@ class GetTransactionsV1TransactionsGetRequest
      * @param  ?LocalDate  $dateLte
      * @param  ?string  $processingStatusIn
      * @param  ?bool  $marketplace
+     * @param  ?string  $exemptIn
      * @phpstan-pure
      */
-    public function __construct(?string $xOrganizationId = null, ?string $stateCode = null, ?string $transactionType = null, ?string $transactionSource = null, ?string $searchQuery = null, ?array $country = null, ?string $state = null, ?string $addressStatusIn = null, ?Components\TransactionStatusEnum $status = null, ?string $filingId = null, ?string $orderBy = null, ?LocalDate $dateGte = null, ?LocalDate $dateLte = null, ?string $processingStatusIn = null, ?bool $marketplace = null, ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $xOrganizationId = null, ?string $stateCode = null, ?string $transactionType = null, ?string $transactionSource = null, ?string $searchQuery = null, ?array $country = null, ?string $state = null, ?string $addressStatusIn = null, ?Components\TransactionStatusEnum $status = null, ?string $filingId = null, ?string $orderBy = null, ?LocalDate $dateGte = null, ?LocalDate $dateLte = null, ?string $processingStatusIn = null, ?bool $marketplace = null, ?string $exemptIn = null, ?int $page = 1, ?int $size = 50)
     {
         $this->xOrganizationId = $xOrganizationId;
         $this->stateCode = $stateCode;
@@ -204,6 +215,7 @@ class GetTransactionsV1TransactionsGetRequest
         $this->dateLte = $dateLte;
         $this->processingStatusIn = $processingStatusIn;
         $this->marketplace = $marketplace;
+        $this->exemptIn = $exemptIn;
         $this->page = $page;
         $this->size = $size;
     }
