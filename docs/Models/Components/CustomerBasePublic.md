@@ -1,4 +1,4 @@
-# CustomerBaseInput
+# CustomerBasePublic
 
 
 ## Fields
@@ -22,4 +22,3 @@
 | `source`                                                                                           | [?Components\SourceEnum](../../Models/Components/SourceEnum.md)                                    | :heavy_minus_sign:                                                                                 | Source of the customer information (e.g., BIGCOMMERCE, STRIPE, etc.).                              |
 | `registrationNumber`                                                                               | *?string*                                                                                          | :heavy_minus_sign:                                                                                 | N/A                                                                                                |
 | `connectionId`                                                                                     | *?string*                                                                                          | :heavy_minus_sign:                                                                                 | Unique identifier of the connection related to the customer.                                       |
-| `enrichedFields`                                                                                   | *?string*                                                                                          | :heavy_minus_sign:                                                                                 | Additional enriched fields for the customer, if available.                                         |

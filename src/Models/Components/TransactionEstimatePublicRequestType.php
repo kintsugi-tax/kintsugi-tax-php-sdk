@@ -14,7 +14,7 @@ namespace KintsugiTax\SDK\Models\Components;
  *
  *                         SHIP_TO or BILL_TO.
  */
-enum TransactionEstimateRequestType: string
+enum TransactionEstimatePublicRequestType: string
 {
     case ShipTo = 'SHIP_TO';
     case BillTo = 'BILL_TO';

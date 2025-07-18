@@ -53,24 +53,24 @@ class TaxEstimation
      *     transaction details, customer details, and addresses. Optionally simulates nexus being met for tax calculation purposes. The `simulate_nexus_met` parameter is deprecated and will be removed in future releases.
      *
      * @param  Operations\EstimateTaxV1TaxEstimatePostSecurity  $security
-     * @param  Components\TransactionEstimateRequest  $transactionEstimateRequest
+     * @param  Components\TransactionEstimatePublicRequest  $transactionEstimatePublicRequest
      * @param  ?string  $xOrganizationId
      * @param  ?bool  $simulateNexusMet
      * @return Operations\EstimateTaxV1TaxEstimatePostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function estimateTax(Operations\EstimateTaxV1TaxEstimatePostSecurity $security, Components\TransactionEstimateRequest $transactionEstimateRequest, ?string $xOrganizationId = null, ?bool $simulateNexusMet = null, ?Options $options = null): Operations\EstimateTaxV1TaxEstimatePostResponse
+    public function estimateTax(Operations\EstimateTaxV1TaxEstimatePostSecurity $security, Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest, ?string $xOrganizationId = null, ?bool $simulateNexusMet = null, ?Options $options = null): Operations\EstimateTaxV1TaxEstimatePostResponse
     {
         $request = new Operations\EstimateTaxV1TaxEstimatePostRequest(
             xOrganizationId: $xOrganizationId,
-            transactionEstimateRequest: $transactionEstimateRequest,
+            transactionEstimatePublicRequest: $transactionEstimatePublicRequest,
             simulateNexusMet: $simulateNexusMet,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/tax/estimate');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'transactionEstimateRequest', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'transactionEstimatePublicRequest', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }

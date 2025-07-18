@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace KintsugiTax\SDK\Models\Components;
 
 
-class CustomerBaseInput
+class CustomerBasePublic
 {
     /**
      *
@@ -166,15 +166,6 @@ class CustomerBaseInput
     public ?string $connectionId = null;
 
     /**
-     * Additional enriched fields for the customer, if available.
-     *
-     * @var ?string $enrichedFields
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('enriched_fields')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $enrichedFields = null;
-
-    /**
      * @param  ?StatusEnum  $status
      * @param  ?AddressStatus  $addressStatus
      * @param  ?string  $phone
@@ -192,10 +183,9 @@ class CustomerBaseInput
      * @param  ?SourceEnum  $source
      * @param  ?string  $registrationNumber
      * @param  ?string  $connectionId
-     * @param  ?string  $enrichedFields
      * @phpstan-pure
      */
-    public function __construct(?StatusEnum $status = null, ?AddressStatus $addressStatus = null, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?string $externalId = null, ?string $email = null, ?SourceEnum $source = null, ?string $registrationNumber = null, ?string $connectionId = null, ?string $enrichedFields = null)
+    public function __construct(?StatusEnum $status = null, ?AddressStatus $addressStatus = null, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?string $externalId = null, ?string $email = null, ?SourceEnum $source = null, ?string $registrationNumber = null, ?string $connectionId = null)
     {
         $this->status = $status;
         $this->addressStatus = $addressStatus;
@@ -214,6 +204,5 @@ class CustomerBaseInput
         $this->source = $source;
         $this->registrationNumber = $registrationNumber;
         $this->connectionId = $connectionId;
-        $this->enrichedFields = $enrichedFields;
     }
 }

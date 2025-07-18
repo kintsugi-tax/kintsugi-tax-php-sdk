@@ -9,18 +9,18 @@ declare(strict_types=1);
 namespace KintsugiTax\SDK\Models\Components;
 
 
-class TransactionEstimateRequestAddress
+class TransactionEstimatePublicRequestAddress
 {
     /**
      * Type of the address. Must be either
      *
      *                         SHIP_TO or BILL_TO.
      *
-     * @var TransactionEstimateRequestType $type
+     * @var TransactionEstimatePublicRequestType $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionEstimateRequestType')]
-    public TransactionEstimateRequestType $type;
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionEstimatePublicRequestType')]
+    public TransactionEstimatePublicRequestType $type;
 
     /**
      * State or province of the address.
@@ -111,16 +111,7 @@ class TransactionEstimateRequestAddress
     public ?string $status = null;
 
     /**
-     * Additional enriched fields related to the address.
-     *
-     * @var ?string $enrichedFields
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('enriched_fields')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $enrichedFields = null;
-
-    /**
-     * @param  TransactionEstimateRequestType  $type
+     * @param  TransactionEstimatePublicRequestType  $type
      * @param  string  $state
      * @param  string  $postalCode
      * @param  string  $country
@@ -131,10 +122,9 @@ class TransactionEstimateRequestAddress
      * @param  ?string  $county
      * @param  ?string  $fullAddress
      * @param  ?string  $status
-     * @param  ?string  $enrichedFields
      * @phpstan-pure
      */
-    public function __construct(TransactionEstimateRequestType $type, string $state, string $postalCode, string $country, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $fullAddress = null, ?string $status = null, ?string $enrichedFields = null)
+    public function __construct(TransactionEstimatePublicRequestType $type, string $state, string $postalCode, string $country, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $fullAddress = null, ?string $status = null)
     {
         $this->type = $type;
         $this->state = $state;
@@ -147,6 +137,5 @@ class TransactionEstimateRequestAddress
         $this->county = $county;
         $this->fullAddress = $fullAddress;
         $this->status = $status;
-        $this->enrichedFields = $enrichedFields;
     }
 }
