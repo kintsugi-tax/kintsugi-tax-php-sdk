@@ -205,6 +205,13 @@ class NexusResponse
 
     /**
      *
+     * @var ?bool $marketplaceIncluded
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('marketplace_included')]
+    public ?bool $marketplaceIncluded;
+
+    /**
+     *
      * @var ?string $calculatedTaxLiability
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('calculated_tax_liability')]
@@ -475,6 +482,7 @@ class NexusResponse
      * @param  ?LocalDate  $previousPeriodStartDate
      * @param  ?LocalDate  $previousPeriodEndDate
      * @param  ?\DateTime  $earliestCollectedDate
+     * @param  ?bool  $marketplaceIncluded
      * @param  ?string  $calculatedTaxLiability
      * @param  ?string  $importedTaxLiability
      * @param  ?LocalDate  $nexusMetDate
@@ -495,7 +503,7 @@ class NexusResponse
      * @param  ?RegistrationsRegimeEnum  $registrationRegime
      * @phpstan-pure
      */
-    public function __construct(CountryCodeEnum $countryCode, string $stateCode, string $stateName, TreatmentEnum $treatmentOfExemptTransactions, string $trigger, SalesOrTransactionsEnum $salesOrTransactions, int $thresholdSales, LocalDate $startDate, PeriodModelEnum $periodModel, LocalDate $periodStartDate, LocalDate $periodEndDate, string $id, \DateTime $createdAt, \DateTime $updatedAt, string $organizationId, bool $isVdaEligible, NexusTypeEnum $nexusType, int $totalTransactions, int $totalTransactionsIncluded, int $totalTransactionsExempted, int $totalTransactionsMarketplace, ?NexusStatusEnum $processingStatus = null, ?NexusStateEnum $status = null, ?int $thresholdTransactions = null, ?LocalDate $previousPeriodStartDate = null, ?LocalDate $previousPeriodEndDate = null, ?string $calculatedTaxLiability = null, ?string $importedTaxLiability = null, ?LocalDate $nexusMetDate = null, ?LocalDate $economicNexusMetDate = null, ?LocalDate $physicalNexusMetDate = null, ?bool $collectedTaxNexusMet = null, ?LocalDate $collectedTaxNexusMetDate = null, ?\DateTime $earliestTransactionDate = null, ?\DateTime $mostRecentTransactionDate = null, ?int $predictedMonthFromToday = null, ?bool $vdaEligible = null, ?float $confidenceLevel = null, ?\DateTime $lastProcessedAt = null, ?\DateTime $lastTaxLiabilityProcessedAt = null, ?array $periods = null, ?CurrencyEnum $currency = null, ?array $registration = null, ?RegistrationsRegimeEnum $registrationRegime = null, ?int $transactionCount = 0, ?string $transactionsAmount = '0.00', ?int $previousTransactionCount = 0, ?string $previousTransactionsAmount = '0.00', ?string $taxLiability = '0.00', ?bool $nexusMet = false, ?bool $economicNexusMet = false, ?bool $physicalNexusMet = false, ?bool $collectedTaxEnabled = false, ?\DateTime $earliestCollectedDate = Utils\Utils::parseDateTime('2018-01-01T00:00:00'))
+    public function __construct(CountryCodeEnum $countryCode, string $stateCode, string $stateName, TreatmentEnum $treatmentOfExemptTransactions, string $trigger, SalesOrTransactionsEnum $salesOrTransactions, int $thresholdSales, LocalDate $startDate, PeriodModelEnum $periodModel, LocalDate $periodStartDate, LocalDate $periodEndDate, string $id, \DateTime $createdAt, \DateTime $updatedAt, string $organizationId, bool $isVdaEligible, NexusTypeEnum $nexusType, int $totalTransactions, int $totalTransactionsIncluded, int $totalTransactionsExempted, int $totalTransactionsMarketplace, ?NexusStatusEnum $processingStatus = null, ?NexusStateEnum $status = null, ?int $thresholdTransactions = null, ?LocalDate $previousPeriodStartDate = null, ?LocalDate $previousPeriodEndDate = null, ?bool $marketplaceIncluded = null, ?string $calculatedTaxLiability = null, ?string $importedTaxLiability = null, ?LocalDate $nexusMetDate = null, ?LocalDate $economicNexusMetDate = null, ?LocalDate $physicalNexusMetDate = null, ?bool $collectedTaxNexusMet = null, ?LocalDate $collectedTaxNexusMetDate = null, ?\DateTime $earliestTransactionDate = null, ?\DateTime $mostRecentTransactionDate = null, ?int $predictedMonthFromToday = null, ?bool $vdaEligible = null, ?float $confidenceLevel = null, ?\DateTime $lastProcessedAt = null, ?\DateTime $lastTaxLiabilityProcessedAt = null, ?array $periods = null, ?CurrencyEnum $currency = null, ?array $registration = null, ?RegistrationsRegimeEnum $registrationRegime = null, ?int $transactionCount = 0, ?string $transactionsAmount = '0.00', ?int $previousTransactionCount = 0, ?string $previousTransactionsAmount = '0.00', ?string $taxLiability = '0.00', ?bool $nexusMet = false, ?bool $economicNexusMet = false, ?bool $physicalNexusMet = false, ?bool $collectedTaxEnabled = false, ?\DateTime $earliestCollectedDate = Utils\Utils::parseDateTime('2018-01-01T00:00:00'))
     {
         $this->countryCode = $countryCode;
         $this->stateCode = $stateCode;
@@ -523,6 +531,7 @@ class NexusResponse
         $this->thresholdTransactions = $thresholdTransactions;
         $this->previousPeriodStartDate = $previousPeriodStartDate;
         $this->previousPeriodEndDate = $previousPeriodEndDate;
+        $this->marketplaceIncluded = $marketplaceIncluded;
         $this->calculatedTaxLiability = $calculatedTaxLiability;
         $this->importedTaxLiability = $importedTaxLiability;
         $this->nexusMetDate = $nexusMetDate;
