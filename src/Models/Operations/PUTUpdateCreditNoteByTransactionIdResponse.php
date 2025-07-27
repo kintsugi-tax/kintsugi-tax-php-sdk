@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace KintsugiTax\SDK\Models\Operations;
 
 
-class UpdateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesCreditNoteIdPutResponse
+class PUTUpdateCreditNoteByTransactionIdResponse
 {
     /**
      * HTTP response content type for this operation
