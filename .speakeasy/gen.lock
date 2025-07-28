@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: fdb4bdf9-63b7-4d28-815c-b04a56c0369b
 management:
-  docChecksum: 890469606d92bc400c9d71b5d930330b
+  docChecksum: abf6143ab509ec16a4cf8fb0683fbb3d
   docVersion: 1.0.0
-  speakeasyVersion: 1.586.0
-  generationVersion: 2.661.4
-  releaseVersion: 0.1.8
-  configChecksum: 3e8c92a8e213000e1c041d6849bdc175
+  speakeasyVersion: 1.590.0
+  generationVersion: 2.666.0
+  releaseVersion: 0.1.9
+  configChecksum: ee59b0fbdb1404f1cd3764c3d53e0038
   repoURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk.git
   installationURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk
   published: true
 features:
   php:
     constsAndDefaults: 0.2.0
-    core: 3.8.6
+    core: 3.8.8
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.81.8
@@ -293,15 +293,15 @@ generatedFiles:
   - docs/Models/Operations/GetTransactionsV1TransactionsGetRequest.md
   - docs/Models/Operations/GetTransactionsV1TransactionsGetResponse.md
   - docs/Models/Operations/GetTransactionsV1TransactionsGetSecurity.md
+  - docs/Models/Operations/PUTUpdateCreditNoteByTransactionIdRequest.md
+  - docs/Models/Operations/PUTUpdateCreditNoteByTransactionIdResponse.md
+  - docs/Models/Operations/PUTUpdateCreditNoteByTransactionIdSecurity.md
   - docs/Models/Operations/Product.md
   - docs/Models/Operations/SearchV1AddressValidationSearchPostResponse.md
   - docs/Models/Operations/SearchV1AddressValidationSearchPostSecurity.md
   - docs/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostRequest.md
   - docs/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostResponse.md
   - docs/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostSecurity.md
-  - docs/Models/Operations/UpdateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesCreditNoteIdPutRequest.md
-  - docs/Models/Operations/UpdateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesCreditNoteIdPutResponse.md
-  - docs/Models/Operations/UpdateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesCreditNoteIdPutSecurity.md
   - docs/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutRequest.md
   - docs/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutResponse.md
   - docs/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutSecurity.md
@@ -525,14 +525,14 @@ generatedFiles:
   - src/Models/Operations/GetTransactionsV1TransactionsGetRequest.php
   - src/Models/Operations/GetTransactionsV1TransactionsGetResponse.php
   - src/Models/Operations/GetTransactionsV1TransactionsGetSecurity.php
+  - src/Models/Operations/PUTUpdateCreditNoteByTransactionIdRequest.php
+  - src/Models/Operations/PUTUpdateCreditNoteByTransactionIdResponse.php
+  - src/Models/Operations/PUTUpdateCreditNoteByTransactionIdSecurity.php
   - src/Models/Operations/SearchV1AddressValidationSearchPostResponse.php
   - src/Models/Operations/SearchV1AddressValidationSearchPostSecurity.php
   - src/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostRequest.php
   - src/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostResponse.php
   - src/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostSecurity.php
-  - src/Models/Operations/UpdateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesCreditNoteIdPutRequest.php
-  - src/Models/Operations/UpdateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesCreditNoteIdPutResponse.php
-  - src/Models/Operations/UpdateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesCreditNoteIdPutSecurity.php
   - src/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutRequest.php
   - src/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutResponse.php
   - src/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutSecurity.php
@@ -1121,4 +1121,19 @@ examples:
           application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>"], "msg": "<value>", "input": "<value>", "ctx": {"key": "<value>", "key1": "<value>", "key2": "<value>"}}]}
         "500":
           application/json: {"detail": "<value>"}
+  PUT_update_credit_note_by_transaction_id:
+    speakeasy-default-PUT-update-credit-note-by-transaction-id:
+      parameters:
+        path:
+          original_transaction_id: "<id>"
+          credit_note_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"external_id": "<id>", "date": "2023-07-25T11:01:44.924Z", "status": "CANCELLED", "currency": "SPL", "transaction_items": [{"external_id": "<id>", "date": "2024-09-15T23:01:02.880Z", "external_product_id": "<id>"}]}
+      responses:
+        "200":
+          application/json: "<value>"
+        "422":
+          application/json: {}
 examplesVersion: 1.0.2

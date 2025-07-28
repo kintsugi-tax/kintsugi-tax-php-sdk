@@ -14,5 +14,6 @@ enum TreatmentEnum: string
     case Included = 'INCLUDED';
     case Excluded = 'EXCLUDED';
     case Depends = 'DEPENDS';
+    case IncludeIfPresence = 'INCLUDE_IF_PRESENCE';
     case YesSalesNoTransactions = 'YES_SALES_NO_TRANSACTIONS';
 }
