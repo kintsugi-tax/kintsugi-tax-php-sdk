@@ -17,6 +17,7 @@ Retrieve a paginated list of products based on filters and search query.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="get_products_v1_products__get" method="get" path="/v1/products/" -->
 ```php
 declare(strict_types=1);
 
@@ -72,6 +73,7 @@ The Create Product API allows users to manually create a new product
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="create_product_v1_products__post" method="post" path="/v1/products/" -->
 ```php
 declare(strict_types=1);
 
@@ -138,6 +140,7 @@ The Get Product By ID API retrieves detailed information about
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="get_product_by_id_v1_products__product_id__get" method="get" path="/v1/products/{product_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -193,6 +196,7 @@ The Update Product API allows users to modify the details of
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="update_product_v1_products__product_id__put" method="put" path="/v1/products/{product_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -261,6 +265,7 @@ The Get Product Categories API retrieves all
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="get_product_categories_v1_products_categories__get" method="get" path="/v1/products/categories/" -->
 ```php
 declare(strict_types=1);
 

@@ -17,6 +17,7 @@ Retrieve a list of exemptions based on filters.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="get_exemptions_v1_exemptions_get" method="get" path="/v1/exemptions" -->
 ```php
 declare(strict_types=1);
 
@@ -83,6 +84,7 @@ The Create Exemption API allows you to create a new exemption record.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="create_exemption_v1_exemptions_post" method="post" path="/v1/exemptions" -->
 ```php
 declare(strict_types=1);
 
@@ -154,6 +156,7 @@ The Get Exemption By ID API retrieves a specific exemption record by
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="get_exemption_by_id_v1_exemptions__exemption_id__get" method="get" path="/v1/exemptions/{exemption_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -211,6 +214,7 @@ The Upload Exemption Certificate API allows you
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="upload_exemption_certificate_v1_exemptions__exemption_id__attachments_post" method="post" path="/v1/exemptions/{exemption_id}/attachments" -->
 ```php
 declare(strict_types=1);
 
@@ -276,6 +280,7 @@ The Get Attachments for Exemption API retrieves all
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="get_attachments_for_exemption_v1_exemptions__exemption_id__attachments_get" method="get" path="/v1/exemptions/{exemption_id}/attachments" -->
 ```php
 declare(strict_types=1);
 

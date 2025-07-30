@@ -17,6 +17,7 @@ This API validates and enriches address information
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="search_v1_address_validation_search_post" method="post" path="/v1/address_validation/search" -->
 ```php
 declare(strict_types=1);
 
@@ -83,6 +84,7 @@ This API endpoint provides address suggestions based on
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="suggestions_v1_address_validation_suggestions_post" method="post" path="/v1/address_validation/suggestions" -->
 ```php
 declare(strict_types=1);
 

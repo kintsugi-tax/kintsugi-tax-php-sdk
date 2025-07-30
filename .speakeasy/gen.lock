@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: fdb4bdf9-63b7-4d28-815c-b04a56c0369b
 management:
-  docChecksum: abf6143ab509ec16a4cf8fb0683fbb3d
+  docChecksum: 3b7599d4823043c763a96752a57b54f0
   docVersion: 1.0.0
-  speakeasyVersion: 1.590.0
-  generationVersion: 2.666.0
-  releaseVersion: 0.1.9
-  configChecksum: ee59b0fbdb1404f1cd3764c3d53e0038
+  speakeasyVersion: 1.592.1
+  generationVersion: 2.667.0
+  releaseVersion: 0.1.10
+  configChecksum: c55bfcc2bad3c07d056eab4d8684a7aa
   repoURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk.git
   installationURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk
   published: true
 features:
   php:
     constsAndDefaults: 0.2.0
-    core: 3.8.8
+    core: 3.8.9
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.81.8
@@ -225,9 +225,6 @@ generatedFiles:
   - docs/Models/Errors/ErrorResponse.md
   - docs/Models/Errors/HTTPValidationError.md
   - docs/Models/Operations/CountryCode.md
-  - docs/Models/Operations/CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostRequest.md
-  - docs/Models/Operations/CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostResponse.md
-  - docs/Models/Operations/CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostSecurity.md
   - docs/Models/Operations/CreateCustomerV1CustomersPostRequest.md
   - docs/Models/Operations/CreateCustomerV1CustomersPostResponse.md
   - docs/Models/Operations/CreateCustomerV1CustomersPostSecurity.md
@@ -293,6 +290,9 @@ generatedFiles:
   - docs/Models/Operations/GetTransactionsV1TransactionsGetRequest.md
   - docs/Models/Operations/GetTransactionsV1TransactionsGetResponse.md
   - docs/Models/Operations/GetTransactionsV1TransactionsGetSecurity.md
+  - docs/Models/Operations/POSTCreateCreditNoteByTransactionIdRequest.md
+  - docs/Models/Operations/POSTCreateCreditNoteByTransactionIdResponse.md
+  - docs/Models/Operations/POSTCreateCreditNoteByTransactionIdSecurity.md
   - docs/Models/Operations/PUTUpdateCreditNoteByTransactionIdRequest.md
   - docs/Models/Operations/PUTUpdateCreditNoteByTransactionIdResponse.md
   - docs/Models/Operations/PUTUpdateCreditNoteByTransactionIdSecurity.md
@@ -459,9 +459,6 @@ generatedFiles:
   - src/Models/Errors/ErrorResponseThrowable.php
   - src/Models/Errors/HTTPValidationError.php
   - src/Models/Errors/HTTPValidationErrorThrowable.php
-  - src/Models/Operations/CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostRequest.php
-  - src/Models/Operations/CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostResponse.php
-  - src/Models/Operations/CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostSecurity.php
   - src/Models/Operations/CreateCustomerV1CustomersPostRequest.php
   - src/Models/Operations/CreateCustomerV1CustomersPostResponse.php
   - src/Models/Operations/CreateCustomerV1CustomersPostSecurity.php
@@ -525,6 +522,9 @@ generatedFiles:
   - src/Models/Operations/GetTransactionsV1TransactionsGetRequest.php
   - src/Models/Operations/GetTransactionsV1TransactionsGetResponse.php
   - src/Models/Operations/GetTransactionsV1TransactionsGetSecurity.php
+  - src/Models/Operations/POSTCreateCreditNoteByTransactionIdRequest.php
+  - src/Models/Operations/POSTCreateCreditNoteByTransactionIdResponse.php
+  - src/Models/Operations/POSTCreateCreditNoteByTransactionIdSecurity.php
   - src/Models/Operations/PUTUpdateCreditNoteByTransactionIdRequest.php
   - src/Models/Operations/PUTUpdateCreditNoteByTransactionIdResponse.php
   - src/Models/Operations/PUTUpdateCreditNoteByTransactionIdSecurity.php
@@ -1134,6 +1134,20 @@ examples:
       responses:
         "200":
           application/json: "<value>"
+        "422":
+          application/json: {}
+  POST_create_credit_note_by_transaction_id:
+    speakeasy-default-POST-create-credit-note-by-transaction-id:
+      parameters:
+        path:
+          original_transaction_id: "<id>"
+        header:
+          x-organization-id: "org_12345"
+      requestBody:
+        application/json: {"external_id": "<id>", "date": "2024-01-17T09:54:06.459Z", "status": "PENDING", "currency": "GEL", "transaction_items": [{"external_id": "<id>", "date": "2023-07-11T07:57:04.867Z", "external_product_id": "<id>"}]}
+      responses:
+        "200":
+          application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2024-03-08T14:51:43.874Z", "total_amount": "0.00", "total_tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "total_tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "total_tax_liability_amount": "0.00", "taxable_amount": "0.00", "locked": false, "id": "<id>", "addresses": [], "transaction_items": [{"organization_id": "<id>", "date": "2025-04-01T04:49:49.945Z", "external_product_id": "<id>", "quantity": "1.0", "amount": "0.00", "tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "taxable_amount": "0.00", "exempt": false, "id": "<id>", "tax_items": []}], "type": "SALE"}
         "422":
           application/json: {}
 examplesVersion: 1.0.2

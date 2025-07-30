@@ -10,7 +10,7 @@ namespace KintsugiTax\SDK\Models\Operations;
 
 use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
-class CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostRequest
+class POSTCreateCreditNoteByTransactionIdRequest
 {
     /**
      *

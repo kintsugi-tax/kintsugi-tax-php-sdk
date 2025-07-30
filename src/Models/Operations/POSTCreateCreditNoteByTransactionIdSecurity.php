@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace KintsugiTax\SDK\Models\Operations;
 
 use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
-class CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostSecurity
+class POSTCreateCreditNoteByTransactionIdSecurity
 {
     /**
      *
