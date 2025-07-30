@@ -15,6 +15,7 @@ The Estimate Tax API calculates the estimated tax for a specific
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="estimate_tax_v1_tax_estimate_post" method="post" path="/v1/tax/estimate" -->
 ```php
 declare(strict_types=1);
 

@@ -21,6 +21,7 @@ The Get Transactions API retrieves a list of transactions with
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="get_transactions_v1_transactions_get" method="get" path="/v1/transactions" -->
 ```php
 declare(strict_types=1);
 
@@ -74,6 +75,7 @@ Create a transaction.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="create_transaction_v1_transactions_post" method="post" path="/v1/transactions" -->
 ```php
 declare(strict_types=1);
 
@@ -163,6 +165,7 @@ Retrieves a specific transaction based on its external ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="get_transaction_by_external_id_v1_transactions_external__external_id__get" method="get" path="/v1/transactions/external/{external_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -217,6 +220,7 @@ Update a specific transaction by its ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="update_transaction_v1_transactions__transaction_id__put" method="put" path="/v1/transactions/{transaction_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -291,6 +295,7 @@ The Get Transaction By Id API retrieves detailed information
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="get_transaction_by_id_v1_transactions__transaction_id__get" method="get" path="/v1/transactions/{transaction_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -345,6 +350,7 @@ Retrieve transactions by filing ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="get_transactions_by_filing_id_v1_transactions_filings__filing_id__get" method="get" path="/v1/transactions/filings/{filing_id}" -->
 ```php
 declare(strict_types=1);
 
@@ -399,6 +405,7 @@ Create a new credit note for a specific transaction.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="POST_create_credit_note_by_transaction_id" method="post" path="/v1/transactions/{original_transaction_id}/credit_notes" -->
 ```php
 declare(strict_types=1);
 
@@ -428,7 +435,7 @@ $creditNoteCreate = new Components\CreditNoteCreate(
         ),
     ],
 );
-$requestSecurity = new Operations\CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostSecurity(
+$requestSecurity = new Operations\POSTCreateCreditNoteByTransactionIdSecurity(
     apiKeyHeader: '<YOUR_API_KEY_HERE>',
 );
 
@@ -447,16 +454,16 @@ if ($response->transactionRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                                    | Type                                                                                                                                                                                                                         | Required                                                                                                                                                                                                                     | Description                                                                                                                                                                                                                  | Example                                                                                                                                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                                                                                                                   | [Operations\CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostSecurity](../../Models/Operations/CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostSecurity.md) | :heavy_check_mark:                                                                                                                                                                                                           | The security requirements to use for the request.                                                                                                                                                                            |                                                                                                                                                                                                                              |
-| `originalTransactionId`                                                                                                                                                                                                      | *string*                                                                                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                                                                           | N/A                                                                                                                                                                                                                          |                                                                                                                                                                                                                              |
-| `xOrganizationId`                                                                                                                                                                                                            | *string*                                                                                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                                                                           | The unique identifier for the organization making the request                                                                                                                                                                | org_12345                                                                                                                                                                                                                    |
-| `creditNoteCreate`                                                                                                                                                                                                           | [Components\CreditNoteCreate](../../Models/Components/CreditNoteCreate.md)                                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                                                           | N/A                                                                                                                                                                                                                          |                                                                                                                                                                                                                              |
+| Parameter                                                                                                                        | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      | Example                                                                                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `security`                                                                                                                       | [Operations\POSTCreateCreditNoteByTransactionIdSecurity](../../Models/Operations/POSTCreateCreditNoteByTransactionIdSecurity.md) | :heavy_check_mark:                                                                                                               | The security requirements to use for the request.                                                                                |                                                                                                                                  |
+| `originalTransactionId`                                                                                                          | *string*                                                                                                                         | :heavy_check_mark:                                                                                                               | N/A                                                                                                                              |                                                                                                                                  |
+| `xOrganizationId`                                                                                                                | *string*                                                                                                                         | :heavy_check_mark:                                                                                                               | The unique identifier for the organization making the request                                                                    | org_12345                                                                                                                        |
+| `creditNoteCreate`                                                                                                               | [Components\CreditNoteCreate](../../Models/Components/CreditNoteCreate.md)                                                       | :heavy_check_mark:                                                                                                               | N/A                                                                                                                              |                                                                                                                                  |
 
 ### Response
 
-**[?Operations\CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostResponse](../../Models/Operations/CreateCreditNoteByTransactionIdV1TransactionsOriginalTransactionIdCreditNotesPostResponse.md)**
+**[?Operations\POSTCreateCreditNoteByTransactionIdResponse](../../Models/Operations/POSTCreateCreditNoteByTransactionIdResponse.md)**
 
 ### Errors
 
@@ -471,6 +478,7 @@ Update an existing credit note for a specific transaction.
 
 ### Example Usage
 
+<!-- UsageSnippet language="php" operationID="PUT_update_credit_note_by_transaction_id" method="put" path="/v1/transactions/{original_transaction_id}/credit_notes/{credit_note_id}" -->
 ```php
 declare(strict_types=1);
 
