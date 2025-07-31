@@ -58,7 +58,7 @@ class AddressValidation
      * @return Operations\SearchV1AddressValidationSearchPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function searchV1AddressValidationSearchPost(Operations\SearchV1AddressValidationSearchPostSecurity $security, Components\AddressBase $request, ?Options $options = null): Operations\SearchV1AddressValidationSearchPostResponse
+    public function search(Operations\SearchV1AddressValidationSearchPostSecurity $security, Components\AddressBase $request, ?Options $options = null): Operations\SearchV1AddressValidationSearchPostResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/address_validation/search');
@@ -170,7 +170,7 @@ class AddressValidation
      * @return Operations\SuggestionsV1AddressValidationSuggestionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function suggestionsV1AddressValidationSuggestionsPost(Components\ValidationAddress $request, ?Options $options = null): Operations\SuggestionsV1AddressValidationSuggestionsPostResponse
+    public function suggestions(Components\ValidationAddress $request, ?Options $options = null): Operations\SuggestionsV1AddressValidationSuggestionsPostResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/address_validation/suggestions');
