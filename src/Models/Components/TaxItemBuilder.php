@@ -13,19 +13,17 @@ class TaxItemBuilder
 {
     /**
      *
-     * @var float|string $rate
+     * @var float $rate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('rate')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string')]
-    public float|string $rate;
+    public float $rate;
 
     /**
      *
-     * @var float|string $amount
+     * @var float $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string')]
-    public float|string $amount;
+    public float $amount;
 
     /**
      * Deprecated: use `jurisdiction_type` instead
@@ -37,28 +35,18 @@ class TaxItemBuilder
 
     /**
      *
-     * @var ?TaxItemTypeEnum $type
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxItemTypeEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?TaxItemTypeEnum $type = null;
-
-    /**
-     *
-     * @var ?string $organizationId
+     * @var string $organizationId
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
-    public ?string $organizationId;
+    public string $organizationId;
 
     /**
      *
-     * @var float|string|null $convertedAmount
+     * @var ?float $convertedAmount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('converted_amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $convertedAmount = null;
+    public ?float $convertedAmount = null;
 
     /**
      *
@@ -88,6 +76,15 @@ class TaxItemBuilder
 
     /**
      *
+     * @var ?TaxItemTypeEnum $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxItemTypeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?TaxItemTypeEnum $type = null;
+
+    /**
+     *
      * @var ?JurisdictionType $jurisdictionType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('jurisdiction_type')]
@@ -113,31 +110,31 @@ class TaxItemBuilder
     public ?string $ruleId = null;
 
     /**
-     * @param  float|string  $rate
-     * @param  float|string  $amount
+     * @param  float  $rate
+     * @param  float  $amount
      * @param  string  $name
+     * @param  string  $organizationId
      * @param  ?string  $ruleId
-     * @param  ?TaxItemTypeEnum  $type
-     * @param  ?string  $organizationId
-     * @param  float|string|null  $convertedAmount
+     * @param  ?float  $convertedAmount
      * @param  ?CurrencyEnum  $currency
      * @param  ?CurrencyEnum  $destinationCurrency
      * @param  ?string  $externalId
+     * @param  ?TaxItemTypeEnum  $type
      * @param  ?JurisdictionType  $jurisdictionType
      * @param  ?string  $jurisdictionName
      * @phpstan-pure
      */
-    public function __construct(float|string $rate, float|string $amount, string $name, ?TaxItemTypeEnum $type = null, ?string $organizationId = null, float|string|null $convertedAmount = null, ?CurrencyEnum $currency = null, ?CurrencyEnum $destinationCurrency = null, ?string $externalId = null, ?JurisdictionType $jurisdictionType = null, ?string $jurisdictionName = null, ?string $ruleId = '0000')
+    public function __construct(float $rate, float $amount, string $name, string $organizationId, ?float $convertedAmount = null, ?CurrencyEnum $currency = null, ?CurrencyEnum $destinationCurrency = null, ?string $externalId = null, ?TaxItemTypeEnum $type = null, ?JurisdictionType $jurisdictionType = null, ?string $jurisdictionName = null, ?string $ruleId = '0000')
     {
         $this->rate = $rate;
         $this->amount = $amount;
         $this->name = $name;
-        $this->type = $type;
         $this->organizationId = $organizationId;
         $this->convertedAmount = $convertedAmount;
         $this->currency = $currency;
         $this->destinationCurrency = $destinationCurrency;
         $this->externalId = $externalId;
+        $this->type = $type;
         $this->jurisdictionType = $jurisdictionType;
         $this->jurisdictionName = $jurisdictionName;
         $this->ruleId = $ruleId;

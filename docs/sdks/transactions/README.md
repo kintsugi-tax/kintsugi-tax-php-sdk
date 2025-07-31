@@ -28,20 +28,22 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Models\Operations;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
-$request = new Operations\GetTransactionsV1TransactionsGetRequest(
-    xOrganizationId: 'org_12345',
-);
-$requestSecurity = new Operations\GetTransactionsV1TransactionsGetSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
+$request = new Operations\GetTransactionsV1TransactionsGetRequest();
 
 $response = $sdk->transactions->list(
-    request: $request,
-    security: $requestSecurity
+    request: $request
 );
 
 if ($response->pageTransactionRead !== null) {
@@ -51,10 +53,9 @@ if ($response->pageTransactionRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                  | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                 | [Operations\GetTransactionsV1TransactionsGetRequest](../../Models/Operations/GetTransactionsV1TransactionsGetRequest.md)   | :heavy_check_mark:                                                                                                         | The request object to use for the request.                                                                                 |
-| `security`                                                                                                                 | [Operations\GetTransactionsV1TransactionsGetSecurity](../../Models/Operations/GetTransactionsV1TransactionsGetSecurity.md) | :heavy_check_mark:                                                                                                         | The security requirements to use for the request.                                                                          |
+| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+| `$request`                                                                                                               | [Operations\GetTransactionsV1TransactionsGetRequest](../../Models/Operations/GetTransactionsV1TransactionsGetRequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
 
 ### Response
 
@@ -83,12 +84,18 @@ require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
 use KintsugiTax\SDK\Utils;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
-$transactionPublicRequest = new Components\TransactionPublicRequest(
+$request = new Components\TransactionPublicRequest(
     organizationId: 'orgn_YourOrgIdHere',
     externalId: 'YourUniqueOrder123',
     date: Utils\Utils::parseDateTime('2024-01-15T14:30:00Z'),
@@ -114,22 +121,16 @@ $transactionPublicRequest = new Components\TransactionPublicRequest(
             amount: 50,
         ),
     ],
-    customer: new Components\TransactionImportCustomer(
-        externalId: 'Cust456',
+    customer: new Components\CustomerBaseBase(
         name: 'John Doe',
+        externalId: 'Cust456',
         organizationId: 'orgn_YourOrgIdHere',
     ),
     type: Components\TransactionTypeEnum::Sale,
 );
-$requestSecurity = new Operations\CreateTransactionV1TransactionsPostSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->transactions->create(
-    security: $requestSecurity,
-    xOrganizationId: 'org_12345',
-    transactionPublicRequest: $transactionPublicRequest
-
+    request: $request
 );
 
 if ($response->transactionRead !== null) {
@@ -139,11 +140,9 @@ if ($response->transactionRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                        | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      | Example                                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                       | [Operations\CreateTransactionV1TransactionsPostSecurity](../../Models/Operations/CreateTransactionV1TransactionsPostSecurity.md) | :heavy_check_mark:                                                                                                               | The security requirements to use for the request.                                                                                |                                                                                                                                  |
-| `xOrganizationId`                                                                                                                | *string*                                                                                                                         | :heavy_check_mark:                                                                                                               | The unique identifier for the organization making the request                                                                    | org_12345                                                                                                                        |
-| `transactionPublicRequest`                                                                                                       | [Components\TransactionPublicRequest](../../Models/Components/TransactionPublicRequest.md)                                       | :heavy_check_mark:                                                                                                               | N/A                                                                                                                              |                                                                                                                                  |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `$request`                                                                                 | [Components\TransactionPublicRequest](../../Models/Components/TransactionPublicRequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
 
 ### Response
 
@@ -172,20 +171,21 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Models\Components;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
 
-$requestSecurity = new Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->transactions->getByExternalId(
-    security: $requestSecurity,
-    externalId: '<id>',
-    xOrganizationId: 'org_12345'
-
+    externalId: '<id>'
 );
 
 if ($response->transactionRead !== null) {
@@ -195,11 +195,9 @@ if ($response->transactionRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                            | Type                                                                                                                                                                                 | Required                                                                                                                                                                             | Description                                                                                                                                                                          | Example                                                                                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                                           | [Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetSecurity](../../Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetSecurity.md) | :heavy_check_mark:                                                                                                                                                                   | The security requirements to use for the request.                                                                                                                                    |                                                                                                                                                                                      |
-| `externalId`                                                                                                                                                                         | *string*                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                   | The unique external identifier of the transaction.                                                                                                                                   |                                                                                                                                                                                      |
-| `xOrganizationId`                                                                                                                                                                    | *string*                                                                                                                                                                             | :heavy_check_mark:                                                                                                                                                                   | The unique identifier for the organization making the request                                                                                                                        | org_12345                                                                                                                                                                            |
+| Parameter                                          | Type                                               | Required                                           | Description                                        |
+| -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- | -------------------------------------------------- |
+| `externalId`                                       | *string*                                           | :heavy_check_mark:                                 | The unique external identifier of the transaction. |
 
 ### Response
 
@@ -228,10 +226,16 @@ require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
 use KintsugiTax\SDK\Utils;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
 $transactionUpdate = new Components\TransactionUpdate(
     organizationId: 'orgn_argaLQwMy2fJc',
@@ -251,14 +255,9 @@ $transactionUpdate = new Components\TransactionUpdate(
     ],
     customer: new Components\CustomerUpdate(),
 );
-$requestSecurity = new Operations\UpdateTransactionV1TransactionsTransactionIdPutSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->transactions->update(
-    security: $requestSecurity,
     transactionId: '<id>',
-    xOrganizationId: 'org_12345',
     transactionUpdate: $transactionUpdate
 
 );
@@ -270,12 +269,10 @@ if ($response->transactionRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                                | Type                                                                                                                                                     | Required                                                                                                                                                 | Description                                                                                                                                              | Example                                                                                                                                                  |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                                               | [Operations\UpdateTransactionV1TransactionsTransactionIdPutSecurity](../../Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutSecurity.md) | :heavy_check_mark:                                                                                                                                       | The security requirements to use for the request.                                                                                                        |                                                                                                                                                          |
-| `transactionId`                                                                                                                                          | *string*                                                                                                                                                 | :heavy_check_mark:                                                                                                                                       | N/A                                                                                                                                                      |                                                                                                                                                          |
-| `xOrganizationId`                                                                                                                                        | *string*                                                                                                                                                 | :heavy_check_mark:                                                                                                                                       | The unique identifier for the organization making the request                                                                                            | org_12345                                                                                                                                                |
-| `transactionUpdate`                                                                                                                                      | [Components\TransactionUpdate](../../Models/Components/TransactionUpdate.md)                                                                             | :heavy_check_mark:                                                                                                                                       | N/A                                                                                                                                                      |                                                                                                                                                          |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `transactionId`                                                              | *string*                                                                     | :heavy_check_mark:                                                           | N/A                                                                          |
+| `transactionUpdate`                                                          | [Components\TransactionUpdate](../../Models/Components/TransactionUpdate.md) | :heavy_check_mark:                                                           | N/A                                                                          |
 
 ### Response
 
@@ -302,20 +299,21 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Models\Components;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
 
-$requestSecurity = new Operations\GetTransactionByIdV1TransactionsTransactionIdGetSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->transactions->getById(
-    security: $requestSecurity,
-    transactionId: '<id>',
-    xOrganizationId: 'org_12345'
-
+    transactionId: '<id>'
 );
 
 if ($response->transactionRead !== null) {
@@ -325,11 +323,9 @@ if ($response->transactionRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                                  | Type                                                                                                                                                       | Required                                                                                                                                                   | Description                                                                                                                                                | Example                                                                                                                                                    |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                                                 | [Operations\GetTransactionByIdV1TransactionsTransactionIdGetSecurity](../../Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetSecurity.md) | :heavy_check_mark:                                                                                                                                         | The security requirements to use for the request.                                                                                                          |                                                                                                                                                            |
-| `transactionId`                                                                                                                                            | *string*                                                                                                                                                   | :heavy_check_mark:                                                                                                                                         | The unique identifier of the transaction to retrieve.                                                                                                      |                                                                                                                                                            |
-| `xOrganizationId`                                                                                                                                          | *string*                                                                                                                                                   | :heavy_check_mark:                                                                                                                                         | The unique identifier for the organization making the request                                                                                              | org_12345                                                                                                                                                  |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `transactionId`                                       | *string*                                              | :heavy_check_mark:                                    | The unique identifier of the transaction to retrieve. |
 
 ### Response
 
@@ -357,20 +353,21 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Models\Components;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
 
-$requestSecurity = new Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->transactions->getByFilingId(
-    security: $requestSecurity,
-    filingId: '<id>',
-    xOrganizationId: 'org_12345'
-
+    filingId: '<id>'
 );
 
 if ($response->response200GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGet !== null) {
@@ -380,11 +377,9 @@ if ($response->response200GetTransactionsByFilingIdV1TransactionsFilingsFilingId
 
 ### Parameters
 
-| Parameter                                                                                                                                                                    | Type                                                                                                                                                                         | Required                                                                                                                                                                     | Description                                                                                                                                                                  | Example                                                                                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                                                                   | [Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetSecurity](../../Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetSecurity.md) | :heavy_check_mark:                                                                                                                                                           | The security requirements to use for the request.                                                                                                                            |                                                                                                                                                                              |
-| `filingId`                                                                                                                                                                   | *string*                                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                           | The unique identifier of the filing<br/>        whose transactions you wish to retrieve.<br/>                                                                                |                                                                                                                                                                              |
-| `xOrganizationId`                                                                                                                                                            | *string*                                                                                                                                                                     | :heavy_check_mark:                                                                                                                                                           | The unique identifier for the organization making the request                                                                                                                | org_12345                                                                                                                                                                    |
+| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `filingId`                                                                                    | *string*                                                                                      | :heavy_check_mark:                                                                            | The unique identifier of the filing<br/>        whose transactions you wish to retrieve.<br/>         |
 
 ### Response
 
@@ -413,10 +408,16 @@ require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
 use KintsugiTax\SDK\Utils;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
 $creditNoteCreate = new Components\CreditNoteCreate(
     externalId: 'CN-12345',
@@ -435,14 +436,9 @@ $creditNoteCreate = new Components\CreditNoteCreate(
         ),
     ],
 );
-$requestSecurity = new Operations\POSTCreateCreditNoteByTransactionIdSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->transactions->createCreditNote(
-    security: $requestSecurity,
     originalTransactionId: '<id>',
-    xOrganizationId: 'org_12345',
     creditNoteCreate: $creditNoteCreate
 
 );
@@ -454,12 +450,10 @@ if ($response->transactionRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                        | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      | Example                                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                       | [Operations\POSTCreateCreditNoteByTransactionIdSecurity](../../Models/Operations/POSTCreateCreditNoteByTransactionIdSecurity.md) | :heavy_check_mark:                                                                                                               | The security requirements to use for the request.                                                                                |                                                                                                                                  |
-| `originalTransactionId`                                                                                                          | *string*                                                                                                                         | :heavy_check_mark:                                                                                                               | N/A                                                                                                                              |                                                                                                                                  |
-| `xOrganizationId`                                                                                                                | *string*                                                                                                                         | :heavy_check_mark:                                                                                                               | The unique identifier for the organization making the request                                                                    | org_12345                                                                                                                        |
-| `creditNoteCreate`                                                                                                               | [Components\CreditNoteCreate](../../Models/Components/CreditNoteCreate.md)                                                       | :heavy_check_mark:                                                                                                               | N/A                                                                                                                              |                                                                                                                                  |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `originalTransactionId`                                                    | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
+| `creditNoteCreate`                                                         | [Components\CreditNoteCreate](../../Models/Components/CreditNoteCreate.md) | :heavy_check_mark:                                                         | N/A                                                                        |
 
 ### Response
 
@@ -486,33 +480,37 @@ require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
 use KintsugiTax\SDK\Utils;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
 $creditNoteCreate = new Components\CreditNoteCreate(
     externalId: '<id>',
     date: Utils\Utils::parseDateTime('2023-07-25T11:01:44.924Z'),
     status: Components\Status::Cancelled,
+    totalAmount: 0,
     currency: Components\CurrencyEnum::Spl,
     transactionItems: [
         new Components\CreditNoteItemCreateUpdate(
             externalId: '<id>',
             date: Utils\Utils::parseDateTime('2024-09-15T23:01:02.880Z'),
             externalProductId: '<id>',
+            quantity: 1,
+            amount: 0,
         ),
     ],
 );
-$requestSecurity = new Operations\PUTUpdateCreditNoteByTransactionIdSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->transactions->updateCreditNote(
-    security: $requestSecurity,
     originalTransactionId: '<id>',
     creditNoteId: '<id>',
-    xOrganizationId: 'org_12345',
     creditNoteCreate: $creditNoteCreate
 
 );
@@ -524,13 +522,11 @@ if ($response->any !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    | Example                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                     | [Operations\PUTUpdateCreditNoteByTransactionIdSecurity](../../Models/Operations/PUTUpdateCreditNoteByTransactionIdSecurity.md) | :heavy_check_mark:                                                                                                             | The security requirements to use for the request.                                                                              |                                                                                                                                |
-| `originalTransactionId`                                                                                                        | *string*                                                                                                                       | :heavy_check_mark:                                                                                                             | N/A                                                                                                                            |                                                                                                                                |
-| `creditNoteId`                                                                                                                 | *string*                                                                                                                       | :heavy_check_mark:                                                                                                             | N/A                                                                                                                            |                                                                                                                                |
-| `xOrganizationId`                                                                                                              | *string*                                                                                                                       | :heavy_check_mark:                                                                                                             | The unique identifier for the organization making the request                                                                  | org_12345                                                                                                                      |
-| `creditNoteCreate`                                                                                                             | [Components\CreditNoteCreate](../../Models/Components/CreditNoteCreate.md)                                                     | :heavy_check_mark:                                                                                                             | N/A                                                                                                                            |                                                                                                                                |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `originalTransactionId`                                                    | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
+| `creditNoteId`                                                             | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
+| `creditNoteCreate`                                                         | [Components\CreditNoteCreate](../../Models/Components/CreditNoteCreate.md) | :heavy_check_mark:                                                         | N/A                                                                        |
 
 ### Response
 

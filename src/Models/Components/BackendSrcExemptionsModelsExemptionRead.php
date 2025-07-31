@@ -44,7 +44,6 @@ class BackendSrcExemptionsModelsExemptionRead
     public ?string $jurisdiction = null;
 
     /**
-     * Country code in ISO 3166-1 alpha-2 format (e.g., 'US')
      *
      * @var ?CountryCodeEnum $countryCode
      */
@@ -56,11 +55,11 @@ class BackendSrcExemptionsModelsExemptionRead
     /**
      * End date for the exemption validity period (YYYY-MM-DD format)
      *
-     * @var ?LocalDate $endDate
+     * @var ?string $endDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('end_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?LocalDate $endDate = null;
+    public ?string $endDate = null;
 
     /**
      * Unique identifier for the customer associated with the exemption
@@ -103,9 +102,6 @@ class BackendSrcExemptionsModelsExemptionRead
     public ?string $salesTaxId = null;
 
     /**
-     * The status of the exemption.
-     *
-     *         Defaults to ACTIVE if not provided.
      *
      * @var ?ExemptionStatus $status
      */
@@ -143,12 +139,12 @@ class BackendSrcExemptionsModelsExemptionRead
      * @param  ExemptionType  $exemptionType
      * @param  LocalDate  $startDate
      * @param  string  $id
-     * @param  ?bool  $reseller
      * @param  ?string  $jurisdiction
      * @param  ?CountryCodeEnum  $countryCode
-     * @param  ?LocalDate  $endDate
+     * @param  ?string  $endDate
      * @param  ?string  $customerId
      * @param  ?string  $transactionId
+     * @param  ?bool  $reseller
      * @param  ?string  $fein
      * @param  ?string  $salesTaxId
      * @param  ?ExemptionStatus  $status
@@ -156,7 +152,7 @@ class BackendSrcExemptionsModelsExemptionRead
      * @param  ?string  $attachmentId
      * @phpstan-pure
      */
-    public function __construct(ExemptionType $exemptionType, LocalDate $startDate, string $id, ?string $jurisdiction = null, ?CountryCodeEnum $countryCode = null, ?LocalDate $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?ExemptionStatus $status = null, ?string $customerName = null, ?string $attachmentId = null, ?bool $reseller = false)
+    public function __construct(ExemptionType $exemptionType, LocalDate $startDate, string $id, ?string $jurisdiction = null, ?CountryCodeEnum $countryCode = null, ?string $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?ExemptionStatus $status = null, ?string $customerName = null, ?string $attachmentId = null, ?bool $reseller = false)
     {
         $this->exemptionType = $exemptionType;
         $this->startDate = $startDate;

@@ -46,21 +46,13 @@ class Exemption
     public ?\DateTime $createdAt = null;
 
     /**
-     *
-     * @var ?string $organizationId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $organizationId = null;
-
-    /**
      * Timestamp when transaction was last updated.
      *
-     * @var ?\DateTime $updatedAt
+     * @var ?string $updatedAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\DateTime $updatedAt = null;
+    public ?string $updatedAt = null;
 
     /**
      * The jurisdiction identifier for the exemption
@@ -72,7 +64,6 @@ class Exemption
     public ?string $jurisdiction = null;
 
     /**
-     * Country code in ISO 3166-1 alpha-2 format (e.g., 'US')
      *
      * @var ?CountryCodeEnum $countryCode
      */
@@ -84,11 +75,11 @@ class Exemption
     /**
      * End date for the exemption validity period (YYYY-MM-DD format)
      *
-     * @var ?LocalDate $endDate
+     * @var ?string $endDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('end_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?LocalDate $endDate = null;
+    public ?string $endDate = null;
 
     /**
      * Unique identifier for the customer associated with the exemption
@@ -131,9 +122,6 @@ class Exemption
     public ?string $salesTaxId = null;
 
     /**
-     * The status of the exemption.
-     *
-     *         Defaults to ACTIVE if not provided.
      *
      * @var ?ExemptionStatus $status
      */
@@ -141,6 +129,14 @@ class Exemption
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionStatus|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ExemptionStatus $status = null;
+
+    /**
+     *
+     * @var ?string $organizationId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $organizationId = null;
 
     /**
      * Indicates whether the exemption is for a reseller
@@ -156,26 +152,25 @@ class Exemption
      * @param  LocalDate  $startDate
      * @param  ?string  $id
      * @param  ?\DateTime  $createdAt
-     * @param  ?bool  $reseller
-     * @param  ?string  $organizationId
-     * @param  ?\DateTime  $updatedAt
+     * @param  ?string  $updatedAt
      * @param  ?string  $jurisdiction
      * @param  ?CountryCodeEnum  $countryCode
-     * @param  ?LocalDate  $endDate
+     * @param  ?string  $endDate
      * @param  ?string  $customerId
      * @param  ?string  $transactionId
+     * @param  ?bool  $reseller
      * @param  ?string  $fein
      * @param  ?string  $salesTaxId
      * @param  ?ExemptionStatus  $status
+     * @param  ?string  $organizationId
      * @phpstan-pure
      */
-    public function __construct(ExemptionType $exemptionType, LocalDate $startDate, ?string $id = null, ?\DateTime $createdAt = null, ?string $organizationId = null, ?\DateTime $updatedAt = null, ?string $jurisdiction = null, ?CountryCodeEnum $countryCode = null, ?LocalDate $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?ExemptionStatus $status = null, ?bool $reseller = false)
+    public function __construct(ExemptionType $exemptionType, LocalDate $startDate, ?string $id = null, ?\DateTime $createdAt = null, ?string $updatedAt = null, ?string $jurisdiction = null, ?CountryCodeEnum $countryCode = null, ?string $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?ExemptionStatus $status = null, ?string $organizationId = null, ?bool $reseller = false)
     {
         $this->exemptionType = $exemptionType;
         $this->startDate = $startDate;
         $this->id = $id;
         $this->createdAt = $createdAt;
-        $this->organizationId = $organizationId;
         $this->updatedAt = $updatedAt;
         $this->jurisdiction = $jurisdiction;
         $this->countryCode = $countryCode;
@@ -185,6 +180,7 @@ class Exemption
         $this->fein = $fein;
         $this->salesTaxId = $salesTaxId;
         $this->status = $status;
+        $this->organizationId = $organizationId;
         $this->reseller = $reseller;
     }
 }

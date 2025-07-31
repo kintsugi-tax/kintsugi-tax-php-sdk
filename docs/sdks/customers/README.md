@@ -28,28 +28,30 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Models\Operations;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
 $request = new Operations\GetCustomersV1Request(
     searchQuery: 'John',
     country: [
-        'U',
-        'S',
+
     ],
     state: 'CA',
     sourceIn: 'SHOPIFY,API',
     orderBy: 'created_at,street_1,street_2,city,state,postal_code,country,status',
-    xOrganizationId: 'org_12345',
-);
-$requestSecurity = new Operations\GetCustomersV1Security(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
 );
 
 $response = $sdk->customers->list(
-    request: $request,
-    security: $requestSecurity
+    request: $request
 );
 
 if ($response->pageCustomerRead !== null) {
@@ -59,10 +61,9 @@ if ($response->pageCustomerRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `$request`                                                                             | [Operations\GetCustomersV1Request](../../Models/Operations/GetCustomersV1Request.md)   | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `security`                                                                             | [Operations\GetCustomersV1Security](../../Models/Operations/GetCustomersV1Security.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `$request`                                                                           | [Operations\GetCustomersV1Request](../../Models/Operations/GetCustomersV1Request.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
 
 ### Response
 
@@ -92,11 +93,17 @@ require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
-$customerCreate = new Components\CustomerCreate(
+$request = new Components\CustomerCreate(
     phone: '987-654-3210',
     street1: '456 Elm St',
     street2: 'Suite 202',
@@ -112,15 +119,9 @@ $customerCreate = new Components\CustomerCreate(
     source: Components\SourceEnum::Shopify,
     addressStatus: Components\AddressStatus::PartiallyVerified,
 );
-$requestSecurity = new Operations\CreateCustomerV1CustomersPostSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->customers->create(
-    security: $requestSecurity,
-    xOrganizationId: 'org_12345',
-    customerCreate: $customerCreate
-
+    request: $request
 );
 
 if ($response->customerRead !== null) {
@@ -130,11 +131,9 @@ if ($response->customerRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          | Example                                                                                                              |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                           | [Operations\CreateCustomerV1CustomersPostSecurity](../../Models/Operations/CreateCustomerV1CustomersPostSecurity.md) | :heavy_check_mark:                                                                                                   | The security requirements to use for the request.                                                                    |                                                                                                                      |
-| `xOrganizationId`                                                                                                    | *string*                                                                                                             | :heavy_check_mark:                                                                                                   | The unique identifier for the organization making the request                                                        | org_12345                                                                                                            |
-| `customerCreate`                                                                                                     | [Components\CustomerCreate](../../Models/Components/CustomerCreate.md)                                               | :heavy_check_mark:                                                                                                   | N/A                                                                                                                  |                                                                                                                      |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `$request`                                                             | [Components\CustomerCreate](../../Models/Components/CustomerCreate.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
 
 ### Response
 
@@ -164,20 +163,21 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Models\Components;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
 
-$requestSecurity = new Operations\GetCustomerByIdV1CustomersCustomerIdGetSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->customers->get(
-    security: $requestSecurity,
-    customerId: 'cust_abc123',
-    xOrganizationId: 'org_12345'
-
+    customerId: 'cust_abc123'
 );
 
 if ($response->customerRead !== null) {
@@ -187,11 +187,9 @@ if ($response->customerRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                | Type                                                                                                                                     | Required                                                                                                                                 | Description                                                                                                                              | Example                                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                               | [Operations\GetCustomerByIdV1CustomersCustomerIdGetSecurity](../../Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetSecurity.md) | :heavy_check_mark:                                                                                                                       | The security requirements to use for the request.                                                                                        |                                                                                                                                          |
-| `customerId`                                                                                                                             | *string*                                                                                                                                 | :heavy_check_mark:                                                                                                                       | Unique identifier of the customer                                                                                                        | cust_abc123                                                                                                                              |
-| `xOrganizationId`                                                                                                                        | *string*                                                                                                                                 | :heavy_check_mark:                                                                                                                       | The unique identifier for the organization making the request                                                                            | org_12345                                                                                                                                |
+| Parameter                         | Type                              | Required                          | Description                       | Example                           |
+| --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- |
+| `customerId`                      | *string*                          | :heavy_check_mark:                | Unique identifier of the customer | cust_abc123                       |
 
 ### Response
 
@@ -220,9 +218,15 @@ require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
 $customerUpdate = new Components\CustomerUpdate(
     phone: '987-654-3210',
@@ -241,14 +245,9 @@ $customerUpdate = new Components\CustomerUpdate(
     addressStatus: Components\AddressStatus::Verified,
     externalId: 'cust_002',
 );
-$requestSecurity = new Operations\UpdateCustomerV1CustomersCustomerIdPutSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->customers->update(
-    security: $requestSecurity,
     customerId: '<id>',
-    xOrganizationId: 'org_12345',
     customerUpdate: $customerUpdate
 
 );
@@ -260,12 +259,10 @@ if ($response->customerRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                              | Type                                                                                                                                   | Required                                                                                                                               | Description                                                                                                                            | Example                                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                             | [Operations\UpdateCustomerV1CustomersCustomerIdPutSecurity](../../Models/Operations/UpdateCustomerV1CustomersCustomerIdPutSecurity.md) | :heavy_check_mark:                                                                                                                     | The security requirements to use for the request.                                                                                      |                                                                                                                                        |
-| `customerId`                                                                                                                           | *string*                                                                                                                               | :heavy_check_mark:                                                                                                                     | Unique identifier of the customer to be retrieved.                                                                                     |                                                                                                                                        |
-| `xOrganizationId`                                                                                                                      | *string*                                                                                                                               | :heavy_check_mark:                                                                                                                     | The unique identifier for the organization making the request                                                                          | org_12345                                                                                                                              |
-| `customerUpdate`                                                                                                                       | [Components\CustomerUpdate](../../Models/Components/CustomerUpdate.md)                                                                 | :heavy_check_mark:                                                                                                                     | N/A                                                                                                                                    |                                                                                                                                        |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `customerId`                                                           | *string*                                                               | :heavy_check_mark:                                                     | Unique identifier of the customer to be retrieved.                     |
+| `customerUpdate`                                                       | [Components\CustomerUpdate](../../Models/Components/CustomerUpdate.md) | :heavy_check_mark:                                                     | N/A                                                                    |
 
 ### Response
 
@@ -295,20 +292,21 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Models\Components;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
 
-$requestSecurity = new Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->customers->getByExternalId(
-    security: $requestSecurity,
-    externalId: 'external_12345',
-    xOrganizationId: 'org_12345'
-
+    externalId: 'external_12345'
 );
 
 if ($response->customerRead !== null) {
@@ -318,11 +316,9 @@ if ($response->customerRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                | Type                                                                                                                                                                     | Required                                                                                                                                                                 | Description                                                                                                                                                              | Example                                                                                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                                               | [Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetSecurity](../../Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetSecurity.md) | :heavy_check_mark:                                                                                                                                                       | The security requirements to use for the request.                                                                                                                        |                                                                                                                                                                          |
-| `externalId`                                                                                                                                                             | *string*                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                       | The external identifier of the customer to retrieve.                                                                                                                     | external_12345                                                                                                                                                           |
-| `xOrganizationId`                                                                                                                                                        | *string*                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                       | The unique identifier for the organization making the request                                                                                                            | org_12345                                                                                                                                                                |
+| Parameter                                            | Type                                                 | Required                                             | Description                                          | Example                                              |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `externalId`                                         | *string*                                             | :heavy_check_mark:                                   | The external identifier of the customer to retrieve. | external_12345                                       |
 
 ### Response
 
@@ -348,20 +344,21 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Models\Components;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
 
-$requestSecurity = new Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->customers->getTransactions(
-    security: $requestSecurity,
-    customerId: '<id>',
-    xOrganizationId: 'org_12345'
-
+    customerId: '<id>'
 );
 
 if ($response->responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet !== null) {
@@ -371,11 +368,9 @@ if ($response->responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransacti
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                | Type                                                                                                                                                                                     | Required                                                                                                                                                                                 | Description                                                                                                                                                                              | Example                                                                                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                                                                               | [Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetSecurity](../../Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetSecurity.md) | :heavy_check_mark:                                                                                                                                                                       | The security requirements to use for the request.                                                                                                                                        |                                                                                                                                                                                          |
-| `customerId`                                                                                                                                                                             | *string*                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                       | N/A                                                                                                                                                                                      |                                                                                                                                                                                          |
-| `xOrganizationId`                                                                                                                                                                        | *string*                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                       | The unique identifier for the organization making the request                                                                                                                            | org_12345                                                                                                                                                                                |
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `customerId`       | *string*           | :heavy_check_mark: | N/A                |
 
 ### Response
 
@@ -402,32 +397,47 @@ require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
 use KintsugiTax\SDK\Utils;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
 $transactionCreate = new Components\TransactionCreate(
     organizationId: '<id>',
     externalId: '<id>',
     date: Utils\Utils::parseDateTime('2023-02-16T04:36:50.697Z'),
+    totalAmount: 0,
+    totalTaxAmountImported: 0,
+    taxRateImported: 0,
+    totalTaxAmountCalculated: 0,
+    taxRateCalculated: 0,
+    totalTaxLiabilityAmount: 0,
+    taxableAmount: 0,
     addresses: [],
     transactionItems: [
         new Components\TransactionItemCreateUpdate(
             organizationId: '<id>',
             date: Utils\Utils::parseDateTime('2024-05-13T04:49:24.946Z'),
             externalProductId: '<id>',
+            quantity: 1,
+            amount: 0,
+            taxAmountImported: 0,
+            taxRateImported: 0,
+            taxAmountCalculated: 0,
+            taxRateCalculated: 0,
+            taxableAmount: 0,
         ),
     ],
 );
-$requestSecurity = new Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->customers->createTransaction(
-    security: $requestSecurity,
     customerId: '<id>',
-    xOrganizationId: 'org_12345',
     transactionCreate: $transactionCreate
 
 );
@@ -439,12 +449,10 @@ if ($response->transactionRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                      | Type                                                                                                                                                                                           | Required                                                                                                                                                                                       | Description                                                                                                                                                                                    | Example                                                                                                                                                                                        |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                                                                                     | [Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostSecurity](../../Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostSecurity.md) | :heavy_check_mark:                                                                                                                                                                             | The security requirements to use for the request.                                                                                                                                              |                                                                                                                                                                                                |
-| `customerId`                                                                                                                                                                                   | *string*                                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                                             | N/A                                                                                                                                                                                            |                                                                                                                                                                                                |
-| `xOrganizationId`                                                                                                                                                                              | *string*                                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                                             | The unique identifier for the organization making the request                                                                                                                                  | org_12345                                                                                                                                                                                      |
-| `transactionCreate`                                                                                                                                                                            | [Components\TransactionCreate](../../Models/Components/TransactionCreate.md)                                                                                                                   | :heavy_check_mark:                                                                                                                                                                             | N/A                                                                                                                                                                                            |                                                                                                                                                                                                |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `customerId`                                                                 | *string*                                                                     | :heavy_check_mark:                                                           | N/A                                                                          |
+| `transactionCreate`                                                          | [Components\TransactionCreate](../../Models/Components/TransactionCreate.md) | :heavy_check_mark:                                                           | N/A                                                                          |
 
 ### Response
 

@@ -52,46 +52,30 @@ class Exemptions
      *     This includes defining details such as exemption type, jurisdiction,
      *     Country, State, validity dates, etc.
      *
-     * @param  Operations\CreateExemptionV1ExemptionsPostSecurity  $security
-     * @param  Components\ExemptionCreate  $exemptionCreate
-     * @param  ?string  $xOrganizationId
+     * @param  Components\ExemptionCreate  $request
      * @return Operations\CreateExemptionV1ExemptionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function create(Operations\CreateExemptionV1ExemptionsPostSecurity $security, Components\ExemptionCreate $exemptionCreate, ?string $xOrganizationId = null, ?Options $options = null): Operations\CreateExemptionV1ExemptionsPostResponse
+    public function create(Components\ExemptionCreate $request, ?Options $options = null): Operations\CreateExemptionV1ExemptionsPostResponse
     {
-        $request = new Operations\CreateExemptionV1ExemptionsPostRequest(
-            xOrganizationId: $xOrganizationId,
-            exemptionCreate: $exemptionCreate,
-        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/exemptions');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'exemptionCreate', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'create_exemption_v1_exemptions_post', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'create_exemption_v1_exemptions_post', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -173,41 +157,28 @@ class Exemptions
      *     This is used to view and manage supporting documents
      *     like exemption certificates uploaded for a particular exemption record.
      *
-     * @param  Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetSecurity  $security
      * @param  string  $exemptionId
-     * @param  ?string  $xOrganizationId
      * @return Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getAttachments(Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetSecurity $security, string $exemptionId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse
+    public function getAttachments(string $exemptionId, ?Options $options = null): Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse
     {
         $request = new Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest(
             exemptionId: $exemptionId,
-            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/exemptions/{exemption_id}/attachments', Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_attachments_for_exemption_v1_exemptions__exemption_id__attachments_get', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_attachments_for_exemption_v1_exemptions__exemption_id__attachments_get', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -277,41 +248,28 @@ class Exemptions
      *     about a particular exemption, including its associated
      *     customer, organisation id, status, etc.
      *
-     * @param  Operations\GetExemptionByIdV1ExemptionsExemptionIdGetSecurity  $security
      * @param  string  $exemptionId
-     * @param  ?string  $xOrganizationId
      * @return Operations\GetExemptionByIdV1ExemptionsExemptionIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function get(Operations\GetExemptionByIdV1ExemptionsExemptionIdGetSecurity $security, string $exemptionId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetExemptionByIdV1ExemptionsExemptionIdGetResponse
+    public function get(string $exemptionId, ?Options $options = null): Operations\GetExemptionByIdV1ExemptionsExemptionIdGetResponse
     {
         $request = new Operations\GetExemptionByIdV1ExemptionsExemptionIdGetRequest(
             exemptionId: $exemptionId,
-            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/exemptions/{exemption_id}', Operations\GetExemptionByIdV1ExemptionsExemptionIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_exemption_by_id_v1_exemptions__exemption_id__get', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_exemption_by_id_v1_exemptions__exemption_id__get', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -390,12 +348,11 @@ class Exemptions
      *
      * Retrieve a list of exemptions based on filters.
      *
-     * @param  Operations\GetExemptionsV1ExemptionsGetSecurity  $security
-     * @param  Operations\GetExemptionsV1ExemptionsGetRequest  $request
+     * @param  ?Operations\GetExemptionsV1ExemptionsGetRequest  $request
      * @return Operations\GetExemptionsV1ExemptionsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(Operations\GetExemptionsV1ExemptionsGetSecurity $security, Operations\GetExemptionsV1ExemptionsGetRequest $request, ?Options $options = null): Operations\GetExemptionsV1ExemptionsGetResponse
+    public function list(?Operations\GetExemptionsV1ExemptionsGetRequest $request = null, ?Options $options = null): Operations\GetExemptionsV1ExemptionsGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/exemptions');
@@ -403,26 +360,16 @@ class Exemptions
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetExemptionsV1ExemptionsGetRequest::class, $request, $urlOverride);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_exemptions_v1_exemptions_get', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_exemptions_v1_exemptions_get', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -504,18 +451,15 @@ class Exemptions
      *     This is primarily used to associate supporting documents with an exemption record
      *     to ensure compliance and facilitate verification.
      *
-     * @param  Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostSecurity  $security
      * @param  Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost  $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost
      * @param  string  $exemptionId
-     * @param  ?string  $xOrganizationId
      * @return Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function uploadCertificate(Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostSecurity $security, Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost, string $exemptionId, ?string $xOrganizationId = null, ?Options $options = null): Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse
+    public function uploadCertificate(Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost, string $exemptionId, ?Options $options = null): Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse
     {
         $request = new Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest(
             exemptionId: $exemptionId,
-            xOrganizationId: $xOrganizationId,
             bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost: $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -527,25 +471,15 @@ class Exemptions
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'upload_exemption_certificate_v1_exemptions__exemption_id__attachments_post', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'upload_exemption_certificate_v1_exemptions__exemption_id__attachments_post', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;

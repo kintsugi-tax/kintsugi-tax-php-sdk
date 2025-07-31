@@ -12,24 +12,6 @@ namespace KintsugiTax\SDK\Models\Components;
 class CustomerBase
 {
     /**
-     *
-     * @var ?StatusEnum $status
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\StatusEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?StatusEnum $status = null;
-
-    /**
-     *
-     * @var ?AddressStatus $addressStatus
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?AddressStatus $addressStatus = null;
-
-    /**
      * Phone number associated with the address.
      *
      * @var ?string $phone
@@ -93,7 +75,6 @@ class CustomerBase
     public ?string $postalCode = null;
 
     /**
-     * Country code in ISO 3166-1 alpha-2 format
      *
      * @var ?CountryCodeEnum $country
      */
@@ -130,6 +111,15 @@ class CustomerBase
     public ?string $externalId = null;
 
     /**
+     *
+     * @var ?StatusEnum $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\StatusEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?StatusEnum $status = null;
+
+    /**
      * Email address of the customer.
      *
      * @var ?string $email
@@ -139,7 +129,15 @@ class CustomerBase
     public ?string $email = null;
 
     /**
-     * Source of the customer information (e.g., BIGCOMMERCE, STRIPE, etc.).
+     *
+     * @var ?AddressStatus $addressStatus
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?AddressStatus $addressStatus = null;
+
+    /**
      *
      * @var ?SourceEnum $source
      */
@@ -166,8 +164,6 @@ class CustomerBase
     public ?string $connectionId = null;
 
     /**
-     * @param  ?StatusEnum  $status
-     * @param  ?AddressStatus  $addressStatus
      * @param  ?string  $phone
      * @param  ?string  $street1
      * @param  ?string  $street2
@@ -179,16 +175,16 @@ class CustomerBase
      * @param  ?string  $fullAddress
      * @param  ?string  $name
      * @param  ?string  $externalId
+     * @param  ?StatusEnum  $status
      * @param  ?string  $email
+     * @param  ?AddressStatus  $addressStatus
      * @param  ?SourceEnum  $source
      * @param  ?string  $registrationNumber
      * @param  ?string  $connectionId
      * @phpstan-pure
      */
-    public function __construct(?StatusEnum $status = null, ?AddressStatus $addressStatus = null, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?string $externalId = null, ?string $email = null, ?SourceEnum $source = null, ?string $registrationNumber = null, ?string $connectionId = null)
+    public function __construct(?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?string $externalId = null, ?StatusEnum $status = null, ?string $email = null, ?AddressStatus $addressStatus = null, ?SourceEnum $source = null, ?string $registrationNumber = null, ?string $connectionId = null)
     {
-        $this->status = $status;
-        $this->addressStatus = $addressStatus;
         $this->phone = $phone;
         $this->street1 = $street1;
         $this->street2 = $street2;
@@ -200,7 +196,9 @@ class CustomerBase
         $this->fullAddress = $fullAddress;
         $this->name = $name;
         $this->externalId = $externalId;
+        $this->status = $status;
         $this->email = $email;
+        $this->addressStatus = $addressStatus;
         $this->source = $source;
         $this->registrationNumber = $registrationNumber;
         $this->connectionId = $connectionId;

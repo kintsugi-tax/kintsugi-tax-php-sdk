@@ -52,46 +52,30 @@ class Products
      *     in the system. This includes specifying product details such as category,
      *     subcategory, and tax exemption status, etc.
      *
-     * @param  Operations\CreateProductV1ProductsPostSecurity  $security
-     * @param  Components\ProductCreateManual  $productCreateManual
-     * @param  ?string  $xOrganizationId
+     * @param  Components\ProductCreateManual  $request
      * @return Operations\CreateProductV1ProductsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function create(Operations\CreateProductV1ProductsPostSecurity $security, Components\ProductCreateManual $productCreateManual, ?string $xOrganizationId = null, ?Options $options = null): Operations\CreateProductV1ProductsPostResponse
+    public function create(Components\ProductCreateManual $request, ?Options $options = null): Operations\CreateProductV1ProductsPostResponse
     {
-        $request = new Operations\CreateProductV1ProductsPostRequest(
-            xOrganizationId: $xOrganizationId,
-            productCreateManual: $productCreateManual,
-        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'productCreateManual', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'create_product_v1_products__post', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'create_product_v1_products__post', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -172,41 +156,28 @@ class Products
      *     a single product by its unique ID. This API helps in viewing the specific details
      *     of a product, including its attributes, status, and categorization.
      *
-     * @param  Operations\GetProductByIdV1ProductsProductIdGetSecurity  $security
      * @param  string  $productId
-     * @param  ?string  $xOrganizationId
      * @return Operations\GetProductByIdV1ProductsProductIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function get(Operations\GetProductByIdV1ProductsProductIdGetSecurity $security, string $productId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetProductByIdV1ProductsProductIdGetResponse
+    public function get(string $productId, ?Options $options = null): Operations\GetProductByIdV1ProductsProductIdGetResponse
     {
         $request = new Operations\GetProductByIdV1ProductsProductIdGetRequest(
             productId: $productId,
-            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/{product_id}', Operations\GetProductByIdV1ProductsProductIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_product_by_id_v1_products__product_id__get', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_product_by_id_v1_products__product_id__get', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -287,39 +258,24 @@ class Products
      *     product categories.  This endpoint helps users understand and select the
      *     appropriate categories for their products.
      *
-     * @param  Operations\GetProductCategoriesV1ProductsCategoriesGetSecurity  $security
-     * @param  ?string  $xOrganizationId
      * @return Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function listCategories(Operations\GetProductCategoriesV1ProductsCategoriesGetSecurity $security, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
+    public function listCategories(?Options $options = null): Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
     {
-        $request = new Operations\GetProductCategoriesV1ProductsCategoriesGetRequest(
-            xOrganizationId: $xOrganizationId,
-        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/categories/');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_product_categories_v1_products_categories__get', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_product_categories_v1_products_categories__get', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -374,12 +330,11 @@ class Products
      *
      * Retrieve a paginated list of products based on filters and search query.
      *
-     * @param  Operations\GetProductsV1ProductsGetSecurity  $security
-     * @param  Operations\GetProductsV1ProductsGetRequest  $request
+     * @param  ?Operations\GetProductsV1ProductsGetRequest  $request
      * @return Operations\GetProductsV1ProductsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(Operations\GetProductsV1ProductsGetSecurity $security, Operations\GetProductsV1ProductsGetRequest $request, ?Options $options = null): Operations\GetProductsV1ProductsGetResponse
+    public function list(?Operations\GetProductsV1ProductsGetRequest $request = null, ?Options $options = null): Operations\GetProductsV1ProductsGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/');
@@ -387,26 +342,16 @@ class Products
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetProductsV1ProductsGetRequest::class, $request, $urlOverride);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_products_v1_products__get', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_products_v1_products__get', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -486,48 +431,35 @@ class Products
      * The Update Product API allows users to modify the details of
      *     an existing product identified by its unique product_id
      *
-     * @param  Operations\UpdateProductV1ProductsProductIdPutSecurity  $security
-     * @param  Components\ProductUpdate|Components\ProductUpdateV2  $requestBody
+     * @param  Components\ProductUpdate  $productUpdate
      * @param  string  $productId
-     * @param  ?string  $xOrganizationId
      * @return Operations\UpdateProductV1ProductsProductIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function update(Operations\UpdateProductV1ProductsProductIdPutSecurity $security, Components\ProductUpdate|Components\ProductUpdateV2 $requestBody, string $productId, ?string $xOrganizationId = null, ?Options $options = null): Operations\UpdateProductV1ProductsProductIdPutResponse
+    public function update(Components\ProductUpdate $productUpdate, string $productId, ?Options $options = null): Operations\UpdateProductV1ProductsProductIdPutResponse
     {
         $request = new Operations\UpdateProductV1ProductsProductIdPutRequest(
             productId: $productId,
-            xOrganizationId: $xOrganizationId,
-            requestBody: $requestBody,
+            productUpdate: $productUpdate,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/{product_id}', Operations\UpdateProductV1ProductsProductIdPutRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'productUpdate', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'update_product_v1_products__product_id__put', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'update_product_v1_products__product_id__put', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;

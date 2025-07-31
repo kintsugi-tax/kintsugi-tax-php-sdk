@@ -57,30 +57,6 @@ class ValidationAddress
     public ?string $state = null;
 
     /**
-     * Country code in ISO 3166-1 alpha-2 format (e.g., 'US' for the United States).
-     *
-     *         Defaults to 'US'.
-     *         should not be empty. Not validating here as the validation
-     *         structure can be different for different providers
-     *
-     * @var ?string $country
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $country = null;
-
-    /**
-     * ZIP or postal code for the address. Can be empty for some locales.
-     *
-     *         Not validating here as the validation structure can be different for different providers
-     *
-     * @var ?string $postalCode
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('postalCode')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $postalCode = null;
-
-    /**
      * Unique identifier for the request, if applicable
      *
      * @var ?int $id
@@ -108,6 +84,30 @@ class ValidationAddress
     public ?string $fullAddress = null;
 
     /**
+     * Country code in ISO 3166-1 alpha-2 format (e.g., 'US' for the United States).
+     *
+     *         Defaults to 'US'.
+     *         should not be empty. Not validating here as the validation
+     *         structure can be different for different providers
+     *
+     * @var ?string $country
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $country = null;
+
+    /**
+     * ZIP or postal code for the address. Can be empty for some locales.
+     *
+     *         Not validating here as the validation structure can be different for different providers
+     *
+     * @var ?string $postalCode
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postalCode')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $postalCode = null;
+
+    /**
      * @param  ?string  $line1
      * @param  ?string  $line2
      * @param  ?string  $line3
@@ -120,17 +120,17 @@ class ValidationAddress
      * @param  ?string  $fullAddress
      * @phpstan-pure
      */
-    public function __construct(?string $line1 = null, ?string $line2 = null, ?string $line3 = null, ?string $city = null, ?string $state = null, ?string $country = null, ?string $postalCode = null, ?int $id = null, ?string $county = null, ?string $fullAddress = null)
+    public function __construct(?string $line1 = null, ?string $line2 = null, ?string $line3 = null, ?string $city = null, ?string $state = null, ?int $id = null, ?string $county = null, ?string $fullAddress = null, ?string $country = 'US', ?string $postalCode = '')
     {
         $this->line1 = $line1;
         $this->line2 = $line2;
         $this->line3 = $line3;
         $this->city = $city;
         $this->state = $state;
-        $this->country = $country;
-        $this->postalCode = $postalCode;
         $this->id = $id;
         $this->county = $county;
         $this->fullAddress = $fullAddress;
+        $this->country = $country;
+        $this->postalCode = $postalCode;
     }
 }

@@ -3,13 +3,12 @@
 
 ## Fields
 
-| Field                                                         | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| `statusIn`                                                    | *?string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |                                                               |
-| `stateCode`                                                   | *?string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |                                                               |
-| `countryCodeIn`                                               | *?string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |                                                               |
-| `orderBy`                                                     | *?string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |                                                               |
-| `collectedTaxNexusMet`                                        | *?bool*                                                       | :heavy_minus_sign:                                            | N/A                                                           |                                                               |
-| `page`                                                        | *?int*                                                        | :heavy_minus_sign:                                            | Page number                                                   |                                                               |
-| `size`                                                        | *?int*                                                        | :heavy_minus_sign:                                            | Page size                                                     |                                                               |
-| `xOrganizationId`                                             | *string*                                                      | :heavy_check_mark:                                            | The unique identifier for the organization making the request | org_12345                                                     |
+| Field                  | Type                   | Required               | Description            |
+| ---------------------- | ---------------------- | ---------------------- | ---------------------- |
+| `statusIn`             | *?string*              | :heavy_minus_sign:     | N/A                    |
+| `stateCode`            | *?string*              | :heavy_minus_sign:     | N/A                    |
+| `countryCodeIn`        | *?string*              | :heavy_minus_sign:     | N/A                    |
+| `orderBy`              | *?string*              | :heavy_minus_sign:     | N/A                    |
+| `collectedTaxNexusMet` | *?bool*                | :heavy_minus_sign:     | N/A                    |
+| `page`                 | *?int*                 | :heavy_minus_sign:     | Page number            |
+| `size`                 | *?int*                 | :heavy_minus_sign:     | Page size              |

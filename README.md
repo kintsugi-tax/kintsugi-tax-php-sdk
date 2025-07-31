@@ -29,6 +29,7 @@ Developer-friendly & type-safe Php SDK specifically catered to leverage *kintsug
   * [Authentication](#authentication)
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
 * [Development](#development)
   * [Maturity](#maturity)
   * [Contributions](#contributions)
@@ -93,14 +94,51 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 
 ### Per-Client Security Schemes
 
-This SDK supports the following security scheme globally:
+This SDK supports the following security schemes globally:
 
 | Name           | Type   | Scheme  |
 | -------------- | ------ | ------- |
 | `apiKeyHeader` | apiKey | API key |
+| `customHeader` | apiKey | API key |
 
-To authenticate with the API the `apiKeyHeader` parameter must be set when initializing the SDK. For example:
+You can set the security parameters through the `setSecurity` function on the `SDKBuilder` when initializing the SDK. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
+```php
+declare(strict_types=1);
 
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Components\ValidationAddress(
+    line1: '1600 Amphitheatre Parkway',
+    line2: '',
+    line3: '',
+    city: 'Mountain View',
+    state: 'CA',
+    postalCode: '94043',
+    id: 215,
+    county: '',
+    fullAddress: '1600 Amphitheatre Parkway, Mountain View, CA 94043',
+);
+
+$response = $sdk->addressValidation->suggestions(
+    request: $request
+);
+
+if ($response->any !== null) {
+    // handle response
+}
+```
 
 ### Per-Operation Security Schemes
 
@@ -278,6 +316,51 @@ try {
 }
 ```
 <!-- End Error Handling [errors] -->
+
+<!-- Start Server Selection [server] -->
+## Server Selection
+
+### Override Server URL Per-Client
+
+The default server can be overridden globally using the `setServerUrl(string $serverUrl)` builder method when initializing the SDK client instance. For example:
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Models\Operations;
+
+$sdk = SDK\SDK::builder()
+    ->setServerURL('https://api.trykintsugi.com')
+    ->build();
+
+$request = new Components\AddressBase(
+    phone: '555-123-4567',
+    street1: '1600 Amphitheatre Parkway',
+    street2: 'Building 40',
+    city: 'Mountain View',
+    county: 'Santa Clara',
+    state: 'CA',
+    postalCode: '94043',
+    country: Components\CountryCodeEnum::Us,
+    fullAddress: '1600 Amphitheatre Parkway, Mountain View, CA 94043',
+);
+$requestSecurity = new Operations\SearchV1AddressValidationSearchPostSecurity(
+    apiKeyHeader: '<YOUR_API_KEY_HERE>',
+);
+
+$response = $sdk->addressValidation->search(
+    request: $request,
+    security: $requestSecurity
+);
+
+if ($response->response200SearchV1AddressValidationSearchPost !== null) {
+    // handle response
+}
+```
+<!-- End Server Selection [server] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

@@ -44,15 +44,6 @@ class ProductUpdate
     public bool $taxExempt;
 
     /**
-     *
-     * @var ?ProductStatusEnum $status
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductStatusEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ProductStatusEnum $status = null;
-
-    /**
      * The unique identifier of the product to be updated.
      *
      * @var ?string $id
@@ -92,6 +83,15 @@ class ProductUpdate
     public ?string $description = null;
 
     /**
+     *
+     * @var ?ProductStatusEnum $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductStatusEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?ProductStatusEnum $status = null;
+
+    /**
      * Indicates if the product classification failed.
      *
      * @var ?bool $classificationFailed
@@ -105,25 +105,25 @@ class ProductUpdate
      * @param  ProductCategoryEnum  $productCategory
      * @param  ProductSubCategoryEnum  $productSubcategory
      * @param  bool  $taxExempt
-     * @param  ?ProductStatusEnum  $status
      * @param  ?string  $id
      * @param  ?string  $externalId
      * @param  ?array<string>  $sku
      * @param  ?string  $description
+     * @param  ?ProductStatusEnum  $status
      * @param  ?bool  $classificationFailed
      * @phpstan-pure
      */
-    public function __construct(string $name, ProductCategoryEnum $productCategory, ProductSubCategoryEnum $productSubcategory, bool $taxExempt, ?ProductStatusEnum $status = null, ?string $id = null, ?string $externalId = null, ?array $sku = null, ?string $description = null, ?bool $classificationFailed = null)
+    public function __construct(string $name, ProductCategoryEnum $productCategory, ProductSubCategoryEnum $productSubcategory, bool $taxExempt, ?string $id = null, ?string $externalId = null, ?array $sku = null, ?string $description = null, ?ProductStatusEnum $status = null, ?bool $classificationFailed = false)
     {
         $this->name = $name;
         $this->productCategory = $productCategory;
         $this->productSubcategory = $productSubcategory;
         $this->taxExempt = $taxExempt;
-        $this->status = $status;
         $this->id = $id;
         $this->externalId = $externalId;
         $this->sku = $sku;
         $this->description = $description;
+        $this->status = $status;
         $this->classificationFailed = $classificationFailed;
     }
 }

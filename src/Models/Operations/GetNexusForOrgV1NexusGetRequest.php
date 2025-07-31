@@ -12,21 +12,6 @@ use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class GetNexusForOrgV1NexusGetRequest
 {
     /**
-     * The unique identifier for the organization making the request
-     *
-     * @var ?string $xOrganizationId
-     */
-    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
-    public ?string $xOrganizationId;
-
-    /**
-     *
-     * @var ?string $statusIn
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status__in')]
-    public ?string $statusIn = null;
-
-    /**
      *
      * @var ?string $stateCode
      */
@@ -42,17 +27,24 @@ class GetNexusForOrgV1NexusGetRequest
 
     /**
      *
-     * @var ?string $orderBy
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
-    public ?string $orderBy = null;
-
-    /**
-     *
      * @var ?bool $collectedTaxNexusMet
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=collected_tax_nexus_met')]
     public ?bool $collectedTaxNexusMet = null;
+
+    /**
+     *
+     * @var ?string $statusIn
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status__in')]
+    public ?string $statusIn = null;
+
+    /**
+     *
+     * @var ?string $orderBy
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
+    public ?string $orderBy = null;
 
     /**
      * Page number
@@ -71,24 +63,22 @@ class GetNexusForOrgV1NexusGetRequest
     public ?int $size = null;
 
     /**
-     * @param  ?int  $page
-     * @param  ?int  $size
-     * @param  ?string  $xOrganizationId
      * @param  ?string  $statusIn
      * @param  ?string  $stateCode
      * @param  ?string  $countryCodeIn
      * @param  ?string  $orderBy
      * @param  ?bool  $collectedTaxNexusMet
+     * @param  ?int  $page
+     * @param  ?int  $size
      * @phpstan-pure
      */
-    public function __construct(?string $xOrganizationId = null, ?string $statusIn = null, ?string $stateCode = null, ?string $countryCodeIn = null, ?string $orderBy = null, ?bool $collectedTaxNexusMet = null, ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $stateCode = null, ?string $countryCodeIn = null, ?bool $collectedTaxNexusMet = null, ?string $statusIn = 'APPROACHING,NOT_EXPOSED,PENDING_REGISTRATION,EXPOSED,APPROACHING,REGISTERED', ?string $orderBy = 'state_code,country_code', ?int $page = 1, ?int $size = 50)
     {
-        $this->xOrganizationId = $xOrganizationId;
-        $this->statusIn = $statusIn;
         $this->stateCode = $stateCode;
         $this->countryCodeIn = $countryCodeIn;
-        $this->orderBy = $orderBy;
         $this->collectedTaxNexusMet = $collectedTaxNexusMet;
+        $this->statusIn = $statusIn;
+        $this->orderBy = $orderBy;
         $this->page = $page;
         $this->size = $size;
     }

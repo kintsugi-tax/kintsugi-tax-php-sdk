@@ -12,6 +12,14 @@ namespace KintsugiTax\SDK\Models\Components;
 class TransactionItemCreateUpdate
 {
     /**
+     * Organization identifier.
+     *
+     * @var string $organizationId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
+    public string $organizationId;
+
+    /**
      * Date/time of item.
      *
      * @var \DateTime $date
@@ -26,94 +34,6 @@ class TransactionItemCreateUpdate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('external_product_id')]
     public string $externalProductId;
-
-    /**
-     * Organization identifier.
-     *
-     * @var ?string $organizationId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
-    public ?string $organizationId;
-
-    /**
-     * Quantity of item.
-     *
-     * @var float|string|null $quantity
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('quantity')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $quantity = null;
-
-    /**
-     * Item amount.
-     *
-     * @var float|string|null $amount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $amount = null;
-
-    /**
-     * Imported tax amount for the item.
-     *
-     * @var float|string|null $taxAmountImported
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_amount_imported')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $taxAmountImported = null;
-
-    /**
-     * Imported tax rate.
-     *
-     * @var float|string|null $taxRateImported
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_rate_imported')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $taxRateImported = null;
-
-    /**
-     * Calculated tax amount for the item.
-     *
-     * @var float|string|null $taxAmountCalculated
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_amount_calculated')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $taxAmountCalculated = null;
-
-    /**
-     * Calculated tax rate.
-     *
-     * @var float|string|null $taxRateCalculated
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_rate_calculated')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $taxRateCalculated = null;
-
-    /**
-     * Taxable amount for the item.
-     *
-     * @var float|string|null $taxableAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('taxable_amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $taxableAmount = null;
-
-    /**
-     * $taxItems
-     *
-     * @var ?array<TaxItemBuilder> $taxItems
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $taxItems = null;
 
     /**
      * External item identifier.
@@ -170,7 +90,6 @@ class TransactionItemCreateUpdate
     public ?string $productDescription = null;
 
     /**
-     * Original currency code.
      *
      * @var ?CurrencyEnum $originalCurrency
      */
@@ -180,7 +99,6 @@ class TransactionItemCreateUpdate
     public ?CurrencyEnum $originalCurrency = null;
 
     /**
-     * Destination currency code.
      *
      * @var ?CurrencyEnum $destinationCurrency
      */
@@ -192,65 +110,59 @@ class TransactionItemCreateUpdate
     /**
      * Converted item amount.
      *
-     * @var float|string|null $convertedAmount
+     * @var ?float $convertedAmount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('converted_amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $convertedAmount = null;
+    public ?float $convertedAmount = null;
 
     /**
      * Converted taxable amount.
      *
-     * @var float|string|null $convertedTaxableAmount
+     * @var ?float $convertedTaxableAmount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('converted_taxable_amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $convertedTaxableAmount = null;
+    public ?float $convertedTaxableAmount = null;
 
     /**
      * Converted imported tax amount.
      *
-     * @var float|string|null $convertedTaxAmountImported
+     * @var ?float $convertedTaxAmountImported
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('converted_tax_amount_imported')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $convertedTaxAmountImported = null;
+    public ?float $convertedTaxAmountImported = null;
 
     /**
      * Converted calculated tax amount
      *
-     * @var float|string|null $convertedTaxAmountCalculated
+     * @var ?float $convertedTaxAmountCalculated
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('converted_tax_amount_calculated')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $convertedTaxAmountCalculated = null;
+    public ?float $convertedTaxAmountCalculated = null;
 
     /**
      * Converted total discount amount.
      *
-     * @var float|string|null $convertedTotalDiscount
+     * @var ?float $convertedTotalDiscount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('converted_total_discount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $convertedTotalDiscount = null;
+    public ?float $convertedTotalDiscount = null;
 
     /**
      * Converted subtotal amount.
      *
-     * @var float|string|null $convertedSubtotal
+     * @var ?float $convertedSubtotal
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('converted_subtotal')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $convertedSubtotal = null;
+    public ?float $convertedSubtotal = null;
 
     /**
-     * Tax exemption status.
+     * This enum is used to determine if a transaction is exempt from tax.
      *
      * @var ?TaxExemptionEnum $taxExemption
      */
@@ -258,6 +170,16 @@ class TransactionItemCreateUpdate
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxExemptionEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?TaxExemptionEnum $taxExemption = null;
+
+    /**
+     * $taxItems
+     *
+     * @var ?array<TaxItemBuilder> $taxItems
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $taxItems = null;
 
     /**
      *
@@ -269,6 +191,69 @@ class TransactionItemCreateUpdate
     public ?DiscountBuilder $discountBuilder = null;
 
     /**
+     * Quantity of item.
+     *
+     * @var ?float $quantity
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('quantity')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $quantity = null;
+
+    /**
+     * Item amount.
+     *
+     * @var ?float $amount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $amount = null;
+
+    /**
+     * Imported tax amount for the item.
+     *
+     * @var ?float $taxAmountImported
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_amount_imported')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $taxAmountImported = null;
+
+    /**
+     * Imported tax rate.
+     *
+     * @var ?float $taxRateImported
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_rate_imported')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $taxRateImported = null;
+
+    /**
+     * Calculated tax amount for the item.
+     *
+     * @var ?float $taxAmountCalculated
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_amount_calculated')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $taxAmountCalculated = null;
+
+    /**
+     * Calculated tax rate.
+     *
+     * @var ?float $taxRateCalculated
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_rate_calculated')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $taxRateCalculated = null;
+
+    /**
+     * Taxable amount for the item.
+     *
+     * @var ?float $taxableAmount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('taxable_amount')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $taxableAmount = null;
+
+    /**
      * Indicates if the item is exempt.
      *
      * @var ?bool $exempt
@@ -278,49 +263,41 @@ class TransactionItemCreateUpdate
     public ?bool $exempt = null;
 
     /**
+     * @param  string  $organizationId
      * @param  \DateTime  $date
      * @param  string  $externalProductId
-     * @param  ?string  $organizationId
-     * @param  float|string|null  $quantity
-     * @param  float|string|null  $amount
-     * @param  float|string|null  $taxAmountImported
-     * @param  float|string|null  $taxRateImported
-     * @param  float|string|null  $taxAmountCalculated
-     * @param  float|string|null  $taxRateCalculated
-     * @param  float|string|null  $taxableAmount
-     * @param  ?bool  $exempt
-     * @param  ?array<TaxItemBuilder>  $taxItems
      * @param  ?string  $externalId
      * @param  ?string  $description
      * @param  ?string  $product
      * @param  ?string  $productId
      * @param  ?string  $productName
      * @param  ?string  $productDescription
+     * @param  ?float  $quantity
+     * @param  ?float  $amount
+     * @param  ?float  $taxAmountImported
+     * @param  ?float  $taxRateImported
+     * @param  ?float  $taxAmountCalculated
+     * @param  ?float  $taxRateCalculated
      * @param  ?CurrencyEnum  $originalCurrency
      * @param  ?CurrencyEnum  $destinationCurrency
-     * @param  float|string|null  $convertedAmount
-     * @param  float|string|null  $convertedTaxableAmount
-     * @param  float|string|null  $convertedTaxAmountImported
-     * @param  float|string|null  $convertedTaxAmountCalculated
-     * @param  float|string|null  $convertedTotalDiscount
-     * @param  float|string|null  $convertedSubtotal
+     * @param  ?float  $convertedAmount
+     * @param  ?float  $convertedTaxableAmount
+     * @param  ?float  $convertedTaxAmountImported
+     * @param  ?float  $convertedTaxAmountCalculated
+     * @param  ?float  $convertedTotalDiscount
+     * @param  ?float  $convertedSubtotal
+     * @param  ?float  $taxableAmount
      * @param  ?TaxExemptionEnum  $taxExemption
+     * @param  ?bool  $exempt
+     * @param  ?array<TaxItemBuilder>  $taxItems
      * @param  ?DiscountBuilder  $discountBuilder
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, string $externalProductId, ?string $organizationId = null, float|string|null $quantity = null, float|string|null $amount = null, float|string|null $taxAmountImported = null, float|string|null $taxRateImported = null, float|string|null $taxAmountCalculated = null, float|string|null $taxRateCalculated = null, float|string|null $taxableAmount = null, ?array $taxItems = null, ?string $externalId = null, ?string $description = null, ?string $product = null, ?string $productId = null, ?string $productName = null, ?string $productDescription = null, ?CurrencyEnum $originalCurrency = null, ?CurrencyEnum $destinationCurrency = null, float|string|null $convertedAmount = null, float|string|null $convertedTaxableAmount = null, float|string|null $convertedTaxAmountImported = null, float|string|null $convertedTaxAmountCalculated = null, float|string|null $convertedTotalDiscount = null, float|string|null $convertedSubtotal = null, ?TaxExemptionEnum $taxExemption = null, ?DiscountBuilder $discountBuilder = null, ?bool $exempt = false)
+    public function __construct(string $organizationId, \DateTime $date, string $externalProductId, ?string $externalId = null, ?string $description = null, ?string $product = null, ?string $productId = null, ?string $productName = null, ?string $productDescription = null, ?CurrencyEnum $originalCurrency = null, ?CurrencyEnum $destinationCurrency = null, ?float $convertedAmount = null, ?float $convertedTaxableAmount = null, ?float $convertedTaxAmountImported = null, ?float $convertedTaxAmountCalculated = null, ?float $convertedTotalDiscount = null, ?float $convertedSubtotal = null, ?TaxExemptionEnum $taxExemption = null, ?array $taxItems = null, ?DiscountBuilder $discountBuilder = null, ?float $quantity = 1.0, ?float $amount = 0.00, ?float $taxAmountImported = 0.00, ?float $taxRateImported = 0.00, ?float $taxAmountCalculated = 0.00, ?float $taxRateCalculated = 0.00, ?float $taxableAmount = 0.00, ?bool $exempt = false)
     {
+        $this->organizationId = $organizationId;
         $this->date = $date;
         $this->externalProductId = $externalProductId;
-        $this->organizationId = $organizationId;
-        $this->quantity = $quantity;
-        $this->amount = $amount;
-        $this->taxAmountImported = $taxAmountImported;
-        $this->taxRateImported = $taxRateImported;
-        $this->taxAmountCalculated = $taxAmountCalculated;
-        $this->taxRateCalculated = $taxRateCalculated;
-        $this->taxableAmount = $taxableAmount;
-        $this->taxItems = $taxItems;
         $this->externalId = $externalId;
         $this->description = $description;
         $this->product = $product;
@@ -336,7 +313,15 @@ class TransactionItemCreateUpdate
         $this->convertedTotalDiscount = $convertedTotalDiscount;
         $this->convertedSubtotal = $convertedSubtotal;
         $this->taxExemption = $taxExemption;
+        $this->taxItems = $taxItems;
         $this->discountBuilder = $discountBuilder;
+        $this->quantity = $quantity;
+        $this->amount = $amount;
+        $this->taxAmountImported = $taxAmountImported;
+        $this->taxRateImported = $taxRateImported;
+        $this->taxAmountCalculated = $taxAmountCalculated;
+        $this->taxRateCalculated = $taxRateCalculated;
+        $this->taxableAmount = $taxableAmount;
         $this->exempt = $exempt;
     }
 }

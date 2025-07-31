@@ -84,7 +84,6 @@ class TransactionAddressPublic
     public ?string $postalCode = null;
 
     /**
-     * Country code in ISO 3166-1 alpha-2 format
      *
      * @var ?CountryCodeEnum $country
      */

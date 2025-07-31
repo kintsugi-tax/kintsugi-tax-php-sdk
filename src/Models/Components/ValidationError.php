@@ -14,10 +14,10 @@ class ValidationError
     /**
      * $loc
      *
-     * @var array<string|int> $loc
+     * @var array<string> $loc
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('loc')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string|int>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
     public array $loc;
 
     /**
@@ -35,7 +35,7 @@ class ValidationError
     public string $type;
 
     /**
-     * @param  array<string|int>  $loc
+     * @param  array<string>  $loc
      * @param  string  $msg
      * @param  string  $type
      * @phpstan-pure
