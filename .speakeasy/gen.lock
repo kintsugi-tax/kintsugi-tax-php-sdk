@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.595.0
   generationVersion: 2.670.1
-  releaseVersion: 0.4.1
-  configChecksum: a27fc6c56339121f08e095dc970890f7
+  releaseVersion: 0.4.2
+  configChecksum: c4494610360a26dc836cdc7097ac8e02
   repoURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk.git
   installationURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk
   published: true

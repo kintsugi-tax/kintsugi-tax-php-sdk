@@ -5,10 +5,10 @@
 
 ### Available Operations
 
-* [searchV1AddressValidationSearchPost](#searchv1addressvalidationsearchpost) - Search
-* [suggestionsV1AddressValidationSuggestionsPost](#suggestionsv1addressvalidationsuggestionspost) - Suggestions
+* [search](#search) - Search
+* [suggestions](#suggestions) - Suggestions
 
-## searchV1AddressValidationSearchPost
+## search
 
 This API validates and enriches address information
     submitted by the user. It ensures that the address is standardized, accurate,
@@ -44,7 +44,7 @@ $requestSecurity = new Operations\SearchV1AddressValidationSearchPostSecurity(
     apiKeyHeader: '<YOUR_API_KEY_HERE>',
 );
 
-$response = $sdk->addressValidation->searchV1AddressValidationSearchPost(
+$response = $sdk->addressValidation->search(
     request: $request,
     security: $requestSecurity
 );
@@ -74,7 +74,7 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 | Errors\ErrorResponse                                               | 500                                                                | application/json                                                   |
 | Errors\APIException                                                | 4XX, 5XX                                                           | \*/\*                                                              |
 
-## suggestionsV1AddressValidationSuggestionsPost
+## suggestions
 
 This API endpoint provides address suggestions based on
     partial input data. It helps users auto-complete and validate addresses efficiently
@@ -114,7 +114,7 @@ $request = new Components\ValidationAddress(
     fullAddress: '1600 Amphitheatre Parkway, Mountain View, CA 94043',
 );
 
-$response = $sdk->addressValidation->suggestionsV1AddressValidationSuggestionsPost(
+$response = $sdk->addressValidation->suggestions(
     request: $request
 );
 
