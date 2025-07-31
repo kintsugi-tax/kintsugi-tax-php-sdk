@@ -8,19 +8,10 @@ declare(strict_types=1);
 
 namespace KintsugiTax\SDK\Models\Operations;
 
-use Brick\DateTime\LocalDate;
 use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class GetExemptionsV1ExemptionsGetRequest
 {
-    /**
-     * The unique identifier for the organization making the request
-     *
-     * @var ?string $xOrganizationId
-     */
-    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
-    public ?string $xOrganizationId;
-
     /**
      * Search term to filter exemptions by exemption ID, customer name, or customer email
      *
@@ -30,17 +21,9 @@ class GetExemptionsV1ExemptionsGetRequest
     public ?string $searchQuery = null;
 
     /**
-     * Filter exemptions by their status
-     *
-     * @var ?string $statusIn
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status__in')]
-    public ?string $statusIn = null;
-
-    /**
      * Country code in ISO 3166-1 alpha-2 format
      *
-     * @var ?array<Components\CountryCodeEnum|string> $countryCode
+     * @var ?array<Components\CountryCodeEnum> $countryCode
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=country_code')]
     public ?array $countryCode = null;
@@ -56,18 +39,18 @@ class GetExemptionsV1ExemptionsGetRequest
     /**
      * Start date for filtering exemptions
      *
-     * @var ?LocalDate $startDate
+     * @var ?string $startDate
      */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=start_date,dateTimeFormat=Y-m-d')]
-    public ?LocalDate $startDate = null;
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=start_date')]
+    public ?string $startDate = null;
 
     /**
      * End date for filtering exemptions
      *
-     * @var ?LocalDate $endDate
+     * @var ?string $endDate
      */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=end_date,dateTimeFormat=Y-m-d')]
-    public ?LocalDate $endDate = null;
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=end_date')]
+    public ?string $endDate = null;
 
     /**
      * Customer ID to filter exemptions
@@ -84,6 +67,14 @@ class GetExemptionsV1ExemptionsGetRequest
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=transaction_id')]
     public ?string $transactionId = null;
+
+    /**
+     * Filter exemptions by their status
+     *
+     * @var ?string $statusIn
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status__in')]
+    public ?string $statusIn = null;
 
     /**
      * Fields to sort by (comma-separated)
@@ -110,31 +101,29 @@ class GetExemptionsV1ExemptionsGetRequest
     public ?int $size = null;
 
     /**
-     * @param  ?int  $page
-     * @param  ?int  $size
-     * @param  ?string  $xOrganizationId
      * @param  ?string  $searchQuery
      * @param  ?string  $statusIn
-     * @param  ?array<Components\CountryCodeEnum|string>  $countryCode
+     * @param  ?array<Components\CountryCodeEnum>  $countryCode
      * @param  ?string  $jurisdiction
-     * @param  ?LocalDate  $startDate
-     * @param  ?LocalDate  $endDate
+     * @param  ?string  $startDate
+     * @param  ?string  $endDate
      * @param  ?string  $customerId
      * @param  ?string  $transactionId
      * @param  ?string  $orderBy
+     * @param  ?int  $page
+     * @param  ?int  $size
      * @phpstan-pure
      */
-    public function __construct(?string $xOrganizationId = null, ?string $searchQuery = null, ?string $statusIn = null, ?array $countryCode = null, ?string $jurisdiction = null, ?LocalDate $startDate = null, ?LocalDate $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $orderBy = null, ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $searchQuery = null, ?array $countryCode = null, ?string $jurisdiction = null, ?string $startDate = null, ?string $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $statusIn = 'ACTIVE,INACTIVE,EXPIRED', ?string $orderBy = 'end_date,FEIN,sales_tax_id,status', ?int $page = 1, ?int $size = 50)
     {
-        $this->xOrganizationId = $xOrganizationId;
         $this->searchQuery = $searchQuery;
-        $this->statusIn = $statusIn;
         $this->countryCode = $countryCode;
         $this->jurisdiction = $jurisdiction;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->customerId = $customerId;
         $this->transactionId = $transactionId;
+        $this->statusIn = $statusIn;
         $this->orderBy = $orderBy;
         $this->page = $page;
         $this->size = $size;

@@ -1,9 +1,0 @@
-# CreateProductV1ProductsPostRequest
-
-
-## Fields
-
-| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `xOrganizationId`                                                                | *string*                                                                         | :heavy_check_mark:                                                               | The unique identifier for the organization making the request                    | org_12345                                                                        |
-| `productCreateManual`                                                            | [Components\ProductCreateManual](../../Models/Components/ProductCreateManual.md) | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |

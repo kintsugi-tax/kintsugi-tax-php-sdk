@@ -22,29 +22,19 @@ class UpdateProductV1ProductsProductIdPutRequest
 
     /**
      *
-     * @var Components\ProductUpdate|Components\ProductUpdateV2 $requestBody
+     * @var Components\ProductUpdate $productUpdate
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Components\ProductUpdate|Components\ProductUpdateV2 $requestBody;
-
-    /**
-     * The unique identifier for the organization making the request
-     *
-     * @var ?string $xOrganizationId
-     */
-    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
-    public ?string $xOrganizationId;
+    public Components\ProductUpdate $productUpdate;
 
     /**
      * @param  string  $productId
-     * @param  Components\ProductUpdate|Components\ProductUpdateV2  $requestBody
-     * @param  ?string  $xOrganizationId
+     * @param  Components\ProductUpdate  $productUpdate
      * @phpstan-pure
      */
-    public function __construct(string $productId, Components\ProductUpdate|Components\ProductUpdateV2 $requestBody, ?string $xOrganizationId = null)
+    public function __construct(string $productId, Components\ProductUpdate $productUpdate)
     {
         $this->productId = $productId;
-        $this->requestBody = $requestBody;
-        $this->xOrganizationId = $xOrganizationId;
+        $this->productUpdate = $productUpdate;
     }
 }

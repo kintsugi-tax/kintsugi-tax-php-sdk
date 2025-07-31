@@ -35,15 +35,6 @@ class TaxItemRead
 
     /**
      *
-     * @var ?TaxItemTypeEnum $type
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxItemTypeEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?TaxItemTypeEnum $type = null;
-
-    /**
-     *
      * @var ?string $convertedAmount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('converted_amount')]
@@ -78,6 +69,15 @@ class TaxItemRead
 
     /**
      *
+     * @var ?TaxItemTypeEnum $type
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxItemTypeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?TaxItemTypeEnum $type = null;
+
+    /**
+     *
      * @var ?JurisdictionType $jurisdictionType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('jurisdiction_type')]
@@ -107,25 +107,25 @@ class TaxItemRead
      * @param  string  $amount
      * @param  string  $name
      * @param  ?string  $ruleId
-     * @param  ?TaxItemTypeEnum  $type
      * @param  ?string  $convertedAmount
      * @param  ?CurrencyEnum  $currency
      * @param  ?CurrencyEnum  $destinationCurrency
      * @param  ?string  $externalId
+     * @param  ?TaxItemTypeEnum  $type
      * @param  ?JurisdictionType  $jurisdictionType
      * @param  ?string  $jurisdictionName
      * @phpstan-pure
      */
-    public function __construct(string $rate, string $amount, string $name, ?TaxItemTypeEnum $type = null, ?string $convertedAmount = null, ?CurrencyEnum $currency = null, ?CurrencyEnum $destinationCurrency = null, ?string $externalId = null, ?JurisdictionType $jurisdictionType = null, ?string $jurisdictionName = null, ?string $ruleId = '0000')
+    public function __construct(string $rate, string $amount, string $name, ?string $convertedAmount = null, ?CurrencyEnum $currency = null, ?CurrencyEnum $destinationCurrency = null, ?string $externalId = null, ?TaxItemTypeEnum $type = null, ?JurisdictionType $jurisdictionType = null, ?string $jurisdictionName = null, ?string $ruleId = '0000')
     {
         $this->rate = $rate;
         $this->amount = $amount;
         $this->name = $name;
-        $this->type = $type;
         $this->convertedAmount = $convertedAmount;
         $this->currency = $currency;
         $this->destinationCurrency = $destinationCurrency;
         $this->externalId = $externalId;
+        $this->type = $type;
         $this->jurisdictionType = $jurisdictionType;
         $this->jurisdictionName = $jurisdictionName;
         $this->ruleId = $ruleId;

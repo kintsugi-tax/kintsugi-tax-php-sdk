@@ -22,21 +22,10 @@ class TransactionItemEstimateBase
     /**
      * The total amount of the item.
      *
-     * @var float|string $amount
+     * @var float $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string')]
-    public float|string $amount;
-
-    /**
-     * Defaults to 1.0. The quantity of the item.
-     *
-     * @var float|string|null $quantity
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('quantity')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $quantity = null;
+    public float $amount;
 
     /**
      * A unique identifier for the transaction item.
@@ -95,9 +84,6 @@ class TransactionItemEstimateBase
     public ?SourceEnum $productSource = null;
 
     /**
-     * Subcategory of the product. Required if product_category is used
-     *
-     *         in place of external_product_id.
      *
      * @var ?ProductSubCategoryEnum $productSubcategory
      */
@@ -107,9 +93,6 @@ class TransactionItemEstimateBase
     public ?ProductSubCategoryEnum $productSubcategory = null;
 
     /**
-     * Category of the product. Required if product_subcategory is used
-     *
-     *         in place of external_product_id.
      *
      * @var ?ProductCategoryEnum $productCategory
      */
@@ -117,6 +100,15 @@ class TransactionItemEstimateBase
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductCategoryEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ProductCategoryEnum $productCategory = null;
+
+    /**
+     * Defaults to 1.0. The quantity of the item.
+     *
+     * @var ?float $quantity
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('quantity')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $quantity = null;
 
     /**
      * Defaults to false. Indicates whether the item is exempt from tax.
@@ -129,9 +121,7 @@ class TransactionItemEstimateBase
 
     /**
      * @param  \DateTime  $date
-     * @param  float|string  $amount
-     * @param  float|string|null  $quantity
-     * @param  ?bool  $exempt
+     * @param  float  $amount
      * @param  ?string  $externalId
      * @param  ?string  $description
      * @param  ?string  $externalProductId
@@ -140,13 +130,14 @@ class TransactionItemEstimateBase
      * @param  ?SourceEnum  $productSource
      * @param  ?ProductSubCategoryEnum  $productSubcategory
      * @param  ?ProductCategoryEnum  $productCategory
+     * @param  ?float  $quantity
+     * @param  ?bool  $exempt
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, float|string $amount, float|string|null $quantity = null, ?string $externalId = null, ?string $description = null, ?string $externalProductId = null, ?string $productName = null, ?string $productDescription = null, ?SourceEnum $productSource = null, ?ProductSubCategoryEnum $productSubcategory = null, ?ProductCategoryEnum $productCategory = null, ?bool $exempt = false)
+    public function __construct(\DateTime $date, float $amount, ?string $externalId = null, ?string $description = null, ?string $externalProductId = null, ?string $productName = null, ?string $productDescription = null, ?SourceEnum $productSource = null, ?ProductSubCategoryEnum $productSubcategory = null, ?ProductCategoryEnum $productCategory = null, ?float $quantity = 1.0, ?bool $exempt = false)
     {
         $this->date = $date;
         $this->amount = $amount;
-        $this->quantity = $quantity;
         $this->externalId = $externalId;
         $this->description = $description;
         $this->externalProductId = $externalProductId;
@@ -155,6 +146,7 @@ class TransactionItemEstimateBase
         $this->productSource = $productSource;
         $this->productSubcategory = $productSubcategory;
         $this->productCategory = $productCategory;
+        $this->quantity = $quantity;
         $this->exempt = $exempt;
     }
 }

@@ -54,16 +54,6 @@ class CreditNoteCreate
     public array $transactionItems;
 
     /**
-     * Total monetary value of the credit note, including all items and taxes.
-     *
-     * @var float|string|null $totalAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('total_amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $totalAmount = null;
-
-    /**
      * Brief explanation or reason for issuing the credit note.
      *
      * @var ?string $description
@@ -73,43 +63,31 @@ class CreditNoteCreate
     public ?string $description = null;
 
     /**
-     * Indicates whether this credit note is associated with a marketplace transaction.
-     *
-     * @var ?bool $marketplace
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('marketplace')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $marketplace = null;
-
-    /**
      * Pre-calculated total tax amount for the entire credit note, if provided by the external system.
      *
-     * @var float|string|null $taxAmountImported
+     * @var ?float $taxAmountImported
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_amount_imported')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $taxAmountImported = null;
+    public ?float $taxAmountImported = null;
 
     /**
      * Pre-calculated overall tax rate for the credit note, if provided by the external system.
      *
-     * @var float|string|null $taxRateImported
+     * @var ?float $taxRateImported
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_rate_imported')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $taxRateImported = null;
+    public ?float $taxRateImported = null;
 
     /**
      * Total portion of the credit note amount subject to taxation.
      *
-     * @var float|string|null $taxableAmount
+     * @var ?float $taxableAmount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('taxable_amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $taxableAmount = null;
+    public ?float $taxableAmount = null;
 
     /**
      * A list of TransactionAddressBuilder objects or None if no addresses are provided. This field represents the addresses associated with the transaction.
@@ -122,33 +100,51 @@ class CreditNoteCreate
     public ?array $addresses = null;
 
     /**
+     * Total monetary value of the credit note, including all items and taxes.
+     *
+     * @var ?float $totalAmount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('total_amount')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $totalAmount = null;
+
+    /**
+     * Indicates whether this credit note is associated with a marketplace transaction.
+     *
+     * @var ?bool $marketplace
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('marketplace')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $marketplace = null;
+
+    /**
      * @param  string  $externalId
      * @param  \DateTime  $date
      * @param  Status  $status
      * @param  CurrencyEnum  $currency
      * @param  array<CreditNoteItemCreateUpdate>  $transactionItems
-     * @param  float|string|null  $totalAmount
      * @param  ?string  $description
+     * @param  ?float  $totalAmount
      * @param  ?bool  $marketplace
-     * @param  float|string|null  $taxAmountImported
-     * @param  float|string|null  $taxRateImported
-     * @param  float|string|null  $taxableAmount
+     * @param  ?float  $taxAmountImported
+     * @param  ?float  $taxRateImported
+     * @param  ?float  $taxableAmount
      * @param  ?array<TransactionAddressBuilder>  $addresses
      * @phpstan-pure
      */
-    public function __construct(string $externalId, \DateTime $date, Status $status, CurrencyEnum $currency, array $transactionItems, float|string|null $totalAmount = null, ?string $description = null, ?bool $marketplace = null, float|string|null $taxAmountImported = null, float|string|null $taxRateImported = null, float|string|null $taxableAmount = null, ?array $addresses = null)
+    public function __construct(string $externalId, \DateTime $date, Status $status, CurrencyEnum $currency, array $transactionItems, ?string $description = null, ?float $taxAmountImported = null, ?float $taxRateImported = null, ?float $taxableAmount = null, ?array $addresses = null, ?float $totalAmount = 0.00, ?bool $marketplace = false)
     {
         $this->externalId = $externalId;
         $this->date = $date;
         $this->status = $status;
         $this->currency = $currency;
         $this->transactionItems = $transactionItems;
-        $this->totalAmount = $totalAmount;
         $this->description = $description;
-        $this->marketplace = $marketplace;
         $this->taxAmountImported = $taxAmountImported;
         $this->taxRateImported = $taxRateImported;
         $this->taxableAmount = $taxableAmount;
         $this->addresses = $addresses;
+        $this->totalAmount = $totalAmount;
+        $this->marketplace = $marketplace;
     }
 }

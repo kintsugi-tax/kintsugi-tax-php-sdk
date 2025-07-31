@@ -28,23 +28,13 @@ class UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest
     public Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost;
 
     /**
-     * The unique identifier for the organization making the request
-     *
-     * @var ?string $xOrganizationId
-     */
-    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
-    public ?string $xOrganizationId;
-
-    /**
      * @param  string  $exemptionId
      * @param  Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost  $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost
-     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $exemptionId, Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost, ?string $xOrganizationId = null)
+    public function __construct(string $exemptionId, Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost)
     {
         $this->exemptionId = $exemptionId;
         $this->bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost = $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost;
-        $this->xOrganizationId = $xOrganizationId;
     }
 }

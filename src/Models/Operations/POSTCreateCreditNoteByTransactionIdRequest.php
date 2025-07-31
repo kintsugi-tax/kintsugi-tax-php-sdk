@@ -27,23 +27,13 @@ class POSTCreateCreditNoteByTransactionIdRequest
     public Components\CreditNoteCreate $creditNoteCreate;
 
     /**
-     * The unique identifier for the organization making the request
-     *
-     * @var ?string $xOrganizationId
-     */
-    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
-    public ?string $xOrganizationId;
-
-    /**
      * @param  string  $originalTransactionId
      * @param  Components\CreditNoteCreate  $creditNoteCreate
-     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $originalTransactionId, Components\CreditNoteCreate $creditNoteCreate, ?string $xOrganizationId = null)
+    public function __construct(string $originalTransactionId, Components\CreditNoteCreate $creditNoteCreate)
     {
         $this->originalTransactionId = $originalTransactionId;
         $this->creditNoteCreate = $creditNoteCreate;
-        $this->xOrganizationId = $xOrganizationId;
     }
 }

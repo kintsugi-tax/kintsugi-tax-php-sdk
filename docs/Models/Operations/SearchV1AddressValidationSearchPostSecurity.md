@@ -5,5 +5,4 @@
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `apiKeyHeader`     | *?string*          | :heavy_minus_sign: | N/A                |
-| `httpBearer`       | *?string*          | :heavy_minus_sign: | N/A                |
+| `apiKeyHeader`     | *string*           | :heavy_check_mark: | N/A                |

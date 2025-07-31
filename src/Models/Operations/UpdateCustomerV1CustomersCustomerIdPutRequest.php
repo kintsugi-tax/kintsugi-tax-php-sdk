@@ -28,23 +28,13 @@ class UpdateCustomerV1CustomersCustomerIdPutRequest
     public Components\CustomerUpdate $customerUpdate;
 
     /**
-     * The unique identifier for the organization making the request
-     *
-     * @var ?string $xOrganizationId
-     */
-    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
-    public ?string $xOrganizationId;
-
-    /**
      * @param  string  $customerId
      * @param  Components\CustomerUpdate  $customerUpdate
-     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $customerId, Components\CustomerUpdate $customerUpdate, ?string $xOrganizationId = null)
+    public function __construct(string $customerId, Components\CustomerUpdate $customerUpdate)
     {
         $this->customerId = $customerId;
         $this->customerUpdate = $customerUpdate;
-        $this->xOrganizationId = $xOrganizationId;
     }
 }

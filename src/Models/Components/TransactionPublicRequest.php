@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace KintsugiTax\SDK\Models\Components;
 
-use Brick\DateTime\LocalDate;
+
 class TransactionPublicRequest
 {
     /**
@@ -55,11 +55,11 @@ class TransactionPublicRequest
 
     /**
      *
-     * @var CustomerBaseBase|TransactionImportCustomer $customer
+     * @var CustomerBaseBase $customer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBaseBase|\KintsugiTax\SDK\Models\Components\TransactionImportCustomer')]
-    public CustomerBaseBase|TransactionImportCustomer $customer;
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBaseBase')]
+    public CustomerBaseBase $customer;
 
     /**
      *
@@ -71,104 +71,6 @@ class TransactionPublicRequest
 
     /**
      *
-     * @var ?TransactionStatusEnum $status
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionStatusEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?TransactionStatusEnum $status = null;
-
-    /**
-     * Total amount of the transaction.
-     *
-     * @var float|string|null $totalAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('total_amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $totalAmount = null;
-
-    /**
-     * Imported tax amount.
-     *
-     * @var float|string|null $totalTaxAmountImported
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('total_tax_amount_imported')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $totalTaxAmountImported = null;
-
-    /**
-     * Imported tax rate.
-     *
-     * @var float|string|null $taxRateImported
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_rate_imported')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $taxRateImported = null;
-
-    /**
-     * Calculated tax amount.
-     *
-     * @var float|string|null $totalTaxAmountCalculated
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('total_tax_amount_calculated')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $totalTaxAmountCalculated = null;
-
-    /**
-     * Calculated tax rate.
-     *
-     * @var float|string|null $taxRateCalculated
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_rate_calculated')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $taxRateCalculated = null;
-
-    /**
-     * Total tax liability amount.
-     *
-     * @var float|string|null $totalTaxLiabilityAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('total_tax_liability_amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $totalTaxLiabilityAmount = null;
-
-    /**
-     * Taxable amount.
-     *
-     * @var float|string|null $taxableAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('taxable_amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $taxableAmount = null;
-
-    /**
-     *
-     * @var ?CurrencyEnum $currency
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CurrencyEnum $currency = null;
-
-    /**
-     *
-     * @var ?SourceEnum $source
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?SourceEnum $source = null;
-
-    /**
-     * Indicates if transaction requires tax exemption.
-     *
      * @var ?ExemptionRequired $requiresExemption
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('requires_exemption')]
@@ -179,11 +81,11 @@ class TransactionPublicRequest
     /**
      * Transaction date in the shop's local timezone
      *
-     * @var ?LocalDate $shopDate
+     * @var ?string $shopDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('shop_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?LocalDate $shopDate = null;
+    public ?string $shopDate = null;
 
     /**
      * Timezone of the shop
@@ -195,6 +97,15 @@ class TransactionPublicRequest
     public ?string $shopDateTz = null;
 
     /**
+     *
+     * @var ?TransactionStatusEnum $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionStatusEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?TransactionStatusEnum $status = null;
+
+    /**
      * Description of the transaction.
      *
      * @var ?string $description
@@ -204,7 +115,10 @@ class TransactionPublicRequest
     public ?string $description = null;
 
     /**
-     * Status of refund, if applicable
+     * Shopify has 2 order statuses for refund case: refunded and partially_refunded
+     *
+     * If the given order has different status from these 2, we will set the
+     * transaction's refund_status to PARTIALLY_REFUNDED by default.
      *
      * @var ?TransactionRefundStatus $refundStatus
      */
@@ -223,16 +137,11 @@ class TransactionPublicRequest
     public ?string $customerId = null;
 
     /**
-     * Indicates if transaction is marketplace-based.
+     * Based on transaction item exempt status.
      *
-     * @var ?bool $marketplace
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('marketplace')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $marketplace = null;
-
-    /**
-     * Exemption status (e.g., NOT_EXEMPT)
+     * NOT EXEMPT: None of the items are NOT EXEMPT
+     * PARTIALLY EXEMPT: At least some of the items are NOT EXEMPT
+     * FULLY_EXEMPT: All items sold in the transaction are EXEMPT
      *
      * @var ?TransactionExemptStatusEnum $exempt
      */
@@ -288,7 +197,6 @@ class TransactionPublicRequest
     public ?string $externalFriendlyId = null;
 
     /**
-     * Source of tax liability.
      *
      * @var ?TaxLiabilitySourceEnum $taxLiabilitySource
      */
@@ -296,6 +204,24 @@ class TransactionPublicRequest
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxLiabilitySourceEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?TaxLiabilitySourceEnum $taxLiabilitySource = null;
+
+    /**
+     *
+     * @var ?CurrencyEnum $currency
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CurrencyEnum $currency = null;
+
+    /**
+     *
+     * @var ?SourceEnum $source
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?SourceEnum $source = null;
 
     /**
      * Connection Identifier
@@ -343,7 +269,6 @@ class TransactionPublicRequest
     public ?string $state = null;
 
     /**
-     * Country code (ISO Alpha-2).
      *
      * @var ?CountryCodeEnum $country
      */
@@ -371,6 +296,78 @@ class TransactionPublicRequest
     public ?string $taxId = null;
 
     /**
+     * Total amount of the transaction.
+     *
+     * @var ?float $totalAmount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('total_amount')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $totalAmount = null;
+
+    /**
+     * Indicates if transaction is marketplace-based.
+     *
+     * @var ?bool $marketplace
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('marketplace')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $marketplace = null;
+
+    /**
+     * Imported tax amount.
+     *
+     * @var ?float $totalTaxAmountImported
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('total_tax_amount_imported')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $totalTaxAmountImported = null;
+
+    /**
+     * Imported tax rate.
+     *
+     * @var ?float $taxRateImported
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_rate_imported')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $taxRateImported = null;
+
+    /**
+     * Calculated tax amount.
+     *
+     * @var ?float $totalTaxAmountCalculated
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('total_tax_amount_calculated')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $totalTaxAmountCalculated = null;
+
+    /**
+     * Calculated tax rate.
+     *
+     * @var ?float $taxRateCalculated
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_rate_calculated')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $taxRateCalculated = null;
+
+    /**
+     * Total tax liability amount.
+     *
+     * @var ?float $totalTaxLiabilityAmount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('total_tax_liability_amount')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $totalTaxLiabilityAmount = null;
+
+    /**
+     * Taxable amount.
+     *
+     * @var ?float $taxableAmount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('taxable_amount')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $taxableAmount = null;
+
+    /**
      * Transaction lock status.
      *
      * @var ?bool $locked
@@ -385,24 +382,15 @@ class TransactionPublicRequest
      * @param  \DateTime  $date
      * @param  array<TransactionAddressPublic>  $addresses
      * @param  array<TransactionItemBuilder>  $transactionItems
-     * @param  CustomerBaseBase|TransactionImportCustomer  $customer
+     * @param  CustomerBaseBase  $customer
      * @param  TransactionTypeEnum  $type
-     * @param  ?TransactionStatusEnum  $status
-     * @param  float|string|null  $totalAmount
-     * @param  float|string|null  $totalTaxAmountImported
-     * @param  float|string|null  $taxRateImported
-     * @param  float|string|null  $totalTaxAmountCalculated
-     * @param  float|string|null  $taxRateCalculated
-     * @param  float|string|null  $totalTaxLiabilityAmount
-     * @param  float|string|null  $taxableAmount
-     * @param  ?CurrencyEnum  $currency
-     * @param  ?bool  $locked
-     * @param  ?SourceEnum  $source
      * @param  ?ExemptionRequired  $requiresExemption
-     * @param  ?LocalDate  $shopDate
+     * @param  ?string  $shopDate
      * @param  ?string  $shopDateTz
+     * @param  ?TransactionStatusEnum  $status
      * @param  ?string  $description
      * @param  ?TransactionRefundStatus  $refundStatus
+     * @param  ?float  $totalAmount
      * @param  ?string  $customerId
      * @param  ?bool  $marketplace
      * @param  ?TransactionExemptStatusEnum  $exempt
@@ -411,7 +399,16 @@ class TransactionPublicRequest
      * @param  ?string  $secondaryExternalId
      * @param  ?string  $secondarySource
      * @param  ?string  $externalFriendlyId
+     * @param  ?float  $totalTaxAmountImported
+     * @param  ?float  $taxRateImported
+     * @param  ?float  $totalTaxAmountCalculated
+     * @param  ?float  $taxRateCalculated
+     * @param  ?float  $totalTaxLiabilityAmount
      * @param  ?TaxLiabilitySourceEnum  $taxLiabilitySource
+     * @param  ?float  $taxableAmount
+     * @param  ?CurrencyEnum  $currency
+     * @param  ?bool  $locked
+     * @param  ?SourceEnum  $source
      * @param  ?string  $connectionId
      * @param  ?string  $filingId
      * @param  ?string  $city
@@ -422,7 +419,7 @@ class TransactionPublicRequest
      * @param  ?string  $taxId
      * @phpstan-pure
      */
-    public function __construct(string $organizationId, string $externalId, \DateTime $date, array $addresses, array $transactionItems, CustomerBaseBase|TransactionImportCustomer $customer, TransactionTypeEnum $type, ?TransactionStatusEnum $status = null, float|string|null $totalAmount = null, float|string|null $totalTaxAmountImported = null, float|string|null $taxRateImported = null, float|string|null $totalTaxAmountCalculated = null, float|string|null $taxRateCalculated = null, float|string|null $totalTaxLiabilityAmount = null, float|string|null $taxableAmount = null, ?CurrencyEnum $currency = null, ?SourceEnum $source = null, ?ExemptionRequired $requiresExemption = null, ?LocalDate $shopDate = null, ?string $shopDateTz = null, ?string $description = null, ?TransactionRefundStatus $refundStatus = null, ?string $customerId = null, ?bool $marketplace = null, ?TransactionExemptStatusEnum $exempt = null, ?array $exemptions = null, ?string $relatedTo = null, ?string $secondaryExternalId = null, ?string $secondarySource = null, ?string $externalFriendlyId = null, ?TaxLiabilitySourceEnum $taxLiabilitySource = null, ?string $connectionId = null, ?string $filingId = null, ?string $city = null, ?string $county = null, ?string $state = null, ?CountryCodeEnum $country = null, ?string $postalCode = null, ?string $taxId = null, ?bool $locked = false)
+    public function __construct(string $organizationId, string $externalId, \DateTime $date, array $addresses, array $transactionItems, CustomerBaseBase $customer, TransactionTypeEnum $type, ?ExemptionRequired $requiresExemption = null, ?string $shopDate = null, ?string $shopDateTz = null, ?TransactionStatusEnum $status = null, ?string $description = null, ?TransactionRefundStatus $refundStatus = null, ?string $customerId = null, ?TransactionExemptStatusEnum $exempt = null, ?array $exemptions = null, ?string $relatedTo = null, ?string $secondaryExternalId = null, ?string $secondarySource = null, ?string $externalFriendlyId = null, ?TaxLiabilitySourceEnum $taxLiabilitySource = null, ?CurrencyEnum $currency = null, ?SourceEnum $source = null, ?string $connectionId = null, ?string $filingId = null, ?string $city = null, ?string $county = null, ?string $state = null, ?CountryCodeEnum $country = null, ?string $postalCode = null, ?string $taxId = null, ?float $totalAmount = 0.00, ?bool $marketplace = false, ?float $totalTaxAmountImported = 0.00, ?float $taxRateImported = 0.00, ?float $totalTaxAmountCalculated = 0.00, ?float $taxRateCalculated = 0.00, ?float $totalTaxLiabilityAmount = 0.00, ?float $taxableAmount = 0.00, ?bool $locked = false)
     {
         $this->organizationId = $organizationId;
         $this->externalId = $externalId;
@@ -431,23 +428,13 @@ class TransactionPublicRequest
         $this->transactionItems = $transactionItems;
         $this->customer = $customer;
         $this->type = $type;
-        $this->status = $status;
-        $this->totalAmount = $totalAmount;
-        $this->totalTaxAmountImported = $totalTaxAmountImported;
-        $this->taxRateImported = $taxRateImported;
-        $this->totalTaxAmountCalculated = $totalTaxAmountCalculated;
-        $this->taxRateCalculated = $taxRateCalculated;
-        $this->totalTaxLiabilityAmount = $totalTaxLiabilityAmount;
-        $this->taxableAmount = $taxableAmount;
-        $this->currency = $currency;
-        $this->source = $source;
         $this->requiresExemption = $requiresExemption;
         $this->shopDate = $shopDate;
         $this->shopDateTz = $shopDateTz;
+        $this->status = $status;
         $this->description = $description;
         $this->refundStatus = $refundStatus;
         $this->customerId = $customerId;
-        $this->marketplace = $marketplace;
         $this->exempt = $exempt;
         $this->exemptions = $exemptions;
         $this->relatedTo = $relatedTo;
@@ -455,6 +442,8 @@ class TransactionPublicRequest
         $this->secondarySource = $secondarySource;
         $this->externalFriendlyId = $externalFriendlyId;
         $this->taxLiabilitySource = $taxLiabilitySource;
+        $this->currency = $currency;
+        $this->source = $source;
         $this->connectionId = $connectionId;
         $this->filingId = $filingId;
         $this->city = $city;
@@ -463,6 +452,14 @@ class TransactionPublicRequest
         $this->country = $country;
         $this->postalCode = $postalCode;
         $this->taxId = $taxId;
+        $this->totalAmount = $totalAmount;
+        $this->marketplace = $marketplace;
+        $this->totalTaxAmountImported = $totalTaxAmountImported;
+        $this->taxRateImported = $taxRateImported;
+        $this->totalTaxAmountCalculated = $totalTaxAmountCalculated;
+        $this->taxRateCalculated = $taxRateCalculated;
+        $this->totalTaxLiabilityAmount = $totalTaxLiabilityAmount;
+        $this->taxableAmount = $taxableAmount;
         $this->locked = $locked;
     }
 }

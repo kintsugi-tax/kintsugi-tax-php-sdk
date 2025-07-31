@@ -12,15 +12,6 @@ namespace KintsugiTax\SDK\Models\Components;
 class CustomerUpdate
 {
     /**
-     *
-     * @var ?AddressStatus $addressStatus
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?AddressStatus $addressStatus = null;
-
-    /**
      * Phone number associated with the customer.
      *
      * @var ?string $phone
@@ -84,7 +75,6 @@ class CustomerUpdate
     public ?string $postalCode = null;
 
     /**
-     * Country code in ISO 3166-1 alpha-2 format
      *
      * @var ?CountryCodeEnum $country
      */
@@ -112,7 +102,6 @@ class CustomerUpdate
     public ?string $name = null;
 
     /**
-     * Status of the customer.
      *
      * @var ?StatusEnum $status
      */
@@ -131,7 +120,6 @@ class CustomerUpdate
     public ?string $email = null;
 
     /**
-     * Source of the customer's record
      *
      * @var ?SourceEnum $source
      */
@@ -139,6 +127,15 @@ class CustomerUpdate
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?SourceEnum $source = null;
+
+    /**
+     *
+     * @var ?AddressStatus $addressStatus
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?AddressStatus $addressStatus = null;
 
     /**
      * External identifier associated with the customer
@@ -150,7 +147,6 @@ class CustomerUpdate
     public ?string $externalId = null;
 
     /**
-     * @param  ?AddressStatus  $addressStatus
      * @param  ?string  $phone
      * @param  ?string  $street1
      * @param  ?string  $street2
@@ -164,12 +160,12 @@ class CustomerUpdate
      * @param  ?StatusEnum  $status
      * @param  ?string  $email
      * @param  ?SourceEnum  $source
+     * @param  ?AddressStatus  $addressStatus
      * @param  ?string  $externalId
      * @phpstan-pure
      */
-    public function __construct(?AddressStatus $addressStatus = null, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?StatusEnum $status = null, ?string $email = null, ?SourceEnum $source = null, ?string $externalId = null)
+    public function __construct(?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?StatusEnum $status = null, ?string $email = null, ?SourceEnum $source = null, ?AddressStatus $addressStatus = null, ?string $externalId = null)
     {
-        $this->addressStatus = $addressStatus;
         $this->phone = $phone;
         $this->street1 = $street1;
         $this->street2 = $street2;
@@ -183,6 +179,7 @@ class CustomerUpdate
         $this->status = $status;
         $this->email = $email;
         $this->source = $source;
+        $this->addressStatus = $addressStatus;
         $this->externalId = $externalId;
     }
 }

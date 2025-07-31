@@ -28,16 +28,6 @@ class TransactionItemEstimateResponse
     public string $amount;
 
     /**
-     * List of tax items applied to the transaction item.
-     *
-     * @var ?array<TaxItemEstimate> $taxItems
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemEstimate>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $taxItems = null;
-
-    /**
      * A unique identifier for the transaction item.
      *
      * @var ?string $externalId
@@ -94,9 +84,6 @@ class TransactionItemEstimateResponse
     public ?SourceEnum $productSource = null;
 
     /**
-     * Subcategory of the product. Required if product_category is used
-     *
-     *         in place of external_product_id.
      *
      * @var ?ProductSubCategoryEnum $productSubcategory
      */
@@ -106,9 +93,6 @@ class TransactionItemEstimateResponse
     public ?ProductSubCategoryEnum $productSubcategory = null;
 
     /**
-     * Category of the product. Required if product_subcategory is used
-     *
-     *         in place of external_product_id.
      *
      * @var ?ProductCategoryEnum $productCategory
      */
@@ -118,7 +102,7 @@ class TransactionItemEstimateResponse
     public ?ProductCategoryEnum $productCategory = null;
 
     /**
-     * Reason for exemption, if applicable.
+     * This enum is used to determine if a transaction is exempt from tax.
      *
      * @var ?TaxExemptionEnum $exemptReason
      */
@@ -126,6 +110,16 @@ class TransactionItemEstimateResponse
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxExemptionEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?TaxExemptionEnum $exemptReason = null;
+
+    /**
+     * List of tax items applied to the transaction item.
+     *
+     * @var ?array<TaxItemEstimate> $taxItems
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemEstimate>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $taxItems = null;
 
     /**
      * Defaults to 1.0. The quantity of the item.
@@ -175,12 +169,6 @@ class TransactionItemEstimateResponse
     /**
      * @param  \DateTime  $date
      * @param  string  $amount
-     * @param  ?string  $quantity
-     * @param  ?bool  $exempt
-     * @param  ?string  $taxAmount
-     * @param  ?string  $taxableAmount
-     * @param  ?string  $taxRate
-     * @param  ?array<TaxItemEstimate>  $taxItems
      * @param  ?string  $externalId
      * @param  ?string  $description
      * @param  ?string  $externalProductId
@@ -189,14 +177,19 @@ class TransactionItemEstimateResponse
      * @param  ?SourceEnum  $productSource
      * @param  ?ProductSubCategoryEnum  $productSubcategory
      * @param  ?ProductCategoryEnum  $productCategory
+     * @param  ?string  $quantity
+     * @param  ?bool  $exempt
+     * @param  ?string  $taxAmount
+     * @param  ?string  $taxableAmount
+     * @param  ?string  $taxRate
      * @param  ?TaxExemptionEnum  $exemptReason
+     * @param  ?array<TaxItemEstimate>  $taxItems
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, string $amount, ?array $taxItems = null, ?string $externalId = null, ?string $description = null, ?string $externalProductId = null, ?string $productName = null, ?string $productDescription = null, ?SourceEnum $productSource = null, ?ProductSubCategoryEnum $productSubcategory = null, ?ProductCategoryEnum $productCategory = null, ?TaxExemptionEnum $exemptReason = null, ?string $quantity = '1.0', ?bool $exempt = false, ?string $taxAmount = '0.00', ?string $taxableAmount = '0.00', ?string $taxRate = '0.00')
+    public function __construct(\DateTime $date, string $amount, ?string $externalId = null, ?string $description = null, ?string $externalProductId = null, ?string $productName = null, ?string $productDescription = null, ?SourceEnum $productSource = null, ?ProductSubCategoryEnum $productSubcategory = null, ?ProductCategoryEnum $productCategory = null, ?TaxExemptionEnum $exemptReason = null, ?array $taxItems = null, ?string $quantity = '1.0', ?bool $exempt = false, ?string $taxAmount = '0.00', ?string $taxableAmount = '0.00', ?string $taxRate = '0.00')
     {
         $this->date = $date;
         $this->amount = $amount;
-        $this->taxItems = $taxItems;
         $this->externalId = $externalId;
         $this->description = $description;
         $this->externalProductId = $externalProductId;
@@ -206,6 +199,7 @@ class TransactionItemEstimateResponse
         $this->productSubcategory = $productSubcategory;
         $this->productCategory = $productCategory;
         $this->exemptReason = $exemptReason;
+        $this->taxItems = $taxItems;
         $this->quantity = $quantity;
         $this->exempt = $exempt;
         $this->taxAmount = $taxAmount;

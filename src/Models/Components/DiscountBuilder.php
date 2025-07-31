@@ -21,15 +21,6 @@ class DiscountBuilder
 
     /**
      *
-     * @var float|string|null $discountAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('discount_amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $discountAmount = null;
-
-    /**
-     *
      * @var ?string $externalId
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('external_id')]
@@ -37,15 +28,23 @@ class DiscountBuilder
     public ?string $externalId = null;
 
     /**
+     *
+     * @var ?float $discountAmount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('discount_amount')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $discountAmount = null;
+
+    /**
      * @param  AppliedTo  $appliedTo
-     * @param  float|string|null  $discountAmount
      * @param  ?string  $externalId
+     * @param  ?float  $discountAmount
      * @phpstan-pure
      */
-    public function __construct(AppliedTo $appliedTo, float|string|null $discountAmount = null, ?string $externalId = null)
+    public function __construct(AppliedTo $appliedTo, ?string $externalId = null, ?float $discountAmount = 0.00)
     {
         $this->appliedTo = $appliedTo;
-        $this->discountAmount = $discountAmount;
         $this->externalId = $externalId;
+        $this->discountAmount = $discountAmount;
     }
 }
