@@ -5,13 +5,13 @@
 
 ### Available Operations
 
-* [list](#list) - Get Exemptions
-* [create](#create) - Create Exemption
-* [get](#get) - Get Exemption By Id
-* [uploadCertificate](#uploadcertificate) - Upload Exemption Certificate
-* [getAttachments](#getattachments) - Get Attachments For Exemption
+* [getExemptionsV1ExemptionsGet](#getexemptionsv1exemptionsget) - Get Exemptions
+* [createExemptionV1ExemptionsPost](#createexemptionv1exemptionspost) - Create Exemption
+* [getExemptionByIdV1ExemptionsExemptionIdGet](#getexemptionbyidv1exemptionsexemptionidget) - Get Exemption By Id
+* [uploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost](#uploadexemptioncertificatev1exemptionsexemptionidattachmentspost) - Upload Exemption Certificate
+* [getAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGet](#getattachmentsforexemptionv1exemptionsexemptionidattachmentsget) - Get Attachments For Exemption
 
-## list
+## getExemptionsV1ExemptionsGet
 
 Retrieve a list of exemptions based on filters.
 
@@ -48,7 +48,7 @@ $request = new Operations\GetExemptionsV1ExemptionsGetRequest(
     transactionId: 'trans_1234',
 );
 
-$response = $sdk->exemptions->list(
+$response = $sdk->exemptions->getExemptionsV1ExemptionsGet(
     request: $request
 );
 
@@ -76,7 +76,7 @@ if ($response->fastapiPaginationDefaultPageExemptionRead2 !== null) {
 | Errors\ErrorResponse                                        | 500                                                         | application/json                                            |
 | Errors\APIException                                         | 4XX, 5XX                                                    | \*/\*                                                       |
 
-## create
+## createExemptionV1ExemptionsPost
 
 The Create Exemption API allows you to create a new exemption record.
     This includes defining details such as exemption type, jurisdiction,
@@ -117,7 +117,7 @@ $request = new Components\ExemptionCreate(
     status: Components\ExemptionStatus::Active,
 );
 
-$response = $sdk->exemptions->create(
+$response = $sdk->exemptions->createExemptionV1ExemptionsPost(
     request: $request
 );
 
@@ -145,7 +145,7 @@ if ($response->backendSrcExemptionsSerializersExemptionRead !== null) {
 | Errors\ErrorResponse                                        | 500                                                         | application/json                                            |
 | Errors\APIException                                         | 4XX, 5XX                                                    | \*/\*                                                       |
 
-## get
+## getExemptionByIdV1ExemptionsExemptionIdGet
 
 The Get Exemption By ID API retrieves a specific exemption record by
     its unique ID. This API is useful for retrieving detailed information
@@ -174,7 +174,7 @@ $sdk = SDK\SDK::builder()
 
 
 
-$response = $sdk->exemptions->get(
+$response = $sdk->exemptions->getExemptionByIdV1ExemptionsExemptionIdGet(
     exemptionId: '<id>'
 );
 
@@ -202,7 +202,7 @@ if ($response->backendSrcExemptionsModelsExemptionRead !== null) {
 | Errors\ErrorResponse                                        | 500                                                         | application/json                                            |
 | Errors\APIException                                         | 4XX, 5XX                                                    | \*/\*                                                       |
 
-## uploadCertificate
+## uploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost
 
 The Upload Exemption Certificate API allows you
     to upload a file attachment (e.g., exemption certificate) for a specific exemption.
@@ -236,7 +236,7 @@ $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost = new Comp
     ),
 );
 
-$response = $sdk->exemptions->uploadCertificate(
+$response = $sdk->exemptions->uploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost(
     exemptionId: '<id>',
     bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost: $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost
 
@@ -267,7 +267,7 @@ if ($response->attachmentRead !== null) {
 | Errors\ErrorResponse                                        | 500                                                         | application/json                                            |
 | Errors\APIException                                         | 4XX, 5XX                                                    | \*/\*                                                       |
 
-## getAttachments
+## getAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGet
 
 The Get Attachments for Exemption API retrieves all
     attachments associated with a specific exemption.
@@ -296,7 +296,7 @@ $sdk = SDK\SDK::builder()
 
 
 
-$response = $sdk->exemptions->getAttachments(
+$response = $sdk->exemptions->getAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGet(
     exemptionId: '<id>'
 );
 

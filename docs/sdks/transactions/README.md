@@ -5,16 +5,16 @@
 
 ### Available Operations
 
-* [list](#list) - Get Transactions
-* [create](#create) - Create Transaction
-* [getByExternalId](#getbyexternalid) - Get Transaction By External Id
-* [update](#update) - Update Transaction
-* [getById](#getbyid) - Get Transaction By Id
-* [getByFilingId](#getbyfilingid) - Get Transactions By Filing Id
-* [createCreditNote](#createcreditnote) - Create Credit Note By Transaction Id
-* [updateCreditNote](#updatecreditnote) - Update Credit Note By Transaction Id
+* [getTransactionsV1TransactionsGet](#gettransactionsv1transactionsget) - Get Transactions
+* [createTransactionV1TransactionsPost](#createtransactionv1transactionspost) - Create Transaction
+* [getTransactionByExternalIdV1TransactionsExternalExternalIdGet](#gettransactionbyexternalidv1transactionsexternalexternalidget) - Get Transaction By External Id
+* [updateTransactionV1TransactionsTransactionIdPut](#updatetransactionv1transactionstransactionidput) - Update Transaction
+* [getTransactionByIdV1TransactionsTransactionIdGet](#gettransactionbyidv1transactionstransactionidget) - Get Transaction By Id
+* [getTransactionsByFilingIdV1TransactionsFilingsFilingIdGet](#gettransactionsbyfilingidv1transactionsfilingsfilingidget) - Get Transactions By Filing Id
+* [postCreateCreditNoteByTransactionId](#postcreatecreditnotebytransactionid) - Create Credit Note By Transaction Id
+* [putUpdateCreditNoteByTransactionId](#putupdatecreditnotebytransactionid) - Update Credit Note By Transaction Id
 
-## list
+## getTransactionsV1TransactionsGet
 
 The Get Transactions API retrieves a list of transactions with
     optional filtering, sorting, and pagination.
@@ -42,7 +42,7 @@ $sdk = SDK\SDK::builder()
 
 $request = new Operations\GetTransactionsV1TransactionsGetRequest();
 
-$response = $sdk->transactions->list(
+$response = $sdk->transactions->getTransactionsV1TransactionsGet(
     request: $request
 );
 
@@ -70,7 +70,7 @@ if ($response->pageTransactionRead !== null) {
 | Errors\ErrorResponse                                          | 500                                                           | application/json                                              |
 | Errors\APIException                                           | 4XX, 5XX                                                      | \*/\*                                                         |
 
-## create
+## createTransactionV1TransactionsPost
 
 Create a transaction.
 
@@ -129,7 +129,7 @@ $request = new Components\TransactionPublicRequest(
     type: Components\TransactionTypeEnum::Sale,
 );
 
-$response = $sdk->transactions->create(
+$response = $sdk->transactions->createTransactionV1TransactionsPost(
     request: $request
 );
 
@@ -157,7 +157,7 @@ if ($response->transactionRead !== null) {
 | Errors\ErrorResponse                                          | 500                                                           | application/json                                              |
 | Errors\APIException                                           | 4XX, 5XX                                                      | \*/\*                                                         |
 
-## getByExternalId
+## getTransactionByExternalIdV1TransactionsExternalExternalIdGet
 
 Retrieves a specific transaction based on its external ID.
     This allows users to fetch transaction details using an identifier from an external system.
@@ -184,7 +184,7 @@ $sdk = SDK\SDK::builder()
 
 
 
-$response = $sdk->transactions->getByExternalId(
+$response = $sdk->transactions->getTransactionByExternalIdV1TransactionsExternalExternalIdGet(
     externalId: '<id>'
 );
 
@@ -212,7 +212,7 @@ if ($response->transactionRead !== null) {
 | Errors\ErrorResponse                                          | 500                                                           | application/json                                              |
 | Errors\APIException                                           | 4XX, 5XX                                                      | \*/\*                                                         |
 
-## update
+## updateTransactionV1TransactionsTransactionIdPut
 
 Update a specific transaction by its ID.
 
@@ -256,7 +256,7 @@ $transactionUpdate = new Components\TransactionUpdate(
     customer: new Components\CustomerUpdate(),
 );
 
-$response = $sdk->transactions->update(
+$response = $sdk->transactions->updateTransactionV1TransactionsTransactionIdPut(
     transactionId: '<id>',
     transactionUpdate: $transactionUpdate
 
@@ -285,7 +285,7 @@ if ($response->transactionRead !== null) {
 | Errors\HTTPValidationError | 422                        | application/json           |
 | Errors\APIException        | 4XX, 5XX                   | \*/\*                      |
 
-## getById
+## getTransactionByIdV1TransactionsTransactionIdGet
 
 The Get Transaction By Id API retrieves detailed information
     about a specific transaction by providing its unique transaction ID.
@@ -312,7 +312,7 @@ $sdk = SDK\SDK::builder()
 
 
 
-$response = $sdk->transactions->getById(
+$response = $sdk->transactions->getTransactionByIdV1TransactionsTransactionIdGet(
     transactionId: '<id>'
 );
 
@@ -340,7 +340,7 @@ if ($response->transactionRead !== null) {
 | Errors\ErrorResponse                                          | 500                                                           | application/json                                              |
 | Errors\APIException                                           | 4XX, 5XX                                                      | \*/\*                                                         |
 
-## getByFilingId
+## getTransactionsByFilingIdV1TransactionsFilingsFilingIdGet
 
 Retrieve transactions by filing ID.
 
@@ -366,7 +366,7 @@ $sdk = SDK\SDK::builder()
 
 
 
-$response = $sdk->transactions->getByFilingId(
+$response = $sdk->transactions->getTransactionsByFilingIdV1TransactionsFilingsFilingIdGet(
     filingId: '<id>'
 );
 
@@ -394,7 +394,7 @@ if ($response->response200GetTransactionsByFilingIdV1TransactionsFilingsFilingId
 | Errors\ErrorResponse                                          | 500                                                           | application/json                                              |
 | Errors\APIException                                           | 4XX, 5XX                                                      | \*/\*                                                         |
 
-## createCreditNote
+## postCreateCreditNoteByTransactionId
 
 Create a new credit note for a specific transaction.
 
@@ -437,7 +437,7 @@ $creditNoteCreate = new Components\CreditNoteCreate(
     ],
 );
 
-$response = $sdk->transactions->createCreditNote(
+$response = $sdk->transactions->postCreateCreditNoteByTransactionId(
     originalTransactionId: '<id>',
     creditNoteCreate: $creditNoteCreate
 
@@ -466,7 +466,7 @@ if ($response->transactionRead !== null) {
 | Errors\HTTPValidationError | 422                        | application/json           |
 | Errors\APIException        | 4XX, 5XX                   | \*/\*                      |
 
-## updateCreditNote
+## putUpdateCreditNoteByTransactionId
 
 Update an existing credit note for a specific transaction.
 
@@ -508,7 +508,7 @@ $creditNoteCreate = new Components\CreditNoteCreate(
     ],
 );
 
-$response = $sdk->transactions->updateCreditNote(
+$response = $sdk->transactions->putUpdateCreditNoteByTransactionId(
     originalTransactionId: '<id>',
     creditNoteId: '<id>',
     creditNoteCreate: $creditNoteCreate

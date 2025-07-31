@@ -5,15 +5,15 @@
 
 ### Available Operations
 
-* [list](#list) - Get Customers
-* [create](#create) - Create Customer
-* [get](#get) - Get Customer By Id
-* [update](#update) - Update Customer
-* [getByExternalId](#getbyexternalid) - Get Customer By External Id
-* [getTransactions](#gettransactions) - Get Transactions By Customer Id
-* [createTransaction](#createtransaction) - Create Transaction By Customer Id
+* [getCustomersV1](#getcustomersv1) - Get Customers
+* [createCustomerV1CustomersPost](#createcustomerv1customerspost) - Create Customer
+* [getCustomerByIdV1CustomersCustomerIdGet](#getcustomerbyidv1customerscustomeridget) - Get Customer By Id
+* [updateCustomerV1CustomersCustomerIdPut](#updatecustomerv1customerscustomeridput) - Update Customer
+* [getCustomerByExternalIdV1CustomersExternalExternalIdGet](#getcustomerbyexternalidv1customersexternalexternalidget) - Get Customer By External Id
+* [getTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet](#gettransactionsbycustomeridv1customerscustomeridtransactionsget) - Get Transactions By Customer Id
+* [createTransactionByCustomerIdV1CustomersCustomerIdTransactionsPost](#createtransactionbycustomeridv1customerscustomeridtransactionspost) - Create Transaction By Customer Id
 
-## list
+## getCustomersV1
 
 The Get Customers API retrieves
     a paginated list of customers based on specified filters.
@@ -50,7 +50,7 @@ $request = new Operations\GetCustomersV1Request(
     orderBy: 'created_at,street_1,street_2,city,state,postal_code,country,status',
 );
 
-$response = $sdk->customers->list(
+$response = $sdk->customers->getCustomersV1(
     request: $request
 );
 
@@ -78,7 +78,7 @@ if ($response->pageCustomerRead !== null) {
 | Errors\ErrorResponse                                       | 500                                                        | application/json                                           |
 | Errors\APIException                                        | 4XX, 5XX                                                   | \*/\*                                                      |
 
-## create
+## createCustomerV1CustomersPost
 
 The Create Customer API enables the creation of a new customer record with essential
 details like name, contact information, and address, along with optional metadata.
@@ -120,7 +120,7 @@ $request = new Components\CustomerCreate(
     addressStatus: Components\AddressStatus::PartiallyVerified,
 );
 
-$response = $sdk->customers->create(
+$response = $sdk->customers->createCustomerV1CustomersPost(
     request: $request
 );
 
@@ -148,7 +148,7 @@ if ($response->customerRead !== null) {
 | Errors\ErrorResponse                                       | 500                                                        | application/json                                           |
 | Errors\APIException                                        | 4XX, 5XX                                                   | \*/\*                                                      |
 
-## get
+## getCustomerByIdV1CustomersCustomerIdGet
 
 The Get Customer By ID API retrieves the details of a single customer
     using their unique identifier. It returns customer-specific data,
@@ -176,7 +176,7 @@ $sdk = SDK\SDK::builder()
 
 
 
-$response = $sdk->customers->get(
+$response = $sdk->customers->getCustomerByIdV1CustomersCustomerIdGet(
     customerId: 'cust_abc123'
 );
 
@@ -202,7 +202,7 @@ if ($response->customerRead !== null) {
 | Errors\HTTPValidationError | 422                        | application/json           |
 | Errors\APIException        | 4XX, 5XX                   | \*/\*                      |
 
-## update
+## updateCustomerV1CustomersCustomerIdPut
 
 The Update Customer API allows you to modify an existing customer's
     information using their unique identifier,
@@ -246,7 +246,7 @@ $customerUpdate = new Components\CustomerUpdate(
     externalId: 'cust_002',
 );
 
-$response = $sdk->customers->update(
+$response = $sdk->customers->updateCustomerV1CustomersCustomerIdPut(
     customerId: '<id>',
     customerUpdate: $customerUpdate
 
@@ -277,7 +277,7 @@ if ($response->customerRead !== null) {
 | Errors\ErrorResponse                                       | 500                                                        | application/json                                           |
 | Errors\APIException                                        | 4XX, 5XX                                                   | \*/\*                                                      |
 
-## getByExternalId
+## getCustomerByExternalIdV1CustomersExternalExternalIdGet
 
 The Get Customer By External ID API retrieves the details of a single customer using
 their external identifier. This endpoint is useful for accessing customer data when only
@@ -305,7 +305,7 @@ $sdk = SDK\SDK::builder()
 
 
 
-$response = $sdk->customers->getByExternalId(
+$response = $sdk->customers->getCustomerByExternalIdV1CustomersExternalExternalIdGet(
     externalId: 'external_12345'
 );
 
@@ -331,7 +331,7 @@ if ($response->customerRead !== null) {
 | Errors\HTTPValidationError | 422                        | application/json           |
 | Errors\APIException        | 4XX, 5XX                   | \*/\*                      |
 
-## getTransactions
+## getTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet
 
 Get a list of transactions for a customer by their unique ID.
 
@@ -357,7 +357,7 @@ $sdk = SDK\SDK::builder()
 
 
 
-$response = $sdk->customers->getTransactions(
+$response = $sdk->customers->getTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet(
     customerId: '<id>'
 );
 
@@ -383,7 +383,7 @@ if ($response->responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransacti
 | Errors\HTTPValidationError | 422                        | application/json           |
 | Errors\APIException        | 4XX, 5XX                   | \*/\*                      |
 
-## createTransaction
+## createTransactionByCustomerIdV1CustomersCustomerIdTransactionsPost
 
 Create a new transaction for a specific customer.
 
@@ -436,7 +436,7 @@ $transactionCreate = new Components\TransactionCreate(
     ],
 );
 
-$response = $sdk->customers->createTransaction(
+$response = $sdk->customers->createTransactionByCustomerIdV1CustomersCustomerIdTransactionsPost(
     customerId: '<id>',
     transactionCreate: $transactionCreate
 

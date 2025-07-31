@@ -56,7 +56,7 @@ class Exemptions
      * @return Operations\CreateExemptionV1ExemptionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function create(Components\ExemptionCreate $request, ?Options $options = null): Operations\CreateExemptionV1ExemptionsPostResponse
+    public function createExemptionV1ExemptionsPost(Components\ExemptionCreate $request, ?Options $options = null): Operations\CreateExemptionV1ExemptionsPostResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/exemptions');
@@ -161,7 +161,7 @@ class Exemptions
      * @return Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getAttachments(string $exemptionId, ?Options $options = null): Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse
+    public function getAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGet(string $exemptionId, ?Options $options = null): Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse
     {
         $request = new Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest(
             exemptionId: $exemptionId,
@@ -252,7 +252,7 @@ class Exemptions
      * @return Operations\GetExemptionByIdV1ExemptionsExemptionIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function get(string $exemptionId, ?Options $options = null): Operations\GetExemptionByIdV1ExemptionsExemptionIdGetResponse
+    public function getExemptionByIdV1ExemptionsExemptionIdGet(string $exemptionId, ?Options $options = null): Operations\GetExemptionByIdV1ExemptionsExemptionIdGetResponse
     {
         $request = new Operations\GetExemptionByIdV1ExemptionsExemptionIdGetRequest(
             exemptionId: $exemptionId,
@@ -352,7 +352,7 @@ class Exemptions
      * @return Operations\GetExemptionsV1ExemptionsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(?Operations\GetExemptionsV1ExemptionsGetRequest $request = null, ?Options $options = null): Operations\GetExemptionsV1ExemptionsGetResponse
+    public function getExemptionsV1ExemptionsGet(?Operations\GetExemptionsV1ExemptionsGetRequest $request = null, ?Options $options = null): Operations\GetExemptionsV1ExemptionsGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/exemptions');
@@ -456,7 +456,7 @@ class Exemptions
      * @return Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function uploadCertificate(Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost, string $exemptionId, ?Options $options = null): Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse
+    public function uploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost(Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost, string $exemptionId, ?Options $options = null): Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse
     {
         $request = new Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest(
             exemptionId: $exemptionId,

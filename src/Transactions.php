@@ -55,7 +55,7 @@ class Transactions
      * @return Operations\POSTCreateCreditNoteByTransactionIdResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function createCreditNote(Components\CreditNoteCreate $creditNoteCreate, string $originalTransactionId, ?Options $options = null): Operations\POSTCreateCreditNoteByTransactionIdResponse
+    public function postCreateCreditNoteByTransactionId(Components\CreditNoteCreate $creditNoteCreate, string $originalTransactionId, ?Options $options = null): Operations\POSTCreateCreditNoteByTransactionIdResponse
     {
         $request = new Operations\POSTCreateCreditNoteByTransactionIdRequest(
             originalTransactionId: $originalTransactionId,
@@ -139,7 +139,7 @@ class Transactions
      * @return Operations\PUTUpdateCreditNoteByTransactionIdResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function updateCreditNote(Components\CreditNoteCreate $creditNoteCreate, string $originalTransactionId, string $creditNoteId, ?Options $options = null): Operations\PUTUpdateCreditNoteByTransactionIdResponse
+    public function putUpdateCreditNoteByTransactionId(Components\CreditNoteCreate $creditNoteCreate, string $originalTransactionId, string $creditNoteId, ?Options $options = null): Operations\PUTUpdateCreditNoteByTransactionIdResponse
     {
         $request = new Operations\PUTUpdateCreditNoteByTransactionIdRequest(
             originalTransactionId: $originalTransactionId,
@@ -222,7 +222,7 @@ class Transactions
      * @return Operations\CreateTransactionV1TransactionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function create(Components\TransactionPublicRequest $request, ?Options $options = null): Operations\CreateTransactionV1TransactionsPostResponse
+    public function createTransactionV1TransactionsPost(Components\TransactionPublicRequest $request, ?Options $options = null): Operations\CreateTransactionV1TransactionsPostResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/transactions');
@@ -325,7 +325,7 @@ class Transactions
      * @return Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getByExternalId(string $externalId, ?Options $options = null): Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse
+    public function getTransactionByExternalIdV1TransactionsExternalExternalIdGet(string $externalId, ?Options $options = null): Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse
     {
         $request = new Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest(
             externalId: $externalId,
@@ -426,7 +426,7 @@ class Transactions
      * @return Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getById(string $transactionId, ?Options $options = null): Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
+    public function getTransactionByIdV1TransactionsTransactionIdGet(string $transactionId, ?Options $options = null): Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
     {
         $request = new Operations\GetTransactionByIdV1TransactionsTransactionIdGetRequest(
             transactionId: $transactionId,
@@ -526,7 +526,7 @@ class Transactions
      * @return Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getByFilingId(string $filingId, ?Options $options = null): Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse
+    public function getTransactionsByFilingIdV1TransactionsFilingsFilingIdGet(string $filingId, ?Options $options = null): Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse
     {
         $request = new Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetRequest(
             filingId: $filingId,
@@ -627,7 +627,7 @@ class Transactions
      * @return Operations\GetTransactionsV1TransactionsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(?Operations\GetTransactionsV1TransactionsGetRequest $request = null, ?Options $options = null): Operations\GetTransactionsV1TransactionsGetResponse
+    public function getTransactionsV1TransactionsGet(?Operations\GetTransactionsV1TransactionsGetRequest $request = null, ?Options $options = null): Operations\GetTransactionsV1TransactionsGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/transactions');
@@ -728,7 +728,7 @@ class Transactions
      * @return Operations\UpdateTransactionV1TransactionsTransactionIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function update(Components\TransactionUpdate $transactionUpdate, string $transactionId, ?Options $options = null): Operations\UpdateTransactionV1TransactionsTransactionIdPutResponse
+    public function updateTransactionV1TransactionsTransactionIdPut(Components\TransactionUpdate $transactionUpdate, string $transactionId, ?Options $options = null): Operations\UpdateTransactionV1TransactionsTransactionIdPutResponse
     {
         $request = new Operations\UpdateTransactionV1TransactionsTransactionIdPutRequest(
             transactionId: $transactionId,

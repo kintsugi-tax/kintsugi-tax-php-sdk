@@ -25,7 +25,7 @@ $requestSecurity = new Operations\SearchV1AddressValidationSearchPostSecurity(
     apiKeyHeader: '<YOUR_API_KEY_HERE>',
 );
 
-$response = $sdk->addressValidation->search(
+$response = $sdk->addressValidation->searchV1AddressValidationSearchPost(
     request: $request,
     security: $requestSecurity
 );

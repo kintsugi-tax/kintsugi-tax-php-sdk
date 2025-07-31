@@ -57,7 +57,7 @@ class TaxEstimation
      * @return Operations\EstimateTaxV1TaxEstimatePostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function estimateTax(Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest, ?bool $simulateNexusMet = null, ?Options $options = null): Operations\EstimateTaxV1TaxEstimatePostResponse
+    public function estimateTaxV1TaxEstimatePost(Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest, ?bool $simulateNexusMet = null, ?Options $options = null): Operations\EstimateTaxV1TaxEstimatePostResponse
     {
         $request = new Operations\EstimateTaxV1TaxEstimatePostRequest(
             transactionEstimatePublicRequest: $transactionEstimatePublicRequest,

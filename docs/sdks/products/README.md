@@ -5,13 +5,13 @@
 
 ### Available Operations
 
-* [list](#list) - Get Products
-* [create](#create) - Create Product
-* [get](#get) - Get Product By Id
-* [update](#update) - Update Product
-* [listCategories](#listcategories) - Get Product Categories
+* [getProductsV1ProductsGet](#getproductsv1productsget) - Get Products
+* [createProductV1ProductsPost](#createproductv1productspost) - Create Product
+* [getProductByIdV1ProductsProductIdGet](#getproductbyidv1productsproductidget) - Get Product By Id
+* [updateProductV1ProductsProductIdPut](#updateproductv1productsproductidput) - Update Product
+* [getProductCategoriesV1ProductsCategoriesGet](#getproductcategoriesv1productscategoriesget) - Get Product Categories
 
-## list
+## getProductsV1ProductsGet
 
 Retrieve a paginated list of products based on filters and search query.
 
@@ -38,7 +38,7 @@ $sdk = SDK\SDK::builder()
 
 $request = new Operations\GetProductsV1ProductsGetRequest();
 
-$response = $sdk->products->list(
+$response = $sdk->products->getProductsV1ProductsGet(
     request: $request
 );
 
@@ -66,7 +66,7 @@ if ($response->pageProductRead !== null) {
 | Errors\ErrorResponse                                      | 500                                                       | application/json                                          |
 | Errors\APIException                                       | 4XX, 5XX                                                  | \*/\*                                                     |
 
-## create
+## createProductV1ProductsPost
 
 The Create Product API allows users to manually create a new product
     in the system. This includes specifying product details such as category,
@@ -103,7 +103,7 @@ $request = new Components\ProductCreateManual(
     source: Components\SourceEnum::Bigcommerce,
 );
 
-$response = $sdk->products->create(
+$response = $sdk->products->createProductV1ProductsPost(
     request: $request
 );
 
@@ -131,7 +131,7 @@ if ($response->productRead !== null) {
 | Errors\ErrorResponse                                      | 500                                                       | application/json                                          |
 | Errors\APIException                                       | 4XX, 5XX                                                  | \*/\*                                                     |
 
-## get
+## getProductByIdV1ProductsProductIdGet
 
 The Get Product By ID API retrieves detailed information about
     a single product by its unique ID. This API helps in viewing the specific details
@@ -159,7 +159,7 @@ $sdk = SDK\SDK::builder()
 
 
 
-$response = $sdk->products->get(
+$response = $sdk->products->getProductByIdV1ProductsProductIdGet(
     productId: '<id>'
 );
 
@@ -187,7 +187,7 @@ if ($response->productRead !== null) {
 | Errors\ErrorResponse                                      | 500                                                       | application/json                                          |
 | Errors\APIException                                       | 4XX, 5XX                                                  | \*/\*                                                     |
 
-## update
+## updateProductV1ProductsProductIdPut
 
 The Update Product API allows users to modify the details of
     an existing product identified by its unique product_id
@@ -222,7 +222,7 @@ $productUpdate = new Components\ProductUpdate(
     taxExempt: false,
 );
 
-$response = $sdk->products->update(
+$response = $sdk->products->updateProductV1ProductsProductIdPut(
     productId: '<id>',
     productUpdate: $productUpdate
 
@@ -253,7 +253,7 @@ if ($response->productRead !== null) {
 | Errors\ErrorResponse                                      | 500                                                       | application/json                                          |
 | Errors\APIException                                       | 4XX, 5XX                                                  | \*/\*                                                     |
 
-## listCategories
+## getProductCategoriesV1ProductsCategoriesGet
 
 The Get Product Categories API retrieves all
     product categories.  This endpoint helps users understand and select the
@@ -281,7 +281,7 @@ $sdk = SDK\SDK::builder()
 
 
 
-$response = $sdk->products->listCategories(
+$response = $sdk->products->getProductCategoriesV1ProductsCategoriesGet(
 
 );
 

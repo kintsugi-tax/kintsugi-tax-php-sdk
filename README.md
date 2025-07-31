@@ -78,7 +78,7 @@ $requestSecurity = new Operations\SearchV1AddressValidationSearchPostSecurity(
     apiKeyHeader: '<YOUR_API_KEY_HERE>',
 );
 
-$response = $sdk->addressValidation->search(
+$response = $sdk->addressValidation->searchV1AddressValidationSearchPost(
     request: $request,
     security: $requestSecurity
 );
@@ -131,7 +131,7 @@ $request = new Components\ValidationAddress(
     fullAddress: '1600 Amphitheatre Parkway, Mountain View, CA 94043',
 );
 
-$response = $sdk->addressValidation->suggestions(
+$response = $sdk->addressValidation->suggestionsV1AddressValidationSuggestionsPost(
     request: $request
 );
 
@@ -169,7 +169,7 @@ $requestSecurity = new Operations\SearchV1AddressValidationSearchPostSecurity(
     apiKeyHeader: '<YOUR_API_KEY_HERE>',
 );
 
-$response = $sdk->addressValidation->search(
+$response = $sdk->addressValidation->searchV1AddressValidationSearchPost(
     request: $request,
     security: $requestSecurity
 );
@@ -188,54 +188,72 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 
 ### [addressValidation](docs/sdks/addressvalidation/README.md)
 
-* [search](docs/sdks/addressvalidation/README.md#search) - Search
-* [suggestions](docs/sdks/addressvalidation/README.md#suggestions) - Suggestions
+* [searchV1AddressValidationSearchPost](docs/sdks/addressvalidation/README.md#searchv1addressvalidationsearchpost) - Search
+* [suggestionsV1AddressValidationSuggestionsPost](docs/sdks/addressvalidation/README.md#suggestionsv1addressvalidationsuggestionspost) - Suggestions
 
 ### [customers](docs/sdks/customers/README.md)
 
-* [list](docs/sdks/customers/README.md#list) - Get Customers
-* [create](docs/sdks/customers/README.md#create) - Create Customer
-* [get](docs/sdks/customers/README.md#get) - Get Customer By Id
-* [update](docs/sdks/customers/README.md#update) - Update Customer
-* [getByExternalId](docs/sdks/customers/README.md#getbyexternalid) - Get Customer By External Id
-* [getTransactions](docs/sdks/customers/README.md#gettransactions) - Get Transactions By Customer Id
-* [createTransaction](docs/sdks/customers/README.md#createtransaction) - Create Transaction By Customer Id
+* [getCustomersV1](docs/sdks/customers/README.md#getcustomersv1) - Get Customers
+* [createCustomerV1CustomersPost](docs/sdks/customers/README.md#createcustomerv1customerspost) - Create Customer
+* [getCustomerByIdV1CustomersCustomerIdGet](docs/sdks/customers/README.md#getcustomerbyidv1customerscustomeridget) - Get Customer By Id
+* [updateCustomerV1CustomersCustomerIdPut](docs/sdks/customers/README.md#updatecustomerv1customerscustomeridput) - Update Customer
+* [getCustomerByExternalIdV1CustomersExternalExternalIdGet](docs/sdks/customers/README.md#getcustomerbyexternalidv1customersexternalexternalidget) - Get Customer By External Id
+* [getTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet](docs/sdks/customers/README.md#gettransactionsbycustomeridv1customerscustomeridtransactionsget) - Get Transactions By Customer Id
+* [createTransactionByCustomerIdV1CustomersCustomerIdTransactionsPost](docs/sdks/customers/README.md#createtransactionbycustomeridv1customerscustomeridtransactionspost) - Create Transaction By Customer Id
 
 ### [exemptions](docs/sdks/exemptions/README.md)
 
-* [list](docs/sdks/exemptions/README.md#list) - Get Exemptions
-* [create](docs/sdks/exemptions/README.md#create) - Create Exemption
-* [get](docs/sdks/exemptions/README.md#get) - Get Exemption By Id
-* [uploadCertificate](docs/sdks/exemptions/README.md#uploadcertificate) - Upload Exemption Certificate
-* [getAttachments](docs/sdks/exemptions/README.md#getattachments) - Get Attachments For Exemption
+* [getExemptionsV1ExemptionsGet](docs/sdks/exemptions/README.md#getexemptionsv1exemptionsget) - Get Exemptions
+* [createExemptionV1ExemptionsPost](docs/sdks/exemptions/README.md#createexemptionv1exemptionspost) - Create Exemption
+* [getExemptionByIdV1ExemptionsExemptionIdGet](docs/sdks/exemptions/README.md#getexemptionbyidv1exemptionsexemptionidget) - Get Exemption By Id
+* [uploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost](docs/sdks/exemptions/README.md#uploadexemptioncertificatev1exemptionsexemptionidattachmentspost) - Upload Exemption Certificate
+* [getAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGet](docs/sdks/exemptions/README.md#getattachmentsforexemptionv1exemptionsexemptionidattachmentsget) - Get Attachments For Exemption
+
+### [filings](docs/sdks/filings/README.md)
+
+* [getFilingsV1FilingsGet](docs/sdks/filings/README.md#getfilingsv1filingsget) - Get Filings
+* [getFilingByIdV1FilingsFilingIdGet](docs/sdks/filings/README.md#getfilingbyidv1filingsfilingidget) - Get Filing By Id
+* [getFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGet](docs/sdks/filings/README.md#getfilingsbyregistrationidv1filingsregistrationregistrationidget) - Get Filings By Registration Id
 
 ### [nexus](docs/sdks/nexus/README.md)
 
-* [list](docs/sdks/nexus/README.md#list) - Get Nexus For Org
+* [getPhysicalNexusV1NexusPhysicalNexusGet](docs/sdks/nexus/README.md#getphysicalnexusv1nexusphysicalnexusget) - Get Physical Nexus
+* [createPhysicalNexusV1NexusPhysicalNexusPost](docs/sdks/nexus/README.md#createphysicalnexusv1nexusphysicalnexuspost) - Create Physical Nexus
+* [updatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPut](docs/sdks/nexus/README.md#updatephysicalnexusv1nexusphysicalnexusphysicalnexusidput) - Update Physical Nexus
+* [deletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDelete](docs/sdks/nexus/README.md#deletephysicalnexusv1nexusphysicalnexusphysicalnexusiddelete) - Delete Physical Nexus
+* [getNexusForOrgV1NexusGet](docs/sdks/nexus/README.md#getnexusfororgv1nexusget) - Get Nexus For Org
 
 ### [products](docs/sdks/products/README.md)
 
-* [list](docs/sdks/products/README.md#list) - Get Products
-* [create](docs/sdks/products/README.md#create) - Create Product
-* [get](docs/sdks/products/README.md#get) - Get Product By Id
-* [update](docs/sdks/products/README.md#update) - Update Product
-* [listCategories](docs/sdks/products/README.md#listcategories) - Get Product Categories
+* [getProductsV1ProductsGet](docs/sdks/products/README.md#getproductsv1productsget) - Get Products
+* [createProductV1ProductsPost](docs/sdks/products/README.md#createproductv1productspost) - Create Product
+* [getProductByIdV1ProductsProductIdGet](docs/sdks/products/README.md#getproductbyidv1productsproductidget) - Get Product By Id
+* [updateProductV1ProductsProductIdPut](docs/sdks/products/README.md#updateproductv1productsproductidput) - Update Product
+* [getProductCategoriesV1ProductsCategoriesGet](docs/sdks/products/README.md#getproductcategoriesv1productscategoriesget) - Get Product Categories
+
+### [registrations](docs/sdks/registrations/README.md)
+
+* [getRegistrationsV1RegistrationsGet](docs/sdks/registrations/README.md#getregistrationsv1registrationsget) - Get Registrations
+* [createRegistrationV1RegistrationsPost](docs/sdks/registrations/README.md#createregistrationv1registrationspost) - Create Registration
+* [getRegistrationByIdV1RegistrationsRegistrationIdGet](docs/sdks/registrations/README.md#getregistrationbyidv1registrationsregistrationidget) - Get Registration By Id
+* [updateRegistrationV1RegistrationsRegistrationIdPut](docs/sdks/registrations/README.md#updateregistrationv1registrationsregistrationidput) - Update Registration
+* [deregisterRegistrationV1RegistrationsRegistrationIdDeregisterPost](docs/sdks/registrations/README.md#deregisterregistrationv1registrationsregistrationidderegisterpost) - Deregister Registration
 
 
 ### [taxEstimation](docs/sdks/taxestimation/README.md)
 
-* [estimateTax](docs/sdks/taxestimation/README.md#estimatetax) - Estimate Tax
+* [estimateTaxV1TaxEstimatePost](docs/sdks/taxestimation/README.md#estimatetaxv1taxestimatepost) - Estimate Tax
 
 ### [transactions](docs/sdks/transactions/README.md)
 
-* [list](docs/sdks/transactions/README.md#list) - Get Transactions
-* [create](docs/sdks/transactions/README.md#create) - Create Transaction
-* [getByExternalId](docs/sdks/transactions/README.md#getbyexternalid) - Get Transaction By External Id
-* [update](docs/sdks/transactions/README.md#update) - Update Transaction
-* [getById](docs/sdks/transactions/README.md#getbyid) - Get Transaction By Id
-* [getByFilingId](docs/sdks/transactions/README.md#getbyfilingid) - Get Transactions By Filing Id
-* [createCreditNote](docs/sdks/transactions/README.md#createcreditnote) - Create Credit Note By Transaction Id
-* [updateCreditNote](docs/sdks/transactions/README.md#updatecreditnote) - Update Credit Note By Transaction Id
+* [getTransactionsV1TransactionsGet](docs/sdks/transactions/README.md#gettransactionsv1transactionsget) - Get Transactions
+* [createTransactionV1TransactionsPost](docs/sdks/transactions/README.md#createtransactionv1transactionspost) - Create Transaction
+* [getTransactionByExternalIdV1TransactionsExternalExternalIdGet](docs/sdks/transactions/README.md#gettransactionbyexternalidv1transactionsexternalexternalidget) - Get Transaction By External Id
+* [updateTransactionV1TransactionsTransactionIdPut](docs/sdks/transactions/README.md#updatetransactionv1transactionstransactionidput) - Update Transaction
+* [getTransactionByIdV1TransactionsTransactionIdGet](docs/sdks/transactions/README.md#gettransactionbyidv1transactionstransactionidget) - Get Transaction By Id
+* [getTransactionsByFilingIdV1TransactionsFilingsFilingIdGet](docs/sdks/transactions/README.md#gettransactionsbyfilingidv1transactionsfilingsfilingidget) - Get Transactions By Filing Id
+* [postCreateCreditNoteByTransactionId](docs/sdks/transactions/README.md#postcreatecreditnotebytransactionid) - Create Credit Note By Transaction Id
+* [putUpdateCreditNoteByTransactionId](docs/sdks/transactions/README.md#putupdatecreditnotebytransactionid) - Update Credit Note By Transaction Id
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -254,7 +272,7 @@ By default an API error will raise a `Errors\APIException` exception, which has 
 | `$rawResponse` | *?\Psr\Http\Message\ResponseInterface*  | The raw HTTP response |
 | `$body`        | *string*                                | The response content  |
 
-When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `search` method throws the following exceptions:
+When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `searchV1AddressValidationSearchPost` method throws the following exceptions:
 
 | Error Type                                                         | Status Code | Content Type     |
 | ------------------------------------------------------------------ | ----------- | ---------------- |
@@ -293,7 +311,7 @@ try {
         apiKeyHeader: '<YOUR_API_KEY_HERE>',
     );
 
-    $response = $sdk->addressValidation->search(
+    $response = $sdk->addressValidation->searchV1AddressValidationSearchPost(
         request: $request,
         security: $requestSecurity
     );
@@ -351,7 +369,7 @@ $requestSecurity = new Operations\SearchV1AddressValidationSearchPostSecurity(
     apiKeyHeader: '<YOUR_API_KEY_HERE>',
 );
 
-$response = $sdk->addressValidation->search(
+$response = $sdk->addressValidation->searchV1AddressValidationSearchPost(
     request: $request,
     security: $requestSecurity
 );
