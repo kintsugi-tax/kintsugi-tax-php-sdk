@@ -7,7 +7,7 @@
 
 * [list](#list) - Get Customers
 * [create](#create) - Create Customer
-* [get](#get) - Get Customer By Id
+* [getById](#getbyid) - Get Customer By Id
 * [update](#update) - Update Customer
 * [getByExternalId](#getbyexternalid) - Get Customer By External Id
 * [getTransactions](#gettransactions) - Get Transactions By Customer Id
@@ -148,7 +148,7 @@ if ($response->customerRead !== null) {
 | Errors\ErrorResponse                                       | 500                                                        | application/json                                           |
 | Errors\APIException                                        | 4XX, 5XX                                                   | \*/\*                                                      |
 
-## get
+## getById
 
 The Get Customer By ID API retrieves the details of a single customer
     using their unique identifier. It returns customer-specific data,
@@ -176,7 +176,7 @@ $sdk = SDK\SDK::builder()
 
 
 
-$response = $sdk->customers->get(
+$response = $sdk->customers->getById(
     customerId: 'cust_abc123'
 );
 

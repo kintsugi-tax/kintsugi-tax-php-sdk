@@ -5,13 +5,13 @@
 
 ### Available Operations
 
-* [list](#list) - Get Products
+* [listItems](#listitems) - Get Products
 * [create](#create) - Create Product
 * [get](#get) - Get Product By Id
 * [update](#update) - Update Product
-* [listCategories](#listcategories) - Get Product Categories
+* [getCategories](#getcategories) - Get Product Categories
 
-## list
+## listItems
 
 Retrieve a paginated list of products based on filters and search query.
 
@@ -38,7 +38,7 @@ $sdk = SDK\SDK::builder()
 
 $request = new Operations\GetProductsV1ProductsGetRequest();
 
-$response = $sdk->products->list(
+$response = $sdk->products->listItems(
     request: $request
 );
 
@@ -253,7 +253,7 @@ if ($response->productRead !== null) {
 | Errors\ErrorResponse                                      | 500                                                       | application/json                                          |
 | Errors\APIException                                       | 4XX, 5XX                                                  | \*/\*                                                     |
 
-## listCategories
+## getCategories
 
 The Get Product Categories API retrieves all
     product categories.  This endpoint helps users understand and select the
@@ -281,7 +281,7 @@ $sdk = SDK\SDK::builder()
 
 
 
-$response = $sdk->products->listCategories(
+$response = $sdk->products->getCategories(
 
 );
 

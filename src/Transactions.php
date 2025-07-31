@@ -426,7 +426,7 @@ class Transactions
      * @return Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getById(string $transactionId, ?Options $options = null): Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
+    public function get(string $transactionId, ?Options $options = null): Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
     {
         $request = new Operations\GetTransactionByIdV1TransactionsTransactionIdGetRequest(
             transactionId: $transactionId,

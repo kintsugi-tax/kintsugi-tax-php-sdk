@@ -320,7 +320,7 @@ class Customers
      * @return Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function get(string $customerId, ?Options $options = null): Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
+    public function getById(string $customerId, ?Options $options = null): Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
     {
         $request = new Operations\GetCustomerByIdV1CustomersCustomerIdGetRequest(
             customerId: $customerId,

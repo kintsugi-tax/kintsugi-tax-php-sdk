@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: fdb4bdf9-63b7-4d28-815c-b04a56c0369b
 management:
-  docChecksum: 05be7a6ce0f40d1f7e41b1dd0493dbfd
+  docChecksum: f7b038ee4c4fccfae11b5e9873550184
   docVersion: 1.0.0
   speakeasyVersion: 1.595.0
   generationVersion: 2.670.1
-  releaseVersion: 0.2.0
-  configChecksum: 13c14974b065bf98fa8f24f1c00644a7
+  releaseVersion: 0.4.1
+  configChecksum: a27fc6c56339121f08e095dc970890f7
   repoURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk.git
   installationURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk
   published: true
@@ -23,6 +23,7 @@ features:
     methodSecurity: 2.82.2
     nameOverrides: 2.81.2
     responseFormat: 0.1.0
+    unions: 0.1.5
 generatedFiles:
   - .gitattributes
   - USAGE.md
@@ -35,15 +36,20 @@ generatedFiles:
   - docs/Models/Components/AddressType.md
   - docs/Models/Components/AppliedTo.md
   - docs/Models/Components/AttachmentRead.md
+  - docs/Models/Components/Attachments.md
   - docs/Models/Components/BackendSrcAddressValidationResponsesValidationErrorItem.md
   - docs/Models/Components/BackendSrcCustomersResponsesValidationErrorItem.md
   - docs/Models/Components/BackendSrcExemptionsModelsExemptionRead.md
   - docs/Models/Components/BackendSrcExemptionsResponsesValidationErrorItem.md
   - docs/Models/Components/BackendSrcExemptionsSerializersExemptionRead.md
+  - docs/Models/Components/BackendSrcFilingsResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcNexusResponsesValidationErrorItem.md
   - docs/Models/Components/BackendSrcProductsResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcRegistrationsResponsesValidationErrorItem.md
   - docs/Models/Components/BackendSrcTaxEstimationResponsesValidationErrorItem.md
   - docs/Models/Components/BackendSrcTransactionsResponsesValidationErrorItem.md
   - docs/Models/Components/BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost.md
+  - docs/Models/Components/ChangeRegimeStatusEnum.md
   - docs/Models/Components/CountryCodeEnum.md
   - docs/Models/Components/CreditNoteCreate.md
   - docs/Models/Components/CreditNoteItemCreateUpdate.md
@@ -62,17 +68,30 @@ generatedFiles:
   - docs/Models/Components/ExemptionType.md
   - docs/Models/Components/FastapiPaginationDefaultPageExemptionRead2.md
   - docs/Models/Components/File.md
+  - docs/Models/Components/FilingDetailsRead.md
+  - docs/Models/Components/FilingFrequencyEnum.md
+  - docs/Models/Components/FilingRead.md
+  - docs/Models/Components/FilingStatusEnum.md
   - docs/Models/Components/JurisdictionType.md
   - docs/Models/Components/NexusResponse.md
   - docs/Models/Components/NexusStateEnum.md
   - docs/Models/Components/NexusStatusEnum.md
   - docs/Models/Components/NexusTypeEnum.md
+  - docs/Models/Components/OSSRegistrationCreatePayload.md
+  - docs/Models/Components/OssTypeEnum.md
   - docs/Models/Components/PageCustomerRead.md
+  - docs/Models/Components/PageFilingRead.md
   - docs/Models/Components/PageNexusResponse.md
+  - docs/Models/Components/PagePhysicalNexusRead.md
   - docs/Models/Components/PageProductRead.md
+  - docs/Models/Components/PageRegistrationReadWithPassword.md
   - docs/Models/Components/PageTransactionEstimateResponse.md
   - docs/Models/Components/PageTransactionRead.md
   - docs/Models/Components/PeriodModelEnum.md
+  - docs/Models/Components/PhysicalNexusCategory.md
+  - docs/Models/Components/PhysicalNexusCreate.md
+  - docs/Models/Components/PhysicalNexusRead.md
+  - docs/Models/Components/PhysicalNexusUpdate.md
   - docs/Models/Components/ProcessingStatusEnum.md
   - docs/Models/Components/ProductCategories.md
   - docs/Models/Components/ProductCategoryEnum.md
@@ -84,8 +103,15 @@ generatedFiles:
   - docs/Models/Components/ProductSubCategoryEnum.md
   - docs/Models/Components/ProductUpdate.md
   - docs/Models/Components/Registration.md
+  - docs/Models/Components/RegistrationCreatePayload.md
+  - docs/Models/Components/RegistrationRead.md
+  - docs/Models/Components/RegistrationReadWithPassword.md
+  - docs/Models/Components/RegistrationStatusEnum.md
+  - docs/Models/Components/RegistrationTypeEnum.md
+  - docs/Models/Components/RegistrationUpdateAPI.md
   - docs/Models/Components/RegistrationsRegimeEnum.md
   - docs/Models/Components/RelatedEntityType.md
+  - docs/Models/Components/SSTRegistrationCreatePayload.md
   - docs/Models/Components/SalesOrTransactionsEnum.md
   - docs/Models/Components/Security.md
   - docs/Models/Components/SourceEnum.md
@@ -126,17 +152,27 @@ generatedFiles:
   - docs/Models/Errors/BackendSrcAddressValidationResponsesValidationErrorResponse.md
   - docs/Models/Errors/BackendSrcCustomersResponsesValidationErrorResponse.md
   - docs/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcFilingsResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcNexusResponsesValidationErrorResponse.md
   - docs/Models/Errors/BackendSrcProductsResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcRegistrationsResponsesValidationErrorResponse.md
   - docs/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponse.md
   - docs/Models/Errors/BackendSrcTransactionsResponsesValidationErrorResponse.md
   - docs/Models/Errors/ErrorResponse.md
   - docs/Models/Errors/HTTPValidationError.md
   - docs/Models/Operations/CreateCustomerV1CustomersPostResponse.md
   - docs/Models/Operations/CreateExemptionV1ExemptionsPostResponse.md
+  - docs/Models/Operations/CreatePhysicalNexusV1NexusPhysicalNexusPostResponse.md
   - docs/Models/Operations/CreateProductV1ProductsPostResponse.md
+  - docs/Models/Operations/CreateRegistration.md
+  - docs/Models/Operations/CreateRegistrationV1RegistrationsPostResponse.md
   - docs/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest.md
   - docs/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse.md
   - docs/Models/Operations/CreateTransactionV1TransactionsPostResponse.md
+  - docs/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteRequest.md
+  - docs/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteResponse.md
+  - docs/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest.md
+  - docs/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse.md
   - docs/Models/Operations/EstimateTaxV1TaxEstimatePostRequest.md
   - docs/Models/Operations/EstimateTaxV1TaxEstimatePostResponse.md
   - docs/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest.md
@@ -151,13 +187,25 @@ generatedFiles:
   - docs/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetResponse.md
   - docs/Models/Operations/GetExemptionsV1ExemptionsGetRequest.md
   - docs/Models/Operations/GetExemptionsV1ExemptionsGetResponse.md
+  - docs/Models/Operations/GetFilingByIdV1FilingsFilingIdGetRequest.md
+  - docs/Models/Operations/GetFilingByIdV1FilingsFilingIdGetResponse.md
+  - docs/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetRequest.md
+  - docs/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetResponse.md
+  - docs/Models/Operations/GetFilingsV1FilingsGetRequest.md
+  - docs/Models/Operations/GetFilingsV1FilingsGetResponse.md
   - docs/Models/Operations/GetNexusForOrgV1NexusGetRequest.md
   - docs/Models/Operations/GetNexusForOrgV1NexusGetResponse.md
+  - docs/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetRequest.md
+  - docs/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetResponse.md
   - docs/Models/Operations/GetProductByIdV1ProductsProductIdGetRequest.md
   - docs/Models/Operations/GetProductByIdV1ProductsProductIdGetResponse.md
   - docs/Models/Operations/GetProductCategoriesV1ProductsCategoriesGetResponse.md
   - docs/Models/Operations/GetProductsV1ProductsGetRequest.md
   - docs/Models/Operations/GetProductsV1ProductsGetResponse.md
+  - docs/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest.md
+  - docs/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse.md
+  - docs/Models/Operations/GetRegistrationsV1RegistrationsGetRequest.md
+  - docs/Models/Operations/GetRegistrationsV1RegistrationsGetResponse.md
   - docs/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest.md
   - docs/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse.md
   - docs/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetRequest.md
@@ -177,17 +225,24 @@ generatedFiles:
   - docs/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostResponse.md
   - docs/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutRequest.md
   - docs/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutResponse.md
+  - docs/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutRequest.md
+  - docs/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutResponse.md
   - docs/Models/Operations/UpdateProductV1ProductsProductIdPutRequest.md
   - docs/Models/Operations/UpdateProductV1ProductsProductIdPutResponse.md
+  - docs/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutRequest.md
+  - docs/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutResponse.md
   - docs/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutRequest.md
   - docs/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutResponse.md
   - docs/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest.md
   - docs/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse.md
   - docs/sdks/addressvalidation/README.md
+  - docs/sdks/attachments/README.md
   - docs/sdks/customers/README.md
   - docs/sdks/exemptions/README.md
+  - docs/sdks/filings/README.md
   - docs/sdks/nexus/README.md
   - docs/sdks/products/README.md
+  - docs/sdks/registrations/README.md
   - docs/sdks/sdk/README.md
   - docs/sdks/taxestimation/README.md
   - docs/sdks/transactions/README.md
@@ -196,8 +251,10 @@ generatedFiles:
   - pint.json
   - rector.php
   - src/AddressValidation.php
+  - src/Attachments.php
   - src/Customers.php
   - src/Exemptions.php
+  - src/Filings.php
   - src/Hooks/AfterErrorContext.php
   - src/Hooks/AfterErrorHook.php
   - src/Hooks/AfterSuccessContext.php
@@ -221,15 +278,20 @@ generatedFiles:
   - src/Models/Components/AddressType.php
   - src/Models/Components/AppliedTo.php
   - src/Models/Components/AttachmentRead.php
+  - src/Models/Components/Attachments.php
   - src/Models/Components/BackendSrcAddressValidationResponsesValidationErrorItem.php
   - src/Models/Components/BackendSrcCustomersResponsesValidationErrorItem.php
   - src/Models/Components/BackendSrcExemptionsModelsExemptionRead.php
   - src/Models/Components/BackendSrcExemptionsResponsesValidationErrorItem.php
   - src/Models/Components/BackendSrcExemptionsSerializersExemptionRead.php
+  - src/Models/Components/BackendSrcFilingsResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcNexusResponsesValidationErrorItem.php
   - src/Models/Components/BackendSrcProductsResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcRegistrationsResponsesValidationErrorItem.php
   - src/Models/Components/BackendSrcTaxEstimationResponsesValidationErrorItem.php
   - src/Models/Components/BackendSrcTransactionsResponsesValidationErrorItem.php
   - src/Models/Components/BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost.php
+  - src/Models/Components/ChangeRegimeStatusEnum.php
   - src/Models/Components/CountryCodeEnum.php
   - src/Models/Components/CreditNoteCreate.php
   - src/Models/Components/CreditNoteItemCreateUpdate.php
@@ -248,17 +310,30 @@ generatedFiles:
   - src/Models/Components/ExemptionType.php
   - src/Models/Components/FastapiPaginationDefaultPageExemptionRead2.php
   - src/Models/Components/File.php
+  - src/Models/Components/FilingDetailsRead.php
+  - src/Models/Components/FilingFrequencyEnum.php
+  - src/Models/Components/FilingRead.php
+  - src/Models/Components/FilingStatusEnum.php
   - src/Models/Components/JurisdictionType.php
   - src/Models/Components/NexusResponse.php
   - src/Models/Components/NexusStateEnum.php
   - src/Models/Components/NexusStatusEnum.php
   - src/Models/Components/NexusTypeEnum.php
+  - src/Models/Components/OSSRegistrationCreatePayload.php
+  - src/Models/Components/OssTypeEnum.php
   - src/Models/Components/PageCustomerRead.php
+  - src/Models/Components/PageFilingRead.php
   - src/Models/Components/PageNexusResponse.php
+  - src/Models/Components/PagePhysicalNexusRead.php
   - src/Models/Components/PageProductRead.php
+  - src/Models/Components/PageRegistrationReadWithPassword.php
   - src/Models/Components/PageTransactionEstimateResponse.php
   - src/Models/Components/PageTransactionRead.php
   - src/Models/Components/PeriodModelEnum.php
+  - src/Models/Components/PhysicalNexusCategory.php
+  - src/Models/Components/PhysicalNexusCreate.php
+  - src/Models/Components/PhysicalNexusRead.php
+  - src/Models/Components/PhysicalNexusUpdate.php
   - src/Models/Components/ProcessingStatusEnum.php
   - src/Models/Components/ProductCategories.php
   - src/Models/Components/ProductCategoryEnum.php
@@ -270,8 +345,15 @@ generatedFiles:
   - src/Models/Components/ProductSubCategoryEnum.php
   - src/Models/Components/ProductUpdate.php
   - src/Models/Components/Registration.php
+  - src/Models/Components/RegistrationCreatePayload.php
+  - src/Models/Components/RegistrationRead.php
+  - src/Models/Components/RegistrationReadWithPassword.php
+  - src/Models/Components/RegistrationStatusEnum.php
+  - src/Models/Components/RegistrationTypeEnum.php
+  - src/Models/Components/RegistrationUpdateAPI.php
   - src/Models/Components/RegistrationsRegimeEnum.php
   - src/Models/Components/RelatedEntityType.php
+  - src/Models/Components/SSTRegistrationCreatePayload.php
   - src/Models/Components/SalesOrTransactionsEnum.php
   - src/Models/Components/Security.php
   - src/Models/Components/SourceEnum.php
@@ -316,8 +398,14 @@ generatedFiles:
   - src/Models/Errors/BackendSrcCustomersResponsesValidationErrorResponseThrowable.php
   - src/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponse.php
   - src/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcFilingsResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcFilingsResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcNexusResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcNexusResponsesValidationErrorResponseThrowable.php
   - src/Models/Errors/BackendSrcProductsResponsesValidationErrorResponse.php
   - src/Models/Errors/BackendSrcProductsResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcRegistrationsResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcRegistrationsResponsesValidationErrorResponseThrowable.php
   - src/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponse.php
   - src/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponseThrowable.php
   - src/Models/Errors/BackendSrcTransactionsResponsesValidationErrorResponse.php
@@ -328,10 +416,16 @@ generatedFiles:
   - src/Models/Errors/HTTPValidationErrorThrowable.php
   - src/Models/Operations/CreateCustomerV1CustomersPostResponse.php
   - src/Models/Operations/CreateExemptionV1ExemptionsPostResponse.php
+  - src/Models/Operations/CreatePhysicalNexusV1NexusPhysicalNexusPostResponse.php
   - src/Models/Operations/CreateProductV1ProductsPostResponse.php
+  - src/Models/Operations/CreateRegistrationV1RegistrationsPostResponse.php
   - src/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest.php
   - src/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse.php
   - src/Models/Operations/CreateTransactionV1TransactionsPostResponse.php
+  - src/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteRequest.php
+  - src/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteResponse.php
+  - src/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest.php
+  - src/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse.php
   - src/Models/Operations/EstimateTaxV1TaxEstimatePostRequest.php
   - src/Models/Operations/EstimateTaxV1TaxEstimatePostResponse.php
   - src/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest.php
@@ -346,13 +440,25 @@ generatedFiles:
   - src/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetResponse.php
   - src/Models/Operations/GetExemptionsV1ExemptionsGetRequest.php
   - src/Models/Operations/GetExemptionsV1ExemptionsGetResponse.php
+  - src/Models/Operations/GetFilingByIdV1FilingsFilingIdGetRequest.php
+  - src/Models/Operations/GetFilingByIdV1FilingsFilingIdGetResponse.php
+  - src/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetRequest.php
+  - src/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetResponse.php
+  - src/Models/Operations/GetFilingsV1FilingsGetRequest.php
+  - src/Models/Operations/GetFilingsV1FilingsGetResponse.php
   - src/Models/Operations/GetNexusForOrgV1NexusGetRequest.php
   - src/Models/Operations/GetNexusForOrgV1NexusGetResponse.php
+  - src/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetRequest.php
+  - src/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetResponse.php
   - src/Models/Operations/GetProductByIdV1ProductsProductIdGetRequest.php
   - src/Models/Operations/GetProductByIdV1ProductsProductIdGetResponse.php
   - src/Models/Operations/GetProductCategoriesV1ProductsCategoriesGetResponse.php
   - src/Models/Operations/GetProductsV1ProductsGetRequest.php
   - src/Models/Operations/GetProductsV1ProductsGetResponse.php
+  - src/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest.php
+  - src/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse.php
+  - src/Models/Operations/GetRegistrationsV1RegistrationsGetRequest.php
+  - src/Models/Operations/GetRegistrationsV1RegistrationsGetResponse.php
   - src/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest.php
   - src/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse.php
   - src/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetRequest.php
@@ -372,14 +478,19 @@ generatedFiles:
   - src/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostResponse.php
   - src/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutRequest.php
   - src/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutResponse.php
+  - src/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutRequest.php
+  - src/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutResponse.php
   - src/Models/Operations/UpdateProductV1ProductsProductIdPutRequest.php
   - src/Models/Operations/UpdateProductV1ProductsProductIdPutResponse.php
+  - src/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutRequest.php
+  - src/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutResponse.php
   - src/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutRequest.php
   - src/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutResponse.php
   - src/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest.php
   - src/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse.php
   - src/Nexus.php
   - src/Products.php
+  - src/Registrations.php
   - src/SDK.php
   - src/SDKBuilder.php
   - src/SDKConfiguration.php
@@ -989,4 +1100,238 @@ examples:
           application/json: {"organization_id": "<id>", "external_id": "<id>", "date": "2024-03-08T14:51:43.874Z", "total_amount": "0.00", "marketplace": false, "total_tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "total_tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "total_tax_liability_amount": "0.00", "taxable_amount": "0.00", "locked": false, "id": "<id>", "addresses": [], "transaction_items": [{"organization_id": "<id>", "date": "2025-04-01T04:49:49.945Z", "external_product_id": "<id>", "quantity": "1.0", "amount": "0.00", "tax_amount_imported": "0.00", "tax_rate_imported": "0.00", "tax_amount_calculated": "0.00", "tax_rate_calculated": "0.00", "taxable_amount": "0.00", "exempt": false, "id": "<id>", "tax_items": []}], "type": "SALE"}
         "422":
           application/json: {}
+  get_filings_v1_filings_get:
+    speakeasy-default-get-filings-v1-filings-get:
+      parameters:
+        query:
+          status__in: "FILED,FILING,UNFILED"
+          start_date: "2024-01-01"
+          end_date: "2024-12-31"
+          date_filed__gte: "2024-01-01"
+          date_filed__lte: "2024-12-31"
+          order_by: "status,start_date,end_date,amount"
+          state_code: "CA"
+          country_code: ["US"]
+          page: 1
+          size: 50
+      responses:
+        "200":
+          application/json: {"items": [], "total": 158868, "page": 564163, "size": 870268}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+  get_filing_by_id_v1_filings__filing_id__get:
+    speakeasy-default-get-filing-by-id-v1-filings-filing-id-get:
+      parameters:
+        path:
+          filing_id: "<id>"
+      responses:
+        "200":
+          application/json: {"start_date": "2024-05-22", "end_date": "2023-08-31", "country_code": "GL", "auto_approved": false, "amount_calculated": "0.00", "amount_adjusted": "0.00", "amount_discounts": "0.00", "amount_fees": "0.00", "amount_penalties": "0.00", "amount_tax_collected": "0.00", "amount_sales": "0.00", "total_taxable_sales": "0.00", "amount": "0.00", "total_tax_liability": "0.00", "transaction_count": 0, "tax_remitted": "0.00", "id": "<id>", "registration_id": "<id>", "credits_utilized": "0.00"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>"], "msg": "<value>", "input": "<value>", "ctx": {}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  get_filings_by_registration_id_v1_filings_registration__registration_id__get:
+    speakeasy-default-get-filings-by-registration-id-v1-filings-registration-registration-id-get:
+      parameters:
+        path:
+          registration_id: "<id>"
+        query:
+          page: 1
+          size: 50
+      responses:
+        "200":
+          application/json: {"items": [], "total": 546803, "page": 610421, "size": 87254}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>", "<value 2>"], "msg": "<value>", "input": "<value>", "ctx": {}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  get_physical_nexus_v1_nexus_physical_nexus_get:
+    speakeasy-default-get-physical-nexus-v1-nexus-physical-nexus-get:
+      parameters:
+        query:
+          order_by: "country_code,state_code,start_date,end_date"
+          page: 1
+          size: 50
+      responses:
+        "200":
+          application/json: {"items": [{"country_code": "JO", "state_code": "<value>", "start_date": "2024-03-23", "category": "DIGITAL_INFRASTRUCTURE_LOCALIZED", "id": "<id>"}], "total": 191637, "page": 913277, "size": 155955}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": [], "msg": "<value>", "input": "<value>", "ctx": {"key": "<value>", "key1": "<value>"}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  create_physical_nexus_v1_nexus_physical_nexus_post:
+    speakeasy-default-create-physical-nexus-v1-nexus-physical-nexus-post:
+      requestBody:
+        application/json: {"country_code": "HK", "state_code": "<value>", "start_date": "2023-03-25", "category": "MANUFACTURE_OR_PRODUCTION_IN_CANADA"}
+      responses:
+        "200":
+          application/json: {"country_code": "AW", "state_code": "<value>", "start_date": "2023-01-29", "category": "MANUFACTURING_FACILITIES", "id": "<id>"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+  update_physical_nexus_v1_nexus_physical_nexus__physical_nexus_id__put:
+    speakeasy-default-update-physical-nexus-v1-nexus-physical-nexus-physical-nexus-id-put:
+      parameters:
+        path:
+          physical_nexus_id: "<id>"
+      requestBody:
+        application/json: {"start_date": "2023-07-29", "category": "WAREHOUSE_AND_INVENTORY_PRESENCE"}
+      responses:
+        "200":
+          application/json: {"country_code": "KR", "state_code": "<value>", "start_date": "2024-12-18", "category": "TELECOMMUTING_OR_REMOTE_EMPLOYEE", "id": "<id>"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+  delete_physical_nexus_v1_nexus_physical_nexus__physical_nexus_id__delete:
+    speakeasy-default-delete-physical-nexus-v1-nexus-physical-nexus-physical-nexus-id-delete:
+      parameters:
+        path:
+          physical_nexus_id: "<id>"
+      responses:
+        "200":
+          application/json: "<value>"
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+  get_registrations_v1_registrations_get:
+    speakeasy-default-get-registrations-v1-registrations-get:
+      parameters:
+        query:
+          status__in: "REGISTERED,PROCESSING,UNREGISTERED,DEREGISTERING,DEREGISTERED,VALIDATING,AWAITING_CLARIFICATION"
+          page: 1
+          size: 50
+      responses:
+        "200":
+          application/json: {"items": [], "total": 216521, "page": 460128, "size": 260478}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+  create_registration_v1_registrations_post:
+    regular_legacy:
+      requestBody:
+        application/json: {"registration_import_type": "OSS", "imported": false}
+      responses:
+        "200":
+          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+    regular_new:
+      requestBody:
+        application/json: {"registration_import_type": "REGULAR", "registration_date": "2025-02-01", "registration_email": "example@domain.com", "auto_registered": true, "country_code": "US", "state_code": "TX", "state_name": "Texas", "filing_frequency": "MONTHLY", "filing_days": 15, "comment": "Registering for monthly sales tax filings", "initial_sync": false, "amount_fees": 100, "vda": false, "sst_import": false}
+      responses:
+        "200":
+          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+    oss:
+      requestBody:
+        application/json: {"registration_import_type": "OSS", "password_plain_text": "oss_pass_fr", "password_metadata_plain_text": "{\"q\":\"a\"}", "member_state_of_identification_code": "FR", "imported": true}
+      responses:
+        "200":
+          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+    sst:
+      requestBody:
+        application/json: {"registration_import_type": "SST", "password_plain_text": "sst_pass", "password_metadata_plain_text": "{\"q\":\"a\"}", "username": "sst_user"}
+      responses:
+        "200":
+          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+    speakeasy-default-create-registration-v1-registrations-post:
+      requestBody:
+        application/json: {"registration_import_type": "REGULAR", "auto_registered": false, "country_code": "GM", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "MONTHLY", "filing_days": 801864, "initial_sync": false, "amount_fees": 0, "vda": false, "sst_import": false}
+      responses:
+        "200":
+          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+  get_registration_by_id_v1_registrations__registration_id__get:
+    speakeasy-default-get-registration-by-id-v1-registrations-registration-id-get:
+      parameters:
+        path:
+          registration_id: "<id>"
+      responses:
+        "200":
+          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "AWAITING_CLARIFICATION", "country_code": "BO", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "MONTHLY", "filing_days": 607962, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>", "<value 2>", "<value 3>"], "msg": "<value>", "input": "<value>", "ctx": {"key": "<value>"}}]}
+        "500":
+          application/json: {"detail": "<value>"}
+  update_registration_v1_registrations__registration_id__put:
+    speakeasy-default-update-registration-v1-registrations-registration-id-put:
+      parameters:
+        path:
+          registration_id: "<id>"
+      requestBody:
+        application/json: {"auto_registered": false, "third_party_enabled": false}
+      responses:
+        "200":
+          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "DEREGISTERING", "country_code": "GL", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_MONTHLY", "filing_days": 43389, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": []}
+        "500":
+          application/json: {"detail": "<value>"}
+  deregister_registration_v1_registrations__registration_id__deregister_post:
+    speakeasy-default-deregister-registration-v1-registrations-registration-id-deregister-post:
+      parameters:
+        path:
+          registration_id: "regs_123456"
+      responses:
+        "200":
+          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "DEREGISTERED", "country_code": "PW", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "FOUR_MONTHLY", "filing_days": 352449, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+        "401":
+          application/json: {"detail": "<value>"}
+        "422":
+          application/json: {"detail": [{"type": "<value>", "loc": ["<value 1>"], "msg": "<value>", "input": "<value>", "ctx": {"key": "<value>", "key1": "<value>"}}]}
+        "500":
+          application/json: {"detail": "<value>"}
 examplesVersion: 1.0.2

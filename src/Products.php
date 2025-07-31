@@ -261,7 +261,7 @@ class Products
      * @return Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function listCategories(?Options $options = null): Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
+    public function getCategories(?Options $options = null): Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/categories/');
@@ -334,7 +334,7 @@ class Products
      * @return Operations\GetProductsV1ProductsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(?Operations\GetProductsV1ProductsGetRequest $request = null, ?Options $options = null): Operations\GetProductsV1ProductsGetResponse
+    public function listItems(?Operations\GetProductsV1ProductsGetRequest $request = null, ?Options $options = null): Operations\GetProductsV1ProductsGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/');

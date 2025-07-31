@@ -195,7 +195,7 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 
 * [list](docs/sdks/customers/README.md#list) - Get Customers
 * [create](docs/sdks/customers/README.md#create) - Create Customer
-* [get](docs/sdks/customers/README.md#get) - Get Customer By Id
+* [getById](docs/sdks/customers/README.md#getbyid) - Get Customer By Id
 * [update](docs/sdks/customers/README.md#update) - Update Customer
 * [getByExternalId](docs/sdks/customers/README.md#getbyexternalid) - Get Customer By External Id
 * [getTransactions](docs/sdks/customers/README.md#gettransactions) - Get Transactions By Customer Id
@@ -205,26 +205,47 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 
 * [list](docs/sdks/exemptions/README.md#list) - Get Exemptions
 * [create](docs/sdks/exemptions/README.md#create) - Create Exemption
-* [get](docs/sdks/exemptions/README.md#get) - Get Exemption By Id
+* [getById](docs/sdks/exemptions/README.md#getbyid) - Get Exemption By Id
 * [uploadCertificate](docs/sdks/exemptions/README.md#uploadcertificate) - Upload Exemption Certificate
-* [getAttachments](docs/sdks/exemptions/README.md#getattachments) - Get Attachments For Exemption
+
+#### [exemptions->attachments](docs/sdks/attachments/README.md)
+
+* [get](docs/sdks/attachments/README.md#get) - Get Attachments For Exemption
+
+### [filings](docs/sdks/filings/README.md)
+
+* [get](docs/sdks/filings/README.md#get) - Get Filings
+* [getById](docs/sdks/filings/README.md#getbyid) - Get Filing By Id
+* [getByRegistrationId](docs/sdks/filings/README.md#getbyregistrationid) - Get Filings By Registration Id
 
 ### [nexus](docs/sdks/nexus/README.md)
 
+* [listPhysical](docs/sdks/nexus/README.md#listphysical) - Get Physical Nexus
+* [createPhysical](docs/sdks/nexus/README.md#createphysical) - Create Physical Nexus
+* [updatePhysical](docs/sdks/nexus/README.md#updatephysical) - Update Physical Nexus
+* [delete](docs/sdks/nexus/README.md#delete) - Delete Physical Nexus
 * [list](docs/sdks/nexus/README.md#list) - Get Nexus For Org
 
 ### [products](docs/sdks/products/README.md)
 
-* [list](docs/sdks/products/README.md#list) - Get Products
+* [listItems](docs/sdks/products/README.md#listitems) - Get Products
 * [create](docs/sdks/products/README.md#create) - Create Product
 * [get](docs/sdks/products/README.md#get) - Get Product By Id
 * [update](docs/sdks/products/README.md#update) - Update Product
-* [listCategories](docs/sdks/products/README.md#listcategories) - Get Product Categories
+* [getCategories](docs/sdks/products/README.md#getcategories) - Get Product Categories
+
+### [registrations](docs/sdks/registrations/README.md)
+
+* [list](docs/sdks/registrations/README.md#list) - Get Registrations
+* [create](docs/sdks/registrations/README.md#create) - Create Registration
+* [getById](docs/sdks/registrations/README.md#getbyid) - Get Registration By Id
+* [update](docs/sdks/registrations/README.md#update) - Update Registration
+* [deregister](docs/sdks/registrations/README.md#deregister) - Deregister Registration
 
 
 ### [taxEstimation](docs/sdks/taxestimation/README.md)
 
-* [estimateTax](docs/sdks/taxestimation/README.md#estimatetax) - Estimate Tax
+* [estimate](docs/sdks/taxestimation/README.md#estimate) - Estimate Tax
 
 ### [transactions](docs/sdks/transactions/README.md)
 
@@ -232,7 +253,7 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 * [create](docs/sdks/transactions/README.md#create) - Create Transaction
 * [getByExternalId](docs/sdks/transactions/README.md#getbyexternalid) - Get Transaction By External Id
 * [update](docs/sdks/transactions/README.md#update) - Update Transaction
-* [getById](docs/sdks/transactions/README.md#getbyid) - Get Transaction By Id
+* [get](docs/sdks/transactions/README.md#get) - Get Transaction By Id
 * [getByFilingId](docs/sdks/transactions/README.md#getbyfilingid) - Get Transactions By Filing Id
 * [createCreditNote](docs/sdks/transactions/README.md#createcreditnote) - Create Credit Note By Transaction Id
 * [updateCreditNote](docs/sdks/transactions/README.md#updatecreditnote) - Update Credit Note By Transaction Id

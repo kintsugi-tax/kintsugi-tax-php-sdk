@@ -9,7 +9,7 @@
 * [create](#create) - Create Transaction
 * [getByExternalId](#getbyexternalid) - Get Transaction By External Id
 * [update](#update) - Update Transaction
-* [getById](#getbyid) - Get Transaction By Id
+* [get](#get) - Get Transaction By Id
 * [getByFilingId](#getbyfilingid) - Get Transactions By Filing Id
 * [createCreditNote](#createcreditnote) - Create Credit Note By Transaction Id
 * [updateCreditNote](#updatecreditnote) - Update Credit Note By Transaction Id
@@ -285,7 +285,7 @@ if ($response->transactionRead !== null) {
 | Errors\HTTPValidationError | 422                        | application/json           |
 | Errors\APIException        | 4XX, 5XX                   | \*/\*                      |
 
-## getById
+## get
 
 The Get Transaction By Id API retrieves detailed information
     about a specific transaction by providing its unique transaction ID.
@@ -312,7 +312,7 @@ $sdk = SDK\SDK::builder()
 
 
 
-$response = $sdk->transactions->getById(
+$response = $sdk->transactions->get(
     transactionId: '<id>'
 );
 
