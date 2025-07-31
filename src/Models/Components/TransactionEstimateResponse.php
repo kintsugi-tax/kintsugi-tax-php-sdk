@@ -63,10 +63,8 @@ class TransactionEstimateResponse
     public ?string $description = null;
 
     /**
-     * While currently not used, it may be used in the future to determine taxability. The source of the transaction (e.g., OTHER).
      *
      * @var ?SourceEnum $source
-     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
@@ -74,16 +72,6 @@ class TransactionEstimateResponse
     public ?SourceEnum $source = null;
 
     /**
-     * Indicates if the transaction involves a marketplace.
-     *
-     * @var ?bool $marketplace
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('marketplace')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $marketplace = null;
-
-    /**
-     * Details about the customer. If the customer is not found, it will be ignored.
      *
      * @var ?CustomerBase $customer
      */
@@ -100,6 +88,15 @@ class TransactionEstimateResponse
     #[\Speakeasy\Serializer\Annotation\SerializedName('total_amount')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $totalAmount = null;
+
+    /**
+     * Indicates if the transaction involves a marketplace.
+     *
+     * @var ?bool $marketplace
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('marketplace')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $marketplace = null;
 
     /**
      * The total amount of tax determined for the transaction.
@@ -154,18 +151,18 @@ class TransactionEstimateResponse
      * @param  array<TransactionItemEstimateResponse>  $transactionItems
      * @param  array<TransactionEstimateResponseAddress>  $addresses
      * @param  ?string  $totalAmount
+     * @param  ?string  $description
+     * @param  ?SourceEnum  $source
+     * @param  ?bool  $marketplace
+     * @param  ?CustomerBase  $customer
      * @param  ?string  $totalTaxAmountCalculated
      * @param  ?string  $taxableAmount
      * @param  ?string  $taxRateCalculated
      * @param  ?bool  $nexusMet
      * @param  ?bool  $hasActiveRegistration
-     * @param  ?string  $description
-     * @param  ?SourceEnum  $source
-     * @param  ?bool  $marketplace
-     * @param  ?CustomerBase  $customer
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, ?string $description = null, ?SourceEnum $source = null, ?bool $marketplace = null, ?CustomerBase $customer = null, ?string $totalAmount = '0.0', ?string $totalTaxAmountCalculated = '0.00', ?string $taxableAmount = '0.00', ?string $taxRateCalculated = '0.00', ?bool $nexusMet = false, ?bool $hasActiveRegistration = false)
+    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, ?string $description = null, ?SourceEnum $source = null, ?CustomerBase $customer = null, ?string $totalAmount = '0.0', ?bool $marketplace = false, ?string $totalTaxAmountCalculated = '0.00', ?string $taxableAmount = '0.00', ?string $taxRateCalculated = '0.00', ?bool $nexusMet = false, ?bool $hasActiveRegistration = false)
     {
         $this->date = $date;
         $this->externalId = $externalId;
@@ -174,9 +171,9 @@ class TransactionEstimateResponse
         $this->addresses = $addresses;
         $this->description = $description;
         $this->source = $source;
-        $this->marketplace = $marketplace;
         $this->customer = $customer;
         $this->totalAmount = $totalAmount;
+        $this->marketplace = $marketplace;
         $this->totalTaxAmountCalculated = $totalTaxAmountCalculated;
         $this->taxableAmount = $taxableAmount;
         $this->taxRateCalculated = $taxRateCalculated;

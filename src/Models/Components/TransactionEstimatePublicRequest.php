@@ -59,16 +59,6 @@ class TransactionEstimatePublicRequest
     public array $addresses;
 
     /**
-     * Total amount of the transaction.
-     *
-     * @var float|string|null $totalAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('total_amount')]
-    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public float|string|null $totalAmount = null;
-
-    /**
      * An optional description of the transaction.
      *
      * @var ?string $description
@@ -78,15 +68,31 @@ class TransactionEstimatePublicRequest
     public ?string $description = null;
 
     /**
-     * While currently not used, it may be used in the future to determine taxability. The source of the transaction (e.g., OTHER).
      *
      * @var ?SourceEnum $source
-     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?SourceEnum $source = null;
+
+    /**
+     *
+     * @var ?CustomerBasePublic $customer
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBasePublic|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CustomerBasePublic $customer = null;
+
+    /**
+     * Total amount of the transaction.
+     *
+     * @var ?float $totalAmount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('total_amount')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?float $totalAmount = null;
 
     /**
      * Indicates if the transaction involves a marketplace.
@@ -98,39 +104,29 @@ class TransactionEstimatePublicRequest
     public ?bool $marketplace = null;
 
     /**
-     * Details about the customer. If the customer is not found, it will be ignored.
-     *
-     * @var ?CustomerBasePublic $customer
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBasePublic|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CustomerBasePublic $customer = null;
-
-    /**
      * @param  \DateTime  $date
      * @param  string  $externalId
      * @param  CurrencyEnum  $currency
      * @param  array<TransactionItemEstimateBase>  $transactionItems
      * @param  array<TransactionEstimatePublicRequestAddress>  $addresses
-     * @param  float|string|null  $totalAmount
+     * @param  ?float  $totalAmount
      * @param  ?string  $description
      * @param  ?SourceEnum  $source
      * @param  ?bool  $marketplace
      * @param  ?CustomerBasePublic  $customer
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, float|string|null $totalAmount = null, ?string $description = null, ?SourceEnum $source = null, ?bool $marketplace = null, ?CustomerBasePublic $customer = null)
+    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, ?string $description = null, ?SourceEnum $source = null, ?CustomerBasePublic $customer = null, ?float $totalAmount = 0.0, ?bool $marketplace = false)
     {
         $this->date = $date;
         $this->externalId = $externalId;
         $this->currency = $currency;
         $this->transactionItems = $transactionItems;
         $this->addresses = $addresses;
-        $this->totalAmount = $totalAmount;
         $this->description = $description;
         $this->source = $source;
-        $this->marketplace = $marketplace;
         $this->customer = $customer;
+        $this->totalAmount = $totalAmount;
+        $this->marketplace = $marketplace;
     }
 }

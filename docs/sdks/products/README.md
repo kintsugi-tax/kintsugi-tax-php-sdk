@@ -24,20 +24,22 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Models\Operations;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
-$request = new Operations\GetProductsV1ProductsGetRequest(
-    xOrganizationId: 'org_12345',
-);
-$requestSecurity = new Operations\GetProductsV1ProductsGetSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
+$request = new Operations\GetProductsV1ProductsGetRequest();
 
 $response = $sdk->products->list(
-    request: $request,
-    security: $requestSecurity
+    request: $request
 );
 
 if ($response->pageProductRead !== null) {
@@ -47,10 +49,9 @@ if ($response->pageProductRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                 | [Operations\GetProductsV1ProductsGetRequest](../../Models/Operations/GetProductsV1ProductsGetRequest.md)   | :heavy_check_mark:                                                                                         | The request object to use for the request.                                                                 |
-| `security`                                                                                                 | [Operations\GetProductsV1ProductsGetSecurity](../../Models/Operations/GetProductsV1ProductsGetSecurity.md) | :heavy_check_mark:                                                                                         | The security requirements to use for the request.                                                          |
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `$request`                                                                                               | [Operations\GetProductsV1ProductsGetRequest](../../Models/Operations/GetProductsV1ProductsGetRequest.md) | :heavy_check_mark:                                                                                       | The request object to use for the request.                                                               |
 
 ### Response
 
@@ -81,11 +82,17 @@ require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
-$productCreateManual = new Components\ProductCreateManual(
+$request = new Components\ProductCreateManual(
     externalId: 'prod_001',
     name: 'Sample Product',
     description: 'A description of the product',
@@ -95,15 +102,9 @@ $productCreateManual = new Components\ProductCreateManual(
     taxExempt: false,
     source: Components\SourceEnum::Bigcommerce,
 );
-$requestSecurity = new Operations\CreateProductV1ProductsPostSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->products->create(
-    security: $requestSecurity,
-    xOrganizationId: 'org_12345',
-    productCreateManual: $productCreateManual
-
+    request: $request
 );
 
 if ($response->productRead !== null) {
@@ -113,11 +114,9 @@ if ($response->productRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      | Example                                                                                                          |
-| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                       | [Operations\CreateProductV1ProductsPostSecurity](../../Models/Operations/CreateProductV1ProductsPostSecurity.md) | :heavy_check_mark:                                                                                               | The security requirements to use for the request.                                                                |                                                                                                                  |
-| `xOrganizationId`                                                                                                | *string*                                                                                                         | :heavy_check_mark:                                                                                               | The unique identifier for the organization making the request                                                    | org_12345                                                                                                        |
-| `productCreateManual`                                                                                            | [Components\ProductCreateManual](../../Models/Components/ProductCreateManual.md)                                 | :heavy_check_mark:                                                                                               | N/A                                                                                                              |                                                                                                                  |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `$request`                                                                       | [Components\ProductCreateManual](../../Models/Components/ProductCreateManual.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
 
 ### Response
 
@@ -147,20 +146,21 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Models\Components;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
 
-$requestSecurity = new Operations\GetProductByIdV1ProductsProductIdGetSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->products->get(
-    security: $requestSecurity,
-    productId: '<id>',
-    xOrganizationId: 'org_12345'
-
+    productId: '<id>'
 );
 
 if ($response->productRead !== null) {
@@ -170,11 +170,9 @@ if ($response->productRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                          | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        | Example                                                                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                         | [Operations\GetProductByIdV1ProductsProductIdGetSecurity](../../Models/Operations/GetProductByIdV1ProductsProductIdGetSecurity.md) | :heavy_check_mark:                                                                                                                 | The security requirements to use for the request.                                                                                  |                                                                                                                                    |
-| `productId`                                                                                                                        | *string*                                                                                                                           | :heavy_check_mark:                                                                                                                 | The unique identifier for the product you want to retrieve.                                                                        |                                                                                                                                    |
-| `xOrganizationId`                                                                                                                  | *string*                                                                                                                           | :heavy_check_mark:                                                                                                                 | The unique identifier for the organization making the request                                                                      | org_12345                                                                                                                          |
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `productId`                                                 | *string*                                                    | :heavy_check_mark:                                          | The unique identifier for the product you want to retrieve. |
 
 ### Response
 
@@ -204,29 +202,29 @@ require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
-
-$requestSecurity = new Operations\UpdateProductV1ProductsProductIdPutSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
+$productUpdate = new Components\ProductUpdate(
+    externalId: 'prod_001',
+    name: 'Updated Product Name',
+    description: 'An updated description for the product',
+    status: Components\ProductStatusEnum::Approved,
+    productCategory: Components\ProductCategoryEnum::Physical,
+    productSubcategory: Components\ProductSubCategoryEnum::GeneralClothing,
+    taxExempt: false,
 );
 
 $response = $sdk->products->update(
-    security: $requestSecurity,
     productId: '<id>',
-    xOrganizationId: 'org_12345',
-    requestBody: new Components\ProductUpdateV2(
-        name: 'Updated Product Name',
-        status: Components\ProductStatusEnum::Approved,
-        productCategory: 'PHYSICAL',
-        productSubcategory: 'GENERAL_CLOTHING',
-        taxExempt: false,
-        externalId: 'prod_001',
-        description: 'An updated description for the product',
-        classificationFailed: false,
-    )
+    productUpdate: $productUpdate
 
 );
 
@@ -237,12 +235,10 @@ if ($response->productRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                        | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      | Example                                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                       | [Operations\UpdateProductV1ProductsProductIdPutSecurity](../../Models/Operations/UpdateProductV1ProductsProductIdPutSecurity.md) | :heavy_check_mark:                                                                                                               | The security requirements to use for the request.                                                                                |                                                                                                                                  |
-| `productId`                                                                                                                      | *string*                                                                                                                         | :heavy_check_mark:                                                                                                               | Unique identifier of the product to be updated.                                                                                  |                                                                                                                                  |
-| `xOrganizationId`                                                                                                                | *string*                                                                                                                         | :heavy_check_mark:                                                                                                               | The unique identifier for the organization making the request                                                                    | org_12345                                                                                                                        |
-| `requestBody`                                                                                                                    | [Components\ProductUpdate\|Components\ProductUpdateV2](../../Models/Operations/Product.md)                                       | :heavy_check_mark:                                                                                                               | N/A                                                                                                                              |                                                                                                                                  |
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `productId`                                                          | *string*                                                             | :heavy_check_mark:                                                   | Unique identifier of the product to be updated.                      |
+| `productUpdate`                                                      | [Components\ProductUpdate](../../Models/Components/ProductUpdate.md) | :heavy_check_mark:                                                   | N/A                                                                  |
 
 ### Response
 
@@ -272,18 +268,20 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Operations;
+use KintsugiTax\SDK\Models\Components;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
 
-$requestSecurity = new Operations\GetProductCategoriesV1ProductsCategoriesGetSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->products->listCategories(
-    security: $requestSecurity,
-    xOrganizationId: 'org_12345'
 
 );
 
@@ -291,13 +289,6 @@ if ($response->responseGetProductCategoriesV1ProductsCategoriesGet !== null) {
     // handle response
 }
 ```
-
-### Parameters
-
-| Parameter                                                                                                                                        | Type                                                                                                                                             | Required                                                                                                                                         | Description                                                                                                                                      | Example                                                                                                                                          |
-| ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `security`                                                                                                                                       | [Operations\GetProductCategoriesV1ProductsCategoriesGetSecurity](../../Models/Operations/GetProductCategoriesV1ProductsCategoriesGetSecurity.md) | :heavy_check_mark:                                                                                                                               | The security requirements to use for the request.                                                                                                |                                                                                                                                                  |
-| `xOrganizationId`                                                                                                                                | *string*                                                                                                                                         | :heavy_check_mark:                                                                                                                               | The unique identifier for the organization making the request                                                                                    | org_12345                                                                                                                                        |
 
 ### Response
 

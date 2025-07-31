@@ -34,25 +34,15 @@ class PUTUpdateCreditNoteByTransactionIdRequest
     public Components\CreditNoteCreate $creditNoteCreate;
 
     /**
-     * The unique identifier for the organization making the request
-     *
-     * @var ?string $xOrganizationId
-     */
-    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
-    public ?string $xOrganizationId;
-
-    /**
      * @param  string  $originalTransactionId
      * @param  string  $creditNoteId
      * @param  Components\CreditNoteCreate  $creditNoteCreate
-     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $originalTransactionId, string $creditNoteId, Components\CreditNoteCreate $creditNoteCreate, ?string $xOrganizationId = null)
+    public function __construct(string $originalTransactionId, string $creditNoteId, Components\CreditNoteCreate $creditNoteCreate)
     {
         $this->originalTransactionId = $originalTransactionId;
         $this->creditNoteId = $creditNoteId;
         $this->creditNoteCreate = $creditNoteCreate;
-        $this->xOrganizationId = $xOrganizationId;
     }
 }

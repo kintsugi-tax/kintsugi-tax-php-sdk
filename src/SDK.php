@@ -14,7 +14,8 @@ namespace KintsugiTax\SDK;
 class SDK
 {
     public const SERVERS = [
-        '/',
+        /** Production API server URL */
+        'https://api.trykintsugi.com',
     ];
 
     public AddressValidation $addressValidation;

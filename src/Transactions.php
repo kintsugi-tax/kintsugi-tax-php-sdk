@@ -50,18 +50,15 @@ class Transactions
      *
      * Create a new credit note for a specific transaction.
      *
-     * @param  Operations\POSTCreateCreditNoteByTransactionIdSecurity  $security
      * @param  Components\CreditNoteCreate  $creditNoteCreate
      * @param  string  $originalTransactionId
-     * @param  ?string  $xOrganizationId
      * @return Operations\POSTCreateCreditNoteByTransactionIdResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function createCreditNote(Operations\POSTCreateCreditNoteByTransactionIdSecurity $security, Components\CreditNoteCreate $creditNoteCreate, string $originalTransactionId, ?string $xOrganizationId = null, ?Options $options = null): Operations\POSTCreateCreditNoteByTransactionIdResponse
+    public function createCreditNote(Components\CreditNoteCreate $creditNoteCreate, string $originalTransactionId, ?Options $options = null): Operations\POSTCreateCreditNoteByTransactionIdResponse
     {
         $request = new Operations\POSTCreateCreditNoteByTransactionIdRequest(
             originalTransactionId: $originalTransactionId,
-            xOrganizationId: $xOrganizationId,
             creditNoteCreate: $creditNoteCreate,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -73,25 +70,15 @@ class Transactions
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'POST_create_credit_note_by_transaction_id', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'POST_create_credit_note_by_transaction_id', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -146,20 +133,17 @@ class Transactions
      *
      * Update an existing credit note for a specific transaction.
      *
-     * @param  Operations\PUTUpdateCreditNoteByTransactionIdSecurity  $security
      * @param  Components\CreditNoteCreate  $creditNoteCreate
      * @param  string  $originalTransactionId
      * @param  string  $creditNoteId
-     * @param  ?string  $xOrganizationId
      * @return Operations\PUTUpdateCreditNoteByTransactionIdResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function updateCreditNote(Operations\PUTUpdateCreditNoteByTransactionIdSecurity $security, Components\CreditNoteCreate $creditNoteCreate, string $originalTransactionId, string $creditNoteId, ?string $xOrganizationId = null, ?Options $options = null): Operations\PUTUpdateCreditNoteByTransactionIdResponse
+    public function updateCreditNote(Components\CreditNoteCreate $creditNoteCreate, string $originalTransactionId, string $creditNoteId, ?Options $options = null): Operations\PUTUpdateCreditNoteByTransactionIdResponse
     {
         $request = new Operations\PUTUpdateCreditNoteByTransactionIdRequest(
             originalTransactionId: $originalTransactionId,
             creditNoteId: $creditNoteId,
-            xOrganizationId: $xOrganizationId,
             creditNoteCreate: $creditNoteCreate,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -171,25 +155,15 @@ class Transactions
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'PUT_update_credit_note_by_transaction_id', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'PUT_update_credit_note_by_transaction_id', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -244,46 +218,30 @@ class Transactions
      *
      * Create a transaction.
      *
-     * @param  Operations\CreateTransactionV1TransactionsPostSecurity  $security
-     * @param  Components\TransactionPublicRequest  $transactionPublicRequest
-     * @param  ?string  $xOrganizationId
+     * @param  Components\TransactionPublicRequest  $request
      * @return Operations\CreateTransactionV1TransactionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function create(Operations\CreateTransactionV1TransactionsPostSecurity $security, Components\TransactionPublicRequest $transactionPublicRequest, ?string $xOrganizationId = null, ?Options $options = null): Operations\CreateTransactionV1TransactionsPostResponse
+    public function create(Components\TransactionPublicRequest $request, ?Options $options = null): Operations\CreateTransactionV1TransactionsPostResponse
     {
-        $request = new Operations\CreateTransactionV1TransactionsPostRequest(
-            xOrganizationId: $xOrganizationId,
-            transactionPublicRequest: $transactionPublicRequest,
-        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/transactions');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'transactionPublicRequest', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'create_transaction_v1_transactions_post', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'create_transaction_v1_transactions_post', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -363,41 +321,28 @@ class Transactions
      * Retrieves a specific transaction based on its external ID.
      *     This allows users to fetch transaction details using an identifier from an external system.
      *
-     * @param  Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetSecurity  $security
      * @param  string  $externalId
-     * @param  ?string  $xOrganizationId
      * @return Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getByExternalId(Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetSecurity $security, string $externalId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse
+    public function getByExternalId(string $externalId, ?Options $options = null): Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse
     {
         $request = new Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest(
             externalId: $externalId,
-            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/transactions/external/{external_id}', Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_transaction_by_external_id_v1_transactions_external__external_id__get', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_transaction_by_external_id_v1_transactions_external__external_id__get', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -477,41 +422,28 @@ class Transactions
      * The Get Transaction By Id API retrieves detailed information
      *     about a specific transaction by providing its unique transaction ID.
      *
-     * @param  Operations\GetTransactionByIdV1TransactionsTransactionIdGetSecurity  $security
      * @param  string  $transactionId
-     * @param  ?string  $xOrganizationId
      * @return Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getById(Operations\GetTransactionByIdV1TransactionsTransactionIdGetSecurity $security, string $transactionId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
+    public function getById(string $transactionId, ?Options $options = null): Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
     {
         $request = new Operations\GetTransactionByIdV1TransactionsTransactionIdGetRequest(
             transactionId: $transactionId,
-            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/transactions/{transaction_id}', Operations\GetTransactionByIdV1TransactionsTransactionIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_transaction_by_id_v1_transactions__transaction_id__get', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_transaction_by_id_v1_transactions__transaction_id__get', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -590,41 +522,28 @@ class Transactions
      *
      * Retrieve transactions by filing ID.
      *
-     * @param  Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetSecurity  $security
      * @param  string  $filingId
-     * @param  ?string  $xOrganizationId
      * @return Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getByFilingId(Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetSecurity $security, string $filingId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse
+    public function getByFilingId(string $filingId, ?Options $options = null): Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse
     {
         $request = new Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetRequest(
             filingId: $filingId,
-            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/transactions/filings/{filing_id}', Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_transactions_by_filing_id_v1_transactions_filings__filing_id__get', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_transactions_by_filing_id_v1_transactions_filings__filing_id__get', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -704,12 +623,11 @@ class Transactions
      * The Get Transactions API retrieves a list of transactions with
      *     optional filtering, sorting, and pagination.
      *
-     * @param  Operations\GetTransactionsV1TransactionsGetSecurity  $security
-     * @param  Operations\GetTransactionsV1TransactionsGetRequest  $request
+     * @param  ?Operations\GetTransactionsV1TransactionsGetRequest  $request
      * @return Operations\GetTransactionsV1TransactionsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(Operations\GetTransactionsV1TransactionsGetSecurity $security, Operations\GetTransactionsV1TransactionsGetRequest $request, ?Options $options = null): Operations\GetTransactionsV1TransactionsGetResponse
+    public function list(?Operations\GetTransactionsV1TransactionsGetRequest $request = null, ?Options $options = null): Operations\GetTransactionsV1TransactionsGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/transactions');
@@ -717,26 +635,16 @@ class Transactions
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetTransactionsV1TransactionsGetRequest::class, $request, $urlOverride);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_transactions_v1_transactions_get', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_transactions_v1_transactions_get', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -815,18 +723,15 @@ class Transactions
      *
      * Update a specific transaction by its ID.
      *
-     * @param  Operations\UpdateTransactionV1TransactionsTransactionIdPutSecurity  $security
      * @param  Components\TransactionUpdate  $transactionUpdate
      * @param  string  $transactionId
-     * @param  ?string  $xOrganizationId
      * @return Operations\UpdateTransactionV1TransactionsTransactionIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function update(Operations\UpdateTransactionV1TransactionsTransactionIdPutSecurity $security, Components\TransactionUpdate $transactionUpdate, string $transactionId, ?string $xOrganizationId = null, ?Options $options = null): Operations\UpdateTransactionV1TransactionsTransactionIdPutResponse
+    public function update(Components\TransactionUpdate $transactionUpdate, string $transactionId, ?Options $options = null): Operations\UpdateTransactionV1TransactionsTransactionIdPutResponse
     {
         $request = new Operations\UpdateTransactionV1TransactionsTransactionIdPutRequest(
             transactionId: $transactionId,
-            xOrganizationId: $xOrganizationId,
             transactionUpdate: $transactionUpdate,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -838,25 +743,15 @@ class Transactions
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'update_transaction_v1_transactions__transaction_id__put', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'update_transaction_v1_transactions__transaction_id__put', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;

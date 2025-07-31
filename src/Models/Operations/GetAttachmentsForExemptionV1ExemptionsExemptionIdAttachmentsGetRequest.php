@@ -22,21 +22,11 @@ class GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest
     public string $exemptionId;
 
     /**
-     * The unique identifier for the organization making the request
-     *
-     * @var ?string $xOrganizationId
-     */
-    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
-    public ?string $xOrganizationId;
-
-    /**
      * @param  string  $exemptionId
-     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $exemptionId, ?string $xOrganizationId = null)
+    public function __construct(string $exemptionId)
     {
         $this->exemptionId = $exemptionId;
-        $this->xOrganizationId = $xOrganizationId;
     }
 }

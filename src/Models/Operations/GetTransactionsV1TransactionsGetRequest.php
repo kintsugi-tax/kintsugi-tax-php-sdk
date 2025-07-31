@@ -8,19 +8,10 @@ declare(strict_types=1);
 
 namespace KintsugiTax\SDK\Models\Operations;
 
-use Brick\DateTime\LocalDate;
 use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class GetTransactionsV1TransactionsGetRequest
 {
-    /**
-     * The unique identifier for the organization making the request
-     *
-     * @var ?string $xOrganizationId
-     */
-    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
-    public ?string $xOrganizationId;
-
     /**
      * Filter transactions by state code.
      *
@@ -62,7 +53,7 @@ class GetTransactionsV1TransactionsGetRequest
      *
      *         (ISO 3166-1 alpha-2 format, e.g., US).
      *
-     * @var ?array<Components\CountryCodeEnum|string> $country
+     * @var ?array<Components\CountryCodeEnum> $country
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=country')]
     public ?array $country = null;
@@ -74,16 +65,6 @@ class GetTransactionsV1TransactionsGetRequest
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=state')]
     public ?string $state = null;
-
-    /**
-     * Filter by address status (e.g., UNVERIFIED, INVALID,
-     *
-     *         PARTIALLY_VERIFIED, VERIFIED, UNVERIFIABLE).
-     *
-     * @var ?string $addressStatusIn
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=address_status__in')]
-    public ?string $addressStatusIn = null;
 
     /**
      * Filter by transaction status (e.g., PENDING, COMMITTED,
@@ -104,34 +85,24 @@ class GetTransactionsV1TransactionsGetRequest
     public ?string $filingId = null;
 
     /**
-     * Sort results based on specified fields.
-     *
-     *         Prefix with - for descending order (e.g., -date for newest first).
-     *
-     * @var ?string $orderBy
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
-    public ?string $orderBy = null;
-
-    /**
      * Retrieve transactions with a date
      *
      *         greater than or equal to (YYYY-MM-DD).
      *
-     * @var ?LocalDate $dateGte
+     * @var ?string $dateGte
      */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=date__gte,dateTimeFormat=Y-m-d')]
-    public ?LocalDate $dateGte = null;
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=date__gte')]
+    public ?string $dateGte = null;
 
     /**
      * Retrieve transactions with a date
      *
      *         less than or equal to (YYYY-MM-DD).
      *
-     * @var ?LocalDate $dateLte
+     * @var ?string $dateLte
      */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=date__lte,dateTimeFormat=Y-m-d')]
-    public ?LocalDate $dateLte = null;
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=date__lte')]
+    public ?string $dateLte = null;
 
     /**
      * Filter transactions based on processing status.
@@ -162,6 +133,26 @@ class GetTransactionsV1TransactionsGetRequest
     public ?string $exemptIn = null;
 
     /**
+     * Filter by address status (e.g., UNVERIFIED, INVALID,
+     *
+     *         PARTIALLY_VERIFIED, VERIFIED, UNVERIFIABLE).
+     *
+     * @var ?string $addressStatusIn
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=address_status__in')]
+    public ?string $addressStatusIn = null;
+
+    /**
+     * Sort results based on specified fields.
+     *
+     *         Prefix with - for descending order (e.g., -date for newest first).
+     *
+     * @var ?string $orderBy
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
+    public ?string $orderBy = null;
+
+    /**
      * Page number
      *
      * @var ?int $page
@@ -178,44 +169,42 @@ class GetTransactionsV1TransactionsGetRequest
     public ?int $size = null;
 
     /**
-     * @param  ?int  $page
-     * @param  ?int  $size
-     * @param  ?string  $xOrganizationId
      * @param  ?string  $stateCode
      * @param  ?string  $transactionType
      * @param  ?string  $transactionSource
      * @param  ?string  $searchQuery
-     * @param  ?array<Components\CountryCodeEnum|string>  $country
+     * @param  ?array<Components\CountryCodeEnum>  $country
      * @param  ?string  $state
      * @param  ?string  $addressStatusIn
      * @param  ?Components\TransactionStatusEnum  $status
      * @param  ?string  $filingId
      * @param  ?string  $orderBy
-     * @param  ?LocalDate  $dateGte
-     * @param  ?LocalDate  $dateLte
+     * @param  ?string  $dateGte
+     * @param  ?string  $dateLte
      * @param  ?string  $processingStatusIn
      * @param  ?bool  $marketplace
      * @param  ?string  $exemptIn
+     * @param  ?int  $page
+     * @param  ?int  $size
      * @phpstan-pure
      */
-    public function __construct(?string $xOrganizationId = null, ?string $stateCode = null, ?string $transactionType = null, ?string $transactionSource = null, ?string $searchQuery = null, ?array $country = null, ?string $state = null, ?string $addressStatusIn = null, ?Components\TransactionStatusEnum $status = null, ?string $filingId = null, ?string $orderBy = null, ?LocalDate $dateGte = null, ?LocalDate $dateLte = null, ?string $processingStatusIn = null, ?bool $marketplace = null, ?string $exemptIn = null, ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $stateCode = null, ?string $transactionType = null, ?string $transactionSource = null, ?string $searchQuery = null, ?array $country = null, ?string $state = null, ?Components\TransactionStatusEnum $status = null, ?string $filingId = null, ?string $dateGte = null, ?string $dateLte = null, ?string $processingStatusIn = null, ?bool $marketplace = null, ?string $exemptIn = null, ?string $addressStatusIn = 'UNVERIFIED,INVALID,PARTIALLY_VERIFIED,VERIFIED,UNVERIFIABLE', ?string $orderBy = 'date,state,customer_name,status', ?int $page = 1, ?int $size = 50)
     {
-        $this->xOrganizationId = $xOrganizationId;
         $this->stateCode = $stateCode;
         $this->transactionType = $transactionType;
         $this->transactionSource = $transactionSource;
         $this->searchQuery = $searchQuery;
         $this->country = $country;
         $this->state = $state;
-        $this->addressStatusIn = $addressStatusIn;
         $this->status = $status;
         $this->filingId = $filingId;
-        $this->orderBy = $orderBy;
         $this->dateGte = $dateGte;
         $this->dateLte = $dateLte;
         $this->processingStatusIn = $processingStatusIn;
         $this->marketplace = $marketplace;
         $this->exemptIn = $exemptIn;
+        $this->addressStatusIn = $addressStatusIn;
+        $this->orderBy = $orderBy;
         $this->page = $page;
         $this->size = $size;
     }

@@ -49,12 +49,11 @@ class Nexus
      *
      * Get a list of all nexuses for the organization.
      *
-     * @param  Operations\GetNexusForOrgV1NexusGetSecurity  $security
-     * @param  Operations\GetNexusForOrgV1NexusGetRequest  $request
+     * @param  ?Operations\GetNexusForOrgV1NexusGetRequest  $request
      * @return Operations\GetNexusForOrgV1NexusGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(Operations\GetNexusForOrgV1NexusGetSecurity $security, Operations\GetNexusForOrgV1NexusGetRequest $request, ?Options $options = null): Operations\GetNexusForOrgV1NexusGetResponse
+    public function list(?Operations\GetNexusForOrgV1NexusGetRequest $request = null, ?Options $options = null): Operations\GetNexusForOrgV1NexusGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/nexus');
@@ -62,26 +61,16 @@ class Nexus
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetNexusForOrgV1NexusGetRequest::class, $request, $urlOverride);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_nexus_for_org_v1_nexus_get', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_nexus_for_org_v1_nexus_get', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;

@@ -92,31 +92,30 @@ require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
 
-$validationAddress = new Components\ValidationAddress(
+$request = new Components\ValidationAddress(
     line1: '1600 Amphitheatre Parkway',
     line2: '',
     line3: '',
     city: 'Mountain View',
     state: 'CA',
-    country: 'US',
     postalCode: '94043',
     id: 215,
     county: '',
     fullAddress: '1600 Amphitheatre Parkway, Mountain View, CA 94043',
 );
-$requestSecurity = new Operations\SuggestionsV1AddressValidationSuggestionsPostSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->addressValidation->suggestions(
-    security: $requestSecurity,
-    xOrganizationId: 'org_12345',
-    validationAddress: $validationAddress
-
+    request: $request
 );
 
 if ($response->any !== null) {
@@ -126,11 +125,9 @@ if ($response->any !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                            | Type                                                                                                                                                 | Required                                                                                                                                             | Description                                                                                                                                          | Example                                                                                                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `security`                                                                                                                                           | [Operations\SuggestionsV1AddressValidationSuggestionsPostSecurity](../../Models/Operations/SuggestionsV1AddressValidationSuggestionsPostSecurity.md) | :heavy_check_mark:                                                                                                                                   | The security requirements to use for the request.                                                                                                    |                                                                                                                                                      |
-| `xOrganizationId`                                                                                                                                    | *string*                                                                                                                                             | :heavy_check_mark:                                                                                                                                   | The unique identifier for the organization making the request                                                                                        | org_12345                                                                                                                                            |
-| `validationAddress`                                                                                                                                  | [Components\ValidationAddress](../../Models/Components/ValidationAddress.md)                                                                         | :heavy_check_mark:                                                                                                                                   | N/A                                                                                                                                                  |                                                                                                                                                      |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `$request`                                                                   | [Components\ValidationAddress](../../Models/Components/ValidationAddress.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
 
 ### Response
 

@@ -13,14 +13,6 @@ use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class GetCustomersV1Request
 {
     /**
-     * The unique identifier for the organization making the request
-     *
-     * @var ?string $xOrganizationId
-     */
-    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
-    public ?string $xOrganizationId;
-
-    /**
      * Search term to filter customers by name or other details
      *
      * @var ?string $searchQuery
@@ -31,7 +23,7 @@ class GetCustomersV1Request
     /**
      * Country code in ISO 3166-1 alpha-2 format (e.g., 'US')
      *
-     * @var ?array<Components\CountryCodeEnum|string> $country
+     * @var ?array<Components\CountryCodeEnum> $country
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=country')]
     public ?array $country = null;
@@ -77,19 +69,17 @@ class GetCustomersV1Request
     public ?int $size = null;
 
     /**
-     * @param  ?int  $page
-     * @param  ?int  $size
-     * @param  ?string  $xOrganizationId
      * @param  ?string  $searchQuery
-     * @param  ?array<Components\CountryCodeEnum|string>  $country
+     * @param  ?array<Components\CountryCodeEnum>  $country
      * @param  ?string  $state
      * @param  ?string  $sourceIn
      * @param  ?string  $orderBy
+     * @param  ?int  $page
+     * @param  ?int  $size
      * @phpstan-pure
      */
-    public function __construct(?string $xOrganizationId = null, ?string $searchQuery = null, ?array $country = null, ?string $state = null, ?string $sourceIn = null, ?string $orderBy = null, ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $searchQuery = null, ?array $country = null, ?string $state = null, ?string $sourceIn = null, ?string $orderBy = null, ?int $page = 1, ?int $size = 50)
     {
-        $this->xOrganizationId = $xOrganizationId;
         $this->searchQuery = $searchQuery;
         $this->country = $country;
         $this->state = $state;

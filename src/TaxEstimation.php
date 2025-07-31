@@ -52,17 +52,14 @@ class TaxEstimation
      *     transaction based on the provided details, including organization nexus,
      *     transaction details, customer details, and addresses. Optionally simulates nexus being met for tax calculation purposes. The `simulate_nexus_met` parameter is deprecated and will be removed in future releases.
      *
-     * @param  Operations\EstimateTaxV1TaxEstimatePostSecurity  $security
      * @param  Components\TransactionEstimatePublicRequest  $transactionEstimatePublicRequest
-     * @param  ?string  $xOrganizationId
      * @param  ?bool  $simulateNexusMet
      * @return Operations\EstimateTaxV1TaxEstimatePostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function estimateTax(Operations\EstimateTaxV1TaxEstimatePostSecurity $security, Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest, ?string $xOrganizationId = null, ?bool $simulateNexusMet = null, ?Options $options = null): Operations\EstimateTaxV1TaxEstimatePostResponse
+    public function estimateTax(Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest, ?bool $simulateNexusMet = null, ?Options $options = null): Operations\EstimateTaxV1TaxEstimatePostResponse
     {
         $request = new Operations\EstimateTaxV1TaxEstimatePostRequest(
-            xOrganizationId: $xOrganizationId,
             transactionEstimatePublicRequest: $transactionEstimatePublicRequest,
             simulateNexusMet: $simulateNexusMet,
         );
@@ -77,26 +74,16 @@ class TaxEstimation
         $httpOptions = array_merge_recursive($httpOptions, $body);
 
         $qp = Utils\Utils::getQueryParams(Operations\EstimateTaxV1TaxEstimatePostRequest::class, $request, $urlOverride);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'estimate_tax_v1_tax_estimate_post', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'estimate_tax_v1_tax_estimate_post', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;

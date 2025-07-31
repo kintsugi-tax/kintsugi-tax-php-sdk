@@ -51,46 +51,30 @@ class Customers
      * The Create Customer API enables the creation of a new customer record with essential
      * details like name, contact information, and address, along with optional metadata.
      *
-     * @param  Operations\CreateCustomerV1CustomersPostSecurity  $security
-     * @param  Components\CustomerCreate  $customerCreate
-     * @param  ?string  $xOrganizationId
+     * @param  Components\CustomerCreate  $request
      * @return Operations\CreateCustomerV1CustomersPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function create(Operations\CreateCustomerV1CustomersPostSecurity $security, Components\CustomerCreate $customerCreate, ?string $xOrganizationId = null, ?Options $options = null): Operations\CreateCustomerV1CustomersPostResponse
+    public function create(Components\CustomerCreate $request, ?Options $options = null): Operations\CreateCustomerV1CustomersPostResponse
     {
-        $request = new Operations\CreateCustomerV1CustomersPostRequest(
-            xOrganizationId: $xOrganizationId,
-            customerCreate: $customerCreate,
-        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/customers');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'customerCreate', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'create_customer_v1_customers_post', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'create_customer_v1_customers_post', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -169,18 +153,15 @@ class Customers
      *
      * Create a new transaction for a specific customer.
      *
-     * @param  Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostSecurity  $security
      * @param  Components\TransactionCreate  $transactionCreate
      * @param  string  $customerId
-     * @param  ?string  $xOrganizationId
      * @return Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function createTransaction(Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostSecurity $security, Components\TransactionCreate $transactionCreate, string $customerId, ?string $xOrganizationId = null, ?Options $options = null): Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse
+    public function createTransaction(Components\TransactionCreate $transactionCreate, string $customerId, ?Options $options = null): Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse
     {
         $request = new Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest(
             customerId: $customerId,
-            xOrganizationId: $xOrganizationId,
             transactionCreate: $transactionCreate,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -192,25 +173,15 @@ class Customers
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'create_transaction_by_customer_id_v1_customers__customer_id__transactions_post', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'create_transaction_by_customer_id_v1_customers__customer_id__transactions_post', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -267,41 +238,28 @@ class Customers
      * their external identifier. This endpoint is useful for accessing customer data when only
      * an external ID is available.
      *
-     * @param  Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetSecurity  $security
      * @param  string  $externalId
-     * @param  ?string  $xOrganizationId
      * @return Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getByExternalId(Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetSecurity $security, string $externalId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse
+    public function getByExternalId(string $externalId, ?Options $options = null): Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse
     {
         $request = new Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetRequest(
             externalId: $externalId,
-            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/customers/external/{external_id}', Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_customer_by_external_id_v1_customers_external__external_id__get', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_customer_by_external_id_v1_customers_external__external_id__get', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -358,41 +316,28 @@ class Customers
      *     using their unique identifier. It returns customer-specific data,
      *     including contact information, address, name and metadata, etc.
      *
-     * @param  Operations\GetCustomerByIdV1CustomersCustomerIdGetSecurity  $security
      * @param  string  $customerId
-     * @param  ?string  $xOrganizationId
      * @return Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function get(Operations\GetCustomerByIdV1CustomersCustomerIdGetSecurity $security, string $customerId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
+    public function get(string $customerId, ?Options $options = null): Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
     {
         $request = new Operations\GetCustomerByIdV1CustomersCustomerIdGetRequest(
             customerId: $customerId,
-            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/customers/{customer_id}', Operations\GetCustomerByIdV1CustomersCustomerIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_customer_by_id_v1_customers__customer_id__get', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_customer_by_id_v1_customers__customer_id__get', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -449,12 +394,11 @@ class Customers
      *     a paginated list of customers based on specified filters.
      *     This API allows searching, filtering by country and state, and sorting the results.
      *
-     * @param  Operations\GetCustomersV1Security  $security
-     * @param  Operations\GetCustomersV1Request  $request
+     * @param  ?Operations\GetCustomersV1Request  $request
      * @return Operations\GetCustomersV1Response
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(Operations\GetCustomersV1Security $security, Operations\GetCustomersV1Request $request, ?Options $options = null): Operations\GetCustomersV1Response
+    public function list(?Operations\GetCustomersV1Request $request = null, ?Options $options = null): Operations\GetCustomersV1Response
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/customers');
@@ -462,26 +406,16 @@ class Customers
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetCustomersV1Request::class, $request, $urlOverride);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_customers_v1', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_customers_v1', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -560,41 +494,28 @@ class Customers
      *
      * Get a list of transactions for a customer by their unique ID.
      *
-     * @param  Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetSecurity  $security
      * @param  string  $customerId
-     * @param  ?string  $xOrganizationId
      * @return Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getTransactions(Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetSecurity $security, string $customerId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
+    public function getTransactions(string $customerId, ?Options $options = null): Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
     {
         $request = new Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest(
             customerId: $customerId,
-            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/customers/{customer_id}/transactions', Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_transactions_by_customer_id_v1_customers__customer_id__transactions_get', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_transactions_by_customer_id_v1_customers__customer_id__transactions_get', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -651,18 +572,15 @@ class Customers
      *     information using their unique identifier,
      *     enabling updates to their details as needed.
      *
-     * @param  Operations\UpdateCustomerV1CustomersCustomerIdPutSecurity  $security
      * @param  Components\CustomerUpdate  $customerUpdate
      * @param  string  $customerId
-     * @param  ?string  $xOrganizationId
      * @return Operations\UpdateCustomerV1CustomersCustomerIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function update(Operations\UpdateCustomerV1CustomersCustomerIdPutSecurity $security, Components\CustomerUpdate $customerUpdate, string $customerId, ?string $xOrganizationId = null, ?Options $options = null): Operations\UpdateCustomerV1CustomersCustomerIdPutResponse
+    public function update(Components\CustomerUpdate $customerUpdate, string $customerId, ?Options $options = null): Operations\UpdateCustomerV1CustomersCustomerIdPutResponse
     {
         $request = new Operations\UpdateCustomerV1CustomersCustomerIdPutRequest(
             customerId: $customerId,
-            xOrganizationId: $xOrganizationId,
             customerUpdate: $customerUpdate,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -674,25 +592,15 @@ class Customers
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
-        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
-        if (! array_key_exists('headers', $httpOptions)) {
-            $httpOptions['headers'] = [];
-        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'update_customer_v1_customers__customer_id__put', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'update_customer_v1_customers__customer_id__put', [], $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;

@@ -13,26 +13,17 @@ class SearchV1AddressValidationSearchPostSecurity
 {
     /**
      *
-     * @var ?string $apiKeyHeader
+     * @var string $apiKeyHeader
      */
     #[SpeakeasyMetadata('security:scheme=true,type=apiKey,subtype=header,name=X-API-KEY')]
-    public ?string $apiKeyHeader = null;
+    public string $apiKeyHeader;
 
     /**
-     *
-     * @var ?string $httpBearer
-     */
-    #[SpeakeasyMetadata('security:scheme=true,type=http,subtype=bearer,name=Authorization')]
-    public ?string $httpBearer = null;
-
-    /**
-     * @param  ?string  $apiKeyHeader
-     * @param  ?string  $httpBearer
+     * @param  string  $apiKeyHeader
      * @phpstan-pure
      */
-    public function __construct(?string $apiKeyHeader = null, ?string $httpBearer = null)
+    public function __construct(string $apiKeyHeader)
     {
         $this->apiKeyHeader = $apiKeyHeader;
-        $this->httpBearer = $httpBearer;
     }
 }

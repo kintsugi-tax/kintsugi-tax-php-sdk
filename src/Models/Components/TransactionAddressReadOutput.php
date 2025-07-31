@@ -20,15 +20,6 @@ class TransactionAddressReadOutput
     public AddressType $type;
 
     /**
-     *
-     * @var ?AddressStatus $status
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?AddressStatus $status = null;
-
-    /**
      * Phone number associated with the address.
      *
      * @var ?string $phone
@@ -92,7 +83,6 @@ class TransactionAddressReadOutput
     public ?string $postalCode = null;
 
     /**
-     * Country code in ISO 3166-1 alpha-2 format
      *
      * @var ?CountryCodeEnum $country
      */
@@ -109,6 +99,15 @@ class TransactionAddressReadOutput
     #[\Speakeasy\Serializer\Annotation\SerializedName('full_address')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $fullAddress = null;
+
+    /**
+     *
+     * @var ?AddressStatus $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?AddressStatus $status = null;
 
     /**
      * Unique identifier of the address being updated.
@@ -139,7 +138,6 @@ class TransactionAddressReadOutput
 
     /**
      * @param  AddressType  $type
-     * @param  ?AddressStatus  $status
      * @param  ?string  $phone
      * @param  ?string  $street1
      * @param  ?string  $street2
@@ -149,15 +147,15 @@ class TransactionAddressReadOutput
      * @param  ?string  $postalCode
      * @param  ?CountryCodeEnum  $country
      * @param  ?string  $fullAddress
+     * @param  ?AddressStatus  $status
      * @param  ?string  $id
      * @param  ?string  $transactionId
      * @param  ?string  $connectionId
      * @phpstan-pure
      */
-    public function __construct(AddressType $type, ?AddressStatus $status = null, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $id = null, ?string $transactionId = null, ?string $connectionId = null)
+    public function __construct(AddressType $type, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?AddressStatus $status = null, ?string $id = null, ?string $transactionId = null, ?string $connectionId = null)
     {
         $this->type = $type;
-        $this->status = $status;
         $this->phone = $phone;
         $this->street1 = $street1;
         $this->street2 = $street2;
@@ -167,6 +165,7 @@ class TransactionAddressReadOutput
         $this->postalCode = $postalCode;
         $this->country = $country;
         $this->fullAddress = $fullAddress;
+        $this->status = $status;
         $this->id = $id;
         $this->transactionId = $transactionId;
         $this->connectionId = $connectionId;

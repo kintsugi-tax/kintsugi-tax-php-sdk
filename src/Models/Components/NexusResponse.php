@@ -66,6 +66,13 @@ class NexusResponse
 
     /**
      *
+     * @var int $thresholdTransactions
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('threshold_transactions')]
+    public int $thresholdTransactions;
+
+    /**
+     *
      * @var LocalDate $startDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('start_date')]
@@ -92,6 +99,20 @@ class NexusResponse
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('period_end_date')]
     public LocalDate $periodEndDate;
+
+    /**
+     *
+     * @var string $previousPeriodStartDate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('previous_period_start_date')]
+    public string $previousPeriodStartDate;
+
+    /**
+     *
+     * @var string $previousPeriodEndDate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('previous_period_end_date')]
+    public string $previousPeriodEndDate;
 
     /**
      *
@@ -166,6 +187,13 @@ class NexusResponse
 
     /**
      *
+     * @var bool $marketplaceIncluded
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('marketplace_included')]
+    public bool $marketplaceIncluded;
+
+    /**
+     *
      * @var ?NexusStatusEnum $processingStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('processing_status')]
@@ -184,103 +212,51 @@ class NexusResponse
 
     /**
      *
-     * @var ?int $thresholdTransactions
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('threshold_transactions')]
-    public ?int $thresholdTransactions;
-
-    /**
-     *
-     * @var ?LocalDate $previousPeriodStartDate
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('previous_period_start_date')]
-    public ?LocalDate $previousPeriodStartDate;
-
-    /**
-     *
-     * @var ?LocalDate $previousPeriodEndDate
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('previous_period_end_date')]
-    public ?LocalDate $previousPeriodEndDate;
-
-    /**
-     *
-     * @var ?bool $marketplaceIncluded
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('marketplace_included')]
-    public ?bool $marketplaceIncluded;
-
-    /**
-     *
-     * @var ?string $calculatedTaxLiability
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('calculated_tax_liability')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $calculatedTaxLiability = null;
-
-    /**
-     *
-     * @var ?string $importedTaxLiability
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('imported_tax_liability')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $importedTaxLiability = null;
-
-    /**
-     *
-     * @var ?LocalDate $nexusMetDate
+     * @var ?string $nexusMetDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('nexus_met_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?LocalDate $nexusMetDate = null;
+    public ?string $nexusMetDate = null;
 
     /**
      *
-     * @var ?LocalDate $economicNexusMetDate
+     * @var ?string $economicNexusMetDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('economic_nexus_met_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?LocalDate $economicNexusMetDate = null;
+    public ?string $economicNexusMetDate = null;
 
     /**
      *
-     * @var ?LocalDate $physicalNexusMetDate
+     * @var ?string $physicalNexusMetDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('physical_nexus_met_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?LocalDate $physicalNexusMetDate = null;
+    public ?string $physicalNexusMetDate = null;
 
     /**
      *
-     * @var ?bool $collectedTaxNexusMet
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('collected_tax_nexus_met')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $collectedTaxNexusMet = null;
-
-    /**
-     *
-     * @var ?LocalDate $collectedTaxNexusMetDate
+     * @var ?string $collectedTaxNexusMetDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('collected_tax_nexus_met_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?LocalDate $collectedTaxNexusMetDate = null;
+    public ?string $collectedTaxNexusMetDate = null;
 
     /**
      *
-     * @var ?\DateTime $earliestTransactionDate
+     * @var ?string $earliestTransactionDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('earliest_transaction_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\DateTime $earliestTransactionDate = null;
+    public ?string $earliestTransactionDate = null;
 
     /**
      *
-     * @var ?\DateTime $mostRecentTransactionDate
+     * @var ?string $mostRecentTransactionDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('most_recent_transaction_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\DateTime $mostRecentTransactionDate = null;
+    public ?string $mostRecentTransactionDate = null;
 
     /**
      *
@@ -292,14 +268,6 @@ class NexusResponse
 
     /**
      *
-     * @var ?bool $vdaEligible
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('vda_eligible')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $vdaEligible = null;
-
-    /**
-     *
      * @var ?float $confidenceLevel
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('confidence_level')]
@@ -308,19 +276,19 @@ class NexusResponse
 
     /**
      *
-     * @var ?\DateTime $lastProcessedAt
+     * @var ?string $lastProcessedAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('last_processed_at')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\DateTime $lastProcessedAt = null;
+    public ?string $lastProcessedAt = null;
 
     /**
      *
-     * @var ?\DateTime $lastTaxLiabilityProcessedAt
+     * @var ?string $lastTaxLiabilityProcessedAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('last_tax_liability_processed_at')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?\DateTime $lastTaxLiabilityProcessedAt = null;
+    public ?string $lastTaxLiabilityProcessedAt = null;
 
     /**
      * $periods
@@ -333,7 +301,6 @@ class NexusResponse
     public ?array $periods = null;
 
     /**
-     * Currency code for the nexus (e.g., USD, CAD).
      *
      * @var ?CurrencyEnum $currency
      */
@@ -343,14 +310,13 @@ class NexusResponse
     public ?CurrencyEnum $currency = null;
 
     /**
-     * $registration
      *
-     * @var ?array<string, mixed> $registration
+     * @var ?Registration $registration
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registration')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\Registration|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $registration = null;
+    public ?Registration $registration = null;
 
     /**
      *
@@ -399,6 +365,22 @@ class NexusResponse
 
     /**
      *
+     * @var ?string $calculatedTaxLiability
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('calculated_tax_liability')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $calculatedTaxLiability = null;
+
+    /**
+     *
+     * @var ?string $importedTaxLiability
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('imported_tax_liability')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $importedTaxLiability = null;
+
+    /**
+     *
      * @var ?string $taxLiability
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_liability')]
@@ -431,6 +413,14 @@ class NexusResponse
 
     /**
      *
+     * @var ?bool $collectedTaxNexusMet
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('collected_tax_nexus_met')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $collectedTaxNexusMet = null;
+
+    /**
+     *
      * @var ?bool $collectedTaxEnabled
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('collected_tax_enabled')]
@@ -446,6 +436,14 @@ class NexusResponse
     public ?\DateTime $earliestCollectedDate = null;
 
     /**
+     *
+     * @var ?bool $vdaEligible
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('vda_eligible')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $vdaEligible = null;
+
+    /**
      * @param  CountryCodeEnum  $countryCode
      * @param  string  $stateCode
      * @param  string  $stateName
@@ -453,10 +451,13 @@ class NexusResponse
      * @param  string  $trigger
      * @param  SalesOrTransactionsEnum  $salesOrTransactions
      * @param  int  $thresholdSales
+     * @param  int  $thresholdTransactions
      * @param  LocalDate  $startDate
      * @param  PeriodModelEnum  $periodModel
      * @param  LocalDate  $periodStartDate
      * @param  LocalDate  $periodEndDate
+     * @param  string  $previousPeriodStartDate
+     * @param  string  $previousPeriodEndDate
      * @param  string  $id
      * @param  \DateTime  $createdAt
      * @param  \DateTime  $updatedAt
@@ -467,43 +468,40 @@ class NexusResponse
      * @param  int  $totalTransactionsIncluded
      * @param  int  $totalTransactionsExempted
      * @param  int  $totalTransactionsMarketplace
+     * @param  bool  $marketplaceIncluded
      * @param  ?NexusStatusEnum  $processingStatus
      * @param  ?NexusStateEnum  $status
-     * @param  ?int  $thresholdTransactions
      * @param  ?int  $transactionCount
      * @param  ?string  $transactionsAmount
      * @param  ?int  $previousTransactionCount
      * @param  ?string  $previousTransactionsAmount
-     * @param  ?string  $taxLiability
-     * @param  ?bool  $nexusMet
-     * @param  ?bool  $economicNexusMet
-     * @param  ?bool  $physicalNexusMet
-     * @param  ?bool  $collectedTaxEnabled
-     * @param  ?LocalDate  $previousPeriodStartDate
-     * @param  ?LocalDate  $previousPeriodEndDate
-     * @param  ?\DateTime  $earliestCollectedDate
-     * @param  ?bool  $marketplaceIncluded
      * @param  ?string  $calculatedTaxLiability
      * @param  ?string  $importedTaxLiability
-     * @param  ?LocalDate  $nexusMetDate
-     * @param  ?LocalDate  $economicNexusMetDate
-     * @param  ?LocalDate  $physicalNexusMetDate
+     * @param  ?string  $taxLiability
+     * @param  ?bool  $nexusMet
+     * @param  ?string  $nexusMetDate
+     * @param  ?bool  $economicNexusMet
+     * @param  ?string  $economicNexusMetDate
+     * @param  ?bool  $physicalNexusMet
+     * @param  ?string  $physicalNexusMetDate
      * @param  ?bool  $collectedTaxNexusMet
-     * @param  ?LocalDate  $collectedTaxNexusMetDate
-     * @param  ?\DateTime  $earliestTransactionDate
-     * @param  ?\DateTime  $mostRecentTransactionDate
+     * @param  ?string  $collectedTaxNexusMetDate
+     * @param  ?bool  $collectedTaxEnabled
+     * @param  ?string  $earliestTransactionDate
+     * @param  ?string  $mostRecentTransactionDate
+     * @param  ?\DateTime  $earliestCollectedDate
      * @param  ?int  $predictedMonthFromToday
      * @param  ?bool  $vdaEligible
      * @param  ?float  $confidenceLevel
-     * @param  ?\DateTime  $lastProcessedAt
-     * @param  ?\DateTime  $lastTaxLiabilityProcessedAt
+     * @param  ?string  $lastProcessedAt
+     * @param  ?string  $lastTaxLiabilityProcessedAt
      * @param  ?array<array<string, mixed>>  $periods
      * @param  ?CurrencyEnum  $currency
-     * @param  ?array<string, mixed>  $registration
+     * @param  ?Registration  $registration
      * @param  ?RegistrationsRegimeEnum  $registrationRegime
      * @phpstan-pure
      */
-    public function __construct(CountryCodeEnum $countryCode, string $stateCode, string $stateName, TreatmentEnum $treatmentOfExemptTransactions, string $trigger, SalesOrTransactionsEnum $salesOrTransactions, int $thresholdSales, LocalDate $startDate, PeriodModelEnum $periodModel, LocalDate $periodStartDate, LocalDate $periodEndDate, string $id, \DateTime $createdAt, \DateTime $updatedAt, string $organizationId, bool $isVdaEligible, NexusTypeEnum $nexusType, int $totalTransactions, int $totalTransactionsIncluded, int $totalTransactionsExempted, int $totalTransactionsMarketplace, ?NexusStatusEnum $processingStatus = null, ?NexusStateEnum $status = null, ?int $thresholdTransactions = null, ?LocalDate $previousPeriodStartDate = null, ?LocalDate $previousPeriodEndDate = null, ?bool $marketplaceIncluded = null, ?string $calculatedTaxLiability = null, ?string $importedTaxLiability = null, ?LocalDate $nexusMetDate = null, ?LocalDate $economicNexusMetDate = null, ?LocalDate $physicalNexusMetDate = null, ?bool $collectedTaxNexusMet = null, ?LocalDate $collectedTaxNexusMetDate = null, ?\DateTime $earliestTransactionDate = null, ?\DateTime $mostRecentTransactionDate = null, ?int $predictedMonthFromToday = null, ?bool $vdaEligible = null, ?float $confidenceLevel = null, ?\DateTime $lastProcessedAt = null, ?\DateTime $lastTaxLiabilityProcessedAt = null, ?array $periods = null, ?CurrencyEnum $currency = null, ?array $registration = null, ?RegistrationsRegimeEnum $registrationRegime = null, ?int $transactionCount = 0, ?string $transactionsAmount = '0.00', ?int $previousTransactionCount = 0, ?string $previousTransactionsAmount = '0.00', ?string $taxLiability = '0.00', ?bool $nexusMet = false, ?bool $economicNexusMet = false, ?bool $physicalNexusMet = false, ?bool $collectedTaxEnabled = false, ?\DateTime $earliestCollectedDate = Utils\Utils::parseDateTime('2018-01-01T00:00:00'))
+    public function __construct(CountryCodeEnum $countryCode, string $stateCode, string $stateName, TreatmentEnum $treatmentOfExemptTransactions, string $trigger, SalesOrTransactionsEnum $salesOrTransactions, int $thresholdSales, int $thresholdTransactions, LocalDate $startDate, PeriodModelEnum $periodModel, LocalDate $periodStartDate, LocalDate $periodEndDate, string $previousPeriodStartDate, string $previousPeriodEndDate, string $id, \DateTime $createdAt, \DateTime $updatedAt, string $organizationId, bool $isVdaEligible, NexusTypeEnum $nexusType, int $totalTransactions, int $totalTransactionsIncluded, int $totalTransactionsExempted, int $totalTransactionsMarketplace, bool $marketplaceIncluded, ?NexusStatusEnum $processingStatus = null, ?NexusStateEnum $status = null, ?string $nexusMetDate = null, ?string $economicNexusMetDate = null, ?string $physicalNexusMetDate = null, ?string $collectedTaxNexusMetDate = null, ?string $earliestTransactionDate = null, ?string $mostRecentTransactionDate = null, ?int $predictedMonthFromToday = null, ?float $confidenceLevel = null, ?string $lastProcessedAt = null, ?string $lastTaxLiabilityProcessedAt = null, ?array $periods = null, ?CurrencyEnum $currency = null, ?Registration $registration = null, ?RegistrationsRegimeEnum $registrationRegime = null, ?int $transactionCount = 0, ?string $transactionsAmount = '0.00', ?int $previousTransactionCount = 0, ?string $previousTransactionsAmount = '0.00', ?string $calculatedTaxLiability = '0.00', ?string $importedTaxLiability = '0.00', ?string $taxLiability = '0.00', ?bool $nexusMet = false, ?bool $economicNexusMet = false, ?bool $physicalNexusMet = false, ?bool $collectedTaxNexusMet = false, ?bool $collectedTaxEnabled = false, ?\DateTime $earliestCollectedDate = Utils\Utils::parseDateTime('2018-01-01T00:00:00'), ?bool $vdaEligible = false)
     {
         $this->countryCode = $countryCode;
         $this->stateCode = $stateCode;
@@ -512,10 +510,13 @@ class NexusResponse
         $this->trigger = $trigger;
         $this->salesOrTransactions = $salesOrTransactions;
         $this->thresholdSales = $thresholdSales;
+        $this->thresholdTransactions = $thresholdTransactions;
         $this->startDate = $startDate;
         $this->periodModel = $periodModel;
         $this->periodStartDate = $periodStartDate;
         $this->periodEndDate = $periodEndDate;
+        $this->previousPeriodStartDate = $previousPeriodStartDate;
+        $this->previousPeriodEndDate = $previousPeriodEndDate;
         $this->id = $id;
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;
@@ -526,23 +527,16 @@ class NexusResponse
         $this->totalTransactionsIncluded = $totalTransactionsIncluded;
         $this->totalTransactionsExempted = $totalTransactionsExempted;
         $this->totalTransactionsMarketplace = $totalTransactionsMarketplace;
+        $this->marketplaceIncluded = $marketplaceIncluded;
         $this->processingStatus = $processingStatus;
         $this->status = $status;
-        $this->thresholdTransactions = $thresholdTransactions;
-        $this->previousPeriodStartDate = $previousPeriodStartDate;
-        $this->previousPeriodEndDate = $previousPeriodEndDate;
-        $this->marketplaceIncluded = $marketplaceIncluded;
-        $this->calculatedTaxLiability = $calculatedTaxLiability;
-        $this->importedTaxLiability = $importedTaxLiability;
         $this->nexusMetDate = $nexusMetDate;
         $this->economicNexusMetDate = $economicNexusMetDate;
         $this->physicalNexusMetDate = $physicalNexusMetDate;
-        $this->collectedTaxNexusMet = $collectedTaxNexusMet;
         $this->collectedTaxNexusMetDate = $collectedTaxNexusMetDate;
         $this->earliestTransactionDate = $earliestTransactionDate;
         $this->mostRecentTransactionDate = $mostRecentTransactionDate;
         $this->predictedMonthFromToday = $predictedMonthFromToday;
-        $this->vdaEligible = $vdaEligible;
         $this->confidenceLevel = $confidenceLevel;
         $this->lastProcessedAt = $lastProcessedAt;
         $this->lastTaxLiabilityProcessedAt = $lastTaxLiabilityProcessedAt;
@@ -554,11 +548,15 @@ class NexusResponse
         $this->transactionsAmount = $transactionsAmount;
         $this->previousTransactionCount = $previousTransactionCount;
         $this->previousTransactionsAmount = $previousTransactionsAmount;
+        $this->calculatedTaxLiability = $calculatedTaxLiability;
+        $this->importedTaxLiability = $importedTaxLiability;
         $this->taxLiability = $taxLiability;
         $this->nexusMet = $nexusMet;
         $this->economicNexusMet = $economicNexusMet;
         $this->physicalNexusMet = $physicalNexusMet;
+        $this->collectedTaxNexusMet = $collectedTaxNexusMet;
         $this->collectedTaxEnabled = $collectedTaxEnabled;
         $this->earliestCollectedDate = $earliestCollectedDate;
+        $this->vdaEligible = $vdaEligible;
     }
 }

@@ -69,7 +69,6 @@ class ExemptionCreate
     public ?string $jurisdiction = null;
 
     /**
-     * Country code in ISO 3166-1 alpha-2 format (e.g., 'US')
      *
      * @var ?CountryCodeEnum $countryCode
      */
@@ -81,11 +80,11 @@ class ExemptionCreate
     /**
      * End date for the exemption validity period (YYYY-MM-DD format)
      *
-     * @var ?LocalDate $endDate
+     * @var ?string $endDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('end_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?LocalDate $endDate = null;
+    public ?string $endDate = null;
 
     /**
      * Unique identifier for the transaction, if applicable
@@ -112,14 +111,14 @@ class ExemptionCreate
      * @param  string  $fein
      * @param  string  $salesTaxId
      * @param  ExemptionStatus  $status
-     * @param  ?bool  $reseller
      * @param  ?string  $jurisdiction
      * @param  ?CountryCodeEnum  $countryCode
-     * @param  ?LocalDate  $endDate
+     * @param  ?string  $endDate
      * @param  ?string  $transactionId
+     * @param  ?bool  $reseller
      * @phpstan-pure
      */
-    public function __construct(ExemptionType $exemptionType, LocalDate $startDate, string $customerId, string $fein, string $salesTaxId, ExemptionStatus $status, ?string $jurisdiction = null, ?CountryCodeEnum $countryCode = null, ?LocalDate $endDate = null, ?string $transactionId = null, ?bool $reseller = false)
+    public function __construct(ExemptionType $exemptionType, LocalDate $startDate, string $customerId, string $fein, string $salesTaxId, ExemptionStatus $status, ?string $jurisdiction = null, ?CountryCodeEnum $countryCode = null, ?string $endDate = null, ?string $transactionId = null, ?bool $reseller = false)
     {
         $this->exemptionType = $exemptionType;
         $this->startDate = $startDate;
