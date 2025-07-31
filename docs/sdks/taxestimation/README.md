@@ -5,9 +5,9 @@
 
 ### Available Operations
 
-* [estimateTax](#estimatetax) - Estimate Tax
+* [estimateTaxV1TaxEstimatePost](#estimatetaxv1taxestimatepost) - Estimate Tax
 
-## estimateTax
+## estimateTaxV1TaxEstimatePost
 
 The Estimate Tax API calculates the estimated tax for a specific
     transaction based on the provided details, including organization nexus,
@@ -66,7 +66,7 @@ $transactionEstimatePublicRequest = new Components\TransactionEstimatePublicRequ
     ],
 );
 
-$response = $sdk->taxEstimation->estimateTax(
+$response = $sdk->taxEstimation->estimateTaxV1TaxEstimatePost(
     transactionEstimatePublicRequest: $transactionEstimatePublicRequest
 );
 

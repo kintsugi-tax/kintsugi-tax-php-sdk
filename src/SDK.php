@@ -24,9 +24,13 @@ class SDK
 
     public Exemptions $exemptions;
 
+    public Filings $filings;
+
     public Nexus $nexus;
 
     public Products $products;
+
+    public Registrations $registrations;
 
     public Transactions $transactions;
 
@@ -51,8 +55,10 @@ class SDK
         $this->addressValidation = new AddressValidation($this->sdkConfiguration);
         $this->customers = new Customers($this->sdkConfiguration);
         $this->exemptions = new Exemptions($this->sdkConfiguration);
+        $this->filings = new Filings($this->sdkConfiguration);
         $this->nexus = new Nexus($this->sdkConfiguration);
         $this->products = new Products($this->sdkConfiguration);
+        $this->registrations = new Registrations($this->sdkConfiguration);
         $this->transactions = new Transactions($this->sdkConfiguration);
         $this->taxEstimation = new TaxEstimation($this->sdkConfiguration);
         $this->initHooks();

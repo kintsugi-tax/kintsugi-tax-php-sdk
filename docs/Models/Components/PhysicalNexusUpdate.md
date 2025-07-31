@@ -1,0 +1,10 @@
+# PhysicalNexusUpdate
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `startDate`                                                                                       | [\DateTime](https://www.php.net/manual/en/class.datetime.php)                                     | :heavy_check_mark:                                                                                | The date when the nexus became<br/>                                effective (YYYY-MM-DD).        |
+| `endDate`                                                                                         | *?string*                                                                                         | :heavy_minus_sign:                                                                                | The date when the<br/>                                        nexus ends, if applicable (YYYY-MM-DD). |
+| `category`                                                                                        | [Components\PhysicalNexusCategory](../../Models/Components/PhysicalNexusCategory.md)              | :heavy_check_mark:                                                                                | N/A                                                                                               |

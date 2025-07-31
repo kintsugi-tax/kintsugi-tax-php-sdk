@@ -56,7 +56,7 @@ class Products
      * @return Operations\CreateProductV1ProductsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function create(Components\ProductCreateManual $request, ?Options $options = null): Operations\CreateProductV1ProductsPostResponse
+    public function createProductV1ProductsPost(Components\ProductCreateManual $request, ?Options $options = null): Operations\CreateProductV1ProductsPostResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/');
@@ -160,7 +160,7 @@ class Products
      * @return Operations\GetProductByIdV1ProductsProductIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function get(string $productId, ?Options $options = null): Operations\GetProductByIdV1ProductsProductIdGetResponse
+    public function getProductByIdV1ProductsProductIdGet(string $productId, ?Options $options = null): Operations\GetProductByIdV1ProductsProductIdGetResponse
     {
         $request = new Operations\GetProductByIdV1ProductsProductIdGetRequest(
             productId: $productId,
@@ -261,7 +261,7 @@ class Products
      * @return Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function listCategories(?Options $options = null): Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
+    public function getProductCategoriesV1ProductsCategoriesGet(?Options $options = null): Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/categories/');
@@ -334,7 +334,7 @@ class Products
      * @return Operations\GetProductsV1ProductsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(?Operations\GetProductsV1ProductsGetRequest $request = null, ?Options $options = null): Operations\GetProductsV1ProductsGetResponse
+    public function getProductsV1ProductsGet(?Operations\GetProductsV1ProductsGetRequest $request = null, ?Options $options = null): Operations\GetProductsV1ProductsGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/');
@@ -436,7 +436,7 @@ class Products
      * @return Operations\UpdateProductV1ProductsProductIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function update(Components\ProductUpdate $productUpdate, string $productId, ?Options $options = null): Operations\UpdateProductV1ProductsProductIdPutResponse
+    public function updateProductV1ProductsProductIdPut(Components\ProductUpdate $productUpdate, string $productId, ?Options $options = null): Operations\UpdateProductV1ProductsProductIdPutResponse
     {
         $request = new Operations\UpdateProductV1ProductsProductIdPutRequest(
             productId: $productId,

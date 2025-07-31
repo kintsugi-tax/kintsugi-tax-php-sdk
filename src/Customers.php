@@ -55,7 +55,7 @@ class Customers
      * @return Operations\CreateCustomerV1CustomersPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function create(Components\CustomerCreate $request, ?Options $options = null): Operations\CreateCustomerV1CustomersPostResponse
+    public function createCustomerV1CustomersPost(Components\CustomerCreate $request, ?Options $options = null): Operations\CreateCustomerV1CustomersPostResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/customers');
@@ -158,7 +158,7 @@ class Customers
      * @return Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function createTransaction(Components\TransactionCreate $transactionCreate, string $customerId, ?Options $options = null): Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse
+    public function createTransactionByCustomerIdV1CustomersCustomerIdTransactionsPost(Components\TransactionCreate $transactionCreate, string $customerId, ?Options $options = null): Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse
     {
         $request = new Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest(
             customerId: $customerId,
@@ -242,7 +242,7 @@ class Customers
      * @return Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getByExternalId(string $externalId, ?Options $options = null): Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse
+    public function getCustomerByExternalIdV1CustomersExternalExternalIdGet(string $externalId, ?Options $options = null): Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse
     {
         $request = new Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetRequest(
             externalId: $externalId,
@@ -320,7 +320,7 @@ class Customers
      * @return Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function get(string $customerId, ?Options $options = null): Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
+    public function getCustomerByIdV1CustomersCustomerIdGet(string $customerId, ?Options $options = null): Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
     {
         $request = new Operations\GetCustomerByIdV1CustomersCustomerIdGetRequest(
             customerId: $customerId,
@@ -398,7 +398,7 @@ class Customers
      * @return Operations\GetCustomersV1Response
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(?Operations\GetCustomersV1Request $request = null, ?Options $options = null): Operations\GetCustomersV1Response
+    public function getCustomersV1(?Operations\GetCustomersV1Request $request = null, ?Options $options = null): Operations\GetCustomersV1Response
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/customers');
@@ -498,7 +498,7 @@ class Customers
      * @return Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getTransactions(string $customerId, ?Options $options = null): Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
+    public function getTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet(string $customerId, ?Options $options = null): Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
     {
         $request = new Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest(
             customerId: $customerId,
@@ -577,7 +577,7 @@ class Customers
      * @return Operations\UpdateCustomerV1CustomersCustomerIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function update(Components\CustomerUpdate $customerUpdate, string $customerId, ?Options $options = null): Operations\UpdateCustomerV1CustomersCustomerIdPutResponse
+    public function updateCustomerV1CustomersCustomerIdPut(Components\CustomerUpdate $customerUpdate, string $customerId, ?Options $options = null): Operations\UpdateCustomerV1CustomersCustomerIdPutResponse
     {
         $request = new Operations\UpdateCustomerV1CustomersCustomerIdPutRequest(
             customerId: $customerId,
