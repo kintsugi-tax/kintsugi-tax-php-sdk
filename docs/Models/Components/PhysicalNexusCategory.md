@@ -26,6 +26,8 @@
 | `ManufacturingFacilities`                          | MANUFACTURING_FACILITIES                           |
 | `ServersDataCenters`                               | SERVERS_DATA_CENTERS                               |
 | `TradeShowPresence`                                | TRADE_SHOW_PRESENCE                                |
+| `TradeShowPresenceWithoutSales`                    | TRADE_SHOW_PRESENCE_WITHOUT_SALES                  |
 | `DigitalInfrastructureLocalized`                   | DIGITAL_INFRASTRUCTURE_LOCALIZED                   |
 | `PermanentEstablishment`                           | PERMANENT_ESTABLISHMENT                            |
 | `EnterContractsWithLocals`                         | ENTER_CONTRACTS_WITH_LOCALS                        |
+| `ConsignmentStockArrangements`                     | CONSIGNMENT_STOCK_ARRANGEMENTS                     |

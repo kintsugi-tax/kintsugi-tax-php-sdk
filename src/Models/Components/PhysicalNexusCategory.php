@@ -32,7 +32,9 @@ enum PhysicalNexusCategory: string
     case ManufacturingFacilities = 'MANUFACTURING_FACILITIES';
     case ServersDataCenters = 'SERVERS_DATA_CENTERS';
     case TradeShowPresence = 'TRADE_SHOW_PRESENCE';
+    case TradeShowPresenceWithoutSales = 'TRADE_SHOW_PRESENCE_WITHOUT_SALES';
     case DigitalInfrastructureLocalized = 'DIGITAL_INFRASTRUCTURE_LOCALIZED';
     case PermanentEstablishment = 'PERMANENT_ESTABLISHMENT';
     case EnterContractsWithLocals = 'ENTER_CONTRACTS_WITH_LOCALS';
+    case ConsignmentStockArrangements = 'CONSIGNMENT_STOCK_ARRANGEMENTS';
 }
