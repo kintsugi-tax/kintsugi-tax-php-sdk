@@ -119,6 +119,15 @@ class FilingRead
     public ?string $jiraIssueKey = null;
 
     /**
+     * Indicates the date when filing will be unpaused.
+     *
+     * @var ?string $pausedUntilDate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('paused_until_date')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $pausedUntilDate = null;
+
+    /**
      * Notes or comments related to the filing.
      *
      * @var ?string $internalNotes
@@ -170,15 +179,6 @@ class FilingRead
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?CurrencyEnum $currency = null;
-
-    /**
-     * Indicates the date when filing will be unpaused.
-     *
-     * @var ?string $pausedUntilDate
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('paused_until_date')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $pausedUntilDate = null;
 
     /**
      * Indicates if the filing was auto-approved. Defaults to false.
@@ -311,6 +311,7 @@ class FilingRead
      * @param  ?string  $stateName
      * @param  ?string  $jiraIssueKey
      * @param  ?bool  $autoApproved
+     * @param  ?string  $pausedUntilDate
      * @param  ?string  $amountCalculated
      * @param  ?string  $amountAdjusted
      * @param  ?string  $amountDiscounts
@@ -329,10 +330,9 @@ class FilingRead
      * @param  ?string  $paymentConfirmationId
      * @param  ?bool  $blockApproval
      * @param  ?CurrencyEnum  $currency
-     * @param  ?string  $pausedUntilDate
      * @phpstan-pure
      */
-    public function __construct(LocalDate $startDate, LocalDate $endDate, CountryCodeEnum $countryCode, string $id, string $registrationId, ?FilingStatusEnum $status = null, ?string $dueDate = null, ?string $dateFiled = null, ?bool $isManual = null, ?string $stateCode = null, ?string $stateName = null, ?string $jiraIssueKey = null, ?string $internalNotes = null, ?string $recentDetailsReportLink = null, ?string $returnConfirmationId = null, ?string $paymentConfirmationId = null, ?bool $blockApproval = null, ?CurrencyEnum $currency = null, ?string $pausedUntilDate = null, ?bool $autoApproved = false, ?string $amountCalculated = '0.00', ?string $amountAdjusted = '0.00', ?string $amountDiscounts = '0.00', ?string $amountFees = '0.00', ?string $amountPenalties = '0.00', ?string $amountTaxCollected = '0.00', ?string $amountSales = '0.00', ?string $totalTaxableSales = '0.00', ?string $amount = '0.00', ?string $totalTaxLiability = '0.00', ?int $transactionCount = 0, ?string $taxRemitted = '0.00')
+    public function __construct(LocalDate $startDate, LocalDate $endDate, CountryCodeEnum $countryCode, string $id, string $registrationId, ?FilingStatusEnum $status = null, ?string $dueDate = null, ?string $dateFiled = null, ?bool $isManual = null, ?string $stateCode = null, ?string $stateName = null, ?string $jiraIssueKey = null, ?string $pausedUntilDate = null, ?string $internalNotes = null, ?string $recentDetailsReportLink = null, ?string $returnConfirmationId = null, ?string $paymentConfirmationId = null, ?bool $blockApproval = null, ?CurrencyEnum $currency = null, ?bool $autoApproved = false, ?string $amountCalculated = '0.00', ?string $amountAdjusted = '0.00', ?string $amountDiscounts = '0.00', ?string $amountFees = '0.00', ?string $amountPenalties = '0.00', ?string $amountTaxCollected = '0.00', ?string $amountSales = '0.00', ?string $totalTaxableSales = '0.00', ?string $amount = '0.00', ?string $totalTaxLiability = '0.00', ?int $transactionCount = 0, ?string $taxRemitted = '0.00')
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
@@ -346,13 +346,13 @@ class FilingRead
         $this->stateCode = $stateCode;
         $this->stateName = $stateName;
         $this->jiraIssueKey = $jiraIssueKey;
+        $this->pausedUntilDate = $pausedUntilDate;
         $this->internalNotes = $internalNotes;
         $this->recentDetailsReportLink = $recentDetailsReportLink;
         $this->returnConfirmationId = $returnConfirmationId;
         $this->paymentConfirmationId = $paymentConfirmationId;
         $this->blockApproval = $blockApproval;
         $this->currency = $currency;
-        $this->pausedUntilDate = $pausedUntilDate;
         $this->autoApproved = $autoApproved;
         $this->amountCalculated = $amountCalculated;
         $this->amountAdjusted = $amountAdjusted;

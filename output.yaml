@@ -766,10 +766,10 @@ paths:
           required: false
           schema:
             description: "Filter filings by status"
-            default: "FILED,FILING,UNFILED"
+            default: "FILED,FILING,UNFILED,PAUSED"
             type: "string"
           description: "Filter filings by status"
-          example: "FILED,FILING,UNFILED"
+          example: "FILED,FILING,UNFILED,PAUSED"
         - name: "start_date"
           in: "query"
           required: false
@@ -2025,6 +2025,13 @@ paths:
             description: "Filter transactions by exemption status.\n        Multiple values can be passed as a comma-separated list (e.g., EXEMPT,TAXABLE)."
             type: "string"
           description: "Filter transactions by exemption status.\n        Multiple values can be passed as a comma-separated list (e.g., EXEMPT,TAXABLE)."
+        - name: "type"
+          in: "query"
+          required: false
+          schema:
+            description: "Filter transactions by type (e.g., SALE, FULL_CREDIT_NOTE,\n        PARTIAL_CREDIT_NOTE, ARCHIVE etc.)."
+            type: "string"
+          description: "Filter transactions by type (e.g., SALE, FULL_CREDIT_NOTE,\n        PARTIAL_CREDIT_NOTE, ARCHIVE etc.)."
         - name: "page"
           in: "query"
           required: false
@@ -2705,6 +2712,9 @@ components:
           description: "Indicates if the filing was auto-approved. Defaults to false."
           default: false
           type: "boolean"
+        "paused_until_date":
+          description: "Indicates the date when filing will be unpaused."
+          type: "string"
         "amount_calculated":
           type: "string"
           title: "Amount Calculated"
@@ -2779,9 +2789,6 @@ components:
           description: "Indicates if the filing can be approved."
           type: "boolean"
         "currency": {"description": "Currency code for the filing (e.g., USD, CAD).", "$ref": "#/components/schemas/CurrencyEnum"}
-        "paused_until_date":
-          description: "Indicates the date when filing will be unpaused."
-          type: "string"
         "id":
           type: "string"
           title: "Id"
@@ -5866,6 +5873,9 @@ components:
           description: "Indicates if the filing was auto-approved. Defaults to false."
           default: false
           type: "boolean"
+        "paused_until_date":
+          description: "Indicates the date when filing will be unpaused."
+          type: "string"
         "amount_calculated":
           type: "string"
           title: "Amount Calculated"
@@ -5940,9 +5950,6 @@ components:
           description: "Indicates if the filing can be approved."
           type: "boolean"
         "currency": {"description": "Currency code for the filing (e.g., USD, CAD).", "$ref": "#/components/schemas/CurrencyEnum"}
-        "paused_until_date":
-          description: "Indicates the date when filing will be unpaused."
-          type: "string"
         "id":
           type: "string"
           title: "Id"
@@ -5969,6 +5976,22 @@ components:
         - "id"
         - "registration_id"
       title: "FilingAdminDetailsRead"
+    "FilingConfirmationRequest":
+      properties:
+        "payment_confirmation_id":
+          type: "string"
+        "return_confirmation_id":
+          type: "string"
+        "amount_adjusted":
+          type: "number"
+        "amount_fees":
+          type: "number"
+        "amount_penalties":
+          type: "number"
+        "amount_discounts":
+          type: "number"
+      type: "object"
+      title: "FilingConfirmationRequest"
     "FilingCountByJurisdiction":
       properties:
         "country_code": {"$ref": "#/components/schemas/CountryCodeEnum", "description": "Country code"}
@@ -6055,6 +6078,9 @@ components:
           description: "Indicates if the filing was auto-approved. Defaults to false."
           default: false
           type: "boolean"
+        "paused_until_date":
+          description: "Indicates the date when filing will be unpaused."
+          type: "string"
         "amount_calculated":
           type: "string"
           title: "Amount Calculated"
@@ -6129,9 +6155,6 @@ components:
           description: "Indicates if the filing can be approved."
           type: "boolean"
         "currency": {"description": "Currency code for the filing (e.g., USD, CAD).", "$ref": "#/components/schemas/CurrencyEnum"}
-        "paused_until_date":
-          description: "Indicates the date when filing will be unpaused."
-          type: "string"
         "id":
           type: "string"
           title: "Id"
@@ -6240,6 +6263,9 @@ components:
           description: "Indicates if the filing was auto-approved. Defaults to false."
           default: false
           type: "boolean"
+        "paused_until_date":
+          description: "Indicates the date when filing will be unpaused."
+          type: "string"
         "amount_calculated":
           type: "string"
           title: "Amount Calculated"
@@ -6314,9 +6340,6 @@ components:
           description: "Indicates if the filing can be approved."
           type: "boolean"
         "currency": {"description": "Currency code for the filing (e.g., USD, CAD).", "$ref": "#/components/schemas/CurrencyEnum"}
-        "paused_until_date":
-          description: "Indicates the date when filing will be unpaused."
-          type: "string"
         "id":
           type: "string"
           title: "Id"
@@ -6377,6 +6400,9 @@ components:
           description: "Indicates if the filing was auto-approved. Defaults to false."
           default: false
           type: "boolean"
+        "paused_until_date":
+          description: "Indicates the date when filing will be unpaused."
+          type: "string"
         "amount_calculated":
           description: "The calculated amount for the filing. Defaults to 0.00."
           default: "0.00"
@@ -6445,9 +6471,6 @@ components:
           description: "Indicates if the filing can be approved."
           type: "boolean"
         "currency": {"description": "Currency code for the filing (e.g., USD, CAD).", "$ref": "#/components/schemas/CurrencyEnum"}
-        "paused_until_date":
-          description: "Indicates the date when filing will be unpaused."
-          type: "string"
       type: "object"
       required:
         - "start_date"
@@ -11499,9 +11522,8 @@ components:
     "ShopwareWebhookEventData":
       properties:
         "payload":
-          items: {"$ref": "#/components/schemas/ShopwareWebhookEventDataPayload"}
           type: "array"
-          title: "Payload"
+          items: {"$ref": "#/components/schemas/ShopwareWebhookEventDataPayload"}
         "event":
           type: "string"
           title: "Event"
@@ -12087,6 +12109,7 @@ components:
     "TaxItemTypeEnum":
       type: "string"
       enum:
+        - "IMPORTED_ORIGINAL"
         - "IMPORTED"
         - "CALCULATED"
       title: "TaxItemTypeEnum"
@@ -14151,6 +14174,10 @@ components:
         "auto_file":
           default: false
           type: "boolean"
+        "paused_until_date":
+          type: "string"
+        "pause_reason":
+          type: "string"
       type: "object"
       title: "UpdateFilingTemp"
       description: "This is a temporary serializer for the update filing endpoint.\nIt will be deprecated and with a filing approval endpoint."
