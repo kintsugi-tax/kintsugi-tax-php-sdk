@@ -133,6 +133,16 @@ class GetTransactionsV1TransactionsGetRequest
     public ?string $exemptIn = null;
 
     /**
+     * Filter transactions by type (e.g., SALE, FULL_CREDIT_NOTE,
+     *
+     *         PARTIAL_CREDIT_NOTE, ARCHIVE etc.).
+     *
+     * @var ?string $type
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=type')]
+    public ?string $type = null;
+
+    /**
      * Filter by address status (e.g., UNVERIFIED, INVALID,
      *
      *         PARTIALLY_VERIFIED, VERIFIED, UNVERIFIABLE).
@@ -184,11 +194,12 @@ class GetTransactionsV1TransactionsGetRequest
      * @param  ?string  $processingStatusIn
      * @param  ?bool  $marketplace
      * @param  ?string  $exemptIn
+     * @param  ?string  $type
      * @param  ?int  $page
      * @param  ?int  $size
      * @phpstan-pure
      */
-    public function __construct(?string $stateCode = null, ?string $transactionType = null, ?string $transactionSource = null, ?string $searchQuery = null, ?array $country = null, ?string $state = null, ?Components\TransactionStatusEnum $status = null, ?string $filingId = null, ?string $dateGte = null, ?string $dateLte = null, ?string $processingStatusIn = null, ?bool $marketplace = null, ?string $exemptIn = null, ?string $addressStatusIn = 'UNVERIFIED,INVALID,PARTIALLY_VERIFIED,VERIFIED,UNVERIFIABLE', ?string $orderBy = 'date,state,customer_name,status', ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $stateCode = null, ?string $transactionType = null, ?string $transactionSource = null, ?string $searchQuery = null, ?array $country = null, ?string $state = null, ?Components\TransactionStatusEnum $status = null, ?string $filingId = null, ?string $dateGte = null, ?string $dateLte = null, ?string $processingStatusIn = null, ?bool $marketplace = null, ?string $exemptIn = null, ?string $type = null, ?string $addressStatusIn = 'UNVERIFIED,INVALID,PARTIALLY_VERIFIED,VERIFIED,UNVERIFIABLE', ?string $orderBy = 'date,state,customer_name,status', ?int $page = 1, ?int $size = 50)
     {
         $this->stateCode = $stateCode;
         $this->transactionType = $transactionType;
@@ -203,6 +214,7 @@ class GetTransactionsV1TransactionsGetRequest
         $this->processingStatusIn = $processingStatusIn;
         $this->marketplace = $marketplace;
         $this->exemptIn = $exemptIn;
+        $this->type = $type;
         $this->addressStatusIn = $addressStatusIn;
         $this->orderBy = $orderBy;
         $this->page = $page;
