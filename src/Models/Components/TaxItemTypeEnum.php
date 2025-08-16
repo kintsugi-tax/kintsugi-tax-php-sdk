@@ -11,6 +11,7 @@ namespace KintsugiTax\SDK\Models\Components;
 
 enum TaxItemTypeEnum: string
 {
+    case ImportedOriginal = 'IMPORTED_ORIGINAL';
     case Imported = 'IMPORTED';
     case Calculated = 'CALCULATED';
 }

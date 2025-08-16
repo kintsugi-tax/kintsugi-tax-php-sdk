@@ -766,10 +766,10 @@ paths:
           required: false
           schema:
             description: "Filter filings by status"
-            default: "FILED,FILING,UNFILED"
+            default: "FILED,FILING,UNFILED,PAUSED"
             type: "string"
           description: "Filter filings by status"
-          example: "FILED,FILING,UNFILED"
+          example: "FILED,FILING,UNFILED,PAUSED"
         - name: "start_date"
           in: "query"
           required: false
@@ -2705,6 +2705,9 @@ components:
           description: "Indicates if the filing was auto-approved. Defaults to false."
           default: false
           type: "boolean"
+        "paused_until_date":
+          description: "Indicates the date when filing will be unpaused."
+          type: "string"
         "amount_calculated":
           type: "string"
           title: "Amount Calculated"
@@ -2779,9 +2782,6 @@ components:
           description: "Indicates if the filing can be approved."
           type: "boolean"
         "currency": {"description": "Currency code for the filing (e.g., USD, CAD).", "$ref": "#/components/schemas/CurrencyEnum"}
-        "paused_until_date":
-          description: "Indicates the date when filing will be unpaused."
-          type: "string"
         "id":
           type: "string"
           title: "Id"
@@ -2957,6 +2957,7 @@ components:
         - "shopware"
         - "xero"
         - "netsuite"
+        - "sage-intacct"
       title: "ApiDeckServiceEnum"
     "ApiKeyRequest":
       properties:
@@ -3021,6 +3022,41 @@ components:
         - "TRANSACTION"
         - "TRANSACTION_ITEM"
       title: "AppliedTo"
+    "AssigneeUser":
+      properties:
+        "user_id":
+          type: "string"
+          title: "User Id"
+        "email":
+          type: "string"
+          title: "Email"
+        "first_name":
+          type: "string"
+        "last_name":
+          type: "string"
+        "full_name":
+          type: "string"
+        "role":
+          type: "string"
+      type: "object"
+      required:
+        - "user_id"
+        - "email"
+      title: "AssigneeUser"
+    "AssigneeUsersResponse":
+      properties:
+        "users":
+          items: {"$ref": "#/components/schemas/AssigneeUser"}
+          type: "array"
+          title: "Users"
+        "total":
+          type: "integer"
+          title: "Total"
+      type: "object"
+      required:
+        - "users"
+        - "total"
+      title: "AssigneeUsersResponse"
     "Attachment":
       properties:
         "id":
@@ -5866,6 +5902,9 @@ components:
           description: "Indicates if the filing was auto-approved. Defaults to false."
           default: false
           type: "boolean"
+        "paused_until_date":
+          description: "Indicates the date when filing will be unpaused."
+          type: "string"
         "amount_calculated":
           type: "string"
           title: "Amount Calculated"
@@ -5940,9 +5979,6 @@ components:
           description: "Indicates if the filing can be approved."
           type: "boolean"
         "currency": {"description": "Currency code for the filing (e.g., USD, CAD).", "$ref": "#/components/schemas/CurrencyEnum"}
-        "paused_until_date":
-          description: "Indicates the date when filing will be unpaused."
-          type: "string"
         "id":
           type: "string"
           title: "Id"
@@ -5969,6 +6005,22 @@ components:
         - "id"
         - "registration_id"
       title: "FilingAdminDetailsRead"
+    "FilingConfirmationRequest":
+      properties:
+        "payment_confirmation_id":
+          type: "string"
+        "return_confirmation_id":
+          type: "string"
+        "amount_adjusted":
+          type: "number"
+        "amount_fees":
+          type: "number"
+        "amount_penalties":
+          type: "number"
+        "amount_discounts":
+          type: "number"
+      type: "object"
+      title: "FilingConfirmationRequest"
     "FilingCountByJurisdiction":
       properties:
         "country_code": {"$ref": "#/components/schemas/CountryCodeEnum", "description": "Country code"}
@@ -6055,6 +6107,9 @@ components:
           description: "Indicates if the filing was auto-approved. Defaults to false."
           default: false
           type: "boolean"
+        "paused_until_date":
+          description: "Indicates the date when filing will be unpaused."
+          type: "string"
         "amount_calculated":
           type: "string"
           title: "Amount Calculated"
@@ -6129,9 +6184,6 @@ components:
           description: "Indicates if the filing can be approved."
           type: "boolean"
         "currency": {"description": "Currency code for the filing (e.g., USD, CAD).", "$ref": "#/components/schemas/CurrencyEnum"}
-        "paused_until_date":
-          description: "Indicates the date when filing will be unpaused."
-          type: "string"
         "id":
           type: "string"
           title: "Id"
@@ -6240,6 +6292,9 @@ components:
           description: "Indicates if the filing was auto-approved. Defaults to false."
           default: false
           type: "boolean"
+        "paused_until_date":
+          description: "Indicates the date when filing will be unpaused."
+          type: "string"
         "amount_calculated":
           type: "string"
           title: "Amount Calculated"
@@ -6314,9 +6369,6 @@ components:
           description: "Indicates if the filing can be approved."
           type: "boolean"
         "currency": {"description": "Currency code for the filing (e.g., USD, CAD).", "$ref": "#/components/schemas/CurrencyEnum"}
-        "paused_until_date":
-          description: "Indicates the date when filing will be unpaused."
-          type: "string"
         "id":
           type: "string"
           title: "Id"
@@ -6377,6 +6429,9 @@ components:
           description: "Indicates if the filing was auto-approved. Defaults to false."
           default: false
           type: "boolean"
+        "paused_until_date":
+          description: "Indicates the date when filing will be unpaused."
+          type: "string"
         "amount_calculated":
           description: "The calculated amount for the filing. Defaults to 0.00."
           default: "0.00"
@@ -6445,9 +6500,6 @@ components:
           description: "Indicates if the filing can be approved."
           type: "boolean"
         "currency": {"description": "Currency code for the filing (e.g., USD, CAD).", "$ref": "#/components/schemas/CurrencyEnum"}
-        "paused_until_date":
-          description: "Indicates the date when filing will be unpaused."
-          type: "string"
       type: "object"
       required:
         - "start_date"
@@ -11482,72 +11534,6 @@ components:
         - "url"
         - "shopId"
       title: "ShopwareTaxEstimateRequestSource"
-    "ShopwareWebhookEvent":
-      properties:
-        "data": {"$ref": "#/components/schemas/ShopwareWebhookEventData"}
-        "source": {"$ref": "#/components/schemas/ShopwareWebhookEventSource"}
-        "timestamp":
-          type: "string"
-          format: "date-time"
-          title: "Timestamp"
-      type: "object"
-      required:
-        - "data"
-        - "source"
-        - "timestamp"
-      title: "ShopwareWebhookEvent"
-    "ShopwareWebhookEventData":
-      properties:
-        "payload":
-          items: {"$ref": "#/components/schemas/ShopwareWebhookEventDataPayload"}
-          type: "array"
-          title: "Payload"
-        "event":
-          type: "string"
-          title: "Event"
-      type: "object"
-      required:
-        - "payload"
-        - "event"
-      title: "ShopwareWebhookEventData"
-    "ShopwareWebhookEventDataPayload":
-      properties:
-        "entity":
-          type: "string"
-          title: "Entity"
-        "operation":
-          type: "string"
-          title: "Operation"
-        "primaryKey":
-          type: "string"
-          title: "Primarykey"
-        "updatedFields":
-          type: "array"
-          items:
-            type: "string"
-      type: "object"
-      required:
-        - "entity"
-        - "operation"
-        - "primaryKey"
-      title: "ShopwareWebhookEventDataPayload"
-    "ShopwareWebhookEventSource":
-      properties:
-        "url":
-          type: "string"
-          title: "Url"
-        "appVersion":
-          type: "string"
-        "shopId":
-          type: "string"
-          title: "Shopid"
-        "eventId":
-          type: "string"
-      type: "object"
-      required:
-        - "url"
-        - "shopId"
-      title: "ShopwareWebhookEventSource"
     "SourceEnum":
       type: "string"
       enum:
@@ -11601,6 +11587,7 @@ components:
         - "FAIRE"
         - "SHOPWARE"
         - "ZOHO"
+        - "SAGE_INTACCT"
       title: "SourceEnum"
     "StatusEnum":
       type: "string"
@@ -12087,6 +12074,7 @@ components:
     "TaxItemTypeEnum":
       type: "string"
       enum:
+        - "IMPORTED_ORIGINAL"
         - "IMPORTED"
         - "CALCULATED"
       title: "TaxItemTypeEnum"
@@ -14151,6 +14139,10 @@ components:
         "auto_file":
           default: false
           type: "boolean"
+        "paused_until_date":
+          type: "string"
+        "pause_reason":
+          type: "string"
       type: "object"
       title: "UpdateFilingTemp"
       description: "This is a temporary serializer for the update filing endpoint.\nIt will be deprecated and with a filing approval endpoint."
