@@ -3,7 +3,8 @@
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Imported`   | IMPORTED     |
-| `Calculated` | CALCULATED   |
+| Name               | Value              |
+| ------------------ | ------------------ |
+| `ImportedOriginal` | IMPORTED_ORIGINAL  |
+| `Imported`         | IMPORTED           |
+| `Calculated`       | CALCULATED         |
