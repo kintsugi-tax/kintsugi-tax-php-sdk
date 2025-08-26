@@ -84,22 +84,26 @@ class TransactionItemEstimateBase
     public ?SourceEnum $productSource = null;
 
     /**
+     * Subcategory of the product. Required if product_category is used
      *
-     * @var ?ProductSubCategoryEnum $productSubcategory
+     *         in place of external_product_id.
+     *
+     * @var ?string $productSubcategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_subcategory')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ProductSubCategoryEnum $productSubcategory = null;
+    public ?string $productSubcategory = null;
 
     /**
+     * Category of the product. Required if product_subcategory is used
      *
-     * @var ?ProductCategoryEnum $productCategory
+     *         in place of external_product_id.
+     *
+     * @var ?string $productCategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_category')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductCategoryEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ProductCategoryEnum $productCategory = null;
+    public ?string $productCategory = null;
 
     /**
      * Defaults to 1.0. The quantity of the item.
@@ -128,13 +132,13 @@ class TransactionItemEstimateBase
      * @param  ?string  $productName
      * @param  ?string  $productDescription
      * @param  ?SourceEnum  $productSource
-     * @param  ?ProductSubCategoryEnum  $productSubcategory
-     * @param  ?ProductCategoryEnum  $productCategory
+     * @param  ?string  $productSubcategory
+     * @param  ?string  $productCategory
      * @param  ?float  $quantity
      * @param  ?bool  $exempt
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, float $amount, ?string $externalId = null, ?string $description = null, ?string $externalProductId = null, ?string $productName = null, ?string $productDescription = null, ?SourceEnum $productSource = null, ?ProductSubCategoryEnum $productSubcategory = null, ?ProductCategoryEnum $productCategory = null, ?float $quantity = 1.0, ?bool $exempt = false)
+    public function __construct(\DateTime $date, float $amount, ?string $externalId = null, ?string $description = null, ?string $externalProductId = null, ?string $productName = null, ?string $productDescription = null, ?SourceEnum $productSource = null, ?string $productSubcategory = null, ?string $productCategory = null, ?float $quantity = 1.0, ?bool $exempt = false)
     {
         $this->date = $date;
         $this->amount = $amount;

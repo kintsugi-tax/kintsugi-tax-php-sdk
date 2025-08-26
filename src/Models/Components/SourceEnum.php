@@ -61,4 +61,5 @@ enum SourceEnum: string
     case Faire = 'FAIRE';
     case Shopware = 'SHOPWARE';
     case Zoho = 'ZOHO';
+    case SageIntacct = 'SAGE_INTACCT';
 }

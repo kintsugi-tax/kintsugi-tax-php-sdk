@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: fdb4bdf9-63b7-4d28-815c-b04a56c0369b
 management:
-  docChecksum: 7c5de0313b7f6cbd96e077db9918d785
+  docChecksum: dfab17abc6cef6c6a114c1a612560f93
   docVersion: 1.0.0
-  speakeasyVersion: 1.598.3
-  generationVersion: 2.674.3
-  releaseVersion: 0.4.3
-  configChecksum: 25f9d3c52e6c43c32ce109b943e78fcf
+  speakeasyVersion: 1.606.5
+  generationVersion: 2.687.1
+  releaseVersion: 0.4.4
+  configChecksum: 31c95750221688042892781bcdded2e4
   repoURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk.git
   installationURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk
   published: true
@@ -1104,7 +1104,7 @@ examples:
     speakeasy-default-get-filings-v1-filings-get:
       parameters:
         query:
-          status__in: "FILED,FILING,UNFILED"
+          status__in: "FILED,FILING,UNFILED,PAUSED"
           start_date: "2024-01-01"
           end_date: "2024-12-31"
           date_filed__gte: "2024-01-01"
@@ -1335,3 +1335,4 @@ examples:
         "500":
           application/json: {"detail": "<value>"}
 examplesVersion: 1.0.2
+releaseNotes: "## SDK Changes Detected:\n* `sdk->taxestimation->estimate()`: \n  *  `request.transactionEstimatePublicRequest->transactionItems->[]` **Changed** **Breaking** :warning:\n  *  `response.items->[]->transactionItems->[]` **Changed** **Breaking** :warning:\n* `sdk->filings->get()`:  `response.items->[]` **Changed**\n* `sdk->filings->getById()`:  `response` **Changed**\n* `sdk->filings->getByRegistrationId()`:  `response.items->[]` **Changed**\n"
