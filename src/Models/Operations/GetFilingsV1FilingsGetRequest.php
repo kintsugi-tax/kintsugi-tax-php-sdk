@@ -105,7 +105,7 @@ class GetFilingsV1FilingsGetRequest
      * @param  ?int  $size
      * @phpstan-pure
      */
-    public function __construct(?string $startDate = null, ?string $endDate = null, ?string $dateFiledGte = null, ?string $dateFiledLte = null, ?string $orderBy = null, ?string $stateCode = null, ?array $countryCode = null, ?string $statusIn = 'FILED,FILING,UNFILED', ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $startDate = null, ?string $endDate = null, ?string $dateFiledGte = null, ?string $dateFiledLte = null, ?string $orderBy = null, ?string $stateCode = null, ?array $countryCode = null, ?string $statusIn = 'FILED,FILING,UNFILED,PAUSED', ?int $page = 1, ?int $size = 50)
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
