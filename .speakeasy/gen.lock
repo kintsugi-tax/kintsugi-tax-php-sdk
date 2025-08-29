@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: fdb4bdf9-63b7-4d28-815c-b04a56c0369b
 management:
-  docChecksum: dfab17abc6cef6c6a114c1a612560f93
+  docChecksum: 3253e327ef086b821567ec0741622cac
   docVersion: 1.0.0
-  speakeasyVersion: 1.606.5
-  generationVersion: 2.687.1
-  releaseVersion: 0.4.4
-  configChecksum: 31c95750221688042892781bcdded2e4
+  speakeasyVersion: 1.606.8
+  generationVersion: 2.687.13
+  releaseVersion: 0.4.5
+  configChecksum: 6c55ad913337a108baf3d0f4e6b6803c
   repoURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk.git
   installationURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk
   published: true
@@ -91,6 +91,7 @@ generatedFiles:
   - docs/Models/Components/PhysicalNexusCategory.md
   - docs/Models/Components/PhysicalNexusCreate.md
   - docs/Models/Components/PhysicalNexusRead.md
+  - docs/Models/Components/PhysicalNexusSource.md
   - docs/Models/Components/PhysicalNexusUpdate.md
   - docs/Models/Components/ProcessingStatusEnum.md
   - docs/Models/Components/ProductCategories.md
@@ -333,6 +334,7 @@ generatedFiles:
   - src/Models/Components/PhysicalNexusCategory.php
   - src/Models/Components/PhysicalNexusCreate.php
   - src/Models/Components/PhysicalNexusRead.php
+  - src/Models/Components/PhysicalNexusSource.php
   - src/Models/Components/PhysicalNexusUpdate.php
   - src/Models/Components/ProcessingStatusEnum.php
   - src/Models/Components/ProductCategories.php
@@ -1335,4 +1337,4 @@ examples:
         "500":
           application/json: {"detail": "<value>"}
 examplesVersion: 1.0.2
-releaseNotes: "## SDK Changes Detected:\n* `sdk->taxestimation->estimate()`: \n  *  `request.transactionEstimatePublicRequest->transactionItems->[]` **Changed** **Breaking** :warning:\n  *  `response.items->[]->transactionItems->[]` **Changed** **Breaking** :warning:\n* `sdk->filings->get()`:  `response.items->[]` **Changed**\n* `sdk->filings->getById()`:  `response` **Changed**\n* `sdk->filings->getByRegistrationId()`:  `response.items->[]` **Changed**\n"
+releaseNotes: "## SDK Changes Detected:\n* `sdk->nexus->listPhysical()`:  `response.items->[]->source` **Added**\n* `sdk->nexus->createPhysical()`: \n  *  `request->source` **Added**\n  *  `response.source` **Added**\n* `sdk->nexus->updatePhysical()`:  `response.source` **Added**\n"

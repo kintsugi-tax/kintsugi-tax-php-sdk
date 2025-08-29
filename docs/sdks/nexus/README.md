@@ -101,6 +101,7 @@ $request = new Components\PhysicalNexusCreate(
     endDate: '2025-01-01',
     category: Components\PhysicalNexusCategory::PhysicalBusinessLocation,
     externalId: 'ext_ABC123',
+    source: Components\PhysicalNexusSource::User,
 );
 
 $response = $sdk->nexus->createPhysical(
