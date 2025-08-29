@@ -70,15 +70,25 @@ class PhysicalNexusCreate
     public ?string $externalId = null;
 
     /**
+     *
+     * @var ?PhysicalNexusSource $source
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\PhysicalNexusSource|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?PhysicalNexusSource $source = null;
+
+    /**
      * @param  CountryCodeEnum  $countryCode
      * @param  string  $stateCode
      * @param  LocalDate  $startDate
      * @param  PhysicalNexusCategory  $category
      * @param  ?string  $endDate
      * @param  ?string  $externalId
+     * @param  ?PhysicalNexusSource  $source
      * @phpstan-pure
      */
-    public function __construct(CountryCodeEnum $countryCode, string $stateCode, LocalDate $startDate, PhysicalNexusCategory $category, ?string $endDate = null, ?string $externalId = null)
+    public function __construct(CountryCodeEnum $countryCode, string $stateCode, LocalDate $startDate, PhysicalNexusCategory $category, ?string $endDate = null, ?string $externalId = null, ?PhysicalNexusSource $source = null)
     {
         $this->countryCode = $countryCode;
         $this->stateCode = $stateCode;
@@ -86,5 +96,6 @@ class PhysicalNexusCreate
         $this->category = $category;
         $this->endDate = $endDate;
         $this->externalId = $externalId;
+        $this->source = $source;
     }
 }
