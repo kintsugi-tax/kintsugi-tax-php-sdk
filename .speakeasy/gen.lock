@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: fdb4bdf9-63b7-4d28-815c-b04a56c0369b
 management:
-  docChecksum: 3253e327ef086b821567ec0741622cac
+  docChecksum: 3743d01686431ccb69e719e6871f2f4d
   docVersion: 1.0.0
-  speakeasyVersion: 1.606.8
+  speakeasyVersion: 1.606.9
   generationVersion: 2.687.13
-  releaseVersion: 0.4.5
-  configChecksum: 6c55ad913337a108baf3d0f4e6b6803c
+  releaseVersion: 0.4.6
+  configChecksum: fa916f2c05bc8afe19bc2f2f70604d0b
   repoURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk.git
   installationURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk
   published: true
@@ -1337,4 +1337,3 @@ examples:
         "500":
           application/json: {"detail": "<value>"}
 examplesVersion: 1.0.2
-releaseNotes: "## SDK Changes Detected:\n* `sdk->nexus->listPhysical()`:  `response.items->[]->source` **Added**\n* `sdk->nexus->createPhysical()`: \n  *  `request->source` **Added**\n  *  `response.source` **Added**\n* `sdk->nexus->updatePhysical()`:  `response.source` **Added**\n"
