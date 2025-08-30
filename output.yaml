@@ -3348,6 +3348,16 @@ components:
       required:
         - "store_hash"
       title: "BigcommerceTaxCalculation"
+    "BillingCustomerDetails":
+      properties:
+        "email":
+          type: "string"
+          format: "email"
+          title: "Email"
+      type: "object"
+      required:
+        - "email"
+      title: "BillingCustomerDetails"
     "BillingFrequencyEnum":
       type: "string"
       enum:
@@ -12589,7 +12599,7 @@ components:
         - "FAIRE"
         - "SHOPWARE"
         - "ZOHO"
-        - "SAGE_INTACCT"
+        - "SAGE-INTACCT"
       title: "SourceEnum"
     "StatusEnum":
       type: "string"
