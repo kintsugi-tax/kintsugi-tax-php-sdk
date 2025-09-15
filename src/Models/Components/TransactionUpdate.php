@@ -288,108 +288,6 @@ class TransactionUpdate
     public ?string $taxId = null;
 
     /**
-     *
-     * @var ?AddressStatus $addressStatus
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?AddressStatus $addressStatus = null;
-
-    /**
-     * Our transaction state, used to determine when/if a transaction needs additional
-     *
-     * processing.
-     *
-     * @var ?ProcessingStatusEnum $processingStatus
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('processing_status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProcessingStatusEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?ProcessingStatusEnum $processingStatus = null;
-
-    /**
-     *
-     * @var ?CurrencyEnum $destinationCurrency
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('destination_currency')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CurrencyEnum $destinationCurrency = null;
-
-    /**
-     * Converted total amount.
-     *
-     * @var ?float $convertedTotalAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('converted_total_amount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $convertedTotalAmount = null;
-
-    /**
-     * Converted imported tax amount.
-     *
-     * @var ?float $convertedTotalTaxAmountImported
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('converted_total_tax_amount_imported')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $convertedTotalTaxAmountImported = null;
-
-    /**
-     * Converted calculated tax amount.
-     *
-     * @var ?float $convertedTotalTaxAmountCalculated
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('converted_total_tax_amount_calculated')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $convertedTotalTaxAmountCalculated = null;
-
-    /**
-     * Currency conversion rate.
-     *
-     * @var ?float $conversionRate
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('conversion_rate')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $conversionRate = null;
-
-    /**
-     * Converted taxable amount.
-     *
-     * @var ?float $convertedTaxableAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('converted_taxable_amount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $convertedTaxableAmount = null;
-
-    /**
-     * Converted total discount amount.
-     *
-     * @var ?float $convertedTotalDiscount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('converted_total_discount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $convertedTotalDiscount = null;
-
-    /**
-     * Converted subtotal amount.
-     *
-     * @var ?float $convertedSubtotal
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('converted_subtotal')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $convertedSubtotal = null;
-
-    /**
-     * Converted total tax liability amount.
-     *
-     * @var ?float $convertedTotalTaxLiabilityAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('converted_total_tax_liability_amount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $convertedTotalTaxLiabilityAmount = null;
-
-    /**
      * Total amount of the transaction.
      *
      * @var ?float $totalAmount
@@ -510,20 +408,9 @@ class TransactionUpdate
      * @param  ?CountryCodeEnum  $country
      * @param  ?string  $postalCode
      * @param  ?string  $taxId
-     * @param  ?AddressStatus  $addressStatus
-     * @param  ?ProcessingStatusEnum  $processingStatus
-     * @param  ?CurrencyEnum  $destinationCurrency
-     * @param  ?float  $convertedTotalAmount
-     * @param  ?float  $convertedTotalTaxAmountImported
-     * @param  ?float  $convertedTotalTaxAmountCalculated
-     * @param  ?float  $conversionRate
-     * @param  ?float  $convertedTaxableAmount
-     * @param  ?float  $convertedTotalDiscount
-     * @param  ?float  $convertedSubtotal
-     * @param  ?float  $convertedTotalTaxLiabilityAmount
      * @phpstan-pure
      */
-    public function __construct(string $organizationId, string $externalId, \DateTime $date, array $addresses, array $transactionItems, CustomerUpdate $customer, ?ExemptionRequired $requiresExemption = null, ?string $shopDate = null, ?string $shopDateTz = null, ?TransactionStatusEnum $status = null, ?string $description = null, ?TransactionRefundStatus $refundStatus = null, ?string $customerId = null, ?TransactionExemptStatusEnum $exempt = null, ?array $exemptions = null, ?string $relatedTo = null, ?string $secondaryExternalId = null, ?string $secondarySource = null, ?string $externalFriendlyId = null, ?TaxLiabilitySourceEnum $taxLiabilitySource = null, ?CurrencyEnum $currency = null, ?SourceEnum $source = null, ?string $connectionId = null, ?string $filingId = null, ?string $city = null, ?string $county = null, ?string $state = null, ?CountryCodeEnum $country = null, ?string $postalCode = null, ?string $taxId = null, ?AddressStatus $addressStatus = null, ?ProcessingStatusEnum $processingStatus = null, ?CurrencyEnum $destinationCurrency = null, ?float $convertedTotalAmount = null, ?float $convertedTotalTaxAmountImported = null, ?float $convertedTotalTaxAmountCalculated = null, ?float $conversionRate = null, ?float $convertedTaxableAmount = null, ?float $convertedTotalDiscount = null, ?float $convertedSubtotal = null, ?float $convertedTotalTaxLiabilityAmount = null, ?float $totalAmount = 0.00, ?bool $marketplace = false, ?float $totalTaxAmountImported = 0.00, ?float $taxRateImported = 0.00, ?float $totalTaxAmountCalculated = 0.00, ?float $taxRateCalculated = 0.00, ?float $totalTaxLiabilityAmount = 0.00, ?float $taxableAmount = 0.00, ?bool $locked = false)
+    public function __construct(string $organizationId, string $externalId, \DateTime $date, array $addresses, array $transactionItems, CustomerUpdate $customer, ?ExemptionRequired $requiresExemption = null, ?string $shopDate = null, ?string $shopDateTz = null, ?TransactionStatusEnum $status = null, ?string $description = null, ?TransactionRefundStatus $refundStatus = null, ?string $customerId = null, ?TransactionExemptStatusEnum $exempt = null, ?array $exemptions = null, ?string $relatedTo = null, ?string $secondaryExternalId = null, ?string $secondarySource = null, ?string $externalFriendlyId = null, ?TaxLiabilitySourceEnum $taxLiabilitySource = null, ?CurrencyEnum $currency = null, ?SourceEnum $source = null, ?string $connectionId = null, ?string $filingId = null, ?string $city = null, ?string $county = null, ?string $state = null, ?CountryCodeEnum $country = null, ?string $postalCode = null, ?string $taxId = null, ?float $totalAmount = 0.00, ?bool $marketplace = false, ?float $totalTaxAmountImported = 0.00, ?float $taxRateImported = 0.00, ?float $totalTaxAmountCalculated = 0.00, ?float $taxRateCalculated = 0.00, ?float $totalTaxLiabilityAmount = 0.00, ?float $taxableAmount = 0.00, ?bool $locked = false)
     {
         $this->organizationId = $organizationId;
         $this->externalId = $externalId;
@@ -555,17 +442,6 @@ class TransactionUpdate
         $this->country = $country;
         $this->postalCode = $postalCode;
         $this->taxId = $taxId;
-        $this->addressStatus = $addressStatus;
-        $this->processingStatus = $processingStatus;
-        $this->destinationCurrency = $destinationCurrency;
-        $this->convertedTotalAmount = $convertedTotalAmount;
-        $this->convertedTotalTaxAmountImported = $convertedTotalTaxAmountImported;
-        $this->convertedTotalTaxAmountCalculated = $convertedTotalTaxAmountCalculated;
-        $this->conversionRate = $conversionRate;
-        $this->convertedTaxableAmount = $convertedTaxableAmount;
-        $this->convertedTotalDiscount = $convertedTotalDiscount;
-        $this->convertedSubtotal = $convertedSubtotal;
-        $this->convertedTotalTaxLiabilityAmount = $convertedTotalTaxLiabilityAmount;
         $this->totalAmount = $totalAmount;
         $this->marketplace = $marketplace;
         $this->totalTaxAmountImported = $totalTaxAmountImported;
