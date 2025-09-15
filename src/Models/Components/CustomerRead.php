@@ -181,6 +181,15 @@ class CustomerRead
     public ?string $registrationNumber = null;
 
     /**
+     * External friendly identifier associated with the customer. We need it for netsuite.
+     *
+     * @var ?string $externalFriendlyId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('external_friendly_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $externalFriendlyId = null;
+
+    /**
      * @param  string  $id
      * @param  string  $organizationId
      * @param  ?string  $phone
@@ -200,9 +209,10 @@ class CustomerRead
      * @param  ?string  $connectionId
      * @param  ?AddressStatus  $addressStatus
      * @param  ?string  $registrationNumber
+     * @param  ?string  $externalFriendlyId
      * @phpstan-pure
      */
-    public function __construct(string $id, string $organizationId, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?string $externalId = null, ?StatusEnum $status = null, ?string $email = null, ?SourceEnum $source = null, ?string $connectionId = null, ?AddressStatus $addressStatus = null, ?string $registrationNumber = null)
+    public function __construct(string $id, string $organizationId, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?string $externalId = null, ?StatusEnum $status = null, ?string $email = null, ?SourceEnum $source = null, ?string $connectionId = null, ?AddressStatus $addressStatus = null, ?string $registrationNumber = null, ?string $externalFriendlyId = null)
     {
         $this->id = $id;
         $this->organizationId = $organizationId;
@@ -223,5 +233,6 @@ class CustomerRead
         $this->connectionId = $connectionId;
         $this->addressStatus = $addressStatus;
         $this->registrationNumber = $registrationNumber;
+        $this->externalFriendlyId = $externalFriendlyId;
     }
 }
