@@ -1,0 +1,13 @@
+# CustomerTaxRegistrationRead
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `id`                                                                             | *string*                                                                         | :heavy_check_mark:                                                               | N/A                                                                              |
+| `customerId`                                                                     | *string*                                                                         | :heavy_check_mark:                                                               | N/A                                                                              |
+| `countryCode`                                                                    | [Components\CountryCodeEnum](../../Models/Components/CountryCodeEnum.md)         | :heavy_check_mark:                                                               | N/A                                                                              |
+| `taxType`                                                                        | [Components\CustomerTaxTypeEnum](../../Models/Components/CustomerTaxTypeEnum.md) | :heavy_check_mark:                                                               | Enum for customer tax registration types.                                        |
+| `taxId`                                                                          | *string*                                                                         | :heavy_check_mark:                                                               | N/A                                                                              |
+| `isValid`                                                                        | *bool*                                                                           | :heavy_check_mark:                                                               | N/A                                                                              |
