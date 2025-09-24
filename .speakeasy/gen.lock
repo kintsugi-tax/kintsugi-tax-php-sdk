@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: fdb4bdf9-63b7-4d28-815c-b04a56c0369b
 management:
-  docChecksum: e62d143b0c24823ef18e1a5b5dbfc8c8
+  docChecksum: ebfb0cc334b63c8b61f6bfde93f8390e
   docVersion: 1.0.0
-  speakeasyVersion: 1.615.2
-  generationVersion: 2.698.4
-  releaseVersion: 0.4.6
-  configChecksum: c9d2492742cc4374ee9802528673318c
+  speakeasyVersion: 1.623.0
+  generationVersion: 2.713.0
+  releaseVersion: 0.4.7
+  configChecksum: 0fd9486f135792a27799fd32eea92b45
   repoURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk.git
   installationURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk
   published: true
 features:
   php:
     constsAndDefaults: 0.2.0
-    core: 3.8.10
+    core: 3.8.11
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.81.9
@@ -59,6 +59,8 @@ generatedFiles:
   - docs/Models/Components/CustomerBasePublic.md
   - docs/Models/Components/CustomerCreate.md
   - docs/Models/Components/CustomerRead.md
+  - docs/Models/Components/CustomerTaxRegistrationRead.md
+  - docs/Models/Components/CustomerTaxTypeEnum.md
   - docs/Models/Components/CustomerUpdate.md
   - docs/Models/Components/DiscountBuilder.md
   - docs/Models/Components/Exemption.md
@@ -302,6 +304,8 @@ generatedFiles:
   - src/Models/Components/CustomerBasePublic.php
   - src/Models/Components/CustomerCreate.php
   - src/Models/Components/CustomerRead.php
+  - src/Models/Components/CustomerTaxRegistrationRead.php
+  - src/Models/Components/CustomerTaxTypeEnum.php
   - src/Models/Components/CustomerUpdate.php
   - src/Models/Components/DiscountBuilder.php
   - src/Models/Components/Exemption.php
@@ -1337,4 +1341,4 @@ examples:
         "500":
           application/json: {"detail": "<value>"}
 examplesVersion: 1.0.2
-releaseNotes: "## Php SDK Changes Detected:\n* `sdk->transactions->update()`: \n  *  `request.transactionUpdate` **Changed** **Breaking** :warning:\n  *  `response.customer->externalFriendlyId` **Added**\n* `sdk->nexus->list()`:  `response.items->[]->collectedTaxEnabled` **Removed** **Breaking** :warning:\n* `sdk->transactions->list()`:  `response.items->[]->customer->externalFriendlyId` **Added**\n* `sdk->exemptions->create()`:  `response.customer->externalFriendlyId` **Added**\n* `sdk->customers->getByExternalId()`:  `response.externalFriendlyId` **Added**\n* `sdk->customers->getTransactions()`:  `response.[]->customer->externalFriendlyId` **Added**\n* `sdk->customers->create()`: \n  *  `request->externalFriendlyId` **Added**\n  *  `response.externalFriendlyId` **Added**\n* `sdk->customers->createTransaction()`: \n  *  `request.transactionCreate->customer->externalFriendlyId` **Added**\n  *  `response.customer->externalFriendlyId` **Added**\n* `sdk->customers->getById()`:  `response.externalFriendlyId` **Added**\n* `sdk->customers->update()`: \n  *  `request.customerUpdate->externalFriendlyId` **Added**\n  *  `response.externalFriendlyId` **Added**\n* `sdk->transactions->create()`:  `response.customer->externalFriendlyId` **Added**\n* `sdk->transactions->getByExternalId()`:  `response.customer->externalFriendlyId` **Added**\n* `sdk->customers->list()`:  `response.items->[]->externalFriendlyId` **Added**\n* `sdk->transactions->get()`:  `response.customer->externalFriendlyId` **Added**\n* `sdk->transactions->getByFilingId()`:  `response.[]->customer->externalFriendlyId` **Added**\n* `sdk->transactions->createCreditNote()`:  `response.customer->externalFriendlyId` **Added**\n"
+releaseNotes: "## Php SDK Changes Detected:\n* `sdk->customers->list()`:  `response.items->[]->customerTaxRegistrations` **Added**\n* `sdk->customers->create()`: \n  *  `request->customerTaxRegistrations` **Added**\n  *  `response.customerTaxRegistrations` **Added**\n* `sdk->customers->getById()`:  `response.customerTaxRegistrations` **Added**\n* `sdk->customers->update()`:  `response.customerTaxRegistrations` **Added**\n* `sdk->customers->getByExternalId()`:  `response.customerTaxRegistrations` **Added**\n* `sdk->customers->getTransactions()`:  `response.[]->customer->customerTaxRegistrations` **Added**\n* `sdk->customers->createTransaction()`: \n  *  `request.transactionCreate->customer->customerTaxRegistrations` **Added**\n  *  `response.customer->customerTaxRegistrations` **Added**\n* `sdk->exemptions->create()`:  `response.customer->customerTaxRegistrations` **Added**\n* `sdk->transactions->list()`:  `response.items->[]->customer->customerTaxRegistrations` **Added**\n* `sdk->transactions->create()`:  `response.customer->customerTaxRegistrations` **Added**\n* `sdk->transactions->getByExternalId()`:  `response.customer->customerTaxRegistrations` **Added**\n* `sdk->transactions->update()`:  `response.customer->customerTaxRegistrations` **Added**\n* `sdk->transactions->get()`:  `response.customer->customerTaxRegistrations` **Added**\n* `sdk->transactions->getByFilingId()`:  `response.[]->customer->customerTaxRegistrations` **Added**\n* `sdk->transactions->createCreditNote()`:  `response.customer->customerTaxRegistrations` **Added**\n"

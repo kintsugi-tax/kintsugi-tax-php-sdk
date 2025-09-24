@@ -174,6 +174,16 @@ class CustomerCreate
     public ?string $externalFriendlyId = null;
 
     /**
+     * Customer tax registrations associated with the customer.
+     *
+     * @var ?array<CustomerTaxRegistrationRead> $customerTaxRegistrations
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('customer_tax_registrations')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\CustomerTaxRegistrationRead>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $customerTaxRegistrations = null;
+
+    /**
      * @param  ?string  $phone
      * @param  ?string  $street1
      * @param  ?string  $street2
@@ -192,9 +202,10 @@ class CustomerCreate
      * @param  ?AddressStatus  $addressStatus
      * @param  ?string  $registrationNumber
      * @param  ?string  $externalFriendlyId
+     * @param  ?array<CustomerTaxRegistrationRead>  $customerTaxRegistrations
      * @phpstan-pure
      */
-    public function __construct(?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?string $externalId = null, ?StatusEnum $status = null, ?string $email = null, ?SourceEnum $source = null, ?string $connectionId = null, ?AddressStatus $addressStatus = null, ?string $registrationNumber = null, ?string $externalFriendlyId = null)
+    public function __construct(?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?string $externalId = null, ?StatusEnum $status = null, ?string $email = null, ?SourceEnum $source = null, ?string $connectionId = null, ?AddressStatus $addressStatus = null, ?string $registrationNumber = null, ?string $externalFriendlyId = null, ?array $customerTaxRegistrations = null)
     {
         $this->phone = $phone;
         $this->street1 = $street1;
@@ -214,5 +225,6 @@ class CustomerCreate
         $this->addressStatus = $addressStatus;
         $this->registrationNumber = $registrationNumber;
         $this->externalFriendlyId = $externalFriendlyId;
+        $this->customerTaxRegistrations = $customerTaxRegistrations;
     }
 }

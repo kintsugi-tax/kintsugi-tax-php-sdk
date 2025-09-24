@@ -6,6 +6,7 @@
 | Name              | Value             |
 | ----------------- | ----------------- |
 | `Bigcommerce`     | BIGCOMMERCE       |
+| `Bunny`           | BUNNY             |
 | `Chargebee`       | CHARGEBEE         |
 | `Shopify`         | SHOPIFY           |
 | `Stripe`          | STRIPE            |
