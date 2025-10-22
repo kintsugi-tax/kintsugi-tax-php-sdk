@@ -52,6 +52,14 @@ class FilingRead
     public string $registrationId;
 
     /**
+     * Get the filing website URL for this filing's jurisdiction
+     *
+     * @var string $filingWebsiteUrl
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('filing_website_url')]
+    public string $filingWebsiteUrl;
+
+    /**
      *
      * @var ?FilingStatusEnum $status
      */
@@ -208,6 +216,20 @@ class FilingRead
     public ?bool $autoApproved = null;
 
     /**
+     * Category of filing. Common values:
+     *
+     *                                     REGULAR (standard periodic filing),
+     *                                     PREPAYMENT (prepayment or estimated tax),
+     *                                     AMENDMENT (amended return).
+     *                                     Different categories can have overlapping periods.
+     *
+     * @var ?string $filingCategory
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('filing_category')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $filingCategory = null;
+
+    /**
      * The calculated amount for the filing. Defaults to 0.00.
      *
      * @var ?string $amountCalculated
@@ -321,6 +343,7 @@ class FilingRead
      * @param  CountryCodeEnum  $countryCode
      * @param  string  $id
      * @param  string  $registrationId
+     * @param  string  $filingWebsiteUrl
      * @param  ?FilingStatusEnum  $status
      * @param  ?string  $dueDate
      * @param  ?string  $dateFiled
@@ -330,6 +353,7 @@ class FilingRead
      * @param  ?string  $jiraIssueKey
      * @param  ?bool  $autoApproved
      * @param  ?string  $pausedUntilDate
+     * @param  ?string  $filingCategory
      * @param  ?string  $approvedBy
      * @param  ?string  $approvedAt
      * @param  ?string  $amountCalculated
@@ -352,13 +376,14 @@ class FilingRead
      * @param  ?CurrencyEnum  $currency
      * @phpstan-pure
      */
-    public function __construct(LocalDate $startDate, LocalDate $endDate, CountryCodeEnum $countryCode, string $id, string $registrationId, ?FilingStatusEnum $status = null, ?string $dueDate = null, ?string $dateFiled = null, ?bool $isManual = null, ?string $stateCode = null, ?string $stateName = null, ?string $jiraIssueKey = null, ?string $pausedUntilDate = null, ?string $approvedBy = null, ?string $approvedAt = null, ?string $internalNotes = null, ?string $recentDetailsReportLink = null, ?string $returnConfirmationId = null, ?string $paymentConfirmationId = null, ?bool $blockApproval = null, ?CurrencyEnum $currency = null, ?bool $autoApproved = false, ?string $amountCalculated = '0.00', ?string $amountAdjusted = '0.00', ?string $amountDiscounts = '0.00', ?string $amountFees = '0.00', ?string $amountPenalties = '0.00', ?string $amountTaxCollected = '0.00', ?string $amountSales = '0.00', ?string $totalTaxableSales = '0.00', ?string $amount = '0.00', ?string $totalTaxLiability = '0.00', ?int $transactionCount = 0, ?string $taxRemitted = '0.00')
+    public function __construct(LocalDate $startDate, LocalDate $endDate, CountryCodeEnum $countryCode, string $id, string $registrationId, string $filingWebsiteUrl, ?FilingStatusEnum $status = null, ?string $dueDate = null, ?string $dateFiled = null, ?bool $isManual = null, ?string $stateCode = null, ?string $stateName = null, ?string $jiraIssueKey = null, ?string $pausedUntilDate = null, ?string $approvedBy = null, ?string $approvedAt = null, ?string $internalNotes = null, ?string $recentDetailsReportLink = null, ?string $returnConfirmationId = null, ?string $paymentConfirmationId = null, ?bool $blockApproval = null, ?CurrencyEnum $currency = null, ?bool $autoApproved = false, ?string $filingCategory = 'REGULAR', ?string $amountCalculated = '0.00', ?string $amountAdjusted = '0.00', ?string $amountDiscounts = '0.00', ?string $amountFees = '0.00', ?string $amountPenalties = '0.00', ?string $amountTaxCollected = '0.00', ?string $amountSales = '0.00', ?string $totalTaxableSales = '0.00', ?string $amount = '0.00', ?string $totalTaxLiability = '0.00', ?int $transactionCount = 0, ?string $taxRemitted = '0.00')
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->countryCode = $countryCode;
         $this->id = $id;
         $this->registrationId = $registrationId;
+        $this->filingWebsiteUrl = $filingWebsiteUrl;
         $this->status = $status;
         $this->dueDate = $dueDate;
         $this->dateFiled = $dateFiled;
@@ -376,6 +401,7 @@ class FilingRead
         $this->blockApproval = $blockApproval;
         $this->currency = $currency;
         $this->autoApproved = $autoApproved;
+        $this->filingCategory = $filingCategory;
         $this->amountCalculated = $amountCalculated;
         $this->amountAdjusted = $amountAdjusted;
         $this->amountDiscounts = $amountDiscounts;

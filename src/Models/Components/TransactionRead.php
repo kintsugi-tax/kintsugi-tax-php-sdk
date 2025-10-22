@@ -97,15 +97,6 @@ class TransactionRead
     public ?string $shopDateTz = null;
 
     /**
-     *
-     * @var ?TransactionStatusEnum $status
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionStatusEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?TransactionStatusEnum $status = null;
-
-    /**
      * Description of the transaction.
      *
      * @var ?string $description
@@ -287,13 +278,23 @@ class TransactionRead
     public ?string $postalCode = null;
 
     /**
-     * Tax ID associated with the transaction
+     * Tax ID associated with the transaction. DEPRECATED: This field is only populated for QuickBooks integrations and will be removed in a future version.
      *
      * @var ?string $taxId
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_id')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $taxId = null;
+
+    /**
+     *
+     * @var ?TransactionStatusEnum $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionStatusEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?TransactionStatusEnum $status = null;
 
     /**
      *
@@ -534,7 +535,6 @@ class TransactionRead
      * @param  ?ExemptionRequired  $requiresExemption
      * @param  ?string  $shopDate
      * @param  ?string  $shopDateTz
-     * @param  ?TransactionStatusEnum  $status
      * @param  ?string  $description
      * @param  ?TransactionRefundStatus  $refundStatus
      * @param  ?string  $totalAmount
@@ -564,6 +564,7 @@ class TransactionRead
      * @param  ?CountryCodeEnum  $country
      * @param  ?string  $postalCode
      * @param  ?string  $taxId
+     * @param  ?TransactionStatusEnum  $status
      * @param  ?AddressStatus  $addressStatus
      * @param  ?ProcessingStatusEnum  $processingStatus
      * @param  ?CurrencyEnum  $destinationCurrency
@@ -582,7 +583,7 @@ class TransactionRead
      * @param  ?string  $convertedFinalTotalAmount
      * @phpstan-pure
      */
-    public function __construct(string $organizationId, string $externalId, \DateTime $date, string $id, array $addresses, array $transactionItems, TransactionTypeEnum $type, ?ExemptionRequired $requiresExemption = null, ?string $shopDate = null, ?string $shopDateTz = null, ?TransactionStatusEnum $status = null, ?string $description = null, ?TransactionRefundStatus $refundStatus = null, ?string $customerId = null, ?TransactionExemptStatusEnum $exempt = null, ?array $exemptions = null, ?string $relatedTo = null, ?string $secondaryExternalId = null, ?string $secondarySource = null, ?string $externalFriendlyId = null, ?TaxLiabilitySourceEnum $taxLiabilitySource = null, ?CurrencyEnum $currency = null, ?SourceEnum $source = null, ?string $connectionId = null, ?string $filingId = null, ?string $city = null, ?string $county = null, ?string $state = null, ?CountryCodeEnum $country = null, ?string $postalCode = null, ?string $taxId = null, ?AddressStatus $addressStatus = null, ?ProcessingStatusEnum $processingStatus = null, ?CurrencyEnum $destinationCurrency = null, ?string $convertedTotalAmount = null, ?string $convertedTotalTaxAmountImported = null, ?string $convertedTotalTaxAmountCalculated = null, ?string $conversionRate = null, ?string $convertedTaxableAmount = null, ?string $convertedTotalDiscount = null, ?string $convertedSubtotal = null, ?string $convertedTotalTaxLiabilityAmount = null, ?CustomerRead $customer = null, ?string $totalDiscount = null, ?string $subtotal = null, ?string $finalTotalAmount = null, ?string $convertedFinalTotalAmount = null, ?string $totalAmount = '0.00', ?bool $marketplace = false, ?string $totalTaxAmountImported = '0.00', ?string $taxRateImported = '0.00', ?string $totalTaxAmountCalculated = '0.00', ?string $taxRateCalculated = '0.00', ?string $totalTaxLiabilityAmount = '0.00', ?string $taxableAmount = '0.00', ?bool $locked = false)
+    public function __construct(string $organizationId, string $externalId, \DateTime $date, string $id, array $addresses, array $transactionItems, TransactionTypeEnum $type, ?ExemptionRequired $requiresExemption = null, ?string $shopDate = null, ?string $shopDateTz = null, ?string $description = null, ?TransactionRefundStatus $refundStatus = null, ?string $customerId = null, ?TransactionExemptStatusEnum $exempt = null, ?array $exemptions = null, ?string $relatedTo = null, ?string $secondaryExternalId = null, ?string $secondarySource = null, ?string $externalFriendlyId = null, ?TaxLiabilitySourceEnum $taxLiabilitySource = null, ?CurrencyEnum $currency = null, ?SourceEnum $source = null, ?string $connectionId = null, ?string $filingId = null, ?string $city = null, ?string $county = null, ?string $state = null, ?CountryCodeEnum $country = null, ?string $postalCode = null, ?string $taxId = null, ?TransactionStatusEnum $status = null, ?AddressStatus $addressStatus = null, ?ProcessingStatusEnum $processingStatus = null, ?CurrencyEnum $destinationCurrency = null, ?string $convertedTotalAmount = null, ?string $convertedTotalTaxAmountImported = null, ?string $convertedTotalTaxAmountCalculated = null, ?string $conversionRate = null, ?string $convertedTaxableAmount = null, ?string $convertedTotalDiscount = null, ?string $convertedSubtotal = null, ?string $convertedTotalTaxLiabilityAmount = null, ?CustomerRead $customer = null, ?string $totalDiscount = null, ?string $subtotal = null, ?string $finalTotalAmount = null, ?string $convertedFinalTotalAmount = null, ?string $totalAmount = '0.00', ?bool $marketplace = false, ?string $totalTaxAmountImported = '0.00', ?string $taxRateImported = '0.00', ?string $totalTaxAmountCalculated = '0.00', ?string $taxRateCalculated = '0.00', ?string $totalTaxLiabilityAmount = '0.00', ?string $taxableAmount = '0.00', ?bool $locked = false)
     {
         $this->organizationId = $organizationId;
         $this->externalId = $externalId;
@@ -594,7 +595,6 @@ class TransactionRead
         $this->requiresExemption = $requiresExemption;
         $this->shopDate = $shopDate;
         $this->shopDateTz = $shopDateTz;
-        $this->status = $status;
         $this->description = $description;
         $this->refundStatus = $refundStatus;
         $this->customerId = $customerId;
@@ -615,6 +615,7 @@ class TransactionRead
         $this->country = $country;
         $this->postalCode = $postalCode;
         $this->taxId = $taxId;
+        $this->status = $status;
         $this->addressStatus = $addressStatus;
         $this->processingStatus = $processingStatus;
         $this->destinationCurrency = $destinationCurrency;
