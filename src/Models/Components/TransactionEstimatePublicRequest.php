@@ -12,7 +12,7 @@ namespace KintsugiTax\SDK\Models\Components;
 /**
  * TransactionEstimatePublicRequest - Public request model for tax estimation API documentation.
  *
- * This model excludes internal fields like enriched_fields that should not be exposed in API docs.
+ * This model excludes internal fields like enriched_fields and total_amount that should not be exposed in API docs.
  */
 class TransactionEstimatePublicRequest
 {
@@ -86,15 +86,6 @@ class TransactionEstimatePublicRequest
     public ?CustomerBasePublic $customer = null;
 
     /**
-     * Total amount of the transaction.
-     *
-     * @var ?float $totalAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('total_amount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $totalAmount = null;
-
-    /**
      * Indicates if the transaction involves a marketplace.
      *
      * @var ?bool $marketplace
@@ -109,14 +100,13 @@ class TransactionEstimatePublicRequest
      * @param  CurrencyEnum  $currency
      * @param  array<TransactionItemEstimateBase>  $transactionItems
      * @param  array<TransactionEstimatePublicRequestAddress>  $addresses
-     * @param  ?float  $totalAmount
      * @param  ?string  $description
      * @param  ?SourceEnum  $source
      * @param  ?bool  $marketplace
      * @param  ?CustomerBasePublic  $customer
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, ?string $description = null, ?SourceEnum $source = null, ?CustomerBasePublic $customer = null, ?float $totalAmount = 0.0, ?bool $marketplace = false)
+    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, ?string $description = null, ?SourceEnum $source = null, ?CustomerBasePublic $customer = null, ?bool $marketplace = false)
     {
         $this->date = $date;
         $this->externalId = $externalId;
@@ -126,7 +116,6 @@ class TransactionEstimatePublicRequest
         $this->description = $description;
         $this->source = $source;
         $this->customer = $customer;
-        $this->totalAmount = $totalAmount;
         $this->marketplace = $marketplace;
     }
 }

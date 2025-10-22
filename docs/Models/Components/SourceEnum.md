@@ -40,6 +40,7 @@
 | `Gusto`           | GUSTO             |
 | `Facebook`        | FACEBOOK          |
 | `Other`           | OTHER             |
+| `Ordway`          | ORDWAY            |
 | `Instagram`       | INSTAGRAM         |
 | `Pinterest`       | PINTEREST         |
 | `Wayfair`         | WAYFAIR           |
@@ -58,3 +59,4 @@
 | `Zoho`            | ZOHO              |
 | `SageIntacct`     | SAGE-INTACCT      |
 | `Airwallex`       | AIRWALLEX         |
+| `Orb`             | ORB               |

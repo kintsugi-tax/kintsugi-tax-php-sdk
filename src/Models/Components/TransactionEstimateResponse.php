@@ -81,15 +81,6 @@ class TransactionEstimateResponse
     public ?CustomerBase $customer = null;
 
     /**
-     * Total amount of the transaction.
-     *
-     * @var ?string $totalAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('total_amount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $totalAmount = null;
-
-    /**
      * Indicates if the transaction involves a marketplace.
      *
      * @var ?bool $marketplace
@@ -150,7 +141,6 @@ class TransactionEstimateResponse
      * @param  CurrencyEnum  $currency
      * @param  array<TransactionItemEstimateResponse>  $transactionItems
      * @param  array<TransactionEstimateResponseAddress>  $addresses
-     * @param  ?string  $totalAmount
      * @param  ?string  $description
      * @param  ?SourceEnum  $source
      * @param  ?bool  $marketplace
@@ -162,7 +152,7 @@ class TransactionEstimateResponse
      * @param  ?bool  $hasActiveRegistration
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, ?string $description = null, ?SourceEnum $source = null, ?CustomerBase $customer = null, ?string $totalAmount = '0.0', ?bool $marketplace = false, ?string $totalTaxAmountCalculated = '0.00', ?string $taxableAmount = '0.00', ?string $taxRateCalculated = '0.00', ?bool $nexusMet = false, ?bool $hasActiveRegistration = false)
+    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, ?string $description = null, ?SourceEnum $source = null, ?CustomerBase $customer = null, ?bool $marketplace = false, ?string $totalTaxAmountCalculated = '0.00', ?string $taxableAmount = '0.00', ?string $taxRateCalculated = '0.00', ?bool $nexusMet = false, ?bool $hasActiveRegistration = false)
     {
         $this->date = $date;
         $this->externalId = $externalId;
@@ -172,7 +162,6 @@ class TransactionEstimateResponse
         $this->description = $description;
         $this->source = $source;
         $this->customer = $customer;
-        $this->totalAmount = $totalAmount;
         $this->marketplace = $marketplace;
         $this->totalTaxAmountCalculated = $totalTaxAmountCalculated;
         $this->taxableAmount = $taxableAmount;
