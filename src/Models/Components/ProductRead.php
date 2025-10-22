@@ -36,11 +36,10 @@ class ProductRead
 
     /**
      *
-     * @var ProductCodeEnum $code
+     * @var string $code
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('code')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductCodeEnum')]
-    public ProductCodeEnum $code;
+    public string $code;
 
     /**
      *
@@ -66,19 +65,17 @@ class ProductRead
 
     /**
      *
-     * @var ProductCategoryEnum $productCategory
+     * @var string $productCategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_category')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductCategoryEnum')]
-    public ProductCategoryEnum $productCategory;
+    public string $productCategory;
 
     /**
      *
-     * @var ProductSubCategoryEnum $productSubcategory
+     * @var string $productSubcategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_subcategory')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum')]
-    public ProductSubCategoryEnum $productSubcategory;
+    public string $productSubcategory;
 
     /**
      *
@@ -113,19 +110,19 @@ class ProductRead
      * @param  string  $id
      * @param  string  $externalId
      * @param  array<string>  $sku
-     * @param  ProductCodeEnum  $code
+     * @param  string  $code
      * @param  string  $name
      * @param  string  $description
      * @param  ProductStatusEnum  $status
-     * @param  ProductCategoryEnum  $productCategory
-     * @param  ProductSubCategoryEnum  $productSubcategory
+     * @param  string  $productCategory
+     * @param  string  $productSubcategory
      * @param  bool  $taxExempt
      * @param  SourceEnum  $source
      * @param  string  $connectionId
      * @param  bool  $classificationFailed
      * @phpstan-pure
      */
-    public function __construct(string $id, string $externalId, array $sku, ProductCodeEnum $code, string $name, string $description, ProductStatusEnum $status, ProductCategoryEnum $productCategory, ProductSubCategoryEnum $productSubcategory, bool $taxExempt, SourceEnum $source, string $connectionId, bool $classificationFailed)
+    public function __construct(string $id, string $externalId, array $sku, string $code, string $name, string $description, ProductStatusEnum $status, string $productCategory, string $productSubcategory, bool $taxExempt, SourceEnum $source, string $connectionId, bool $classificationFailed)
     {
         $this->id = $id;
         $this->externalId = $externalId;

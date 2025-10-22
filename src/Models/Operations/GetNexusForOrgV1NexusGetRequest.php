@@ -33,6 +33,14 @@ class GetNexusForOrgV1NexusGetRequest
     public ?bool $collectedTaxNexusMet = null;
 
     /**
+     * Return all results without pagination
+     *
+     * @var ?bool $withoutPagination
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=without_pagination')]
+    public ?bool $withoutPagination = null;
+
+    /**
      *
      * @var ?string $statusIn
      */
@@ -47,7 +55,6 @@ class GetNexusForOrgV1NexusGetRequest
     public ?string $orderBy = null;
 
     /**
-     * Page number
      *
      * @var ?int $page
      */
@@ -55,7 +62,6 @@ class GetNexusForOrgV1NexusGetRequest
     public ?int $page = null;
 
     /**
-     * Page size
      *
      * @var ?int $size
      */
@@ -63,6 +69,7 @@ class GetNexusForOrgV1NexusGetRequest
     public ?int $size = null;
 
     /**
+     * @param  ?bool  $withoutPagination
      * @param  ?string  $statusIn
      * @param  ?string  $stateCode
      * @param  ?string  $countryCodeIn
@@ -72,11 +79,12 @@ class GetNexusForOrgV1NexusGetRequest
      * @param  ?int  $size
      * @phpstan-pure
      */
-    public function __construct(?string $stateCode = null, ?string $countryCodeIn = null, ?bool $collectedTaxNexusMet = null, ?string $statusIn = 'APPROACHING,NOT_EXPOSED,PENDING_REGISTRATION,EXPOSED,APPROACHING,REGISTERED', ?string $orderBy = 'state_code,country_code', ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $stateCode = null, ?string $countryCodeIn = null, ?bool $collectedTaxNexusMet = null, ?bool $withoutPagination = false, ?string $statusIn = 'APPROACHING,NOT_EXPOSED,PENDING_REGISTRATION,EXPOSED,APPROACHING,REGISTERED', ?string $orderBy = 'state_code,country_code', ?int $page = 1, ?int $size = 50)
     {
         $this->stateCode = $stateCode;
         $this->countryCodeIn = $countryCodeIn;
         $this->collectedTaxNexusMet = $collectedTaxNexusMet;
+        $this->withoutPagination = $withoutPagination;
         $this->statusIn = $statusIn;
         $this->orderBy = $orderBy;
         $this->page = $page;

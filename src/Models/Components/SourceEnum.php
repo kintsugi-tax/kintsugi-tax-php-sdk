@@ -46,6 +46,7 @@ enum SourceEnum: string
     case Gusto = 'GUSTO';
     case Facebook = 'FACEBOOK';
     case Other = 'OTHER';
+    case Ordway = 'ORDWAY';
     case Instagram = 'INSTAGRAM';
     case Pinterest = 'PINTEREST';
     case Wayfair = 'WAYFAIR';
@@ -64,4 +65,5 @@ enum SourceEnum: string
     case Zoho = 'ZOHO';
     case SageIntacct = 'SAGE-INTACCT';
     case Airwallex = 'AIRWALLEX';
+    case Orb = 'ORB';
 }
