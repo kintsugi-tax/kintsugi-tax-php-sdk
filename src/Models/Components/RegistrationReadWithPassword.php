@@ -250,6 +250,15 @@ class RegistrationReadWithPassword
     public ?string $markedCollectingDate = null;
 
     /**
+     *
+     * @var ?RegistrationCategoryEnum $registrationCategory
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('registration_category')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\RegistrationCategoryEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?RegistrationCategoryEnum $registrationCategory = null;
+
+    /**
      * Encrypted password for accessing the registration,
      *
      *         if applicable.
@@ -277,6 +286,15 @@ class RegistrationReadWithPassword
     #[\Speakeasy\Serializer\Annotation\SerializedName('third_party_enabled')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $thirdPartyEnabled = null;
+
+    /**
+     * If true, do not file for this registration (treated as False by default).
+     *
+     * @var ?bool $doNotFile
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('do_not_file')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $doNotFile = null;
 
     /**
      * Indicates whether an initial synchronization should be performed.
@@ -361,6 +379,7 @@ class RegistrationReadWithPassword
      * @param  ?RegistrationsRegimeEnum  $registrationsRegime
      * @param  ?ChangeRegimeStatusEnum  $changeRegimeStatus
      * @param  ?bool  $thirdPartyEnabled
+     * @param  ?bool  $doNotFile
      * @param  ?bool  $markedCollecting
      * @param  ?string  $username
      * @param  ?string  $comment
@@ -376,11 +395,12 @@ class RegistrationReadWithPassword
      * @param  ?string  $markedCollectingDate
      * @param  ?bool  $needsMarkAsCollecting
      * @param  ?string  $creditsTotalAvailable
+     * @param  ?RegistrationCategoryEnum  $registrationCategory
      * @param  ?string  $passwordEncrypted
      * @param  ?bool  $hasAllCredentials
      * @phpstan-pure
      */
-    public function __construct(RegistrationStatusEnum $status, CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, int $filingDays, string $id, RegistrationTypeEnum $registrationType, ?string $registrationDate = null, ?string $registrationEmail = null, ?string $registrationKey = null, ?string $deregistrationKey = null, ?string $registrationRequested = null, ?string $registrationCompleted = null, ?string $deregistrationRequested = null, ?string $deregistrationCompleted = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $markedCollecting = null, ?string $username = null, ?string $comment = null, ?string $createFilingsFrom = null, ?bool $imported = null, ?string $salesTaxId = null, ?OssTypeEnum $ossType = null, ?CountryCodeEnum $ossMemberStateOfIdentificationCode = null, ?string $markedCollectingDate = null, ?string $passwordEncrypted = null, ?bool $autoRegistered = false, ?bool $thirdPartyEnabled = false, ?bool $initialSync = false, ?string $amountFees = '0.00', ?bool $vda = false, ?bool $sstImport = false, ?bool $needsMarkAsCollecting = false, ?string $creditsTotalAvailable = '0.00', ?bool $hasAllCredentials = false)
+    public function __construct(RegistrationStatusEnum $status, CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, int $filingDays, string $id, RegistrationTypeEnum $registrationType, ?string $registrationDate = null, ?string $registrationEmail = null, ?string $registrationKey = null, ?string $deregistrationKey = null, ?string $registrationRequested = null, ?string $registrationCompleted = null, ?string $deregistrationRequested = null, ?string $deregistrationCompleted = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $markedCollecting = null, ?string $username = null, ?string $comment = null, ?string $createFilingsFrom = null, ?bool $imported = null, ?string $salesTaxId = null, ?OssTypeEnum $ossType = null, ?CountryCodeEnum $ossMemberStateOfIdentificationCode = null, ?string $markedCollectingDate = null, ?RegistrationCategoryEnum $registrationCategory = null, ?string $passwordEncrypted = null, ?bool $autoRegistered = false, ?bool $thirdPartyEnabled = false, ?bool $doNotFile = false, ?bool $initialSync = false, ?string $amountFees = '0.00', ?bool $vda = false, ?bool $sstImport = false, ?bool $needsMarkAsCollecting = false, ?string $creditsTotalAvailable = '0.00', ?bool $hasAllCredentials = false)
     {
         $this->status = $status;
         $this->countryCode = $countryCode;
@@ -409,9 +429,11 @@ class RegistrationReadWithPassword
         $this->ossType = $ossType;
         $this->ossMemberStateOfIdentificationCode = $ossMemberStateOfIdentificationCode;
         $this->markedCollectingDate = $markedCollectingDate;
+        $this->registrationCategory = $registrationCategory;
         $this->passwordEncrypted = $passwordEncrypted;
         $this->autoRegistered = $autoRegistered;
         $this->thirdPartyEnabled = $thirdPartyEnabled;
+        $this->doNotFile = $doNotFile;
         $this->initialSync = $initialSync;
         $this->amountFees = $amountFees;
         $this->vda = $vda;

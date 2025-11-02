@@ -1,23 +1,23 @@
 lockVersion: 2.0.0
 id: fdb4bdf9-63b7-4d28-815c-b04a56c0369b
 management:
-  docChecksum: 594730e8dadb4c30e1ed7bed8ae7775d
+  docChecksum: 6dc59a51f5e288b713ce3365250859f5
   docVersion: 1.0.0
-  speakeasyVersion: 1.638.0
-  generationVersion: 2.728.0
-  releaseVersion: 0.5.0
-  configChecksum: 4528dc773e12638a8ce18a89c4f36453
+  speakeasyVersion: 1.645.1
+  generationVersion: 2.735.1
+  releaseVersion: 0.6.0
+  configChecksum: e5fc3a34626ef427e6b0618457450fbf
   repoURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk.git
   installationURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk
   published: true
 features:
   php:
     constsAndDefaults: 0.2.0
-    core: 3.9.0
+    core: 3.9.1
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.81.9
-    globalServerURLs: 2.82.2
+    globalServerURLs: 2.83.0
     groups: 2.81.3
     methodArguments: 0.1.0
     methodSecurity: 2.82.2
@@ -105,6 +105,7 @@ generatedFiles:
   - docs/Models/Components/ProductSubCategoryEnum.md
   - docs/Models/Components/ProductUpdate.md
   - docs/Models/Components/Registration.md
+  - docs/Models/Components/RegistrationCategoryEnum.md
   - docs/Models/Components/RegistrationCreatePayload.md
   - docs/Models/Components/RegistrationRead.md
   - docs/Models/Components/RegistrationReadWithPassword.md
@@ -348,6 +349,7 @@ generatedFiles:
   - src/Models/Components/ProductSubCategoryEnum.php
   - src/Models/Components/ProductUpdate.php
   - src/Models/Components/Registration.php
+  - src/Models/Components/RegistrationCategoryEnum.php
   - src/Models/Components/RegistrationCreatePayload.php
   - src/Models/Components/RegistrationRead.php
   - src/Models/Components/RegistrationReadWithPassword.php
@@ -773,7 +775,7 @@ examples:
           x-organization-id: "org_12345"
       responses:
         "200":
-          application/json: {"items": [{"country_code": "CN", "state_code": "<value>", "state_name": "<value>", "treatment_of_exempt_transactions": "YES_SALES_NO_TRANSACTIONS", "trigger": "<value>", "sales_or_transactions": "SALES", "threshold_sales": 476092, "threshold_transactions": 144398, "start_date": "2025-03-09", "transaction_count": 0, "transactions_amount": "0.00", "previous_transaction_count": 0, "previous_transactions_amount": "0.00", "calculated_tax_liability": "0.00", "imported_tax_liability": "0.00", "tax_liability": "0.00", "nexus_met": false, "economic_nexus_met": false, "physical_nexus_met": false, "collected_tax_nexus_met": false, "period_model": "PRECEDING_YEAR_QUARTERLY_OFFSET", "period_start_date": "2024-12-20", "period_end_date": "2023-10-25", "previous_period_start_date": "2023-02-23", "previous_period_end_date": "2023-05-08", "earliest_collected_date": "2018-01-01T00:00:00", "vda_eligible": false, "id": "<id>", "created_at": "2025-07-27T10:58:50.049Z", "updated_at": "2024-12-31T08:38:28.993Z", "organization_id": "<id>", "is_vda_eligible": false, "nexus_type": "STATE", "total_transactions": 218796, "total_transactions_included": 800733, "total_transactions_exempted": 990975, "total_transactions_marketplace": 980208, "marketplace_included": true}], "total": 825206, "page": 886833, "size": 272984}
+          application/json: {"items": [{"country_code": "CN", "state_code": "<value>", "state_name": "<value>", "treatment_of_exempt_transactions": "YES_SALES_NO_TRANSACTIONS", "trigger": "<value>", "sales_or_transactions": "SALES", "threshold_sales": 476092, "threshold_transactions": 144398, "start_date": "2025-03-09", "transaction_count": 0, "transactions_amount": "0.00", "previous_transaction_count": 0, "previous_transactions_amount": "0.00", "calculated_tax_liability": "0.00", "imported_tax_liability": "0.00", "tax_liability": "0.00", "nexus_met": false, "economic_nexus_met": false, "physical_nexus_met": false, "collected_tax_nexus_met": false, "period_model": "PRECEDING_YEAR_QUARTERLY_OFFSET", "period_start_date": "2024-12-20", "period_end_date": "2023-10-25", "previous_period_start_date": "2023-02-23", "previous_period_end_date": "2023-05-08", "earliest_collected_date": "2018-01-01T00:00:00", "vda_eligible": false, "id": "<id>", "created_at": "2025-07-27T10:58:50.049Z", "updated_at": "2024-12-31T08:38:28.993Z", "organization_id": "<id>", "is_currently_disregarded": false, "is_vda_eligible": false, "nexus_type": "STATE", "total_transactions": 218796, "total_transactions_included": 800733, "total_transactions_exempted": 990975, "total_transactions_marketplace": 980208, "marketplace_included": true}], "total": 825206, "page": 886833, "size": 272984}
         "422":
           application/json: {}
   get_products_v1_products__get:
@@ -1239,7 +1241,7 @@ examples:
         application/json: {"registration_import_type": "OSS", "imported": false}
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1248,10 +1250,10 @@ examples:
           application/json: {"detail": "<value>"}
     regular_new:
       requestBody:
-        application/json: {"registration_import_type": "REGULAR", "registration_date": "2025-02-01", "registration_email": "example@domain.com", "auto_registered": true, "country_code": "US", "state_code": "TX", "state_name": "Texas", "filing_frequency": "MONTHLY", "filing_days": 15, "comment": "Registering for monthly sales tax filings", "initial_sync": false, "amount_fees": 100, "vda": false, "sst_import": false}
+        application/json: {"registration_import_type": "REGULAR", "registration_date": "2025-02-01", "registration_email": "example@domain.com", "auto_registered": true, "do_not_file": false, "country_code": "US", "state_code": "TX", "state_name": "Texas", "filing_frequency": "MONTHLY", "filing_days": 15, "comment": "Registering for monthly sales tax filings", "initial_sync": false, "amount_fees": 100, "vda": false, "sst_import": false}
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1263,7 +1265,7 @@ examples:
         application/json: {"registration_import_type": "OSS", "password_plain_text": "oss_pass_fr", "password_metadata_plain_text": "{\"q\":\"a\"}", "member_state_of_identification_code": "FR", "imported": true}
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1275,7 +1277,7 @@ examples:
         application/json: {"registration_import_type": "SST", "password_plain_text": "sst_pass", "password_metadata_plain_text": "{\"q\":\"a\"}", "username": "sst_user"}
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1284,10 +1286,10 @@ examples:
           application/json: {"detail": "<value>"}
     speakeasy-default-create-registration-v1-registrations-post:
       requestBody:
-        application/json: {"registration_import_type": "REGULAR", "auto_registered": false, "country_code": "GM", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "MONTHLY", "filing_days": 801864, "initial_sync": false, "amount_fees": 0, "vda": false, "sst_import": false}
+        application/json: {"registration_import_type": "REGULAR", "auto_registered": false, "do_not_file": false, "country_code": "GM", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "MONTHLY", "filing_days": 801864, "initial_sync": false, "amount_fees": 0, "vda": false, "sst_import": false}
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "filing_days": 991336, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1301,7 +1303,7 @@ examples:
           registration_id: "<id>"
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "AWAITING_CLARIFICATION", "country_code": "BO", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "MONTHLY", "filing_days": 607962, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "AWAITING_CLARIFICATION", "country_code": "BO", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "MONTHLY", "filing_days": 607962, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1314,10 +1316,10 @@ examples:
         path:
           registration_id: "<id>"
       requestBody:
-        application/json: {"auto_registered": false, "third_party_enabled": false}
+        application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false}
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "DEREGISTERING", "country_code": "GL", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_MONTHLY", "filing_days": 43389, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "DEREGISTERING", "country_code": "GL", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_MONTHLY", "filing_days": 43389, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1331,7 +1333,7 @@ examples:
           registration_id: "regs_123456"
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "status": "DEREGISTERED", "country_code": "PW", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "FOUR_MONTHLY", "filing_days": 352449, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "DEREGISTERED", "country_code": "PW", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "FOUR_MONTHLY", "filing_days": 352449, "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1339,4 +1341,4 @@ examples:
         "500":
           application/json: {"detail": "<value>"}
 examplesVersion: 1.0.2
-releaseNotes: "## Php SDK Changes Detected:\n* `sdk->products->listItems()`:  `response.items->[]` **Changed** **Breaking** :warning:\n* `sdk->products->create()`:  `response` **Changed** **Breaking** :warning:\n* `sdk->products->get()`:  `response` **Changed** **Breaking** :warning:\n* `sdk->products->update()`:  `response` **Changed** **Breaking** :warning:\n* `sdk->taxestimation->estimate()`: \n  *  `request.transactionEstimatePublicRequest->totalAmount` **Removed** **Breaking** :warning:\n  *  `response.items->[]->totalAmount` **Removed** **Breaking** :warning:\n* `sdk->filings->get()`:  `response.items->[]` **Changed**\n* `sdk->filings->getById()`:  `response` **Changed**\n* `sdk->filings->getByRegistrationId()`:  `response.items->[]` **Changed**\n* `sdk->nexus->list()`: \n  *  `request->withoutPagination` **Added**\n"
+releaseNotes: "## Php SDK Changes Detected:\n* `sdk->nexus->list()`: \n  *  `request->disregardView` **Added**\n  *  `response.items->[]` **Changed**\n* `sdk->registrations->list()`:  `response.items->[]` **Changed**\n* `sdk->registrations->create()`: \n  *  `request->[regular]->doNotFile` **Added**\n  *  `response` **Changed**\n* `sdk->registrations->getById()`:  `response` **Changed**\n* `sdk->registrations->update()`: \n  *  `request.registrationUpdateApi->doNotFile` **Added**\n  *  `response` **Changed**\n* `sdk->registrations->deregister()`:  `response` **Changed**\n"
