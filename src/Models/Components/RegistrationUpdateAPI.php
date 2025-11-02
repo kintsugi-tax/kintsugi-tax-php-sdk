@@ -183,6 +183,15 @@ class RegistrationUpdateAPI
     public ?bool $thirdPartyEnabled = null;
 
     /**
+     * If true, do not file for this registration (treated as False by default).
+     *
+     * @var ?bool $doNotFile
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('do_not_file')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $doNotFile = null;
+
+    /**
      * @param  ?string  $registrationDate
      * @param  ?string  $registrationEmail
      * @param  ?string  $registrationKey
@@ -195,6 +204,7 @@ class RegistrationUpdateAPI
      * @param  ?RegistrationsRegimeEnum  $registrationsRegime
      * @param  ?ChangeRegimeStatusEnum  $changeRegimeStatus
      * @param  ?bool  $thirdPartyEnabled
+     * @param  ?bool  $doNotFile
      * @param  ?bool  $markedCollecting
      * @param  ?string  $username
      * @param  ?FilingFrequencyEnum  $filingFrequency
@@ -204,7 +214,7 @@ class RegistrationUpdateAPI
      * @param  ?bool  $vda
      * @phpstan-pure
      */
-    public function __construct(?string $registrationDate = null, ?string $registrationEmail = null, ?string $registrationKey = null, ?string $deregistrationKey = null, ?string $registrationRequested = null, ?string $registrationCompleted = null, ?string $deregistrationRequested = null, ?string $deregistrationCompleted = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $markedCollecting = null, ?string $username = null, ?FilingFrequencyEnum $filingFrequency = null, ?string $createFilingsFrom = null, ?bool $isApproaching = null, ?string $comment = null, ?bool $vda = null, ?bool $autoRegistered = false, ?bool $thirdPartyEnabled = false)
+    public function __construct(?string $registrationDate = null, ?string $registrationEmail = null, ?string $registrationKey = null, ?string $deregistrationKey = null, ?string $registrationRequested = null, ?string $registrationCompleted = null, ?string $deregistrationRequested = null, ?string $deregistrationCompleted = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $markedCollecting = null, ?string $username = null, ?FilingFrequencyEnum $filingFrequency = null, ?string $createFilingsFrom = null, ?bool $isApproaching = null, ?string $comment = null, ?bool $vda = null, ?bool $autoRegistered = false, ?bool $thirdPartyEnabled = false, ?bool $doNotFile = false)
     {
         $this->registrationDate = $registrationDate;
         $this->registrationEmail = $registrationEmail;
@@ -225,5 +235,6 @@ class RegistrationUpdateAPI
         $this->vda = $vda;
         $this->autoRegistered = $autoRegistered;
         $this->thirdPartyEnabled = $thirdPartyEnabled;
+        $this->doNotFile = $doNotFile;
     }
 }
