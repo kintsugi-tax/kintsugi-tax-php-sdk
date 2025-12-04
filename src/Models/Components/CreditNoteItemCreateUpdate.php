@@ -36,6 +36,22 @@ class CreditNoteItemCreateUpdate
     public string $externalProductId;
 
     /**
+     * Number of units or amount of the product being credited.
+     *
+     * @var float $quantity
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('quantity')]
+    public float $quantity;
+
+    /**
+     * Total monetary value of the credit note item before taxes.
+     *
+     * @var float $amount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
+    public float $amount;
+
+    /**
      * Brief explanation or details about the credit note item.
      *
      * @var ?string $description
@@ -92,30 +108,12 @@ class CreditNoteItemCreateUpdate
     public ?array $taxItems = null;
 
     /**
-     * Number of units or amount of the product being credited.
-     *
-     * @var ?float $quantity
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('quantity')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $quantity = null;
-
-    /**
-     * Total monetary value of the credit note item before taxes.
-     *
-     * @var ?float $amount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $amount = null;
-
-    /**
      * @param  string  $externalId
      * @param  \DateTime  $date
      * @param  string  $externalProductId
+     * @param  float  $quantity
+     * @param  float  $amount
      * @param  ?string  $description
-     * @param  ?float  $quantity
-     * @param  ?float  $amount
      * @param  ?float  $taxAmountImported
      * @param  ?float  $taxRateImported
      * @param  ?float  $taxableAmount
@@ -123,18 +121,18 @@ class CreditNoteItemCreateUpdate
      * @param  ?array<TaxItemBuilder>  $taxItems
      * @phpstan-pure
      */
-    public function __construct(string $externalId, \DateTime $date, string $externalProductId, ?string $description = null, ?float $taxAmountImported = null, ?float $taxRateImported = null, ?float $taxableAmount = null, ?TaxExemptionEnum $taxExemption = null, ?array $taxItems = null, ?float $quantity = 1.0, ?float $amount = 0.00)
+    public function __construct(string $externalId, \DateTime $date, string $externalProductId, float $quantity, float $amount, ?string $description = null, ?float $taxAmountImported = null, ?float $taxRateImported = null, ?float $taxableAmount = null, ?TaxExemptionEnum $taxExemption = null, ?array $taxItems = null)
     {
         $this->externalId = $externalId;
         $this->date = $date;
         $this->externalProductId = $externalProductId;
+        $this->quantity = $quantity;
+        $this->amount = $amount;
         $this->description = $description;
         $this->taxAmountImported = $taxAmountImported;
         $this->taxRateImported = $taxRateImported;
         $this->taxableAmount = $taxableAmount;
         $this->taxExemption = $taxExemption;
         $this->taxItems = $taxItems;
-        $this->quantity = $quantity;
-        $this->amount = $amount;
     }
 }

@@ -20,4 +20,5 @@ enum FilingFrequencyEnum: string
     case SemiMonthly = 'SEMI_MONTHLY';
     case BiMonthly = 'BI_MONTHLY';
     case FourMonthly = 'FOUR_MONTHLY';
+    case QuarterlyPrepayment = 'QUARTERLY_PREPAYMENT';
 }

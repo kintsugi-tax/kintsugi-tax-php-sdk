@@ -187,6 +187,15 @@ class RegistrationCreatePayload
     public ?string $salesTaxId = null;
 
     /**
+     * Organization-level tax ID (e.g., VAT number, Canada Business Number).
+     *
+     * @var ?string $taxId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $taxId = null;
+
+    /**
      * The plaintext password for accessing the tax registration account.
      *
      * @var ?string $passwordPlainText
@@ -221,6 +230,15 @@ class RegistrationCreatePayload
     #[\Speakeasy\Serializer\Annotation\SerializedName('auto_registered')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $autoRegistered = null;
+
+    /**
+     * If true, do not file for this registration (treated as False by default).
+     *
+     * @var ?bool $doNotFile
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('do_not_file')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $doNotFile = null;
 
     /**
      * Indicates whether an initial synchronization should be performed.
@@ -274,6 +292,7 @@ class RegistrationCreatePayload
      * @param  ?string  $deregistrationRequested
      * @param  ?string  $deregistrationCompleted
      * @param  ?bool  $autoRegistered
+     * @param  ?bool  $doNotFile
      * @param  ?RegistrationsRegimeEnum  $registrationsRegime
      * @param  ?ChangeRegimeStatusEnum  $changeRegimeStatus
      * @param  ?string  $username
@@ -285,11 +304,12 @@ class RegistrationCreatePayload
      * @param  ?bool  $imported
      * @param  ?string  $salesTaxId
      * @param  ?bool  $sstImport
+     * @param  ?string  $taxId
      * @param  ?string  $passwordPlainText
      * @param  ?string  $passwordMetadataPlainText
      * @phpstan-pure
      */
-    public function __construct(CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, int $filingDays, ?string $registrationDate = null, ?string $registrationEmail = null, ?string $registrationKey = null, ?string $deregistrationKey = null, ?string $registrationRequested = null, ?string $registrationCompleted = null, ?string $deregistrationRequested = null, ?string $deregistrationCompleted = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?string $username = null, ?string $comment = null, ?string $createFilingsFrom = null, ?bool $imported = null, ?string $salesTaxId = null, ?string $passwordPlainText = null, ?string $passwordMetadataPlainText = null, ?string $registrationImportType = 'REGULAR', ?bool $autoRegistered = false, ?bool $initialSync = false, ?float $amountFees = 0.00, ?bool $vda = false, ?bool $sstImport = false)
+    public function __construct(CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, int $filingDays, ?string $registrationDate = null, ?string $registrationEmail = null, ?string $registrationKey = null, ?string $deregistrationKey = null, ?string $registrationRequested = null, ?string $registrationCompleted = null, ?string $deregistrationRequested = null, ?string $deregistrationCompleted = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?string $username = null, ?string $comment = null, ?string $createFilingsFrom = null, ?bool $imported = null, ?string $salesTaxId = null, ?string $taxId = null, ?string $passwordPlainText = null, ?string $passwordMetadataPlainText = null, ?string $registrationImportType = 'REGULAR', ?bool $autoRegistered = false, ?bool $doNotFile = false, ?bool $initialSync = false, ?float $amountFees = 0.00, ?bool $vda = false, ?bool $sstImport = false)
     {
         $this->countryCode = $countryCode;
         $this->stateCode = $stateCode;
@@ -311,10 +331,12 @@ class RegistrationCreatePayload
         $this->createFilingsFrom = $createFilingsFrom;
         $this->imported = $imported;
         $this->salesTaxId = $salesTaxId;
+        $this->taxId = $taxId;
         $this->passwordPlainText = $passwordPlainText;
         $this->passwordMetadataPlainText = $passwordMetadataPlainText;
         $this->registrationImportType = $registrationImportType;
         $this->autoRegistered = $autoRegistered;
+        $this->doNotFile = $doNotFile;
         $this->initialSync = $initialSync;
         $this->amountFees = $amountFees;
         $this->vda = $vda;

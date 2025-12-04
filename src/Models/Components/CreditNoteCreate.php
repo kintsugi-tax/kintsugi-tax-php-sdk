@@ -37,6 +37,14 @@ class CreditNoteCreate
     public Status $status;
 
     /**
+     * Total monetary value of the credit note, including all items and taxes.
+     *
+     * @var float $totalAmount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('total_amount')]
+    public float $totalAmount;
+
+    /**
      *
      * @var CurrencyEnum $currency
      */
@@ -100,15 +108,6 @@ class CreditNoteCreate
     public ?array $addresses = null;
 
     /**
-     * Total monetary value of the credit note, including all items and taxes.
-     *
-     * @var ?float $totalAmount
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('total_amount')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $totalAmount = null;
-
-    /**
      * Indicates whether this credit note is associated with a marketplace transaction.
      *
      * @var ?bool $marketplace
@@ -121,10 +120,10 @@ class CreditNoteCreate
      * @param  string  $externalId
      * @param  \DateTime  $date
      * @param  Status  $status
+     * @param  float  $totalAmount
      * @param  CurrencyEnum  $currency
      * @param  array<CreditNoteItemCreateUpdate>  $transactionItems
      * @param  ?string  $description
-     * @param  ?float  $totalAmount
      * @param  ?bool  $marketplace
      * @param  ?float  $taxAmountImported
      * @param  ?float  $taxRateImported
@@ -132,11 +131,12 @@ class CreditNoteCreate
      * @param  ?array<TransactionAddressBuilder>  $addresses
      * @phpstan-pure
      */
-    public function __construct(string $externalId, \DateTime $date, Status $status, CurrencyEnum $currency, array $transactionItems, ?string $description = null, ?float $taxAmountImported = null, ?float $taxRateImported = null, ?float $taxableAmount = null, ?array $addresses = null, ?float $totalAmount = 0.00, ?bool $marketplace = false)
+    public function __construct(string $externalId, \DateTime $date, Status $status, float $totalAmount, CurrencyEnum $currency, array $transactionItems, ?string $description = null, ?float $taxAmountImported = null, ?float $taxRateImported = null, ?float $taxableAmount = null, ?array $addresses = null, ?bool $marketplace = false)
     {
         $this->externalId = $externalId;
         $this->date = $date;
         $this->status = $status;
+        $this->totalAmount = $totalAmount;
         $this->currency = $currency;
         $this->transactionItems = $transactionItems;
         $this->description = $description;
@@ -144,7 +144,6 @@ class CreditNoteCreate
         $this->taxRateImported = $taxRateImported;
         $this->taxableAmount = $taxableAmount;
         $this->addresses = $addresses;
-        $this->totalAmount = $totalAmount;
         $this->marketplace = $marketplace;
     }
 }

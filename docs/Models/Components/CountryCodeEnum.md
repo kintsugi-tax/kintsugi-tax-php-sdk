@@ -115,6 +115,7 @@
 | `Im`   | IM     |
 | `Il`   | IL     |
 | `It`   | IT     |
+| `Ci`   | CI     |
 | `Jm`   | JM     |
 | `Jp`   | JP     |
 | `Je`   | JE     |

@@ -1250,6 +1250,13 @@ paths:
             default: false
             title: "Without Pagination"
           description: "Return all results without pagination"
+        - name: "disregard_view"
+          in: "query"
+          required: false
+          schema:
+            description: "Filter nexuses by disregard view: 'exposed' or 'disregarded'"
+            type: "string"
+          description: "Filter nexuses by disregard view: 'exposed' or 'disregarded'"
         - name: "status__in"
           in: "query"
           required: false
@@ -2546,6 +2553,9 @@ components:
           type: "string"
         "transaction_id":
           type: "string"
+        "assumption":
+          description: "Assumption about the enrichment of the address"
+          type: "string"
       type: "object"
       required:
         - "type"
@@ -2727,36 +2737,43 @@ components:
           type: "string"
         "amount_calculated":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Calculated"
           description: "The calculated amount for the filing. Defaults to 0.00."
           default: "0.00"
         "amount_adjusted":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Adjusted"
           description: "Adjusted amount, if any."
           default: "0.00"
         "amount_discounts":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Discounts"
           description: "Discounts applied to the filing."
           default: "0.00"
         "amount_fees":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Fees"
           description: "Discounts applied to the amount."
           default: "0.00"
         "amount_penalties":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Penalties"
           description: "Penalties applied to the filing."
           default: "0.00"
         "amount_tax_collected":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Tax Collected"
           description: "Total tax collected during the filing period."
           default: "0.00"
         "amount_sales":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Sales"
           description: "Total sales amount during the filing period."
           default: "0.00"
@@ -2766,11 +2783,13 @@ components:
           type: "string"
         "amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount"
           description: "Final amount due for the filing."
           default: "0.00"
         "total_tax_liability":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Tax Liability"
           description: "Total tax liability for the filing."
           default: "0.00"
@@ -2786,6 +2805,7 @@ components:
           type: "string"
         "tax_remitted":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Tax Remitted"
           description: "The amount of tax remitted."
           default: "0.00"
@@ -2867,6 +2887,14 @@ components:
           description: "Indicates whether third-party access is enabled for this registration."
           default: false
           type: "boolean"
+        "do_not_file":
+          type: "boolean"
+          title: "Do Not File"
+          description: "If true, do not file for this registration (treated as False by default)."
+          default: false
+        "two_factor_enabled":
+          description: "Indicates whether two-factor authentication (2FA) is enabled for this registration."
+          type: "boolean"
         "marked_collecting":
           description: "Indicates whether the  registration is marked as collecting in shopify"
           type: "boolean"
@@ -2882,9 +2910,8 @@ components:
           description: "The name of the state/province."
         "filing_frequency": {"$ref": "#/components/schemas/FilingFrequencyEnum", "description": "Specifies how often tax filings should be made.\n                                                Possible values: MONTHLY, QUARTERLY, ANNUALLY, UNKNOWN."}
         "filing_days":
-          type: "integer"
-          title: "Filing Days"
           description: "The number of days before the filing deadline."
+          type: "integer"
         "username":
           description: "Username for accessing tax registration details."
           type: "string"
@@ -2900,6 +2927,7 @@ components:
           type: "boolean"
         "amount_fees":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Fees"
           description: "The amount of fees associated with the registration."
           default: "0.00"
@@ -2932,8 +2960,10 @@ components:
           description: "The unique identifier for the registration."
         "credits_total_available":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Credits Total Available"
           default: "0.00"
+        "registration_category": {"$ref": "#/components/schemas/RegistrationCategoryEnum", "description": "The category of the registration. Possible values: REGULAR, IMPORTED, DEREGISTRATION.", "default": "REGULAR"}
         "password_encrypted":
           description: "Encrypted password for accessing the registration,\n        if applicable."
           type: "string"
@@ -2959,7 +2989,6 @@ components:
         - "state_code"
         - "state_name"
         - "filing_frequency"
-        - "filing_days"
         - "id"
         - "registration_type"
       title: "AdminFilingRegistrationPasswordRead"
@@ -2980,6 +3009,7 @@ components:
         - "xero"
         - "netsuite"
         - "sage-intacct"
+        - "wix"
       title: "ApiDeckServiceEnum"
     "ApiKeyRequest":
       properties:
@@ -3225,6 +3255,26 @@ components:
         - "routing_number"
         - "id"
       title: "BankDetailsRead"
+    "BatchAdminRead":
+      properties:
+        "organization_id":
+          type: "string"
+          maxLength: 100
+          title: "Organization Id"
+        "connection_id":
+          type: "string"
+        "batch_type": {"$ref": "#/components/schemas/BatchTypes", "default": "FULL"}
+        "state": {"$ref": "#/components/schemas/BatchStates", "default": "RUNNING"}
+        "stage": {"$ref": "#/components/schemas/BatchStages", "default": "CONNECTION_SYNC"}
+        "id":
+          type: "string"
+          title: "Id"
+      type: "object"
+      required:
+        - "organization_id"
+        - "connection_id"
+        - "id"
+      title: "BatchAdminRead"
     "BatchMessage":
       properties:
         "message":
@@ -3255,6 +3305,21 @@ components:
         - "RUN_COMPLIANCE_BATCH"
       title: "BatchStages"
       description: "The current stages of the main batch run - in order"
+    "BatchStates":
+      type: "string"
+      enum:
+        - "COMPLETE"
+        - "FAILED"
+        - "RUNNING"
+        - "TIMEOUT"
+      title: "BatchStates"
+    "BatchTypes":
+      type: "string"
+      enum:
+        - "FULL"
+        - "SINGLE_STAGE"
+        - "CONNECTION_SYNC"
+      title: "BatchTypes"
     "BigCommerceAddress":
       properties:
         "line1":
@@ -3374,6 +3439,37 @@ components:
       required:
         - "email"
       title: "BillingCustomerDetails"
+    "BillingEstimation":
+      properties:
+        "filings":
+          type: "integer"
+          title: "Filings"
+          description: "Total number of billable filing of current month"
+        "registrations":
+          type: "integer"
+          title: "Registrations"
+          description: "Total number of billable registration of current month"
+        "unit_cost":
+          type: "integer"
+          title: "Unit Cost"
+          description: "Cost per filing or registration in cents"
+        "premium":
+          type: "boolean"
+          title: "Premium"
+          description: "Whether the organization is on premium plan"
+        "estimated_amount":
+          type: "integer"
+          title: "Estimated Amount"
+          description: "Estimated amount to be charged for current month in cents"
+          readOnly: true
+      type: "object"
+      required:
+        - "filings"
+        - "registrations"
+        - "unit_cost"
+        - "premium"
+        - "estimated_amount"
+      title: "BillingEstimation"
     "BillingFrequencyEnum":
       type: "string"
       enum:
@@ -3648,6 +3744,103 @@ components:
         - "total_failed"
         - "total_requested"
       title: "BulkFilingResult"
+    "BulkRegistrationCreate":
+      properties:
+        "registrations":
+          items: {"$ref": "#/components/schemas/BulkRegistrationCreateItem"}
+          type: "array"
+          title: "Registrations"
+          description: "List of registrations to create (minimal fields only)"
+      type: "object"
+      required:
+        - "registrations"
+      title: "BulkRegistrationCreate"
+    "BulkRegistrationCreateItem":
+      properties:
+        "country_code": {"$ref": "#/components/schemas/CountryCodeEnum", "description": "ISO 3166-1 alpha-2 country code"}
+        "state_code":
+          type: "string"
+          title: "State Code"
+          description: "State/province code"
+        "filing_frequency": {"$ref": "#/components/schemas/FilingFrequencyEnum", "description": "Filing frequency"}
+        "registration_date":
+          description: "YYYY-MM-DD"
+          type: "string"
+        "registration_email":
+          description: "Contact email tied to this registration."
+          type: "string"
+        "username":
+          description: "Username for accessing tax registration details."
+          type: "string"
+        "type":
+          type: "string"
+          title: "Type"
+          description: "Registration category hint"
+      type: "object"
+      required:
+        - "country_code"
+        - "state_code"
+        - "filing_frequency"
+        - "type"
+      title: "BulkRegistrationCreateItem"
+      description: "Minimal admin create item for bulk registration creation.\nOnly the essentials are accepted; other fields can be set later via edit."
+    "BulkRegistrationError":
+      properties:
+        "index":
+          type: "integer"
+          title: "Index"
+          description: "Index of the failed item"
+        "registration_data":
+          additionalProperties: true
+          type: "object"
+          title: "Registration Data"
+          description: "The item that failed"
+        "errors":
+          items:
+            additionalProperties:
+              type: "string"
+            type: "object"
+          type: "array"
+          title: "Errors"
+          description: "Validation or processing errors"
+      type: "object"
+      required:
+        - "index"
+        - "registration_data"
+        - "errors"
+      title: "BulkRegistrationError"
+    "BulkRegistrationResult":
+      properties:
+        "created_registrations":
+          items: {"$ref": "#/components/schemas/RegistrationAdminRead"}
+          type: "array"
+          title: "Created Registrations"
+          description: "Successfully created registrations"
+        "failed_registrations":
+          items: {"$ref": "#/components/schemas/BulkRegistrationError"}
+          type: "array"
+          title: "Failed Registrations"
+          description: "Failed registration attempts"
+        "total_created":
+          type: "integer"
+          title: "Total Created"
+          description: "Total created"
+        "total_failed":
+          type: "integer"
+          title: "Total Failed"
+          description: "Total failed"
+        "total_requested":
+          type: "integer"
+          title: "Total Requested"
+          description: "Total requested"
+      type: "object"
+      required:
+        - "created_registrations"
+        - "failed_registrations"
+        - "total_created"
+        - "total_failed"
+        - "total_requested"
+      title: "BulkRegistrationResult"
     "BulkTaskUpdate":
       properties:
         "status":
@@ -3661,6 +3854,10 @@ components:
             type: "string"
           type: "array"
           title: "Task Ids"
+        "related_entity_type":
+          type: "string"
+          title: "Related Entity Type"
+          default: "FILING"
       type: "object"
       required:
         - "task_ids"
@@ -3999,21 +4196,27 @@ components:
           title: "Quantity"
         "line_subtotal":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Line Subtotal"
         "line_subtotal_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Line Subtotal Tax"
         "line_total":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Line Total"
         "line_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Line Tax"
         "taxable_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Taxable Amount"
         "combined_tax_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Combined Tax Rate"
         "tax_rates":
           items: {"$ref": "#/components/schemas/TaxRateBreakdown-Output"}
@@ -4076,42 +4279,52 @@ components:
       properties:
         "subtotal":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Subtotal"
           default: "0"
         "subtotal_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Subtotal Tax"
           default: "0"
         "shipping_total":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Shipping Total"
           default: "0"
         "shipping_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Shipping Tax"
           default: "0"
         "fee_total":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Fee Total"
           default: "0"
         "fee_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Fee Tax"
           default: "0"
         "total":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Total"
           default: "0"
         "total_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Total Tax"
           default: "0"
         "taxable_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Taxable Amount"
           default: "0"
         "combined_tax_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Combined Tax Rate"
           default: "0"
       type: "object"
@@ -4609,38 +4822,47 @@ components:
           type: "boolean"
         "discount_total":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Discount Total"
           default: "0"
         "discount_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Discount Tax"
           default: "0"
         "shipping_total":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Shipping Total"
           default: "0"
         "shipping_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Shipping Tax"
           default: "0"
         "cart_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Cart Tax"
           default: "0"
         "total":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Total"
           default: "0"
         "total_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Total Tax"
           default: "0"
         "taxable_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Taxable Amount"
           default: "0"
         "combined_tax_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Combined Tax Rate"
           default: "0"
         "items": {"$ref": "#/components/schemas/OrderItems-Output"}
@@ -4877,6 +5099,7 @@ components:
         - "IM"
         - "IL"
         - "IT"
+        - "CI"
         - "JM"
         - "JP"
         - "JE"
@@ -5052,10 +5275,12 @@ components:
           type: "string"
         "discount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Discount"
           default: "0"
         "discount_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Discount Tax"
           default: "0"
         "meta_data":
@@ -5101,6 +5326,7 @@ components:
           title: "Id"
         "total":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total"
           default: "0.00"
         "status":
@@ -5135,7 +5361,6 @@ components:
           type: "string"
         "total_amount":
           description: "Total monetary value of the credit note, including all items and taxes."
-          default: "0.00"
           type: "number"
         "marketplace":
           description: "Indicates whether this credit note is associated with a marketplace transaction."
@@ -5165,6 +5390,7 @@ components:
         - "external_id"
         - "date"
         - "status"
+        - "total_amount"
         - "currency"
         - "transaction_items"
       title: "CreditNoteCreate"
@@ -5188,11 +5414,9 @@ components:
           description: "Unique identifier for the associated product in the external system."
         "quantity":
           description: "Number of units or amount of the product being credited."
-          default: "1.0"
           type: "number"
         "amount":
           description: "Total monetary value of the credit note item before taxes."
-          default: "0.00"
           type: "number"
         "tax_amount_imported":
           description: "Pre-calculated tax amount for the item, if provided by the external system."
@@ -5215,6 +5439,8 @@ components:
         - "external_id"
         - "date"
         - "external_product_id"
+        - "quantity"
+        - "amount"
       title: "CreditNoteItemCreateUpdate"
     "CreditNoteRequest":
       properties:
@@ -5389,12 +5615,15 @@ components:
           type: "string"
         "amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount"
         "amount_consumed":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Consumed"
         "amount_remaining":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Remaining"
         "organization_id":
           type: "string"
@@ -6551,6 +6780,8 @@ components:
         "organization_id":
           type: "string"
           title: "Organization Id"
+          description: "Unique identifier of the organization. This field is deprecated, and should no longer be used. The value is populated through the 'x-organization-id' header."
+          deprecated: true
         "exemption_type": {"$ref": "#/components/schemas/ExemptionType"}
         "start_date":
           type: "string"
@@ -6639,22 +6870,27 @@ components:
           title: "Name"
         "amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Amount"
           default: "0"
         "fee_total":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Fee Total"
           default: "0"
         "fee_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Fee Tax"
           default: "0"
         "taxable_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Taxable Amount"
           default: "0"
         "combined_tax_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Combined Tax Rate"
           default: "0"
         "tax_rates":
@@ -6712,22 +6948,27 @@ components:
           type: "string"
         "amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Amount"
           default: "0"
         "total":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Total"
           default: "0"
         "total_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Total Tax"
           default: "0"
         "taxable_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Taxable Amount"
           default: "0"
         "combined_tax_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Combined Tax Rate"
           default: "0"
         "tax_rates":
@@ -6820,36 +7061,43 @@ components:
           type: "string"
         "amount_calculated":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Calculated"
           description: "The calculated amount for the filing. Defaults to 0.00."
           default: "0.00"
         "amount_adjusted":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Adjusted"
           description: "Adjusted amount, if any."
           default: "0.00"
         "amount_discounts":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Discounts"
           description: "Discounts applied to the filing."
           default: "0.00"
         "amount_fees":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Fees"
           description: "Discounts applied to the amount."
           default: "0.00"
         "amount_penalties":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Penalties"
           description: "Penalties applied to the filing."
           default: "0.00"
         "amount_tax_collected":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Tax Collected"
           description: "Total tax collected during the filing period."
           default: "0.00"
         "amount_sales":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Sales"
           description: "Total sales amount during the filing period."
           default: "0.00"
@@ -6859,11 +7107,13 @@ components:
           type: "string"
         "amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount"
           description: "Final amount due for the filing."
           default: "0.00"
         "total_tax_liability":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Tax Liability"
           description: "Total tax liability for the filing."
           default: "0.00"
@@ -6879,6 +7129,7 @@ components:
           type: "string"
         "tax_remitted":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Tax Remitted"
           description: "The amount of tax remitted."
           default: "0.00"
@@ -6905,6 +7156,7 @@ components:
           type: "object"
         "credits_utilized":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Credits Utilized"
           default: "0.00"
         "sources":
@@ -7049,36 +7301,43 @@ components:
           type: "string"
         "amount_calculated":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Calculated"
           description: "The calculated amount for the filing. Defaults to 0.00."
           default: "0.00"
         "amount_adjusted":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Adjusted"
           description: "Adjusted amount, if any."
           default: "0.00"
         "amount_discounts":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Discounts"
           description: "Discounts applied to the filing."
           default: "0.00"
         "amount_fees":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Fees"
           description: "Discounts applied to the amount."
           default: "0.00"
         "amount_penalties":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Penalties"
           description: "Penalties applied to the filing."
           default: "0.00"
         "amount_tax_collected":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Tax Collected"
           description: "Total tax collected during the filing period."
           default: "0.00"
         "amount_sales":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Sales"
           description: "Total sales amount during the filing period."
           default: "0.00"
@@ -7088,11 +7347,13 @@ components:
           type: "string"
         "amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount"
           description: "Final amount due for the filing."
           default: "0.00"
         "total_tax_liability":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Tax Liability"
           description: "Total tax liability for the filing."
           default: "0.00"
@@ -7108,6 +7369,7 @@ components:
           type: "string"
         "tax_remitted":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Tax Remitted"
           description: "The amount of tax remitted."
           default: "0.00"
@@ -7134,6 +7396,7 @@ components:
           type: "object"
         "credits_utilized":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Credits Utilized"
           default: "0.00"
         "filing_website_url":
@@ -7161,23 +7424,28 @@ components:
         - "SEMI_MONTHLY"
         - "BI_MONTHLY"
         - "FOUR_MONTHLY"
+        - "QUARTERLY_PREPAYMENT"
       title: "FilingFrequencyEnum"
     "FilingMetrics":
       properties:
         "total_collected_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Collected Tax"
           default: "0.00"
         "total_remitted_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Remitted Tax"
           default: "0.00"
         "total_calculated_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Calculated Tax"
           default: "0.00"
         "total_tax_liability":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Tax Liability"
           default: "0.00"
       type: "object"
@@ -7251,36 +7519,43 @@ components:
           type: "string"
         "amount_calculated":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Calculated"
           description: "The calculated amount for the filing. Defaults to 0.00."
           default: "0.00"
         "amount_adjusted":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Adjusted"
           description: "Adjusted amount, if any."
           default: "0.00"
         "amount_discounts":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Discounts"
           description: "Discounts applied to the filing."
           default: "0.00"
         "amount_fees":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Fees"
           description: "Discounts applied to the amount."
           default: "0.00"
         "amount_penalties":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Penalties"
           description: "Penalties applied to the filing."
           default: "0.00"
         "amount_tax_collected":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Tax Collected"
           description: "Total tax collected during the filing period."
           default: "0.00"
         "amount_sales":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Sales"
           description: "Total sales amount during the filing period."
           default: "0.00"
@@ -7290,11 +7565,13 @@ components:
           type: "string"
         "amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount"
           description: "Final amount due for the filing."
           default: "0.00"
         "total_tax_liability":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Tax Liability"
           description: "Total tax liability for the filing."
           default: "0.00"
@@ -7310,6 +7587,7 @@ components:
           type: "string"
         "tax_remitted":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Tax Remitted"
           description: "The amount of tax remitted."
           default: "0.00"
@@ -7489,6 +7767,35 @@ components:
         - "end_date"
         - "country_code"
       title: "FilingUpdateInternal"
+    "FindThresholdCrossingTransactionState":
+      properties:
+        "last_txn_id":
+          type: "string"
+        "last_txn_datetime":
+          type: "string"
+        "period_start_date":
+          type: "string"
+          title: "Period Start Date"
+        "period_end_date":
+          type: "string"
+          title: "Period End Date"
+        "running_sales_total_decimal":
+          type: "string"
+          title: "Running Sales Total Decimal"
+        "running_transaction_count":
+          type: "integer"
+          title: "Running Transaction Count"
+        "has_all_marketplace_transactions":
+          type: "boolean"
+          title: "Has All Marketplace Transactions"
+      type: "object"
+      required:
+        - "period_start_date"
+        - "period_end_date"
+        - "running_sales_total_decimal"
+        - "running_transaction_count"
+        - "has_all_marketplace_transactions"
+      title: "FindThresholdCrossingTransactionState"
     "HTTPValidationError":
       properties:
         "detail":
@@ -7701,16 +8008,19 @@ components:
           type: "string"
         "amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount"
           description: "The amount for this line item after applying all discounts."
           default: "0.00"
         "tax_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,15}|(?=[\\d.]{1,16}0*$)\\d*\\.\\d*0*$)"
           title: "Tax Amount"
           description: "Tax amount collected."
           default: "0.00"
         "quantity":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Quantity"
           description: "Quantity of this line item sold."
           default: "1"
@@ -8362,6 +8672,7 @@ components:
         "tax_liability_source": {"$ref": "#/components/schemas/TaxLiabilitySourceEnum", "readOnly": true}
         "total_tax_liability_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Tax Liability Amount"
           readOnly: true
       type: "object"
@@ -8379,6 +8690,19 @@ components:
       required:
         - "marketplace"
       title: "MarketplaceUpdate"
+    "MaxioCreateUpdate":
+      properties:
+        "api_key":
+          type: "string"
+          title: "Api Key"
+        "subdomain":
+          type: "string"
+          title: "Subdomain"
+      type: "object"
+      required:
+        - "api_key"
+        - "subdomain"
+      title: "MaxioCreateUpdate"
     "MetaData":
       properties:
         "id":
@@ -8489,6 +8813,7 @@ components:
           default: 0
         "transactions_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Transactions Amount"
           default: "0.00"
         "previous_transaction_count":
@@ -8499,6 +8824,7 @@ components:
           deprecated: true
         "previous_transactions_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Previous Transactions Amount"
           description: "Deprecated: transactions_amount now includes both current and previous period values when period_model is CURRENT_OR_PREVIOUS"
           default: "0.00"
@@ -8511,6 +8837,7 @@ components:
           type: "string"
         "tax_liability":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Tax Liability"
           default: "0.00"
         "nexus_met":
@@ -8553,6 +8880,7 @@ components:
           type: "string"
         "most_recent_transaction_date":
           type: "string"
+        "find_threshold_crossing_transaction_state": {"$ref": "#/components/schemas/FindThresholdCrossingTransactionState"}
         "earliest_collected_date":
           type: "string"
           format: "date-time"
@@ -8592,6 +8920,19 @@ components:
         "registration":
           type: "object"
         "registration_regime": {"$ref": "#/components/schemas/RegistrationsRegimeEnum"}
+        "disregarded_at":
+          type: "string"
+        "disregarded_by":
+          type: "string"
+        "disregarded_nexus_types":
+          items:
+            type: "string"
+          type: "array"
+          title: "Disregarded Nexus Types"
+        "is_currently_disregarded":
+          type: "boolean"
+          title: "Is Currently Disregarded"
+          default: false
         "is_vda_eligible":
           type: "boolean"
           title: "Is Vda Eligible"
@@ -8748,6 +9089,19 @@ components:
         - "ONBOARDING"
         - "REGISTRATION_START"
       title: "NotificationBatchStages"
+    "NotificationSettingsRequest":
+      properties:
+        "organization_id":
+          type: "string"
+          title: "Organization Id"
+        "notifications_enabled":
+          type: "boolean"
+          title: "Notifications Enabled"
+      type: "object"
+      required:
+        - "organization_id"
+        - "notifications_enabled"
+      title: "NotificationSettingsRequest"
     "OSSRegistrationCreatePayload":
       properties:
         "registration_import_type":
@@ -8993,26 +9347,32 @@ components:
           default: 1
         "subtotal":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Subtotal"
           default: "0"
         "subtotal_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Subtotal Tax"
           default: "0"
         "total":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Total"
           default: "0"
         "total_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Total Tax"
           default: "0"
         "taxable_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Taxable Amount"
           default: "0"
         "combined_tax_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Combined Tax Rate"
           default: "0"
         "tax_rates":
@@ -9098,6 +9458,340 @@ components:
         - "event_type"
         - "org_id"
       title: "OrgUpdated"
+    "OrganizationAdminCustomerHealthReadSerializer":
+      properties:
+        "unregistered_registrations":
+          type: "integer"
+          title: "Unregistered Registrations"
+        "invalid_address_count":
+          type: "integer"
+          title: "Invalid Address Count"
+        "pending_product_count":
+          type: "integer"
+          title: "Pending Product Count"
+      type: "object"
+      required:
+        - "unregistered_registrations"
+        - "invalid_address_count"
+        - "pending_product_count"
+      title: "OrganizationAdminCustomerHealthReadSerializer"
+    "OrganizationAdminDetailsReadSerializer":
+      properties:
+        "business_name":
+          type: "string"
+        "entity_type": {"$ref": "#/components/schemas/EntityTypeEnum"}
+        "dba":
+          type: "string"
+        "incorporation_state":
+          type: "string"
+        "ein":
+          type: "string"
+        "company_address_1":
+          type: "string"
+        "company_address_2":
+          type: "string"
+        "company_city":
+          type: "string"
+        "company_state":
+          type: "string"
+        "company_postal_code":
+          type: "string"
+        "company_country_code": {"$ref": "#/components/schemas/CountryCodeEnum"}
+        "business_description":
+          type: "string"
+        "home_state_registration":
+          type: "string"
+        "naics":
+          type: "string"
+        "first_operations_date":
+          type: "string"
+        "business_phone":
+          type: "string"
+        "business_email":
+          type: "string"
+        "business_address_1":
+          type: "string"
+        "business_address_2":
+          type: "string"
+        "business_city":
+          type: "string"
+        "business_state":
+          type: "string"
+        "business_postal_code":
+          type: "string"
+        "business_country_code": {"$ref": "#/components/schemas/CountryCodeEnum"}
+        "business_mailing_address_1":
+          type: "string"
+        "business_mailing_address_2":
+          type: "string"
+        "business_mailing_city":
+          type: "string"
+        "business_mailing_state":
+          type: "string"
+        "business_mailing_postal_code":
+          type: "string"
+        "business_mailing_country_code": {"$ref": "#/components/schemas/CountryCodeEnum"}
+        "business_fiscal_year_end":
+          type: "string"
+        "business_contact_name":
+          type: "string"
+        "business_contact_phone":
+          type: "string"
+        "business_contact_email":
+          type: "string"
+        "business_contact_dob":
+          type: "string"
+        "business_contact_title":
+          type: "string"
+        "business_contact_address_1":
+          type: "string"
+        "business_contact_address_2":
+          type: "string"
+        "business_contact_city":
+          type: "string"
+        "business_contact_state":
+          type: "string"
+        "business_contact_postal_code":
+          type: "string"
+        "business_contact_country_code": {"$ref": "#/components/schemas/CountryCodeEnum"}
+        "business_contact_ssn":
+          type: "string"
+        "business_contact_dl":
+          type: "string"
+        "business_owner1_name":
+          type: "string"
+        "business_owner1_phone":
+          type: "string"
+        "business_owner1_email":
+          type: "string"
+        "business_owner1_dob":
+          type: "string"
+        "business_owner1_title":
+          type: "string"
+        "business_owner1_address_1":
+          type: "string"
+        "business_owner1_address_2":
+          type: "string"
+        "business_owner1_city":
+          type: "string"
+        "business_owner1_state":
+          type: "string"
+        "business_owner1_postal_code":
+          type: "string"
+        "business_owner1_country_code": {"$ref": "#/components/schemas/CountryCodeEnum"}
+        "business_owner1_ssn":
+          type: "string"
+        "business_owner1_dl":
+          type: "string"
+        "business_owner1_percent_ownership":
+          type: "string"
+        "business_owner2_name":
+          type: "string"
+        "business_owner2_phone":
+          type: "string"
+        "business_owner2_email":
+          type: "string"
+        "business_owner2_dob":
+          type: "string"
+        "business_owner2_title":
+          type: "string"
+        "business_owner2_address_1":
+          type: "string"
+        "business_owner2_address_2":
+          type: "string"
+        "business_owner2_city":
+          type: "string"
+        "business_owner2_state":
+          type: "string"
+        "business_owner2_postal_code":
+          type: "string"
+        "business_owner2_country_code": {"$ref": "#/components/schemas/CountryCodeEnum"}
+        "business_owner2_ssn":
+          type: "string"
+        "business_owner2_dl":
+          type: "string"
+        "business_owner2_percent_ownership":
+          type: "string"
+        "business_owner3_name":
+          type: "string"
+        "business_owner3_phone":
+          type: "string"
+        "business_owner3_email":
+          type: "string"
+        "business_owner3_dob":
+          type: "string"
+        "business_owner3_title":
+          type: "string"
+        "business_owner3_address_1":
+          type: "string"
+        "business_owner3_address_2":
+          type: "string"
+        "business_owner3_city":
+          type: "string"
+        "business_owner3_state":
+          type: "string"
+        "business_owner3_postal_code":
+          type: "string"
+        "business_owner3_country_code": {"$ref": "#/components/schemas/CountryCodeEnum"}
+        "business_owner3_ssn":
+          type: "string"
+        "business_owner3_dl":
+          type: "string"
+        "business_owner3_percent_ownership":
+          type: "string"
+        "physical_mail_address_line1":
+          type: "string"
+        "physical_mail_address_line2":
+          type: "string"
+        "physical_mail_address_city":
+          type: "string"
+        "physical_mail_address_state":
+          type: "string"
+        "physical_mail_address_postal_code":
+          type: "string"
+        "physical_mail_address_status":
+          type: "string"
+        "physical_mail_address_external_id":
+          type: "string"
+        "email_group":
+          type: "string"
+        "accounting_model": {"$ref": "#/components/schemas/AccountingModelEnum"}
+        "auto_register":
+          type: "boolean"
+        "auto_file":
+          type: "boolean"
+        "do_not_file":
+          type: "boolean"
+        "incorporation_country": {"$ref": "#/components/schemas/CountryCodeEnum"}
+        "target_archive_date":
+          type: "string"
+        "onboarding_link":
+          type: "string"
+        "health_check":
+          type: "string"
+        "tax_ids":
+          items: {"$ref": "#/components/schemas/OrganizationTaxIdReadSerializer"}
+          type: "array"
+          title: "Tax Ids"
+          default: []
+        "id":
+          type: "string"
+          title: "Id"
+        "customer_health": {"$ref": "#/components/schemas/OrganizationAdminCustomerHealthReadSerializer"}
+        "premium_upgrade_triggered":
+          type: "boolean"
+          title: "Premium Upgrade Triggered"
+        "prefer_collected_tax_amounts":
+          type: "boolean"
+          title: "Prefer Collected Tax Amounts"
+      type: "object"
+      required:
+        - "business_name"
+        - "entity_type"
+        - "dba"
+        - "incorporation_state"
+        - "ein"
+        - "company_address_1"
+        - "company_address_2"
+        - "company_city"
+        - "company_state"
+        - "company_postal_code"
+        - "company_country_code"
+        - "business_description"
+        - "home_state_registration"
+        - "naics"
+        - "first_operations_date"
+        - "business_phone"
+        - "business_email"
+        - "business_address_1"
+        - "business_address_2"
+        - "business_city"
+        - "business_state"
+        - "business_postal_code"
+        - "business_country_code"
+        - "business_mailing_address_1"
+        - "business_mailing_address_2"
+        - "business_mailing_city"
+        - "business_mailing_state"
+        - "business_mailing_postal_code"
+        - "business_mailing_country_code"
+        - "business_fiscal_year_end"
+        - "business_contact_name"
+        - "business_contact_phone"
+        - "business_contact_email"
+        - "business_contact_dob"
+        - "business_contact_title"
+        - "business_contact_address_1"
+        - "business_contact_address_2"
+        - "business_contact_city"
+        - "business_contact_state"
+        - "business_contact_postal_code"
+        - "business_contact_country_code"
+        - "business_contact_ssn"
+        - "business_contact_dl"
+        - "business_owner1_name"
+        - "business_owner1_phone"
+        - "business_owner1_email"
+        - "business_owner1_dob"
+        - "business_owner1_title"
+        - "business_owner1_address_1"
+        - "business_owner1_address_2"
+        - "business_owner1_city"
+        - "business_owner1_state"
+        - "business_owner1_postal_code"
+        - "business_owner1_country_code"
+        - "business_owner1_ssn"
+        - "business_owner1_dl"
+        - "business_owner1_percent_ownership"
+        - "business_owner2_name"
+        - "business_owner2_phone"
+        - "business_owner2_email"
+        - "business_owner2_dob"
+        - "business_owner2_title"
+        - "business_owner2_address_1"
+        - "business_owner2_address_2"
+        - "business_owner2_city"
+        - "business_owner2_state"
+        - "business_owner2_postal_code"
+        - "business_owner2_country_code"
+        - "business_owner2_ssn"
+        - "business_owner2_dl"
+        - "business_owner2_percent_ownership"
+        - "business_owner3_name"
+        - "business_owner3_phone"
+        - "business_owner3_email"
+        - "business_owner3_dob"
+        - "business_owner3_title"
+        - "business_owner3_address_1"
+        - "business_owner3_address_2"
+        - "business_owner3_city"
+        - "business_owner3_state"
+        - "business_owner3_postal_code"
+        - "business_owner3_country_code"
+        - "business_owner3_ssn"
+        - "business_owner3_dl"
+        - "business_owner3_percent_ownership"
+        - "physical_mail_address_line1"
+        - "physical_mail_address_line2"
+        - "physical_mail_address_city"
+        - "physical_mail_address_state"
+        - "physical_mail_address_postal_code"
+        - "physical_mail_address_status"
+        - "physical_mail_address_external_id"
+        - "email_group"
+        - "accounting_model"
+        - "auto_register"
+        - "auto_file"
+        - "do_not_file"
+        - "incorporation_country"
+        - "target_archive_date"
+        - "onboarding_link"
+        - "health_check"
+        - "id"
+        - "customer_health"
+        - "premium_upgrade_triggered"
+        - "prefer_collected_tax_amounts"
+      title: "OrganizationAdminDetailsReadSerializer"
     "OrganizationBillingDetails":
       properties:
         "billing_plan": {"$ref": "#/components/schemas/BillingPlanEnum"}
@@ -9666,8 +10360,17 @@ components:
           type: "boolean"
           title: "Auto File"
           default: true
+        "do_not_file":
+          type: "boolean"
+          title: "Do Not File"
+          default: false
+        "health_check":
+          description: "Health check status of the organization (e.g. NEEDS_ATTENTION, GOOD_STANDING)"
+          type: "string"
         "incorporation_country": {"$ref": "#/components/schemas/CountryCodeEnum"}
         "target_archive_date":
+          type: "string"
+        "onboarding_link":
           type: "string"
         "id":
           type: "string"
@@ -9861,8 +10564,14 @@ components:
           type: "boolean"
         "auto_file":
           type: "boolean"
+        "do_not_file":
+          type: "boolean"
         "incorporation_country": {"$ref": "#/components/schemas/CountryCodeEnum"}
         "target_archive_date":
+          type: "string"
+        "onboarding_link":
+          type: "string"
+        "health_check":
           type: "string"
         "tax_ids":
           items: {"$ref": "#/components/schemas/OrganizationTaxIdReadSerializer"}
@@ -9970,8 +10679,11 @@ components:
         - "accounting_model"
         - "auto_register"
         - "auto_file"
+        - "do_not_file"
         - "incorporation_country"
         - "target_archive_date"
+        - "onboarding_link"
+        - "health_check"
         - "id"
       title: "OrganizationDetailsReadSerializer"
     "OrganizationExperienceTasks":
@@ -10089,6 +10801,72 @@ components:
         - "promo"
         - "id"
       title: "OrganizationReadWithSettings"
+    "OrganizationSettingsAdminResponse":
+      properties:
+        "disable_onboarding":
+          type: "boolean"
+          title: "Disable Onboarding"
+        "enable_eu_registration":
+          type: "boolean"
+        "product_category_version":
+          type: "string"
+          title: "Product Category Version"
+        "oss_scheme": {"$ref": "#/components/schemas/OssTypeEnum"}
+        "enable_new_auto_filing_experience":
+          type: "boolean"
+          title: "Enable New Auto Filing Experience"
+        "prefer_collected_tax_amounts":
+          type: "boolean"
+          title: "Prefer Collected Tax Amounts"
+        "special_tax_circumstances":
+          type: "boolean"
+          title: "Special Tax Circumstances"
+        "id":
+          type: "string"
+          title: "Id"
+        "created_at":
+          type: "string"
+          format: "date-time"
+          title: "Created At"
+        "updated_at":
+          type: "string"
+        "organization_id":
+          type: "string"
+          title: "Organization Id"
+        "organization_name":
+          type: "string"
+      type: "object"
+      required:
+        - "disable_onboarding"
+        - "enable_eu_registration"
+        - "product_category_version"
+        - "oss_scheme"
+        - "enable_new_auto_filing_experience"
+        - "prefer_collected_tax_amounts"
+        - "special_tax_circumstances"
+        - "id"
+        - "created_at"
+        - "updated_at"
+        - "organization_id"
+      title: "OrganizationSettingsAdminResponse"
+      description: "Admin-specific response that extends OrganizationSettingsResponse with admin fields."
+    "OrganizationSettingsAdminUpdate":
+      properties:
+        "disable_onboarding":
+          type: "boolean"
+        "enable_eu_registration":
+          type: "boolean"
+        "product_category_version":
+          type: "string"
+        "enable_new_auto_filing_experience":
+          type: "boolean"
+        "prefer_collected_tax_amounts":
+          type: "boolean"
+        "special_tax_circumstances":
+          type: "boolean"
+      type: "object"
+      title: "OrganizationSettingsAdminUpdate"
+      description: "Admin API serializer for updating organization settings.\nIncludes all fields that are editable in the admin panel."
     "OrganizationSettingsReadUpdate":
       properties:
         "disable_onboarding":
@@ -10116,6 +10894,9 @@ components:
         "prefer_collected_tax_amounts":
           type: "boolean"
           title: "Prefer Collected Tax Amounts"
+        "special_tax_circumstances":
+          type: "boolean"
+          title: "Special Tax Circumstances"
       type: "object"
       required:
         - "disable_onboarding"
@@ -10124,6 +10905,7 @@ components:
         - "oss_scheme"
         - "enable_new_auto_filing_experience"
         - "prefer_collected_tax_amounts"
+        - "special_tax_circumstances"
       title: "OrganizationSettingsResponse"
     "OrganizationSourceEnum":
       type: "string"
@@ -10237,18 +11019,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[AdminAllFilingRead]"
     "Page_AttachmentRead_":
       properties:
@@ -10258,18 +11049,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[AttachmentRead]"
     "Page_Attachment_":
       properties:
@@ -10279,19 +11079,58 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[Attachment]"
+    "Page_BatchAdminRead_":
+      properties:
+        "items":
+          items: {"$ref": "#/components/schemas/BatchAdminRead"}
+          type: "array"
+          title: "Items"
+        "total":
+          type: "integer"
+          minimum: 0
+          title: "Total"
+        "page":
+          type: "integer"
+          minimum: 1
+          title: "Page"
+        "size":
+          type: "integer"
+          minimum: 1
+          title: "Size"
+        "pages":
+          type: "integer"
+          minimum: 0
+          title: "Pages"
+      type: "object"
+      required:
+        - "items"
+        - "total"
+        - "page"
+        - "size"
+        - "pages"
+      title: "Page[BatchAdminRead]"
     "Page_ConnectionRead_":
       properties:
         "items":
@@ -10300,18 +11139,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[ConnectionRead]"
     "Page_CreditRead_":
       properties:
@@ -10321,18 +11169,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[CreditRead]"
     "Page_CustomerRead_":
       properties:
@@ -10342,18 +11199,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[CustomerRead]"
     "Page_FilingRead_":
       properties:
@@ -10363,18 +11229,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[FilingRead]"
     "Page_Import_":
       properties:
@@ -10384,18 +11259,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[Import]"
     "Page_MarketplaceTransaction_":
       properties:
@@ -10405,18 +11289,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[MarketplaceTransaction]"
     "Page_NexusResponse_":
       properties:
@@ -10426,18 +11319,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[NexusResponse]"
     "Page_NoteRead_":
       properties:
@@ -10447,18 +11349,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[NoteRead]"
     "Page_OrganizationExperienceTasks_":
       properties:
@@ -10468,18 +11379,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[OrganizationExperienceTasks]"
     "Page_OrganizationRead_":
       properties:
@@ -10489,18 +11409,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[OrganizationRead]"
     "Page_PhysicalNexusRead_":
       properties:
@@ -10510,18 +11439,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[PhysicalNexusRead]"
     "Page_ProductRead_":
       properties:
@@ -10531,18 +11469,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[ProductRead]"
     "Page_RegistrationReadWithPassword_":
       properties:
@@ -10552,18 +11499,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[RegistrationReadWithPassword]"
     "Page_TaskFilingRead_":
       properties:
@@ -10573,18 +11529,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[TaskFilingRead]"
     "Page_TaskRegistrationRead_":
       properties:
@@ -10594,18 +11559,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[TaskRegistrationRead]"
     "Page_TransactionAddressRead_":
       properties:
@@ -10615,18 +11589,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[TransactionAddressRead]"
     "Page_TransactionEstimateResponse_":
       properties:
@@ -10636,18 +11619,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[TransactionEstimateResponse]"
     "Page_TransactionRead_":
       properties:
@@ -10657,18 +11649,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[TransactionRead]"
     "Partner":
       properties:
@@ -12188,6 +13189,216 @@ components:
       required:
         - "refresh_token"
       title: "RefreshTokenRequest"
+    "RegistrationAdminRead":
+      properties:
+        "registration_date":
+          description: "The date when the registration was created. Format: YYYY-MM-DD."
+          type: "string"
+        "registration_email":
+          description: "Email address associated with the registration."
+          type: "string"
+        "registration_key":
+          description: "A unique key assigned to the registration."
+          type: "string"
+        "deregistration_key":
+          description: "A unique key assigned for deregistration."
+          type: "string"
+        "registration_requested":
+          description: "Timestamp when the registration was requested."
+          type: "string"
+        "registration_completed":
+          description: "Timestamp when the registration was completed."
+          type: "string"
+        "deregistration_requested":
+          description: "Timestamp when deregistration was requested."
+          type: "string"
+        "deregistration_completed":
+          description: "Timestamp when the deregistration was completed."
+          type: "string"
+        "auto_registered":
+          description: "Indicates whether the registration was completed automatically."
+          default: false
+          type: "boolean"
+        "registrations_regime": {"description": "The tax registration regime (e.g., STANDARD, SIMPLIFIED).", "$ref": "#/components/schemas/RegistrationsRegimeEnum"}
+        "change_regime_status": {"$ref": "#/components/schemas/ChangeRegimeStatusEnum"}
+        "third_party_enabled":
+          description: "Indicates whether third-party access is enabled for this registration."
+          default: false
+          type: "boolean"
+        "do_not_file":
+          type: "boolean"
+          title: "Do Not File"
+          description: "If true, do not file for this registration (treated as False by default)."
+          default: false
+        "two_factor_enabled":
+          description: "Indicates whether two-factor authentication (2FA) is enabled for this registration."
+          type: "boolean"
+        "marked_collecting":
+          description: "Indicates whether the  registration is marked as collecting in shopify"
+          type: "boolean"
+        "status": {"$ref": "#/components/schemas/RegistrationStatusEnum", "description": "The current status of the registration. Possible values: REGISTERED, PROCESSING, UNREGISTERED, DEREGISTERING, DEREGISTERED, VALIDATING, AWAITING_CLARIFICATION."}
+        "country_code": {"$ref": "#/components/schemas/CountryCodeEnum", "description": "The country code (ISO 3166-1 alpha-2 format) where the registration applies."}
+        "state_code":
+          type: "string"
+          title: "State Code"
+          description: "The state/province code where the registration applies."
+        "state_name":
+          type: "string"
+          title: "State Name"
+          description: "The name of the state/province."
+        "filing_frequency": {"$ref": "#/components/schemas/FilingFrequencyEnum", "description": "Specifies how often tax filings should be made.\n                                                Possible values: MONTHLY, QUARTERLY, ANNUALLY, UNKNOWN."}
+        "filing_days":
+          description: "The number of days before the filing deadline."
+          type: "integer"
+        "username":
+          description: "Username for accessing tax registration details."
+          type: "string"
+        "comment":
+          description: "Additional comments related to the registration."
+          type: "string"
+        "create_filings_from":
+          description: "The date from which filings should be created.\n        should start (YYYY-MM-DD)."
+          type: "string"
+        "initial_sync":
+          description: "Indicates whether an initial synchronization should be performed."
+          default: false
+          type: "boolean"
+        "amount_fees":
+          type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+          title: "Amount Fees"
+          description: "The amount of fees associated with the registration."
+          default: "0.00"
+        "vda":
+          description: "Indicates whether a Voluntary Disclosure Agreement (VDA) applies."
+          default: false
+          type: "boolean"
+        "imported":
+          description: "Whether the registration was imported from another system."
+          type: "boolean"
+        "sales_tax_id":
+          description: "The sales tax ID associated with the registration."
+          type: "string"
+        "sst_import":
+          description: "Indicates whether the registration is an SST Import."
+          default: false
+          type: "boolean"
+        "oss_type": {"description": "The type of OSS registration. Should be filled for ZZ_EU OSS registrations.", "$ref": "#/components/schemas/OssTypeEnum"}
+        "oss_member_state_of_identification_code": {"description": "The Member State of Identification code for OSS registrations.", "$ref": "#/components/schemas/CountryCodeEnum"}
+        "marked_collecting_date":
+          description: "The date when the registration was marked as collecting."
+          type: "string"
+        "needs_mark_as_collecting":
+          description: "Indicates whether the registration needs to be marked as collecting."
+          default: false
+          type: "boolean"
+        "id":
+          type: "string"
+          title: "Id"
+          description: "The unique identifier for the registration."
+        "credits_total_available":
+          type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
+          title: "Credits Total Available"
+          default: "0.00"
+        "registration_category": {"$ref": "#/components/schemas/RegistrationCategoryEnum", "description": "The category of the registration. Possible values: REGULAR, IMPORTED, DEREGISTRATION.", "default": "REGULAR"}
+        "registration_type": {"$ref": "#/components/schemas/RegistrationTypeEnum", "readOnly": true}
+        "filing_website_url":
+          readOnly: true
+          type: "string"
+      type: "object"
+      required:
+        - "status"
+        - "country_code"
+        - "state_code"
+        - "state_name"
+        - "filing_frequency"
+        - "id"
+        - "registration_type"
+        - "filing_website_url"
+      title: "RegistrationAdminRead"
+      description: "Admin-specific read model for registrations.\n\nExtends public RegistrationRead while adding admin-only convenience fields."
+    "RegistrationAdminUpdateAPI":
+      properties:
+        "registration_date":
+          description: "The date when the registration was created. Format: YYYY-MM-DD."
+          type: "string"
+        "registration_email":
+          description: "Email address associated with the registration."
+          type: "string"
+        "registration_key":
+          description: "A unique key assigned to the registration."
+          type: "string"
+        "deregistration_key":
+          description: "A unique key assigned for deregistration."
+          type: "string"
+        "registration_requested":
+          description: "Timestamp when the registration was requested."
+          type: "string"
+        "registration_completed":
+          description: "Timestamp when the registration was completed."
+          type: "string"
+        "deregistration_requested":
+          description: "Timestamp when deregistration was requested."
+          type: "string"
+        "deregistration_completed":
+          description: "Timestamp when the deregistration was completed."
+          type: "string"
+        "auto_registered":
+          description: "Indicates whether the registration was completed automatically."
+          default: false
+          type: "boolean"
+        "registrations_regime": {"description": "The tax registration regime (e.g., STANDARD, SIMPLIFIED).", "$ref": "#/components/schemas/RegistrationsRegimeEnum"}
+        "change_regime_status": {"$ref": "#/components/schemas/ChangeRegimeStatusEnum"}
+        "third_party_enabled":
+          description: "Indicates whether third-party access is enabled for this registration."
+          default: false
+          type: "boolean"
+        "do_not_file":
+          type: "boolean"
+          title: "Do Not File"
+          description: "If true, do not file for this registration (treated as False by default)."
+          default: false
+        "two_factor_enabled":
+          description: "Indicates whether two-factor authentication (2FA) is enabled for this registration."
+          type: "boolean"
+        "marked_collecting":
+          description: "Indicates whether the  registration is marked as collecting in shopify"
+          type: "boolean"
+        "encrypted_username":
+          description: "The encrypted username for the registration."
+          type: "string"
+        "username":
+          description: "The username associated with the registration."
+          type: "string"
+        "filing_frequency": {"description": "The updated filing frequency (MONTHLY, QUARTERLY, etc.).", "$ref": "#/components/schemas/FilingFrequencyEnum"}
+        "create_filings_from":
+          description: "The updated date from which filings should start (YYYY-MM-DD)."
+          type: "string"
+        "is_approaching":
+          description: "Indicates whether the registration is approaching an action (e.g., renewal)."
+          type: "boolean"
+        "comment":
+          description: "Additional notes or comments related to the registration."
+          type: "string"
+        "vda":
+          description: "Indicates if the Voluntary Disclosure Agreement (VDA) applies."
+          type: "boolean"
+        "tax_id":
+          description: "Organization-level tax ID (e.g., VAT number, Canada Business Number)."
+          type: "string"
+        "amount_fees":
+          description: "Admin-only: The amount of fees associated with the registration."
+          type: "number"
+      type: "object"
+      title: "RegistrationAdminUpdateAPI"
+    "RegistrationCategoryEnum":
+      type: "string"
+      enum:
+        - "REGULAR"
+        - "IMPORTED"
+        - "DEREGISTRATION"
+      title: "RegistrationCategoryEnum"
     "RegistrationCreatePayload":
       properties:
         "registration_import_type":
@@ -12223,6 +13434,11 @@ components:
           description: "Indicates whether the registration was completed automatically."
           default: false
           type: "boolean"
+        "do_not_file":
+          type: "boolean"
+          title: "Do Not File"
+          description: "If true, do not file for this registration (treated as False by default)."
+          default: false
         "registrations_regime": {"description": "The tax registration regime (e.g., STANDARD, SIMPLIFIED).", "$ref": "#/components/schemas/RegistrationsRegimeEnum"}
         "change_regime_status": {"$ref": "#/components/schemas/ChangeRegimeStatusEnum"}
         "country_code": {"$ref": "#/components/schemas/CountryCodeEnum", "description": "The country code (ISO 3166-1 alpha-2 format) where the registration applies."}
@@ -12270,6 +13486,9 @@ components:
           description: "Indicates whether the registration is an SST Import."
           default: false
           type: "boolean"
+        "tax_id":
+          description: "Organization-level tax ID (e.g., VAT number, Canada Business Number)."
+          type: "string"
         "password_plain_text":
           description: "The plaintext password for accessing the tax registration account."
           type: "string"
@@ -12320,6 +13539,14 @@ components:
           description: "Indicates whether third-party access is enabled for this registration."
           default: false
           type: "boolean"
+        "do_not_file":
+          type: "boolean"
+          title: "Do Not File"
+          description: "If true, do not file for this registration (treated as False by default)."
+          default: false
+        "two_factor_enabled":
+          description: "Indicates whether two-factor authentication (2FA) is enabled for this registration."
+          type: "boolean"
         "marked_collecting":
           description: "Indicates whether the  registration is marked as collecting in shopify"
           type: "boolean"
@@ -12335,9 +13562,8 @@ components:
           description: "The name of the state/province."
         "filing_frequency": {"$ref": "#/components/schemas/FilingFrequencyEnum", "description": "Specifies how often tax filings should be made.\n                                                Possible values: MONTHLY, QUARTERLY, ANNUALLY, UNKNOWN."}
         "filing_days":
-          type: "integer"
-          title: "Filing Days"
           description: "The number of days before the filing deadline."
+          type: "integer"
         "username":
           description: "Username for accessing tax registration details."
           type: "string"
@@ -12353,6 +13579,7 @@ components:
           type: "boolean"
         "amount_fees":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Fees"
           description: "The amount of fees associated with the registration."
           default: "0.00"
@@ -12385,8 +13612,10 @@ components:
           description: "The unique identifier for the registration."
         "credits_total_available":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Credits Total Available"
           default: "0.00"
+        "registration_category": {"$ref": "#/components/schemas/RegistrationCategoryEnum", "description": "The category of the registration. Possible values: REGULAR, IMPORTED, DEREGISTRATION.", "default": "REGULAR"}
         "registration_type": {"$ref": "#/components/schemas/RegistrationTypeEnum", "readOnly": true}
       type: "object"
       required:
@@ -12395,7 +13624,6 @@ components:
         - "state_code"
         - "state_name"
         - "filing_frequency"
-        - "filing_days"
         - "id"
         - "registration_type"
       title: "RegistrationRead"
@@ -12435,6 +13663,14 @@ components:
           description: "Indicates whether third-party access is enabled for this registration."
           default: false
           type: "boolean"
+        "do_not_file":
+          type: "boolean"
+          title: "Do Not File"
+          description: "If true, do not file for this registration (treated as False by default)."
+          default: false
+        "two_factor_enabled":
+          description: "Indicates whether two-factor authentication (2FA) is enabled for this registration."
+          type: "boolean"
         "marked_collecting":
           description: "Indicates whether the  registration is marked as collecting in shopify"
           type: "boolean"
@@ -12450,9 +13686,8 @@ components:
           description: "The name of the state/province."
         "filing_frequency": {"$ref": "#/components/schemas/FilingFrequencyEnum", "description": "Specifies how often tax filings should be made.\n                                                Possible values: MONTHLY, QUARTERLY, ANNUALLY, UNKNOWN."}
         "filing_days":
-          type: "integer"
-          title: "Filing Days"
           description: "The number of days before the filing deadline."
+          type: "integer"
         "username":
           description: "Username for accessing tax registration details."
           type: "string"
@@ -12468,6 +13703,7 @@ components:
           type: "boolean"
         "amount_fees":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount Fees"
           description: "The amount of fees associated with the registration."
           default: "0.00"
@@ -12500,8 +13736,10 @@ components:
           description: "The unique identifier for the registration."
         "credits_total_available":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Credits Total Available"
           default: "0.00"
+        "registration_category": {"$ref": "#/components/schemas/RegistrationCategoryEnum", "description": "The category of the registration. Possible values: REGULAR, IMPORTED, DEREGISTRATION.", "default": "REGULAR"}
         "password_encrypted":
           description: "Encrypted password for accessing the registration,\n        if applicable."
           type: "string"
@@ -12518,7 +13756,6 @@ components:
         - "state_code"
         - "state_name"
         - "filing_frequency"
-        - "filing_days"
         - "id"
         - "registration_type"
       title: "RegistrationReadWithPassword"
@@ -12585,9 +13822,20 @@ components:
           description: "Indicates whether third-party access is enabled for this registration."
           default: false
           type: "boolean"
+        "do_not_file":
+          type: "boolean"
+          title: "Do Not File"
+          description: "If true, do not file for this registration (treated as False by default)."
+          default: false
+        "two_factor_enabled":
+          description: "Indicates whether two-factor authentication (2FA) is enabled for this registration."
+          type: "boolean"
         "marked_collecting":
           description: "Indicates whether the  registration is marked as collecting in shopify"
           type: "boolean"
+        "encrypted_username":
+          description: "The encrypted username for the registration."
+          type: "string"
         "status": {"$ref": "#/components/schemas/RegistrationStatusEnum", "description": "The current status of the registration. Possible values: REGISTERED, PROCESSING, UNREGISTERED, DEREGISTERING, DEREGISTERED, VALIDATING, AWAITING_CLARIFICATION."}
         "username":
           type: "string"
@@ -12604,15 +13852,18 @@ components:
         "vda":
           description: "Indicates if the Voluntary Disclosure Agreement (VDA) applies."
           type: "boolean"
+        "tax_id":
+          type: "string"
         "password_plain_text":
           type: "string"
         "password_metadata_plain_text":
           type: "string"
-        "tax_id":
+        "sales_tax_id":
           type: "string"
         "auto_register":
           type: "boolean"
         "registration_type": {"$ref": "#/components/schemas/RegistrationTypeEnum"}
+        "country_code": {"$ref": "#/components/schemas/CountryCodeEnum"}
       type: "object"
       required:
         - "status"
@@ -12653,9 +13904,20 @@ components:
           description: "Indicates whether third-party access is enabled for this registration."
           default: false
           type: "boolean"
+        "do_not_file":
+          type: "boolean"
+          title: "Do Not File"
+          description: "If true, do not file for this registration (treated as False by default)."
+          default: false
+        "two_factor_enabled":
+          description: "Indicates whether two-factor authentication (2FA) is enabled for this registration."
+          type: "boolean"
         "marked_collecting":
           description: "Indicates whether the  registration is marked as collecting in shopify"
           type: "boolean"
+        "encrypted_username":
+          description: "The encrypted username for the registration."
+          type: "string"
         "username":
           description: "The username associated with the registration."
           type: "string"
@@ -12672,6 +13934,9 @@ components:
         "vda":
           description: "Indicates if the Voluntary Disclosure Agreement (VDA) applies."
           type: "boolean"
+        "tax_id":
+          description: "Organization-level tax ID (e.g., VAT number, Canada Business Number)."
+          type: "string"
       type: "object"
       title: "RegistrationUpdateAPI"
     "RegistrationsRegimeEnum":
@@ -12717,26 +13982,33 @@ components:
           type: "string"
         "combined_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,3}|(?=[\\d.]{1,13}0*$)\\d{0,3}\\.\\d{0,9}0*$)"
           title: "Combined Rate"
         "state_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,3}|(?=[\\d.]{1,13}0*$)\\d{0,3}\\.\\d{0,9}0*$)"
           title: "State Rate"
         "county_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,3}|(?=[\\d.]{1,13}0*$)\\d{0,3}\\.\\d{0,9}0*$)"
           title: "County Rate"
         "city_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,3}|(?=[\\d.]{1,13}0*$)\\d{0,3}\\.\\d{0,9}0*$)"
           title: "City Rate"
         "special_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,3}|(?=[\\d.]{1,13}0*$)\\d{0,3}\\.\\d{0,9}0*$)"
           title: "Special Rate"
         "threshold":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Threshold"
           default: "0.0"
         "treatment": {"$ref": "#/components/schemas/TaxTreatment", "default": "FULL_AMOUNT"}
         "taxable_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,3}|(?=[\\d.]{1,13}0*$)\\d{0,3}\\.\\d{0,9}0*$)"
           title: "Taxable Rate"
       type: "object"
       required:
@@ -12787,9 +14059,11 @@ components:
           title: "Name"
         "rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Rate"
         "amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Amount"
         "id":
           type: "string"
@@ -12867,18 +14141,22 @@ components:
           type: "string"
         "total":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Total"
           default: "0"
         "total_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Total Tax"
           default: "0"
         "taxable_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Taxable Amount"
           default: "0"
         "combined_tax_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Combined Tax Rate"
           default: "0"
         "tax_rates":
@@ -13200,6 +14478,7 @@ components:
       type: "string"
       enum:
         - "BIGCOMMERCE"
+        - "BESTBUY"
         - "BUNNY"
         - "CHARGEBEE"
         - "SHOPIFY"
@@ -13254,6 +14533,7 @@ components:
         - "SAGE-INTACCT"
         - "AIRWALLEX"
         - "ORB"
+        - "ZENSKAR"
       title: "SourceEnum"
     "StatusEnum":
       type: "string"
@@ -13521,7 +14801,7 @@ components:
         "organization_name":
           type: "string"
         "billing_plan": {"$ref": "#/components/schemas/BillingPlanEnum"}
-        "registration": {"$ref": "#/components/schemas/RegistrationRead"}
+        "registration": {"$ref": "#/components/schemas/RegistrationAdminRead"}
       type: "object"
       title: "TaskRegistrationRead"
     "TaxBreakdownByJurisdiction":
@@ -13766,6 +15046,7 @@ components:
       properties:
         "rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,3}|(?=[\\d.]{1,13}0*$)\\d{0,3}\\.\\d{0,9}0*$)"
           title: "The tax rate for this this jurisdiction and tax type."
           default: "0.0"
         "name":
@@ -13773,6 +15054,7 @@ components:
           title: "The name of the tax item for this jurisdiction and tax type. ie. 'State Tax'"
         "amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "The amount of tax determined for this jurisdiction and tax type."
           default: "0.0"
         "exempt":
@@ -13795,9 +15077,11 @@ components:
           default: "0000"
         "rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,3}|(?=[\\d.]{1,13}0*$)\\d{0,3}\\.\\d{0,9}0*$)"
           title: "Rate"
         "amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount"
         "converted_amount":
           type: "string"
@@ -14373,7 +15657,8 @@ components:
         "organization_id":
           type: "string"
           title: "Organization Id"
-          description: "Unique identifier of the organization."
+          description: "Unique identifier of the organization. This field is deprecated, and should no longer be used. The value is populated through the 'x-organization-id' header."
+          deprecated: true
         "external_id":
           type: "string"
           title: "External Id"
@@ -14530,7 +15815,8 @@ components:
         "organization_id":
           type: "string"
           title: "Organization Id"
-          description: "Unique identifier of the organization."
+          description: "Unique identifier of the organization. This field is deprecated, and should no longer be used. The value is populated through the 'x-organization-id' header."
+          deprecated: true
         "external_id":
           type: "string"
           title: "External Id"
@@ -14840,16 +16126,19 @@ components:
           description: "List of addresses related to the transaction. At least one BILL_TO or SHIP_TO address must be provided. The address will be validated during estimation, and the transaction may be rejected if the address does not pass validation. The SHIP_TO will be preferred to use for determining tax liability. **Deprecated:** Use of `address.status` in estimate api is ignored and will be removed in the future status will be considered UNVERIFIED by default and always validated"
         "total_tax_amount_calculated":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Tax Amount Calculated"
           description: "The total amount of tax determined for the transaction."
           default: "0.00"
         "taxable_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Taxable Amount"
           description: "The taxable amount for the transaction."
           default: "0.00"
         "tax_rate_calculated":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,3}|(?=[\\d.]{1,13}0*$)\\d{0,3}\\.\\d{0,9}0*$)"
           title: "Tax Rate Calculated"
           description: "The calculated tax rate for the transaction."
           default: "0.00"
@@ -14980,7 +16269,8 @@ components:
           description: "External item identifier."
           type: "string"
         "organization_id":
-          description: "Organization identifier."
+          description: "Unique identifier of the organization. This field is deprecated, and should no longer be used. The value is populated through the 'x-organization-id' header."
+          deprecated: true
           type: "string"
         "date":
           type: "string"
@@ -15078,7 +16368,8 @@ components:
           description: "External item identifier."
           type: "string"
         "organization_id":
-          description: "Organization identifier."
+          description: "Unique identifier of the organization. This field is deprecated, and should no longer be used. The value is populated through the 'x-organization-id' header."
+          deprecated: true
           type: "string"
         "date":
           type: "string"
@@ -15247,11 +16538,13 @@ components:
           type: "string"
         "quantity":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,20}|(?=[\\d.]{1,41}0*$)\\d{0,20}\\.\\d{0,20}0*$)"
           title: "Quantity of the product."
           description: "Defaults to 1.0. The quantity of the item."
           default: "1.0"
         "amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total amount of this transaction item, after discounts."
           description: "The total amount of the item."
         "exempt":
@@ -15261,16 +16554,19 @@ components:
           default: false
         "tax_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "The amount of tax determined for this transaction item."
           description: "The total tax amount for the transaction item."
           default: "0.00"
         "taxable_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "The amount of this item that was determined to be taxable."
           description: "The taxable amount for the transaction item."
           default: "0.00"
         "tax_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,3}|(?=[\\d.]{1,13}0*$)\\d{0,3}\\.\\d{0,9}0*$)"
           title: "The calculated combined tax rate for this transaction item."
           description: "The tax rate applied to the transaction item."
           default: "0.00"
@@ -15292,7 +16588,8 @@ components:
           description: "External item identifier."
           type: "string"
         "organization_id":
-          description: "Organization identifier."
+          description: "Unique identifier of the organization. This field is deprecated, and should no longer be used. The value is populated through the 'x-organization-id' header."
+          deprecated: true
           type: "string"
         "date":
           type: "string"
@@ -15320,31 +16617,37 @@ components:
           type: "string"
         "quantity":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,20}|(?=[\\d.]{1,41}0*$)\\d{0,20}\\.\\d{0,20}0*$)"
           title: "Quantity"
           description: "Quantity of item."
           default: "1.0"
         "amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Amount"
           description: "Item amount."
           default: "0.00"
         "tax_amount_imported":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Tax Amount Imported"
           description: "Imported tax amount for the item."
           default: "0.00"
         "tax_rate_imported":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,3}|(?=[\\d.]{1,13}0*$)\\d{0,3}\\.\\d{0,9}0*$)"
           title: "Tax Rate Imported"
           description: "Imported tax rate."
           default: "0.00"
         "tax_amount_calculated":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Tax Amount Calculated"
           description: "Calculated tax amount for the item."
           default: "0.00"
         "tax_rate_calculated":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,3}|(?=[\\d.]{1,13}0*$)\\d{0,3}\\.\\d{0,9}0*$)"
           title: "Tax Rate Calculated"
           description: "Calculated tax rate."
           default: "0.00"
@@ -15370,6 +16673,7 @@ components:
           type: "string"
         "taxable_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Taxable Amount"
           description: "Taxable amount for the item."
           default: "0.00"
@@ -15410,10 +16714,12 @@ components:
           default: 0
         "total_sales":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Sales"
           default: "0.00"
         "total_taxable_sales":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Taxable Sales"
           default: "0.00"
         "total_incomplete_address":
@@ -15429,7 +16735,8 @@ components:
         "organization_id":
           type: "string"
           title: "Organization Id"
-          description: "Unique identifier of the organization."
+          description: "Unique identifier of the organization. This field is deprecated, and should no longer be used. The value is populated through the 'x-organization-id' header."
+          deprecated: true
         "external_id":
           type: "string"
           title: "External Id"
@@ -15559,7 +16866,8 @@ components:
         "organization_id":
           type: "string"
           title: "Organization Id"
-          description: "Unique identifier of the organization."
+          description: "Unique identifier of the organization. This field is deprecated, and should no longer be used. The value is populated through the 'x-organization-id' header."
+          deprecated: true
         "external_id":
           type: "string"
           title: "External Id"
@@ -15581,6 +16889,7 @@ components:
         "refund_status": {"description": "Status of refund, if applicable", "$ref": "#/components/schemas/TransactionRefundStatus"}
         "total_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Amount"
           description: "Total amount of the transaction."
           default: "0.00"
@@ -15610,32 +16919,38 @@ components:
           type: "string"
         "total_tax_amount_imported":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Tax Amount Imported"
           description: "Imported tax amount."
           default: "0.00"
         "tax_rate_imported":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,3}|(?=[\\d.]{1,13}0*$)\\d{0,3}\\.\\d{0,9}0*$)"
           title: "Tax Rate Imported"
           description: "Imported tax rate."
           default: "0.00"
         "total_tax_amount_calculated":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Tax Amount Calculated"
           description: "Calculated tax amount."
           default: "0.00"
         "tax_rate_calculated":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,3}|(?=[\\d.]{1,13}0*$)\\d{0,3}\\.\\d{0,9}0*$)"
           title: "Tax Rate Calculated"
           description: "Calculated tax rate."
           default: "0.00"
         "total_tax_liability_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Total Tax Liability Amount"
           description: "Total tax liability amount."
           default: "0.00"
         "tax_liability_source": {"description": "Source of tax liability.", "$ref": "#/components/schemas/TaxLiabilitySourceEnum"}
         "taxable_amount":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*(?:\\d{0,10}|(?=[\\d.]{1,13}0*$)\\d{0,10}\\.\\d{0,2}0*$)"
           title: "Taxable Amount"
           description: "Taxable amount."
           default: "0.00"
@@ -15768,7 +17083,8 @@ components:
         "organization_id":
           type: "string"
           title: "Organization Id"
-          description: "Unique identifier of the organization."
+          description: "Unique identifier of the organization. This field is deprecated, and should no longer be used. The value is populated through the 'x-organization-id' header."
+          deprecated: true
         "external_id":
           type: "string"
           title: "External Id"
@@ -16155,6 +17471,8 @@ components:
         "org_metadata": {"$ref": "#/components/schemas/OrgMetadata"}
         "legacy_user_id":
           type: "string"
+        "notifications_enabled":
+          type: "boolean"
       type: "object"
       required:
         - "user_id"
@@ -16394,6 +17712,97 @@ components:
           type: "string"
       type: "object"
       title: "WooShippingAddress"
+    "ZenskarConnectionRequest":
+      properties:
+        "zenskar_org_id":
+          type: "string"
+          title: "Zenskar Org Id"
+          description: "Zenskar Organization ID"
+        "api_key":
+          type: "string"
+          title: "Api Key"
+          description: "Zenskar API key"
+        "name":
+          description: "Custom name for this connection"
+          type: "string"
+      type: "object"
+      required:
+        - "zenskar_org_id"
+        - "api_key"
+      title: "ZenskarConnectionRequest"
+      description: "Request model for creating a Zenskar connection."
+    "ZenskarConnectionResponse":
+      properties:
+        "success":
+          type: "boolean"
+          title: "Success"
+        "message":
+          type: "string"
+          title: "Message"
+        "connection_id":
+          type: "string"
+        "data":
+          type: "object"
+      type: "object"
+      required:
+        - "success"
+        - "message"
+      title: "ZenskarConnectionResponse"
+      description: "Response model for Zenskar connection operations."
+    "ZenskarConnectionStatus":
+      properties:
+        "connection_id":
+          type: "string"
+          title: "Connection Id"
+        "zenskar_org_id":
+          type: "string"
+          title: "Zenskar Org Id"
+        "name":
+          type: "string"
+          title: "Name"
+        "status":
+          type: "string"
+          title: "Status"
+        "last_sync":
+          type: "string"
+        "created_at":
+          type: "string"
+          format: "date-time"
+          title: "Created At"
+        "error_message":
+          type: "string"
+      type: "object"
+      required:
+        - "connection_id"
+        - "zenskar_org_id"
+        - "name"
+        - "status"
+        - "created_at"
+      title: "ZenskarConnectionStatus"
+      description: "Model for connection status information."
+    "ZenskarHealthCheckResponse":
+      properties:
+        "healthy":
+          type: "boolean"
+          title: "Healthy"
+        "zenskar_org_id":
+          type: "string"
+          title: "Zenskar Org Id"
+        "message":
+          type: "string"
+          title: "Message"
+        "last_checked":
+          type: "string"
+          format: "date-time"
+          title: "Last Checked"
+      type: "object"
+      required:
+        - "healthy"
+        - "zenskar_org_id"
+        - "message"
+        - "last_checked"
+      title: "ZenskarHealthCheckResponse"
+      description: "Response model for health check."
     "backend__src__address_validation__responses__ValidationErrorItem":
       properties:
         "type":
@@ -16900,15 +18309,19 @@ components:
       properties:
         "amount_inclusive":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Amount Inclusive"
         "amount_exclusive":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Amount Exclusive"
         "total_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Total Tax"
         "tax_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Tax Rate"
         "sales_tax_summary":
           items: {"$ref": "#/components/schemas/SalesTaxSummary"}
@@ -17071,15 +18484,19 @@ components:
       properties:
         "amount_inclusive":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Amount Inclusive"
         "amount_exclusive":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Amount Exclusive"
         "total_tax":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Total Tax"
         "tax_rate":
           type: "string"
+          pattern: "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
           title: "Tax Rate"
       type: "object"
       required:
@@ -17524,18 +18941,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[ExemptionRead]"
     "fastapi_pagination__default__Page_ExemptionRead___2":
       properties:
@@ -17545,18 +18971,27 @@ components:
           title: "Items"
         "total":
           type: "integer"
+          minimum: 0
+          title: "Total"
         "page":
           type: "integer"
+          minimum: 1
+          title: "Page"
         "size":
           type: "integer"
+          minimum: 1
+          title: "Size"
         "pages":
           type: "integer"
+          minimum: 0
+          title: "Pages"
       type: "object"
       required:
         - "items"
         - "total"
         - "page"
         - "size"
+        - "pages"
       title: "Page[ExemptionRead]"
   securitySchemes:
     "APIKeyHeader":

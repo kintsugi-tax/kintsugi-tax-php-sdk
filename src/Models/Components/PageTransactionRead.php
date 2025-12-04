@@ -43,21 +43,20 @@ class PageTransactionRead
 
     /**
      *
-     * @var ?int $pages
+     * @var int $pages
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('pages')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $pages = null;
+    public int $pages;
 
     /**
      * @param  array<TransactionRead>  $items
      * @param  int  $total
      * @param  int  $page
      * @param  int  $size
-     * @param  ?int  $pages
+     * @param  int  $pages
      * @phpstan-pure
      */
-    public function __construct(array $items, int $total, int $page, int $size, ?int $pages = null)
+    public function __construct(array $items, int $total, int $page, int $size, int $pages)
     {
         $this->items = $items;
         $this->total = $total;

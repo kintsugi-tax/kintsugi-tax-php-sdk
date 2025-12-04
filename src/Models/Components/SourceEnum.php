@@ -12,6 +12,7 @@ namespace KintsugiTax\SDK\Models\Components;
 enum SourceEnum: string
 {
     case Bigcommerce = 'BIGCOMMERCE';
+    case Bestbuy = 'BESTBUY';
     case Bunny = 'BUNNY';
     case Chargebee = 'CHARGEBEE';
     case Shopify = 'SHOPIFY';
@@ -66,4 +67,5 @@ enum SourceEnum: string
     case SageIntacct = 'SAGE-INTACCT';
     case Airwallex = 'AIRWALLEX';
     case Orb = 'ORB';
+    case Zenskar = 'ZENSKAR';
 }
