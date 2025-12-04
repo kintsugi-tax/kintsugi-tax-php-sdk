@@ -102,6 +102,15 @@ class RegistrationUpdateAPI
     public ?ChangeRegimeStatusEnum $changeRegimeStatus = null;
 
     /**
+     * Indicates whether two-factor authentication (2FA) is enabled for this registration.
+     *
+     * @var ?bool $twoFactorEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('two_factor_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $twoFactorEnabled = null;
+
+    /**
      * Indicates whether the  registration is marked as collecting in shopify
      *
      * @var ?bool $markedCollecting
@@ -109,6 +118,15 @@ class RegistrationUpdateAPI
     #[\Speakeasy\Serializer\Annotation\SerializedName('marked_collecting')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $markedCollecting = null;
+
+    /**
+     * The encrypted username for the registration.
+     *
+     * @var ?string $encryptedUsername
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('encrypted_username')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $encryptedUsername = null;
 
     /**
      * The username associated with the registration.
@@ -165,6 +183,15 @@ class RegistrationUpdateAPI
     public ?bool $vda = null;
 
     /**
+     * Organization-level tax ID (e.g., VAT number, Canada Business Number).
+     *
+     * @var ?string $taxId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $taxId = null;
+
+    /**
      * Indicates whether the registration was completed automatically.
      *
      * @var ?bool $autoRegistered
@@ -183,6 +210,15 @@ class RegistrationUpdateAPI
     public ?bool $thirdPartyEnabled = null;
 
     /**
+     * If true, do not file for this registration (treated as False by default).
+     *
+     * @var ?bool $doNotFile
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('do_not_file')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $doNotFile = null;
+
+    /**
      * @param  ?string  $registrationDate
      * @param  ?string  $registrationEmail
      * @param  ?string  $registrationKey
@@ -195,16 +231,20 @@ class RegistrationUpdateAPI
      * @param  ?RegistrationsRegimeEnum  $registrationsRegime
      * @param  ?ChangeRegimeStatusEnum  $changeRegimeStatus
      * @param  ?bool  $thirdPartyEnabled
+     * @param  ?bool  $doNotFile
+     * @param  ?bool  $twoFactorEnabled
      * @param  ?bool  $markedCollecting
+     * @param  ?string  $encryptedUsername
      * @param  ?string  $username
      * @param  ?FilingFrequencyEnum  $filingFrequency
      * @param  ?string  $createFilingsFrom
      * @param  ?bool  $isApproaching
      * @param  ?string  $comment
      * @param  ?bool  $vda
+     * @param  ?string  $taxId
      * @phpstan-pure
      */
-    public function __construct(?string $registrationDate = null, ?string $registrationEmail = null, ?string $registrationKey = null, ?string $deregistrationKey = null, ?string $registrationRequested = null, ?string $registrationCompleted = null, ?string $deregistrationRequested = null, ?string $deregistrationCompleted = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $markedCollecting = null, ?string $username = null, ?FilingFrequencyEnum $filingFrequency = null, ?string $createFilingsFrom = null, ?bool $isApproaching = null, ?string $comment = null, ?bool $vda = null, ?bool $autoRegistered = false, ?bool $thirdPartyEnabled = false)
+    public function __construct(?string $registrationDate = null, ?string $registrationEmail = null, ?string $registrationKey = null, ?string $deregistrationKey = null, ?string $registrationRequested = null, ?string $registrationCompleted = null, ?string $deregistrationRequested = null, ?string $deregistrationCompleted = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $twoFactorEnabled = null, ?bool $markedCollecting = null, ?string $encryptedUsername = null, ?string $username = null, ?FilingFrequencyEnum $filingFrequency = null, ?string $createFilingsFrom = null, ?bool $isApproaching = null, ?string $comment = null, ?bool $vda = null, ?string $taxId = null, ?bool $autoRegistered = false, ?bool $thirdPartyEnabled = false, ?bool $doNotFile = false)
     {
         $this->registrationDate = $registrationDate;
         $this->registrationEmail = $registrationEmail;
@@ -216,14 +256,18 @@ class RegistrationUpdateAPI
         $this->deregistrationCompleted = $deregistrationCompleted;
         $this->registrationsRegime = $registrationsRegime;
         $this->changeRegimeStatus = $changeRegimeStatus;
+        $this->twoFactorEnabled = $twoFactorEnabled;
         $this->markedCollecting = $markedCollecting;
+        $this->encryptedUsername = $encryptedUsername;
         $this->username = $username;
         $this->filingFrequency = $filingFrequency;
         $this->createFilingsFrom = $createFilingsFrom;
         $this->isApproaching = $isApproaching;
         $this->comment = $comment;
         $this->vda = $vda;
+        $this->taxId = $taxId;
         $this->autoRegistered = $autoRegistered;
         $this->thirdPartyEnabled = $thirdPartyEnabled;
+        $this->doNotFile = $doNotFile;
     }
 }

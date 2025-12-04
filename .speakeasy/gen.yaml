@@ -20,12 +20,13 @@ generation:
   sdkHooksConfigAccess: true
   schemas:
     allOfMergeStrategy: shallowMerge
+  requestBodyFieldName: ""
   tests:
     generateTests: false
     generateNewTests: true
     skipResponseBodyAssertions: false
 php:
-  version: 0.5.0
+  version: 0.6.0
   additionalDependencies:
     autoload: {}
     autoload-dev: {}
@@ -44,12 +45,14 @@ php:
       operations: Models/Operations
       shared: Models/Components
       webhooks: Models/Webhooks
+  inferUnionDiscriminators: false
   inputModelSuffix: input
   laravelServiceProvider:
     enabled: false
     svcName: kintsugi-tax
   maxMethodParams: 4
   methodArguments: infer-optional-args
+  multipartArrayFormat: legacy
   namespace: KintsugiTax\SDK
   outputModelSuffix: output
   packageName: kintsugi-tax/tax-platform-sdk

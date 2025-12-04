@@ -121,6 +121,7 @@ enum CountryCodeEnum: string
     case Im = 'IM';
     case Il = 'IL';
     case It = 'IT';
+    case Ci = 'CI';
     case Jm = 'JM';
     case Jp = 'JP';
     case Je = 'JE';

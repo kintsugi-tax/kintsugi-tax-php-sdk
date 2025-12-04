@@ -12,9 +12,10 @@ namespace KintsugiTax\SDK\Models\Components;
 class TransactionItemRead
 {
     /**
-     * Organization identifier.
+     * Unique identifier of the organization. This field is deprecated, and should no longer be used. The value is populated through the 'x-organization-id' header.
      *
      * @var string $organizationId
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
     public string $organizationId;

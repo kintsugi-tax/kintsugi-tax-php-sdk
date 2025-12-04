@@ -1,21 +1,21 @@
-speakeasyVersion: 1.638.0
+speakeasyVersion: 1.668.0
 sources:
     kintsugi-overlay:
         sourceNamespace: kintsugi-overlay
-        sourceRevisionDigest: sha256:0bbbbd3a7d231454b6a8dd52ef1e8c4ecaf30943eb45ce10c4c60cdcb4422766
-        sourceBlobDigest: sha256:8d569a04dd746dbe4b8252944d14bb9469ffaabae998a34855749836f7224115
+        sourceRevisionDigest: sha256:949cb14344ede690c3ce9c68ef246136b3c86ead6103e02ad0e747dbc66085aa
+        sourceBlobDigest: sha256:0c92dc95815acc9397ace1a32b77f914f4546dd1b8606baa2e8b49963214326e
         tags:
             - latest
-            - speakeasy-sdk-regen-1758758936
+            - speakeasy-sdk-regen-1761350811
             - 1.0.0
 targets:
     php:
         source: kintsugi-overlay
         sourceNamespace: kintsugi-overlay
-        sourceRevisionDigest: sha256:0bbbbd3a7d231454b6a8dd52ef1e8c4ecaf30943eb45ce10c4c60cdcb4422766
-        sourceBlobDigest: sha256:8d569a04dd746dbe4b8252944d14bb9469ffaabae998a34855749836f7224115
+        sourceRevisionDigest: sha256:949cb14344ede690c3ce9c68ef246136b3c86ead6103e02ad0e747dbc66085aa
+        sourceBlobDigest: sha256:0c92dc95815acc9397ace1a32b77f914f4546dd1b8606baa2e8b49963214326e
         codeSamplesNamespace: kintsugi-overlay-php-code-samples
-        codeSamplesRevisionDigest: sha256:645d9f726a6e010fde0f5831dbe940b96946d400ed5cc2a9ed2ef5e88833dc6b
+        codeSamplesRevisionDigest: sha256:55e9b88eca3730e52a2a391d5e8ce3530f14b235b9971816c17d413d279c0fdd
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

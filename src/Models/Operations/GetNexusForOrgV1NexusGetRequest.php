@@ -12,6 +12,14 @@ use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class GetNexusForOrgV1NexusGetRequest
 {
     /**
+     * Filter nexuses by disregard view: 'exposed' or 'disregarded'
+     *
+     * @var ?string $disregardView
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=disregard_view')]
+    public ?string $disregardView = null;
+
+    /**
      *
      * @var ?string $stateCode
      */
@@ -70,6 +78,7 @@ class GetNexusForOrgV1NexusGetRequest
 
     /**
      * @param  ?bool  $withoutPagination
+     * @param  ?string  $disregardView
      * @param  ?string  $statusIn
      * @param  ?string  $stateCode
      * @param  ?string  $countryCodeIn
@@ -79,8 +88,9 @@ class GetNexusForOrgV1NexusGetRequest
      * @param  ?int  $size
      * @phpstan-pure
      */
-    public function __construct(?string $stateCode = null, ?string $countryCodeIn = null, ?bool $collectedTaxNexusMet = null, ?bool $withoutPagination = false, ?string $statusIn = 'APPROACHING,NOT_EXPOSED,PENDING_REGISTRATION,EXPOSED,APPROACHING,REGISTERED', ?string $orderBy = 'state_code,country_code', ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $disregardView = null, ?string $stateCode = null, ?string $countryCodeIn = null, ?bool $collectedTaxNexusMet = null, ?bool $withoutPagination = false, ?string $statusIn = 'APPROACHING,NOT_EXPOSED,PENDING_REGISTRATION,EXPOSED,APPROACHING,REGISTERED', ?string $orderBy = 'state_code,country_code', ?int $page = 1, ?int $size = 50)
     {
+        $this->disregardView = $disregardView;
         $this->stateCode = $stateCode;
         $this->countryCodeIn = $countryCodeIn;
         $this->collectedTaxNexusMet = $collectedTaxNexusMet;
