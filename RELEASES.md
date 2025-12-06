@@ -159,3 +159,13 @@ Based on:
 - [php v0.6.0] .
 ### Releases
 - [Composer v0.6.0] https://packagist.org/packages/kintsugi-tax/tax-platform-sdk#v0.6.0 - .
+
+## 2025-12-06 00:07:23
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.669.1 (2.772.0) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [php v0.6.1] .
+### Releases
+- [Composer v0.6.1] https://packagist.org/packages/kintsugi-tax/tax-platform-sdk#v0.6.1 - .

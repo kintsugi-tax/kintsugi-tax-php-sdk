@@ -320,13 +320,22 @@ class FilingRead
     public ?string $totalTaxLiability = null;
 
     /**
-     * Total number of transactions associated with the filing.
+     * Number of non-marketplace transactions. For total, add marketplace_transaction_count.
      *
      * @var ?int $transactionCount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('transaction_count')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?int $transactionCount = null;
+
+    /**
+     * Number of marketplace transactions associated with the filing.
+     *
+     * @var ?int $marketplaceTransactionCount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('marketplace_transaction_count')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $marketplaceTransactionCount = null;
 
     /**
      * The amount of tax remitted.
@@ -367,6 +376,7 @@ class FilingRead
      * @param  ?string  $amount
      * @param  ?string  $totalTaxLiability
      * @param  ?int  $transactionCount
+     * @param  ?int  $marketplaceTransactionCount
      * @param  ?string  $internalNotes
      * @param  ?string  $recentDetailsReportLink
      * @param  ?string  $taxRemitted
@@ -376,7 +386,7 @@ class FilingRead
      * @param  ?CurrencyEnum  $currency
      * @phpstan-pure
      */
-    public function __construct(LocalDate $startDate, LocalDate $endDate, CountryCodeEnum $countryCode, string $id, string $registrationId, string $filingWebsiteUrl, ?FilingStatusEnum $status = null, ?string $dueDate = null, ?string $dateFiled = null, ?bool $isManual = null, ?string $stateCode = null, ?string $stateName = null, ?string $jiraIssueKey = null, ?string $pausedUntilDate = null, ?string $approvedBy = null, ?string $approvedAt = null, ?string $internalNotes = null, ?string $recentDetailsReportLink = null, ?string $returnConfirmationId = null, ?string $paymentConfirmationId = null, ?bool $blockApproval = null, ?CurrencyEnum $currency = null, ?bool $autoApproved = false, ?string $filingCategory = 'REGULAR', ?string $amountCalculated = '0.00', ?string $amountAdjusted = '0.00', ?string $amountDiscounts = '0.00', ?string $amountFees = '0.00', ?string $amountPenalties = '0.00', ?string $amountTaxCollected = '0.00', ?string $amountSales = '0.00', ?string $totalTaxableSales = '0.00', ?string $amount = '0.00', ?string $totalTaxLiability = '0.00', ?int $transactionCount = 0, ?string $taxRemitted = '0.00')
+    public function __construct(LocalDate $startDate, LocalDate $endDate, CountryCodeEnum $countryCode, string $id, string $registrationId, string $filingWebsiteUrl, ?FilingStatusEnum $status = null, ?string $dueDate = null, ?string $dateFiled = null, ?bool $isManual = null, ?string $stateCode = null, ?string $stateName = null, ?string $jiraIssueKey = null, ?string $pausedUntilDate = null, ?string $approvedBy = null, ?string $approvedAt = null, ?string $internalNotes = null, ?string $recentDetailsReportLink = null, ?string $returnConfirmationId = null, ?string $paymentConfirmationId = null, ?bool $blockApproval = null, ?CurrencyEnum $currency = null, ?bool $autoApproved = false, ?string $filingCategory = 'REGULAR', ?string $amountCalculated = '0.00', ?string $amountAdjusted = '0.00', ?string $amountDiscounts = '0.00', ?string $amountFees = '0.00', ?string $amountPenalties = '0.00', ?string $amountTaxCollected = '0.00', ?string $amountSales = '0.00', ?string $totalTaxableSales = '0.00', ?string $amount = '0.00', ?string $totalTaxLiability = '0.00', ?int $transactionCount = 0, ?int $marketplaceTransactionCount = 0, ?string $taxRemitted = '0.00')
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
@@ -413,6 +423,7 @@ class FilingRead
         $this->amount = $amount;
         $this->totalTaxLiability = $totalTaxLiability;
         $this->transactionCount = $transactionCount;
+        $this->marketplaceTransactionCount = $marketplaceTransactionCount;
         $this->taxRemitted = $taxRemitted;
     }
 }
