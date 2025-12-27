@@ -181,12 +181,12 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 <details open>
 <summary>Available methods</summary>
 
-### [addressValidation](docs/sdks/addressvalidation/README.md)
+### [AddressValidation](docs/sdks/addressvalidation/README.md)
 
 * [search](docs/sdks/addressvalidation/README.md#search) - Search
 * [suggestions](docs/sdks/addressvalidation/README.md#suggestions) - Suggestions
 
-### [customers](docs/sdks/customers/README.md)
+### [Customers](docs/sdks/customers/README.md)
 
 * [list](docs/sdks/customers/README.md#list) - Get Customers
 * [create](docs/sdks/customers/README.md#create) - Create Customer
@@ -196,24 +196,24 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 * [getTransactions](docs/sdks/customers/README.md#gettransactions) - Get Transactions By Customer Id
 * [createTransaction](docs/sdks/customers/README.md#createtransaction) - Create Transaction By Customer Id
 
-### [exemptions](docs/sdks/exemptions/README.md)
+### [Exemptions](docs/sdks/exemptions/README.md)
 
 * [list](docs/sdks/exemptions/README.md#list) - Get Exemptions
 * [create](docs/sdks/exemptions/README.md#create) - Create Exemption
 * [getById](docs/sdks/exemptions/README.md#getbyid) - Get Exemption By Id
 * [uploadCertificate](docs/sdks/exemptions/README.md#uploadcertificate) - Upload Exemption Certificate
 
-#### [exemptions->attachments](docs/sdks/attachments/README.md)
+### [Exemptions.Attachments](docs/sdks/attachments/README.md)
 
 * [get](docs/sdks/attachments/README.md#get) - Get Attachments For Exemption
 
-### [filings](docs/sdks/filings/README.md)
+### [Filings](docs/sdks/filings/README.md)
 
 * [get](docs/sdks/filings/README.md#get) - Get Filings
 * [getById](docs/sdks/filings/README.md#getbyid) - Get Filing By Id
 * [getByRegistrationId](docs/sdks/filings/README.md#getbyregistrationid) - Get Filings By Registration Id
 
-### [nexus](docs/sdks/nexus/README.md)
+### [Nexus](docs/sdks/nexus/README.md)
 
 * [listPhysical](docs/sdks/nexus/README.md#listphysical) - Get Physical Nexus
 * [createPhysical](docs/sdks/nexus/README.md#createphysical) - Create Physical Nexus
@@ -221,7 +221,7 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 * [delete](docs/sdks/nexus/README.md#delete) - Delete Physical Nexus
 * [list](docs/sdks/nexus/README.md#list) - Get Nexus For Org
 
-### [products](docs/sdks/products/README.md)
+### [Products](docs/sdks/products/README.md)
 
 * [listItems](docs/sdks/products/README.md#listitems) - Get Products
 * [create](docs/sdks/products/README.md#create) - Create Product
@@ -229,7 +229,7 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 * [update](docs/sdks/products/README.md#update) - Update Product
 * [getCategories](docs/sdks/products/README.md#getcategories) - Get Product Categories
 
-### [registrations](docs/sdks/registrations/README.md)
+### [Registrations](docs/sdks/registrations/README.md)
 
 * [list](docs/sdks/registrations/README.md#list) - Get Registrations
 * [create](docs/sdks/registrations/README.md#create) - Create Registration
@@ -237,11 +237,11 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 * [update](docs/sdks/registrations/README.md#update) - Update Registration
 * [deregister](docs/sdks/registrations/README.md#deregister) - Deregister Registration
 
-### [taxEstimation](docs/sdks/taxestimation/README.md)
+### [TaxEstimation](docs/sdks/taxestimation/README.md)
 
 * [estimate](docs/sdks/taxestimation/README.md#estimate) - Estimate Tax
 
-### [transactions](docs/sdks/transactions/README.md)
+### [Transactions](docs/sdks/transactions/README.md)
 
 * [list](docs/sdks/transactions/README.md#list) - Get Transactions
 * [create](docs/sdks/transactions/README.md#create) - Create Transaction

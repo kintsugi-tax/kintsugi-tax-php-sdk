@@ -15,10 +15,12 @@ namespace KintsugiTax\SDK\Models\Components;
  * NOT EXEMPT: None of the items are NOT EXEMPT
  * PARTIALLY EXEMPT: At least some of the items are NOT EXEMPT
  * FULLY_EXEMPT: All items sold in the transaction are EXEMPT
+ * ZERO_RATE_NOT_EXEMPT: All items sold in the transaction are zero-rated
  */
 enum TransactionExemptStatusEnum: string
 {
     case NotExempt = 'NOT_EXEMPT';
     case PartiallyExempt = 'PARTIALLY_EXEMPT';
     case FullyExempt = 'FULLY_EXEMPT';
+    case ZeroRateNotExempt = 'ZERO_RATE_NOT_EXEMPT';
 }
