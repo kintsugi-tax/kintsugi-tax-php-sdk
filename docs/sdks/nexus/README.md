@@ -1,5 +1,4 @@
 # Nexus
-(*nexus*)
 
 ## Overview
 
@@ -102,6 +101,10 @@ $request = new Components\PhysicalNexusCreate(
     category: Components\PhysicalNexusCategory::PhysicalBusinessLocation,
     externalId: 'ext_ABC123',
     source: Components\PhysicalNexusSource::User,
+    street1: '123 Main Street',
+    street2: 'Suite 100',
+    city: 'San Francisco',
+    postalCode: '94102',
 );
 
 $response = $sdk->nexus->createPhysical(
@@ -162,6 +165,10 @@ $physicalNexusUpdate = new Components\PhysicalNexusUpdate(
     startDate: LocalDate::parse('2024-01-01'),
     endDate: '2025-01-01',
     category: Components\PhysicalNexusCategory::PhysicalBusinessLocation,
+    street1: '123 Main Street',
+    street2: 'Suite 100',
+    city: 'San Francisco',
+    postalCode: '94102',
 );
 
 $response = $sdk->nexus->updatePhysical(
