@@ -15,6 +15,7 @@ enum TaxItemReturnReasonEnum: string
     case NoRuleFound = 'NO_RULE_FOUND';
     case RuleFoundTaxable = 'RULE_FOUND_TAXABLE';
     case RuleFoundNotTaxable = 'RULE_FOUND_NOT_TAXABLE';
+    case RuleFoundTaxableZeroRate = 'RULE_FOUND_TAXABLE_ZERO_RATE';
     case ProductExempt = 'PRODUCT_EXEMPT';
     case FromImport = 'FROM_IMPORT';
 }

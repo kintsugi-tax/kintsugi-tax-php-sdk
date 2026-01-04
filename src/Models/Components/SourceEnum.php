@@ -68,4 +68,5 @@ enum SourceEnum: string
     case Airwallex = 'AIRWALLEX';
     case Orb = 'ORB';
     case Zenskar = 'ZENSKAR';
+    case MicrosoftDynamics365 = 'MICROSOFT_DYNAMICS_365';
 }

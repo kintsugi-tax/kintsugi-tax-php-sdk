@@ -1,5 +1,4 @@
-# Attachments
-(*exemptions->attachments*)
+# Exemptions.Attachments
 
 ## Overview
 

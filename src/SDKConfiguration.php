@@ -24,11 +24,11 @@ class SDKConfiguration
 
     public string $openapiDocVersion = '1.0.0';
 
-    public string $sdkVersion = '0.6.0';
+    public string $sdkVersion = '0.6.1';
 
-    public string $genVersion = '2.770.0';
+    public string $genVersion = '2.788.15';
 
-    public string $userAgent = 'speakeasy-sdk/php 0.6.0 2.770.0 1.0.0 kintsugi-tax/tax-platform-sdk';
+    public string $userAgent = 'speakeasy-sdk/php 0.6.1 2.788.15 1.0.0 kintsugi-tax/tax-platform-sdk';
 
     public ?RetryConfig $retryConfig = null;
 
