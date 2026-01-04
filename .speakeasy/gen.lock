@@ -1,19 +1,23 @@
 lockVersion: 2.0.0
 id: fdb4bdf9-63b7-4d28-815c-b04a56c0369b
 management:
-  docChecksum: 23664d2b268c6ce49b988e3df7d2c89e
+  docChecksum: 7fb138d20e6adfe711a9f94f343325d5
   docVersion: 1.0.0
-  speakeasyVersion: 1.668.0
-  generationVersion: 2.770.0
-  releaseVersion: 0.6.0
-  configChecksum: f4fa561a12d586592592d2eaedb96cb4
+  speakeasyVersion: 1.680.12
+  generationVersion: 2.788.15
+  releaseVersion: 0.6.1
+  configChecksum: 190dae1dae48dae9ef1d17f14d0c7054
   repoURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk.git
   installationURL: https://github.com/kintsugi-tax/kintsugi-tax-php-sdk
   published: true
+persistentEdits:
+  generation_id: bb85d44e-324a-45ed-a299-89b68c6e298f
+  pristine_commit_hash: eb07861bc95ee0e0157bdb54d6927e9d8e76384b
+  pristine_tree_hash: 57bb77ec9dd12d201096e25713c013d6a93c95be
 features:
   php:
     constsAndDefaults: 0.2.0
-    core: 3.9.5
+    core: 3.9.7
     deprecations: 2.81.1
     flattening: 2.81.1
     globalSecurity: 2.81.9
@@ -23,521 +27,2060 @@ features:
     methodSecurity: 2.82.2
     nameOverrides: 2.81.2
     responseFormat: 0.1.0
-    unions: 0.1.6
-generatedFiles:
-  - .gitattributes
-  - USAGE.md
-  - composer.json
-  - docs/Models/Components/AddressBase.md
-  - docs/Models/Components/AddressResponseData.md
-  - docs/Models/Components/AddressSearchResponse.md
-  - docs/Models/Components/AddressStatus.md
-  - docs/Models/Components/AddressSubmittedResponse.md
-  - docs/Models/Components/AddressType.md
-  - docs/Models/Components/AppliedTo.md
-  - docs/Models/Components/AttachmentRead.md
-  - docs/Models/Components/Attachments.md
-  - docs/Models/Components/BackendSrcAddressValidationResponsesValidationErrorItem.md
-  - docs/Models/Components/BackendSrcCustomersResponsesValidationErrorItem.md
-  - docs/Models/Components/BackendSrcExemptionsModelsExemptionRead.md
-  - docs/Models/Components/BackendSrcExemptionsResponsesValidationErrorItem.md
-  - docs/Models/Components/BackendSrcExemptionsSerializersExemptionRead.md
-  - docs/Models/Components/BackendSrcFilingsResponsesValidationErrorItem.md
-  - docs/Models/Components/BackendSrcNexusResponsesValidationErrorItem.md
-  - docs/Models/Components/BackendSrcProductsResponsesValidationErrorItem.md
-  - docs/Models/Components/BackendSrcRegistrationsResponsesValidationErrorItem.md
-  - docs/Models/Components/BackendSrcTaxEstimationResponsesValidationErrorItem.md
-  - docs/Models/Components/BackendSrcTransactionsResponsesValidationErrorItem.md
-  - docs/Models/Components/BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost.md
-  - docs/Models/Components/ChangeRegimeStatusEnum.md
-  - docs/Models/Components/CountryCodeEnum.md
-  - docs/Models/Components/CreditNoteCreate.md
-  - docs/Models/Components/CreditNoteItemCreateUpdate.md
-  - docs/Models/Components/CurrencyEnum.md
-  - docs/Models/Components/CustomerBase.md
-  - docs/Models/Components/CustomerBaseBase.md
-  - docs/Models/Components/CustomerBasePublic.md
-  - docs/Models/Components/CustomerCreate.md
-  - docs/Models/Components/CustomerRead.md
-  - docs/Models/Components/CustomerTaxRegistrationRead.md
-  - docs/Models/Components/CustomerTaxTypeEnum.md
-  - docs/Models/Components/CustomerUpdate.md
-  - docs/Models/Components/DiscountBuilder.md
-  - docs/Models/Components/Exemption.md
-  - docs/Models/Components/ExemptionCreate.md
-  - docs/Models/Components/ExemptionRequired.md
-  - docs/Models/Components/ExemptionStatus.md
-  - docs/Models/Components/ExemptionType.md
-  - docs/Models/Components/FastapiPaginationDefaultPageExemptionRead2.md
-  - docs/Models/Components/File.md
-  - docs/Models/Components/FilingDetailsRead.md
-  - docs/Models/Components/FilingFrequencyEnum.md
-  - docs/Models/Components/FilingRead.md
-  - docs/Models/Components/FilingStatusEnum.md
-  - docs/Models/Components/FindThresholdCrossingTransactionState.md
-  - docs/Models/Components/JurisdictionType.md
-  - docs/Models/Components/NexusResponse.md
-  - docs/Models/Components/NexusStateEnum.md
-  - docs/Models/Components/NexusStatusEnum.md
-  - docs/Models/Components/NexusTypeEnum.md
-  - docs/Models/Components/OSSRegistrationCreatePayload.md
-  - docs/Models/Components/OssTypeEnum.md
-  - docs/Models/Components/PageCustomerRead.md
-  - docs/Models/Components/PageFilingRead.md
-  - docs/Models/Components/PageNexusResponse.md
-  - docs/Models/Components/PagePhysicalNexusRead.md
-  - docs/Models/Components/PageProductRead.md
-  - docs/Models/Components/PageRegistrationReadWithPassword.md
-  - docs/Models/Components/PageTransactionEstimateResponse.md
-  - docs/Models/Components/PageTransactionRead.md
-  - docs/Models/Components/PeriodModelEnum.md
-  - docs/Models/Components/PhysicalNexusCategory.md
-  - docs/Models/Components/PhysicalNexusCreate.md
-  - docs/Models/Components/PhysicalNexusRead.md
-  - docs/Models/Components/PhysicalNexusSource.md
-  - docs/Models/Components/PhysicalNexusUpdate.md
-  - docs/Models/Components/ProcessingStatusEnum.md
-  - docs/Models/Components/ProductCategories.md
-  - docs/Models/Components/ProductCategoryEnum.md
-  - docs/Models/Components/ProductCreateManual.md
-  - docs/Models/Components/ProductRead.md
-  - docs/Models/Components/ProductStatusEnum.md
-  - docs/Models/Components/ProductSubCategory.md
-  - docs/Models/Components/ProductSubCategoryEnum.md
-  - docs/Models/Components/ProductUpdate.md
-  - docs/Models/Components/Registration.md
-  - docs/Models/Components/RegistrationCategoryEnum.md
-  - docs/Models/Components/RegistrationCreatePayload.md
-  - docs/Models/Components/RegistrationRead.md
-  - docs/Models/Components/RegistrationReadWithPassword.md
-  - docs/Models/Components/RegistrationStatusEnum.md
-  - docs/Models/Components/RegistrationTypeEnum.md
-  - docs/Models/Components/RegistrationUpdateAPI.md
-  - docs/Models/Components/RegistrationsRegimeEnum.md
-  - docs/Models/Components/RelatedEntityType.md
-  - docs/Models/Components/SSTRegistrationCreatePayload.md
-  - docs/Models/Components/SalesOrTransactionsEnum.md
-  - docs/Models/Components/Security.md
-  - docs/Models/Components/SourceEnum.md
-  - docs/Models/Components/Status.md
-  - docs/Models/Components/StatusEnum.md
-  - docs/Models/Components/TaxExemptionEnum.md
-  - docs/Models/Components/TaxItemBuilder.md
-  - docs/Models/Components/TaxItemEstimate.md
-  - docs/Models/Components/TaxItemRead.md
-  - docs/Models/Components/TaxItemReturnReasonEnum.md
-  - docs/Models/Components/TaxItemTypeEnum.md
-  - docs/Models/Components/TaxLiabilitySourceEnum.md
-  - docs/Models/Components/TransactionAddressBuilder.md
-  - docs/Models/Components/TransactionAddressPublic.md
-  - docs/Models/Components/TransactionAddressReadOutput.md
-  - docs/Models/Components/TransactionCreate.md
-  - docs/Models/Components/TransactionEstimatePublicRequest.md
-  - docs/Models/Components/TransactionEstimatePublicRequestAddress.md
-  - docs/Models/Components/TransactionEstimatePublicRequestType.md
-  - docs/Models/Components/TransactionEstimateResponse.md
-  - docs/Models/Components/TransactionEstimateResponseAddress.md
-  - docs/Models/Components/TransactionEstimateResponseType.md
-  - docs/Models/Components/TransactionExemptStatusEnum.md
-  - docs/Models/Components/TransactionItemBuilder.md
-  - docs/Models/Components/TransactionItemCreateUpdate.md
-  - docs/Models/Components/TransactionItemEstimateBase.md
-  - docs/Models/Components/TransactionItemEstimateResponse.md
-  - docs/Models/Components/TransactionItemRead.md
-  - docs/Models/Components/TransactionPublicRequest.md
-  - docs/Models/Components/TransactionRead.md
-  - docs/Models/Components/TransactionRefundStatus.md
-  - docs/Models/Components/TransactionStatusEnum.md
-  - docs/Models/Components/TransactionTypeEnum.md
-  - docs/Models/Components/TransactionUpdate.md
-  - docs/Models/Components/TreatmentEnum.md
-  - docs/Models/Components/ValidationAddress.md
-  - docs/Models/Components/ValidationError.md
-  - docs/Models/Errors/BackendSrcAddressValidationResponsesValidationErrorResponse.md
-  - docs/Models/Errors/BackendSrcCustomersResponsesValidationErrorResponse.md
-  - docs/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponse.md
-  - docs/Models/Errors/BackendSrcFilingsResponsesValidationErrorResponse.md
-  - docs/Models/Errors/BackendSrcNexusResponsesValidationErrorResponse.md
-  - docs/Models/Errors/BackendSrcProductsResponsesValidationErrorResponse.md
-  - docs/Models/Errors/BackendSrcRegistrationsResponsesValidationErrorResponse.md
-  - docs/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponse.md
-  - docs/Models/Errors/BackendSrcTransactionsResponsesValidationErrorResponse.md
-  - docs/Models/Errors/ErrorResponse.md
-  - docs/Models/Errors/HTTPValidationError.md
-  - docs/Models/Operations/CreateCustomerV1CustomersPostResponse.md
-  - docs/Models/Operations/CreateExemptionV1ExemptionsPostResponse.md
-  - docs/Models/Operations/CreatePhysicalNexusV1NexusPhysicalNexusPostResponse.md
-  - docs/Models/Operations/CreateProductV1ProductsPostResponse.md
-  - docs/Models/Operations/CreateRegistration.md
-  - docs/Models/Operations/CreateRegistrationV1RegistrationsPostResponse.md
-  - docs/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest.md
-  - docs/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse.md
-  - docs/Models/Operations/CreateTransactionV1TransactionsPostResponse.md
-  - docs/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteRequest.md
-  - docs/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteResponse.md
-  - docs/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest.md
-  - docs/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse.md
-  - docs/Models/Operations/EstimateTaxV1TaxEstimatePostRequest.md
-  - docs/Models/Operations/EstimateTaxV1TaxEstimatePostResponse.md
-  - docs/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest.md
-  - docs/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse.md
-  - docs/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetRequest.md
-  - docs/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse.md
-  - docs/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetRequest.md
-  - docs/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetResponse.md
-  - docs/Models/Operations/GetCustomersV1Request.md
-  - docs/Models/Operations/GetCustomersV1Response.md
-  - docs/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetRequest.md
-  - docs/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetResponse.md
-  - docs/Models/Operations/GetExemptionsV1ExemptionsGetRequest.md
-  - docs/Models/Operations/GetExemptionsV1ExemptionsGetResponse.md
-  - docs/Models/Operations/GetFilingByIdV1FilingsFilingIdGetRequest.md
-  - docs/Models/Operations/GetFilingByIdV1FilingsFilingIdGetResponse.md
-  - docs/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetRequest.md
-  - docs/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetResponse.md
-  - docs/Models/Operations/GetFilingsV1FilingsGetRequest.md
-  - docs/Models/Operations/GetFilingsV1FilingsGetResponse.md
-  - docs/Models/Operations/GetNexusForOrgV1NexusGetRequest.md
-  - docs/Models/Operations/GetNexusForOrgV1NexusGetResponse.md
-  - docs/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetRequest.md
-  - docs/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetResponse.md
-  - docs/Models/Operations/GetProductByIdV1ProductsProductIdGetRequest.md
-  - docs/Models/Operations/GetProductByIdV1ProductsProductIdGetResponse.md
-  - docs/Models/Operations/GetProductCategoriesV1ProductsCategoriesGetResponse.md
-  - docs/Models/Operations/GetProductsV1ProductsGetRequest.md
-  - docs/Models/Operations/GetProductsV1ProductsGetResponse.md
-  - docs/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest.md
-  - docs/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse.md
-  - docs/Models/Operations/GetRegistrationsV1RegistrationsGetRequest.md
-  - docs/Models/Operations/GetRegistrationsV1RegistrationsGetResponse.md
-  - docs/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest.md
-  - docs/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse.md
-  - docs/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetRequest.md
-  - docs/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetResponse.md
-  - docs/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest.md
-  - docs/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse.md
-  - docs/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetRequest.md
-  - docs/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse.md
-  - docs/Models/Operations/GetTransactionsV1TransactionsGetRequest.md
-  - docs/Models/Operations/GetTransactionsV1TransactionsGetResponse.md
-  - docs/Models/Operations/POSTCreateCreditNoteByTransactionIdRequest.md
-  - docs/Models/Operations/POSTCreateCreditNoteByTransactionIdResponse.md
-  - docs/Models/Operations/PUTUpdateCreditNoteByTransactionIdRequest.md
-  - docs/Models/Operations/PUTUpdateCreditNoteByTransactionIdResponse.md
-  - docs/Models/Operations/SearchV1AddressValidationSearchPostResponse.md
-  - docs/Models/Operations/SearchV1AddressValidationSearchPostSecurity.md
-  - docs/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostResponse.md
-  - docs/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutRequest.md
-  - docs/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutResponse.md
-  - docs/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutRequest.md
-  - docs/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutResponse.md
-  - docs/Models/Operations/UpdateProductV1ProductsProductIdPutRequest.md
-  - docs/Models/Operations/UpdateProductV1ProductsProductIdPutResponse.md
-  - docs/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutRequest.md
-  - docs/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutResponse.md
-  - docs/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutRequest.md
-  - docs/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutResponse.md
-  - docs/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest.md
-  - docs/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse.md
-  - docs/sdks/addressvalidation/README.md
-  - docs/sdks/attachments/README.md
-  - docs/sdks/customers/README.md
-  - docs/sdks/exemptions/README.md
-  - docs/sdks/filings/README.md
-  - docs/sdks/nexus/README.md
-  - docs/sdks/products/README.md
-  - docs/sdks/registrations/README.md
-  - docs/sdks/taxestimation/README.md
-  - docs/sdks/transactions/README.md
-  - phpstan.neon
-  - phpunit.xml
-  - pint.json
-  - rector.php
-  - src/AddressValidation.php
-  - src/Attachments.php
-  - src/Customers.php
-  - src/Exemptions.php
-  - src/Filings.php
-  - src/Hooks/AfterErrorContext.php
-  - src/Hooks/AfterErrorHook.php
-  - src/Hooks/AfterSuccessContext.php
-  - src/Hooks/AfterSuccessHook.php
-  - src/Hooks/BeforeRequestContext.php
-  - src/Hooks/BeforeRequestHook.php
-  - src/Hooks/Credentials.php
-  - src/Hooks/ErrorResponseContext.php
-  - src/Hooks/FailEarlyException.php
-  - src/Hooks/HookContext.php
-  - src/Hooks/Hooks.php
-  - src/Hooks/SDKHooks.php
-  - src/Hooks/SDKInitHook.php
-  - src/Hooks/Session.php
-  - src/Hooks/TokenResponse.php
-  - src/Models/Components/AddressBase.php
-  - src/Models/Components/AddressResponseData.php
-  - src/Models/Components/AddressSearchResponse.php
-  - src/Models/Components/AddressStatus.php
-  - src/Models/Components/AddressSubmittedResponse.php
-  - src/Models/Components/AddressType.php
-  - src/Models/Components/AppliedTo.php
-  - src/Models/Components/AttachmentRead.php
-  - src/Models/Components/Attachments.php
-  - src/Models/Components/BackendSrcAddressValidationResponsesValidationErrorItem.php
-  - src/Models/Components/BackendSrcCustomersResponsesValidationErrorItem.php
-  - src/Models/Components/BackendSrcExemptionsModelsExemptionRead.php
-  - src/Models/Components/BackendSrcExemptionsResponsesValidationErrorItem.php
-  - src/Models/Components/BackendSrcExemptionsSerializersExemptionRead.php
-  - src/Models/Components/BackendSrcFilingsResponsesValidationErrorItem.php
-  - src/Models/Components/BackendSrcNexusResponsesValidationErrorItem.php
-  - src/Models/Components/BackendSrcProductsResponsesValidationErrorItem.php
-  - src/Models/Components/BackendSrcRegistrationsResponsesValidationErrorItem.php
-  - src/Models/Components/BackendSrcTaxEstimationResponsesValidationErrorItem.php
-  - src/Models/Components/BackendSrcTransactionsResponsesValidationErrorItem.php
-  - src/Models/Components/BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost.php
-  - src/Models/Components/ChangeRegimeStatusEnum.php
-  - src/Models/Components/CountryCodeEnum.php
-  - src/Models/Components/CreditNoteCreate.php
-  - src/Models/Components/CreditNoteItemCreateUpdate.php
-  - src/Models/Components/CurrencyEnum.php
-  - src/Models/Components/CustomerBase.php
-  - src/Models/Components/CustomerBaseBase.php
-  - src/Models/Components/CustomerBasePublic.php
-  - src/Models/Components/CustomerCreate.php
-  - src/Models/Components/CustomerRead.php
-  - src/Models/Components/CustomerTaxRegistrationRead.php
-  - src/Models/Components/CustomerTaxTypeEnum.php
-  - src/Models/Components/CustomerUpdate.php
-  - src/Models/Components/DiscountBuilder.php
-  - src/Models/Components/Exemption.php
-  - src/Models/Components/ExemptionCreate.php
-  - src/Models/Components/ExemptionRequired.php
-  - src/Models/Components/ExemptionStatus.php
-  - src/Models/Components/ExemptionType.php
-  - src/Models/Components/FastapiPaginationDefaultPageExemptionRead2.php
-  - src/Models/Components/File.php
-  - src/Models/Components/FilingDetailsRead.php
-  - src/Models/Components/FilingFrequencyEnum.php
-  - src/Models/Components/FilingRead.php
-  - src/Models/Components/FilingStatusEnum.php
-  - src/Models/Components/FindThresholdCrossingTransactionState.php
-  - src/Models/Components/JurisdictionType.php
-  - src/Models/Components/NexusResponse.php
-  - src/Models/Components/NexusStateEnum.php
-  - src/Models/Components/NexusStatusEnum.php
-  - src/Models/Components/NexusTypeEnum.php
-  - src/Models/Components/OSSRegistrationCreatePayload.php
-  - src/Models/Components/OssTypeEnum.php
-  - src/Models/Components/PageCustomerRead.php
-  - src/Models/Components/PageFilingRead.php
-  - src/Models/Components/PageNexusResponse.php
-  - src/Models/Components/PagePhysicalNexusRead.php
-  - src/Models/Components/PageProductRead.php
-  - src/Models/Components/PageRegistrationReadWithPassword.php
-  - src/Models/Components/PageTransactionEstimateResponse.php
-  - src/Models/Components/PageTransactionRead.php
-  - src/Models/Components/PeriodModelEnum.php
-  - src/Models/Components/PhysicalNexusCategory.php
-  - src/Models/Components/PhysicalNexusCreate.php
-  - src/Models/Components/PhysicalNexusRead.php
-  - src/Models/Components/PhysicalNexusSource.php
-  - src/Models/Components/PhysicalNexusUpdate.php
-  - src/Models/Components/ProcessingStatusEnum.php
-  - src/Models/Components/ProductCategories.php
-  - src/Models/Components/ProductCategoryEnum.php
-  - src/Models/Components/ProductCreateManual.php
-  - src/Models/Components/ProductRead.php
-  - src/Models/Components/ProductStatusEnum.php
-  - src/Models/Components/ProductSubCategory.php
-  - src/Models/Components/ProductSubCategoryEnum.php
-  - src/Models/Components/ProductUpdate.php
-  - src/Models/Components/Registration.php
-  - src/Models/Components/RegistrationCategoryEnum.php
-  - src/Models/Components/RegistrationCreatePayload.php
-  - src/Models/Components/RegistrationRead.php
-  - src/Models/Components/RegistrationReadWithPassword.php
-  - src/Models/Components/RegistrationStatusEnum.php
-  - src/Models/Components/RegistrationTypeEnum.php
-  - src/Models/Components/RegistrationUpdateAPI.php
-  - src/Models/Components/RegistrationsRegimeEnum.php
-  - src/Models/Components/RelatedEntityType.php
-  - src/Models/Components/SSTRegistrationCreatePayload.php
-  - src/Models/Components/SalesOrTransactionsEnum.php
-  - src/Models/Components/Security.php
-  - src/Models/Components/SourceEnum.php
-  - src/Models/Components/Status.php
-  - src/Models/Components/StatusEnum.php
-  - src/Models/Components/TaxExemptionEnum.php
-  - src/Models/Components/TaxItemBuilder.php
-  - src/Models/Components/TaxItemEstimate.php
-  - src/Models/Components/TaxItemRead.php
-  - src/Models/Components/TaxItemReturnReasonEnum.php
-  - src/Models/Components/TaxItemTypeEnum.php
-  - src/Models/Components/TaxLiabilitySourceEnum.php
-  - src/Models/Components/TransactionAddressBuilder.php
-  - src/Models/Components/TransactionAddressPublic.php
-  - src/Models/Components/TransactionAddressReadOutput.php
-  - src/Models/Components/TransactionCreate.php
-  - src/Models/Components/TransactionEstimatePublicRequest.php
-  - src/Models/Components/TransactionEstimatePublicRequestAddress.php
-  - src/Models/Components/TransactionEstimatePublicRequestType.php
-  - src/Models/Components/TransactionEstimateResponse.php
-  - src/Models/Components/TransactionEstimateResponseAddress.php
-  - src/Models/Components/TransactionEstimateResponseType.php
-  - src/Models/Components/TransactionExemptStatusEnum.php
-  - src/Models/Components/TransactionItemBuilder.php
-  - src/Models/Components/TransactionItemCreateUpdate.php
-  - src/Models/Components/TransactionItemEstimateBase.php
-  - src/Models/Components/TransactionItemEstimateResponse.php
-  - src/Models/Components/TransactionItemRead.php
-  - src/Models/Components/TransactionPublicRequest.php
-  - src/Models/Components/TransactionRead.php
-  - src/Models/Components/TransactionRefundStatus.php
-  - src/Models/Components/TransactionStatusEnum.php
-  - src/Models/Components/TransactionTypeEnum.php
-  - src/Models/Components/TransactionUpdate.php
-  - src/Models/Components/TreatmentEnum.php
-  - src/Models/Components/ValidationAddress.php
-  - src/Models/Components/ValidationError.php
-  - src/Models/Errors/APIException.php
-  - src/Models/Errors/BackendSrcAddressValidationResponsesValidationErrorResponse.php
-  - src/Models/Errors/BackendSrcAddressValidationResponsesValidationErrorResponseThrowable.php
-  - src/Models/Errors/BackendSrcCustomersResponsesValidationErrorResponse.php
-  - src/Models/Errors/BackendSrcCustomersResponsesValidationErrorResponseThrowable.php
-  - src/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponse.php
-  - src/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponseThrowable.php
-  - src/Models/Errors/BackendSrcFilingsResponsesValidationErrorResponse.php
-  - src/Models/Errors/BackendSrcFilingsResponsesValidationErrorResponseThrowable.php
-  - src/Models/Errors/BackendSrcNexusResponsesValidationErrorResponse.php
-  - src/Models/Errors/BackendSrcNexusResponsesValidationErrorResponseThrowable.php
-  - src/Models/Errors/BackendSrcProductsResponsesValidationErrorResponse.php
-  - src/Models/Errors/BackendSrcProductsResponsesValidationErrorResponseThrowable.php
-  - src/Models/Errors/BackendSrcRegistrationsResponsesValidationErrorResponse.php
-  - src/Models/Errors/BackendSrcRegistrationsResponsesValidationErrorResponseThrowable.php
-  - src/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponse.php
-  - src/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponseThrowable.php
-  - src/Models/Errors/BackendSrcTransactionsResponsesValidationErrorResponse.php
-  - src/Models/Errors/BackendSrcTransactionsResponsesValidationErrorResponseThrowable.php
-  - src/Models/Errors/ErrorResponse.php
-  - src/Models/Errors/ErrorResponseThrowable.php
-  - src/Models/Errors/HTTPValidationError.php
-  - src/Models/Errors/HTTPValidationErrorThrowable.php
-  - src/Models/Operations/CreateCustomerV1CustomersPostResponse.php
-  - src/Models/Operations/CreateExemptionV1ExemptionsPostResponse.php
-  - src/Models/Operations/CreatePhysicalNexusV1NexusPhysicalNexusPostResponse.php
-  - src/Models/Operations/CreateProductV1ProductsPostResponse.php
-  - src/Models/Operations/CreateRegistrationV1RegistrationsPostResponse.php
-  - src/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest.php
-  - src/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse.php
-  - src/Models/Operations/CreateTransactionV1TransactionsPostResponse.php
-  - src/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteRequest.php
-  - src/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteResponse.php
-  - src/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest.php
-  - src/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse.php
-  - src/Models/Operations/EstimateTaxV1TaxEstimatePostRequest.php
-  - src/Models/Operations/EstimateTaxV1TaxEstimatePostResponse.php
-  - src/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest.php
-  - src/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse.php
-  - src/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetRequest.php
-  - src/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse.php
-  - src/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetRequest.php
-  - src/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetResponse.php
-  - src/Models/Operations/GetCustomersV1Request.php
-  - src/Models/Operations/GetCustomersV1Response.php
-  - src/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetRequest.php
-  - src/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetResponse.php
-  - src/Models/Operations/GetExemptionsV1ExemptionsGetRequest.php
-  - src/Models/Operations/GetExemptionsV1ExemptionsGetResponse.php
-  - src/Models/Operations/GetFilingByIdV1FilingsFilingIdGetRequest.php
-  - src/Models/Operations/GetFilingByIdV1FilingsFilingIdGetResponse.php
-  - src/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetRequest.php
-  - src/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetResponse.php
-  - src/Models/Operations/GetFilingsV1FilingsGetRequest.php
-  - src/Models/Operations/GetFilingsV1FilingsGetResponse.php
-  - src/Models/Operations/GetNexusForOrgV1NexusGetRequest.php
-  - src/Models/Operations/GetNexusForOrgV1NexusGetResponse.php
-  - src/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetRequest.php
-  - src/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetResponse.php
-  - src/Models/Operations/GetProductByIdV1ProductsProductIdGetRequest.php
-  - src/Models/Operations/GetProductByIdV1ProductsProductIdGetResponse.php
-  - src/Models/Operations/GetProductCategoriesV1ProductsCategoriesGetResponse.php
-  - src/Models/Operations/GetProductsV1ProductsGetRequest.php
-  - src/Models/Operations/GetProductsV1ProductsGetResponse.php
-  - src/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest.php
-  - src/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse.php
-  - src/Models/Operations/GetRegistrationsV1RegistrationsGetRequest.php
-  - src/Models/Operations/GetRegistrationsV1RegistrationsGetResponse.php
-  - src/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest.php
-  - src/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse.php
-  - src/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetRequest.php
-  - src/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetResponse.php
-  - src/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest.php
-  - src/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse.php
-  - src/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetRequest.php
-  - src/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse.php
-  - src/Models/Operations/GetTransactionsV1TransactionsGetRequest.php
-  - src/Models/Operations/GetTransactionsV1TransactionsGetResponse.php
-  - src/Models/Operations/POSTCreateCreditNoteByTransactionIdRequest.php
-  - src/Models/Operations/POSTCreateCreditNoteByTransactionIdResponse.php
-  - src/Models/Operations/PUTUpdateCreditNoteByTransactionIdRequest.php
-  - src/Models/Operations/PUTUpdateCreditNoteByTransactionIdResponse.php
-  - src/Models/Operations/SearchV1AddressValidationSearchPostResponse.php
-  - src/Models/Operations/SearchV1AddressValidationSearchPostSecurity.php
-  - src/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostResponse.php
-  - src/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutRequest.php
-  - src/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutResponse.php
-  - src/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutRequest.php
-  - src/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutResponse.php
-  - src/Models/Operations/UpdateProductV1ProductsProductIdPutRequest.php
-  - src/Models/Operations/UpdateProductV1ProductsProductIdPutResponse.php
-  - src/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutRequest.php
-  - src/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutResponse.php
-  - src/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutRequest.php
-  - src/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutResponse.php
-  - src/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest.php
-  - src/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse.php
-  - src/Nexus.php
-  - src/Products.php
-  - src/Registrations.php
-  - src/SDK.php
-  - src/SDKBuilder.php
-  - src/SDKConfiguration.php
-  - src/TaxEstimation.php
-  - src/Transactions.php
-  - src/Utils/BigDecimalHandler.php
-  - src/Utils/BigIntHandler.php
-  - src/Utils/DateHandler.php
-  - src/Utils/DateTimeHandler.php
-  - src/Utils/DefaultRequest.php
-  - src/Utils/DefaultResponse.php
-  - src/Utils/DefaultStream.php
-  - src/Utils/DefaultUri.php
-  - src/Utils/EnumHandler.php
-  - src/Utils/FormMetadata.php
-  - src/Utils/Headers.php
-  - src/Utils/JSON.php
-  - src/Utils/MixedJSONHandler.php
-  - src/Utils/MultipartMetadata.php
-  - src/Utils/Options.php
-  - src/Utils/ParamsMetadata.php
-  - src/Utils/PathParameters.php
-  - src/Utils/PhpDocTypeParser.php
-  - src/Utils/QueryParameters.php
-  - src/Utils/RequestBodies.php
-  - src/Utils/RequestMetadata.php
-  - src/Utils/Retry/PermanentError.php
-  - src/Utils/Retry/RetryConfig.php
-  - src/Utils/Retry/RetryConfigBackoff.php
-  - src/Utils/Retry/RetryConfigNone.php
-  - src/Utils/Retry/RetryStrategy.php
-  - src/Utils/Retry/RetryUtils.php
-  - src/Utils/Retry/TemporaryError.php
-  - src/Utils/Security.php
-  - src/Utils/SecurityClient.php
-  - src/Utils/SecurityMetadata.php
-  - src/Utils/ServerDetails.php
-  - src/Utils/SpeakeasyMetadata.php
-  - src/Utils/UnionHandler.php
-  - src/Utils/Utils.php
+    unions: 0.1.7
+trackedFiles:
+  .gitattributes:
+    id: 24139dae6567
+    last_write_checksum: sha1:d1d000f6673e5838a636562dceffa2d9dec820df
+    pristine_git_object: e672f6ec6e8fb43d8886a12d531eb19ee8aaf881
+  USAGE.md:
+    id: 3aed33ce6e6f
+    last_write_checksum: sha1:774e45e853fc23bd044c514b155dfcbce7502d6d
+    pristine_git_object: 1f1aaa19f9244cf3501584aca1bee4d8658282ba
+  composer.json:
+    id: 3957b91a0d84
+    last_write_checksum: sha1:53dddb26199e8caf0ee2334c3334a97b9e336080
+    pristine_git_object: dd9aa0fb5bd543f159e3e62d17dbf3e14bc8f380
+  docs/Models/Components/AddressBase.md:
+    id: ecfb5f148e10
+    last_write_checksum: sha1:13d55f087790857e4ce05c6d12f60b995a9b4643
+    pristine_git_object: 1374fd4ee596237eae8db05eae457bd9e52a1060
+  docs/Models/Components/AddressResponseData.md:
+    id: 9f8f97ca437f
+    last_write_checksum: sha1:38fd0a4907ac896393e3d23426f12fe52e4902f3
+    pristine_git_object: 56f8b5a059fa37ba657b45566f6f7f54fe636515
+  docs/Models/Components/AddressSearchResponse.md:
+    id: 7f83790d0791
+    last_write_checksum: sha1:99251c4b1160b1ced8a7bb98f82ddb7c5cd33420
+    pristine_git_object: eefb47a5e15edf18045907fad81602fbbbc20151
+  docs/Models/Components/AddressStatus.md:
+    id: 6b804972e226
+    last_write_checksum: sha1:115a9d48806734f3e04c8a1f5c7330d908c2ccb7
+    pristine_git_object: ecb100abcdb9d496944fe9e690194e72c39175fb
+  docs/Models/Components/AddressSubmittedResponse.md:
+    id: 3f1e2d8d5411
+    last_write_checksum: sha1:b14303d570960c888f0ea1c9e640d4aba5553b3f
+    pristine_git_object: a640641376eb7ea10bd44533be395bb480ecbbdf
+  docs/Models/Components/AddressType.md:
+    id: 2ce77b364191
+    last_write_checksum: sha1:0ec520fa9195b52687ade4f16abd43b880206f24
+    pristine_git_object: 7ded9664492259a762eaa524091ebb8c4a4ab2b3
+  docs/Models/Components/AppliedTo.md:
+    id: 0dd48992684b
+    last_write_checksum: sha1:db08a4e6208e4486fd2bb6996fa7b622c5a7f475
+    pristine_git_object: e4ac5748fceb5b0feb8cf729545ce78be9e4fdb7
+  docs/Models/Components/AttachmentRead.md:
+    id: ff4f710ccfb8
+    last_write_checksum: sha1:b4b298eea5cd934e273a4f8a0f631b95b0bc7ee5
+    pristine_git_object: eda40bc1a3ce64287e671ca587f99f275de6890c
+  docs/Models/Components/Attachments.md:
+    id: 154cc724919d
+    last_write_checksum: sha1:14897d3b00cd9f59fcc2fb9adfee125a57139903
+    pristine_git_object: 535ed524a519574713ebef44a44cf158444adef3
+  docs/Models/Components/BackendSrcAddressValidationResponsesValidationErrorItem.md:
+    id: 6b836616800e
+    last_write_checksum: sha1:fa45f9d9d2b2584aa4ae7676fa988ec24aa967ba
+    pristine_git_object: 4ae5ef3d30f394130d9aa6030264108a53e59da0
+  docs/Models/Components/BackendSrcCustomersResponsesValidationErrorItem.md:
+    id: 93fc05f146b9
+    last_write_checksum: sha1:4700f87feeb83b01ef53ba402e3577015032b73f
+    pristine_git_object: 719411a8856983847792a495d34f1d399e9fa8cf
+  docs/Models/Components/BackendSrcExemptionsModelsExemptionRead.md:
+    id: 19d6948045d2
+    last_write_checksum: sha1:0e40adea717775a0f2dc9b5acca1661946c390f8
+    pristine_git_object: 21457da59bc80794a66166899f4a070cdfea1c5b
+  docs/Models/Components/BackendSrcExemptionsResponsesValidationErrorItem.md:
+    id: 6285a3935b4f
+    last_write_checksum: sha1:4c86af47a261a4ce0e88206682c886032a10626e
+    pristine_git_object: 8513d152d9960a30b3cdb8d817f634b9737a28c7
+  docs/Models/Components/BackendSrcExemptionsSerializersExemptionRead.md:
+    id: 29e5cc3bf5bc
+    last_write_checksum: sha1:8c6525b7bac4d31619562197c9b94b6b940104c0
+    pristine_git_object: e9f03439908ba4a3c9590c4517f98a8d0059224d
+  docs/Models/Components/BackendSrcFilingsResponsesValidationErrorItem.md:
+    id: 7e32639034a3
+    last_write_checksum: sha1:e16d6475077a29723faec6072cbca642d3cb3299
+    pristine_git_object: b99b7cdbeb11660f28c2aeada87aff63f282cc0f
+  docs/Models/Components/BackendSrcNexusResponsesValidationErrorItem.md:
+    id: fc9f8d88daca
+    last_write_checksum: sha1:b99b2134238a29deb26688caa1f751725e38adb5
+    pristine_git_object: 52dc89268651a39bbb2fc51ec7d485593a8425cc
+  docs/Models/Components/BackendSrcProductsResponsesValidationErrorItem.md:
+    id: 02da7d8015e7
+    last_write_checksum: sha1:0a145486ec0e9ab115fdd61fa2bbd7cc357ad620
+    pristine_git_object: 7e08ac884bb2c4fc44cced0d866e3647ea47f6a8
+  docs/Models/Components/BackendSrcRegistrationsResponsesValidationErrorItem.md:
+    id: 6aa630e3aebb
+    last_write_checksum: sha1:888ef322a1bafd9dfd6cd1f355953c88796d82ef
+    pristine_git_object: e659915b1fcc4492436ecd70c03607498c0518be
+  docs/Models/Components/BackendSrcTaxEstimationResponsesValidationErrorItem.md:
+    id: 8c0451035721
+    last_write_checksum: sha1:52a8b0eb3561d7a1096a3e2617244caf541e13be
+    pristine_git_object: fad6a7dee753c5acb00ef153c0be2eae682f4862
+  docs/Models/Components/BackendSrcTransactionsResponsesValidationErrorItem.md:
+    id: 0c11b3866aeb
+    last_write_checksum: sha1:7fe5d600da2fda20d69a3ff80d2d580eda94c946
+    pristine_git_object: 7427b743daac2d966aedddd97d80710e844b6619
+  docs/Models/Components/BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost.md:
+    id: 03cbf183a7bd
+    last_write_checksum: sha1:12d060861be448be71afde3940458ce3f5da89ce
+    pristine_git_object: 6d393c64322c337cf9cd592f12a16dcf054fa543
+  docs/Models/Components/ChangeRegimeStatusEnum.md:
+    id: 0d0b11aa3c7f
+    last_write_checksum: sha1:b0d14678773035c846149af1d1da1dfa9a90b28d
+    pristine_git_object: d0738ac080b860f26da2c07215f635de1652d6a5
+  docs/Models/Components/CountryCodeEnum.md:
+    id: 9b4ae5ee41a7
+    last_write_checksum: sha1:e53cc0e2a156ccd4f27eeaef6100c6088b01eb84
+    pristine_git_object: 90d2f1a501e3c84062ac0b5a1841049f6a6585eb
+  docs/Models/Components/CreditNoteCreate.md:
+    id: 814b3f5b62d8
+    last_write_checksum: sha1:ef7941cd76cf28e9a0efdbea3e3d87e28198c9dc
+    pristine_git_object: 5d58504d28d34bafbab478e211d71f8d28b51560
+  docs/Models/Components/CreditNoteItemCreateUpdate.md:
+    id: f3b0f99ea879
+    last_write_checksum: sha1:f646102be8238af0ebd4540628ccdbd6790997d2
+    pristine_git_object: 19b91b6cf286ec888abab9e81953b845590c9006
+  docs/Models/Components/CurrencyEnum.md:
+    id: 5f9ddf429db4
+    last_write_checksum: sha1:139e88b425ef2be54b17967eff731fba0c3457c2
+    pristine_git_object: 5acefda3c20f48adbebb706ef571f7b9096a0fb2
+  docs/Models/Components/CustomerBase.md:
+    id: 7e20e87c41b0
+    last_write_checksum: sha1:833a909f5489794fce80811d9d3139bd026cb33a
+    pristine_git_object: 692c1085f6018b0227b59da21a905e3b98bf7092
+  docs/Models/Components/CustomerBaseBase.md:
+    id: c270539b130e
+    last_write_checksum: sha1:e9db91a55f948e2a1c61a1564a900dc622f9f3bb
+    pristine_git_object: 41513d54a02d407bef80e8e1c7797ae3424aed10
+  docs/Models/Components/CustomerBasePublic.md:
+    id: 0615e0c4f3e8
+    last_write_checksum: sha1:f9b5ee71c209f59c472e9d57187acc9638285b7e
+    pristine_git_object: b8d4031d98d4b92436b511fc4e2272408a11e0b8
+  docs/Models/Components/CustomerCreate.md:
+    id: a3c72ad63167
+    last_write_checksum: sha1:6ab03074366df41dd5cb6ca78fd6097b2b22e979
+    pristine_git_object: 5cdd93c20c8d91041a1e4056aa1e3a1fc000c2e8
+  docs/Models/Components/CustomerRead.md:
+    id: 1ef71d970847
+    last_write_checksum: sha1:adf075a9c5d4192d7310b8c9ce6ba5e03225dad6
+    pristine_git_object: 36a1508cf1feac320315b97324487e93de3824e6
+  docs/Models/Components/CustomerTaxRegistrationRead.md:
+    id: 79ab8cd4dea4
+    last_write_checksum: sha1:59927316902b40589e7c8dffec3d97c520df5856
+    pristine_git_object: 12f014192835e439fd65cab5399aae0ee43281d2
+  docs/Models/Components/CustomerTaxTypeEnum.md:
+    id: 569fa3a2013b
+    last_write_checksum: sha1:98997a6ed5f48c6109dbe73afcd25fb31f0efa07
+    pristine_git_object: 03ac31ba48bc66dbd702d689ecd55bd66360ea6b
+  docs/Models/Components/CustomerUpdate.md:
+    id: e27bd821d8bf
+    last_write_checksum: sha1:6bf35f726d7f254a31742789f8bc0850e6f53c49
+    pristine_git_object: b2698b93eca2031d688dfa14c77ca75f70843539
+  docs/Models/Components/DiscountBuilder.md:
+    id: 0a9058fbbe8e
+    last_write_checksum: sha1:add82fdb24d79680aedbf0aff3b886fab67a329c
+    pristine_git_object: 4b1e12259101236082326d247390b1aac2123e1b
+  docs/Models/Components/Exemption.md:
+    id: fa49d7ba936e
+    last_write_checksum: sha1:4eb8b7a2dcf815793f7c153e2477c6a390dcdc73
+    pristine_git_object: ec4d300a6343c92afd3a5d7fa2d1fd71ac4df194
+  docs/Models/Components/ExemptionCreate.md:
+    id: 79753e20a809
+    last_write_checksum: sha1:07624e3620c7e95a5f1d636276fce0f8a3dcc13c
+    pristine_git_object: 2e48a35ec2558e2b703dc9190b12c3296a73cf43
+  docs/Models/Components/ExemptionRequired.md:
+    id: 4565455dc0a3
+    last_write_checksum: sha1:c83ba8b1efb242636a676ffd5e48013fe271ea98
+    pristine_git_object: 700a66fb02e0629e220e9c60683b11703a391e6b
+  docs/Models/Components/ExemptionStatus.md:
+    id: 7f97f8b92e10
+    last_write_checksum: sha1:16e81010f671b3b7c411d6c4270e5605a9ca49e4
+    pristine_git_object: 11475c8d1f6e8fa252513048ac6da1598ab11034
+  docs/Models/Components/ExemptionType.md:
+    id: e4abdc109f7a
+    last_write_checksum: sha1:3fa69d84f298205f80d1a71f30091c13effd7c5e
+    pristine_git_object: 494fdb0ccebb6f8168c878a383432793f93d4149
+  docs/Models/Components/FastapiPaginationDefaultPageExemptionRead2.md:
+    id: eae56d437258
+    last_write_checksum: sha1:010ed054d4d1a682d33ed1a4426ba00e0e149c6d
+    pristine_git_object: 81737bade2ea2d56568ca73c12a0b4f58e22c5fe
+  docs/Models/Components/File.md:
+    id: 5814b032764f
+    last_write_checksum: sha1:53ca0c26dbadc5a6d59d835f5a69efbfb19de3cb
+    pristine_git_object: be66ee4155667cc0d8b5dc08379c3c480a7226c1
+  docs/Models/Components/FilingDetailsRead.md:
+    id: 24acf7023065
+    last_write_checksum: sha1:759d9cd711c650dfbdb289a8ebf116dcea994a55
+    pristine_git_object: 89c98a6f09032cd367fa114403c6c2b2545c3664
+  docs/Models/Components/FilingFrequencyEnum.md:
+    id: d25f03b3f3a5
+    last_write_checksum: sha1:5d8627ea7aebd816c4d4c70237dd12d2fd4119e2
+    pristine_git_object: 47151d4877fd17be787a463863d98547554644c7
+  docs/Models/Components/FilingRead.md:
+    id: a30651058c4d
+    last_write_checksum: sha1:57d21c1ed06d35edc320a0d7c5014963552e51b9
+    pristine_git_object: 79e3d1c35cb8497fe6ec49af906f3d01024860c5
+  docs/Models/Components/FilingStatusEnum.md:
+    id: 74b005fd88fc
+    last_write_checksum: sha1:9eb8a310a1ff463d010381c107d359ce425cbbf6
+    pristine_git_object: 0ea09907ba0fd46f6a04cbca4870501c52fd04d7
+  docs/Models/Components/FindThresholdCrossingTransactionState.md:
+    id: f88c4ef8d58e
+    last_write_checksum: sha1:5a49a9e356974e92ec7268e72b2273d8558e68d3
+    pristine_git_object: 5a68aaa8dd549d7795f9e9f63c23a81b4d9a8646
+  docs/Models/Components/JurisdictionType.md:
+    id: 56edb0981fd3
+    last_write_checksum: sha1:7a15dd55b4d3a2201df3661943755108d527a14e
+    pristine_git_object: ab6275ed8c4652b29bb87ba1069cc689e82882fd
+  docs/Models/Components/NexusResponse.md:
+    id: cb25f66a80a1
+    last_write_checksum: sha1:f487ac6b134b10360c882913acd687a929378c0b
+    pristine_git_object: 813f3cdf6a0f655669ac1e8098239f0cdafc00a9
+  docs/Models/Components/NexusStateEnum.md:
+    id: 6d0c82a5296a
+    last_write_checksum: sha1:df5b3d7c1403f7239d93f0b158818859c566f522
+    pristine_git_object: fd108c0e2a829d0c784c4237e2ea501ae1edee7f
+  docs/Models/Components/NexusStatusEnum.md:
+    id: "018818574838"
+    last_write_checksum: sha1:414fd4e94a9167539f401a96f65c01881662c518
+    pristine_git_object: d86d5ab1d7aa0cd396a4b70affa68f88228361db
+  docs/Models/Components/NexusTypeEnum.md:
+    id: a60915bc2f66
+    last_write_checksum: sha1:981d4e26db1f1c2bbe4b49e13d25fc1a053f96ad
+    pristine_git_object: 92492acce2d9900259a915083597552be64290b0
+  docs/Models/Components/OSSRegistrationCreatePayload.md:
+    id: d76e69f671a5
+    last_write_checksum: sha1:1e498639554e294b1629477f97578dc69c5280a7
+    pristine_git_object: a4aba5aec556c3505614d661919bdc4424905c8c
+  docs/Models/Components/OssTypeEnum.md:
+    id: c69cfbe95135
+    last_write_checksum: sha1:fc8cdf4fe77383b650857831c189cde080b72e51
+    pristine_git_object: 6e94b26dea28f6ccc9e41ba470f4c25b4aedd5dd
+  docs/Models/Components/PageCustomerRead.md:
+    id: b50ef699d817
+    last_write_checksum: sha1:cb2875fcd6bd56bba5a53be94113d3cff557d431
+    pristine_git_object: 2b3be778b343c4cad958c609cb2c7dcb6f619482
+  docs/Models/Components/PageFilingRead.md:
+    id: 96fdb4306755
+    last_write_checksum: sha1:e77be5d5f57771d77d3d3b419587225ee748948d
+    pristine_git_object: d9c7662708cf635708bc49a505e48d0ac6672b3a
+  docs/Models/Components/PageNexusResponse.md:
+    id: f78d4ea3be2f
+    last_write_checksum: sha1:51ad80c4ee51ec44acc63f1400eca0e9b7afd2ae
+    pristine_git_object: ecce94c248ae8c2e635e99d171105e69ddf58d9c
+  docs/Models/Components/PagePhysicalNexusRead.md:
+    id: 6c311945e285
+    last_write_checksum: sha1:d2cb91d2831aaa8154303fc9ce45b5728116d4d1
+    pristine_git_object: d4ad39b6980d5879a0853418719043e6bc21d84c
+  docs/Models/Components/PageProductRead.md:
+    id: d2c91a77b46f
+    last_write_checksum: sha1:9e14fd93f290b96f2b561726fe3f99ad5895561a
+    pristine_git_object: fe5856c8300f2785095d44fb9652c83730e7a8d0
+  docs/Models/Components/PageRegistrationReadWithPassword.md:
+    id: 14f880c94fbf
+    last_write_checksum: sha1:a5655ce1bd4adb4edd05c8062d8145201678d041
+    pristine_git_object: 03187a506b5dac1f66506dc8380571183ba32096
+  docs/Models/Components/PageTransactionEstimateResponse.md:
+    id: 7200cc9ccdf1
+    last_write_checksum: sha1:523247b00405489d0231f57324d8ed6582ae8be2
+    pristine_git_object: 9d9355c75e6967aac7f0af31724210a21153c079
+  docs/Models/Components/PageTransactionRead.md:
+    id: b20f52113ae1
+    last_write_checksum: sha1:0060c46fde3b1a708c1829a58e587e2727fa199d
+    pristine_git_object: 03f0c086736e8181c359ac95ef504fe7c3f4e5d6
+  docs/Models/Components/PeriodModelEnum.md:
+    id: a795b442fe04
+    last_write_checksum: sha1:6e9d7266008954a18cf72f90b0209838242c6029
+    pristine_git_object: 2e67cffadd8486926f5a5e4e8b5509256e58b0ed
+  docs/Models/Components/PhysicalNexusCategory.md:
+    id: 9cf37bb84253
+    last_write_checksum: sha1:3fc55509b2fc4d357947a781d28cd3a4636b6778
+    pristine_git_object: 957e188ee765bcb01f5212cbbc7617dd1f092582
+  docs/Models/Components/PhysicalNexusCreate.md:
+    id: 011bd010bc9f
+    last_write_checksum: sha1:90fe17d264ea781ae819813be5fadc0fdcf89aa0
+    pristine_git_object: ddd89e0ff511d2272981fa88130496edc6afdae7
+  docs/Models/Components/PhysicalNexusRead.md:
+    id: 92ce99335c2b
+    last_write_checksum: sha1:19d7eccd34e3b789fb061a30c51d6b2fdbe46fbf
+    pristine_git_object: b67acef4e58463a6c03a17f92ce52d8e6a5ac39c
+  docs/Models/Components/PhysicalNexusSource.md:
+    id: 91f50f74701f
+    last_write_checksum: sha1:03eedfb1457c640a64c42ca17e5ffaa65587cb5b
+    pristine_git_object: b6ab0c9366fc911cc76b2d021bf4e94c5861353a
+  docs/Models/Components/PhysicalNexusUpdate.md:
+    id: be6b768765c3
+    last_write_checksum: sha1:b702b84b1b245bb8b234ced97058f371b84b5a8e
+    pristine_git_object: 2d90349fe202cdc80ed9581fecca6c4196732344
+  docs/Models/Components/ProcessingStatusEnum.md:
+    id: 8946ee19432d
+    last_write_checksum: sha1:5545b985dc7e96694519d032111c014d4584e774
+    pristine_git_object: 3349635ae7db2d6d5d1a7ac4bf9de360a2ffaaff
+  docs/Models/Components/ProductCategories.md:
+    id: 05e200ae55f7
+    last_write_checksum: sha1:614c0e96051381150ded33555b202a46abf4a1a2
+    pristine_git_object: 590ef3c6f7b989318924407844e83ad64aecb50b
+  docs/Models/Components/ProductCategoryEnum.md:
+    id: 9ffa8fd9fc55
+    last_write_checksum: sha1:36424ce535301747e3f28d4e79d6149eb1adfac9
+    pristine_git_object: d38140a3d65f147dba8b37dae975e7e53f8d2e68
+  docs/Models/Components/ProductCreateManual.md:
+    id: b3d6c44796d0
+    last_write_checksum: sha1:f1d5a58bfd6f11ce329edb0b199f6861fa86bc8c
+    pristine_git_object: 767fa9d83c74bb3c1f630703736792e484edb1e1
+  docs/Models/Components/ProductRead.md:
+    id: 65c14eafe362
+    last_write_checksum: sha1:b5012890e09e915855b090e5198feb4eec4bdba5
+    pristine_git_object: 9b6fb68aeb9997cf23cebc696417e52926ff3b09
+  docs/Models/Components/ProductStatusEnum.md:
+    id: 073775c3e018
+    last_write_checksum: sha1:d4c86df20c225ecb93387ca035515e8d0c6e75ff
+    pristine_git_object: 8c812a294d9a59a408f52f2381a84e7b9f1f87e6
+  docs/Models/Components/ProductSubCategory.md:
+    id: a4500929a792
+    last_write_checksum: sha1:3ff9aa7d1102aa3c9715c9afc51d3eb157a42d6d
+    pristine_git_object: 71890f028a928e129d36f04fa0fdd71e6480dc03
+  docs/Models/Components/ProductSubCategoryEnum.md:
+    id: ae44b5bd7b74
+    last_write_checksum: sha1:17339378edf4a68ef505095c3f54be3839daa33d
+    pristine_git_object: e7d03b581e9a2985f305323e0303547939516181
+  docs/Models/Components/ProductUpdate.md:
+    id: b7be59820ee0
+    last_write_checksum: sha1:61f2f771faa716140ac98726b277c42612f06bf3
+    pristine_git_object: 1ca4cf7581ed6ff70ea9316367cae2ec6c26c49f
+  docs/Models/Components/Registration.md:
+    id: a6bffe786d3d
+    last_write_checksum: sha1:5dc310f2a8bdba20aad0003062ad9aea81a1c727
+    pristine_git_object: f4f9866bc6100ddd337ab374bc5113461c6eca1b
+  docs/Models/Components/RegistrationCategoryEnum.md:
+    id: 7e0f343a7713
+    last_write_checksum: sha1:4ace4d98c7aa268a94a8a10b8ae1061c2c8186f2
+    pristine_git_object: ca56ccffeba441526aad6a817fa02d8094ae43b8
+  docs/Models/Components/RegistrationCreatePayload.md:
+    id: f7625b6c4252
+    last_write_checksum: sha1:e5afeace490739ee19c875692e945efcce8677cd
+    pristine_git_object: 18c5915f5de8d8f0a5aa18cc03c1ec148a7b4570
+  docs/Models/Components/RegistrationRead.md:
+    id: db0a9a1614f1
+    last_write_checksum: sha1:1a1e6112ae5aaab92eeb3472b780c1cf42e4443c
+    pristine_git_object: 48df98cc1adfdb241f4a8b09a1b749b65e3bd6f5
+  docs/Models/Components/RegistrationReadWithPassword.md:
+    id: dd40f3f6a3c9
+    last_write_checksum: sha1:c952c9276cb792fc71f4ce6ecc797100b0e4b014
+    pristine_git_object: 76276adc8010e6467d9d1562a64342b8ed7afab5
+  docs/Models/Components/RegistrationStatusEnum.md:
+    id: 6da12ccaef43
+    last_write_checksum: sha1:d80b2f70466957cfe92e5807bdc4c3baef85078e
+    pristine_git_object: 12151b1812b26103d75ef9ab27a60f496a622192
+  docs/Models/Components/RegistrationTypeEnum.md:
+    id: cc0ea2a74747
+    last_write_checksum: sha1:365d031e4318a919594edf4946560256fa341ff8
+    pristine_git_object: e88b9e21f149fa4e7c2273151b87a3ce470ccfbe
+  docs/Models/Components/RegistrationUpdateAPI.md:
+    id: 11a33d1d4b0a
+    last_write_checksum: sha1:4b519eb49f842b8bc96283925a86a97316ee74e6
+    pristine_git_object: b00175604e63292f11133b671436d19648de08f8
+  docs/Models/Components/RegistrationsRegimeEnum.md:
+    id: 3c027b657ed1
+    last_write_checksum: sha1:cee049d06796bd725121941cffdfd1d2600ec701
+    pristine_git_object: 53273b1239f21463fa969c82fac1edf6dbcf70fb
+  docs/Models/Components/RelatedEntityType.md:
+    id: 7440645b9259
+    last_write_checksum: sha1:0835830188a773cbdf189cb986b45617f32765ec
+    pristine_git_object: 0a40e7139246b17d876868576b82189aeec89247
+  docs/Models/Components/SSTRegistrationCreatePayload.md:
+    id: 38f38afe8b07
+    last_write_checksum: sha1:b58ba311bb21796e803d22a4df44945ab2e3be02
+    pristine_git_object: ce321f22044b194762cb4c295b7bbbfded97f5d0
+  docs/Models/Components/SalesOrTransactionsEnum.md:
+    id: 06f4f8ab8a49
+    last_write_checksum: sha1:0ea00dbe0bbffb02edfc5f36eb949d8e95667d03
+    pristine_git_object: 64ad27def5fb0bc7dfd94ecd5eaa678be6a73d10
+  docs/Models/Components/Security.md:
+    id: 7bcd54fda13a
+    last_write_checksum: sha1:fe7f6a361c3575eb02f2e362a4f323092add752a
+    pristine_git_object: 6d6053fcf90671e94a2f3b21ac2b853bf7f81af5
+  docs/Models/Components/SourceEnum.md:
+    id: 43dc12416996
+    last_write_checksum: sha1:2c18e4b6ea637a56ef3946adb2951a0dcba8c4c9
+    pristine_git_object: bb9545220b3eaba13d8a51afae9ea7706de78bea
+  docs/Models/Components/Status.md:
+    id: 71d0264ee613
+    last_write_checksum: sha1:b9acca8370055d87ef235389344b0c38f0735379
+    pristine_git_object: 955878adf1cda697ef9aa365e9f8d98548db3fbf
+  docs/Models/Components/StatusEnum.md:
+    id: 87120c761eba
+    last_write_checksum: sha1:f12b09587ed8d6cce6786d6644ca52551372ab2a
+    pristine_git_object: 7a694e33a882aafd83f0880f4837f5b6df8c3946
+  docs/Models/Components/TaxExemptionEnum.md:
+    id: c1d5d94c7925
+    last_write_checksum: sha1:aace99e600457b1eac2d5e2a33407434b57d0a21
+    pristine_git_object: 149516eb705a76531b7543c7bf57b68ebd2fdcf4
+  docs/Models/Components/TaxItemBuilder.md:
+    id: 2f2acd5a9377
+    last_write_checksum: sha1:15e689e234b6a2299077ac09a2193f909a2be04e
+    pristine_git_object: 53d277d2c305a48e81e050164a1461eb83d0ccbd
+  docs/Models/Components/TaxItemEstimate.md:
+    id: 7e9c6a8a9127
+    last_write_checksum: sha1:e8600f13ce7b37cd894e6db34d67da3e4fef991f
+    pristine_git_object: a70a48213edaf11d91b176cfb74648acca3d4c0e
+  docs/Models/Components/TaxItemRead.md:
+    id: d06e7a8abec1
+    last_write_checksum: sha1:db85d0069381fc3f0cb28600f132d1cf1b23fb2f
+    pristine_git_object: ac7e5299cebef1b479fb0c65485378e162fc6543
+  docs/Models/Components/TaxItemReturnReasonEnum.md:
+    id: e9da7e16c5b9
+    last_write_checksum: sha1:26e32972e7609d65bebb90c422145ec3508cb9db
+    pristine_git_object: db0e90ab556e9d847492640e05ae030e44eba045
+  docs/Models/Components/TaxItemTypeEnum.md:
+    id: b32bcd3f27b5
+    last_write_checksum: sha1:a63144097642c754af2debe29264e2cf4f3f461e
+    pristine_git_object: 26090bdc630f8a0c60ac56556bf529c31369170b
+  docs/Models/Components/TaxLiabilitySourceEnum.md:
+    id: e1f68c176791
+    last_write_checksum: sha1:23925e80982a9aed37207f1f9f646de20e969d6a
+    pristine_git_object: 99406e049184423a83e6eb40cec8d459175c300d
+  docs/Models/Components/TransactionAddressBuilder.md:
+    id: fb0b0ed6bb13
+    last_write_checksum: sha1:cf4f16dc75dc561d048cd500851d853ffd8ebe4e
+    pristine_git_object: e0d4c9def21d9aac620532863c94fe5d91f18d99
+  docs/Models/Components/TransactionAddressPublic.md:
+    id: e1c59df9fc22
+    last_write_checksum: sha1:b8ae621793b1698dabecbbbfb67017ddf845843b
+    pristine_git_object: ac5015fca8110f478ca4c7b8a0d331daf143a2b9
+  docs/Models/Components/TransactionAddressReadOutput.md:
+    id: 49a78927c0d1
+    last_write_checksum: sha1:e38547048c4d201ec0ab305260efc885e32d7d24
+    pristine_git_object: 26c8a4da72cd9181744e0f6a5c1c0922e137e316
+  docs/Models/Components/TransactionCreate.md:
+    id: d1e261241de9
+    last_write_checksum: sha1:50232fb619e4638b367f9f516c4717c099afc833
+    pristine_git_object: a994dd37b102a261d9abef147a36cd3d52864066
+  docs/Models/Components/TransactionEstimatePublicRequest.md:
+    id: b9db4d19aa7b
+    last_write_checksum: sha1:fdaf6f97b0899a0e2b2d4733c8826df16c1aa4f8
+    pristine_git_object: 47dff2f0c2e2767f5fd4a2b20e56d3228e898ab7
+  docs/Models/Components/TransactionEstimatePublicRequestAddress.md:
+    id: 98be6b3e59b6
+    last_write_checksum: sha1:a91e81e5ab0f74eeefe537b63fb1175dc372f53b
+    pristine_git_object: 26e579e323e2f9d7bc3b9a34a98cc71aaf92948a
+  docs/Models/Components/TransactionEstimatePublicRequestType.md:
+    id: f3ad7d3dc2c5
+    last_write_checksum: sha1:c001c0f236cf8913f454f0a0fa9aa80079568aa7
+    pristine_git_object: b736a5addd55f50733c1248133eafb7794ecdace
+  docs/Models/Components/TransactionEstimateResponse.md:
+    id: e0180757b621
+    last_write_checksum: sha1:bb4d894e2a0e9ebb7156aead7bc66b8f2315fcbc
+    pristine_git_object: 5ba2f5d371c590a45309d02f10ed51bd4da1d64e
+  docs/Models/Components/TransactionEstimateResponseAddress.md:
+    id: 6949ca545e58
+    last_write_checksum: sha1:2a3f59d8435e7ffa5c92c9f6964055bbdd52a564
+    pristine_git_object: b15b6cf362792832a73c85a3b0f80d6e16bee321
+  docs/Models/Components/TransactionEstimateResponseType.md:
+    id: 02961dda59d6
+    last_write_checksum: sha1:dda27baf44b0a245ebd003ec04abba86f85fc27b
+    pristine_git_object: ee974e54e6565f85c909313cbb5927424c30074d
+  docs/Models/Components/TransactionExemptStatusEnum.md:
+    id: f91736df1f35
+    last_write_checksum: sha1:56102c76167baced53c63e909f39c23133676fba
+    pristine_git_object: c5443273d533d071f956893da0155bef77a2d60e
+  docs/Models/Components/TransactionItemBuilder.md:
+    id: 5f1d554fa973
+    last_write_checksum: sha1:498e1a47be937477423b5e88b04df914f33ec5f5
+    pristine_git_object: b18d903d35eb81333ef0f25c60e76e8bfa5105d7
+  docs/Models/Components/TransactionItemCreateUpdate.md:
+    id: 14b6972a8c3c
+    last_write_checksum: sha1:36785b38ff8cd81c20646923b57a400dceb5b281
+    pristine_git_object: 8887c2fc5a726f7c33465f156618d9c19b3bf2d5
+  docs/Models/Components/TransactionItemEstimateBase.md:
+    id: 9144e32f4e90
+    last_write_checksum: sha1:f649ba61fed2f3637f03f8a2fc569a7ad658314f
+    pristine_git_object: 7f98d6fcd0e093c0ff45eeb439a98d5bc224df16
+  docs/Models/Components/TransactionItemEstimateResponse.md:
+    id: a5574f48eac7
+    last_write_checksum: sha1:a741da505047ed0642e8568d2c0838693bcf5025
+    pristine_git_object: d98d3a2878bded56d766dd32b1f98bf8715141a6
+  docs/Models/Components/TransactionItemRead.md:
+    id: 3ce12462568c
+    last_write_checksum: sha1:dc4cf3e847adaebeef4f8fc3d5dc5bdd932b19c1
+    pristine_git_object: 678f3c9b2755277d6ed39e9ac372d2a8a60dfdfc
+  docs/Models/Components/TransactionPublicRequest.md:
+    id: 5b980f877262
+    last_write_checksum: sha1:154895024cb05c1023b9c8db7e05e0bfc3c5e614
+    pristine_git_object: 556207a02577347cf3c0bdba56371dc63e336ca0
+  docs/Models/Components/TransactionRead.md:
+    id: e34131dd70b0
+    last_write_checksum: sha1:d8fb91b3d742675c26805abb5ef99933f550c19f
+    pristine_git_object: 7b719c8e8604026153336e6dab46e578a12d33bf
+  docs/Models/Components/TransactionRefundStatus.md:
+    id: 530f48129c22
+    last_write_checksum: sha1:4073f8acdc0b937b414dffe8f6cabb73b9534a0f
+    pristine_git_object: 40753792fbe6a2364b5c55580e3adb275ca8a42b
+  docs/Models/Components/TransactionStatusEnum.md:
+    id: 3e77634e53e6
+    last_write_checksum: sha1:a81198559e894c22efe976bd0ead8b9b83d7ad93
+    pristine_git_object: 52b7858022a0c72ece7ade5ed217678a396a36fa
+  docs/Models/Components/TransactionTypeEnum.md:
+    id: 55287976317e
+    last_write_checksum: sha1:a772ed1a9a7c271594431e18d9f4e006096d2622
+    pristine_git_object: eb72192514f8f262ff76d73199c518a57f21f0f7
+  docs/Models/Components/TransactionUpdate.md:
+    id: 030a2277b5b9
+    last_write_checksum: sha1:45296b35645baddad4473ad56aa3203b93f09d83
+    pristine_git_object: 5023fc79b1bc95d2f1799345c3168dedfb3cbe60
+  docs/Models/Components/TreatmentEnum.md:
+    id: 5a6e345a6895
+    last_write_checksum: sha1:73115c0f3dd6c32c8aa34a63738d21dbd1f9d122
+    pristine_git_object: 8df9d923882651281cc408df14d2fcb66f1da5e8
+  docs/Models/Components/ValidationAddress.md:
+    id: c40d74ec7689
+    last_write_checksum: sha1:affbfb4f30aa989511492e1e9905bda4700b43ab
+    pristine_git_object: 695d9b25a32c13d249c26b44ad04902a7b6146cb
+  docs/Models/Components/ValidationError.md:
+    id: db1cf86b1698
+    last_write_checksum: sha1:0cc020bd785ce54e99e4892e793571d4a990c4e4
+    pristine_git_object: 568cc8995f2898f0c9df5debf3fe30b647c4166c
+  docs/Models/Errors/BackendSrcAddressValidationResponsesValidationErrorResponse.md:
+    id: 0bc67fc0e6dc
+    last_write_checksum: sha1:b68d33072a9dc0e4281074bb774ce79f108027dd
+    pristine_git_object: e1177c1df5306e4f5bea895acfeb6c70b913079d
+  docs/Models/Errors/BackendSrcCustomersResponsesValidationErrorResponse.md:
+    id: a4ed53ae40bb
+    last_write_checksum: sha1:c92e2ac603a225a192bdfcca703cd733892f6dff
+    pristine_git_object: f37e36eb331fad06972389be6da30e3aac4c4433
+  docs/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponse.md:
+    id: 3bae12103e6f
+    last_write_checksum: sha1:0635ddedd501285b6b9b873c6cee1653b645fe7f
+    pristine_git_object: acedc9afa882bc72e8409aec3e8ee02ea5f2849a
+  docs/Models/Errors/BackendSrcFilingsResponsesValidationErrorResponse.md:
+    id: 2203dcc91ed7
+    last_write_checksum: sha1:206af37a2d372303cdf805b99d193a8799870c66
+    pristine_git_object: 0ea8c48f6ea9a4722b485b9bed36f56a8ac86d8a
+  docs/Models/Errors/BackendSrcNexusResponsesValidationErrorResponse.md:
+    id: fb8918393acd
+    last_write_checksum: sha1:feabf61cdc0e331e58731bb1f1b1f748ba2ce13b
+    pristine_git_object: a5e529c3d84882ad427ebf91167aeaff102855df
+  docs/Models/Errors/BackendSrcProductsResponsesValidationErrorResponse.md:
+    id: e485d9e328e8
+    last_write_checksum: sha1:79bc990ce72dbeb53acd32f50142389e4fb36c98
+    pristine_git_object: de42a3b00a980788b06b405b1be9ab2d43e8b9bb
+  docs/Models/Errors/BackendSrcRegistrationsResponsesValidationErrorResponse.md:
+    id: 1024e84acc48
+    last_write_checksum: sha1:afeb11dce5cd426bdb8ce723f84fdb3489209d42
+    pristine_git_object: d6a6f5a41ba6df4837d9a7909a7bcf5d3db613cd
+  docs/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponse.md:
+    id: cbb646039b87
+    last_write_checksum: sha1:a4c23356c464a55fc2147c7cac286cea78f7c322
+    pristine_git_object: 0f84acb45fd1dc89ea33c4ea00a936fd9064b23c
+  docs/Models/Errors/BackendSrcTransactionsResponsesValidationErrorResponse.md:
+    id: 06cda851a074
+    last_write_checksum: sha1:7c44b4414c68c58e30bd0bd7aa5f9c9ed37603c9
+    pristine_git_object: b29211990725a141b80d61f22141db4bf99d256d
+  docs/Models/Errors/ErrorResponse.md:
+    id: 71478241db2e
+    last_write_checksum: sha1:0751af15498e1a8daf5f456c9bd557ddd8d12177
+    pristine_git_object: ca5de429bcd1653f7d3d3f84aaa878e104d67165
+  docs/Models/Errors/HTTPValidationError.md:
+    id: 72e6a49fa263
+    last_write_checksum: sha1:eef01308a6c2e40a08a24e4d3057f202b3f95e5c
+    pristine_git_object: 74f4ec16522972dc5298cf944cbdec3945c2c230
+  docs/Models/Operations/CreateCustomerV1CustomersPostResponse.md:
+    id: b3a778f4c87a
+    last_write_checksum: sha1:3764d1ba362110f6f9ae18999f4dc1630bf65b5b
+    pristine_git_object: 733ed2a411bda17fd43c80d974a6dda5dac74cd7
+  docs/Models/Operations/CreateExemptionV1ExemptionsPostResponse.md:
+    id: 51bcfa5185fd
+    last_write_checksum: sha1:1849a4d5d846ccc56bb62c7c3bc77afd8dc8150d
+    pristine_git_object: 57713b8abd8d4a449c4edb3aa5a9ade23ccd5c91
+  docs/Models/Operations/CreatePhysicalNexusV1NexusPhysicalNexusPostResponse.md:
+    id: 28e8b9181a2b
+    last_write_checksum: sha1:bfe8f8c42ac9d26a794d766d6b2db4dfb2c82b70
+    pristine_git_object: 37c30d0b16849b1d9883186a4e0844211d07ad1d
+  docs/Models/Operations/CreateProductV1ProductsPostResponse.md:
+    id: b3d2f00000bb
+    last_write_checksum: sha1:a25ddfd59f939da3e7938e09ba74bc4cbd686480
+    pristine_git_object: 7a7155f4c89a5b1737e3568e27f6b8723d67d23d
+  docs/Models/Operations/CreateRegistration.md:
+    id: 15e317878052
+    last_write_checksum: sha1:125df72d9e822cb9fc2c7605d8eaa0516c599f86
+    pristine_git_object: e0a4c09414e5f3dcf1f9b50e9c2ced235479302c
+  docs/Models/Operations/CreateRegistrationV1RegistrationsPostResponse.md:
+    id: 0c72cef6bbd0
+    last_write_checksum: sha1:0df2638c247998dcb04d45382454adda10477ad2
+    pristine_git_object: 3e51227045918ad8a0acf1afcb56c52a119dab25
+  docs/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest.md:
+    id: 6218530f1d35
+    last_write_checksum: sha1:2e2903c14089dfe12f2121a70ee9a1dac6cdd525
+    pristine_git_object: 0afe80c90fb6027d54893bf2c9e945b48cd08218
+  docs/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse.md:
+    id: 06a9c22af0b5
+    last_write_checksum: sha1:454a60baca93a9ddfaf2ebfa982b3303b6c3673a
+    pristine_git_object: aa02cd544c2470337f22ea689b45560666e12e1d
+  docs/Models/Operations/CreateTransactionV1TransactionsPostResponse.md:
+    id: e17c2c87f91c
+    last_write_checksum: sha1:4577a6763864db02aa59327b15e2e6f2bbadd6b8
+    pristine_git_object: 1eac29f6361147274d3b4cadcc26ace0cd7cac15
+  docs/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteRequest.md:
+    id: eaecae162ed8
+    last_write_checksum: sha1:a7952f7963d107f02900e9d682ce25ea9a330281
+    pristine_git_object: f0f3c2af65cbd11f5c23fe56f5e71681b0190030
+  docs/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteResponse.md:
+    id: 5286d7034992
+    last_write_checksum: sha1:9d5b28b1c8bec7c4a609e26dc74aa7a3bcdf38f4
+    pristine_git_object: 9607d7ad6f9484cff9070696a1e2038e9552cb96
+  docs/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest.md:
+    id: 1974410e280a
+    last_write_checksum: sha1:dcef69a8d4cc13f08b2be1947160f281534b3df3
+    pristine_git_object: 5fcacbc4936a2d10670278adb000de533eba08c5
+  docs/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse.md:
+    id: cbecafb7d4a2
+    last_write_checksum: sha1:d38a2922585e03c6f83ce453d6315fd57680b479
+    pristine_git_object: 572fb313fce33707a12cbd3298a06392cca3d57f
+  docs/Models/Operations/EstimateTaxV1TaxEstimatePostRequest.md:
+    id: bf37e6c24884
+    last_write_checksum: sha1:bee861cdba4828e0c741bb9e9fd417fb675ed8e7
+    pristine_git_object: 777a63188516b5cdb37daadf77ace9bdadcbf65c
+  docs/Models/Operations/EstimateTaxV1TaxEstimatePostResponse.md:
+    id: 062d276e0fb9
+    last_write_checksum: sha1:195f505f7ac1bb1160350ae641350b92283a9d1c
+    pristine_git_object: 8346a1eef648355aad4c731e87cfa862467e4fa8
+  docs/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest.md:
+    id: 050fdb873b81
+    last_write_checksum: sha1:24fc42b1684aaa4cd5f0a92f94430a5960787bc9
+    pristine_git_object: 7a050d19c3ceea4ed70804419ff79772d37a4c4e
+  docs/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse.md:
+    id: 7faff6290e42
+    last_write_checksum: sha1:917555efc57f97b5e3a09513ada6d4a4a667f204
+    pristine_git_object: bfa0d9f27c7f32975d7d5f32f3308be155118f91
+  docs/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetRequest.md:
+    id: b55d4259bde6
+    last_write_checksum: sha1:a7c1d1f711548eaccb0611d6fff7ca51f520c68e
+    pristine_git_object: 13fb4a5ff33e738f24b1e30a99580e0576e92ea9
+  docs/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse.md:
+    id: 8f36b8fa1d01
+    last_write_checksum: sha1:025c75eb44365c34a2cbb9ea3260674ec93fbea2
+    pristine_git_object: 5172673d252c429ca91b547e492d0d00e0b41be2
+  docs/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetRequest.md:
+    id: ede94e09d1e1
+    last_write_checksum: sha1:a31a17c5c51c45d56b5139d36e15daf8ed25b32a
+    pristine_git_object: 196fe2ad7f6d59229a443f7a7dc57bf9e6d5e184
+  docs/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetResponse.md:
+    id: 6e2bb9d5e781
+    last_write_checksum: sha1:1f6c46ab4608b80ad68a1748eeccc37d6dd5fa27
+    pristine_git_object: 4bd115482d01a496153e23b9ff67c261f87062b9
+  docs/Models/Operations/GetCustomersV1Request.md:
+    id: ec540bd82ffa
+    last_write_checksum: sha1:520c8caeb9139408adabae51f5841bb18ab2ccb0
+    pristine_git_object: a3dcef147f47731bf7323da943e7f3974532c6c1
+  docs/Models/Operations/GetCustomersV1Response.md:
+    id: 06d991025322
+    last_write_checksum: sha1:ec80afaf195f7b0fc89b71d1764a972fbea97a32
+    pristine_git_object: 05eb1c6e1e25f187a0cf6cc0745258731a145e76
+  docs/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetRequest.md:
+    id: 4cace0fed5f7
+    last_write_checksum: sha1:dce1eb3330c1245b845268069ba494f3c2e0cd1f
+    pristine_git_object: e845107c4b6da0c52d70a4a9461c707dfcfd2278
+  docs/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetResponse.md:
+    id: a4a1d27bd9f6
+    last_write_checksum: sha1:3c461e696104fdd673b4b44788b3bf28a7a929ea
+    pristine_git_object: 765f42f811ff1ecc9e9df183dc08034cfd7f3345
+  docs/Models/Operations/GetExemptionsV1ExemptionsGetRequest.md:
+    id: 394679313b30
+    last_write_checksum: sha1:d1a371bb0e1de8b89d3126f27ed1e6106a593ef3
+    pristine_git_object: c8365b2be106896008d111ac35bb5177318fa620
+  docs/Models/Operations/GetExemptionsV1ExemptionsGetResponse.md:
+    id: 3ffe00ebc23a
+    last_write_checksum: sha1:fc660d55aa433e301e0debc446bf1cb9edef0228
+    pristine_git_object: b3cbc1949f64bd80f86054711834eb7805013260
+  docs/Models/Operations/GetFilingByIdV1FilingsFilingIdGetRequest.md:
+    id: 34e970fb1bd2
+    last_write_checksum: sha1:c83f4e4e97ca4e627976b143a547a013ee170775
+    pristine_git_object: bfb43b73e63f390a37b820b413335f4e89c3d5c9
+  docs/Models/Operations/GetFilingByIdV1FilingsFilingIdGetResponse.md:
+    id: 100bd09fd2a1
+    last_write_checksum: sha1:011934ff258670e0472717d4b5e79d04e781982d
+    pristine_git_object: 2990968b7a0533616492c8830b0259674a275e27
+  docs/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetRequest.md:
+    id: 1607ca6961ca
+    last_write_checksum: sha1:da03f04eb5df368789c1771fcd62885d9e8280ac
+    pristine_git_object: aea5d1990a7665ac1450bc0e09f5cc765b737beb
+  docs/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetResponse.md:
+    id: 6e97fdaf8e60
+    last_write_checksum: sha1:86df99f7136cea95067ddaa9d755f9dd33d2f6c6
+    pristine_git_object: 82ff730f7df51e6f7456ec648f1953b8ae36e4e2
+  docs/Models/Operations/GetFilingsV1FilingsGetRequest.md:
+    id: a3c14c89e9fc
+    last_write_checksum: sha1:562ced5838bc6626fed6df76a28c8800f7d986ef
+    pristine_git_object: 2dac55c147fe2952bdd5679587ad6f2c202025d0
+  docs/Models/Operations/GetFilingsV1FilingsGetResponse.md:
+    id: 4fb9286914da
+    last_write_checksum: sha1:d752bf6e61cce4b40ae41fe58ce7d436d37f9b7c
+    pristine_git_object: c176f085a02aab2b70112d18abdc6f365a3ff430
+  docs/Models/Operations/GetNexusForOrgV1NexusGetRequest.md:
+    id: eeacfc5c8723
+    last_write_checksum: sha1:8f55d2cff87a359b9ef53f09034442574d940f7d
+    pristine_git_object: 26def48c25ebc9ed5b2447f78fe273a1f5d8f023
+  docs/Models/Operations/GetNexusForOrgV1NexusGetResponse.md:
+    id: 877aa0d1d666
+    last_write_checksum: sha1:e2aa65db45e64673790fb712148fa269b42bd34f
+    pristine_git_object: 1aa33cf7ab322be852e3d18c69a59aeca658dcbb
+  docs/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetRequest.md:
+    id: 47f1376eb1eb
+    last_write_checksum: sha1:d57d9b57a0516598bd8883b3855b16b2e03accf0
+    pristine_git_object: c7797595749d2799eefe278e033c444449088483
+  docs/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetResponse.md:
+    id: 920bd75cac93
+    last_write_checksum: sha1:cc8d81540dd05467408ec4f75f61d5ba37fee0d0
+    pristine_git_object: 77f80aa32bff70e6388056f356c01308271476dc
+  docs/Models/Operations/GetProductByIdV1ProductsProductIdGetRequest.md:
+    id: e78eebc284ac
+    last_write_checksum: sha1:b91b7925744632c5256f8900ca835824b8c595f9
+    pristine_git_object: 288c0ec15570eadb0c6d3d8227bba891c387e5e5
+  docs/Models/Operations/GetProductByIdV1ProductsProductIdGetResponse.md:
+    id: 74531f41d99d
+    last_write_checksum: sha1:77f7b7bbd1f4aeef8e44864a120c6370b4183107
+    pristine_git_object: 87d0c5d640cd4a39590d468812a92692ac23229b
+  docs/Models/Operations/GetProductCategoriesV1ProductsCategoriesGetResponse.md:
+    id: dc695f265d61
+    last_write_checksum: sha1:d15fec4e81674e9ee5c15c0e769faa678ff71ec7
+    pristine_git_object: cf340deac32223509505ac3412bfd4b4ce06adda
+  docs/Models/Operations/GetProductsV1ProductsGetRequest.md:
+    id: fd06e360720c
+    last_write_checksum: sha1:7f79b9c69fcc83d084954953383a5cc2243e7a8f
+    pristine_git_object: aedc00c2e2991f0b53ed3eec87aeb4c3a9b428cc
+  docs/Models/Operations/GetProductsV1ProductsGetResponse.md:
+    id: 165c29a66b32
+    last_write_checksum: sha1:a034aeac64940a4bfbdbd99a045cf5447d6ee112
+    pristine_git_object: c41db27a40ff390e0ab2a8e947ddda7a01425d45
+  docs/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest.md:
+    id: 9a4059bbef4b
+    last_write_checksum: sha1:2200ee0657d2f2a07a0a1f84fc3b032307911afc
+    pristine_git_object: a7319ffc8b1fe2c91db88ff8202e46dffee7d43f
+  docs/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse.md:
+    id: 7228d936a74d
+    last_write_checksum: sha1:e1f37d6b4bb4b61d834fae2f14b7d32796981ecf
+    pristine_git_object: 81c43d67cc8f92606e3552822eee6e246b7a6dd7
+  docs/Models/Operations/GetRegistrationsV1RegistrationsGetRequest.md:
+    id: c106165d8ee7
+    last_write_checksum: sha1:cfe74bc4afc35505b2ca8cd56fe5d26c7312f5f3
+    pristine_git_object: 27871b06abacf2ba92171ad5dfb6d3fd7d762674
+  docs/Models/Operations/GetRegistrationsV1RegistrationsGetResponse.md:
+    id: 0f1d9b307b17
+    last_write_checksum: sha1:b8ce12bfcedab99d924730b481f269c7da33ff03
+    pristine_git_object: 563d10d1b539226e75c5ddbcdb6d2a1fac06abef
+  docs/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest.md:
+    id: 81515a0cdbcd
+    last_write_checksum: sha1:f35850410affac4bccb30e48cb37475fd37ff338
+    pristine_git_object: af5007cd51c190d539882cbde1e6cbb69ef71789
+  docs/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse.md:
+    id: 0fa67aa28f2e
+    last_write_checksum: sha1:4664994debebe1ff76b33cfb9884ebefb9898bb0
+    pristine_git_object: 1e6f05d77146d45047c8dce1e86efde9aa958156
+  docs/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetRequest.md:
+    id: 60a5ea921df7
+    last_write_checksum: sha1:8b9750bf903654b575665165db5d568311ae7b56
+    pristine_git_object: 8fd272ea60852623166a1f5cd7237dfc28378210
+  docs/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetResponse.md:
+    id: 442ce6125cfa
+    last_write_checksum: sha1:c023bd43cafd648105dd36e6771a2922431cb400
+    pristine_git_object: c5305f864e4f489d6ea04a17a34b76122bd68794
+  docs/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest.md:
+    id: 71126a20de97
+    last_write_checksum: sha1:8fe7624d06e6a6e6209c8dd788de3776eed4ae74
+    pristine_git_object: 4f9f4e5936a31c918a0593e4c0c8be2a0641cab1
+  docs/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse.md:
+    id: 8744b71ccc9b
+    last_write_checksum: sha1:d809f838ee86c730e6954a561854b4d188337652
+    pristine_git_object: ca9d2fc3429bae84ee9847706eab6b49e0a83258
+  docs/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetRequest.md:
+    id: 5397ad586c2f
+    last_write_checksum: sha1:9fc82fcf46638b9ec1f906711dcc72abcb69fd2d
+    pristine_git_object: 185503902724ff203cfb63374c8c74785c29bb4a
+  docs/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse.md:
+    id: 2214f118e7e5
+    last_write_checksum: sha1:53e6c868b18545179249e3efa4ae8af34039a49c
+    pristine_git_object: ce81659b28ed085fcd390e73c79eab5cf245c391
+  docs/Models/Operations/GetTransactionsV1TransactionsGetRequest.md:
+    id: 4e4cabf79bf7
+    last_write_checksum: sha1:e78b18e973bdf2725ed84163af83f62ba6e09182
+    pristine_git_object: d486ddaf926f5bdbda68514bce4d9ea0d16cc42c
+  docs/Models/Operations/GetTransactionsV1TransactionsGetResponse.md:
+    id: f1747a41ff9b
+    last_write_checksum: sha1:2f3ffc973ce9b152e04d283815a731942dc7f22c
+    pristine_git_object: d612a02a1893d516183101100a64b0dc7e7e1761
+  docs/Models/Operations/POSTCreateCreditNoteByTransactionIdRequest.md:
+    id: 375c27584f77
+    last_write_checksum: sha1:f1b7d3046f7ec7cad35b9956a45baec847048ed3
+    pristine_git_object: 4c2677f6fdd0bf438a1f926d0ec56b44aaa47c4e
+  docs/Models/Operations/POSTCreateCreditNoteByTransactionIdResponse.md:
+    id: d3a84bc3d6ca
+    last_write_checksum: sha1:87fc123985777f87e5bf6c96a715fff9272be6d3
+    pristine_git_object: 94d4032f8fe197890af2f73f0076a61ad5ed8ca2
+  docs/Models/Operations/PUTUpdateCreditNoteByTransactionIdRequest.md:
+    id: 16bc8d705fa6
+    last_write_checksum: sha1:dc56816468149d8315bcb5ed51aad8a36eacdb7e
+    pristine_git_object: 0ff30f5f531451a642ee23529f9b68a80282c867
+  docs/Models/Operations/PUTUpdateCreditNoteByTransactionIdResponse.md:
+    id: 308f1cc8f490
+    last_write_checksum: sha1:83ce278f5be7c264d030ced9d3ca4d10b0c94b16
+    pristine_git_object: 18556ba2d19e6c20a1608df9b4df20b0749c9491
+  docs/Models/Operations/SearchV1AddressValidationSearchPostResponse.md:
+    id: cb0f374cd410
+    last_write_checksum: sha1:eabb1a642f8791ea085df00177f96c8f8b1f56d8
+    pristine_git_object: 2d71bc4bb0c4cd6c4775d94e17f6ff14a8ff8d92
+  docs/Models/Operations/SearchV1AddressValidationSearchPostSecurity.md:
+    id: 8cb96b04da04
+    last_write_checksum: sha1:0a4592afce5439586c445a4831aaa3d01601b937
+    pristine_git_object: 5b93abdbd40667a339a91b1044b85964d14036fc
+  docs/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostResponse.md:
+    id: 7bf191093d72
+    last_write_checksum: sha1:2f1fadca953a168449a1925b16ae05c991c836a1
+    pristine_git_object: 8cc9ec53dff0c69800c502f21e3a026e39f926d6
+  docs/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutRequest.md:
+    id: 46039986265a
+    last_write_checksum: sha1:802943fab1e8875448e5080489ae05eef189b177
+    pristine_git_object: fa2b2c15358fa978b9ee79b528a9011eb1e7067e
+  docs/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutResponse.md:
+    id: a4d0a17ed12a
+    last_write_checksum: sha1:8c98b1dd8f2af6b1af2f7aaef51a96e8efefb3bc
+    pristine_git_object: a6c6bfccfa1029ca071f02da7199c2aae4796679
+  docs/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutRequest.md:
+    id: 345c3db5c902
+    last_write_checksum: sha1:56dd7f2729c52a60e13b1a76fe34dd6d254154ff
+    pristine_git_object: 949894db87d1a743b6f5af07d53c702aef201696
+  docs/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutResponse.md:
+    id: 024707196df8
+    last_write_checksum: sha1:dfd06128292625e8bbca4372c1f5437ec7407389
+    pristine_git_object: b07178f805d965ee849e221948430b1689758d5d
+  docs/Models/Operations/UpdateProductV1ProductsProductIdPutRequest.md:
+    id: c09c70481d03
+    last_write_checksum: sha1:0ee8e692ecad278567c0cf60e8c0d30b6b0fa609
+    pristine_git_object: 2a664002f0775e02bcc3252de8c8b3e067f31ef6
+  docs/Models/Operations/UpdateProductV1ProductsProductIdPutResponse.md:
+    id: 4115f88b671e
+    last_write_checksum: sha1:a9bb94c1387b8d7915b178c6644bae6009bea02e
+    pristine_git_object: 972e840905a65eb2322ee548ee29f33a14c42187
+  docs/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutRequest.md:
+    id: fd17e1f4ce99
+    last_write_checksum: sha1:bd0dfa1ca65a573be33cae6e67c85d2b12a7177d
+    pristine_git_object: fc826ffc28308d9e4e448365ccf2550e8ef7d812
+  docs/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutResponse.md:
+    id: 3c89e2abfda5
+    last_write_checksum: sha1:9fa507987a4426c162254ae7b804744725d2c7b1
+    pristine_git_object: 47f87c15f617f8e38a0500ca6ec8f9a60eef61ab
+  docs/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutRequest.md:
+    id: 7c37a8bb4ffe
+    last_write_checksum: sha1:560405cef60fa85a66bea78dcf27a5e8147b4302
+    pristine_git_object: a03e5f564f732512c872933b3ceb3df9e725764b
+  docs/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutResponse.md:
+    id: b3cae466680c
+    last_write_checksum: sha1:36a08947bb4e973715968bbda794fb789b4b4189
+    pristine_git_object: f1bc0df60c31bee1a1b801db07171ec4d655fbb1
+  docs/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest.md:
+    id: 493f8fd35687
+    last_write_checksum: sha1:7bfb765d73cb2cb6bf2e4064dbf3fd8c815dc180
+    pristine_git_object: 90406ef4cce22a356e56e3a50520ff035c47b2e4
+  docs/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse.md:
+    id: 39d102798db5
+    last_write_checksum: sha1:5d623088f99dd51946e1ddcd802ab7ec499815d2
+    pristine_git_object: 2ffc6933797bdc4be2bc117a82ce2dead2b8d14f
+  docs/sdks/addressvalidation/README.md:
+    id: a167b487f13b
+    last_write_checksum: sha1:77b943ae29854ef45cee8f75010d7eb471a4177a
+    pristine_git_object: 4944e98b461ed8741eaadb5a1e2ac1b7c6d16a95
+  docs/sdks/attachments/README.md:
+    id: b60e6ecf628b
+    last_write_checksum: sha1:7c5206e55267a3528bf3e137b7f3a36062d4009a
+    pristine_git_object: 42b304cbb5a327e2d5c57360e35e200a4d50a76c
+  docs/sdks/customers/README.md:
+    id: 9332759cffc2
+    last_write_checksum: sha1:37d52ee7023b29e22b52add2e70cf5c5912a7424
+    pristine_git_object: cdefa19150c3091f8d688a25948043481f610002
+  docs/sdks/exemptions/README.md:
+    id: e3bfb9ba8fc5
+    last_write_checksum: sha1:dfc0ce86b446a631ac86d6c369094c0fe8e9312e
+    pristine_git_object: 5babce8a5438d12e61e1aa4a07236f711ab8e24f
+  docs/sdks/filings/README.md:
+    id: 3bc48cac3954
+    last_write_checksum: sha1:ed6b984349ee72c4d9a2ac5458e4bfe4eff3807e
+    pristine_git_object: 5e9986a766357d4689d2a9548991e6198435eec4
+  docs/sdks/nexus/README.md:
+    id: 5d33642e4c8a
+    last_write_checksum: sha1:9832259068b7680472ac7b6b1f5e342e55e55e54
+    pristine_git_object: 07d246dec0af38d42a8aedc92bfc6f9d353f54f0
+  docs/sdks/products/README.md:
+    id: af06255e12ab
+    last_write_checksum: sha1:a2c57c4f3bdb843a1fe1e6de768ccfaab6744d88
+    pristine_git_object: dfe0462718fb6d7342854e30c98940027c4e87fd
+  docs/sdks/registrations/README.md:
+    id: 4859b3ff0741
+    last_write_checksum: sha1:fefa65c4a5526de219c48173813534126b5feca1
+    pristine_git_object: e035a0ec9ee23613b023781d17d6eaa50069daff
+  docs/sdks/taxestimation/README.md:
+    id: e87c7b0ae06e
+    last_write_checksum: sha1:d673cbccf9ff4cc89163a57b37071df225081afc
+    pristine_git_object: a11b87cdbf6fbf529ffea70881263f7d40b3e91e
+  docs/sdks/transactions/README.md:
+    id: 85592abe3c6b
+    last_write_checksum: sha1:deabd8ae7cb7774312487e6cd5afada0addcd2f5
+    pristine_git_object: 4692e9ad5b92a0c6e5e64eced1cdf551dc380fab
+  phpstan.neon:
+    id: 9503203c22f7
+    last_write_checksum: sha1:36c7aff86142888cf147c7dceed4bbc02049e8fd
+    pristine_git_object: f623fd192fd882958041cfa10f202c5303cd9ea8
+  phpunit.xml:
+    id: 357499abc6fd
+    last_write_checksum: sha1:1a2f73f76c0929634baf4e48f5718b9a2449be79
+    pristine_git_object: d3f71bfa07200801d6b6a0b7a94576259d12ab31
+  pint.json:
+    id: 62bb227d0546
+    last_write_checksum: sha1:fc5919a12e8478ad039f103190710e526e680d73
+    pristine_git_object: e34fd80ce946c6edd9cd68e379392296c0fe796c
+  rector.php:
+    id: 6615ad7e99dd
+    last_write_checksum: sha1:2c0586f29783d1cdf80ea09f3ed0f4693329f3e6
+    pristine_git_object: 40eb9bfbea10383ae16ce195da9113bb2abfc586
+  src/AddressValidation.php:
+    id: ccee1358750f
+    last_write_checksum: sha1:30f58be27090675493e2774c8b6c6dccc8fb1cf3
+    pristine_git_object: 51307368fcdbe281b7c0a7d2861a02d1066b7195
+  src/Attachments.php:
+    id: 935417c1bb00
+    last_write_checksum: sha1:8419582f28c12b32f070bbebe1195bbe713698d9
+    pristine_git_object: 7aca06c53214797f8ef682c1efd2174cc23734af
+  src/Customers.php:
+    id: e30600fa045b
+    last_write_checksum: sha1:3de558216ec27c3e82bf3e5e0b8f0981b4754bad
+    pristine_git_object: 55dcdb71fb54c1762cb07ca5b37748f85f148a3c
+  src/Exemptions.php:
+    id: 6cb633115b6b
+    last_write_checksum: sha1:0d0243521229ba01d6eb9f75fdf06a80058178d4
+    pristine_git_object: 829dbc249b104abc0c04cd739157e9b50b054e19
+  src/Filings.php:
+    id: 966341ff67cb
+    last_write_checksum: sha1:16206691ff161baeec887dd923f6b9d8c4af028e
+    pristine_git_object: 76e0794eac02c3f56a3cf8f37e7587a3964e8eb7
+  src/Hooks/AfterErrorContext.php:
+    id: d3767eb93096
+    last_write_checksum: sha1:272159f6539934fa424d145c1c526a964c04db0b
+    pristine_git_object: 739e7f5f0737a066ef25044ddeb81859ca1baab8
+  src/Hooks/AfterErrorHook.php:
+    id: b6f229875029
+    last_write_checksum: sha1:e3bb9aacaf359736cb2e5cc0369e8cc174d72fa3
+    pristine_git_object: e3c722cfa0303e23659153af60b5603f7a830ba6
+  src/Hooks/AfterSuccessContext.php:
+    id: 1297ed8410e9
+    last_write_checksum: sha1:59a9fda327a4dcb9799f91da4420f3a5e29c5844
+    pristine_git_object: d23e57940dd7b068a4e6da3783908020486de4e9
+  src/Hooks/AfterSuccessHook.php:
+    id: 3f9dd7b31c3a
+    last_write_checksum: sha1:83418ea86f0ebaf0087b33efd641af90d5afdacd
+    pristine_git_object: 02a669178a71dd19c0db33a32d54821c55f30a1c
+  src/Hooks/BeforeRequestContext.php:
+    id: 62d4f2980d2d
+    last_write_checksum: sha1:bf18147404a330a039f9c3d66e913d775b10927d
+    pristine_git_object: afd146fbb922325482618fdaf6b5705a0e94250b
+  src/Hooks/BeforeRequestHook.php:
+    id: 55e17f24cc34
+    last_write_checksum: sha1:ffa3724a2cf7e44a2d25bac5262acd3bc675997e
+    pristine_git_object: d77cf9ec49ac42fe6e5a20155bad52e7df7034a6
+  src/Hooks/Credentials.php:
+    id: b37a16c555af
+    last_write_checksum: sha1:b991f058c93f44fd25edd4374bead21d6cc5e1d1
+    pristine_git_object: 97a227c953c478b500ad2e84217797a2e10973e9
+  src/Hooks/ErrorResponseContext.php:
+    id: 2ba4c41dd54c
+    last_write_checksum: sha1:f3e3719483a3b581af8b3310b5234d61f6253e76
+    pristine_git_object: 51a013b2e38d494d056eabef124c6f6ec724d081
+  src/Hooks/FailEarlyException.php:
+    id: 0ae1bdaec63f
+    last_write_checksum: sha1:eddf141cbc435523e0d69f0e991c9d1080476f9d
+    pristine_git_object: 9784d31d0a96b8bca183c241c7783544ef322b1b
+  src/Hooks/HookContext.php:
+    id: 279c02d439a6
+    last_write_checksum: sha1:069d1fff71039af367f2945c128ff5011aa7a556
+    pristine_git_object: 26249b4a42de4e3bc4f4927a36da7c52d0519488
+  src/Hooks/Hooks.php:
+    id: 6cf174b736b4
+    last_write_checksum: sha1:3ff733a5dbd8c9151ba98f4e5c440f568d45e184
+    pristine_git_object: f6f3a67c56bf5d0b64610bf7694af77f3d8d236b
+  src/Hooks/SDKHooks.php:
+    id: d31b27b84f0b
+    last_write_checksum: sha1:821d70b6d37789d082b80bfc8cbdfa61b6cd60ea
+    pristine_git_object: 9739d0f3e0ccaa129e960328f90c22e0e16437b4
+  src/Hooks/SDKInitHook.php:
+    id: 16729a806274
+    last_write_checksum: sha1:1ad83e25020896638cb60cc0c7c7478eb19de895
+    pristine_git_object: 9a839d4d4ebf6a3bb879373576e5cae86e6b7f00
+  src/Hooks/Session.php:
+    id: dc21f349b594
+    last_write_checksum: sha1:edc1dd77e35bdc8a3e61d92431c80e99316da950
+    pristine_git_object: 2b990778ba2c3b7bc200fdcf9d33865c0836ec80
+  src/Hooks/TokenResponse.php:
+    id: aad5e2b1d06f
+    last_write_checksum: sha1:4e7230685a95c314355cdbf65abf38e6f7241a2b
+    pristine_git_object: 1f74aef9346444ca7a5d5693319c8f42da326926
+  src/Models/Components/AddressBase.php:
+    id: 674fd8eebc86
+    last_write_checksum: sha1:77201bd3f7964c90f9d2efbcff388c9721c522e1
+    pristine_git_object: c0583df7fcdb46ff8f1bb191d28eb9e36499bb3f
+  src/Models/Components/AddressResponseData.php:
+    id: 6a902da97faa
+    last_write_checksum: sha1:78e61d0d639dc8d0864be5a83b5b2edbb8631ade
+    pristine_git_object: e09a723918018be5251f01ee54d4170447182058
+  src/Models/Components/AddressSearchResponse.php:
+    id: 8b985ef28757
+    last_write_checksum: sha1:350714ee107e0972aa4dfbd7557dc97e703d54b9
+    pristine_git_object: 41325a218219fbfeec46ca878998ad542c3329a6
+  src/Models/Components/AddressStatus.php:
+    id: 78db14386a59
+    last_write_checksum: sha1:f1d7277b024e5c77e4b010be4f0643c226b365b2
+    pristine_git_object: a2364b3995298aaf7cde931667f9c3dd05916a34
+  src/Models/Components/AddressSubmittedResponse.php:
+    id: 002f06db607c
+    last_write_checksum: sha1:0a7e1c587e9e9172366239e4a83d4317b7c1d7ae
+    pristine_git_object: eccc42b3d0950bafd7a5c8c839756d4032148014
+  src/Models/Components/AddressType.php:
+    id: f63bc31c51d9
+    last_write_checksum: sha1:3d6646175beb05568364032176058fd32a938739
+    pristine_git_object: 19b904765e08de9da265ffed901ea1cbf67a6909
+  src/Models/Components/AppliedTo.php:
+    id: cfcd0e2f893d
+    last_write_checksum: sha1:a38a2859b638e462d440f5a60f560e6c37cb0b54
+    pristine_git_object: 6b970ffb87663f8d81ed10c5793b02faecbf2d8a
+  src/Models/Components/AttachmentRead.php:
+    id: a2f2e1a3e821
+    last_write_checksum: sha1:30397559d24c2ccad655deed0ec9caf36ebbff88
+    pristine_git_object: fe58458a07bf9919042b0a518f0ca8a5dc095e04
+  src/Models/Components/Attachments.php:
+    id: 78e2732ff4ba
+    last_write_checksum: sha1:ab1ec7f73562d40b3968ae9eca387e6a3aee872e
+    pristine_git_object: 9c95bec4829b97d0d8d32e8c10fd5b77b9ec103e
+  src/Models/Components/BackendSrcAddressValidationResponsesValidationErrorItem.php:
+    id: 83976620af7b
+    last_write_checksum: sha1:791bfbed718a703c2ddeec3bc6984098776ef3f6
+    pristine_git_object: 5c4a62f4ddbdd5c9921af5cbf8ca1a1988e4deac
+  src/Models/Components/BackendSrcCustomersResponsesValidationErrorItem.php:
+    id: 4d51332e4189
+    last_write_checksum: sha1:ce96a25a1841d5341aae9b7f425ab7ba7055d193
+    pristine_git_object: 6b9f642e740611f9abf097b32821776b201e5f02
+  src/Models/Components/BackendSrcExemptionsModelsExemptionRead.php:
+    id: 8d144101934f
+    last_write_checksum: sha1:83dc0351095dd472d574a2d9a91f4d074c6250d6
+    pristine_git_object: e26b28845987ea4c238ca7a14fb7784c1e09a61a
+  src/Models/Components/BackendSrcExemptionsResponsesValidationErrorItem.php:
+    id: 4b1792ba7317
+    last_write_checksum: sha1:d33bf7183814c1f78d3edb4dcd236e835f7c148f
+    pristine_git_object: 39851571f02c0ceaaaa60ead896c69cede89b7f9
+  src/Models/Components/BackendSrcExemptionsSerializersExemptionRead.php:
+    id: 5cfb71561c6a
+    last_write_checksum: sha1:7fe9ddd92e18c2cd40186b9c65f411547c37f73c
+    pristine_git_object: d4766369c0d69283eb8b93c653725b8da104ac7b
+  src/Models/Components/BackendSrcFilingsResponsesValidationErrorItem.php:
+    id: d80d37e1e418
+    last_write_checksum: sha1:3b113e82247d0d383281c390b3a583d1b2af4ab1
+    pristine_git_object: 18f4747b2e97617b3f6a3d42f60c9642daada127
+  src/Models/Components/BackendSrcNexusResponsesValidationErrorItem.php:
+    id: a53979c25c0b
+    last_write_checksum: sha1:c936ca05fbf376cc8a37eff6c894f14c86b308df
+    pristine_git_object: e695738517e486de47d847bc3bfb6ba7a61df9d8
+  src/Models/Components/BackendSrcProductsResponsesValidationErrorItem.php:
+    id: "258467625309"
+    last_write_checksum: sha1:38e78c147c0b7dd616a6bc2d380548a6a7c80d98
+    pristine_git_object: e7c43580814183bc72e99fe3d709b9b65231f3f7
+  src/Models/Components/BackendSrcRegistrationsResponsesValidationErrorItem.php:
+    id: b3ab6b4672a0
+    last_write_checksum: sha1:bc536d312b6d5a1ef4b3a2266854a8c70a7654d9
+    pristine_git_object: e105fc593e7eb2d0efbcac0acf63f73fd1f62b60
+  src/Models/Components/BackendSrcTaxEstimationResponsesValidationErrorItem.php:
+    id: 66955c386a49
+    last_write_checksum: sha1:e1481ba52ff6138e64af59a7f15b8e2dd7ecbf1c
+    pristine_git_object: 1e2c54c1623cf56e627b8e07877ef4f79c193bb6
+  src/Models/Components/BackendSrcTransactionsResponsesValidationErrorItem.php:
+    id: 35bb44d3fd77
+    last_write_checksum: sha1:2630767715250ee8935259e7b558fa5178a70bcb
+    pristine_git_object: 0accb540c7e023af90b4cb23fcb9ff77e0966ba2
+  src/Models/Components/BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost.php:
+    id: a975e8bda957
+    last_write_checksum: sha1:63c7894f025762a87a166cf247c8e4fb5be073e9
+    pristine_git_object: 1084d410fd213bd340e2032eac0fa0eb815b11af
+  src/Models/Components/ChangeRegimeStatusEnum.php:
+    id: 2e51d5731599
+    last_write_checksum: sha1:eb39bc9ce4cd8a2cb31497931c7df6001a4df785
+    pristine_git_object: 0411014531533640e10db12a5f5b87d6a1ebba25
+  src/Models/Components/CountryCodeEnum.php:
+    id: bad36f902dc2
+    last_write_checksum: sha1:71d5dbe6bc413677a697c4b9f419300664a1879e
+    pristine_git_object: d86a1588ab274b54200d31bd38316e1f5a769a2a
+  src/Models/Components/CreditNoteCreate.php:
+    id: 811f220ba6f6
+    last_write_checksum: sha1:15fd370be3c052da1fb061b33214167341f60083
+    pristine_git_object: e9e663fa922e3c02f30ea3677363fd7f73ec270d
+  src/Models/Components/CreditNoteItemCreateUpdate.php:
+    id: b53842c2db96
+    last_write_checksum: sha1:dc4cfd4e218fc1b51e9c1b316744cedcf3fbac59
+    pristine_git_object: 8135190333783581367ccf10fee1ca5ef4cd0a0e
+  src/Models/Components/CurrencyEnum.php:
+    id: 7388197bd455
+    last_write_checksum: sha1:6db6a1fd1f2d569339654c7ed928b6eaf298bc76
+    pristine_git_object: 14347b0ecbeb82a4e019f726ed3b7710a7644dbf
+  src/Models/Components/CustomerBase.php:
+    id: ef761a198245
+    last_write_checksum: sha1:198addb4b32796f9f10820ec6fe8f7833e8554ee
+    pristine_git_object: 2c107e7a5d5d01e89dc6c06b7b40697a9aebe580
+  src/Models/Components/CustomerBaseBase.php:
+    id: 231fa2a1ba61
+    last_write_checksum: sha1:5c6491babdd9821c1d802f37c056f37a751fde25
+    pristine_git_object: 357f781faf52d9aad63b7a5c4eafecd3cd37c6cc
+  src/Models/Components/CustomerBasePublic.php:
+    id: 5c0d7732f250
+    last_write_checksum: sha1:ea02a77a9012d7bf3afed0985f5df4ece33bee53
+    pristine_git_object: c291d9634974800508598b4acf3f0eb4848540fc
+  src/Models/Components/CustomerCreate.php:
+    id: dec5e545a6b9
+    last_write_checksum: sha1:b39d3f2b4d0b2c1eaca187534a3a6fedd8d86ce1
+    pristine_git_object: 273595b6a57af724334c6f64bb09bdac3bc47222
+  src/Models/Components/CustomerRead.php:
+    id: 9dc3d55a102b
+    last_write_checksum: sha1:7fc61b677afae69128f814b1c08fe98b71583bef
+    pristine_git_object: 62de3253ebbf782e608f2466e2d30a93731a0112
+  src/Models/Components/CustomerTaxRegistrationRead.php:
+    id: 5b314cdfe6a5
+    last_write_checksum: sha1:bc20ec88fc994c154c38b0e987890afa7767e903
+    pristine_git_object: 30c7568c2b6a94058e19a503c549256ff14ae67f
+  src/Models/Components/CustomerTaxTypeEnum.php:
+    id: 011bf1d20abf
+    last_write_checksum: sha1:d979a1477641a929692051bc3cfe2979e49a0262
+    pristine_git_object: f962401e3603f5a44b6739e195520e2edab43a73
+  src/Models/Components/CustomerUpdate.php:
+    id: 732a302d4df2
+    last_write_checksum: sha1:5c3af8cd1a7a08a1a9355438caafb51b3c64a8c2
+    pristine_git_object: 062256695b58c212563ed450103d54038fdcf8c4
+  src/Models/Components/DiscountBuilder.php:
+    id: abf78d658541
+    last_write_checksum: sha1:51c20dcfe7f05bf7cc8c03de2618c843fb7d6754
+    pristine_git_object: 38c3e1db9919969e64222990f751ab24492e3b97
+  src/Models/Components/Exemption.php:
+    id: 3aa92a8a28ed
+    last_write_checksum: sha1:33e8732d2855cbbbe626e4a250d47de97bc86555
+    pristine_git_object: dda6935ff845078c5bb646bd55dedf6d61b3491e
+  src/Models/Components/ExemptionCreate.php:
+    id: bba05b88aa8a
+    last_write_checksum: sha1:7e62152285c35c6052fffab5c794d400120e01ec
+    pristine_git_object: 4f768866137375df4049337ee2b3adc9fb60b953
+  src/Models/Components/ExemptionRequired.php:
+    id: c3e63faf8f7e
+    last_write_checksum: sha1:59e87608cdb6e1dbe36d14311c82f30e37991582
+    pristine_git_object: 1864e98533409be9648bd771a8c6bd8512d1c921
+  src/Models/Components/ExemptionStatus.php:
+    id: 52a51ea6bcaa
+    last_write_checksum: sha1:bc1d9e8378afbb9a233dd2929790d4b888dd1718
+    pristine_git_object: f65659204cf5e675bde255853d3872abcc85a750
+  src/Models/Components/ExemptionType.php:
+    id: d2f7b197a1c4
+    last_write_checksum: sha1:88996a8743495d916495f6f4b31535626f3b156d
+    pristine_git_object: d6d0fb05561752da1bc83ec024bbedb97fb48493
+  src/Models/Components/FastapiPaginationDefaultPageExemptionRead2.php:
+    id: 74437f01ccd9
+    last_write_checksum: sha1:d919ee6ae7b1793547eb7189c899d18e22f0aa56
+    pristine_git_object: 6f0aef15a028b09b1439b4cb209c95ded0a742f7
+  src/Models/Components/File.php:
+    id: 4690d5ef5d67
+    last_write_checksum: sha1:08a50cbefc75a1c9f06f67fe37a7ce2af365f81a
+    pristine_git_object: 3c9e840d2bc8a83d4f9e680b797b61b7cdaabdb7
+  src/Models/Components/FilingDetailsRead.php:
+    id: 87f6da9b04e7
+    last_write_checksum: sha1:243df03c8c2eaf5c19cdb8aa45217d60e197c6fc
+    pristine_git_object: 8b15e1df0f2cd39c18b70822bfe04c1b4bdbb395
+  src/Models/Components/FilingFrequencyEnum.php:
+    id: 92d3951b814f
+    last_write_checksum: sha1:1071a1e987815b90d041ae36fb6e8feb89194c51
+    pristine_git_object: 3156a802f1efc5624d75198b4c972a630c52d53c
+  src/Models/Components/FilingRead.php:
+    id: 895b06daadb4
+    last_write_checksum: sha1:c17ffb72d74b59d7f7efcc6c809abb79cb3db3e9
+    pristine_git_object: 2d1039a4dca21a90afe4e53467ccd601088473e7
+  src/Models/Components/FilingStatusEnum.php:
+    id: 4be15e15fe05
+    last_write_checksum: sha1:434cdbe86c94e5c7f947a48ba96274638c436f21
+    pristine_git_object: a67ef7f07167b097fe5d673dcd7d3ca72e271555
+  src/Models/Components/FindThresholdCrossingTransactionState.php:
+    id: "664277538704"
+    last_write_checksum: sha1:e167d8dd8cf7d0ac76efcfd86ecebfcc845e59b2
+    pristine_git_object: 7d09e2a3e2f00ea7cdbc2e5f28c9c73634211522
+  src/Models/Components/JurisdictionType.php:
+    id: d2e6bbb8feca
+    last_write_checksum: sha1:38e34304096b1356bde58b44a618ecf12681251d
+    pristine_git_object: adda93a0e3bad2d4764269ee715d05aa3acbbfcf
+  src/Models/Components/NexusResponse.php:
+    id: 58faa3ff769a
+    last_write_checksum: sha1:fbdf79c5bb184f08661e3628c3c9ede87539ea10
+    pristine_git_object: 287647e62c4f13c00876e863c8e4e117f17802bd
+  src/Models/Components/NexusStateEnum.php:
+    id: 1c188fa7f95a
+    last_write_checksum: sha1:0fe96b9cf6b5e23cb2f79fddda20921e8ad1ac04
+    pristine_git_object: e41e64d346d36ae2b249225cffe6554bae1ab24f
+  src/Models/Components/NexusStatusEnum.php:
+    id: ce3bf869df97
+    last_write_checksum: sha1:a589f6821d4ccd534febe29d4188d20b9323ec02
+    pristine_git_object: 634d9ea28cf34a5b66277bd4c1c48d1ff15b6408
+  src/Models/Components/NexusTypeEnum.php:
+    id: 05e42c2eb1fb
+    last_write_checksum: sha1:1a2fb4d3dda7d5bf197c9aef8afb02fbebddfb7f
+    pristine_git_object: fd0df8b48e86bc3111bceaf0ab587530bd04f51c
+  src/Models/Components/OSSRegistrationCreatePayload.php:
+    id: cf58333c2c96
+    last_write_checksum: sha1:40f19fd033edde567449becc332f57d4a95f4fc4
+    pristine_git_object: c41e09c995e434f2ce595c7466745aca0301e03c
+  src/Models/Components/OssTypeEnum.php:
+    id: 7f8e71222b7f
+    last_write_checksum: sha1:99fc092dd78a580bb2cc4c4f80e13584a788db3d
+    pristine_git_object: 90e328a1fbf539fca21ed489eaa31ee8b84fd18c
+  src/Models/Components/PageCustomerRead.php:
+    id: e9f508d4ed44
+    last_write_checksum: sha1:a54e2eb3a657a8ce0d383f3aceae5d34b609bab9
+    pristine_git_object: 130edee97358a8eb83dcc19bcf41d77d8f207c73
+  src/Models/Components/PageFilingRead.php:
+    id: 2eacc8ef5149
+    last_write_checksum: sha1:cdb1a7301f846a222e0116f6d12f24d3e7f02852
+    pristine_git_object: 30bee267a1b342d429d77ecc78882c66d754a927
+  src/Models/Components/PageNexusResponse.php:
+    id: 34ef1f597bd5
+    last_write_checksum: sha1:669a980c21752428f62b11e54bf066911ac67ab7
+    pristine_git_object: 0ff88b13f2fce3bca1c3bdced347f9e6b1cfdcaa
+  src/Models/Components/PagePhysicalNexusRead.php:
+    id: 7f180c8c7288
+    last_write_checksum: sha1:bedfd275c2e93752f9315544ce1a7287754c1a67
+    pristine_git_object: f4cc54bcb53a54a51c407662f6cb97bc92eef26c
+  src/Models/Components/PageProductRead.php:
+    id: 6e32af62ac41
+    last_write_checksum: sha1:f85af15cce302f8a643e1b441a0cb3cf890410bb
+    pristine_git_object: 4d6d832df589e9d894ffa7428fa2e3f8750faa80
+  src/Models/Components/PageRegistrationReadWithPassword.php:
+    id: 2396111bacad
+    last_write_checksum: sha1:357691e900a277a2e3fb72ca452a8055fb584153
+    pristine_git_object: e24632e807517149e3bff25adc221e0271b40c54
+  src/Models/Components/PageTransactionEstimateResponse.php:
+    id: b05da6ae0b7e
+    last_write_checksum: sha1:c50faaf194e034e3fc928f854de2c4175341fd5e
+    pristine_git_object: 03c818e39ca0b77d6598bed86102453085d1b2f2
+  src/Models/Components/PageTransactionRead.php:
+    id: a7ea2c76a141
+    last_write_checksum: sha1:b6947212a3ba522eaf398bc622e6be18efe6119f
+    pristine_git_object: 2eff7a83a184a4451ad46d5e95e82cb31c460631
+  src/Models/Components/PeriodModelEnum.php:
+    id: 84b194383062
+    last_write_checksum: sha1:4f501456e7892dedd2c24bd583bd3ef7715d5d0e
+    pristine_git_object: 024baf1ca4de9e18bc837c2ec64828547bcbe361
+  src/Models/Components/PhysicalNexusCategory.php:
+    id: f72e43bec199
+    last_write_checksum: sha1:d2b657faa349baa5d8da69ca1887978845c8c9e1
+    pristine_git_object: bc5fb4a91ea96eaf7e8b4bc652fef277a2fdb001
+  src/Models/Components/PhysicalNexusCreate.php:
+    id: dac0adf3a0cd
+    last_write_checksum: sha1:4f9c20522eeddb86b060d2a2fa7a669370451121
+    pristine_git_object: 60a26d0f2fc9d75455d12e9cd357a616a180c579
+  src/Models/Components/PhysicalNexusRead.php:
+    id: 038e64bb7842
+    last_write_checksum: sha1:9eb1608d9ceb11f4426a752d4ded215c7c1add62
+    pristine_git_object: d3596ab817d3f2e6ed5797ee2d4859038cd26583
+  src/Models/Components/PhysicalNexusSource.php:
+    id: 493c790fd61c
+    last_write_checksum: sha1:28a0c3b723623f050d81c687ad368cebcb25a7cc
+    pristine_git_object: ff6756b74545a032f0521b5e42572a376cc6d957
+  src/Models/Components/PhysicalNexusUpdate.php:
+    id: 227e300f0951
+    last_write_checksum: sha1:bfaa92b7afb8edd0660a28449c868bb83c4e1ebb
+    pristine_git_object: c09d47c7dd0d70dc652807cd4c90edcee23ca335
+  src/Models/Components/ProcessingStatusEnum.php:
+    id: 13f5fe218270
+    last_write_checksum: sha1:b9528fa254f737606fc8d14e5a84979f14b08ba2
+    pristine_git_object: 43b71613459b76820caa628cec738f308f249617
+  src/Models/Components/ProductCategories.php:
+    id: 6323fa12ba02
+    last_write_checksum: sha1:15b0108db2f735336f152feea8581e9c6c44621a
+    pristine_git_object: 1887fd8b5757f5708ab28ab86802db7897d467dd
+  src/Models/Components/ProductCategoryEnum.php:
+    id: 6f954628f1e7
+    last_write_checksum: sha1:d47860e32a5c51410c07efa10a1d5f97e4f37c37
+    pristine_git_object: 5d6eb2534922d667c29962baa427812169612bb6
+  src/Models/Components/ProductCreateManual.php:
+    id: 8d721ed8550a
+    last_write_checksum: sha1:eea46245e0ff1b072b8b1bb6dae4a98db697fda5
+    pristine_git_object: 0c4205442202b158cc6a02ab9d3d3c3314771082
+  src/Models/Components/ProductRead.php:
+    id: a6441e3f7617
+    last_write_checksum: sha1:2fc3f077f81e68b6bd3c1e15f4278886c110cbe6
+    pristine_git_object: 3ef22b7009428f705d5550a9b0b294a07e253cc9
+  src/Models/Components/ProductStatusEnum.php:
+    id: be3b28418971
+    last_write_checksum: sha1:c011bb373bd7902317bfddcfb9e77317a31735fb
+    pristine_git_object: 2ceba95644dca1eaedf5234370c4d5c19c74af89
+  src/Models/Components/ProductSubCategory.php:
+    id: b2b7334f0db1
+    last_write_checksum: sha1:835a9435182e9bd9336958dcaeb06684b795ae5a
+    pristine_git_object: f1bb5045a02be3f18ce39334053c6262a2ff595e
+  src/Models/Components/ProductSubCategoryEnum.php:
+    id: 73c6e8465218
+    last_write_checksum: sha1:209128bad4e9f750f3fa8d046ef9011d1c164a11
+    pristine_git_object: 4897c7eecede399c137bb1250556888e472febab
+  src/Models/Components/ProductUpdate.php:
+    id: 5510f4106d48
+    last_write_checksum: sha1:6690cf1a5aa0e0e4c62b63d0f8be72e69aa79980
+    pristine_git_object: 5720695220febc3f17d83de25274fdf0708a69b3
+  src/Models/Components/Registration.php:
+    id: "936580434681"
+    last_write_checksum: sha1:3a31b3760bbe3e26571caaaa68a763683bc49120
+    pristine_git_object: 498bdb755ed77be875ebee77cf8c894de48fc50e
+  src/Models/Components/RegistrationCategoryEnum.php:
+    id: ef21c47d382a
+    last_write_checksum: sha1:236e16b6b2440c8a7fa669d4f83f7aeb8307f929
+    pristine_git_object: 0486e3f792161c8d53503507ddfb4d05cc2aa007
+  src/Models/Components/RegistrationCreatePayload.php:
+    id: 81ca14aba934
+    last_write_checksum: sha1:dd939f97e668eaf2ff880a4b593a845fbb6a11b2
+    pristine_git_object: 6b102f6ce4213cfe913bca417884755c8fec1712
+  src/Models/Components/RegistrationRead.php:
+    id: 3a0b0e0d92f1
+    last_write_checksum: sha1:b565bcaa408e0897d704a5d7db05b7caedda2732
+    pristine_git_object: 7f9ec973076cc1150bd7c27608dc622d9a33ae07
+  src/Models/Components/RegistrationReadWithPassword.php:
+    id: a4e70ffa5439
+    last_write_checksum: sha1:5f51f565e438212008f69941dfc9557e5017f2ab
+    pristine_git_object: 06eafd2258a998e3203765121fde2ef962a0dce2
+  src/Models/Components/RegistrationStatusEnum.php:
+    id: fc1bf942de84
+    last_write_checksum: sha1:878c28996054db78fb7c9af45dbfea46d21afab1
+    pristine_git_object: 6c7316967e96113122389ab2e990982d15f6e3a0
+  src/Models/Components/RegistrationTypeEnum.php:
+    id: 81f06b238091
+    last_write_checksum: sha1:813818647cfb3eb1cdddd1bef23f9ba4f4e744eb
+    pristine_git_object: 97c94fd65c552f12a9bfb8e6e6264cdbb9576180
+  src/Models/Components/RegistrationUpdateAPI.php:
+    id: 5b3555d65d83
+    last_write_checksum: sha1:fedc5a13e681f7777bce112922103db2af8b9969
+    pristine_git_object: 9fd2269536bbc32a85e4b964eb38ca2c1526bd93
+  src/Models/Components/RegistrationsRegimeEnum.php:
+    id: d8ec7d67d952
+    last_write_checksum: sha1:2afedaf6df18ea72a050d86cd522cc04dfdc6ada
+    pristine_git_object: 7caafa38de56221dac4c3e7ec123df100a9ba1da
+  src/Models/Components/RelatedEntityType.php:
+    id: d5e91202df73
+    last_write_checksum: sha1:e08c9f1877f5334bddf7a6aaa795c788fed0132f
+    pristine_git_object: 93dec328153d8e4a0c44dad1bc112c18621e6eb9
+  src/Models/Components/SSTRegistrationCreatePayload.php:
+    id: 94bff0c42788
+    last_write_checksum: sha1:2d0a6ec52de450e9ff74e5b892f59aa56a4a20ed
+    pristine_git_object: 488ec591ccf11bb46f9db6bf65be229eea5843e5
+  src/Models/Components/SalesOrTransactionsEnum.php:
+    id: 5eb1999805c4
+    last_write_checksum: sha1:5a3d94449fc3253dc07b6808806f26294804f790
+    pristine_git_object: 7dbdfb189a0b8de99cdac144a6de634cfa8d9830
+  src/Models/Components/Security.php:
+    id: 7c1ef2c6cbb3
+    last_write_checksum: sha1:00986bc9d9e23cf6d4b4878bca22b762f3ef85d4
+    pristine_git_object: 93d7d1f7c6c73bd8b65b588e7bc77025e7d37418
+  src/Models/Components/SourceEnum.php:
+    id: f5994f78a6dd
+    last_write_checksum: sha1:d88cfff75428bae11525f38527e704ec2d572e88
+    pristine_git_object: c0eec5cd7c4b36ec38353ebca4b6950befbf1a48
+  src/Models/Components/Status.php:
+    id: acaeb52457b8
+    last_write_checksum: sha1:75e17d7ac1b979be19bf575149be65190d6851f0
+    pristine_git_object: 6f7ca874059b8d88ea1e380acafd8a8955119894
+  src/Models/Components/StatusEnum.php:
+    id: 14e5bbd0f2b3
+    last_write_checksum: sha1:cd6c0f79ab087ba7fde13d258c6a96ff4c386352
+    pristine_git_object: f403e23137e78a2c47b293e1789db850841d6eca
+  src/Models/Components/TaxExemptionEnum.php:
+    id: 1ef7d9fff07e
+    last_write_checksum: sha1:f01ccfd736d7b2d50970a3e90e7b1a4394dda2d1
+    pristine_git_object: 69a6042f963102c8b7121d55a89bc7bea2f056c3
+  src/Models/Components/TaxItemBuilder.php:
+    id: 1ea1664128b6
+    last_write_checksum: sha1:6b3f595542ea10425d784933a9e89788b1c3d098
+    pristine_git_object: a542a9eb21989666efe76fd08d111e60684719aa
+  src/Models/Components/TaxItemEstimate.php:
+    id: d1685dba79d3
+    last_write_checksum: sha1:c1bb954b871f71e7bebf9b6dff57a7b6a2d20a01
+    pristine_git_object: af8f22dbbad95de6e99a40a17496fce07608b927
+  src/Models/Components/TaxItemRead.php:
+    id: dec975713afc
+    last_write_checksum: sha1:b1b9a68ac2a8653a382f48a547f1fdc78f11975b
+    pristine_git_object: a2f683dbc50cb4cc5533b66a07b4f39f414fa881
+  src/Models/Components/TaxItemReturnReasonEnum.php:
+    id: 1eef79659a2a
+    last_write_checksum: sha1:906e73ee3dd9e24096f6ac27764a830459b27aa7
+    pristine_git_object: 8f82efd006f0fbdcf328a2ee630732c0718dccd2
+  src/Models/Components/TaxItemTypeEnum.php:
+    id: 3f82268d9d34
+    last_write_checksum: sha1:7f8f96ebe248348225eefe892163780ccac38be1
+    pristine_git_object: 0838dec1fe35039e43ca3699f98ead45eefe231e
+  src/Models/Components/TaxLiabilitySourceEnum.php:
+    id: 3908ccbfb3aa
+    last_write_checksum: sha1:492bdb57589984347243923da5240ed99cf06566
+    pristine_git_object: 9ee8b3f5cbae80b3fe607cf025741e5c0a712a43
+  src/Models/Components/TransactionAddressBuilder.php:
+    id: 9252a2088067
+    last_write_checksum: sha1:88d167e49d05622f97f53ed5e799fabfd8812941
+    pristine_git_object: ff007967bb1657a64e05935e6b052ef2a5d9434b
+  src/Models/Components/TransactionAddressPublic.php:
+    id: f3d402caf69c
+    last_write_checksum: sha1:e11f32c25c1680aee7b97f4634dbb49b5bb1197e
+    pristine_git_object: 030271897d4dd9ec3db80ee609747ecf668e8711
+  src/Models/Components/TransactionAddressReadOutput.php:
+    id: b207250a906f
+    last_write_checksum: sha1:55ca35d7562aad3bf880e22083879fe6edfaafd0
+    pristine_git_object: 8452163feadefd3771530a719c47db6080941b1e
+  src/Models/Components/TransactionCreate.php:
+    id: fa7b1d400553
+    last_write_checksum: sha1:b5610c101913a237576751d398920e5cf2d3c6bf
+    pristine_git_object: e5a9fce622ec6570684dcf1b1f923350cd5617a0
+  src/Models/Components/TransactionEstimatePublicRequest.php:
+    id: 0154f2e89f97
+    last_write_checksum: sha1:de649c191588e056d4a9cd1547008e332e0c2e29
+    pristine_git_object: 0cf480248b35ff17a27dccaae25214e1fbf75f05
+  src/Models/Components/TransactionEstimatePublicRequestAddress.php:
+    id: be1770822063
+    last_write_checksum: sha1:e8f59fafd2b43e19233449816713ef957562c2d5
+    pristine_git_object: 51490acd4d6b78cee5c3c4ead27d32029005ea84
+  src/Models/Components/TransactionEstimatePublicRequestType.php:
+    id: 46ec74e2c9b0
+    last_write_checksum: sha1:c5761b18fc481f8873a3b806fba36e3e53cd5233
+    pristine_git_object: b49e11582cfb85e28a1c4b9c71d1e0387c340abd
+  src/Models/Components/TransactionEstimateResponse.php:
+    id: a0f01f1e0196
+    last_write_checksum: sha1:aca6b6f9c7bc1c61b9f98890f4f555d1f0a088e6
+    pristine_git_object: cd3d4f07f83592bd4345f54ccb3e1d320fd14c41
+  src/Models/Components/TransactionEstimateResponseAddress.php:
+    id: d4e01a73f696
+    last_write_checksum: sha1:888026e095a081c70cf82724025e4d8627b44cbb
+    pristine_git_object: 75b535c3460b608faca56503a49e6467571afe83
+  src/Models/Components/TransactionEstimateResponseType.php:
+    id: 7f2262ff2a14
+    last_write_checksum: sha1:425a841c716c2b0024c29b6a924d405c914c32fa
+    pristine_git_object: 7a9d6ca4e7ccb03bd8214546d77572f7bf055d9e
+  src/Models/Components/TransactionExemptStatusEnum.php:
+    id: 7af33e6c8581
+    last_write_checksum: sha1:1f66cca7f78995aa3bb4b3e006bd2fa95f0130ba
+    pristine_git_object: b7a307ab45b51e1f651e16317e64fb284375faf7
+  src/Models/Components/TransactionItemBuilder.php:
+    id: 5a5e0c86dd93
+    last_write_checksum: sha1:651b1295e35c453e97edb28fb2fc2617fb18fb92
+    pristine_git_object: 63a38cd4902f764ba323c1f79042256103cccae0
+  src/Models/Components/TransactionItemCreateUpdate.php:
+    id: 432c716cb698
+    last_write_checksum: sha1:69ebe64643c73094f85300293dc4aa2a13956e51
+    pristine_git_object: 51cee69351836a8d3bc65386caea04b3d21bdd77
+  src/Models/Components/TransactionItemEstimateBase.php:
+    id: 95a0ab90f34a
+    last_write_checksum: sha1:f42bdc7ecf0c8dd508004bd471daac4c244cf1a6
+    pristine_git_object: 068a01c1a6fa0973f5cfa46294703ff58532848b
+  src/Models/Components/TransactionItemEstimateResponse.php:
+    id: 203f2132c853
+    last_write_checksum: sha1:790e6b41efdd1dcddef70fb3597df8c52deb5300
+    pristine_git_object: 5dee8d399635803e24468ec389c794048533ceee
+  src/Models/Components/TransactionItemRead.php:
+    id: 4157175287c1
+    last_write_checksum: sha1:2837bc0a9777269c83af967a8383e98b6d6abaf4
+    pristine_git_object: 8d4fdbf9998ebffe824de571ec0b8befd4218263
+  src/Models/Components/TransactionPublicRequest.php:
+    id: b8d880e6f12b
+    last_write_checksum: sha1:6ecd40f602331283891ef998e25eb8729f0c5ed1
+    pristine_git_object: d9130634679efbc3947aa6ab88b7d3a74503d0cf
+  src/Models/Components/TransactionRead.php:
+    id: 593256b1612e
+    last_write_checksum: sha1:33352c56171d803e4a9d40bc9386a1bc69af9e41
+    pristine_git_object: 3a1509d5a87f4e1fd705f8ba5aa2f1c2a83a502e
+  src/Models/Components/TransactionRefundStatus.php:
+    id: 0404d7728c79
+    last_write_checksum: sha1:1c1949e7200b180259633529d0d3482c1b664c94
+    pristine_git_object: 29a8272ec00885533c8ee27d5aab7ded12fe208f
+  src/Models/Components/TransactionStatusEnum.php:
+    id: e047fbfe7067
+    last_write_checksum: sha1:6b6f7abb9310edb36bdd0dfc00fd0b455b034991
+    pristine_git_object: ae6a452cd8067ed128f09362b4671bfd35bdb35b
+  src/Models/Components/TransactionTypeEnum.php:
+    id: 095d734999fc
+    last_write_checksum: sha1:ea1d83fab1de5618f4181df3dff7343cf8e44449
+    pristine_git_object: 5c4ab0c390a33fe34f999371c579d0cd68a958a4
+  src/Models/Components/TransactionUpdate.php:
+    id: 16904dd13c27
+    last_write_checksum: sha1:34bea02baa8de91596a2a48e96d2b41cf756d618
+    pristine_git_object: ae27b14b0448a86ede3029aaaa0781c6544682ed
+  src/Models/Components/TreatmentEnum.php:
+    id: d9e1d0dc2426
+    last_write_checksum: sha1:3e71bd869c8121056e4f847ef579b80e769160e7
+    pristine_git_object: 210c8c5edd7811317f63d87a3771a3fc9c578d0b
+  src/Models/Components/ValidationAddress.php:
+    id: 6dddfdaa0baa
+    last_write_checksum: sha1:bf111401a4f829a403f98e59d527d65b1d8982b9
+    pristine_git_object: 72991cb4e9286e661b2bbbfd4bb2ad2937c30905
+  src/Models/Components/ValidationError.php:
+    id: f68b4766d76a
+    last_write_checksum: sha1:d3718c8c18a1af375ad48ed80307a29ce6e5f606
+    pristine_git_object: 262195893c494be72a06f67ba85654442fbfa204
+  src/Models/Errors/APIException.php:
+    id: 9ce9f9c7a8d6
+    last_write_checksum: sha1:d5634eb4dd73e058c24162ac409de6d2329ed6ea
+    pristine_git_object: 0088b10fb83859ccb539a48096ffa63e9ae70d98
+  src/Models/Errors/BackendSrcAddressValidationResponsesValidationErrorResponse.php:
+    id: 4d015aa83148
+    last_write_checksum: sha1:40a2ba64b406078c1fb4b0dc277d3b4314eced86
+    pristine_git_object: 34fa30a570a87132ae274163bf953f02cbc96ef2
+  src/Models/Errors/BackendSrcAddressValidationResponsesValidationErrorResponseThrowable.php:
+    id: 49192445f0bd
+    last_write_checksum: sha1:80faf66e35be42676d5d72bd59068a5413d24957
+    pristine_git_object: 1ba98f797f65314f3033f0827306dc8824bec07b
+  src/Models/Errors/BackendSrcCustomersResponsesValidationErrorResponse.php:
+    id: 874c55d202a1
+    last_write_checksum: sha1:5de8fccb46ada617a4db63c3b3420e63903dc808
+    pristine_git_object: b7faaa9b5aa5eae5f13d941d70f7219ac1300919
+  src/Models/Errors/BackendSrcCustomersResponsesValidationErrorResponseThrowable.php:
+    id: ec2e17238c92
+    last_write_checksum: sha1:9d1ccab81be632babf0eaee2c94bbc509af0f730
+    pristine_git_object: 025bd698c42ce97bd7244673ee037de9296f8717
+  src/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponse.php:
+    id: 164871ba0829
+    last_write_checksum: sha1:5cd330c12d7936a514db9902365dec683dfed7d4
+    pristine_git_object: e83736d37666a160e89f73d8f7b1144cd1e0d02f
+  src/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponseThrowable.php:
+    id: 4c2ad9afa7cf
+    last_write_checksum: sha1:6af8f01c5a11289f154aacf6b82fdbc42dd4abeb
+    pristine_git_object: de2792711536587b94777826ab45ae4c5c6b80e6
+  src/Models/Errors/BackendSrcFilingsResponsesValidationErrorResponse.php:
+    id: eeaff2db9758
+    last_write_checksum: sha1:1bb26cb2e1058fc3eace5a4ff5bc69a6827c2732
+    pristine_git_object: 71394f7db25b7179b4ffb11b30407d54a56fa3ad
+  src/Models/Errors/BackendSrcFilingsResponsesValidationErrorResponseThrowable.php:
+    id: 5bd9a8fb7276
+    last_write_checksum: sha1:be7a2912f2938c0efb05396fae6b9c7196ac250f
+    pristine_git_object: 3b0365164de3f6b73cc786ef887a73070139ddd6
+  src/Models/Errors/BackendSrcNexusResponsesValidationErrorResponse.php:
+    id: 7a3f1ec30a69
+    last_write_checksum: sha1:81c5c875a11c6af27b978ec4fe0dffc48b4d4888
+    pristine_git_object: 5df10ca9e68823378b755ac284e73e345002b55b
+  src/Models/Errors/BackendSrcNexusResponsesValidationErrorResponseThrowable.php:
+    id: e1cb07ee5e1d
+    last_write_checksum: sha1:1da5200d048c486897bfb8c9064f7455c5db6894
+    pristine_git_object: 7b7ec9caf860a7ce13c91713c73418472877864d
+  src/Models/Errors/BackendSrcProductsResponsesValidationErrorResponse.php:
+    id: c10c0ae0d28f
+    last_write_checksum: sha1:c6e45290852a90a8a21d4f44a0be3df8e1360339
+    pristine_git_object: 72795a63233d403946314db132ea677267e9c431
+  src/Models/Errors/BackendSrcProductsResponsesValidationErrorResponseThrowable.php:
+    id: 8a3451b7ad8a
+    last_write_checksum: sha1:e9a509c5c2320f4f7b7702d46b8796156d697d5c
+    pristine_git_object: 27d4a1a9f9f2e082723a9a44ddc75e094978d1a8
+  src/Models/Errors/BackendSrcRegistrationsResponsesValidationErrorResponse.php:
+    id: f8587efb622f
+    last_write_checksum: sha1:d4637ec958307dc98ae1781091cba0db1b0085eb
+    pristine_git_object: 1cd9ed95e08e4f6d86cf92f8d80573a40549e918
+  src/Models/Errors/BackendSrcRegistrationsResponsesValidationErrorResponseThrowable.php:
+    id: 7874d8e536f0
+    last_write_checksum: sha1:493eebbc8353926e15742fe45b1182306ff31fb5
+    pristine_git_object: 7a760c81a84253a114310e41c295b8e0cfd58ee6
+  src/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponse.php:
+    id: 8f4ac0356952
+    last_write_checksum: sha1:0b5deabf47d83b1d02a3ca9f8736837e633b677a
+    pristine_git_object: 8f795290a4d78e8e6b2760093edb637d83caef12
+  src/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponseThrowable.php:
+    id: baddf13f9f06
+    last_write_checksum: sha1:2541f035558476a2afd13eb3f3693082cf8d15d0
+    pristine_git_object: 5e3e298f77f6f6ec9414937428fe6d63cb0a0562
+  src/Models/Errors/BackendSrcTransactionsResponsesValidationErrorResponse.php:
+    id: 27f295ffb5af
+    last_write_checksum: sha1:76f14dc28d2336fb1ae17908829c4a21ef2ddfc6
+    pristine_git_object: be259a4a94162c7248add2cf5c0ec1b5390752bb
+  src/Models/Errors/BackendSrcTransactionsResponsesValidationErrorResponseThrowable.php:
+    id: ce53ed677fa2
+    last_write_checksum: sha1:841adaec4ffe1f307aac77a0b4276fa96d9f61ce
+    pristine_git_object: 74c753f083e1a8a34ac2ab10ae5d6eba58cf7cb9
+  src/Models/Errors/ErrorResponse.php:
+    id: f1686b83ed8c
+    last_write_checksum: sha1:97eb1b725b7dff4486c5671a21bf0cbf1ac06a2b
+    pristine_git_object: a8980cdacd3a50785010819939cb28ee8f3a0cd1
+  src/Models/Errors/ErrorResponseThrowable.php:
+    id: 68b65cc72dbd
+    last_write_checksum: sha1:81cbcb6a3061a6f7e88ff07eb4fd4d503028fd1f
+    pristine_git_object: 8600d4e70d4cd11e894f02ea2bca91d4f9d2cfbe
+  src/Models/Errors/HTTPValidationError.php:
+    id: 77eb1e904ed3
+    last_write_checksum: sha1:e4ab7198cc835a2f094f6977f87b4a01833831b3
+    pristine_git_object: 6e7a099ce69d5d7aea1af0aba79ae48cc51e406f
+  src/Models/Errors/HTTPValidationErrorThrowable.php:
+    id: 7bf1758122b1
+    last_write_checksum: sha1:5a0e8ebd3e9527224d1cc2d8f6fc22a515d21baf
+    pristine_git_object: 2ea74f0b18ef3ddd299fe5c99cff32f06e212de8
+  src/Models/Operations/CreateCustomerV1CustomersPostResponse.php:
+    id: 73474d3ed529
+    last_write_checksum: sha1:f852c0c6de4d5630bca4c7ec8a898a14e3f13ab1
+    pristine_git_object: dbd8f0819da5719682a47b3ffff7475874920d8f
+  src/Models/Operations/CreateExemptionV1ExemptionsPostResponse.php:
+    id: 204b66f583d3
+    last_write_checksum: sha1:f1aee4e8d458e1a275a1c6e1442961452c34462d
+    pristine_git_object: e19d13a20a77c7952b3075913df95429dae87c3c
+  src/Models/Operations/CreatePhysicalNexusV1NexusPhysicalNexusPostResponse.php:
+    id: d3a737108ac7
+    last_write_checksum: sha1:64b3b72a309520362826bea7e91f1a3d565e7997
+    pristine_git_object: c7aa142f84e7be7752dd3d156b5d671adaf5a5ac
+  src/Models/Operations/CreateProductV1ProductsPostResponse.php:
+    id: ca12d280b492
+    last_write_checksum: sha1:6eea7a8f71a9c0578ff96ee5313090add8ab9f4b
+    pristine_git_object: 0307be5ce8a927cd23e7d9766c9c7720619bdccb
+  src/Models/Operations/CreateRegistrationV1RegistrationsPostResponse.php:
+    id: 57b6c6bafb43
+    last_write_checksum: sha1:b231c8ecd1472ad4751a21e87e956b95524abdcf
+    pristine_git_object: 084f44ba66c5f46ff5c4a44553c87e1080210262
+  src/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest.php:
+    id: 81cc852fe90b
+    last_write_checksum: sha1:7dd7bc3c48dec8a5d1bf1d44936da243c280cc70
+    pristine_git_object: 33a7d600c2a9a5e1a55d680e993efdd13a3390e8
+  src/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse.php:
+    id: d0fa446c05dc
+    last_write_checksum: sha1:f93151a247a0e8dab55b439923e7abd80f3129c2
+    pristine_git_object: c4adab5d4fe8f2e1f13761b7da41b1f95b935bf4
+  src/Models/Operations/CreateTransactionV1TransactionsPostResponse.php:
+    id: cad52c2c884b
+    last_write_checksum: sha1:79e4b03ec0ceb4e509669687b87315c6bf1ac1bf
+    pristine_git_object: 8202f7e2f89617892f4d1d3bdc0c797447260509
+  src/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteRequest.php:
+    id: 65f4f0cd25d7
+    last_write_checksum: sha1:888f9bdf0a562854ec444182f0a763a63fc0d8f0
+    pristine_git_object: d510be521f29f0703e4e43cb20ccf1a5379a1147
+  src/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteResponse.php:
+    id: 65f1a7ecc664
+    last_write_checksum: sha1:3b4064dfe2dfa10714e3f731a08e81166c907327
+    pristine_git_object: d0894b408d4b3632b481205ae6028249969f7910
+  src/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest.php:
+    id: 51ccc4e7482d
+    last_write_checksum: sha1:cb5b5ccf0259febd3df3fd8536c798827f9aa810
+    pristine_git_object: 3ef5b0028942fe2c52ba19cbcbd2e2849961830e
+  src/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse.php:
+    id: 81a4bd1c2e26
+    last_write_checksum: sha1:d6d6e9054980b8ebe10d012f4470dfefc20a2fd4
+    pristine_git_object: 7032b981c3d4f5427f3823ac54444cc9ba9e9817
+  src/Models/Operations/EstimateTaxV1TaxEstimatePostRequest.php:
+    id: 21bc9fe7e40e
+    last_write_checksum: sha1:429ded2cb4bf020fb68b3c8b71ca2ac85f81ba66
+    pristine_git_object: c928abc34724020ede96880795c7d8f3afad0b58
+  src/Models/Operations/EstimateTaxV1TaxEstimatePostResponse.php:
+    id: 8c1639e7f886
+    last_write_checksum: sha1:4ac3b3644aa0619eef4972c5769c1b464cbdf543
+    pristine_git_object: 6566c0bb87ba2bdac7c254ca2aef36ecaceea5d6
+  src/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest.php:
+    id: 00b746bb024f
+    last_write_checksum: sha1:a7829a42006c652ae4cebd032f64c315944f8215
+    pristine_git_object: ad182b70cabaa17e91a4f8608def7b4ed6dafd6a
+  src/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse.php:
+    id: 2f0924bf097d
+    last_write_checksum: sha1:0ef9f0a03c386a0b4ebf6bf83d6b75bc6ab62df9
+    pristine_git_object: 50cf0040141102f3f34abd92aa37886434993bb8
+  src/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetRequest.php:
+    id: b395b824dc0c
+    last_write_checksum: sha1:c1625997bbc8c81baf57a9cf7ec663c17594422d
+    pristine_git_object: 031ed38a35a37034a67e5549501dd500b370535b
+  src/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse.php:
+    id: dec1e0455ae9
+    last_write_checksum: sha1:f85394b338390f7f6c79a35038fd2983d085420f
+    pristine_git_object: 075c7c27f0eac33f1badc985ec83403615ff54a6
+  src/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetRequest.php:
+    id: 0d0ce47f0cab
+    last_write_checksum: sha1:9d02c67d095fcc048ed5b7710ae505ce45a2cab7
+    pristine_git_object: a48a081a8a22d103fc8ce7ff4673423e7ad487c2
+  src/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetResponse.php:
+    id: f1821e723879
+    last_write_checksum: sha1:f80ecfa4fb18ad807d8e4a71e73a0cf80086b2cb
+    pristine_git_object: d527d56ec48ffc305186618a6a777fb533172c90
+  src/Models/Operations/GetCustomersV1Request.php:
+    id: 0e9cac8f0949
+    last_write_checksum: sha1:7a44462552abee585e71476b6aea577e891c8523
+    pristine_git_object: 25b775b3e2488c2b1a1514c404e5d7527771fb52
+  src/Models/Operations/GetCustomersV1Response.php:
+    id: 15b0077ccf3d
+    last_write_checksum: sha1:0a44ded415b83fa14dc5d3b6f4c48253c9dd58e9
+    pristine_git_object: 4369b484ca21a018ee679203a69b01548de0d099
+  src/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetRequest.php:
+    id: f45a048dede7
+    last_write_checksum: sha1:4d92a9143946cfb62b235da49c05db4e43e6a640
+    pristine_git_object: ed522d4793158ad870b084c3a4babec1acd498d9
+  src/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetResponse.php:
+    id: a01d59480bc1
+    last_write_checksum: sha1:276d3c5444cba9f873564bc5abffc5da8158c818
+    pristine_git_object: 30ffff91775bd8cc5490312d60ff5df6fe970b71
+  src/Models/Operations/GetExemptionsV1ExemptionsGetRequest.php:
+    id: 5b09f4e17f83
+    last_write_checksum: sha1:0398addbbbd5f6cc0a6dcfc9d7811fb57875076e
+    pristine_git_object: 5e5ac5ee241a8f8c6e28d4c762a2ca5d9105172b
+  src/Models/Operations/GetExemptionsV1ExemptionsGetResponse.php:
+    id: 7791b64d724e
+    last_write_checksum: sha1:baacf69619701ff01a604ff9fe85095ea8700732
+    pristine_git_object: 507cbc9ad52f66c8d5024cd0b8ea02ee7b39297a
+  src/Models/Operations/GetFilingByIdV1FilingsFilingIdGetRequest.php:
+    id: c5043449ef3c
+    last_write_checksum: sha1:66b03c1eb95409be19c6a66ce0e744ece7d6641d
+    pristine_git_object: 98f9cc9e498b9abce2fea6a1e26f9ecc9211b7fb
+  src/Models/Operations/GetFilingByIdV1FilingsFilingIdGetResponse.php:
+    id: 9fbb0e24aa16
+    last_write_checksum: sha1:fa6028a77bbc30256d434958ce7278db6f1b3367
+    pristine_git_object: 140b0c3b90a366a70b1eb9aa9b885de5f61c2c2b
+  src/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetRequest.php:
+    id: 2aab9bd6fe56
+    last_write_checksum: sha1:ef568a2b3da05b7c76f449e5b310b5c201e4723d
+    pristine_git_object: 80bd170f6ec502f21a4a67889bf76466cafe2d13
+  src/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetResponse.php:
+    id: 20b432206b39
+    last_write_checksum: sha1:28516c9e98e99a9c19385478cda2ef3cd87c85e7
+    pristine_git_object: dcba22cf36b85f66a47a4434f3e4719b459b0bd8
+  src/Models/Operations/GetFilingsV1FilingsGetRequest.php:
+    id: 1d7b38919e27
+    last_write_checksum: sha1:d12152204c3f9c2b1c56f6f56c3d2723d385875e
+    pristine_git_object: e3a28fd9ed5feb0d0859c68a8b603fbfa8326a1d
+  src/Models/Operations/GetFilingsV1FilingsGetResponse.php:
+    id: 943299e2f325
+    last_write_checksum: sha1:db551ef3e6d0f3f821b54c8a315f44c6c7e5c306
+    pristine_git_object: a261e833a15c3336267540c7995e53fb9fcf720c
+  src/Models/Operations/GetNexusForOrgV1NexusGetRequest.php:
+    id: 9db8234e4e9a
+    last_write_checksum: sha1:ecbd150805fd95474e6daee4afa86da240841546
+    pristine_git_object: b09a33a1d16816a4f76fff67ba3fc23bb2e5ddcb
+  src/Models/Operations/GetNexusForOrgV1NexusGetResponse.php:
+    id: 6eaec5d4e005
+    last_write_checksum: sha1:1a9e231330912feba18537941bdfc7300ab116c7
+    pristine_git_object: 270fcdc6f24d64e097472ec41942962b02b18106
+  src/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetRequest.php:
+    id: 53b712507224
+    last_write_checksum: sha1:2869298b23b5d3d1c98ea723e8f5bdeb903e0167
+    pristine_git_object: c3fc3caa57c573c9631dccd69f856de120bdcfc4
+  src/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetResponse.php:
+    id: d30c6de40bbf
+    last_write_checksum: sha1:90580ce2e86f1cb9f33c674ecb4bf7be5ae1125d
+    pristine_git_object: 77d0097514cef3df6f8f35178dd73dacb1da403e
+  src/Models/Operations/GetProductByIdV1ProductsProductIdGetRequest.php:
+    id: 17dca17e93c3
+    last_write_checksum: sha1:0232e3e7e147dee8ebd305ce6377007874aec892
+    pristine_git_object: 83cd50bbc12c09b799919ae73693523e18863dac
+  src/Models/Operations/GetProductByIdV1ProductsProductIdGetResponse.php:
+    id: 9ee2b6a76660
+    last_write_checksum: sha1:c3ae5baef74fc18e269fd68f2574cb5d99a578c5
+    pristine_git_object: f50b0671b1f87ae92e8785b3b713c503a8d0ec9f
+  src/Models/Operations/GetProductCategoriesV1ProductsCategoriesGetResponse.php:
+    id: 2d48307a9799
+    last_write_checksum: sha1:1840067f25ed822e5e038ccdb1e45767656b1139
+    pristine_git_object: 6e3f51617950344f02dbe9ffd5332b48675d34a5
+  src/Models/Operations/GetProductsV1ProductsGetRequest.php:
+    id: 4cd79eb9cd50
+    last_write_checksum: sha1:64972022ccfe002f62da72aacb1c610715d76ccc
+    pristine_git_object: e2e73d85dad66c6b4ddfb353981529a60bf52886
+  src/Models/Operations/GetProductsV1ProductsGetResponse.php:
+    id: 887a0f6b96a8
+    last_write_checksum: sha1:bcfd113909242a628c0c9b188b3b242b6c1c648b
+    pristine_git_object: f2148c9b0f46d893c6840c2b09969733b210af16
+  src/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest.php:
+    id: 336a01601b75
+    last_write_checksum: sha1:8f26695051699b63e58969cfb21f0e153df840ff
+    pristine_git_object: b72a34c63221cdbeaa514d5a951e1d8a4d3181fc
+  src/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse.php:
+    id: 814b923e3328
+    last_write_checksum: sha1:f759734f3af170352c38fb46ba3a07739541e484
+    pristine_git_object: f7c5ae5bd5ee0f2ae3b79d25d16ce04281b7549c
+  src/Models/Operations/GetRegistrationsV1RegistrationsGetRequest.php:
+    id: de97f0b3e273
+    last_write_checksum: sha1:007bbf5f42e72216cc8abb8a53fc3024a4224bf2
+    pristine_git_object: b93929faaaed111c33284b3c323546d4283e8d70
+  src/Models/Operations/GetRegistrationsV1RegistrationsGetResponse.php:
+    id: 9fd721083cb2
+    last_write_checksum: sha1:d361313191bcbb7b0e87ec5fe99d39aed29f0e4a
+    pristine_git_object: 935dee820e4fb2ac4ddcda9c1a6054f9bef16613
+  src/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest.php:
+    id: 4d0b57be2d30
+    last_write_checksum: sha1:4ce1e6e0e511f024d5c3323f2db130a00b0b1464
+    pristine_git_object: 064b40e81932d57fce64207171726ae6c56f1a02
+  src/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse.php:
+    id: beac1910ffc6
+    last_write_checksum: sha1:385deb04255fd40bd77e1f56b7fb870adda26d36
+    pristine_git_object: 84d007d9c5188e2a64dad782aa507c71b9e3af72
+  src/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetRequest.php:
+    id: 2552ca2b9d56
+    last_write_checksum: sha1:e2b00dc4e553d0c7c4fc04928b132ef1e6bcd149
+    pristine_git_object: 03635dfdd2f362ecd8c81e544c1ee9247e3155da
+  src/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetResponse.php:
+    id: 89e1dad379f1
+    last_write_checksum: sha1:3536d89f3e288c6b18f38061fdebb44842a87a96
+    pristine_git_object: 487d24a924ea9fb8ade5e4b47407a72bfdf26f73
+  src/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest.php:
+    id: a330a9bb75fc
+    last_write_checksum: sha1:ab77f29d43f87f9693c65557adb3a0ce745a9cb0
+    pristine_git_object: cdd518b140a817317c11a2cbf0ee8c183e47fd9b
+  src/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse.php:
+    id: 93c71a6d7f96
+    last_write_checksum: sha1:090c99e3ae4b3326e69f44c89b5613cd1439ed76
+    pristine_git_object: 0e48a9ccaaf40359de5d4cde098e57011a184a42
+  src/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetRequest.php:
+    id: 8d7b218a90f1
+    last_write_checksum: sha1:75f20ff3fdc0ea19f5d15b13af3a5e8aa4cffbfe
+    pristine_git_object: 7602b3815ed73bd498eaf15ab1f37d14bfcb6ed4
+  src/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse.php:
+    id: e1219361e138
+    last_write_checksum: sha1:7bbb6cf95d457e0219d1bc31cdf7617f49fd9e5c
+    pristine_git_object: ec94e4cbf07773d335abc752c6d7e65b7b070087
+  src/Models/Operations/GetTransactionsV1TransactionsGetRequest.php:
+    id: 31c187067279
+    last_write_checksum: sha1:4a603ded745c8d19bd40974d24c7cc9bbda4d67a
+    pristine_git_object: a37d0432cf6ff034860d93f342e2d9a3d51143ab
+  src/Models/Operations/GetTransactionsV1TransactionsGetResponse.php:
+    id: c3bbec2184b9
+    last_write_checksum: sha1:8fd44ba444ad752187d27f42f852dd9ae478941c
+    pristine_git_object: 8c7f8e0d7e4a9e0fa45d969bae115bfea14a4878
+  src/Models/Operations/POSTCreateCreditNoteByTransactionIdRequest.php:
+    id: aea4445090fe
+    last_write_checksum: sha1:06d0776d7cc838c15bd3d890a1580b8dfd3c0224
+    pristine_git_object: 739b483a3191169cbf1c2d5beca41d87779d4b11
+  src/Models/Operations/POSTCreateCreditNoteByTransactionIdResponse.php:
+    id: c279d5a32cd4
+    last_write_checksum: sha1:ee9e4f3fb99c405a791557f527b3ea3e7958cdc8
+    pristine_git_object: 4a0828c5c6d6884c0386bb517396e7ff481e005c
+  src/Models/Operations/PUTUpdateCreditNoteByTransactionIdRequest.php:
+    id: f8c727ae746f
+    last_write_checksum: sha1:7ecd71a1367eedd215831eea1e8eb001b4659ef1
+    pristine_git_object: 4abcc270e567ed8fa7dc78db85b6b32c49b9f036
+  src/Models/Operations/PUTUpdateCreditNoteByTransactionIdResponse.php:
+    id: d0300c14ced3
+    last_write_checksum: sha1:9cb4ab7e20c26776240c1910ee49aa53e2724e74
+    pristine_git_object: a88ce9f6284a575f1b4574fa3c4fd391b59f0d8a
+  src/Models/Operations/SearchV1AddressValidationSearchPostResponse.php:
+    id: 9c873739f34f
+    last_write_checksum: sha1:f1f7138b64f659c9dc3091a8fc21b490759c8e20
+    pristine_git_object: 213bb0a6e638764e3b011f3278166e67514e79c6
+  src/Models/Operations/SearchV1AddressValidationSearchPostSecurity.php:
+    id: ec954e19a9d8
+    last_write_checksum: sha1:6ee05c655678ff180897b6dbfc0f4177d06a41f0
+    pristine_git_object: 75e031f41a0195a5b30c87bf9ddf152ee9768381
+  src/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostResponse.php:
+    id: ce262d8f377f
+    last_write_checksum: sha1:9347452b287982db1aaf4e8f5db5419090c33a91
+    pristine_git_object: c995326e0eb5e056bc09ac7a66cb4e0b0fc0b805
+  src/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutRequest.php:
+    id: 714432abd64e
+    last_write_checksum: sha1:856fe9466e3943e7421d53694110e285dc657fff
+    pristine_git_object: 258b2efd11a951cbaa2f0349e68755eb09489b61
+  src/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutResponse.php:
+    id: bfc5e6cec5f4
+    last_write_checksum: sha1:dca497a78601aef4e7e3ad08759ef86c92a8a121
+    pristine_git_object: dc4d17b72e291a86355d45d20cb0048adb01cd41
+  src/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutRequest.php:
+    id: 6bd5059d9869
+    last_write_checksum: sha1:5e4cb983255b2e290a1ccabd2190bae8ba21028d
+    pristine_git_object: a113e26c380aaba61d728b58bb5ee13749d9778b
+  src/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutResponse.php:
+    id: 47847134a40b
+    last_write_checksum: sha1:5e6da812d53cfc1fc1791725e5b505d2376849ba
+    pristine_git_object: 09f0e78274aa8003db9d6c2a10db1fde0ccf51af
+  src/Models/Operations/UpdateProductV1ProductsProductIdPutRequest.php:
+    id: 46d27dcc0f1f
+    last_write_checksum: sha1:7961410fcf823616e0498bcc559ce2f02a8651b1
+    pristine_git_object: 32bda5e7f23c04e9dded27cc78f18455bdaab6fa
+  src/Models/Operations/UpdateProductV1ProductsProductIdPutResponse.php:
+    id: 34611911b660
+    last_write_checksum: sha1:462920a0304fa71677248de84e5bc0bdee7cf982
+    pristine_git_object: 20d957e784a4288393aa10d7947ea45f9ce99d65
+  src/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutRequest.php:
+    id: ca2097dfe56d
+    last_write_checksum: sha1:e27b34db3915dbca0722d72a04b41eabec85d450
+    pristine_git_object: 3b54d88c71037e662702146b291780be0fdc239d
+  src/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutResponse.php:
+    id: 9497d2eb6805
+    last_write_checksum: sha1:bfc560dfacaecd739734876705464d6e92571df1
+    pristine_git_object: 1ce99950a0eb22cf24e7ddf17f748ef529c07bf9
+  src/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutRequest.php:
+    id: dbb512e97714
+    last_write_checksum: sha1:dc5cee5728ad789e1f5978a48fc38a362695691e
+    pristine_git_object: 147bd600b18980465fea1b0b15644d76cc7bfa95
+  src/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutResponse.php:
+    id: adf251c7d96a
+    last_write_checksum: sha1:6ea3b802d1be186e57a18ed9538203df2e4e1658
+    pristine_git_object: f391aa15957d1d7bddc14b570b9249f2b4f3d066
+  src/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest.php:
+    id: f9ab114d4124
+    last_write_checksum: sha1:de7b585fd5ce45ad94c5f2a7a001c494cba1385f
+    pristine_git_object: 4e4db11e027d933ed1c15d91270b07633e1248d4
+  src/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse.php:
+    id: ea8b14ad64fc
+    last_write_checksum: sha1:b3f26cf3bea1c76fafeaec519a65dfef5060dda0
+    pristine_git_object: 766d3ef88130951b41b1182b46c65193883e76e4
+  src/Nexus.php:
+    id: 8f1fa9e212f7
+    last_write_checksum: sha1:7a399c7536d3c68a826e274469e8c39fb55db7b5
+    pristine_git_object: 341dd5142741ec9664a971f664295f47e14b81c5
+  src/Products.php:
+    id: 25f717192621
+    last_write_checksum: sha1:f898aa936c2b4594a85cc702b525b59dfa94054c
+    pristine_git_object: 3b59940a6250e558674aa981db2d009feb18eabf
+  src/Registrations.php:
+    id: 2ce5fb74df59
+    last_write_checksum: sha1:822e3f9075bb893ea6b4dbf4f16bc940d235f258
+    pristine_git_object: b94c61f695b79776c4a3bcbed8266ae7f925638c
+  src/SDK.php:
+    id: 7b5eb956165f
+    last_write_checksum: sha1:8b752e901dcbd2e09b63938ef220e3e1fc55633e
+    pristine_git_object: 1d65ff19545325b7d704d1ca396d8709e4a3acad
+  src/SDKBuilder.php:
+    id: 3a8d6469b037
+    last_write_checksum: sha1:082f897c4eee9c1e00ec4907581e0fcea249326f
+    pristine_git_object: 239690c01dda293c181e479725a3469c2c059f85
+  src/SDKConfiguration.php:
+    id: 9d60ab0bec0b
+    last_write_checksum: sha1:6476da6f0dcde32a2bdd6f1cceedab3f6c1a1842
+    pristine_git_object: 374dabb48058371f01f8014a65cd51537ce9c237
+  src/TaxEstimation.php:
+    id: 354ef25b2b16
+    last_write_checksum: sha1:70914ab37439d876946546352d67b482926f7255
+    pristine_git_object: 17121665cc2eeffcbc72c8ccfcf524ac58458b46
+  src/Transactions.php:
+    id: fb7274f4b525
+    last_write_checksum: sha1:fd71b7898a87a0f77409a39a86e9faca1557d47a
+    pristine_git_object: 2766a81cdeffc0ddadcdd20a62e57b6e3fe87901
+  src/Utils/BigDecimalHandler.php:
+    id: cdcca3718e2e
+    last_write_checksum: sha1:6a0005c7a4074e0691c4ec94b07662f71d203408
+    pristine_git_object: 5823b5b3e91c9eb66f61e1aa0508011f0f50058b
+  src/Utils/BigIntHandler.php:
+    id: 190c4d16fa85
+    last_write_checksum: sha1:8c5a53e60735a799a38dadfe910a75a8bbf5fc2c
+    pristine_git_object: 495f01da177a6f20f9b7321df560299fa53bcdfb
+  src/Utils/DateHandler.php:
+    id: 3223e13fd506
+    last_write_checksum: sha1:1e8abe1da498746a79a9d79de72f82d490244a17
+    pristine_git_object: 0b610598fe685a502bc8ca412bfd8f6e901b0455
+  src/Utils/DateTimeHandler.php:
+    id: 7ca531e0aebd
+    last_write_checksum: sha1:4face2375a2b74a066c19e959a5596cf3b0375c5
+    pristine_git_object: ffaf8ba250e58b4752e6037b30a65592b90b0567
+  src/Utils/DefaultRequest.php:
+    id: 6fe9607b243e
+    last_write_checksum: sha1:aa6f1efe551b1d8dc55f6621ed1f2885d3d12856
+    pristine_git_object: a2ac0d0ffddd79230fcce7e1f2a6f655a6ce4833
+  src/Utils/DefaultResponse.php:
+    id: 0f196b8017df
+    last_write_checksum: sha1:025a8eb089672521c2484b87eb49d1f8e6b8bb25
+    pristine_git_object: 8c18d857379a29b040168cb6a24cf7bd22c84480
+  src/Utils/DefaultStream.php:
+    id: 14d2eedf020b
+    last_write_checksum: sha1:02aad3ff2a2d596e6ad7033422e763b27cd59f7c
+    pristine_git_object: a11b288bfa806d59327d1418cffe4609a3b8c7d0
+  src/Utils/DefaultUri.php:
+    id: 41b965402390
+    last_write_checksum: sha1:7d2712dd3a257f018291a1e3789e2e7ded84ce35
+    pristine_git_object: 316e7d5faa32de61a17bb579982da35f1474680c
+  src/Utils/EnumHandler.php:
+    id: 02e7893b40fb
+    last_write_checksum: sha1:4819c15a563ccbc764e0122ab47ce1c2ce933a93
+    pristine_git_object: fc5db79cb8f4aeb578bea6777b8b2900505e37b1
+  src/Utils/FormMetadata.php:
+    id: a439bdb795e2
+    last_write_checksum: sha1:1b0d48c12b715efc33e7c291c5fd6061304514f3
+    pristine_git_object: 4e0ea28b1332ac566eea1ac782faeb288fa924dc
+  src/Utils/Headers.php:
+    id: 98710f1dd715
+    last_write_checksum: sha1:0a26f1bdaa512400a08273d52a8a82eb4da375bc
+    pristine_git_object: 20ed6f1761aa348841a31b57b8078cb37e3f0bbd
+  src/Utils/JSON.php:
+    id: fb267328a809
+    last_write_checksum: sha1:5439939465a859e1eea3e006d02a70d733c06ffd
+    pristine_git_object: 66e641716b44868898d0365b32e9b2d6f96726c7
+  src/Utils/MixedJSONHandler.php:
+    id: ceb58b45ce9f
+    last_write_checksum: sha1:5f419114dcf1cfdba266fccb3c41f68f047b070a
+    pristine_git_object: 089a3d228f122702d07b54e1b4d5f632d8d12e3f
+  src/Utils/MultipartMetadata.php:
+    id: 4b6a976cbd33
+    last_write_checksum: sha1:b7c55fd257679eeb0f3c9c8966389eae98936b6a
+    pristine_git_object: 472f230f71d82d60bc7b10fc15105c4b0da414f1
+  src/Utils/Options.php:
+    id: c675c18e8d43
+    last_write_checksum: sha1:d8cb7e317cbf9f64c481d517885fecf8b4f1aa51
+    pristine_git_object: 0569ac422b861f0ec05e2681d2183683c57aedae
+  src/Utils/ParamsMetadata.php:
+    id: 53200159d3ba
+    last_write_checksum: sha1:d73e23b1c36d9f76514ad13e846763eb8eb2a939
+    pristine_git_object: 62bb80cac1448fb051cf39c1b83d549dd91939be
+  src/Utils/PathParameters.php:
+    id: bed72f45a7d0
+    last_write_checksum: sha1:f4a2d1deeba9dd9a10d1f263cd1efa732e70f6be
+    pristine_git_object: e820793439d61d2b4d6871d62c6d1184a8b2e09a
+  src/Utils/PhpDocTypeParser.php:
+    id: 2b60c7b364fb
+    last_write_checksum: sha1:8e8b8664c9b982c5dcc87fb8fc29515b33ae78b3
+    pristine_git_object: 8d42fdc319b1dff5f183e7a9a9f22ee9f9507465
+  src/Utils/QueryParameters.php:
+    id: 4cfeb0a96efd
+    last_write_checksum: sha1:3172949c41fd22efd31ec381db3e4ceeb1101f3a
+    pristine_git_object: a0f95c3f615880639e85db97c0bde9680f118936
+  src/Utils/RequestBodies.php:
+    id: 30dc93a697d3
+    last_write_checksum: sha1:0a0e1e0d91a0ce5113a3f4c0ba17bc4d048c78c8
+    pristine_git_object: 03da46789f1dca488eadf777ede5b15a2a7fe9b6
+  src/Utils/RequestMetadata.php:
+    id: 63c8deb4cf4a
+    last_write_checksum: sha1:b2015669936a9df8766ed079b08f74969680842d
+    pristine_git_object: b3b60954909889e200f3352e16e818915a940a09
+  src/Utils/Retry/PermanentError.php:
+    id: ced3cce6125c
+    last_write_checksum: sha1:293e17ff7bae8e1d3ce9552d5954af8d783e3d0b
+    pristine_git_object: 8fd532093ae3184d635e6d21fa373a1dc0f9ec97
+  src/Utils/Retry/RetryConfig.php:
+    id: 86ede313b205
+    last_write_checksum: sha1:0c27e639e290d3353e1fe1c1958d31bd74c858c5
+    pristine_git_object: 8d83c5783dac55a3828d28d97183572c1bfbbe9c
+  src/Utils/Retry/RetryConfigBackoff.php:
+    id: 9492a6123b6f
+    last_write_checksum: sha1:81f8ea3526405710e4e20975122f042653973af4
+    pristine_git_object: 5c70fc8d663b5ba503bfc5c89e424888109e41f9
+  src/Utils/Retry/RetryConfigNone.php:
+    id: 97a086b67b34
+    last_write_checksum: sha1:e8604b51dc11b73d642b9575eb9c284db9c7fd0d
+    pristine_git_object: a9db8d51991994cd7731678810951797342d964d
+  src/Utils/Retry/RetryStrategy.php:
+    id: 50fcd2c78a30
+    last_write_checksum: sha1:d97c946792b0220f1d1228b6b05a8d05b53a866e
+    pristine_git_object: 12934f05387221f398fb3677c0e79466cd622cff
+  src/Utils/Retry/RetryUtils.php:
+    id: 28597380e832
+    last_write_checksum: sha1:a0234d7d9c2851742ec5176b476dcb1913089de8
+    pristine_git_object: c90c95743c39191299ccfaa17cfb4f0d03e29d0a
+  src/Utils/Retry/TemporaryError.php:
+    id: d58c3851b91f
+    last_write_checksum: sha1:ff5b3f1d2f403e16f310cda7455b0fe590d57ba1
+    pristine_git_object: 24ebe663b9cdf61468597d335df3aca9c50fd49b
+  src/Utils/Security.php:
+    id: 564a31099977
+    last_write_checksum: sha1:12c6c04e1d0bcdcc284eb7c67acb5cf08597267f
+    pristine_git_object: 784900df99d40bedd5ea596e9f64ad51811e8384
+  src/Utils/SecurityClient.php:
+    id: de11afa826f4
+    last_write_checksum: sha1:eb4fdbd5e96c0f777bd674a36c8e1f69bfe96258
+    pristine_git_object: 77db7337cbbcab5bf6730c01d2b3b1ea26b19c64
+  src/Utils/SecurityMetadata.php:
+    id: 55ec148715b3
+    last_write_checksum: sha1:75e456bc11a27f049f15709d983d9ac59ca1feee
+    pristine_git_object: 8aa31f7048695b866f673b22140438a3d061d767
+  src/Utils/ServerDetails.php:
+    id: 71ed88cf4f04
+    last_write_checksum: sha1:75e8b4b46e4a74ae7eeabaa0e3f118fe0082f28e
+    pristine_git_object: c4193cd243e6330b31d243ab95a5347ba93ba636
+  src/Utils/SpeakeasyMetadata.php:
+    id: a33363de3a1a
+    last_write_checksum: sha1:b50c8651f37542e53d2182f218cfc3f87dadc1b5
+    pristine_git_object: 322a6ed888b8a7d597e93eafc3a26fce402d73eb
+  src/Utils/UnionHandler.php:
+    id: 5a76a946fe85
+    last_write_checksum: sha1:92b2fab26bd0a4e072b8f9928304e5afce95f1c7
+    pristine_git_object: ca50529064c8e95ab39a9d178b338befa18e7c86
+  src/Utils/Utils.php:
+    id: c902f57e2422
+    last_write_checksum: sha1:cced82a2cd3bbbea48ef940045413ab33eb3cfc4
+    pristine_git_object: ecb88bdd522cd8d5d8a9bdb3dfb2dc20536b1e71
 examples:
   search_v1_address_validation_search_post:
     speakeasy-default-search-v1-address-validation-search-post:
@@ -1138,7 +2681,7 @@ examples:
           filing_id: "<id>"
       responses:
         "200":
-          application/json: {"start_date": "2024-05-22", "end_date": "2023-08-31", "country_code": "GL", "auto_approved": false, "filing_category": "REGULAR", "amount_calculated": "0.00", "amount_adjusted": "0.00", "amount_discounts": "0.00", "amount_fees": "0.00", "amount_penalties": "0.00", "amount_tax_collected": "0.00", "amount_sales": "0.00", "total_taxable_sales": "0.00", "amount": "0.00", "total_tax_liability": "0.00", "transaction_count": 0, "tax_remitted": "0.00", "id": "<id>", "registration_id": "<id>", "credits_utilized": "0.00", "filing_website_url": "https://electric-fold.name/"}
+          application/json: {"start_date": "2024-05-22", "end_date": "2023-08-31", "country_code": "GL", "auto_approved": false, "filing_category": "REGULAR", "amount_calculated": "0.00", "amount_adjusted": "0.00", "amount_discounts": "0.00", "amount_fees": "0.00", "amount_penalties": "0.00", "amount_tax_collected": "0.00", "amount_sales": "0.00", "total_taxable_sales": "0.00", "amount": "0.00", "total_tax_liability": "0.00", "transaction_count": 0, "marketplace_transaction_count": 0, "tax_remitted": "0.00", "id": "<id>", "registration_id": "<id>", "credits_utilized": "0.00", "filing_website_url": "https://electric-fold.name/"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1243,7 +2786,7 @@ examples:
         application/json: {"registration_import_type": "OSS", "imported": false}
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "filing_days": 386208, "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1252,10 +2795,10 @@ examples:
           application/json: {"detail": "<value>"}
     regular_new:
       requestBody:
-        application/json: {"registration_import_type": "REGULAR", "registration_date": "2025-02-01", "registration_email": "example@domain.com", "auto_registered": true, "do_not_file": false, "country_code": "US", "state_code": "TX", "state_name": "Texas", "filing_frequency": "MONTHLY", "filing_days": 15, "comment": "Registering for monthly sales tax filings", "initial_sync": false, "amount_fees": 100, "vda": false, "sst_import": false}
+        application/json: {"registration_import_type": "REGULAR", "registration_date": "2025-02-01", "registration_email": "example@domain.com", "auto_registered": true, "do_not_file": false, "country_code": "US", "state_code": "TX", "state_name": "Texas", "filing_frequency": "MONTHLY", "comment": "Registering for monthly sales tax filings", "initial_sync": false, "amount_fees": 100, "vda": false, "sst_import": false}
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "filing_days": 386208, "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1267,7 +2810,7 @@ examples:
         application/json: {"registration_import_type": "OSS", "password_plain_text": "oss_pass_fr", "password_metadata_plain_text": "{\"q\":\"a\"}", "member_state_of_identification_code": "FR", "imported": true}
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "filing_days": 386208, "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1279,7 +2822,7 @@ examples:
         application/json: {"registration_import_type": "SST", "password_plain_text": "sst_pass", "password_metadata_plain_text": "{\"q\":\"a\"}", "username": "sst_user"}
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "filing_days": 386208, "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1288,10 +2831,10 @@ examples:
           application/json: {"detail": "<value>"}
     speakeasy-default-create-registration-v1-registrations-post:
       requestBody:
-        application/json: {"registration_import_type": "REGULAR", "auto_registered": false, "do_not_file": false, "country_code": "GM", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "MONTHLY", "filing_days": 801864, "initial_sync": false, "amount_fees": 0, "vda": false, "sst_import": false}
+        application/json: {"registration_import_type": "REGULAR", "auto_registered": false, "do_not_file": false, "country_code": "GM", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "MONTHLY", "initial_sync": false, "amount_fees": 0, "vda": false, "sst_import": false}
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "UNREGISTERED", "country_code": "AF", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_ANNUALLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "filing_days": 386208, "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1305,7 +2848,7 @@ examples:
           registration_id: "<id>"
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "AWAITING_CLARIFICATION", "country_code": "BO", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "MONTHLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "AWAITING_CLARIFICATION", "country_code": "BO", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "MONTHLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "filing_days": 949301, "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1321,7 +2864,7 @@ examples:
         application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false}
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "DEREGISTERING", "country_code": "GL", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_MONTHLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "DEREGISTERING", "country_code": "GL", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "SEMI_MONTHLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "filing_days": 493004, "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1335,7 +2878,7 @@ examples:
           registration_id: "regs_123456"
       responses:
         "200":
-          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "DEREGISTERED", "country_code": "PW", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "FOUR_MONTHLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "registration_type": "EU_OSS"}
+          application/json: {"auto_registered": false, "third_party_enabled": false, "do_not_file": false, "status": "DEREGISTERED", "country_code": "PW", "state_code": "<value>", "state_name": "<value>", "filing_frequency": "FOUR_MONTHLY", "initial_sync": false, "amount_fees": "0.00", "vda": false, "sst_import": false, "needs_mark_as_collecting": false, "id": "<id>", "credits_total_available": "0.00", "filing_days": 670265, "registration_type": "EU_OSS"}
         "401":
           application/json: {"detail": "<value>"}
         "422":
@@ -1343,4 +2886,518 @@ examples:
         "500":
           application/json: {"detail": "<value>"}
 examplesVersion: 1.0.2
-releaseNotes: "## Php SDK Changes:\n* `sdk->transactions->createCreditNote()`:  `request.creditNoteCreate` **Changed** **Breaking** :warning:\n* `sdk->transactions->updateCreditNote()`:  `request.creditNoteCreate` **Changed** **Breaking** :warning:\n* `sdk->registrations->create()`: \n  *  `request->[regular]` **Changed**\n  *  `response` **Changed**\n* `sdk->registrations->getById()`:  `response` **Changed**\n* `sdk->nexus->listPhysical()`:  `response.pages` **Changed**\n* `sdk->nexus->list()`: \n  *  `request->disregardView` **Added**\n  *  `response` **Changed**\n* `sdk->products->listItems()`:  `response.pages` **Changed**\n* `sdk->registrations->list()`: \n  *  `request->countryCodeIn` **Changed**\n  *  `response` **Changed**\n* `sdk->customers->list()`: \n  *  `request->country` **Changed**\n  *  `response.pages` **Changed**\n* `sdk->filings->getByRegistrationId()`:  `response.pages` **Changed**\n* `sdk->registrations->update()`: \n  *  `request.registrationUpdateApi` **Changed**\n  *  `response` **Changed**\n* `sdk->registrations->deregister()`:  `response` **Changed**\n* `sdk->transactions->list()`: \n  *  `request->country` **Changed**\n  *  `response.pages` **Changed**\n* `sdk->filings->get()`: \n  *  `request->countryCode` **Changed**\n  *  `response.pages` **Changed**\n* `sdk->exemptions->list()`: \n  *  `request->countryCode` **Changed**\n  *  `response.pages` **Changed**\n* `sdk->taxestimation->estimate()`:  `response.pages` **Changed**\n"
+releaseNotes: "## Php SDK Changes:\n* `sdk->registrations->create()`: \n  *  `request->[regular]->filingDays` **Removed** **Breaking** :warning:\n  *  `response.filingDays` **Changed**\n* `sdk->filings->get()`:  `response.items->[]->marketplaceTransactionCount` **Added**\n* `sdk->filings->getById()`:  `response.marketplaceTransactionCount` **Added**\n* `sdk->filings->getByRegistrationId()`:  `response.items->[]->marketplaceTransactionCount` **Added**\n* `sdk->nexus->listPhysical()`:  `response.items->[]` **Changed**\n* `sdk->nexus->createPhysical()`: \n  *  `request` **Changed**\n  *  `response` **Changed**\n* `sdk->nexus->updatePhysical()`: \n  *  `request.physicalNexusUpdate` **Changed**\n  *  `response` **Changed**\n* `sdk->registrations->list()`:  `response.items->[]->filingDays` **Changed**\n* `sdk->registrations->getById()`: \n  *  `request.reveal` **Added**\n  *  `response.filingDays` **Changed**\n* `sdk->registrations->update()`:  `response.filingDays` **Changed**\n* `sdk->registrations->deregister()`:  `response.filingDays` **Changed**\n"
+generatedFiles:
+  - .gitattributes
+  - USAGE.md
+  - composer.json
+  - docs/Models/Components/AddressBase.md
+  - docs/Models/Components/AddressResponseData.md
+  - docs/Models/Components/AddressSearchResponse.md
+  - docs/Models/Components/AddressStatus.md
+  - docs/Models/Components/AddressSubmittedResponse.md
+  - docs/Models/Components/AddressType.md
+  - docs/Models/Components/AppliedTo.md
+  - docs/Models/Components/AttachmentRead.md
+  - docs/Models/Components/Attachments.md
+  - docs/Models/Components/BackendSrcAddressValidationResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcCustomersResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcExemptionsModelsExemptionRead.md
+  - docs/Models/Components/BackendSrcExemptionsResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcExemptionsSerializersExemptionRead.md
+  - docs/Models/Components/BackendSrcFilingsResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcNexusResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcProductsResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcRegistrationsResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcTaxEstimationResponsesValidationErrorItem.md
+  - docs/Models/Components/BackendSrcTransactionsResponsesValidationErrorItem.md
+  - docs/Models/Components/BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost.md
+  - docs/Models/Components/ChangeRegimeStatusEnum.md
+  - docs/Models/Components/CountryCodeEnum.md
+  - docs/Models/Components/CreditNoteCreate.md
+  - docs/Models/Components/CreditNoteItemCreateUpdate.md
+  - docs/Models/Components/CurrencyEnum.md
+  - docs/Models/Components/CustomerBase.md
+  - docs/Models/Components/CustomerBaseBase.md
+  - docs/Models/Components/CustomerBasePublic.md
+  - docs/Models/Components/CustomerCreate.md
+  - docs/Models/Components/CustomerRead.md
+  - docs/Models/Components/CustomerTaxRegistrationRead.md
+  - docs/Models/Components/CustomerTaxTypeEnum.md
+  - docs/Models/Components/CustomerUpdate.md
+  - docs/Models/Components/DiscountBuilder.md
+  - docs/Models/Components/Exemption.md
+  - docs/Models/Components/ExemptionCreate.md
+  - docs/Models/Components/ExemptionRequired.md
+  - docs/Models/Components/ExemptionStatus.md
+  - docs/Models/Components/ExemptionType.md
+  - docs/Models/Components/FastapiPaginationDefaultPageExemptionRead2.md
+  - docs/Models/Components/File.md
+  - docs/Models/Components/FilingDetailsRead.md
+  - docs/Models/Components/FilingFrequencyEnum.md
+  - docs/Models/Components/FilingRead.md
+  - docs/Models/Components/FilingStatusEnum.md
+  - docs/Models/Components/FindThresholdCrossingTransactionState.md
+  - docs/Models/Components/JurisdictionType.md
+  - docs/Models/Components/NexusResponse.md
+  - docs/Models/Components/NexusStateEnum.md
+  - docs/Models/Components/NexusStatusEnum.md
+  - docs/Models/Components/NexusTypeEnum.md
+  - docs/Models/Components/OSSRegistrationCreatePayload.md
+  - docs/Models/Components/OssTypeEnum.md
+  - docs/Models/Components/PageCustomerRead.md
+  - docs/Models/Components/PageFilingRead.md
+  - docs/Models/Components/PageNexusResponse.md
+  - docs/Models/Components/PagePhysicalNexusRead.md
+  - docs/Models/Components/PageProductRead.md
+  - docs/Models/Components/PageRegistrationReadWithPassword.md
+  - docs/Models/Components/PageTransactionEstimateResponse.md
+  - docs/Models/Components/PageTransactionRead.md
+  - docs/Models/Components/PeriodModelEnum.md
+  - docs/Models/Components/PhysicalNexusCategory.md
+  - docs/Models/Components/PhysicalNexusCreate.md
+  - docs/Models/Components/PhysicalNexusRead.md
+  - docs/Models/Components/PhysicalNexusSource.md
+  - docs/Models/Components/PhysicalNexusUpdate.md
+  - docs/Models/Components/ProcessingStatusEnum.md
+  - docs/Models/Components/ProductCategories.md
+  - docs/Models/Components/ProductCategoryEnum.md
+  - docs/Models/Components/ProductCreateManual.md
+  - docs/Models/Components/ProductRead.md
+  - docs/Models/Components/ProductStatusEnum.md
+  - docs/Models/Components/ProductSubCategory.md
+  - docs/Models/Components/ProductSubCategoryEnum.md
+  - docs/Models/Components/ProductUpdate.md
+  - docs/Models/Components/Registration.md
+  - docs/Models/Components/RegistrationCategoryEnum.md
+  - docs/Models/Components/RegistrationCreatePayload.md
+  - docs/Models/Components/RegistrationRead.md
+  - docs/Models/Components/RegistrationReadWithPassword.md
+  - docs/Models/Components/RegistrationStatusEnum.md
+  - docs/Models/Components/RegistrationTypeEnum.md
+  - docs/Models/Components/RegistrationUpdateAPI.md
+  - docs/Models/Components/RegistrationsRegimeEnum.md
+  - docs/Models/Components/RelatedEntityType.md
+  - docs/Models/Components/SSTRegistrationCreatePayload.md
+  - docs/Models/Components/SalesOrTransactionsEnum.md
+  - docs/Models/Components/Security.md
+  - docs/Models/Components/SourceEnum.md
+  - docs/Models/Components/Status.md
+  - docs/Models/Components/StatusEnum.md
+  - docs/Models/Components/TaxExemptionEnum.md
+  - docs/Models/Components/TaxItemBuilder.md
+  - docs/Models/Components/TaxItemEstimate.md
+  - docs/Models/Components/TaxItemRead.md
+  - docs/Models/Components/TaxItemReturnReasonEnum.md
+  - docs/Models/Components/TaxItemTypeEnum.md
+  - docs/Models/Components/TaxLiabilitySourceEnum.md
+  - docs/Models/Components/TransactionAddressBuilder.md
+  - docs/Models/Components/TransactionAddressPublic.md
+  - docs/Models/Components/TransactionAddressReadOutput.md
+  - docs/Models/Components/TransactionCreate.md
+  - docs/Models/Components/TransactionEstimatePublicRequest.md
+  - docs/Models/Components/TransactionEstimatePublicRequestAddress.md
+  - docs/Models/Components/TransactionEstimatePublicRequestType.md
+  - docs/Models/Components/TransactionEstimateResponse.md
+  - docs/Models/Components/TransactionEstimateResponseAddress.md
+  - docs/Models/Components/TransactionEstimateResponseType.md
+  - docs/Models/Components/TransactionExemptStatusEnum.md
+  - docs/Models/Components/TransactionItemBuilder.md
+  - docs/Models/Components/TransactionItemCreateUpdate.md
+  - docs/Models/Components/TransactionItemEstimateBase.md
+  - docs/Models/Components/TransactionItemEstimateResponse.md
+  - docs/Models/Components/TransactionItemRead.md
+  - docs/Models/Components/TransactionPublicRequest.md
+  - docs/Models/Components/TransactionRead.md
+  - docs/Models/Components/TransactionRefundStatus.md
+  - docs/Models/Components/TransactionStatusEnum.md
+  - docs/Models/Components/TransactionTypeEnum.md
+  - docs/Models/Components/TransactionUpdate.md
+  - docs/Models/Components/TreatmentEnum.md
+  - docs/Models/Components/ValidationAddress.md
+  - docs/Models/Components/ValidationError.md
+  - docs/Models/Errors/BackendSrcAddressValidationResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcCustomersResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcFilingsResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcNexusResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcProductsResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcRegistrationsResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponse.md
+  - docs/Models/Errors/BackendSrcTransactionsResponsesValidationErrorResponse.md
+  - docs/Models/Errors/ErrorResponse.md
+  - docs/Models/Errors/HTTPValidationError.md
+  - docs/Models/Operations/CreateCustomerV1CustomersPostResponse.md
+  - docs/Models/Operations/CreateExemptionV1ExemptionsPostResponse.md
+  - docs/Models/Operations/CreatePhysicalNexusV1NexusPhysicalNexusPostResponse.md
+  - docs/Models/Operations/CreateProductV1ProductsPostResponse.md
+  - docs/Models/Operations/CreateRegistration.md
+  - docs/Models/Operations/CreateRegistrationV1RegistrationsPostResponse.md
+  - docs/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest.md
+  - docs/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse.md
+  - docs/Models/Operations/CreateTransactionV1TransactionsPostResponse.md
+  - docs/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteRequest.md
+  - docs/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteResponse.md
+  - docs/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest.md
+  - docs/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse.md
+  - docs/Models/Operations/EstimateTaxV1TaxEstimatePostRequest.md
+  - docs/Models/Operations/EstimateTaxV1TaxEstimatePostResponse.md
+  - docs/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest.md
+  - docs/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse.md
+  - docs/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetRequest.md
+  - docs/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse.md
+  - docs/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetRequest.md
+  - docs/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetResponse.md
+  - docs/Models/Operations/GetCustomersV1Request.md
+  - docs/Models/Operations/GetCustomersV1Response.md
+  - docs/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetRequest.md
+  - docs/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetResponse.md
+  - docs/Models/Operations/GetExemptionsV1ExemptionsGetRequest.md
+  - docs/Models/Operations/GetExemptionsV1ExemptionsGetResponse.md
+  - docs/Models/Operations/GetFilingByIdV1FilingsFilingIdGetRequest.md
+  - docs/Models/Operations/GetFilingByIdV1FilingsFilingIdGetResponse.md
+  - docs/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetRequest.md
+  - docs/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetResponse.md
+  - docs/Models/Operations/GetFilingsV1FilingsGetRequest.md
+  - docs/Models/Operations/GetFilingsV1FilingsGetResponse.md
+  - docs/Models/Operations/GetNexusForOrgV1NexusGetRequest.md
+  - docs/Models/Operations/GetNexusForOrgV1NexusGetResponse.md
+  - docs/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetRequest.md
+  - docs/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetResponse.md
+  - docs/Models/Operations/GetProductByIdV1ProductsProductIdGetRequest.md
+  - docs/Models/Operations/GetProductByIdV1ProductsProductIdGetResponse.md
+  - docs/Models/Operations/GetProductCategoriesV1ProductsCategoriesGetResponse.md
+  - docs/Models/Operations/GetProductsV1ProductsGetRequest.md
+  - docs/Models/Operations/GetProductsV1ProductsGetResponse.md
+  - docs/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest.md
+  - docs/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse.md
+  - docs/Models/Operations/GetRegistrationsV1RegistrationsGetRequest.md
+  - docs/Models/Operations/GetRegistrationsV1RegistrationsGetResponse.md
+  - docs/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest.md
+  - docs/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse.md
+  - docs/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetRequest.md
+  - docs/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetResponse.md
+  - docs/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest.md
+  - docs/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse.md
+  - docs/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetRequest.md
+  - docs/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse.md
+  - docs/Models/Operations/GetTransactionsV1TransactionsGetRequest.md
+  - docs/Models/Operations/GetTransactionsV1TransactionsGetResponse.md
+  - docs/Models/Operations/POSTCreateCreditNoteByTransactionIdRequest.md
+  - docs/Models/Operations/POSTCreateCreditNoteByTransactionIdResponse.md
+  - docs/Models/Operations/PUTUpdateCreditNoteByTransactionIdRequest.md
+  - docs/Models/Operations/PUTUpdateCreditNoteByTransactionIdResponse.md
+  - docs/Models/Operations/SearchV1AddressValidationSearchPostResponse.md
+  - docs/Models/Operations/SearchV1AddressValidationSearchPostSecurity.md
+  - docs/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostResponse.md
+  - docs/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutRequest.md
+  - docs/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutResponse.md
+  - docs/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutRequest.md
+  - docs/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutResponse.md
+  - docs/Models/Operations/UpdateProductV1ProductsProductIdPutRequest.md
+  - docs/Models/Operations/UpdateProductV1ProductsProductIdPutResponse.md
+  - docs/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutRequest.md
+  - docs/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutResponse.md
+  - docs/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutRequest.md
+  - docs/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutResponse.md
+  - docs/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest.md
+  - docs/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse.md
+  - docs/sdks/addressvalidation/README.md
+  - docs/sdks/attachments/README.md
+  - docs/sdks/customers/README.md
+  - docs/sdks/exemptions/README.md
+  - docs/sdks/filings/README.md
+  - docs/sdks/nexus/README.md
+  - docs/sdks/products/README.md
+  - docs/sdks/registrations/README.md
+  - docs/sdks/taxestimation/README.md
+  - docs/sdks/transactions/README.md
+  - phpstan.neon
+  - phpunit.xml
+  - pint.json
+  - rector.php
+  - src/AddressValidation.php
+  - src/Attachments.php
+  - src/Customers.php
+  - src/Exemptions.php
+  - src/Filings.php
+  - src/Hooks/AfterErrorContext.php
+  - src/Hooks/AfterErrorHook.php
+  - src/Hooks/AfterSuccessContext.php
+  - src/Hooks/AfterSuccessHook.php
+  - src/Hooks/BeforeRequestContext.php
+  - src/Hooks/BeforeRequestHook.php
+  - src/Hooks/Credentials.php
+  - src/Hooks/ErrorResponseContext.php
+  - src/Hooks/FailEarlyException.php
+  - src/Hooks/HookContext.php
+  - src/Hooks/Hooks.php
+  - src/Hooks/SDKHooks.php
+  - src/Hooks/SDKInitHook.php
+  - src/Hooks/Session.php
+  - src/Hooks/TokenResponse.php
+  - src/Models/Components/AddressBase.php
+  - src/Models/Components/AddressResponseData.php
+  - src/Models/Components/AddressSearchResponse.php
+  - src/Models/Components/AddressStatus.php
+  - src/Models/Components/AddressSubmittedResponse.php
+  - src/Models/Components/AddressType.php
+  - src/Models/Components/AppliedTo.php
+  - src/Models/Components/AttachmentRead.php
+  - src/Models/Components/Attachments.php
+  - src/Models/Components/BackendSrcAddressValidationResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcCustomersResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcExemptionsModelsExemptionRead.php
+  - src/Models/Components/BackendSrcExemptionsResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcExemptionsSerializersExemptionRead.php
+  - src/Models/Components/BackendSrcFilingsResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcNexusResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcProductsResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcRegistrationsResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcTaxEstimationResponsesValidationErrorItem.php
+  - src/Models/Components/BackendSrcTransactionsResponsesValidationErrorItem.php
+  - src/Models/Components/BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost.php
+  - src/Models/Components/ChangeRegimeStatusEnum.php
+  - src/Models/Components/CountryCodeEnum.php
+  - src/Models/Components/CreditNoteCreate.php
+  - src/Models/Components/CreditNoteItemCreateUpdate.php
+  - src/Models/Components/CurrencyEnum.php
+  - src/Models/Components/CustomerBase.php
+  - src/Models/Components/CustomerBaseBase.php
+  - src/Models/Components/CustomerBasePublic.php
+  - src/Models/Components/CustomerCreate.php
+  - src/Models/Components/CustomerRead.php
+  - src/Models/Components/CustomerTaxRegistrationRead.php
+  - src/Models/Components/CustomerTaxTypeEnum.php
+  - src/Models/Components/CustomerUpdate.php
+  - src/Models/Components/DiscountBuilder.php
+  - src/Models/Components/Exemption.php
+  - src/Models/Components/ExemptionCreate.php
+  - src/Models/Components/ExemptionRequired.php
+  - src/Models/Components/ExemptionStatus.php
+  - src/Models/Components/ExemptionType.php
+  - src/Models/Components/FastapiPaginationDefaultPageExemptionRead2.php
+  - src/Models/Components/File.php
+  - src/Models/Components/FilingDetailsRead.php
+  - src/Models/Components/FilingFrequencyEnum.php
+  - src/Models/Components/FilingRead.php
+  - src/Models/Components/FilingStatusEnum.php
+  - src/Models/Components/FindThresholdCrossingTransactionState.php
+  - src/Models/Components/JurisdictionType.php
+  - src/Models/Components/NexusResponse.php
+  - src/Models/Components/NexusStateEnum.php
+  - src/Models/Components/NexusStatusEnum.php
+  - src/Models/Components/NexusTypeEnum.php
+  - src/Models/Components/OSSRegistrationCreatePayload.php
+  - src/Models/Components/OssTypeEnum.php
+  - src/Models/Components/PageCustomerRead.php
+  - src/Models/Components/PageFilingRead.php
+  - src/Models/Components/PageNexusResponse.php
+  - src/Models/Components/PagePhysicalNexusRead.php
+  - src/Models/Components/PageProductRead.php
+  - src/Models/Components/PageRegistrationReadWithPassword.php
+  - src/Models/Components/PageTransactionEstimateResponse.php
+  - src/Models/Components/PageTransactionRead.php
+  - src/Models/Components/PeriodModelEnum.php
+  - src/Models/Components/PhysicalNexusCategory.php
+  - src/Models/Components/PhysicalNexusCreate.php
+  - src/Models/Components/PhysicalNexusRead.php
+  - src/Models/Components/PhysicalNexusSource.php
+  - src/Models/Components/PhysicalNexusUpdate.php
+  - src/Models/Components/ProcessingStatusEnum.php
+  - src/Models/Components/ProductCategories.php
+  - src/Models/Components/ProductCategoryEnum.php
+  - src/Models/Components/ProductCreateManual.php
+  - src/Models/Components/ProductRead.php
+  - src/Models/Components/ProductStatusEnum.php
+  - src/Models/Components/ProductSubCategory.php
+  - src/Models/Components/ProductSubCategoryEnum.php
+  - src/Models/Components/ProductUpdate.php
+  - src/Models/Components/Registration.php
+  - src/Models/Components/RegistrationCategoryEnum.php
+  - src/Models/Components/RegistrationCreatePayload.php
+  - src/Models/Components/RegistrationRead.php
+  - src/Models/Components/RegistrationReadWithPassword.php
+  - src/Models/Components/RegistrationStatusEnum.php
+  - src/Models/Components/RegistrationTypeEnum.php
+  - src/Models/Components/RegistrationUpdateAPI.php
+  - src/Models/Components/RegistrationsRegimeEnum.php
+  - src/Models/Components/RelatedEntityType.php
+  - src/Models/Components/SSTRegistrationCreatePayload.php
+  - src/Models/Components/SalesOrTransactionsEnum.php
+  - src/Models/Components/Security.php
+  - src/Models/Components/SourceEnum.php
+  - src/Models/Components/Status.php
+  - src/Models/Components/StatusEnum.php
+  - src/Models/Components/TaxExemptionEnum.php
+  - src/Models/Components/TaxItemBuilder.php
+  - src/Models/Components/TaxItemEstimate.php
+  - src/Models/Components/TaxItemRead.php
+  - src/Models/Components/TaxItemReturnReasonEnum.php
+  - src/Models/Components/TaxItemTypeEnum.php
+  - src/Models/Components/TaxLiabilitySourceEnum.php
+  - src/Models/Components/TransactionAddressBuilder.php
+  - src/Models/Components/TransactionAddressPublic.php
+  - src/Models/Components/TransactionAddressReadOutput.php
+  - src/Models/Components/TransactionCreate.php
+  - src/Models/Components/TransactionEstimatePublicRequest.php
+  - src/Models/Components/TransactionEstimatePublicRequestAddress.php
+  - src/Models/Components/TransactionEstimatePublicRequestType.php
+  - src/Models/Components/TransactionEstimateResponse.php
+  - src/Models/Components/TransactionEstimateResponseAddress.php
+  - src/Models/Components/TransactionEstimateResponseType.php
+  - src/Models/Components/TransactionExemptStatusEnum.php
+  - src/Models/Components/TransactionItemBuilder.php
+  - src/Models/Components/TransactionItemCreateUpdate.php
+  - src/Models/Components/TransactionItemEstimateBase.php
+  - src/Models/Components/TransactionItemEstimateResponse.php
+  - src/Models/Components/TransactionItemRead.php
+  - src/Models/Components/TransactionPublicRequest.php
+  - src/Models/Components/TransactionRead.php
+  - src/Models/Components/TransactionRefundStatus.php
+  - src/Models/Components/TransactionStatusEnum.php
+  - src/Models/Components/TransactionTypeEnum.php
+  - src/Models/Components/TransactionUpdate.php
+  - src/Models/Components/TreatmentEnum.php
+  - src/Models/Components/ValidationAddress.php
+  - src/Models/Components/ValidationError.php
+  - src/Models/Errors/APIException.php
+  - src/Models/Errors/BackendSrcAddressValidationResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcAddressValidationResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcCustomersResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcCustomersResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcExemptionsResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcFilingsResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcFilingsResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcNexusResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcNexusResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcProductsResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcProductsResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcRegistrationsResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcRegistrationsResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcTaxEstimationResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/BackendSrcTransactionsResponsesValidationErrorResponse.php
+  - src/Models/Errors/BackendSrcTransactionsResponsesValidationErrorResponseThrowable.php
+  - src/Models/Errors/ErrorResponse.php
+  - src/Models/Errors/ErrorResponseThrowable.php
+  - src/Models/Errors/HTTPValidationError.php
+  - src/Models/Errors/HTTPValidationErrorThrowable.php
+  - src/Models/Operations/CreateCustomerV1CustomersPostResponse.php
+  - src/Models/Operations/CreateExemptionV1ExemptionsPostResponse.php
+  - src/Models/Operations/CreatePhysicalNexusV1NexusPhysicalNexusPostResponse.php
+  - src/Models/Operations/CreateProductV1ProductsPostResponse.php
+  - src/Models/Operations/CreateRegistrationV1RegistrationsPostResponse.php
+  - src/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest.php
+  - src/Models/Operations/CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse.php
+  - src/Models/Operations/CreateTransactionV1TransactionsPostResponse.php
+  - src/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteRequest.php
+  - src/Models/Operations/DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteResponse.php
+  - src/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest.php
+  - src/Models/Operations/DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse.php
+  - src/Models/Operations/EstimateTaxV1TaxEstimatePostRequest.php
+  - src/Models/Operations/EstimateTaxV1TaxEstimatePostResponse.php
+  - src/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest.php
+  - src/Models/Operations/GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse.php
+  - src/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetRequest.php
+  - src/Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse.php
+  - src/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetRequest.php
+  - src/Models/Operations/GetCustomerByIdV1CustomersCustomerIdGetResponse.php
+  - src/Models/Operations/GetCustomersV1Request.php
+  - src/Models/Operations/GetCustomersV1Response.php
+  - src/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetRequest.php
+  - src/Models/Operations/GetExemptionByIdV1ExemptionsExemptionIdGetResponse.php
+  - src/Models/Operations/GetExemptionsV1ExemptionsGetRequest.php
+  - src/Models/Operations/GetExemptionsV1ExemptionsGetResponse.php
+  - src/Models/Operations/GetFilingByIdV1FilingsFilingIdGetRequest.php
+  - src/Models/Operations/GetFilingByIdV1FilingsFilingIdGetResponse.php
+  - src/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetRequest.php
+  - src/Models/Operations/GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetResponse.php
+  - src/Models/Operations/GetFilingsV1FilingsGetRequest.php
+  - src/Models/Operations/GetFilingsV1FilingsGetResponse.php
+  - src/Models/Operations/GetNexusForOrgV1NexusGetRequest.php
+  - src/Models/Operations/GetNexusForOrgV1NexusGetResponse.php
+  - src/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetRequest.php
+  - src/Models/Operations/GetPhysicalNexusV1NexusPhysicalNexusGetResponse.php
+  - src/Models/Operations/GetProductByIdV1ProductsProductIdGetRequest.php
+  - src/Models/Operations/GetProductByIdV1ProductsProductIdGetResponse.php
+  - src/Models/Operations/GetProductCategoriesV1ProductsCategoriesGetResponse.php
+  - src/Models/Operations/GetProductsV1ProductsGetRequest.php
+  - src/Models/Operations/GetProductsV1ProductsGetResponse.php
+  - src/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest.php
+  - src/Models/Operations/GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse.php
+  - src/Models/Operations/GetRegistrationsV1RegistrationsGetRequest.php
+  - src/Models/Operations/GetRegistrationsV1RegistrationsGetResponse.php
+  - src/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest.php
+  - src/Models/Operations/GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse.php
+  - src/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetRequest.php
+  - src/Models/Operations/GetTransactionByIdV1TransactionsTransactionIdGetResponse.php
+  - src/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest.php
+  - src/Models/Operations/GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse.php
+  - src/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetRequest.php
+  - src/Models/Operations/GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse.php
+  - src/Models/Operations/GetTransactionsV1TransactionsGetRequest.php
+  - src/Models/Operations/GetTransactionsV1TransactionsGetResponse.php
+  - src/Models/Operations/POSTCreateCreditNoteByTransactionIdRequest.php
+  - src/Models/Operations/POSTCreateCreditNoteByTransactionIdResponse.php
+  - src/Models/Operations/PUTUpdateCreditNoteByTransactionIdRequest.php
+  - src/Models/Operations/PUTUpdateCreditNoteByTransactionIdResponse.php
+  - src/Models/Operations/SearchV1AddressValidationSearchPostResponse.php
+  - src/Models/Operations/SearchV1AddressValidationSearchPostSecurity.php
+  - src/Models/Operations/SuggestionsV1AddressValidationSuggestionsPostResponse.php
+  - src/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutRequest.php
+  - src/Models/Operations/UpdateCustomerV1CustomersCustomerIdPutResponse.php
+  - src/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutRequest.php
+  - src/Models/Operations/UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutResponse.php
+  - src/Models/Operations/UpdateProductV1ProductsProductIdPutRequest.php
+  - src/Models/Operations/UpdateProductV1ProductsProductIdPutResponse.php
+  - src/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutRequest.php
+  - src/Models/Operations/UpdateRegistrationV1RegistrationsRegistrationIdPutResponse.php
+  - src/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutRequest.php
+  - src/Models/Operations/UpdateTransactionV1TransactionsTransactionIdPutResponse.php
+  - src/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest.php
+  - src/Models/Operations/UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse.php
+  - src/Nexus.php
+  - src/Products.php
+  - src/Registrations.php
+  - src/SDK.php
+  - src/SDKBuilder.php
+  - src/SDKConfiguration.php
+  - src/TaxEstimation.php
+  - src/Transactions.php
+  - src/Utils/BigDecimalHandler.php
+  - src/Utils/BigIntHandler.php
+  - src/Utils/DateHandler.php
+  - src/Utils/DateTimeHandler.php
+  - src/Utils/DefaultRequest.php
+  - src/Utils/DefaultResponse.php
+  - src/Utils/DefaultStream.php
+  - src/Utils/DefaultUri.php
+  - src/Utils/EnumHandler.php
+  - src/Utils/FormMetadata.php
+  - src/Utils/Headers.php
+  - src/Utils/JSON.php
+  - src/Utils/MixedJSONHandler.php
+  - src/Utils/MultipartMetadata.php
+  - src/Utils/Options.php
+  - src/Utils/ParamsMetadata.php
+  - src/Utils/PathParameters.php
+  - src/Utils/PhpDocTypeParser.php
+  - src/Utils/QueryParameters.php
+  - src/Utils/RequestBodies.php
+  - src/Utils/RequestMetadata.php
+  - src/Utils/Retry/PermanentError.php
+  - src/Utils/Retry/RetryConfig.php
+  - src/Utils/Retry/RetryConfigBackoff.php
+  - src/Utils/Retry/RetryConfigNone.php
+  - src/Utils/Retry/RetryStrategy.php
+  - src/Utils/Retry/RetryUtils.php
+  - src/Utils/Retry/TemporaryError.php
+  - src/Utils/Security.php
+  - src/Utils/SecurityClient.php
+  - src/Utils/SecurityMetadata.php
+  - src/Utils/ServerDetails.php
+  - src/Utils/SpeakeasyMetadata.php
+  - src/Utils/UnionHandler.php
+  - src/Utils/Utils.php

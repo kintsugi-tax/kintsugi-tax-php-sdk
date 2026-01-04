@@ -18,3 +18,4 @@ This enum is used to determine if a transaction is exempt from tax.
 | `ZeroValueItem`           | ZERO_VALUE_ITEM           |
 | `NoRuleFound`             | NO_RULE_FOUND             |
 | `Imported`                | IMPORTED                  |
+| `ZeroRateNotExempt`       | ZERO_RATE_NOT_EXEMPT      |

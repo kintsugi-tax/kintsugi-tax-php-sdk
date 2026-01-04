@@ -255,23 +255,28 @@ class Registrations
      *     based on its unique identifier.
      *
      * @param  string  $registrationId
+     * @param  ?string  $reveal
      * @return Operations\GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getById(string $registrationId, ?Options $options = null): Operations\GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse
+    public function getById(string $registrationId, ?string $reveal = null, ?Options $options = null): Operations\GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse
     {
         $request = new Operations\GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest(
             registrationId: $registrationId,
+            reveal: $reveal,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/registrations/{registration_id}', Operations\GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+
+        $qp = Utils\Utils::getQueryParams(Operations\GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest::class, $request, $urlOverride);
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_registration_by_id_v1_registrations__registration_id__get', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
