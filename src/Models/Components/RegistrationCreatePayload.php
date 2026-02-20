@@ -44,14 +44,6 @@ class RegistrationCreatePayload
     public FilingFrequencyEnum $filingFrequency;
 
     /**
-     * The number of days before the filing deadline.
-     *
-     * @var int $filingDays
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('filing_days')]
-    public int $filingDays;
-
-    /**
      * The date when the registration was created. Format: YYYY-MM-DD.
      *
      * @var ?string $registrationDate
@@ -281,7 +273,6 @@ class RegistrationCreatePayload
      * @param  string  $stateCode
      * @param  string  $stateName
      * @param  FilingFrequencyEnum  $filingFrequency
-     * @param  int  $filingDays
      * @param  ?string  $registrationImportType
      * @param  ?string  $registrationDate
      * @param  ?string  $registrationEmail
@@ -309,13 +300,12 @@ class RegistrationCreatePayload
      * @param  ?string  $passwordMetadataPlainText
      * @phpstan-pure
      */
-    public function __construct(CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, int $filingDays, ?string $registrationDate = null, ?string $registrationEmail = null, ?string $registrationKey = null, ?string $deregistrationKey = null, ?string $registrationRequested = null, ?string $registrationCompleted = null, ?string $deregistrationRequested = null, ?string $deregistrationCompleted = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?string $username = null, ?string $comment = null, ?string $createFilingsFrom = null, ?bool $imported = null, ?string $salesTaxId = null, ?string $taxId = null, ?string $passwordPlainText = null, ?string $passwordMetadataPlainText = null, ?string $registrationImportType = 'REGULAR', ?bool $autoRegistered = false, ?bool $doNotFile = false, ?bool $initialSync = false, ?float $amountFees = 0.00, ?bool $vda = false, ?bool $sstImport = false)
+    public function __construct(CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, ?string $registrationDate = null, ?string $registrationEmail = null, ?string $registrationKey = null, ?string $deregistrationKey = null, ?string $registrationRequested = null, ?string $registrationCompleted = null, ?string $deregistrationRequested = null, ?string $deregistrationCompleted = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?string $username = null, ?string $comment = null, ?string $createFilingsFrom = null, ?bool $imported = null, ?string $salesTaxId = null, ?string $taxId = null, ?string $passwordPlainText = null, ?string $passwordMetadataPlainText = null, ?string $registrationImportType = 'REGULAR', ?bool $autoRegistered = false, ?bool $doNotFile = false, ?bool $initialSync = false, ?float $amountFees = 0.00, ?bool $vda = false, ?bool $sstImport = false)
     {
         $this->countryCode = $countryCode;
         $this->stateCode = $stateCode;
         $this->stateName = $stateName;
         $this->filingFrequency = $filingFrequency;
-        $this->filingDays = $filingDays;
         $this->registrationDate = $registrationDate;
         $this->registrationEmail = $registrationEmail;
         $this->registrationKey = $registrationKey;

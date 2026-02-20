@@ -1,5 +1,4 @@
 # Registrations
-(*registrations*)
 
 ## Overview
 
@@ -74,9 +73,44 @@ if ($response->pageRegistrationReadWithPassword !== null) {
 The Create Registration API allows users to create a new registration
     for tracking and managing tax filings efficiently across multiple jurisdictions.
 
-### Example Usage
+### Example Usage: oss
 
-<!-- UsageSnippet language="php" operationID="create_registration_v1_registrations_post" method="post" path="/v1/registrations" -->
+<!-- UsageSnippet language="php" operationID="create_registration_v1_registrations_post" method="post" path="/v1/registrations" example="oss" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Components\OSSRegistrationCreatePayload(
+    passwordPlainText: 'oss_pass_fr',
+    passwordMetadataPlainText: '{"q":"a"}',
+    memberStateOfIdentificationCode: Components\CountryCodeEnum::Fr,
+    imported: true,
+);
+
+$response = $sdk->registrations->create(
+    request: $request
+);
+
+if ($response->registrationRead !== null) {
+    // handle response
+}
+```
+### Example Usage: regular_legacy
+
+<!-- UsageSnippet language="php" operationID="create_registration_v1_registrations_post" method="post" path="/v1/registrations" example="regular_legacy" -->
 ```php
 declare(strict_types=1);
 
@@ -95,6 +129,80 @@ $sdk = SDK\SDK::builder()
     ->build();
 
 $request = new Components\OSSRegistrationCreatePayload();
+
+$response = $sdk->registrations->create(
+    request: $request
+);
+
+if ($response->registrationRead !== null) {
+    // handle response
+}
+```
+### Example Usage: regular_new
+
+<!-- UsageSnippet language="php" operationID="create_registration_v1_registrations_post" method="post" path="/v1/registrations" example="regular_new" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Components\RegistrationCreatePayload(
+    registrationDate: '2025-02-01',
+    registrationEmail: 'example@domain.com',
+    autoRegistered: true,
+    countryCode: Components\CountryCodeEnum::Us,
+    stateCode: 'TX',
+    stateName: 'Texas',
+    filingFrequency: Components\FilingFrequencyEnum::Monthly,
+    comment: 'Registering for monthly sales tax filings',
+    amountFees: 100,
+);
+
+$response = $sdk->registrations->create(
+    request: $request
+);
+
+if ($response->registrationRead !== null) {
+    // handle response
+}
+```
+### Example Usage: sst
+
+<!-- UsageSnippet language="php" operationID="create_registration_v1_registrations_post" method="post" path="/v1/registrations" example="sst" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Components\SSTRegistrationCreatePayload(
+    passwordPlainText: 'sst_pass',
+    passwordMetadataPlainText: '{"q":"a"}',
+    username: 'sst_user',
+);
 
 $response = $sdk->registrations->create(
     request: $request
@@ -165,6 +273,7 @@ if ($response->registrationRead !== null) {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `registrationId`                                                                       | *string*                                                                               | :heavy_check_mark:                                                                     | The unique identifier of the<br/>                                registration to retrieve. |
+| `reveal`                                                                               | *?string*                                                                              | :heavy_minus_sign:                                                                     | Name of field to reveal                                                                |
 
 ### Response
 
