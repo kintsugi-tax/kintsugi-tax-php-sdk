@@ -20,20 +20,26 @@ class ProductUpdate
     public string $name;
 
     /**
+     * Main category of the product.
      *
-     * @var ProductCategoryEnum $productCategory
+     *     For example, Physical, Digital, etc. You can
+     *     retrieve supported categories from [GET /products/categories endpoint](/reference/api/products/get-product-categories)
+     *
+     * @var string $productCategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_category')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductCategoryEnum')]
-    public ProductCategoryEnum $productCategory;
+    public string $productCategory;
 
     /**
+     * Subcategory of the product.
      *
-     * @var ProductSubCategoryEnum $productSubcategory
+     *     For example, General Clothing, UNKNOWN, etc. You can
+     *     retrieve supported subcategories from [GET /products/categories endpoint](/reference/api/products/get-product-categories)
+     *
+     * @var string $productSubcategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_subcategory')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum')]
-    public ProductSubCategoryEnum $productSubcategory;
+    public string $productSubcategory;
 
     /**
      * Indicates whether the product is tax-exempt.
@@ -102,8 +108,8 @@ class ProductUpdate
 
     /**
      * @param  string  $name
-     * @param  ProductCategoryEnum  $productCategory
-     * @param  ProductSubCategoryEnum  $productSubcategory
+     * @param  string  $productCategory
+     * @param  string  $productSubcategory
      * @param  bool  $taxExempt
      * @param  ?string  $id
      * @param  ?string  $externalId
@@ -113,7 +119,7 @@ class ProductUpdate
      * @param  ?bool  $classificationFailed
      * @phpstan-pure
      */
-    public function __construct(string $name, ProductCategoryEnum $productCategory, ProductSubCategoryEnum $productSubcategory, bool $taxExempt, ?string $id = null, ?string $externalId = null, ?array $sku = null, ?string $description = null, ?ProductStatusEnum $status = null, ?bool $classificationFailed = false)
+    public function __construct(string $name, string $productCategory, string $productSubcategory, bool $taxExempt, ?string $id = null, ?string $externalId = null, ?array $sku = null, ?string $description = null, ?ProductStatusEnum $status = null, ?bool $classificationFailed = false)
     {
         $this->name = $name;
         $this->productCategory = $productCategory;

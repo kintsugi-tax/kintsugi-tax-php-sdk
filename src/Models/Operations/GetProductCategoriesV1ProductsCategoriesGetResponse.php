@@ -33,24 +33,24 @@ class GetProductCategoriesV1ProductsCategoriesGetResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
-     * Successful Response
+     * Successfully retrieved product categories
      *
-     * @var ?array<Components\ProductCategories> $responseGetProductCategoriesV1ProductsCategoriesGet
+     * @var ?Components\ProductCategories $productCategories
      */
-    public ?array $responseGetProductCategoriesV1ProductsCategoriesGet = null;
+    public ?Components\ProductCategories $productCategories = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<Components\ProductCategories>  $responseGetProductCategoriesV1ProductsCategoriesGet
+     * @param  ?Components\ProductCategories  $productCategories
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $responseGetProductCategoriesV1ProductsCategoriesGet = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\ProductCategories $productCategories = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->responseGetProductCategoriesV1ProductsCategoriesGet = $responseGetProductCategoriesV1ProductsCategoriesGet;
+        $this->productCategories = $productCategories;
     }
 }

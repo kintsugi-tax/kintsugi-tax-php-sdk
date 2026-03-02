@@ -29,4 +29,5 @@ enum ProcessingStatusEnum: string
     case Pending = 'PENDING';
     case Archived = 'ARCHIVED';
     case NeedsRefetch = 'NEEDS_REFETCH';
+    case ExcludedInCalculation = 'EXCLUDED_IN_CALCULATION';
 }

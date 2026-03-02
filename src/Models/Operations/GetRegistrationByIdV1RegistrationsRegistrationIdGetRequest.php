@@ -22,11 +22,21 @@ class GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest
     public string $registrationId;
 
     /**
+     * Name of field to reveal
+     *
+     * @var ?string $reveal
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=reveal')]
+    public ?string $reveal = null;
+
+    /**
      * @param  string  $registrationId
+     * @param  ?string  $reveal
      * @phpstan-pure
      */
-    public function __construct(string $registrationId)
+    public function __construct(string $registrationId, ?string $reveal = null)
     {
         $this->registrationId = $registrationId;
+        $this->reveal = $reveal;
     }
 }
