@@ -126,6 +126,7 @@ class TransactionUpdate
      * NOT EXEMPT: None of the items are NOT EXEMPT
      * PARTIALLY EXEMPT: At least some of the items are NOT EXEMPT
      * FULLY_EXEMPT: All items sold in the transaction are EXEMPT
+     * ZERO_RATE_NOT_EXEMPT: All items sold in the transaction are zero-rated
      *
      * @var ?TransactionExemptStatusEnum $exempt
      */
@@ -412,7 +413,7 @@ class TransactionUpdate
      * @param  ?TransactionStatusEnum  $status
      * @phpstan-pure
      */
-    public function __construct(string $organizationId, string $externalId, \DateTime $date, array $addresses, array $transactionItems, CustomerUpdate $customer, ?ExemptionRequired $requiresExemption = null, ?string $shopDate = null, ?string $shopDateTz = null, ?string $description = null, ?TransactionRefundStatus $refundStatus = null, ?string $customerId = null, ?TransactionExemptStatusEnum $exempt = null, ?array $exemptions = null, ?string $relatedTo = null, ?string $secondaryExternalId = null, ?string $secondarySource = null, ?string $externalFriendlyId = null, ?TaxLiabilitySourceEnum $taxLiabilitySource = null, ?CurrencyEnum $currency = null, ?SourceEnum $source = null, ?string $connectionId = null, ?string $filingId = null, ?string $city = null, ?string $county = null, ?string $state = null, ?CountryCodeEnum $country = null, ?string $postalCode = null, ?string $taxId = null, ?TransactionStatusEnum $status = null, ?float $totalAmount = 0.00, ?bool $marketplace = false, ?float $totalTaxAmountImported = 0.00, ?float $taxRateImported = 0.00, ?float $totalTaxAmountCalculated = 0.00, ?float $taxRateCalculated = 0.00, ?float $totalTaxLiabilityAmount = 0.00, ?float $taxableAmount = 0.00, ?bool $locked = false)
+    public function __construct(string $organizationId, string $externalId, \DateTime $date, array $addresses, array $transactionItems, CustomerUpdate $customer, ?ExemptionRequired $requiresExemption = null, ?string $shopDate = null, ?string $shopDateTz = null, ?string $description = null, ?TransactionRefundStatus $refundStatus = null, ?string $customerId = null, ?TransactionExemptStatusEnum $exempt = null, ?array $exemptions = null, ?string $relatedTo = null, ?string $secondaryExternalId = null, ?string $secondarySource = null, ?string $externalFriendlyId = null, ?TaxLiabilitySourceEnum $taxLiabilitySource = null, ?CurrencyEnum $currency = null, ?SourceEnum $source = null, ?string $connectionId = null, ?string $filingId = null, ?string $city = null, ?string $county = null, ?string $state = null, ?CountryCodeEnum $country = null, ?string $postalCode = null, ?string $taxId = null, ?TransactionStatusEnum $status = null, ?float $totalAmount = 0, ?bool $marketplace = false, ?float $totalTaxAmountImported = 0, ?float $taxRateImported = 0, ?float $totalTaxAmountCalculated = 0, ?float $taxRateCalculated = 0, ?float $totalTaxLiabilityAmount = 0, ?float $taxableAmount = 0, ?bool $locked = false)
     {
         $this->organizationId = $organizationId;
         $this->externalId = $externalId;

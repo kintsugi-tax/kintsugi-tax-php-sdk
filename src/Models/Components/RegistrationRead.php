@@ -61,6 +61,13 @@ class RegistrationRead
 
     /**
      *
+     * @var int $filingDays
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('filing_days')]
+    public int $filingDays;
+
+    /**
+     *
      * @var RegistrationTypeEnum $registrationType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registration_type')]
@@ -174,15 +181,6 @@ class RegistrationRead
     #[\Speakeasy\Serializer\Annotation\SerializedName('marked_collecting')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $markedCollecting = null;
-
-    /**
-     * The number of days before the filing deadline.
-     *
-     * @var ?int $filingDays
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('filing_days')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?int $filingDays = null;
 
     /**
      * Username for accessing tax registration details.
@@ -355,6 +353,7 @@ class RegistrationRead
      * @param  string  $stateName
      * @param  FilingFrequencyEnum  $filingFrequency
      * @param  string  $id
+     * @param  int  $filingDays
      * @param  RegistrationTypeEnum  $registrationType
      * @param  ?string  $registrationDate
      * @param  ?string  $registrationEmail
@@ -371,7 +370,6 @@ class RegistrationRead
      * @param  ?bool  $doNotFile
      * @param  ?bool  $twoFactorEnabled
      * @param  ?bool  $markedCollecting
-     * @param  ?int  $filingDays
      * @param  ?string  $username
      * @param  ?string  $comment
      * @param  ?string  $createFilingsFrom
@@ -389,7 +387,7 @@ class RegistrationRead
      * @param  ?RegistrationCategoryEnum  $registrationCategory
      * @phpstan-pure
      */
-    public function __construct(RegistrationStatusEnum $status, CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, string $id, RegistrationTypeEnum $registrationType, ?string $registrationDate = null, ?string $registrationEmail = null, ?string $registrationKey = null, ?string $deregistrationKey = null, ?string $registrationRequested = null, ?string $registrationCompleted = null, ?string $deregistrationRequested = null, ?string $deregistrationCompleted = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $twoFactorEnabled = null, ?bool $markedCollecting = null, ?int $filingDays = null, ?string $username = null, ?string $comment = null, ?string $createFilingsFrom = null, ?bool $imported = null, ?string $salesTaxId = null, ?OssTypeEnum $ossType = null, ?CountryCodeEnum $ossMemberStateOfIdentificationCode = null, ?string $markedCollectingDate = null, ?RegistrationCategoryEnum $registrationCategory = null, ?bool $autoRegistered = false, ?bool $thirdPartyEnabled = false, ?bool $doNotFile = false, ?bool $initialSync = false, ?string $amountFees = '0.00', ?bool $vda = false, ?bool $sstImport = false, ?bool $needsMarkAsCollecting = false, ?string $creditsTotalAvailable = '0.00')
+    public function __construct(RegistrationStatusEnum $status, CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, string $id, int $filingDays, RegistrationTypeEnum $registrationType, ?string $registrationDate = null, ?string $registrationEmail = null, ?string $registrationKey = null, ?string $deregistrationKey = null, ?string $registrationRequested = null, ?string $registrationCompleted = null, ?string $deregistrationRequested = null, ?string $deregistrationCompleted = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $twoFactorEnabled = null, ?bool $markedCollecting = null, ?string $username = null, ?string $comment = null, ?string $createFilingsFrom = null, ?bool $imported = null, ?string $salesTaxId = null, ?OssTypeEnum $ossType = null, ?CountryCodeEnum $ossMemberStateOfIdentificationCode = null, ?string $markedCollectingDate = null, ?RegistrationCategoryEnum $registrationCategory = null, ?bool $autoRegistered = false, ?bool $thirdPartyEnabled = false, ?bool $doNotFile = false, ?bool $initialSync = false, ?string $amountFees = '0.00', ?bool $vda = false, ?bool $sstImport = false, ?bool $needsMarkAsCollecting = false, ?string $creditsTotalAvailable = '0.00')
     {
         $this->status = $status;
         $this->countryCode = $countryCode;
@@ -397,6 +395,7 @@ class RegistrationRead
         $this->stateName = $stateName;
         $this->filingFrequency = $filingFrequency;
         $this->id = $id;
+        $this->filingDays = $filingDays;
         $this->registrationType = $registrationType;
         $this->registrationDate = $registrationDate;
         $this->registrationEmail = $registrationEmail;
@@ -410,7 +409,6 @@ class RegistrationRead
         $this->changeRegimeStatus = $changeRegimeStatus;
         $this->twoFactorEnabled = $twoFactorEnabled;
         $this->markedCollecting = $markedCollecting;
-        $this->filingDays = $filingDays;
         $this->username = $username;
         $this->comment = $comment;
         $this->createFilingsFrom = $createFilingsFrom;

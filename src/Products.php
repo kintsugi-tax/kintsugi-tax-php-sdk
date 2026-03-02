@@ -50,16 +50,18 @@ class Products
      *
      * The Create Product API allows users to manually create a new product
      *     in the system. This includes specifying product details such as category,
-     *     subcategory, and tax exemption status, etc.
+     *     subcategory, and tax exemption status, etc. You can
+     *     retrieve supported categories and subcategories from
+     *     [GET /products/categories endpoint](/reference/api/products/get-product-categories)
      *
      * @param  Components\ProductCreateManual  $request
      * @return Operations\CreateProductV1ProductsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function create(Components\ProductCreateManual $request, ?Options $options = null): Operations\CreateProductV1ProductsPostResponse
+    public function createProductV1ProductsPost(Components\ProductCreateManual $request, ?Options $options = null): Operations\CreateProductV1ProductsPostResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/');
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/products');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
@@ -70,7 +72,7 @@ class Products
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'create_product_v1_products__post', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'create_product_v1_products_post', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -261,16 +263,16 @@ class Products
      * @return Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getCategories(?Options $options = null): Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
+    public function getProductCategoriesV1ProductsCategoriesGet(?Options $options = null): Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/categories/');
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/categories');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_product_categories_v1_products_categories__get', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_product_categories_v1_products_categories_get', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
@@ -283,7 +285,7 @@ class Products
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
         $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
@@ -293,14 +295,26 @@ class Products
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, 'array<\KintsugiTax\SDK\Models\Components\ProductCategories>', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\ProductCategories', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\GetProductCategoriesV1ProductsCategoriesGetResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    responseGetProductCategoriesV1ProductsCategoriesGet: $obj);
+                    productCategories: $obj);
 
                 return $response;
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['401'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj->rawResponse = $httpResponse;
+                throw $obj->toException();
             } else {
                 throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
@@ -310,13 +324,25 @@ class Products
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\HTTPValidationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\BackendSrcProductsResponsesValidationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $obj->rawResponse = $httpResponse;
                 throw $obj->toException();
             } else {
                 throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['500'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\ErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj->rawResponse = $httpResponse;
+                throw $obj->toException();
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['404', '4XX'])) {
             throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
             throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
@@ -334,10 +360,10 @@ class Products
      * @return Operations\GetProductsV1ProductsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function listItems(?Operations\GetProductsV1ProductsGetRequest $request = null, ?Options $options = null): Operations\GetProductsV1ProductsGetResponse
+    public function getProductsV1ProductsGet(?Operations\GetProductsV1ProductsGetRequest $request = null, ?Options $options = null): Operations\GetProductsV1ProductsGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
-        $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/');
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/products');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
 
@@ -345,7 +371,7 @@ class Products
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_products_v1_products__get', null, $this->sdkConfiguration->securitySource);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_products_v1_products_get', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
@@ -429,7 +455,9 @@ class Products
      * Update Product
      *
      * The Update Product API allows users to modify the details of
-     *     an existing product identified by its unique product_id
+     *     an existing product identified by its unique product_id. You can
+     *     retrieve supported categories and subcategories from
+     *     [GET /products/categories endpoint](/reference/api/products/get-product-categories)
      *
      * @param  Components\ProductUpdate  $productUpdate
      * @param  string  $productId

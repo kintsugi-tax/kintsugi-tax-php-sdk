@@ -1,5 +1,4 @@
 # Transactions
-(*transactions*)
 
 ## Overview
 
@@ -74,9 +73,9 @@ if ($response->pageTransactionRead !== null) {
 
 Create a transaction.
 
-### Example Usage
+### Example Usage: connection_mismatch
 
-<!-- UsageSnippet language="php" operationID="create_transaction_v1_transactions_post" method="post" path="/v1/transactions" -->
+<!-- UsageSnippet language="php" operationID="create_transaction_v1_transactions_post" method="post" path="/v1/transactions" example="connection_mismatch" -->
 ```php
 declare(strict_types=1);
 
@@ -96,37 +95,302 @@ $sdk = SDK\SDK::builder()
     ->build();
 
 $request = new Components\TransactionPublicRequest(
-    organizationId: 'orgn_YourOrgIdHere',
-    externalId: 'YourUniqueOrder123',
-    date: Utils\Utils::parseDateTime('2024-01-15T14:30:00Z'),
-    currency: Components\CurrencyEnum::Usd,
-    source: Components\SourceEnum::Api,
-    addresses: [
-        new Components\TransactionAddressPublic(
-            street1: '123 Main St',
-            city: 'San Francisco',
-            state: 'CA',
-            postalCode: '94107',
-            country: Components\CountryCodeEnum::Us,
-            type: Components\AddressType::ShipTo,
-        ),
-    ],
-    transactionItems: [
-        new Components\TransactionItemBuilder(
-            organizationId: 'orgn_YourOrgIdHere',
-            date: Utils\Utils::parseDateTime('2024-01-15T14:30:00Z'),
-            externalProductId: 'SKU-ABC',
-            product: 'Example Widget',
-            quantity: 2,
-            amount: 50,
-        ),
-    ],
+    organizationId: '<id>',
+    externalId: '<id>',
+    date: Utils\Utils::parseDateTime('2025-11-05T23:48:53.053Z'),
+    addresses: [],
+    transactionItems: [],
     customer: new Components\CustomerBaseBase(
-        name: 'John Doe',
-        externalId: 'Cust456',
-        organizationId: 'orgn_YourOrgIdHere',
+        organizationId: '<id>',
     ),
-    type: Components\TransactionTypeEnum::Sale,
+    type: Components\TransactionTypeEnum::Archive,
+);
+
+$response = $sdk->transactions->create(
+    request: $request
+);
+
+if ($response->transactionRead !== null) {
+    // handle response
+}
+```
+### Example Usage: duplicate_external_id
+
+<!-- UsageSnippet language="php" operationID="create_transaction_v1_transactions_post" method="post" path="/v1/transactions" example="duplicate_external_id" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Utils;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Components\TransactionPublicRequest(
+    organizationId: '<id>',
+    externalId: '<id>',
+    date: Utils\Utils::parseDateTime('2025-11-05T23:48:53.053Z'),
+    addresses: [],
+    transactionItems: [],
+    customer: new Components\CustomerBaseBase(
+        organizationId: '<id>',
+    ),
+    type: Components\TransactionTypeEnum::Archive,
+);
+
+$response = $sdk->transactions->create(
+    request: $request
+);
+
+if ($response->transactionRead !== null) {
+    // handle response
+}
+```
+### Example Usage: invalid_address
+
+<!-- UsageSnippet language="php" operationID="create_transaction_v1_transactions_post" method="post" path="/v1/transactions" example="invalid_address" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Utils;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Components\TransactionPublicRequest(
+    organizationId: '<id>',
+    externalId: '<id>',
+    date: Utils\Utils::parseDateTime('2025-11-05T23:48:53.053Z'),
+    addresses: [],
+    transactionItems: [],
+    customer: new Components\CustomerBaseBase(
+        organizationId: '<id>',
+    ),
+    type: Components\TransactionTypeEnum::Archive,
+);
+
+$response = $sdk->transactions->create(
+    request: $request
+);
+
+if ($response->transactionRead !== null) {
+    // handle response
+}
+```
+### Example Usage: invalid_date_format
+
+<!-- UsageSnippet language="php" operationID="create_transaction_v1_transactions_post" method="post" path="/v1/transactions" example="invalid_date_format" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Utils;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Components\TransactionPublicRequest(
+    organizationId: '<id>',
+    externalId: '<id>',
+    date: Utils\Utils::parseDateTime('2025-11-05T23:48:53.053Z'),
+    addresses: [],
+    transactionItems: [],
+    customer: new Components\CustomerBaseBase(
+        organizationId: '<id>',
+    ),
+    type: Components\TransactionTypeEnum::Archive,
+);
+
+$response = $sdk->transactions->create(
+    request: $request
+);
+
+if ($response->transactionRead !== null) {
+    // handle response
+}
+```
+### Example Usage: invalid_enum_value
+
+<!-- UsageSnippet language="php" operationID="create_transaction_v1_transactions_post" method="post" path="/v1/transactions" example="invalid_enum_value" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Utils;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Components\TransactionPublicRequest(
+    organizationId: '<id>',
+    externalId: '<id>',
+    date: Utils\Utils::parseDateTime('2025-11-05T23:48:53.053Z'),
+    addresses: [],
+    transactionItems: [],
+    customer: new Components\CustomerBaseBase(
+        organizationId: '<id>',
+    ),
+    type: Components\TransactionTypeEnum::Archive,
+);
+
+$response = $sdk->transactions->create(
+    request: $request
+);
+
+if ($response->transactionRead !== null) {
+    // handle response
+}
+```
+### Example Usage: missing_org_id
+
+<!-- UsageSnippet language="php" operationID="create_transaction_v1_transactions_post" method="post" path="/v1/transactions" example="missing_org_id" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Utils;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Components\TransactionPublicRequest(
+    organizationId: '<id>',
+    externalId: '<id>',
+    date: Utils\Utils::parseDateTime('2025-11-05T23:48:53.053Z'),
+    addresses: [],
+    transactionItems: [],
+    customer: new Components\CustomerBaseBase(
+        organizationId: '<id>',
+    ),
+    type: Components\TransactionTypeEnum::Archive,
+);
+
+$response = $sdk->transactions->create(
+    request: $request
+);
+
+if ($response->transactionRead !== null) {
+    // handle response
+}
+```
+### Example Usage: missing_product_external_id
+
+<!-- UsageSnippet language="php" operationID="create_transaction_v1_transactions_post" method="post" path="/v1/transactions" example="missing_product_external_id" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Utils;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Components\TransactionPublicRequest(
+    organizationId: '<id>',
+    externalId: '<id>',
+    date: Utils\Utils::parseDateTime('2025-11-05T23:48:53.053Z'),
+    addresses: [],
+    transactionItems: [],
+    customer: new Components\CustomerBaseBase(
+        organizationId: '<id>',
+    ),
+    type: Components\TransactionTypeEnum::Archive,
+);
+
+$response = $sdk->transactions->create(
+    request: $request
+);
+
+if ($response->transactionRead !== null) {
+    // handle response
+}
+```
+### Example Usage: missing_required_field
+
+<!-- UsageSnippet language="php" operationID="create_transaction_v1_transactions_post" method="post" path="/v1/transactions" example="missing_required_field" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+use KintsugiTax\SDK\Utils;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
+
+$request = new Components\TransactionPublicRequest(
+    organizationId: '<id>',
+    externalId: '<id>',
+    date: Utils\Utils::parseDateTime('2025-11-05T23:48:53.053Z'),
+    addresses: [],
+    transactionItems: [],
+    customer: new Components\CustomerBaseBase(
+        organizationId: '<id>',
+    ),
+    type: Components\TransactionTypeEnum::Archive,
 );
 
 $response = $sdk->transactions->create(

@@ -79,6 +79,42 @@ class PhysicalNexusCreate
     public ?PhysicalNexusSource $source = null;
 
     /**
+     * Primary street address for the physical presence location.
+     *
+     * @var ?string $street1
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('street_1')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $street1 = null;
+
+    /**
+     * Additional street address details, such as suite or unit number.
+     *
+     * @var ?string $street2
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('street_2')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $street2 = null;
+
+    /**
+     * City of the physical presence location.
+     *
+     * @var ?string $city
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('city')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $city = null;
+
+    /**
+     * ZIP or postal code of the physical presence location.
+     *
+     * @var ?string $postalCode
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('postal_code')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $postalCode = null;
+
+    /**
      * @param  CountryCodeEnum  $countryCode
      * @param  string  $stateCode
      * @param  LocalDate  $startDate
@@ -86,9 +122,13 @@ class PhysicalNexusCreate
      * @param  ?string  $endDate
      * @param  ?string  $externalId
      * @param  ?PhysicalNexusSource  $source
+     * @param  ?string  $street1
+     * @param  ?string  $street2
+     * @param  ?string  $city
+     * @param  ?string  $postalCode
      * @phpstan-pure
      */
-    public function __construct(CountryCodeEnum $countryCode, string $stateCode, LocalDate $startDate, PhysicalNexusCategory $category, ?string $endDate = null, ?string $externalId = null, ?PhysicalNexusSource $source = null)
+    public function __construct(CountryCodeEnum $countryCode, string $stateCode, LocalDate $startDate, PhysicalNexusCategory $category, ?string $endDate = null, ?string $externalId = null, ?PhysicalNexusSource $source = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $postalCode = null)
     {
         $this->countryCode = $countryCode;
         $this->stateCode = $stateCode;
@@ -97,5 +137,9 @@ class PhysicalNexusCreate
         $this->endDate = $endDate;
         $this->externalId = $externalId;
         $this->source = $source;
+        $this->street1 = $street1;
+        $this->street2 = $street2;
+        $this->city = $city;
+        $this->postalCode = $postalCode;
     }
 }

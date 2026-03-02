@@ -1,23 +1,22 @@
 # Products
-(*products*)
 
 ## Overview
 
 ### Available Operations
 
-* [listItems](#listitems) - Get Products
-* [create](#create) - Create Product
+* [getProductsV1ProductsGet](#getproductsv1productsget) - Get Products
+* [createProductV1ProductsPost](#createproductv1productspost) - Create Product
+* [getProductCategoriesV1ProductsCategoriesGet](#getproductcategoriesv1productscategoriesget) - Get Product Categories
 * [get](#get) - Get Product By Id
 * [update](#update) - Update Product
-* [getCategories](#getcategories) - Get Product Categories
 
-## listItems
+## getProductsV1ProductsGet
 
 Retrieve a paginated list of products based on filters and search query.
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="get_products_v1_products__get" method="get" path="/v1/products/" -->
+<!-- UsageSnippet language="php" operationID="get_products_v1_products_get" method="get" path="/v1/products" -->
 ```php
 declare(strict_types=1);
 
@@ -38,7 +37,7 @@ $sdk = SDK\SDK::builder()
 
 $request = new Operations\GetProductsV1ProductsGetRequest();
 
-$response = $sdk->products->listItems(
+$response = $sdk->products->getProductsV1ProductsGet(
     request: $request
 );
 
@@ -66,15 +65,17 @@ if ($response->pageProductRead !== null) {
 | Errors\ErrorResponse                                      | 500                                                       | application/json                                          |
 | Errors\APIException                                       | 4XX, 5XX                                                  | \*/\*                                                     |
 
-## create
+## createProductV1ProductsPost
 
 The Create Product API allows users to manually create a new product
     in the system. This includes specifying product details such as category,
-    subcategory, and tax exemption status, etc.
+    subcategory, and tax exemption status, etc. You can
+    retrieve supported categories and subcategories from
+    [GET /products/categories endpoint](/reference/api/products/get-product-categories)
 
 ### Example Usage
 
-<!-- UsageSnippet language="php" operationID="create_product_v1_products__post" method="post" path="/v1/products/" -->
+<!-- UsageSnippet language="php" operationID="create_product_v1_products_post" method="post" path="/v1/products" -->
 ```php
 declare(strict_types=1);
 
@@ -94,16 +95,14 @@ $sdk = SDK\SDK::builder()
 
 $request = new Components\ProductCreateManual(
     externalId: 'prod_001',
-    name: 'Sample Product',
-    description: 'A description of the product',
+    name: 'T-shirts',
+    description: 'Common items of everyday wearing apparel designed for human use, covering a wide variety of non-specialized garments.',
     status: Components\ProductStatusEnum::Approved,
-    productCategory: Components\ProductCategoryEnum::Physical,
-    productSubcategory: Components\ProductSubCategoryEnum::GeneralClothing,
     taxExempt: false,
     source: Components\SourceEnum::Bigcommerce,
 );
 
-$response = $sdk->products->create(
+$response = $sdk->products->createProductV1ProductsPost(
     request: $request
 );
 
@@ -121,6 +120,56 @@ if ($response->productRead !== null) {
 ### Response
 
 **[?Operations\CreateProductV1ProductsPostResponse](../../Models/Operations/CreateProductV1ProductsPostResponse.md)**
+
+### Errors
+
+| Error Type                                                | Status Code                                               | Content Type                                              |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| Errors\ErrorResponse                                      | 401                                                       | application/json                                          |
+| Errors\BackendSrcProductsResponsesValidationErrorResponse | 422                                                       | application/json                                          |
+| Errors\ErrorResponse                                      | 500                                                       | application/json                                          |
+| Errors\APIException                                       | 4XX, 5XX                                                  | \*/\*                                                     |
+
+## getProductCategoriesV1ProductsCategoriesGet
+
+The Get Product Categories API retrieves all
+    product categories.  This endpoint helps users understand and select the
+    appropriate categories for their products.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="get_product_categories_v1_products_categories_get" method="get" path="/v1/products/categories" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        new Components\Security(
+            apiKeyHeader: '<YOUR_API_KEY_HERE>',
+            customHeader: '<YOUR_API_KEY_HERE>',
+        )
+    )
+    ->build();
+
+
+
+$response = $sdk->products->getProductCategoriesV1ProductsCategoriesGet(
+
+);
+
+if ($response->productCategories !== null) {
+    // handle response
+}
+```
+
+### Response
+
+**[?Operations\GetProductCategoriesV1ProductsCategoriesGetResponse](../../Models/Operations/GetProductCategoriesV1ProductsCategoriesGetResponse.md)**
 
 ### Errors
 
@@ -190,7 +239,9 @@ if ($response->productRead !== null) {
 ## update
 
 The Update Product API allows users to modify the details of
-    an existing product identified by its unique product_id
+    an existing product identified by its unique product_id. You can
+    retrieve supported categories and subcategories from
+    [GET /products/categories endpoint](/reference/api/products/get-product-categories)
 
 ### Example Usage
 
@@ -214,11 +265,11 @@ $sdk = SDK\SDK::builder()
 
 $productUpdate = new Components\ProductUpdate(
     externalId: 'prod_001',
-    name: 'Updated Product Name',
+    name: 'Updated T-Shirt',
     description: 'An updated description for the product',
     status: Components\ProductStatusEnum::Approved,
-    productCategory: Components\ProductCategoryEnum::Physical,
-    productSubcategory: Components\ProductSubCategoryEnum::GeneralClothing,
+    productCategory: 'Physical',
+    productSubcategory: 'General Clothing',
     taxExempt: false,
 );
 
@@ -252,51 +303,3 @@ if ($response->productRead !== null) {
 | Errors\BackendSrcProductsResponsesValidationErrorResponse | 422                                                       | application/json                                          |
 | Errors\ErrorResponse                                      | 500                                                       | application/json                                          |
 | Errors\APIException                                       | 4XX, 5XX                                                  | \*/\*                                                     |
-
-## getCategories
-
-The Get Product Categories API retrieves all
-    product categories.  This endpoint helps users understand and select the
-    appropriate categories for their products.
-
-### Example Usage
-
-<!-- UsageSnippet language="php" operationID="get_product_categories_v1_products_categories__get" method="get" path="/v1/products/categories/" -->
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
-
-$sdk = SDK\SDK::builder()
-    ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
-    )
-    ->build();
-
-
-
-$response = $sdk->products->getCategories(
-
-);
-
-if ($response->responseGetProductCategoriesV1ProductsCategoriesGet !== null) {
-    // handle response
-}
-```
-
-### Response
-
-**[?Operations\GetProductCategoriesV1ProductsCategoriesGetResponse](../../Models/Operations/GetProductCategoriesV1ProductsCategoriesGetResponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| Errors\HTTPValidationError | 422                        | application/json           |
-| Errors\APIException        | 4XX, 5XX                   | \*/\*                      |
