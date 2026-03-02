@@ -23,4 +23,5 @@ enum TaxExemptionEnum: string
     case ZeroValueItem = 'ZERO_VALUE_ITEM';
     case NoRuleFound = 'NO_RULE_FOUND';
     case Imported = 'IMPORTED';
+    case ZeroRateNotExempt = 'ZERO_RATE_NOT_EXEMPT';
 }

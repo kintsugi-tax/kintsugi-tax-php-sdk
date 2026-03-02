@@ -41,7 +41,7 @@ class DiscountBuilder
      * @param  ?float  $discountAmount
      * @phpstan-pure
      */
-    public function __construct(AppliedTo $appliedTo, ?string $externalId = null, ?float $discountAmount = 0.00)
+    public function __construct(AppliedTo $appliedTo, ?string $externalId = null, ?float $discountAmount = 0)
     {
         $this->appliedTo = $appliedTo;
         $this->externalId = $externalId;

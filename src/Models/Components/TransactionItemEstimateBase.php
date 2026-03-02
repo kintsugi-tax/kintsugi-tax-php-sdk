@@ -138,7 +138,7 @@ class TransactionItemEstimateBase
      * @param  ?bool  $exempt
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, float $amount, ?string $externalId = null, ?string $description = null, ?string $externalProductId = null, ?string $productName = null, ?string $productDescription = null, ?SourceEnum $productSource = null, ?string $productSubcategory = null, ?string $productCategory = null, ?float $quantity = 1.0, ?bool $exempt = false)
+    public function __construct(\DateTime $date, float $amount, ?string $externalId = null, ?string $description = null, ?string $externalProductId = null, ?string $productName = null, ?string $productDescription = null, ?SourceEnum $productSource = null, ?string $productSubcategory = null, ?string $productCategory = null, ?float $quantity = 1, ?bool $exempt = false)
     {
         $this->date = $date;
         $this->amount = $amount;

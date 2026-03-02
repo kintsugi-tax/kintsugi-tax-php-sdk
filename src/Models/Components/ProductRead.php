@@ -64,6 +64,10 @@ class ProductRead
     public ProductStatusEnum $status;
 
     /**
+     * Main category of the product.
+     *
+     *         For example, Physical, Digital, etc. You can
+     *         retrieve supported categories from [GET /products/categories endpoint](/reference/api/products/get-product-categories)
      *
      * @var string $productCategory
      */
@@ -71,6 +75,10 @@ class ProductRead
     public string $productCategory;
 
     /**
+     * Subcategory of the product.
+     *
+     *         For example, General Clothing, UNKNOWN, etc. You can
+     *         retrieve supported subcategories from [GET /products/categories endpoint](/reference/api/products/get-product-categories)
      *
      * @var string $productSubcategory
      */

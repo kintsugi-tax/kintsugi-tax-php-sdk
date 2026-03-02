@@ -1,5 +1,4 @@
 # TaxEstimation
-(*taxEstimation*)
 
 ## Overview
 
@@ -50,7 +49,6 @@ $transactionEstimatePublicRequest = new Components\TransactionEstimatePublicRequ
             externalId: 'item_B',
             date: Utils\Utils::parseDateTime('2024-10-28T10:00:00Z'),
             externalProductId: 'prod_xyz',
-            quantity: 1,
             amount: 75.5,
         ),
     ],
