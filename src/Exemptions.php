@@ -55,8 +55,8 @@ class Exemptions
      *     This includes defining details such as exemption type, jurisdiction,
      *     Country, State, validity dates, etc.
      *
-     * @param  Components\ExemptionCreate  $request
-     * @return Operations\CreateExemptionV1ExemptionsPostResponse
+     * @param  \KintsugiTax\SDK\Models\Components\ExemptionCreate  $request
+     * @return \KintsugiTax\SDK\Models\Operations\CreateExemptionV1ExemptionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function create(Components\ExemptionCreate $request, ?Options $options = null): Operations\CreateExemptionV1ExemptionsPostResponse
@@ -85,11 +85,12 @@ class Exemptions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -161,7 +162,7 @@ class Exemptions
      *     customer, organisation id, status, etc.
      *
      * @param  string  $exemptionId
-     * @return Operations\GetExemptionByIdV1ExemptionsExemptionIdGetResponse
+     * @return \KintsugiTax\SDK\Models\Operations\GetExemptionByIdV1ExemptionsExemptionIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function getById(string $exemptionId, ?Options $options = null): Operations\GetExemptionByIdV1ExemptionsExemptionIdGetResponse
@@ -188,11 +189,12 @@ class Exemptions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -260,8 +262,8 @@ class Exemptions
      *
      * Retrieve a list of exemptions based on filters.
      *
-     * @param  ?Operations\GetExemptionsV1ExemptionsGetRequest  $request
-     * @return Operations\GetExemptionsV1ExemptionsGetResponse
+     * @param  ?\KintsugiTax\SDK\Models\Operations\GetExemptionsV1ExemptionsGetRequest  $request
+     * @return \KintsugiTax\SDK\Models\Operations\GetExemptionsV1ExemptionsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function list(?Operations\GetExemptionsV1ExemptionsGetRequest $request = null, ?Options $options = null): Operations\GetExemptionsV1ExemptionsGetResponse
@@ -288,11 +290,12 @@ class Exemptions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -363,9 +366,9 @@ class Exemptions
      *     This is primarily used to associate supporting documents with an exemption record
      *     to ensure compliance and facilitate verification.
      *
-     * @param  Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost  $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost
+     * @param  \KintsugiTax\SDK\Models\Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost  $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost
      * @param  string  $exemptionId
-     * @return Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse
+     * @return \KintsugiTax\SDK\Models\Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function uploadCertificate(Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost, string $exemptionId, ?Options $options = null): Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse
@@ -398,11 +401,12 @@ class Exemptions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

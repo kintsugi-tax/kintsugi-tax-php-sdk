@@ -14,7 +14,7 @@ class PageCustomerRead
     /**
      * $items
      *
-     * @var array<CustomerRead> $items
+     * @var array<\KintsugiTax\SDK\Models\Components\CustomerRead> $items
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\CustomerRead>')]
@@ -49,7 +49,7 @@ class PageCustomerRead
     public int $pages;
 
     /**
-     * @param  array<CustomerRead>  $items
+     * @param  array<\KintsugiTax\SDK\Models\Components\CustomerRead>  $items
      * @param  int  $total
      * @param  int  $page
      * @param  int  $size

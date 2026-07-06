@@ -35,7 +35,7 @@ class UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse
     /**
      * Successfully retrieved exemption by id
      *
-     * @var ?Components\AttachmentRead $attachmentRead
+     * @var ?\KintsugiTax\SDK\Models\Components\AttachmentRead $attachmentRead
      */
     public ?Components\AttachmentRead $attachmentRead = null;
 
@@ -43,7 +43,7 @@ class UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\AttachmentRead  $attachmentRead
+     * @param  ?\KintsugiTax\SDK\Models\Components\AttachmentRead  $attachmentRead
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\AttachmentRead $attachmentRead = null)

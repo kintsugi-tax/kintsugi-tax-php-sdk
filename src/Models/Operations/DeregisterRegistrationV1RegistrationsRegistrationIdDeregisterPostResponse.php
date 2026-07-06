@@ -35,7 +35,7 @@ class DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse
     /**
      * Successfully deregistered registration by id
      *
-     * @var ?Components\RegistrationRead $registrationRead
+     * @var ?\KintsugiTax\SDK\Models\Components\RegistrationRead $registrationRead
      */
     public ?Components\RegistrationRead $registrationRead = null;
 
@@ -43,7 +43,7 @@ class DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\RegistrationRead  $registrationRead
+     * @param  ?\KintsugiTax\SDK\Models\Components\RegistrationRead  $registrationRead
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\RegistrationRead $registrationRead = null)

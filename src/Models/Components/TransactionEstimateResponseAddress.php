@@ -16,7 +16,7 @@ class TransactionEstimateResponseAddress
      *
      *                         SHIP_TO or BILL_TO.
      *
-     * @var TransactionEstimateResponseType $type
+     * @var \KintsugiTax\SDK\Models\Components\TransactionEstimateResponseType $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionEstimateResponseType')]
@@ -120,7 +120,7 @@ class TransactionEstimateResponseAddress
     public ?string $enrichedFields = null;
 
     /**
-     * @param  TransactionEstimateResponseType  $type
+     * @param  \KintsugiTax\SDK\Models\Components\TransactionEstimateResponseType  $type
      * @param  string  $state
      * @param  string  $postalCode
      * @param  string  $country

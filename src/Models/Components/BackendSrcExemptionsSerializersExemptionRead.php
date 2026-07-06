@@ -29,7 +29,7 @@ class BackendSrcExemptionsSerializersExemptionRead
 
     /**
      *
-     * @var ExemptionType $exemptionType
+     * @var \KintsugiTax\SDK\Models\Components\ExemptionType $exemptionType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exemption_type')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionType')]
@@ -37,7 +37,7 @@ class BackendSrcExemptionsSerializersExemptionRead
 
     /**
      *
-     * @var ExemptionStatus $status
+     * @var \KintsugiTax\SDK\Models\Components\ExemptionStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionStatus')]
@@ -45,7 +45,7 @@ class BackendSrcExemptionsSerializersExemptionRead
 
     /**
      *
-     * @var ?CountryCodeEnum $countryCode
+     * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $countryCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country_code')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
@@ -99,7 +99,7 @@ class BackendSrcExemptionsSerializersExemptionRead
 
     /**
      *
-     * @var ?CustomerRead $customer
+     * @var ?\KintsugiTax\SDK\Models\Components\CustomerRead $customer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerRead|null')]
@@ -109,7 +109,7 @@ class BackendSrcExemptionsSerializersExemptionRead
     /**
      * List of attachments related to the exemption
      *
-     * @var ?array<AttachmentRead> $attachment
+     * @var ?array<\KintsugiTax\SDK\Models\Components\AttachmentRead> $attachment
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('attachment')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\AttachmentRead>|null')]
@@ -128,17 +128,17 @@ class BackendSrcExemptionsSerializersExemptionRead
     /**
      * @param  LocalDate  $startDate
      * @param  string  $id
-     * @param  ExemptionType  $exemptionType
-     * @param  ExemptionStatus  $status
-     * @param  ?CountryCodeEnum  $countryCode
+     * @param  \KintsugiTax\SDK\Models\Components\ExemptionType  $exemptionType
+     * @param  \KintsugiTax\SDK\Models\Components\ExemptionStatus  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
      * @param  ?string  $jurisdiction
      * @param  ?string  $endDate
      * @param  ?string  $transactionId
      * @param  ?bool  $reseller
      * @param  ?string  $fein
      * @param  ?string  $salesTaxId
-     * @param  ?CustomerRead  $customer
-     * @param  ?array<AttachmentRead>  $attachment
+     * @param  ?\KintsugiTax\SDK\Models\Components\CustomerRead  $customer
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\AttachmentRead>  $attachment
      * @phpstan-pure
      */
     public function __construct(LocalDate $startDate, string $id, ExemptionType $exemptionType, ExemptionStatus $status, ?CountryCodeEnum $countryCode = null, ?string $jurisdiction = null, ?string $endDate = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?CustomerRead $customer = null, ?array $attachment = null, ?bool $reseller = false)

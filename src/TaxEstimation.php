@@ -52,9 +52,9 @@ class TaxEstimation
      *     transaction based on the provided details, including organization nexus,
      *     transaction details, customer details, and addresses. Optionally simulates nexus being met for tax calculation purposes. The `simulate_nexus_met` parameter is deprecated and will be removed in future releases.
      *
-     * @param  Components\TransactionEstimatePublicRequest  $transactionEstimatePublicRequest
+     * @param  \KintsugiTax\SDK\Models\Components\TransactionEstimatePublicRequest  $transactionEstimatePublicRequest
      * @param  ?bool  $simulateNexusMet
-     * @return Operations\EstimateTaxV1TaxEstimatePostResponse
+     * @return \KintsugiTax\SDK\Models\Operations\EstimateTaxV1TaxEstimatePostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function estimate(Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest, ?bool $simulateNexusMet = null, ?Options $options = null): Operations\EstimateTaxV1TaxEstimatePostResponse
@@ -90,11 +90,12 @@ class TaxEstimation
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

@@ -29,7 +29,7 @@ class TransactionEstimateResponse
 
     /**
      *
-     * @var CurrencyEnum $currency
+     * @var \KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum')]
@@ -38,7 +38,7 @@ class TransactionEstimateResponse
     /**
      * $transactionItems
      *
-     * @var array<TransactionItemEstimateResponse> $transactionItems
+     * @var array<\KintsugiTax\SDK\Models\Components\TransactionItemEstimateResponse> $transactionItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('transaction_items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionItemEstimateResponse>')]
@@ -47,7 +47,7 @@ class TransactionEstimateResponse
     /**
      * List of addresses related to the transaction. At least one BILL_TO or SHIP_TO address must be provided. The address will be validated during estimation, and the transaction may be rejected if the address does not pass validation. The SHIP_TO will be preferred to use for determining tax liability. **Deprecated:** Use of `address.status` in estimate api is ignored and will be removed in the future status will be considered UNVERIFIED by default and always validated
      *
-     * @var array<TransactionEstimateResponseAddress> $addresses
+     * @var array<\KintsugiTax\SDK\Models\Components\TransactionEstimateResponseAddress> $addresses
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('addresses')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionEstimateResponseAddress>')]
@@ -64,7 +64,7 @@ class TransactionEstimateResponse
 
     /**
      *
-     * @var ?SourceEnum $source
+     * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $source
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
@@ -73,7 +73,7 @@ class TransactionEstimateResponse
 
     /**
      *
-     * @var ?CustomerBase $customer
+     * @var ?\KintsugiTax\SDK\Models\Components\CustomerBase $customer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBase|null')]
@@ -138,13 +138,13 @@ class TransactionEstimateResponse
     /**
      * @param  \DateTime  $date
      * @param  string  $externalId
-     * @param  CurrencyEnum  $currency
-     * @param  array<TransactionItemEstimateResponse>  $transactionItems
-     * @param  array<TransactionEstimateResponseAddress>  $addresses
+     * @param  \KintsugiTax\SDK\Models\Components\CurrencyEnum  $currency
+     * @param  array<\KintsugiTax\SDK\Models\Components\TransactionItemEstimateResponse>  $transactionItems
+     * @param  array<\KintsugiTax\SDK\Models\Components\TransactionEstimateResponseAddress>  $addresses
      * @param  ?string  $description
-     * @param  ?SourceEnum  $source
+     * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
      * @param  ?bool  $marketplace
-     * @param  ?CustomerBase  $customer
+     * @param  ?\KintsugiTax\SDK\Models\Components\CustomerBase  $customer
      * @param  ?string  $totalTaxAmountCalculated
      * @param  ?string  $taxableAmount
      * @param  ?string  $taxRateCalculated

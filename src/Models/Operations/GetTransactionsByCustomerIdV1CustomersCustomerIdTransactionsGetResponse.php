@@ -35,7 +35,7 @@ class GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
     /**
      * Successful Response
      *
-     * @var ?array<Components\TransactionRead> $responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet
+     * @var ?array<\KintsugiTax\SDK\Models\Components\TransactionRead> $responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet
      */
     public ?array $responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet = null;
 
@@ -43,7 +43,7 @@ class GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<Components\TransactionRead>  $responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\TransactionRead>  $responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet = null)

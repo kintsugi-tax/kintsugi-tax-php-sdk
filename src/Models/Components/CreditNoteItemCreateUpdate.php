@@ -90,7 +90,7 @@ class CreditNoteItemCreateUpdate
     /**
      * This enum is used to determine if a transaction is exempt from tax.
      *
-     * @var ?TaxExemptionEnum $taxExemption
+     * @var ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum $taxExemption
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_exemption')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxExemptionEnum|null')]
@@ -100,7 +100,7 @@ class CreditNoteItemCreateUpdate
     /**
      * Detailed breakdown of individual tax components applied to this item.
      *
-     * @var ?array<TaxItemBuilder> $taxItems
+     * @var ?array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder> $taxItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder>|null')]
@@ -117,8 +117,8 @@ class CreditNoteItemCreateUpdate
      * @param  ?float  $taxAmountImported
      * @param  ?float  $taxRateImported
      * @param  ?float  $taxableAmount
-     * @param  ?TaxExemptionEnum  $taxExemption
-     * @param  ?array<TaxItemBuilder>  $taxItems
+     * @param  ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum  $taxExemption
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder>  $taxItems
      * @phpstan-pure
      */
     public function __construct(string $externalId, \DateTime $date, string $externalProductId, float $quantity, float $amount, ?string $description = null, ?float $taxAmountImported = null, ?float $taxRateImported = null, ?float $taxableAmount = null, ?TaxExemptionEnum $taxExemption = null, ?array $taxItems = null)

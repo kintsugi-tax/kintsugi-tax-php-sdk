@@ -14,7 +14,7 @@ class PageTransactionEstimateResponse
     /**
      * $items
      *
-     * @var array<TransactionEstimateResponse> $items
+     * @var array<\KintsugiTax\SDK\Models\Components\TransactionEstimateResponse> $items
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionEstimateResponse>')]
@@ -49,7 +49,7 @@ class PageTransactionEstimateResponse
     public int $pages;
 
     /**
-     * @param  array<TransactionEstimateResponse>  $items
+     * @param  array<\KintsugiTax\SDK\Models\Components\TransactionEstimateResponse>  $items
      * @param  int  $total
      * @param  int  $page
      * @param  int  $size

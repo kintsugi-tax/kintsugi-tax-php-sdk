@@ -35,7 +35,7 @@ class GetTransactionsV1TransactionsGetResponse
     /**
      * Successfully retrieved transactions
      *
-     * @var ?Components\PageTransactionRead $pageTransactionRead
+     * @var ?\KintsugiTax\SDK\Models\Components\PageTransactionRead $pageTransactionRead
      */
     public ?Components\PageTransactionRead $pageTransactionRead = null;
 
@@ -43,7 +43,7 @@ class GetTransactionsV1TransactionsGetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\PageTransactionRead  $pageTransactionRead
+     * @param  ?\KintsugiTax\SDK\Models\Components\PageTransactionRead  $pageTransactionRead
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PageTransactionRead $pageTransactionRead = null)

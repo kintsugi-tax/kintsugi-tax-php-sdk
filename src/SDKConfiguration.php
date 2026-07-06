@@ -13,6 +13,8 @@ class SDKConfiguration
 {
     public ?\GuzzleHttp\ClientInterface $client = null;
 
+    public ?\GuzzleHttp\ClientInterface $defaultClient = null;
+
     public Hooks\SDKHooks $hooks;
     /** @var ?pure-Closure(): Models\Components\Security */
     public ?\Closure $securitySource = null;
@@ -24,11 +26,11 @@ class SDKConfiguration
 
     public string $openapiDocVersion = '1.0.0';
 
-    public string $sdkVersion = '0.6.1';
+    public string $sdkVersion = '0.6.2';
 
-    public string $genVersion = '2.845.15';
+    public string $genVersion = '2.915.1';
 
-    public string $userAgent = 'speakeasy-sdk/php 0.6.1 2.845.15 1.0.0 kintsugi-tax/tax-platform-sdk';
+    public string $userAgent = 'speakeasy-sdk/php 0.6.2 2.915.1 1.0.0 kintsugi-tax/tax-platform-sdk';
 
     public ?RetryConfig $retryConfig = null;
 

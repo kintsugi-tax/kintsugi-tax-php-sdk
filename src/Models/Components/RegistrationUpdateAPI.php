@@ -85,7 +85,7 @@ class RegistrationUpdateAPI
 
     /**
      *
-     * @var ?RegistrationsRegimeEnum $registrationsRegime
+     * @var ?\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum $registrationsRegime
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registrations_regime')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum|null')]
@@ -94,7 +94,7 @@ class RegistrationUpdateAPI
 
     /**
      *
-     * @var ?ChangeRegimeStatusEnum $changeRegimeStatus
+     * @var ?\KintsugiTax\SDK\Models\Components\ChangeRegimeStatusEnum $changeRegimeStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('change_regime_status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ChangeRegimeStatusEnum|null')]
@@ -139,7 +139,7 @@ class RegistrationUpdateAPI
 
     /**
      *
-     * @var ?FilingFrequencyEnum $filingFrequency
+     * @var ?\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum $filingFrequency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('filing_frequency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum|null')]
@@ -228,15 +228,15 @@ class RegistrationUpdateAPI
      * @param  ?string  $deregistrationRequested
      * @param  ?string  $deregistrationCompleted
      * @param  ?bool  $autoRegistered
-     * @param  ?RegistrationsRegimeEnum  $registrationsRegime
-     * @param  ?ChangeRegimeStatusEnum  $changeRegimeStatus
+     * @param  ?\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum  $registrationsRegime
+     * @param  ?\KintsugiTax\SDK\Models\Components\ChangeRegimeStatusEnum  $changeRegimeStatus
      * @param  ?bool  $thirdPartyEnabled
      * @param  ?bool  $doNotFile
      * @param  ?bool  $twoFactorEnabled
      * @param  ?bool  $markedCollecting
      * @param  ?string  $encryptedUsername
      * @param  ?string  $username
-     * @param  ?FilingFrequencyEnum  $filingFrequency
+     * @param  ?\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum  $filingFrequency
      * @param  ?string  $createFilingsFrom
      * @param  ?bool  $isApproaching
      * @param  ?string  $comment

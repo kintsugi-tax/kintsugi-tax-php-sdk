@@ -16,7 +16,7 @@ class TransactionEstimatePublicRequestAddress
      *
      *                         SHIP_TO or BILL_TO.
      *
-     * @var TransactionEstimatePublicRequestType $type
+     * @var \KintsugiTax\SDK\Models\Components\TransactionEstimatePublicRequestType $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionEstimatePublicRequestType')]
@@ -111,7 +111,7 @@ class TransactionEstimatePublicRequestAddress
     public ?string $status = null;
 
     /**
-     * @param  TransactionEstimatePublicRequestType  $type
+     * @param  \KintsugiTax\SDK\Models\Components\TransactionEstimatePublicRequestType  $type
      * @param  string  $state
      * @param  string  $postalCode
      * @param  string  $country

@@ -35,7 +35,7 @@ class GetProductsV1ProductsGetResponse
     /**
      * Successfully retrieved products
      *
-     * @var ?Components\PageProductRead $pageProductRead
+     * @var ?\KintsugiTax\SDK\Models\Components\PageProductRead $pageProductRead
      */
     public ?Components\PageProductRead $pageProductRead = null;
 
@@ -43,7 +43,7 @@ class GetProductsV1ProductsGetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\PageProductRead  $pageProductRead
+     * @param  ?\KintsugiTax\SDK\Models\Components\PageProductRead  $pageProductRead
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PageProductRead $pageProductRead = null)

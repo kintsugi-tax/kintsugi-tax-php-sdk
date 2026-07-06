@@ -29,7 +29,7 @@ class ProductCreateManual
 
     /**
      *
-     * @var ProductCategoryEnum $productCategory
+     * @var \KintsugiTax\SDK\Models\Components\ProductCategoryEnum $productCategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_category')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductCategoryEnum')]
@@ -37,7 +37,7 @@ class ProductCreateManual
 
     /**
      *
-     * @var ProductSubCategoryEnum $productSubcategory
+     * @var \KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum $productSubcategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_subcategory')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum')]
@@ -62,7 +62,7 @@ class ProductCreateManual
 
     /**
      *
-     * @var ?ProductStatusEnum $status
+     * @var ?\KintsugiTax\SDK\Models\Components\ProductStatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductStatusEnum|null')]
@@ -71,7 +71,7 @@ class ProductCreateManual
 
     /**
      *
-     * @var ?SourceEnum $source
+     * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $source
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
@@ -81,12 +81,12 @@ class ProductCreateManual
     /**
      * @param  string  $externalId
      * @param  string  $name
-     * @param  ProductCategoryEnum  $productCategory
-     * @param  ProductSubCategoryEnum  $productSubcategory
+     * @param  \KintsugiTax\SDK\Models\Components\ProductCategoryEnum  $productCategory
+     * @param  \KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum  $productSubcategory
      * @param  bool  $taxExempt
      * @param  ?string  $description
-     * @param  ?ProductStatusEnum  $status
-     * @param  ?SourceEnum  $source
+     * @param  ?\KintsugiTax\SDK\Models\Components\ProductStatusEnum  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
      * @phpstan-pure
      */
     public function __construct(string $externalId, string $name, ProductCategoryEnum $productCategory, ProductSubCategoryEnum $productSubcategory, bool $taxExempt, ?string $description = null, ?ProductStatusEnum $status = null, ?SourceEnum $source = null)

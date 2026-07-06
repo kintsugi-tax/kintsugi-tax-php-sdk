@@ -15,7 +15,7 @@ class BackendSrcRegistrationsResponsesValidationErrorResponse
     /**
      * $detail
      *
-     * @var array<Components\BackendSrcRegistrationsResponsesValidationErrorItem> $detail
+     * @var array<\KintsugiTax\SDK\Models\Components\BackendSrcRegistrationsResponsesValidationErrorItem> $detail
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('detail')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\BackendSrcRegistrationsResponsesValidationErrorItem>')]
@@ -31,7 +31,7 @@ class BackendSrcRegistrationsResponsesValidationErrorResponse
     public ?\Psr\Http\Message\ResponseInterface $rawResponse = null;
 
     /**
-     * @param  array<Components\BackendSrcRegistrationsResponsesValidationErrorItem>  $detail
+     * @param  array<\KintsugiTax\SDK\Models\Components\BackendSrcRegistrationsResponsesValidationErrorItem>  $detail
      * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
      * @phpstan-pure
      */

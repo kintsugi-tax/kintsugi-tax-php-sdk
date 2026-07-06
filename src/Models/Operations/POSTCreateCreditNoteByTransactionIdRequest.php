@@ -21,14 +21,14 @@ class POSTCreateCreditNoteByTransactionIdRequest
 
     /**
      *
-     * @var Components\CreditNoteCreate $creditNoteCreate
+     * @var \KintsugiTax\SDK\Models\Components\CreditNoteCreate $creditNoteCreate
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public Components\CreditNoteCreate $creditNoteCreate;
 
     /**
      * @param  string  $originalTransactionId
-     * @param  Components\CreditNoteCreate  $creditNoteCreate
+     * @param  \KintsugiTax\SDK\Models\Components\CreditNoteCreate  $creditNoteCreate
      * @phpstan-pure
      */
     public function __construct(string $originalTransactionId, Components\CreditNoteCreate $creditNoteCreate)

@@ -76,7 +76,7 @@ class AddressBase
 
     /**
      *
-     * @var ?CountryCodeEnum $country
+     * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $country
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
@@ -100,7 +100,7 @@ class AddressBase
      * @param  ?string  $county
      * @param  ?string  $state
      * @param  ?string  $postalCode
-     * @param  ?CountryCodeEnum  $country
+     * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $country
      * @param  ?string  $fullAddress
      * @phpstan-pure
      */

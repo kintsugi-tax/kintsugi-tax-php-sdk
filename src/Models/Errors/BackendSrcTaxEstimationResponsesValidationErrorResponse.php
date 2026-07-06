@@ -15,7 +15,7 @@ class BackendSrcTaxEstimationResponsesValidationErrorResponse
     /**
      * $detail
      *
-     * @var array<Components\BackendSrcTaxEstimationResponsesValidationErrorItem> $detail
+     * @var array<\KintsugiTax\SDK\Models\Components\BackendSrcTaxEstimationResponsesValidationErrorItem> $detail
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('detail')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\BackendSrcTaxEstimationResponsesValidationErrorItem>')]
@@ -31,7 +31,7 @@ class BackendSrcTaxEstimationResponsesValidationErrorResponse
     public ?\Psr\Http\Message\ResponseInterface $rawResponse = null;
 
     /**
-     * @param  array<Components\BackendSrcTaxEstimationResponsesValidationErrorItem>  $detail
+     * @param  array<\KintsugiTax\SDK\Models\Components\BackendSrcTaxEstimationResponsesValidationErrorItem>  $detail
      * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
      * @phpstan-pure
      */

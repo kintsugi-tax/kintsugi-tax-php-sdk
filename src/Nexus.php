@@ -52,8 +52,8 @@ class Nexus
      *     nexus by specifying its attributes, including the location,
      *     start date, end date, etc.
      *
-     * @param  Components\PhysicalNexusCreate  $request
-     * @return Operations\CreatePhysicalNexusV1NexusPhysicalNexusPostResponse
+     * @param  \KintsugiTax\SDK\Models\Components\PhysicalNexusCreate  $request
+     * @return \KintsugiTax\SDK\Models\Operations\CreatePhysicalNexusV1NexusPhysicalNexusPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function createPhysical(Components\PhysicalNexusCreate $request, ?Options $options = null): Operations\CreatePhysicalNexusV1NexusPhysicalNexusPostResponse
@@ -82,11 +82,12 @@ class Nexus
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -156,7 +157,7 @@ class Nexus
      *     physical nexus by its unique ID.
      *
      * @param  string  $physicalNexusId
-     * @return Operations\DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteResponse
+     * @return \KintsugiTax\SDK\Models\Operations\DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function delete(string $physicalNexusId, ?Options $options = null): Operations\DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteResponse
@@ -183,11 +184,12 @@ class Nexus
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -255,8 +257,8 @@ class Nexus
      *
      * Get a list of all nexuses for the organization.
      *
-     * @param  ?Operations\GetNexusForOrgV1NexusGetRequest  $request
-     * @return Operations\GetNexusForOrgV1NexusGetResponse
+     * @param  ?\KintsugiTax\SDK\Models\Operations\GetNexusForOrgV1NexusGetRequest  $request
+     * @return \KintsugiTax\SDK\Models\Operations\GetNexusForOrgV1NexusGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function list(?Operations\GetNexusForOrgV1NexusGetRequest $request = null, ?Options $options = null): Operations\GetNexusForOrgV1NexusGetResponse
@@ -283,11 +285,12 @@ class Nexus
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -332,8 +335,8 @@ class Nexus
      * Retrieve a paginated list of
      *     physical nexuses for a specific organization.
      *
-     * @param  ?Operations\GetPhysicalNexusV1NexusPhysicalNexusGetRequest  $request
-     * @return Operations\GetPhysicalNexusV1NexusPhysicalNexusGetResponse
+     * @param  ?\KintsugiTax\SDK\Models\Operations\GetPhysicalNexusV1NexusPhysicalNexusGetRequest  $request
+     * @return \KintsugiTax\SDK\Models\Operations\GetPhysicalNexusV1NexusPhysicalNexusGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function listPhysical(?Operations\GetPhysicalNexusV1NexusPhysicalNexusGetRequest $request = null, ?Options $options = null): Operations\GetPhysicalNexusV1NexusPhysicalNexusGetResponse
@@ -360,11 +363,12 @@ class Nexus
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -433,9 +437,9 @@ class Nexus
      * The Update Physical Nexus API allows you to modify the details of
      *     an existing physical nexus by its unique ID.
      *
-     * @param  Components\PhysicalNexusUpdate  $physicalNexusUpdate
+     * @param  \KintsugiTax\SDK\Models\Components\PhysicalNexusUpdate  $physicalNexusUpdate
      * @param  string  $physicalNexusId
-     * @return Operations\UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutResponse
+     * @return \KintsugiTax\SDK\Models\Operations\UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function updatePhysical(Components\PhysicalNexusUpdate $physicalNexusUpdate, string $physicalNexusId, ?Options $options = null): Operations\UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutResponse
@@ -468,11 +472,12 @@ class Nexus
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

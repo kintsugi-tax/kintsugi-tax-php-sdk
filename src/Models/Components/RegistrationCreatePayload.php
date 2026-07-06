@@ -13,7 +13,7 @@ class RegistrationCreatePayload
 {
     /**
      *
-     * @var CountryCodeEnum $countryCode
+     * @var \KintsugiTax\SDK\Models\Components\CountryCodeEnum $countryCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country_code')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum')]
@@ -37,7 +37,7 @@ class RegistrationCreatePayload
 
     /**
      *
-     * @var FilingFrequencyEnum $filingFrequency
+     * @var \KintsugiTax\SDK\Models\Components\FilingFrequencyEnum $filingFrequency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('filing_frequency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum')]
@@ -117,7 +117,7 @@ class RegistrationCreatePayload
 
     /**
      *
-     * @var ?RegistrationsRegimeEnum $registrationsRegime
+     * @var ?\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum $registrationsRegime
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registrations_regime')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum|null')]
@@ -126,7 +126,7 @@ class RegistrationCreatePayload
 
     /**
      *
-     * @var ?ChangeRegimeStatusEnum $changeRegimeStatus
+     * @var ?\KintsugiTax\SDK\Models\Components\ChangeRegimeStatusEnum $changeRegimeStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('change_regime_status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ChangeRegimeStatusEnum|null')]
@@ -269,10 +269,10 @@ class RegistrationCreatePayload
     public ?bool $sstImport = null;
 
     /**
-     * @param  CountryCodeEnum  $countryCode
+     * @param  \KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
      * @param  string  $stateCode
      * @param  string  $stateName
-     * @param  FilingFrequencyEnum  $filingFrequency
+     * @param  \KintsugiTax\SDK\Models\Components\FilingFrequencyEnum  $filingFrequency
      * @param  ?string  $registrationImportType
      * @param  ?string  $registrationDate
      * @param  ?string  $registrationEmail
@@ -284,8 +284,8 @@ class RegistrationCreatePayload
      * @param  ?string  $deregistrationCompleted
      * @param  ?bool  $autoRegistered
      * @param  ?bool  $doNotFile
-     * @param  ?RegistrationsRegimeEnum  $registrationsRegime
-     * @param  ?ChangeRegimeStatusEnum  $changeRegimeStatus
+     * @param  ?\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum  $registrationsRegime
+     * @param  ?\KintsugiTax\SDK\Models\Components\ChangeRegimeStatusEnum  $changeRegimeStatus
      * @param  ?string  $username
      * @param  ?string  $comment
      * @param  ?string  $createFilingsFrom

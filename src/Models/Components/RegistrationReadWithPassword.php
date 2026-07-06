@@ -13,7 +13,7 @@ class RegistrationReadWithPassword
 {
     /**
      *
-     * @var RegistrationStatusEnum $status
+     * @var \KintsugiTax\SDK\Models\Components\RegistrationStatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\RegistrationStatusEnum')]
@@ -21,7 +21,7 @@ class RegistrationReadWithPassword
 
     /**
      *
-     * @var CountryCodeEnum $countryCode
+     * @var \KintsugiTax\SDK\Models\Components\CountryCodeEnum $countryCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country_code')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum')]
@@ -45,7 +45,7 @@ class RegistrationReadWithPassword
 
     /**
      *
-     * @var FilingFrequencyEnum $filingFrequency
+     * @var \KintsugiTax\SDK\Models\Components\FilingFrequencyEnum $filingFrequency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('filing_frequency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum')]
@@ -68,7 +68,7 @@ class RegistrationReadWithPassword
 
     /**
      *
-     * @var RegistrationTypeEnum $registrationType
+     * @var \KintsugiTax\SDK\Models\Components\RegistrationTypeEnum $registrationType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registration_type')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\RegistrationTypeEnum')]
@@ -148,7 +148,7 @@ class RegistrationReadWithPassword
 
     /**
      *
-     * @var ?RegistrationsRegimeEnum $registrationsRegime
+     * @var ?\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum $registrationsRegime
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registrations_regime')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum|null')]
@@ -157,7 +157,7 @@ class RegistrationReadWithPassword
 
     /**
      *
-     * @var ?ChangeRegimeStatusEnum $changeRegimeStatus
+     * @var ?\KintsugiTax\SDK\Models\Components\ChangeRegimeStatusEnum $changeRegimeStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('change_regime_status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ChangeRegimeStatusEnum|null')]
@@ -232,7 +232,7 @@ class RegistrationReadWithPassword
     /**
      * Type of OSS registration.
      *
-     * @var ?OssTypeEnum $ossType
+     * @var ?\KintsugiTax\SDK\Models\Components\OssTypeEnum $ossType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('oss_type')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\OssTypeEnum|null')]
@@ -241,7 +241,7 @@ class RegistrationReadWithPassword
 
     /**
      *
-     * @var ?CountryCodeEnum $ossMemberStateOfIdentificationCode
+     * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $ossMemberStateOfIdentificationCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('oss_member_state_of_identification_code')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
@@ -259,7 +259,7 @@ class RegistrationReadWithPassword
 
     /**
      *
-     * @var ?RegistrationCategoryEnum $registrationCategory
+     * @var ?\KintsugiTax\SDK\Models\Components\RegistrationCategoryEnum $registrationCategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registration_category')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\RegistrationCategoryEnum|null')]
@@ -367,14 +367,14 @@ class RegistrationReadWithPassword
     public ?bool $hasAllCredentials = null;
 
     /**
-     * @param  RegistrationStatusEnum  $status
-     * @param  CountryCodeEnum  $countryCode
+     * @param  \KintsugiTax\SDK\Models\Components\RegistrationStatusEnum  $status
+     * @param  \KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
      * @param  string  $stateCode
      * @param  string  $stateName
-     * @param  FilingFrequencyEnum  $filingFrequency
+     * @param  \KintsugiTax\SDK\Models\Components\FilingFrequencyEnum  $filingFrequency
      * @param  string  $id
      * @param  int  $filingDays
-     * @param  RegistrationTypeEnum  $registrationType
+     * @param  \KintsugiTax\SDK\Models\Components\RegistrationTypeEnum  $registrationType
      * @param  ?string  $registrationDate
      * @param  ?string  $registrationEmail
      * @param  ?string  $registrationKey
@@ -384,8 +384,8 @@ class RegistrationReadWithPassword
      * @param  ?string  $deregistrationRequested
      * @param  ?string  $deregistrationCompleted
      * @param  ?bool  $autoRegistered
-     * @param  ?RegistrationsRegimeEnum  $registrationsRegime
-     * @param  ?ChangeRegimeStatusEnum  $changeRegimeStatus
+     * @param  ?\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum  $registrationsRegime
+     * @param  ?\KintsugiTax\SDK\Models\Components\ChangeRegimeStatusEnum  $changeRegimeStatus
      * @param  ?bool  $thirdPartyEnabled
      * @param  ?bool  $doNotFile
      * @param  ?bool  $twoFactorEnabled
@@ -399,12 +399,12 @@ class RegistrationReadWithPassword
      * @param  ?bool  $imported
      * @param  ?string  $salesTaxId
      * @param  ?bool  $sstImport
-     * @param  ?OssTypeEnum  $ossType
-     * @param  ?CountryCodeEnum  $ossMemberStateOfIdentificationCode
+     * @param  ?\KintsugiTax\SDK\Models\Components\OssTypeEnum  $ossType
+     * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $ossMemberStateOfIdentificationCode
      * @param  ?string  $markedCollectingDate
      * @param  ?bool  $needsMarkAsCollecting
      * @param  ?string  $creditsTotalAvailable
-     * @param  ?RegistrationCategoryEnum  $registrationCategory
+     * @param  ?\KintsugiTax\SDK\Models\Components\RegistrationCategoryEnum  $registrationCategory
      * @param  ?string  $passwordEncrypted
      * @param  ?bool  $hasAllCredentials
      * @phpstan-pure

@@ -29,7 +29,7 @@ class FilingDetailsRead
 
     /**
      *
-     * @var CountryCodeEnum $countryCode
+     * @var \KintsugiTax\SDK\Models\Components\CountryCodeEnum $countryCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country_code')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum')]
@@ -61,7 +61,7 @@ class FilingDetailsRead
 
     /**
      *
-     * @var ?FilingStatusEnum $status
+     * @var ?\KintsugiTax\SDK\Models\Components\FilingStatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\FilingStatusEnum|null')]
@@ -199,7 +199,7 @@ class FilingDetailsRead
 
     /**
      *
-     * @var ?CurrencyEnum $currency
+     * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
@@ -209,7 +209,7 @@ class FilingDetailsRead
     /**
      * List of attachments associated with the filing, if any.
      *
-     * @var ?Attachments $attachments
+     * @var ?\KintsugiTax\SDK\Models\Components\Attachments $attachments
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('attachments')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\Attachments|null')]
@@ -367,11 +367,11 @@ class FilingDetailsRead
     /**
      * @param  LocalDate  $startDate
      * @param  LocalDate  $endDate
-     * @param  CountryCodeEnum  $countryCode
+     * @param  \KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
      * @param  string  $id
      * @param  string  $registrationId
      * @param  string  $filingWebsiteUrl
-     * @param  ?FilingStatusEnum  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\FilingStatusEnum  $status
      * @param  ?string  $dueDate
      * @param  ?string  $dateFiled
      * @param  ?bool  $isManual
@@ -401,8 +401,8 @@ class FilingDetailsRead
      * @param  ?string  $returnConfirmationId
      * @param  ?string  $paymentConfirmationId
      * @param  ?bool  $blockApproval
-     * @param  ?CurrencyEnum  $currency
-     * @param  ?Attachments  $attachments
+     * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $currency
+     * @param  ?\KintsugiTax\SDK\Models\Components\Attachments  $attachments
      * @param  ?string  $creditsUtilized
      * @phpstan-pure
      */

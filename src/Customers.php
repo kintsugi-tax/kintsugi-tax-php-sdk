@@ -51,8 +51,8 @@ class Customers
      * The Create Customer API enables the creation of a new customer record with essential
      * details like name, contact information, and address, along with optional metadata.
      *
-     * @param  Components\CustomerCreate  $request
-     * @return Operations\CreateCustomerV1CustomersPostResponse
+     * @param  \KintsugiTax\SDK\Models\Components\CustomerCreate  $request
+     * @return \KintsugiTax\SDK\Models\Operations\CreateCustomerV1CustomersPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function create(Components\CustomerCreate $request, ?Options $options = null): Operations\CreateCustomerV1CustomersPostResponse
@@ -81,11 +81,12 @@ class Customers
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -153,9 +154,9 @@ class Customers
      *
      * Create a new transaction for a specific customer.
      *
-     * @param  Components\TransactionCreate  $transactionCreate
+     * @param  \KintsugiTax\SDK\Models\Components\TransactionCreate  $transactionCreate
      * @param  string  $customerId
-     * @return Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse
+     * @return \KintsugiTax\SDK\Models\Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function createTransaction(Components\TransactionCreate $transactionCreate, string $customerId, ?Options $options = null): Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse
@@ -188,11 +189,12 @@ class Customers
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -239,7 +241,7 @@ class Customers
      * an external ID is available.
      *
      * @param  string  $externalId
-     * @return Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse
+     * @return \KintsugiTax\SDK\Models\Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function getByExternalId(string $externalId, ?Options $options = null): Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse
@@ -266,11 +268,12 @@ class Customers
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -317,7 +320,7 @@ class Customers
      *     including contact information, address, name and metadata, etc.
      *
      * @param  string  $customerId
-     * @return Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
+     * @return \KintsugiTax\SDK\Models\Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function getById(string $customerId, ?Options $options = null): Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
@@ -344,11 +347,12 @@ class Customers
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['404', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -394,8 +398,8 @@ class Customers
      *     a paginated list of customers based on specified filters.
      *     This API allows searching, filtering by country and state, and sorting the results.
      *
-     * @param  ?Operations\GetCustomersV1Request  $request
-     * @return Operations\GetCustomersV1Response
+     * @param  ?\KintsugiTax\SDK\Models\Operations\GetCustomersV1Request  $request
+     * @return \KintsugiTax\SDK\Models\Operations\GetCustomersV1Response
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function list(?Operations\GetCustomersV1Request $request = null, ?Options $options = null): Operations\GetCustomersV1Response
@@ -422,11 +426,12 @@ class Customers
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -495,7 +500,7 @@ class Customers
      * Get a list of transactions for a customer by their unique ID.
      *
      * @param  string  $customerId
-     * @return Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
+     * @return \KintsugiTax\SDK\Models\Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function getTransactions(string $customerId, ?Options $options = null): Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
@@ -522,11 +527,12 @@ class Customers
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -572,9 +578,9 @@ class Customers
      *     information using their unique identifier,
      *     enabling updates to their details as needed.
      *
-     * @param  Components\CustomerUpdate  $customerUpdate
+     * @param  \KintsugiTax\SDK\Models\Components\CustomerUpdate  $customerUpdate
      * @param  string  $customerId
-     * @return Operations\UpdateCustomerV1CustomersCustomerIdPutResponse
+     * @return \KintsugiTax\SDK\Models\Operations\UpdateCustomerV1CustomersCustomerIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function update(Components\CustomerUpdate $customerUpdate, string $customerId, ?Options $options = null): Operations\UpdateCustomerV1CustomersCustomerIdPutResponse
@@ -607,11 +613,12 @@ class Customers
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

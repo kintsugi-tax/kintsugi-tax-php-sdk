@@ -13,7 +13,7 @@ class TransactionAddressBuilder
 {
     /**
      *
-     * @var AddressType $type
+     * @var \KintsugiTax\SDK\Models\Components\AddressType $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressType')]
@@ -84,7 +84,7 @@ class TransactionAddressBuilder
 
     /**
      *
-     * @var ?CountryCodeEnum $country
+     * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $country
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
@@ -111,7 +111,7 @@ class TransactionAddressBuilder
 
     /**
      *
-     * @var ?AddressStatus $status
+     * @var ?\KintsugiTax\SDK\Models\Components\AddressStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
@@ -127,7 +127,7 @@ class TransactionAddressBuilder
     public ?string $organizationId = null;
 
     /**
-     * @param  AddressType  $type
+     * @param  \KintsugiTax\SDK\Models\Components\AddressType  $type
      * @param  ?string  $phone
      * @param  ?string  $street1
      * @param  ?string  $street2
@@ -135,10 +135,10 @@ class TransactionAddressBuilder
      * @param  ?string  $county
      * @param  ?string  $state
      * @param  ?string  $postalCode
-     * @param  ?CountryCodeEnum  $country
+     * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $country
      * @param  ?string  $fullAddress
      * @param  ?string  $enrichedFields
-     * @param  ?AddressStatus  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\AddressStatus  $status
      * @param  ?string  $organizationId
      * @phpstan-pure
      */

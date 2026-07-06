@@ -39,7 +39,7 @@ class TransactionUpdate
     /**
      * $addresses
      *
-     * @var array<TransactionAddressBuilder> $addresses
+     * @var array<\KintsugiTax\SDK\Models\Components\TransactionAddressBuilder> $addresses
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('addresses')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionAddressBuilder>')]
@@ -48,7 +48,7 @@ class TransactionUpdate
     /**
      * $transactionItems
      *
-     * @var array<TransactionItemCreateUpdate> $transactionItems
+     * @var array<\KintsugiTax\SDK\Models\Components\TransactionItemCreateUpdate> $transactionItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('transaction_items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionItemCreateUpdate>')]
@@ -56,7 +56,7 @@ class TransactionUpdate
 
     /**
      *
-     * @var CustomerUpdate $customer
+     * @var \KintsugiTax\SDK\Models\Components\CustomerUpdate $customer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerUpdate')]
@@ -64,7 +64,7 @@ class TransactionUpdate
 
     /**
      *
-     * @var ?ExemptionRequired $requiresExemption
+     * @var ?\KintsugiTax\SDK\Models\Components\ExemptionRequired $requiresExemption
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('requires_exemption')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionRequired|null')]
@@ -104,7 +104,7 @@ class TransactionUpdate
      * If the given order has different status from these 2, we will set the
      * transaction's refund_status to PARTIALLY_REFUNDED by default.
      *
-     * @var ?TransactionRefundStatus $refundStatus
+     * @var ?\KintsugiTax\SDK\Models\Components\TransactionRefundStatus $refundStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('refund_status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionRefundStatus|null')]
@@ -128,7 +128,7 @@ class TransactionUpdate
      * FULLY_EXEMPT: All items sold in the transaction are EXEMPT
      * ZERO_RATE_NOT_EXEMPT: All items sold in the transaction are zero-rated
      *
-     * @var ?TransactionExemptStatusEnum $exempt
+     * @var ?\KintsugiTax\SDK\Models\Components\TransactionExemptStatusEnum $exempt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exempt')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionExemptStatusEnum|null')]
@@ -138,7 +138,7 @@ class TransactionUpdate
     /**
      * List of exemptions applied (if any).
      *
-     * @var ?array<Exemption> $exemptions
+     * @var ?array<\KintsugiTax\SDK\Models\Components\Exemption> $exemptions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exemptions')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\Exemption>|null')]
@@ -183,7 +183,7 @@ class TransactionUpdate
 
     /**
      *
-     * @var ?TaxLiabilitySourceEnum $taxLiabilitySource
+     * @var ?\KintsugiTax\SDK\Models\Components\TaxLiabilitySourceEnum $taxLiabilitySource
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_liability_source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxLiabilitySourceEnum|null')]
@@ -192,7 +192,7 @@ class TransactionUpdate
 
     /**
      *
-     * @var ?CurrencyEnum $currency
+     * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
@@ -201,7 +201,7 @@ class TransactionUpdate
 
     /**
      *
-     * @var ?SourceEnum $source
+     * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $source
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
@@ -255,7 +255,7 @@ class TransactionUpdate
 
     /**
      *
-     * @var ?CountryCodeEnum $country
+     * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $country
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
@@ -283,7 +283,7 @@ class TransactionUpdate
 
     /**
      *
-     * @var ?TransactionStatusEnum $status
+     * @var ?\KintsugiTax\SDK\Models\Components\TransactionStatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionStatusEnum|null')]
@@ -375,19 +375,19 @@ class TransactionUpdate
      * @param  string  $organizationId
      * @param  string  $externalId
      * @param  \DateTime  $date
-     * @param  array<TransactionAddressBuilder>  $addresses
-     * @param  array<TransactionItemCreateUpdate>  $transactionItems
-     * @param  CustomerUpdate  $customer
-     * @param  ?ExemptionRequired  $requiresExemption
+     * @param  array<\KintsugiTax\SDK\Models\Components\TransactionAddressBuilder>  $addresses
+     * @param  array<\KintsugiTax\SDK\Models\Components\TransactionItemCreateUpdate>  $transactionItems
+     * @param  \KintsugiTax\SDK\Models\Components\CustomerUpdate  $customer
+     * @param  ?\KintsugiTax\SDK\Models\Components\ExemptionRequired  $requiresExemption
      * @param  ?string  $shopDate
      * @param  ?string  $shopDateTz
      * @param  ?string  $description
-     * @param  ?TransactionRefundStatus  $refundStatus
+     * @param  ?\KintsugiTax\SDK\Models\Components\TransactionRefundStatus  $refundStatus
      * @param  ?float  $totalAmount
      * @param  ?string  $customerId
      * @param  ?bool  $marketplace
-     * @param  ?TransactionExemptStatusEnum  $exempt
-     * @param  ?array<Exemption>  $exemptions
+     * @param  ?\KintsugiTax\SDK\Models\Components\TransactionExemptStatusEnum  $exempt
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\Exemption>  $exemptions
      * @param  ?string  $relatedTo
      * @param  ?string  $secondaryExternalId
      * @param  ?string  $secondarySource
@@ -397,20 +397,20 @@ class TransactionUpdate
      * @param  ?float  $totalTaxAmountCalculated
      * @param  ?float  $taxRateCalculated
      * @param  ?float  $totalTaxLiabilityAmount
-     * @param  ?TaxLiabilitySourceEnum  $taxLiabilitySource
+     * @param  ?\KintsugiTax\SDK\Models\Components\TaxLiabilitySourceEnum  $taxLiabilitySource
      * @param  ?float  $taxableAmount
-     * @param  ?CurrencyEnum  $currency
+     * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $currency
      * @param  ?bool  $locked
-     * @param  ?SourceEnum  $source
+     * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
      * @param  ?string  $connectionId
      * @param  ?string  $filingId
      * @param  ?string  $city
      * @param  ?string  $county
      * @param  ?string  $state
-     * @param  ?CountryCodeEnum  $country
+     * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $country
      * @param  ?string  $postalCode
      * @param  ?string  $taxId
-     * @param  ?TransactionStatusEnum  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\TransactionStatusEnum  $status
      * @phpstan-pure
      */
     public function __construct(string $organizationId, string $externalId, \DateTime $date, array $addresses, array $transactionItems, CustomerUpdate $customer, ?ExemptionRequired $requiresExemption = null, ?string $shopDate = null, ?string $shopDateTz = null, ?string $description = null, ?TransactionRefundStatus $refundStatus = null, ?string $customerId = null, ?TransactionExemptStatusEnum $exempt = null, ?array $exemptions = null, ?string $relatedTo = null, ?string $secondaryExternalId = null, ?string $secondarySource = null, ?string $externalFriendlyId = null, ?TaxLiabilitySourceEnum $taxLiabilitySource = null, ?CurrencyEnum $currency = null, ?SourceEnum $source = null, ?string $connectionId = null, ?string $filingId = null, ?string $city = null, ?string $county = null, ?string $state = null, ?CountryCodeEnum $country = null, ?string $postalCode = null, ?string $taxId = null, ?TransactionStatusEnum $status = null, ?float $totalAmount = 0, ?bool $marketplace = false, ?float $totalTaxAmountImported = 0, ?float $taxRateImported = 0, ?float $totalTaxAmountCalculated = 0, ?float $taxRateCalculated = 0, ?float $totalTaxLiabilityAmount = 0, ?float $taxableAmount = 0, ?bool $locked = false)

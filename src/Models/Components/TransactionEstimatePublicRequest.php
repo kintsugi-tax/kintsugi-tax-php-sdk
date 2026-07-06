@@ -34,7 +34,7 @@ class TransactionEstimatePublicRequest
 
     /**
      *
-     * @var CurrencyEnum $currency
+     * @var \KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum')]
@@ -43,7 +43,7 @@ class TransactionEstimatePublicRequest
     /**
      * List of items involved in the transaction.
      *
-     * @var array<TransactionItemEstimateBase> $transactionItems
+     * @var array<\KintsugiTax\SDK\Models\Components\TransactionItemEstimateBase> $transactionItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('transaction_items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionItemEstimateBase>')]
@@ -52,7 +52,7 @@ class TransactionEstimatePublicRequest
     /**
      * List of addresses related to the transaction. At least one BILL_TO or SHIP_TO address must be provided. The address will be validated during estimation, and the transaction may be rejected if the address does not pass validation. The SHIP_TO will be preferred to use for determining tax liability.
      *
-     * @var array<TransactionEstimatePublicRequestAddress> $addresses
+     * @var array<\KintsugiTax\SDK\Models\Components\TransactionEstimatePublicRequestAddress> $addresses
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('addresses')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionEstimatePublicRequestAddress>')]
@@ -69,7 +69,7 @@ class TransactionEstimatePublicRequest
 
     /**
      *
-     * @var ?SourceEnum $source
+     * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $source
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
@@ -78,7 +78,7 @@ class TransactionEstimatePublicRequest
 
     /**
      *
-     * @var ?CustomerBasePublic $customer
+     * @var ?\KintsugiTax\SDK\Models\Components\CustomerBasePublic $customer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBasePublic|null')]
@@ -97,13 +97,13 @@ class TransactionEstimatePublicRequest
     /**
      * @param  \DateTime  $date
      * @param  string  $externalId
-     * @param  CurrencyEnum  $currency
-     * @param  array<TransactionItemEstimateBase>  $transactionItems
-     * @param  array<TransactionEstimatePublicRequestAddress>  $addresses
+     * @param  \KintsugiTax\SDK\Models\Components\CurrencyEnum  $currency
+     * @param  array<\KintsugiTax\SDK\Models\Components\TransactionItemEstimateBase>  $transactionItems
+     * @param  array<\KintsugiTax\SDK\Models\Components\TransactionEstimatePublicRequestAddress>  $addresses
      * @param  ?string  $description
-     * @param  ?SourceEnum  $source
+     * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
      * @param  ?bool  $marketplace
-     * @param  ?CustomerBasePublic  $customer
+     * @param  ?\KintsugiTax\SDK\Models\Components\CustomerBasePublic  $customer
      * @phpstan-pure
      */
     public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, ?string $description = null, ?SourceEnum $source = null, ?CustomerBasePublic $customer = null, ?bool $marketplace = false)

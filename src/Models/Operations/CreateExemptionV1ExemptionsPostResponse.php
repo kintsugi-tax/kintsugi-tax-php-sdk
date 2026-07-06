@@ -35,7 +35,7 @@ class CreateExemptionV1ExemptionsPostResponse
     /**
      * Successfully created exemption
      *
-     * @var ?Components\BackendSrcExemptionsSerializersExemptionRead $backendSrcExemptionsSerializersExemptionRead
+     * @var ?\KintsugiTax\SDK\Models\Components\BackendSrcExemptionsSerializersExemptionRead $backendSrcExemptionsSerializersExemptionRead
      */
     public ?Components\BackendSrcExemptionsSerializersExemptionRead $backendSrcExemptionsSerializersExemptionRead = null;
 
@@ -43,7 +43,7 @@ class CreateExemptionV1ExemptionsPostResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\BackendSrcExemptionsSerializersExemptionRead  $backendSrcExemptionsSerializersExemptionRead
+     * @param  ?\KintsugiTax\SDK\Models\Components\BackendSrcExemptionsSerializersExemptionRead  $backendSrcExemptionsSerializersExemptionRead
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\BackendSrcExemptionsSerializersExemptionRead $backendSrcExemptionsSerializersExemptionRead = null)

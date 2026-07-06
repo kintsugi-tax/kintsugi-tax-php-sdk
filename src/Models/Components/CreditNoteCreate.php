@@ -30,7 +30,7 @@ class CreditNoteCreate
     /**
      * Current state of the credit note in its lifecycle.
      *
-     * @var Status $status
+     * @var \KintsugiTax\SDK\Models\Components\Status $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\Status')]
@@ -46,7 +46,7 @@ class CreditNoteCreate
 
     /**
      *
-     * @var CurrencyEnum $currency
+     * @var \KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum')]
@@ -55,7 +55,7 @@ class CreditNoteCreate
     /**
      * Detailed list of individual items included in this credit note.
      *
-     * @var array<CreditNoteItemCreateUpdate> $transactionItems
+     * @var array<\KintsugiTax\SDK\Models\Components\CreditNoteItemCreateUpdate> $transactionItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('transaction_items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\CreditNoteItemCreateUpdate>')]
@@ -100,7 +100,7 @@ class CreditNoteCreate
     /**
      * A list of TransactionAddressBuilder objects or None if no addresses are provided. This field represents the addresses associated with the transaction.
      *
-     * @var ?array<TransactionAddressBuilder> $addresses
+     * @var ?array<\KintsugiTax\SDK\Models\Components\TransactionAddressBuilder> $addresses
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('addresses')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionAddressBuilder>|null')]
@@ -119,16 +119,16 @@ class CreditNoteCreate
     /**
      * @param  string  $externalId
      * @param  \DateTime  $date
-     * @param  Status  $status
+     * @param  \KintsugiTax\SDK\Models\Components\Status  $status
      * @param  float  $totalAmount
-     * @param  CurrencyEnum  $currency
-     * @param  array<CreditNoteItemCreateUpdate>  $transactionItems
+     * @param  \KintsugiTax\SDK\Models\Components\CurrencyEnum  $currency
+     * @param  array<\KintsugiTax\SDK\Models\Components\CreditNoteItemCreateUpdate>  $transactionItems
      * @param  ?string  $description
      * @param  ?bool  $marketplace
      * @param  ?float  $taxAmountImported
      * @param  ?float  $taxRateImported
      * @param  ?float  $taxableAmount
-     * @param  ?array<TransactionAddressBuilder>  $addresses
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\TransactionAddressBuilder>  $addresses
      * @phpstan-pure
      */
     public function __construct(string $externalId, \DateTime $date, Status $status, float $totalAmount, CurrencyEnum $currency, array $transactionItems, ?string $description = null, ?float $taxAmountImported = null, ?float $taxRateImported = null, ?float $taxableAmount = null, ?array $addresses = null, ?bool $marketplace = false)

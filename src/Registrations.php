@@ -51,8 +51,8 @@ class Registrations
      * The Create Registration API allows users to create a new registration
      *     for tracking and managing tax filings efficiently across multiple jurisdictions.
      *
-     * @param  Components\RegistrationCreatePayload|Components\OSSRegistrationCreatePayload|Components\SSTRegistrationCreatePayload  $request
-     * @return Operations\CreateRegistrationV1RegistrationsPostResponse
+     * @param  \KintsugiTax\SDK\Models\Components\RegistrationCreatePayload|\KintsugiTax\SDK\Models\Components\OSSRegistrationCreatePayload|\KintsugiTax\SDK\Models\Components\SSTRegistrationCreatePayload  $request
+     * @return \KintsugiTax\SDK\Models\Operations\CreateRegistrationV1RegistrationsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function create(Components\RegistrationCreatePayload|Components\OSSRegistrationCreatePayload|Components\SSTRegistrationCreatePayload $request, ?Options $options = null): Operations\CreateRegistrationV1RegistrationsPostResponse
@@ -81,11 +81,12 @@ class Registrations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '409', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -154,7 +155,7 @@ class Registrations
      * Deregister an existing registration.
      *
      * @param  string  $registrationId
-     * @return Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse
+     * @return \KintsugiTax\SDK\Models\Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function deregister(string $registrationId, ?Options $options = null): Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse
@@ -181,11 +182,12 @@ class Registrations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -256,7 +258,7 @@ class Registrations
      *
      * @param  string  $registrationId
      * @param  ?string  $reveal
-     * @return Operations\GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse
+     * @return \KintsugiTax\SDK\Models\Operations\GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function getById(string $registrationId, ?string $reveal = null, ?Options $options = null): Operations\GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse
@@ -287,11 +289,12 @@ class Registrations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -362,8 +365,8 @@ class Registrations
      *     This API helps in tracking and managing registrations efficiently across multiple
      *     jurisdictions.
      *
-     * @param  ?Operations\GetRegistrationsV1RegistrationsGetRequest  $request
-     * @return Operations\GetRegistrationsV1RegistrationsGetResponse
+     * @param  ?\KintsugiTax\SDK\Models\Operations\GetRegistrationsV1RegistrationsGetRequest  $request
+     * @return \KintsugiTax\SDK\Models\Operations\GetRegistrationsV1RegistrationsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function list(?Operations\GetRegistrationsV1RegistrationsGetRequest $request = null, ?Options $options = null): Operations\GetRegistrationsV1RegistrationsGetResponse
@@ -390,11 +393,12 @@ class Registrations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -463,9 +467,9 @@ class Registrations
      * The Update Registration API allows you to modify
      *     an existing registration using its unique registration_id.
      *
-     * @param  Components\RegistrationUpdateAPI  $registrationUpdateAPI
+     * @param  \KintsugiTax\SDK\Models\Components\RegistrationUpdateAPI  $registrationUpdateAPI
      * @param  string  $registrationId
-     * @return Operations\UpdateRegistrationV1RegistrationsRegistrationIdPutResponse
+     * @return \KintsugiTax\SDK\Models\Operations\UpdateRegistrationV1RegistrationsRegistrationIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function update(Components\RegistrationUpdateAPI $registrationUpdateAPI, string $registrationId, ?Options $options = null): Operations\UpdateRegistrationV1RegistrationsRegistrationIdPutResponse
@@ -498,11 +502,12 @@ class Registrations
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

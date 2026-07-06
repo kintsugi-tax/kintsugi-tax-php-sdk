@@ -14,7 +14,7 @@ class PageTransactionRead
     /**
      * $items
      *
-     * @var array<TransactionRead> $items
+     * @var array<\KintsugiTax\SDK\Models\Components\TransactionRead> $items
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionRead>')]
@@ -49,7 +49,7 @@ class PageTransactionRead
     public int $pages;
 
     /**
-     * @param  array<TransactionRead>  $items
+     * @param  array<\KintsugiTax\SDK\Models\Components\TransactionRead>  $items
      * @param  int  $total
      * @param  int  $page
      * @param  int  $size

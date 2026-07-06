@@ -35,7 +35,7 @@ class SearchV1AddressValidationSearchPostResponse
     /**
      * Address found successfully
      *
-     * @var ?array<Components\AddressSearchResponse> $response200SearchV1AddressValidationSearchPost
+     * @var ?array<\KintsugiTax\SDK\Models\Components\AddressSearchResponse> $response200SearchV1AddressValidationSearchPost
      */
     public ?array $response200SearchV1AddressValidationSearchPost = null;
 
@@ -43,7 +43,7 @@ class SearchV1AddressValidationSearchPostResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<Components\AddressSearchResponse>  $response200SearchV1AddressValidationSearchPost
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\AddressSearchResponse>  $response200SearchV1AddressValidationSearchPost
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $response200SearchV1AddressValidationSearchPost = null)

@@ -15,7 +15,7 @@ class HTTPValidationError
     /**
      * $detail
      *
-     * @var ?array<Components\ValidationError> $detail
+     * @var ?array<\KintsugiTax\SDK\Models\Components\ValidationError> $detail
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('detail')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\ValidationError>|null')]
@@ -32,7 +32,7 @@ class HTTPValidationError
     public ?\Psr\Http\Message\ResponseInterface $rawResponse = null;
 
     /**
-     * @param  ?array<Components\ValidationError>  $detail
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\ValidationError>  $detail
      * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
      * @phpstan-pure
      */

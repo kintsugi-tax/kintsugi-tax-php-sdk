@@ -35,7 +35,7 @@ class CreatePhysicalNexusV1NexusPhysicalNexusPostResponse
     /**
      * Successfully created physical nexus
      *
-     * @var ?Components\PhysicalNexusRead $physicalNexusRead
+     * @var ?\KintsugiTax\SDK\Models\Components\PhysicalNexusRead $physicalNexusRead
      */
     public ?Components\PhysicalNexusRead $physicalNexusRead = null;
 
@@ -43,7 +43,7 @@ class CreatePhysicalNexusV1NexusPhysicalNexusPostResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\PhysicalNexusRead  $physicalNexusRead
+     * @param  ?\KintsugiTax\SDK\Models\Components\PhysicalNexusRead  $physicalNexusRead
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PhysicalNexusRead $physicalNexusRead = null)

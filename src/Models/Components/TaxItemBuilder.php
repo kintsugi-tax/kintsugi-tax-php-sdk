@@ -50,7 +50,7 @@ class TaxItemBuilder
 
     /**
      *
-     * @var ?CurrencyEnum $currency
+     * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
@@ -59,7 +59,7 @@ class TaxItemBuilder
 
     /**
      *
-     * @var ?CurrencyEnum $destinationCurrency
+     * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $destinationCurrency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destination_currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
@@ -76,7 +76,7 @@ class TaxItemBuilder
 
     /**
      *
-     * @var ?TaxItemTypeEnum $type
+     * @var ?\KintsugiTax\SDK\Models\Components\TaxItemTypeEnum $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxItemTypeEnum|null')]
@@ -85,7 +85,7 @@ class TaxItemBuilder
 
     /**
      *
-     * @var ?JurisdictionType $jurisdictionType
+     * @var ?\KintsugiTax\SDK\Models\Components\JurisdictionType $jurisdictionType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('jurisdiction_type')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\JurisdictionType|null')]
@@ -116,11 +116,11 @@ class TaxItemBuilder
      * @param  string  $organizationId
      * @param  ?string  $ruleId
      * @param  ?float  $convertedAmount
-     * @param  ?CurrencyEnum  $currency
-     * @param  ?CurrencyEnum  $destinationCurrency
+     * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $currency
+     * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $destinationCurrency
      * @param  ?string  $externalId
-     * @param  ?TaxItemTypeEnum  $type
-     * @param  ?JurisdictionType  $jurisdictionType
+     * @param  ?\KintsugiTax\SDK\Models\Components\TaxItemTypeEnum  $type
+     * @param  ?\KintsugiTax\SDK\Models\Components\JurisdictionType  $jurisdictionType
      * @param  ?string  $jurisdictionName
      * @phpstan-pure
      */

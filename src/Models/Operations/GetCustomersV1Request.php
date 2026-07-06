@@ -23,7 +23,7 @@ class GetCustomersV1Request
     /**
      * Country code in ISO 3166-1 alpha-2 format (e.g., 'US')
      *
-     * @var ?array<Components\CountryCodeEnum> $country
+     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum> $country
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=country')]
     public ?array $country = null;
@@ -70,7 +70,7 @@ class GetCustomersV1Request
 
     /**
      * @param  ?string  $searchQuery
-     * @param  ?array<Components\CountryCodeEnum>  $country
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum>  $country
      * @param  ?string  $state
      * @param  ?string  $sourceIn
      * @param  ?string  $orderBy

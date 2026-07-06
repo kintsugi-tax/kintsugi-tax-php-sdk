@@ -83,7 +83,7 @@ class CustomerBaseBase
 
     /**
      *
-     * @var ?CountryCodeEnum $country
+     * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $country
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
@@ -119,7 +119,7 @@ class CustomerBaseBase
 
     /**
      *
-     * @var ?StatusEnum $status
+     * @var ?\KintsugiTax\SDK\Models\Components\StatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\StatusEnum|null')]
@@ -137,7 +137,7 @@ class CustomerBaseBase
 
     /**
      *
-     * @var ?AddressStatus $addressStatus
+     * @var ?\KintsugiTax\SDK\Models\Components\AddressStatus $addressStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
@@ -146,7 +146,7 @@ class CustomerBaseBase
 
     /**
      *
-     * @var ?SourceEnum $source
+     * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $source
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
@@ -196,14 +196,14 @@ class CustomerBaseBase
      * @param  ?string  $county
      * @param  ?string  $state
      * @param  ?string  $postalCode
-     * @param  ?CountryCodeEnum  $country
+     * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $country
      * @param  ?string  $fullAddress
      * @param  ?string  $name
      * @param  ?string  $externalId
-     * @param  ?StatusEnum  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\StatusEnum  $status
      * @param  ?string  $email
-     * @param  ?AddressStatus  $addressStatus
-     * @param  ?SourceEnum  $source
+     * @param  ?\KintsugiTax\SDK\Models\Components\AddressStatus  $addressStatus
+     * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
      * @param  ?string  $registrationNumber
      * @param  ?string  $connectionId
      * @param  ?string  $enrichedFields

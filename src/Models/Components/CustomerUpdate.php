@@ -76,7 +76,7 @@ class CustomerUpdate
 
     /**
      *
-     * @var ?CountryCodeEnum $country
+     * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $country
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
@@ -103,7 +103,7 @@ class CustomerUpdate
 
     /**
      *
-     * @var ?StatusEnum $status
+     * @var ?\KintsugiTax\SDK\Models\Components\StatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\StatusEnum|null')]
@@ -121,7 +121,7 @@ class CustomerUpdate
 
     /**
      *
-     * @var ?SourceEnum $source
+     * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $source
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
@@ -130,7 +130,7 @@ class CustomerUpdate
 
     /**
      *
-     * @var ?AddressStatus $addressStatus
+     * @var ?\KintsugiTax\SDK\Models\Components\AddressStatus $addressStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
@@ -163,13 +163,13 @@ class CustomerUpdate
      * @param  ?string  $county
      * @param  ?string  $state
      * @param  ?string  $postalCode
-     * @param  ?CountryCodeEnum  $country
+     * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $country
      * @param  ?string  $fullAddress
      * @param  ?string  $name
-     * @param  ?StatusEnum  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\StatusEnum  $status
      * @param  ?string  $email
-     * @param  ?SourceEnum  $source
-     * @param  ?AddressStatus  $addressStatus
+     * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
+     * @param  ?\KintsugiTax\SDK\Models\Components\AddressStatus  $addressStatus
      * @param  ?string  $externalId
      * @param  ?string  $externalFriendlyId
      * @phpstan-pure

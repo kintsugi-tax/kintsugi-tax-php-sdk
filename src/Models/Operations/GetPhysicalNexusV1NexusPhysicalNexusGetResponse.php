@@ -35,7 +35,7 @@ class GetPhysicalNexusV1NexusPhysicalNexusGetResponse
     /**
      * Successfully retrieved physical nexuses
      *
-     * @var ?Components\PagePhysicalNexusRead $pagePhysicalNexusRead
+     * @var ?\KintsugiTax\SDK\Models\Components\PagePhysicalNexusRead $pagePhysicalNexusRead
      */
     public ?Components\PagePhysicalNexusRead $pagePhysicalNexusRead = null;
 
@@ -43,7 +43,7 @@ class GetPhysicalNexusV1NexusPhysicalNexusGetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\PagePhysicalNexusRead  $pagePhysicalNexusRead
+     * @param  ?\KintsugiTax\SDK\Models\Components\PagePhysicalNexusRead  $pagePhysicalNexusRead
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PagePhysicalNexusRead $pagePhysicalNexusRead = null)

@@ -35,7 +35,7 @@ class GetRegistrationsV1RegistrationsGetResponse
     /**
      * Successfully retrieved registrations
      *
-     * @var ?Components\PageRegistrationReadWithPassword $pageRegistrationReadWithPassword
+     * @var ?\KintsugiTax\SDK\Models\Components\PageRegistrationReadWithPassword $pageRegistrationReadWithPassword
      */
     public ?Components\PageRegistrationReadWithPassword $pageRegistrationReadWithPassword = null;
 
@@ -43,7 +43,7 @@ class GetRegistrationsV1RegistrationsGetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\PageRegistrationReadWithPassword  $pageRegistrationReadWithPassword
+     * @param  ?\KintsugiTax\SDK\Models\Components\PageRegistrationReadWithPassword  $pageRegistrationReadWithPassword
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PageRegistrationReadWithPassword $pageRegistrationReadWithPassword = null)

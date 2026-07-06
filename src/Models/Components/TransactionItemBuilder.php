@@ -92,7 +92,7 @@ class TransactionItemBuilder
 
     /**
      *
-     * @var ?CurrencyEnum $originalCurrency
+     * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $originalCurrency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('original_currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
@@ -101,7 +101,7 @@ class TransactionItemBuilder
 
     /**
      *
-     * @var ?CurrencyEnum $destinationCurrency
+     * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $destinationCurrency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destination_currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
@@ -165,7 +165,7 @@ class TransactionItemBuilder
     /**
      * This enum is used to determine if a transaction is exempt from tax.
      *
-     * @var ?TaxExemptionEnum $taxExemption
+     * @var ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum $taxExemption
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_exemption')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxExemptionEnum|null')]
@@ -175,7 +175,7 @@ class TransactionItemBuilder
     /**
      * $taxItems
      *
-     * @var ?array<TaxItemBuilder> $taxItems
+     * @var ?array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder> $taxItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder>|null')]
@@ -184,7 +184,7 @@ class TransactionItemBuilder
 
     /**
      *
-     * @var ?DiscountBuilder $discountBuilder
+     * @var ?\KintsugiTax\SDK\Models\Components\DiscountBuilder $discountBuilder
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('discount_builder')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\DiscountBuilder|null')]
@@ -279,8 +279,8 @@ class TransactionItemBuilder
      * @param  ?float  $taxRateImported
      * @param  ?float  $taxAmountCalculated
      * @param  ?float  $taxRateCalculated
-     * @param  ?CurrencyEnum  $originalCurrency
-     * @param  ?CurrencyEnum  $destinationCurrency
+     * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $originalCurrency
+     * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $destinationCurrency
      * @param  ?float  $convertedAmount
      * @param  ?float  $convertedTaxableAmount
      * @param  ?float  $convertedTaxAmountImported
@@ -288,10 +288,10 @@ class TransactionItemBuilder
      * @param  ?float  $convertedTotalDiscount
      * @param  ?float  $convertedSubtotal
      * @param  ?float  $taxableAmount
-     * @param  ?TaxExemptionEnum  $taxExemption
+     * @param  ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum  $taxExemption
      * @param  ?bool  $exempt
-     * @param  ?array<TaxItemBuilder>  $taxItems
-     * @param  ?DiscountBuilder  $discountBuilder
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder>  $taxItems
+     * @param  ?\KintsugiTax\SDK\Models\Components\DiscountBuilder  $discountBuilder
      * @phpstan-pure
      */
     public function __construct(string $organizationId, \DateTime $date, string $externalProductId, ?string $externalId = null, ?string $description = null, ?string $product = null, ?string $productId = null, ?string $productName = null, ?string $productDescription = null, ?CurrencyEnum $originalCurrency = null, ?CurrencyEnum $destinationCurrency = null, ?float $convertedAmount = null, ?float $convertedTaxableAmount = null, ?float $convertedTaxAmountImported = null, ?float $convertedTaxAmountCalculated = null, ?float $convertedTotalDiscount = null, ?float $convertedSubtotal = null, ?TaxExemptionEnum $taxExemption = null, ?array $taxItems = null, ?DiscountBuilder $discountBuilder = null, ?float $quantity = 1, ?float $amount = 0, ?float $taxAmountImported = 0, ?float $taxRateImported = 0, ?float $taxAmountCalculated = 0, ?float $taxRateCalculated = 0, ?float $taxableAmount = 0, ?bool $exempt = false)

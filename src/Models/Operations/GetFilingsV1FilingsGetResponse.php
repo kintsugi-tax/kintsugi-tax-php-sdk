@@ -35,7 +35,7 @@ class GetFilingsV1FilingsGetResponse
     /**
      * Successfully retrieved filings
      *
-     * @var ?Components\PageFilingRead $pageFilingRead
+     * @var ?\KintsugiTax\SDK\Models\Components\PageFilingRead $pageFilingRead
      */
     public ?Components\PageFilingRead $pageFilingRead = null;
 
@@ -43,7 +43,7 @@ class GetFilingsV1FilingsGetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\PageFilingRead  $pageFilingRead
+     * @param  ?\KintsugiTax\SDK\Models\Components\PageFilingRead  $pageFilingRead
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PageFilingRead $pageFilingRead = null)
