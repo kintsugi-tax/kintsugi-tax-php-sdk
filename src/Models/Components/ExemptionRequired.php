@@ -22,7 +22,7 @@ class ExemptionRequired
 
     /**
      *
-     * @var ExemptionType $exemptionType
+     * @var \KintsugiTax\SDK\Models\Components\ExemptionType $exemptionType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exemption_type')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionType')]
@@ -37,7 +37,7 @@ class ExemptionRequired
 
     /**
      *
-     * @var ExemptionStatus $status
+     * @var \KintsugiTax\SDK\Models\Components\ExemptionStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionStatus')]
@@ -68,9 +68,9 @@ class ExemptionRequired
 
     /**
      * @param  string  $organizationId
-     * @param  ExemptionType  $exemptionType
+     * @param  \KintsugiTax\SDK\Models\Components\ExemptionType  $exemptionType
      * @param  \DateTime  $startDate
-     * @param  ExemptionStatus  $status
+     * @param  \KintsugiTax\SDK\Models\Components\ExemptionStatus  $status
      * @param  bool  $reseller
      * @param  ?string  $jurisdiction
      * @param  ?string  $customerId

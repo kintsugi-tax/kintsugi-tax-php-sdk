@@ -14,7 +14,7 @@ class EstimateTaxV1TaxEstimatePostRequest
 {
     /**
      *
-     * @var Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest
+     * @var \KintsugiTax\SDK\Models\Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest;
@@ -29,7 +29,7 @@ class EstimateTaxV1TaxEstimatePostRequest
     public ?bool $simulateNexusMet = null;
 
     /**
-     * @param  Components\TransactionEstimatePublicRequest  $transactionEstimatePublicRequest
+     * @param  \KintsugiTax\SDK\Models\Components\TransactionEstimatePublicRequest  $transactionEstimatePublicRequest
      * @param  ?bool  $simulateNexusMet
      * @phpstan-pure
      */

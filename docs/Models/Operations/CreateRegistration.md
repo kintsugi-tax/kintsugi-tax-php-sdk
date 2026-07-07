@@ -7,7 +7,7 @@
 
 ```php
 /**
-* @var Components\RegistrationCreatePayload
+* @var \KintsugiTax\SDK\Models\Components\RegistrationCreatePayload
 */
 Components\RegistrationCreatePayload $value = /* values here */
 ```
@@ -16,7 +16,7 @@ Components\RegistrationCreatePayload $value = /* values here */
 
 ```php
 /**
-* @var Components\OSSRegistrationCreatePayload
+* @var \KintsugiTax\SDK\Models\Components\OSSRegistrationCreatePayload
 */
 Components\OSSRegistrationCreatePayload $value = /* values here */
 ```
@@ -25,7 +25,7 @@ Components\OSSRegistrationCreatePayload $value = /* values here */
 
 ```php
 /**
-* @var Components\SSTRegistrationCreatePayload
+* @var \KintsugiTax\SDK\Models\Components\SSTRegistrationCreatePayload
 */
 Components\SSTRegistrationCreatePayload $value = /* values here */
 ```

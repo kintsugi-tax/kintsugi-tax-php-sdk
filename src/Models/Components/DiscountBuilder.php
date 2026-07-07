@@ -13,7 +13,7 @@ class DiscountBuilder
 {
     /**
      *
-     * @var AppliedTo $appliedTo
+     * @var \KintsugiTax\SDK\Models\Components\AppliedTo $appliedTo
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('applied_to')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AppliedTo')]
@@ -36,7 +36,7 @@ class DiscountBuilder
     public ?float $discountAmount = null;
 
     /**
-     * @param  AppliedTo  $appliedTo
+     * @param  \KintsugiTax\SDK\Models\Components\AppliedTo  $appliedTo
      * @param  ?string  $externalId
      * @param  ?float  $discountAmount
      * @phpstan-pure

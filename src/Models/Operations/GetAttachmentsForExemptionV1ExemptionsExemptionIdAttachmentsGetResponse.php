@@ -35,7 +35,7 @@ class GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse
     /**
      * Successfully retrieved attachments for exemption
      *
-     * @var ?array<Components\AttachmentRead> $response200GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGet
+     * @var ?array<\KintsugiTax\SDK\Models\Components\AttachmentRead> $response200GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGet
      */
     public ?array $response200GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGet = null;
 
@@ -43,7 +43,7 @@ class GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<Components\AttachmentRead>  $response200GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGet
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\AttachmentRead>  $response200GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGet
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $response200GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGet = null)

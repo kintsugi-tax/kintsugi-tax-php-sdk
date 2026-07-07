@@ -13,7 +13,7 @@ class ExemptionCreate
 {
     /**
      *
-     * @var ExemptionType $exemptionType
+     * @var \KintsugiTax\SDK\Models\Components\ExemptionType $exemptionType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exemption_type')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionType')]
@@ -53,7 +53,7 @@ class ExemptionCreate
 
     /**
      *
-     * @var ExemptionStatus $status
+     * @var \KintsugiTax\SDK\Models\Components\ExemptionStatus $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionStatus')]
@@ -70,7 +70,7 @@ class ExemptionCreate
 
     /**
      *
-     * @var ?CountryCodeEnum $countryCode
+     * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $countryCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country_code')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
@@ -105,14 +105,14 @@ class ExemptionCreate
     public ?bool $reseller = null;
 
     /**
-     * @param  ExemptionType  $exemptionType
+     * @param  \KintsugiTax\SDK\Models\Components\ExemptionType  $exemptionType
      * @param  LocalDate  $startDate
      * @param  string  $customerId
      * @param  string  $fein
      * @param  string  $salesTaxId
-     * @param  ExemptionStatus  $status
+     * @param  \KintsugiTax\SDK\Models\Components\ExemptionStatus  $status
      * @param  ?string  $jurisdiction
-     * @param  ?CountryCodeEnum  $countryCode
+     * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
      * @param  ?string  $endDate
      * @param  ?string  $transactionId
      * @param  ?bool  $reseller

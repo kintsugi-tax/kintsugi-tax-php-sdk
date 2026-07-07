@@ -35,7 +35,7 @@ class GetNexusForOrgV1NexusGetResponse
     /**
      * Successful Response
      *
-     * @var ?Components\PageNexusResponse $pageNexusResponse
+     * @var ?\KintsugiTax\SDK\Models\Components\PageNexusResponse $pageNexusResponse
      */
     public ?Components\PageNexusResponse $pageNexusResponse = null;
 
@@ -43,7 +43,7 @@ class GetNexusForOrgV1NexusGetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\PageNexusResponse  $pageNexusResponse
+     * @param  ?\KintsugiTax\SDK\Models\Components\PageNexusResponse  $pageNexusResponse
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PageNexusResponse $pageNexusResponse = null)

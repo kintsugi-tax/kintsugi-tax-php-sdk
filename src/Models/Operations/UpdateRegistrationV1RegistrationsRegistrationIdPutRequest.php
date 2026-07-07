@@ -22,14 +22,14 @@ class UpdateRegistrationV1RegistrationsRegistrationIdPutRequest
 
     /**
      *
-     * @var Components\RegistrationUpdateAPI $registrationUpdateAPI
+     * @var \KintsugiTax\SDK\Models\Components\RegistrationUpdateAPI $registrationUpdateAPI
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public Components\RegistrationUpdateAPI $registrationUpdateAPI;
 
     /**
      * @param  string  $registrationId
-     * @param  Components\RegistrationUpdateAPI  $registrationUpdateAPI
+     * @param  \KintsugiTax\SDK\Models\Components\RegistrationUpdateAPI  $registrationUpdateAPI
      * @phpstan-pure
      */
     public function __construct(string $registrationId, Components\RegistrationUpdateAPI $registrationUpdateAPI)

@@ -1,4 +1,4 @@
-speakeasyVersion: 1.737.0
+speakeasyVersion: 1.789.0
 sources:
     kintsugi-overlay:
         sourceNamespace: kintsugi-overlay
@@ -14,7 +14,7 @@ targets:
         sourceRevisionDigest: sha256:5b453d0694de3791f538dcb94d2f2f75a5795bf623e34d86d317e956ebb71ebb
         sourceBlobDigest: sha256:225dc879d4eef8849d42029efb5358be9987dc12bba30fef74a6811593ef1d83
         codeSamplesNamespace: kintsugi-overlay-php-code-samples
-        codeSamplesRevisionDigest: sha256:f3a926ce30c755f729769a5e290992ba9cca2c06816eab2b2153b4190ba0b636
+        codeSamplesRevisionDigest: sha256:4fc89d083bb78ed4c0dfb262003212f33e1e235346746f7900a3b14eec0a7047
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

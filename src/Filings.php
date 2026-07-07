@@ -51,7 +51,7 @@ class Filings
      *     filing using its unique identifier (filing_id).
      *
      * @param  string  $filingId
-     * @return Operations\GetFilingByIdV1FilingsFilingIdGetResponse
+     * @return \KintsugiTax\SDK\Models\Operations\GetFilingByIdV1FilingsFilingIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function getById(string $filingId, ?Options $options = null): Operations\GetFilingByIdV1FilingsFilingIdGetResponse
@@ -78,11 +78,12 @@ class Filings
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -157,7 +158,7 @@ class Filings
      * @param  string  $registrationId
      * @param  ?int  $page
      * @param  ?int  $size
-     * @return Operations\GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetResponse
+     * @return \KintsugiTax\SDK\Models\Operations\GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function getByRegistrationId(string $registrationId, ?int $page = null, ?int $size = null, ?Options $options = null): Operations\GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetResponse
@@ -189,11 +190,12 @@ class Filings
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -263,8 +265,8 @@ class Filings
      *     filters such as dates, jurisdiction, Country, status, etc. This helps track
      *     and manage tax filings efficiently across multiple jurisdictions.
      *
-     * @param  ?Operations\GetFilingsV1FilingsGetRequest  $request
-     * @return Operations\GetFilingsV1FilingsGetResponse
+     * @param  ?\KintsugiTax\SDK\Models\Operations\GetFilingsV1FilingsGetRequest  $request
+     * @return \KintsugiTax\SDK\Models\Operations\GetFilingsV1FilingsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function get(?Operations\GetFilingsV1FilingsGetRequest $request = null, ?Options $options = null): Operations\GetFilingsV1FilingsGetResponse
@@ -291,11 +293,12 @@ class Filings
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

@@ -47,7 +47,7 @@ class TransactionItemRead
     /**
      * List of tax items associated with the transaction item.
      *
-     * @var array<TaxItemRead> $taxItems
+     * @var array<\KintsugiTax\SDK\Models\Components\TaxItemRead> $taxItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemRead>')]
@@ -109,7 +109,7 @@ class TransactionItemRead
 
     /**
      *
-     * @var ?CurrencyEnum $originalCurrency
+     * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $originalCurrency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('original_currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
@@ -118,7 +118,7 @@ class TransactionItemRead
 
     /**
      *
-     * @var ?CurrencyEnum $destinationCurrency
+     * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $destinationCurrency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destination_currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
@@ -182,7 +182,7 @@ class TransactionItemRead
     /**
      * This enum is used to determine if a transaction is exempt from tax.
      *
-     * @var ?TaxExemptionEnum $taxExemption
+     * @var ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum $taxExemption
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_exemption')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxExemptionEnum|null')]
@@ -284,7 +284,7 @@ class TransactionItemRead
      * @param  \DateTime  $date
      * @param  string  $externalProductId
      * @param  string  $id
-     * @param  array<TaxItemRead>  $taxItems
+     * @param  array<\KintsugiTax\SDK\Models\Components\TaxItemRead>  $taxItems
      * @param  ?string  $externalId
      * @param  ?string  $description
      * @param  ?string  $product
@@ -297,8 +297,8 @@ class TransactionItemRead
      * @param  ?string  $taxRateImported
      * @param  ?string  $taxAmountCalculated
      * @param  ?string  $taxRateCalculated
-     * @param  ?CurrencyEnum  $originalCurrency
-     * @param  ?CurrencyEnum  $destinationCurrency
+     * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $originalCurrency
+     * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $destinationCurrency
      * @param  ?string  $convertedAmount
      * @param  ?string  $convertedTaxableAmount
      * @param  ?string  $convertedTaxAmountImported
@@ -306,7 +306,7 @@ class TransactionItemRead
      * @param  ?string  $convertedTotalDiscount
      * @param  ?string  $convertedSubtotal
      * @param  ?string  $taxableAmount
-     * @param  ?TaxExemptionEnum  $taxExemption
+     * @param  ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum  $taxExemption
      * @param  ?bool  $exempt
      * @param  ?string  $totalDiscount
      * @param  ?string  $subtotal

@@ -13,7 +13,7 @@ class PhysicalNexusCreate
 {
     /**
      *
-     * @var CountryCodeEnum $countryCode
+     * @var \KintsugiTax\SDK\Models\Components\CountryCodeEnum $countryCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country_code')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum')]
@@ -41,7 +41,7 @@ class PhysicalNexusCreate
 
     /**
      *
-     * @var PhysicalNexusCategory $category
+     * @var \KintsugiTax\SDK\Models\Components\PhysicalNexusCategory $category
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('category')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\PhysicalNexusCategory')]
@@ -71,7 +71,7 @@ class PhysicalNexusCreate
 
     /**
      *
-     * @var ?PhysicalNexusSource $source
+     * @var ?\KintsugiTax\SDK\Models\Components\PhysicalNexusSource $source
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\PhysicalNexusSource|null')]
@@ -115,13 +115,13 @@ class PhysicalNexusCreate
     public ?string $postalCode = null;
 
     /**
-     * @param  CountryCodeEnum  $countryCode
+     * @param  \KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
      * @param  string  $stateCode
      * @param  LocalDate  $startDate
-     * @param  PhysicalNexusCategory  $category
+     * @param  \KintsugiTax\SDK\Models\Components\PhysicalNexusCategory  $category
      * @param  ?string  $endDate
      * @param  ?string  $externalId
-     * @param  ?PhysicalNexusSource  $source
+     * @param  ?\KintsugiTax\SDK\Models\Components\PhysicalNexusSource  $source
      * @param  ?string  $street1
      * @param  ?string  $street2
      * @param  ?string  $city

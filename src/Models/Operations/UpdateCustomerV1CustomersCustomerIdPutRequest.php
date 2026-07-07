@@ -22,14 +22,14 @@ class UpdateCustomerV1CustomersCustomerIdPutRequest
 
     /**
      *
-     * @var Components\CustomerUpdate $customerUpdate
+     * @var \KintsugiTax\SDK\Models\Components\CustomerUpdate $customerUpdate
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public Components\CustomerUpdate $customerUpdate;
 
     /**
      * @param  string  $customerId
-     * @param  Components\CustomerUpdate  $customerUpdate
+     * @param  \KintsugiTax\SDK\Models\Components\CustomerUpdate  $customerUpdate
      * @phpstan-pure
      */
     public function __construct(string $customerId, Components\CustomerUpdate $customerUpdate)

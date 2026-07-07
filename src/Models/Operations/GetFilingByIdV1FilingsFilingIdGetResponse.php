@@ -35,7 +35,7 @@ class GetFilingByIdV1FilingsFilingIdGetResponse
     /**
      * Successfully retrieved filing by id
      *
-     * @var ?Components\FilingDetailsRead $filingDetailsRead
+     * @var ?\KintsugiTax\SDK\Models\Components\FilingDetailsRead $filingDetailsRead
      */
     public ?Components\FilingDetailsRead $filingDetailsRead = null;
 
@@ -43,7 +43,7 @@ class GetFilingByIdV1FilingsFilingIdGetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\FilingDetailsRead  $filingDetailsRead
+     * @param  ?\KintsugiTax\SDK\Models\Components\FilingDetailsRead  $filingDetailsRead
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\FilingDetailsRead $filingDetailsRead = null)

@@ -14,7 +14,7 @@ class PageRegistrationReadWithPassword
     /**
      * $items
      *
-     * @var array<RegistrationReadWithPassword> $items
+     * @var array<\KintsugiTax\SDK\Models\Components\RegistrationReadWithPassword> $items
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\RegistrationReadWithPassword>')]
@@ -49,7 +49,7 @@ class PageRegistrationReadWithPassword
     public int $pages;
 
     /**
-     * @param  array<RegistrationReadWithPassword>  $items
+     * @param  array<\KintsugiTax\SDK\Models\Components\RegistrationReadWithPassword>  $items
      * @param  int  $total
      * @param  int  $page
      * @param  int  $size

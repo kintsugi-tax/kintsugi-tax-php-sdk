@@ -23,7 +23,7 @@ class PhysicalNexusUpdate
 
     /**
      *
-     * @var PhysicalNexusCategory $category
+     * @var \KintsugiTax\SDK\Models\Components\PhysicalNexusCategory $category
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('category')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\PhysicalNexusCategory')]
@@ -78,7 +78,7 @@ class PhysicalNexusUpdate
 
     /**
      * @param  LocalDate  $startDate
-     * @param  PhysicalNexusCategory  $category
+     * @param  \KintsugiTax\SDK\Models\Components\PhysicalNexusCategory  $category
      * @param  ?string  $endDate
      * @param  ?string  $street1
      * @param  ?string  $street2

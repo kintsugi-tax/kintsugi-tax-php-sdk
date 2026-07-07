@@ -35,7 +35,7 @@ class GetProductCategoriesV1ProductsCategoriesGetResponse
     /**
      * Successfully retrieved product categories
      *
-     * @var ?Components\ProductCategories $productCategories
+     * @var ?\KintsugiTax\SDK\Models\Components\ProductCategories $productCategories
      */
     public ?Components\ProductCategories $productCategories = null;
 
@@ -43,7 +43,7 @@ class GetProductCategoriesV1ProductsCategoriesGetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\ProductCategories  $productCategories
+     * @param  ?\KintsugiTax\SDK\Models\Components\ProductCategories  $productCategories
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\ProductCategories $productCategories = null)

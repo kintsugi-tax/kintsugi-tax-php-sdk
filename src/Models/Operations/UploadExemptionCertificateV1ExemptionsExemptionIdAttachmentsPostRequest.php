@@ -22,14 +22,14 @@ class UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest
 
     /**
      *
-     * @var Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost
+     * @var \KintsugiTax\SDK\Models\Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost
      */
     #[SpeakeasyMetadata('request:mediaType=multipart/form-data')]
     public Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost;
 
     /**
      * @param  string  $exemptionId
-     * @param  Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost  $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost
+     * @param  \KintsugiTax\SDK\Models\Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost  $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost
      * @phpstan-pure
      */
     public function __construct(string $exemptionId, Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost)

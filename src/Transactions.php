@@ -50,9 +50,9 @@ class Transactions
      *
      * Create a new credit note for a specific transaction.
      *
-     * @param  Components\CreditNoteCreate  $creditNoteCreate
+     * @param  \KintsugiTax\SDK\Models\Components\CreditNoteCreate  $creditNoteCreate
      * @param  string  $originalTransactionId
-     * @return Operations\POSTCreateCreditNoteByTransactionIdResponse
+     * @return \KintsugiTax\SDK\Models\Operations\POSTCreateCreditNoteByTransactionIdResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function createCreditNote(Components\CreditNoteCreate $creditNoteCreate, string $originalTransactionId, ?Options $options = null): Operations\POSTCreateCreditNoteByTransactionIdResponse
@@ -85,11 +85,12 @@ class Transactions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -133,10 +134,10 @@ class Transactions
      *
      * Update an existing credit note for a specific transaction.
      *
-     * @param  Components\CreditNoteCreate  $creditNoteCreate
+     * @param  \KintsugiTax\SDK\Models\Components\CreditNoteCreate  $creditNoteCreate
      * @param  string  $originalTransactionId
      * @param  string  $creditNoteId
-     * @return Operations\PUTUpdateCreditNoteByTransactionIdResponse
+     * @return \KintsugiTax\SDK\Models\Operations\PUTUpdateCreditNoteByTransactionIdResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function updateCreditNote(Components\CreditNoteCreate $creditNoteCreate, string $originalTransactionId, string $creditNoteId, ?Options $options = null): Operations\PUTUpdateCreditNoteByTransactionIdResponse
@@ -170,11 +171,12 @@ class Transactions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -218,8 +220,8 @@ class Transactions
      *
      * Create a transaction.
      *
-     * @param  Components\TransactionPublicRequest  $request
-     * @return Operations\CreateTransactionV1TransactionsPostResponse
+     * @param  \KintsugiTax\SDK\Models\Components\TransactionPublicRequest  $request
+     * @return \KintsugiTax\SDK\Models\Operations\CreateTransactionV1TransactionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function create(Components\TransactionPublicRequest $request, ?Options $options = null): Operations\CreateTransactionV1TransactionsPostResponse
@@ -248,11 +250,12 @@ class Transactions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['400', '401', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['202'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -322,7 +325,7 @@ class Transactions
      *     This allows users to fetch transaction details using an identifier from an external system.
      *
      * @param  string  $externalId
-     * @return Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse
+     * @return \KintsugiTax\SDK\Models\Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function getByExternalId(string $externalId, ?Options $options = null): Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse
@@ -349,11 +352,12 @@ class Transactions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -423,7 +427,7 @@ class Transactions
      *     about a specific transaction by providing its unique transaction ID.
      *
      * @param  string  $transactionId
-     * @return Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
+     * @return \KintsugiTax\SDK\Models\Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function get(string $transactionId, ?Options $options = null): Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
@@ -450,11 +454,12 @@ class Transactions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -523,7 +528,7 @@ class Transactions
      * Retrieve transactions by filing ID.
      *
      * @param  string  $filingId
-     * @return Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse
+     * @return \KintsugiTax\SDK\Models\Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function getByFilingId(string $filingId, ?Options $options = null): Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse
@@ -550,11 +555,12 @@ class Transactions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -623,8 +629,8 @@ class Transactions
      * The Get Transactions API retrieves a list of transactions with
      *     optional filtering, sorting, and pagination.
      *
-     * @param  ?Operations\GetTransactionsV1TransactionsGetRequest  $request
-     * @return Operations\GetTransactionsV1TransactionsGetResponse
+     * @param  ?\KintsugiTax\SDK\Models\Operations\GetTransactionsV1TransactionsGetRequest  $request
+     * @return \KintsugiTax\SDK\Models\Operations\GetTransactionsV1TransactionsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function list(?Operations\GetTransactionsV1TransactionsGetRequest $request = null, ?Options $options = null): Operations\GetTransactionsV1TransactionsGetResponse
@@ -651,11 +657,12 @@ class Transactions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -723,9 +730,9 @@ class Transactions
      *
      * Update a specific transaction by its ID.
      *
-     * @param  Components\TransactionUpdate  $transactionUpdate
+     * @param  \KintsugiTax\SDK\Models\Components\TransactionUpdate  $transactionUpdate
      * @param  string  $transactionId
-     * @return Operations\UpdateTransactionV1TransactionsTransactionIdPutResponse
+     * @return \KintsugiTax\SDK\Models\Operations\UpdateTransactionV1TransactionsTransactionIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function update(Components\TransactionUpdate $transactionUpdate, string $transactionId, ?Options $options = null): Operations\UpdateTransactionV1TransactionsTransactionIdPutResponse
@@ -758,11 +765,12 @@ class Transactions
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

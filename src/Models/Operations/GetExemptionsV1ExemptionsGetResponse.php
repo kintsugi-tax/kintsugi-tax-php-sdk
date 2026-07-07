@@ -35,7 +35,7 @@ class GetExemptionsV1ExemptionsGetResponse
     /**
      * Successfully retrieved exemptions
      *
-     * @var ?Components\FastapiPaginationDefaultPageExemptionRead2 $fastapiPaginationDefaultPageExemptionRead2
+     * @var ?\KintsugiTax\SDK\Models\Components\FastapiPaginationDefaultPageExemptionRead2 $fastapiPaginationDefaultPageExemptionRead2
      */
     public ?Components\FastapiPaginationDefaultPageExemptionRead2 $fastapiPaginationDefaultPageExemptionRead2 = null;
 
@@ -43,7 +43,7 @@ class GetExemptionsV1ExemptionsGetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\FastapiPaginationDefaultPageExemptionRead2  $fastapiPaginationDefaultPageExemptionRead2
+     * @param  ?\KintsugiTax\SDK\Models\Components\FastapiPaginationDefaultPageExemptionRead2  $fastapiPaginationDefaultPageExemptionRead2
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\FastapiPaginationDefaultPageExemptionRead2 $fastapiPaginationDefaultPageExemptionRead2 = null)

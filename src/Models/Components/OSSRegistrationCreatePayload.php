@@ -31,7 +31,7 @@ class OSSRegistrationCreatePayload
 
     /**
      *
-     * @var ?CountryCodeEnum $memberStateOfIdentificationCode
+     * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $memberStateOfIdentificationCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('member_state_of_identification_code')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
@@ -60,7 +60,7 @@ class OSSRegistrationCreatePayload
      * @param  ?string  $registrationImportType
      * @param  ?string  $passwordPlainText
      * @param  ?string  $passwordMetadataPlainText
-     * @param  ?CountryCodeEnum  $memberStateOfIdentificationCode
+     * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $memberStateOfIdentificationCode
      * @param  ?bool  $imported
      * @phpstan-pure
      */

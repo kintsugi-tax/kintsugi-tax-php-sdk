@@ -14,7 +14,7 @@ class NexusResponse
 {
     /**
      *
-     * @var CountryCodeEnum $countryCode
+     * @var \KintsugiTax\SDK\Models\Components\CountryCodeEnum $countryCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country_code')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum')]
@@ -36,7 +36,7 @@ class NexusResponse
 
     /**
      *
-     * @var TreatmentEnum $treatmentOfExemptTransactions
+     * @var \KintsugiTax\SDK\Models\Components\TreatmentEnum $treatmentOfExemptTransactions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('treatment_of_exempt_transactions')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TreatmentEnum')]
@@ -51,7 +51,7 @@ class NexusResponse
 
     /**
      *
-     * @var SalesOrTransactionsEnum $salesOrTransactions
+     * @var \KintsugiTax\SDK\Models\Components\SalesOrTransactionsEnum $salesOrTransactions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('sales_or_transactions')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SalesOrTransactionsEnum')]
@@ -80,7 +80,7 @@ class NexusResponse
 
     /**
      *
-     * @var PeriodModelEnum $periodModel
+     * @var \KintsugiTax\SDK\Models\Components\PeriodModelEnum $periodModel
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('period_model')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\PeriodModelEnum')]
@@ -151,7 +151,7 @@ class NexusResponse
 
     /**
      *
-     * @var NexusTypeEnum $nexusType
+     * @var \KintsugiTax\SDK\Models\Components\NexusTypeEnum $nexusType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('nexus_type')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\NexusTypeEnum')]
@@ -194,7 +194,7 @@ class NexusResponse
 
     /**
      *
-     * @var ?NexusStatusEnum $processingStatus
+     * @var ?\KintsugiTax\SDK\Models\Components\NexusStatusEnum $processingStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('processing_status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\NexusStatusEnum|null')]
@@ -203,7 +203,7 @@ class NexusResponse
 
     /**
      *
-     * @var ?NexusStateEnum $status
+     * @var ?\KintsugiTax\SDK\Models\Components\NexusStateEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\NexusStateEnum|null')]
@@ -260,7 +260,7 @@ class NexusResponse
 
     /**
      *
-     * @var ?FindThresholdCrossingTransactionState $findThresholdCrossingTransactionState
+     * @var ?\KintsugiTax\SDK\Models\Components\FindThresholdCrossingTransactionState $findThresholdCrossingTransactionState
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('find_threshold_crossing_transaction_state')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\FindThresholdCrossingTransactionState|null')]
@@ -311,7 +311,7 @@ class NexusResponse
 
     /**
      *
-     * @var ?CurrencyEnum $currency
+     * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
@@ -320,7 +320,7 @@ class NexusResponse
 
     /**
      *
-     * @var ?Registration $registration
+     * @var ?\KintsugiTax\SDK\Models\Components\Registration $registration
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registration')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\Registration|null')]
@@ -329,7 +329,7 @@ class NexusResponse
 
     /**
      *
-     * @var ?RegistrationsRegimeEnum $registrationRegime
+     * @var ?\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum $registrationRegime
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registration_regime')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum|null')]
@@ -479,16 +479,16 @@ class NexusResponse
     public ?bool $isCurrentlyDisregarded = null;
 
     /**
-     * @param  CountryCodeEnum  $countryCode
+     * @param  \KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
      * @param  string  $stateCode
      * @param  string  $stateName
-     * @param  TreatmentEnum  $treatmentOfExemptTransactions
+     * @param  \KintsugiTax\SDK\Models\Components\TreatmentEnum  $treatmentOfExemptTransactions
      * @param  string  $trigger
-     * @param  SalesOrTransactionsEnum  $salesOrTransactions
+     * @param  \KintsugiTax\SDK\Models\Components\SalesOrTransactionsEnum  $salesOrTransactions
      * @param  int  $thresholdSales
      * @param  int  $thresholdTransactions
      * @param  LocalDate  $startDate
-     * @param  PeriodModelEnum  $periodModel
+     * @param  \KintsugiTax\SDK\Models\Components\PeriodModelEnum  $periodModel
      * @param  LocalDate  $periodStartDate
      * @param  LocalDate  $periodEndDate
      * @param  string  $previousPeriodStartDate
@@ -498,14 +498,14 @@ class NexusResponse
      * @param  \DateTime  $updatedAt
      * @param  string  $organizationId
      * @param  bool  $isVdaEligible
-     * @param  NexusTypeEnum  $nexusType
+     * @param  \KintsugiTax\SDK\Models\Components\NexusTypeEnum  $nexusType
      * @param  int  $totalTransactions
      * @param  int  $totalTransactionsIncluded
      * @param  int  $totalTransactionsExempted
      * @param  int  $totalTransactionsMarketplace
      * @param  bool  $marketplaceIncluded
-     * @param  ?NexusStatusEnum  $processingStatus
-     * @param  ?NexusStateEnum  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\NexusStatusEnum  $processingStatus
+     * @param  ?\KintsugiTax\SDK\Models\Components\NexusStateEnum  $status
      * @param  ?int  $transactionCount
      * @param  ?string  $transactionsAmount
      * @param  ?int  $previousTransactionCount
@@ -523,7 +523,7 @@ class NexusResponse
      * @param  ?string  $collectedTaxNexusMetDate
      * @param  ?string  $earliestTransactionDate
      * @param  ?string  $mostRecentTransactionDate
-     * @param  ?FindThresholdCrossingTransactionState  $findThresholdCrossingTransactionState
+     * @param  ?\KintsugiTax\SDK\Models\Components\FindThresholdCrossingTransactionState  $findThresholdCrossingTransactionState
      * @param  ?\DateTime  $earliestCollectedDate
      * @param  ?int  $predictedMonthFromToday
      * @param  ?bool  $vdaEligible
@@ -531,9 +531,9 @@ class NexusResponse
      * @param  ?string  $lastProcessedAt
      * @param  ?string  $lastTaxLiabilityProcessedAt
      * @param  ?array<array<string, mixed>>  $periods
-     * @param  ?CurrencyEnum  $currency
-     * @param  ?Registration  $registration
-     * @param  ?RegistrationsRegimeEnum  $registrationRegime
+     * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $currency
+     * @param  ?\KintsugiTax\SDK\Models\Components\Registration  $registration
+     * @param  ?\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum  $registrationRegime
      * @param  ?string  $disregardedAt
      * @param  ?string  $disregardedBy
      * @param  ?array<string>  $disregardedNexusTypes

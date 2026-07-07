@@ -28,7 +28,7 @@ class PUTUpdateCreditNoteByTransactionIdRequest
 
     /**
      *
-     * @var Components\CreditNoteCreate $creditNoteCreate
+     * @var \KintsugiTax\SDK\Models\Components\CreditNoteCreate $creditNoteCreate
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public Components\CreditNoteCreate $creditNoteCreate;
@@ -36,7 +36,7 @@ class PUTUpdateCreditNoteByTransactionIdRequest
     /**
      * @param  string  $originalTransactionId
      * @param  string  $creditNoteId
-     * @param  Components\CreditNoteCreate  $creditNoteCreate
+     * @param  \KintsugiTax\SDK\Models\Components\CreditNoteCreate  $creditNoteCreate
      * @phpstan-pure
      */
     public function __construct(string $originalTransactionId, string $creditNoteId, Components\CreditNoteCreate $creditNoteCreate)

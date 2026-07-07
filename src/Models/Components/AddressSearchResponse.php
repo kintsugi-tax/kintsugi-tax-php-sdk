@@ -13,7 +13,7 @@ class AddressSearchResponse
 {
     /**
      *
-     * @var AddressSubmittedResponse $addressSubmitted
+     * @var \KintsugiTax\SDK\Models\Components\AddressSubmittedResponse $addressSubmitted
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('address_submitted')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressSubmittedResponse')]
@@ -21,7 +21,7 @@ class AddressSearchResponse
 
     /**
      *
-     * @var AddressResponseData $responseAddress
+     * @var \KintsugiTax\SDK\Models\Components\AddressResponseData $responseAddress
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('response_address')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressResponseData')]
@@ -45,8 +45,8 @@ class AddressSearchResponse
     public array $enrichFields;
 
     /**
-     * @param  AddressSubmittedResponse  $addressSubmitted
-     * @param  AddressResponseData  $responseAddress
+     * @param  \KintsugiTax\SDK\Models\Components\AddressSubmittedResponse  $addressSubmitted
+     * @param  \KintsugiTax\SDK\Models\Components\AddressResponseData  $responseAddress
      * @param  string  $verificationStatus
      * @param  array<string>  $enrichFields
      * @phpstan-pure

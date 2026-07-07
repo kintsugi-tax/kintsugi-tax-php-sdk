@@ -29,7 +29,7 @@ class FilingRead
 
     /**
      *
-     * @var CountryCodeEnum $countryCode
+     * @var \KintsugiTax\SDK\Models\Components\CountryCodeEnum $countryCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country_code')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum')]
@@ -61,7 +61,7 @@ class FilingRead
 
     /**
      *
-     * @var ?FilingStatusEnum $status
+     * @var ?\KintsugiTax\SDK\Models\Components\FilingStatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\FilingStatusEnum|null')]
@@ -199,7 +199,7 @@ class FilingRead
 
     /**
      *
-     * @var ?CurrencyEnum $currency
+     * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
@@ -349,11 +349,11 @@ class FilingRead
     /**
      * @param  LocalDate  $startDate
      * @param  LocalDate  $endDate
-     * @param  CountryCodeEnum  $countryCode
+     * @param  \KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
      * @param  string  $id
      * @param  string  $registrationId
      * @param  string  $filingWebsiteUrl
-     * @param  ?FilingStatusEnum  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\FilingStatusEnum  $status
      * @param  ?string  $dueDate
      * @param  ?string  $dateFiled
      * @param  ?bool  $isManual
@@ -383,7 +383,7 @@ class FilingRead
      * @param  ?string  $returnConfirmationId
      * @param  ?string  $paymentConfirmationId
      * @param  ?bool  $blockApproval
-     * @param  ?CurrencyEnum  $currency
+     * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $currency
      * @phpstan-pure
      */
     public function __construct(LocalDate $startDate, LocalDate $endDate, CountryCodeEnum $countryCode, string $id, string $registrationId, string $filingWebsiteUrl, ?FilingStatusEnum $status = null, ?string $dueDate = null, ?string $dateFiled = null, ?bool $isManual = null, ?string $stateCode = null, ?string $stateName = null, ?string $jiraIssueKey = null, ?string $pausedUntilDate = null, ?string $approvedBy = null, ?string $approvedAt = null, ?string $internalNotes = null, ?string $recentDetailsReportLink = null, ?string $returnConfirmationId = null, ?string $paymentConfirmationId = null, ?bool $blockApproval = null, ?CurrencyEnum $currency = null, ?bool $autoApproved = false, ?string $filingCategory = 'REGULAR', ?string $amountCalculated = '0.00', ?string $amountAdjusted = '0.00', ?string $amountDiscounts = '0.00', ?string $amountFees = '0.00', ?string $amountPenalties = '0.00', ?string $amountTaxCollected = '0.00', ?string $amountSales = '0.00', ?string $totalTaxableSales = '0.00', ?string $amount = '0.00', ?string $totalTaxLiability = '0.00', ?int $transactionCount = 0, ?int $marketplaceTransactionCount = 0, ?string $taxRemitted = '0.00')

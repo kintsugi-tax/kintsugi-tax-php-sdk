@@ -35,7 +35,7 @@ class POSTCreateCreditNoteByTransactionIdResponse
     /**
      * Successful Response
      *
-     * @var ?Components\TransactionRead $transactionRead
+     * @var ?\KintsugiTax\SDK\Models\Components\TransactionRead $transactionRead
      */
     public ?Components\TransactionRead $transactionRead = null;
 
@@ -43,7 +43,7 @@ class POSTCreateCreditNoteByTransactionIdResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\TransactionRead  $transactionRead
+     * @param  ?\KintsugiTax\SDK\Models\Components\TransactionRead  $transactionRead
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\TransactionRead $transactionRead = null)
