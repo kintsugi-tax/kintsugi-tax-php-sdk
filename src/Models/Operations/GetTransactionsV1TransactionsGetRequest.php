@@ -53,7 +53,7 @@ class GetTransactionsV1TransactionsGetRequest
      *
      *         (ISO 3166-1 alpha-2 format, e.g., US).
      *
-     * @var ?array<Components\CountryCodeEnum> $country
+     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum> $country
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=country')]
     public ?array $country = null;
@@ -71,7 +71,7 @@ class GetTransactionsV1TransactionsGetRequest
      *
      *         CANCELLED, FULLY_REFUNDED, PARTIALLY_REFUNDED, ARCHIVED).
      *
-     * @var ?Components\TransactionStatusEnum $status
+     * @var ?\KintsugiTax\SDK\Models\Components\TransactionStatusEnum $status
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
     public ?Components\TransactionStatusEnum $status = null;
@@ -173,10 +173,10 @@ class GetTransactionsV1TransactionsGetRequest
      * @param  ?string  $transactionType
      * @param  ?string  $transactionSource
      * @param  ?string  $searchQuery
-     * @param  ?array<Components\CountryCodeEnum>  $country
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum>  $country
      * @param  ?string  $state
      * @param  ?string  $addressStatusIn
-     * @param  ?Components\TransactionStatusEnum  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\TransactionStatusEnum  $status
      * @param  ?string  $filingId
      * @param  ?string  $orderBy
      * @param  ?string  $dateGte

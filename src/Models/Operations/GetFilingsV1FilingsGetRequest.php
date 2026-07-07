@@ -63,7 +63,7 @@ class GetFilingsV1FilingsGetRequest
     /**
      * Filter filings by country code in ISO 3166-1 alpha-2 format (e.g., US).
      *
-     * @var ?array<Components\CountryCodeEnum> $countryCode
+     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum> $countryCode
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=country_code')]
     public ?array $countryCode = null;
@@ -100,7 +100,7 @@ class GetFilingsV1FilingsGetRequest
      * @param  ?string  $dateFiledLte
      * @param  ?string  $orderBy
      * @param  ?string  $stateCode
-     * @param  ?array<Components\CountryCodeEnum>  $countryCode
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum>  $countryCode
      * @param  ?int  $page
      * @param  ?int  $size
      * @phpstan-pure

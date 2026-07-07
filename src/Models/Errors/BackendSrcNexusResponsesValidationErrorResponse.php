@@ -15,7 +15,7 @@ class BackendSrcNexusResponsesValidationErrorResponse
     /**
      * $detail
      *
-     * @var array<Components\BackendSrcNexusResponsesValidationErrorItem> $detail
+     * @var array<\KintsugiTax\SDK\Models\Components\BackendSrcNexusResponsesValidationErrorItem> $detail
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('detail')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\BackendSrcNexusResponsesValidationErrorItem>')]
@@ -31,7 +31,7 @@ class BackendSrcNexusResponsesValidationErrorResponse
     public ?\Psr\Http\Message\ResponseInterface $rawResponse = null;
 
     /**
-     * @param  array<Components\BackendSrcNexusResponsesValidationErrorItem>  $detail
+     * @param  array<\KintsugiTax\SDK\Models\Components\BackendSrcNexusResponsesValidationErrorItem>  $detail
      * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
      * @phpstan-pure
      */

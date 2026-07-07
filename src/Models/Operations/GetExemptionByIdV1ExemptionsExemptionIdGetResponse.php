@@ -35,7 +35,7 @@ class GetExemptionByIdV1ExemptionsExemptionIdGetResponse
     /**
      * Successfully retrieved exemption by id
      *
-     * @var ?Components\BackendSrcExemptionsModelsExemptionRead $backendSrcExemptionsModelsExemptionRead
+     * @var ?\KintsugiTax\SDK\Models\Components\BackendSrcExemptionsModelsExemptionRead $backendSrcExemptionsModelsExemptionRead
      */
     public ?Components\BackendSrcExemptionsModelsExemptionRead $backendSrcExemptionsModelsExemptionRead = null;
 
@@ -43,7 +43,7 @@ class GetExemptionByIdV1ExemptionsExemptionIdGetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\BackendSrcExemptionsModelsExemptionRead  $backendSrcExemptionsModelsExemptionRead
+     * @param  ?\KintsugiTax\SDK\Models\Components\BackendSrcExemptionsModelsExemptionRead  $backendSrcExemptionsModelsExemptionRead
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\BackendSrcExemptionsModelsExemptionRead $backendSrcExemptionsModelsExemptionRead = null)

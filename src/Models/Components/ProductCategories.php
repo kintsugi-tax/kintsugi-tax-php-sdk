@@ -24,7 +24,7 @@ class ProductCategories
     /**
      * List of subcategories associated with the product category
      *
-     * @var array<ProductSubCategory> $subcategories
+     * @var array<\KintsugiTax\SDK\Models\Components\ProductSubCategory> $subcategories
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('subcategories')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\ProductSubCategory>')]
@@ -32,7 +32,7 @@ class ProductCategories
 
     /**
      * @param  string  $name
-     * @param  array<ProductSubCategory>  $subcategories
+     * @param  array<\KintsugiTax\SDK\Models\Components\ProductSubCategory>  $subcategories
      * @phpstan-pure
      */
     public function __construct(string $name, array $subcategories)

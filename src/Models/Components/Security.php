@@ -15,14 +15,14 @@ class Security
      *
      * @var string $apiKeyHeader
      */
-    #[SpeakeasyMetadata('security:scheme=true,type=apiKey,subtype=header,name=X-API-KEY')]
+    #[SpeakeasyMetadata('security:scheme=true,type=apiKey,subtype=header,composite=true,name=X-API-KEY')]
     public string $apiKeyHeader;
 
     /**
      *
      * @var string $customHeader
      */
-    #[SpeakeasyMetadata('security:scheme=true,type=apiKey,subtype=header,name=x-organization-id')]
+    #[SpeakeasyMetadata('security:scheme=true,type=apiKey,subtype=header,composite=true,name=x-organization-id')]
     public string $customHeader;
 
     /**

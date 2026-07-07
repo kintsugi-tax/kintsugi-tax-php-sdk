@@ -35,7 +35,7 @@ class GetProductByIdV1ProductsProductIdGetResponse
     /**
      * Successfully retrieved product by id
      *
-     * @var ?Components\ProductRead $productRead
+     * @var ?\KintsugiTax\SDK\Models\Components\ProductRead $productRead
      */
     public ?Components\ProductRead $productRead = null;
 
@@ -43,7 +43,7 @@ class GetProductByIdV1ProductsProductIdGetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\ProductRead  $productRead
+     * @param  ?\KintsugiTax\SDK\Models\Components\ProductRead  $productRead
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\ProductRead $productRead = null)

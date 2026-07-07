@@ -27,7 +27,7 @@ class CustomerTaxRegistrationRead
 
     /**
      *
-     * @var CountryCodeEnum $countryCode
+     * @var \KintsugiTax\SDK\Models\Components\CountryCodeEnum $countryCode
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country_code')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum')]
@@ -36,7 +36,7 @@ class CustomerTaxRegistrationRead
     /**
      * Enum for customer tax registration types.
      *
-     * @var CustomerTaxTypeEnum $taxType
+     * @var \KintsugiTax\SDK\Models\Components\CustomerTaxTypeEnum $taxType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_type')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerTaxTypeEnum')]
@@ -59,8 +59,8 @@ class CustomerTaxRegistrationRead
     /**
      * @param  string  $id
      * @param  string  $customerId
-     * @param  CountryCodeEnum  $countryCode
-     * @param  CustomerTaxTypeEnum  $taxType
+     * @param  \KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
+     * @param  \KintsugiTax\SDK\Models\Components\CustomerTaxTypeEnum  $taxType
      * @param  string  $taxId
      * @param  bool  $isValid
      * @phpstan-pure

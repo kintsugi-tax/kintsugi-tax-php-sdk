@@ -21,14 +21,14 @@ class CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest
 
     /**
      *
-     * @var Components\TransactionCreate $transactionCreate
+     * @var \KintsugiTax\SDK\Models\Components\TransactionCreate $transactionCreate
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public Components\TransactionCreate $transactionCreate;
 
     /**
      * @param  string  $customerId
-     * @param  Components\TransactionCreate  $transactionCreate
+     * @param  \KintsugiTax\SDK\Models\Components\TransactionCreate  $transactionCreate
      * @phpstan-pure
      */
     public function __construct(string $customerId, Components\TransactionCreate $transactionCreate)

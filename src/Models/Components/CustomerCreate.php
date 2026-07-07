@@ -76,7 +76,7 @@ class CustomerCreate
 
     /**
      *
-     * @var ?CountryCodeEnum $country
+     * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $country
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
@@ -112,7 +112,7 @@ class CustomerCreate
 
     /**
      *
-     * @var ?StatusEnum $status
+     * @var ?\KintsugiTax\SDK\Models\Components\StatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\StatusEnum|null')]
@@ -130,7 +130,7 @@ class CustomerCreate
 
     /**
      *
-     * @var ?SourceEnum $source
+     * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $source
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
@@ -148,7 +148,7 @@ class CustomerCreate
 
     /**
      *
-     * @var ?AddressStatus $addressStatus
+     * @var ?\KintsugiTax\SDK\Models\Components\AddressStatus $addressStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
@@ -176,7 +176,7 @@ class CustomerCreate
     /**
      * Customer tax registrations associated with the customer.
      *
-     * @var ?array<CustomerTaxRegistrationRead> $customerTaxRegistrations
+     * @var ?array<\KintsugiTax\SDK\Models\Components\CustomerTaxRegistrationRead> $customerTaxRegistrations
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('customer_tax_registrations')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\CustomerTaxRegistrationRead>|null')]
@@ -191,18 +191,18 @@ class CustomerCreate
      * @param  ?string  $county
      * @param  ?string  $state
      * @param  ?string  $postalCode
-     * @param  ?CountryCodeEnum  $country
+     * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $country
      * @param  ?string  $fullAddress
      * @param  ?string  $name
      * @param  ?string  $externalId
-     * @param  ?StatusEnum  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\StatusEnum  $status
      * @param  ?string  $email
-     * @param  ?SourceEnum  $source
+     * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
      * @param  ?string  $connectionId
-     * @param  ?AddressStatus  $addressStatus
+     * @param  ?\KintsugiTax\SDK\Models\Components\AddressStatus  $addressStatus
      * @param  ?string  $registrationNumber
      * @param  ?string  $externalFriendlyId
-     * @param  ?array<CustomerTaxRegistrationRead>  $customerTaxRegistrations
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\CustomerTaxRegistrationRead>  $customerTaxRegistrations
      * @phpstan-pure
      */
     public function __construct(?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?string $externalId = null, ?StatusEnum $status = null, ?string $email = null, ?SourceEnum $source = null, ?string $connectionId = null, ?AddressStatus $addressStatus = null, ?string $registrationNumber = null, ?string $externalFriendlyId = null, ?array $customerTaxRegistrations = null)

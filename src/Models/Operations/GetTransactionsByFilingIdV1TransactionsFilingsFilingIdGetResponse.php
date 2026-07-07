@@ -35,7 +35,7 @@ class GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse
     /**
      * Successfully retrieved transaction by filing id
      *
-     * @var ?array<Components\TransactionRead> $response200GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGet
+     * @var ?array<\KintsugiTax\SDK\Models\Components\TransactionRead> $response200GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGet
      */
     public ?array $response200GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGet = null;
 
@@ -43,7 +43,7 @@ class GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<Components\TransactionRead>  $response200GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGet
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\TransactionRead>  $response200GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGet
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $response200GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGet = null)

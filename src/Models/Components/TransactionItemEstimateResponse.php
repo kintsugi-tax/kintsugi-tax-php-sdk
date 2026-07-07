@@ -76,7 +76,7 @@ class TransactionItemEstimateResponse
 
     /**
      *
-     * @var ?SourceEnum $productSource
+     * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $productSource
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
@@ -108,7 +108,7 @@ class TransactionItemEstimateResponse
     /**
      * This enum is used to determine if a transaction is exempt from tax.
      *
-     * @var ?TaxExemptionEnum $exemptReason
+     * @var ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum $exemptReason
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exempt_reason')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxExemptionEnum|null')]
@@ -118,7 +118,7 @@ class TransactionItemEstimateResponse
     /**
      * List of tax items applied to the transaction item.
      *
-     * @var ?array<TaxItemEstimate> $taxItems
+     * @var ?array<\KintsugiTax\SDK\Models\Components\TaxItemEstimate> $taxItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemEstimate>|null')]
@@ -178,7 +178,7 @@ class TransactionItemEstimateResponse
      * @param  ?string  $externalProductId
      * @param  ?string  $productName
      * @param  ?string  $productDescription
-     * @param  ?SourceEnum  $productSource
+     * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $productSource
      * @param  ?string  $productSubcategory
      * @param  ?string  $productCategory
      * @param  ?string  $quantity
@@ -186,8 +186,8 @@ class TransactionItemEstimateResponse
      * @param  ?string  $taxAmount
      * @param  ?string  $taxableAmount
      * @param  ?string  $taxRate
-     * @param  ?TaxExemptionEnum  $exemptReason
-     * @param  ?array<TaxItemEstimate>  $taxItems
+     * @param  ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum  $exemptReason
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\TaxItemEstimate>  $taxItems
      * @phpstan-pure
      */
     public function __construct(\DateTime $date, string $amount, ?string $externalId = null, ?string $description = null, ?string $externalProductId = null, ?string $productName = null, ?string $productDescription = null, ?SourceEnum $productSource = null, ?string $productSubcategory = null, ?string $productCategory = null, ?TaxExemptionEnum $exemptReason = null, ?array $taxItems = null, ?string $quantity = '1.0', ?bool $exempt = false, ?string $taxAmount = '0.00', ?string $taxableAmount = '0.00', ?string $taxRate = '0.00')

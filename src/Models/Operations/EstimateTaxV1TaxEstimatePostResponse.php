@@ -35,7 +35,7 @@ class EstimateTaxV1TaxEstimatePostResponse
     /**
      * Successfully retrieved data
      *
-     * @var ?Components\PageTransactionEstimateResponse $pageTransactionEstimateResponse
+     * @var ?\KintsugiTax\SDK\Models\Components\PageTransactionEstimateResponse $pageTransactionEstimateResponse
      */
     public ?Components\PageTransactionEstimateResponse $pageTransactionEstimateResponse = null;
 
@@ -43,7 +43,7 @@ class EstimateTaxV1TaxEstimatePostResponse
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\PageTransactionEstimateResponse  $pageTransactionEstimateResponse
+     * @param  ?\KintsugiTax\SDK\Models\Components\PageTransactionEstimateResponse  $pageTransactionEstimateResponse
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PageTransactionEstimateResponse $pageTransactionEstimateResponse = null)

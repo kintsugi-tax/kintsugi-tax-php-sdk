@@ -23,7 +23,7 @@ class AttachmentRead
 
     /**
      *
-     * @var RelatedEntityType $relatedEntityType
+     * @var \KintsugiTax\SDK\Models\Components\RelatedEntityType $relatedEntityType
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('related_entity_type')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\RelatedEntityType')]
@@ -39,7 +39,7 @@ class AttachmentRead
 
     /**
      * @param  string  $relatedEntityId
-     * @param  RelatedEntityType  $relatedEntityType
+     * @param  \KintsugiTax\SDK\Models\Components\RelatedEntityType  $relatedEntityType
      * @param  string  $id
      * @phpstan-pure
      */

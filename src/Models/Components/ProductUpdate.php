@@ -90,7 +90,7 @@ class ProductUpdate
 
     /**
      *
-     * @var ?ProductStatusEnum $status
+     * @var ?\KintsugiTax\SDK\Models\Components\ProductStatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductStatusEnum|null')]
@@ -115,7 +115,7 @@ class ProductUpdate
      * @param  ?string  $externalId
      * @param  ?array<string>  $sku
      * @param  ?string  $description
-     * @param  ?ProductStatusEnum  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\ProductStatusEnum  $status
      * @param  ?bool  $classificationFailed
      * @phpstan-pure
      */

@@ -57,7 +57,7 @@ class ProductRead
 
     /**
      *
-     * @var ProductStatusEnum $status
+     * @var \KintsugiTax\SDK\Models\Components\ProductStatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductStatusEnum')]
@@ -94,7 +94,7 @@ class ProductRead
 
     /**
      *
-     * @var SourceEnum $source
+     * @var \KintsugiTax\SDK\Models\Components\SourceEnum $source
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum')]
@@ -121,11 +121,11 @@ class ProductRead
      * @param  string  $code
      * @param  string  $name
      * @param  string  $description
-     * @param  ProductStatusEnum  $status
+     * @param  \KintsugiTax\SDK\Models\Components\ProductStatusEnum  $status
      * @param  string  $productCategory
      * @param  string  $productSubcategory
      * @param  bool  $taxExempt
-     * @param  SourceEnum  $source
+     * @param  \KintsugiTax\SDK\Models\Components\SourceEnum  $source
      * @param  string  $connectionId
      * @param  bool  $classificationFailed
      * @phpstan-pure

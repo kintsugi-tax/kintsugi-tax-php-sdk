@@ -23,7 +23,7 @@ class GetExemptionsV1ExemptionsGetRequest
     /**
      * Country code in ISO 3166-1 alpha-2 format
      *
-     * @var ?array<Components\CountryCodeEnum> $countryCode
+     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum> $countryCode
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=country_code')]
     public ?array $countryCode = null;
@@ -103,7 +103,7 @@ class GetExemptionsV1ExemptionsGetRequest
     /**
      * @param  ?string  $searchQuery
      * @param  ?string  $statusIn
-     * @param  ?array<Components\CountryCodeEnum>  $countryCode
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum>  $countryCode
      * @param  ?string  $jurisdiction
      * @param  ?string  $startDate
      * @param  ?string  $endDate

@@ -54,8 +54,8 @@ class Products
      *     retrieve supported categories and subcategories from
      *     [GET /products/categories endpoint](/reference/api/products/get-product-categories)
      *
-     * @param  Components\ProductCreateManual  $request
-     * @return Operations\CreateProductV1ProductsPostResponse
+     * @param  \KintsugiTax\SDK\Models\Components\ProductCreateManual  $request
+     * @return \KintsugiTax\SDK\Models\Operations\CreateProductV1ProductsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function createProductV1ProductsPost(Components\ProductCreateManual $request, ?Options $options = null): Operations\CreateProductV1ProductsPostResponse
@@ -84,11 +84,12 @@ class Products
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -159,7 +160,7 @@ class Products
      *     of a product, including its attributes, status, and categorization.
      *
      * @param  string  $productId
-     * @return Operations\GetProductByIdV1ProductsProductIdGetResponse
+     * @return \KintsugiTax\SDK\Models\Operations\GetProductByIdV1ProductsProductIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function get(string $productId, ?Options $options = null): Operations\GetProductByIdV1ProductsProductIdGetResponse
@@ -186,11 +187,12 @@ class Products
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -260,7 +262,7 @@ class Products
      *     product categories.  This endpoint helps users understand and select the
      *     appropriate categories for their products.
      *
-     * @return Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
+     * @return \KintsugiTax\SDK\Models\Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function getProductCategoriesV1ProductsCategoriesGet(?Options $options = null): Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
@@ -284,11 +286,12 @@ class Products
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -356,8 +359,8 @@ class Products
      *
      * Retrieve a paginated list of products based on filters and search query.
      *
-     * @param  ?Operations\GetProductsV1ProductsGetRequest  $request
-     * @return Operations\GetProductsV1ProductsGetResponse
+     * @param  ?\KintsugiTax\SDK\Models\Operations\GetProductsV1ProductsGetRequest  $request
+     * @return \KintsugiTax\SDK\Models\Operations\GetProductsV1ProductsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function getProductsV1ProductsGet(?Operations\GetProductsV1ProductsGetRequest $request = null, ?Options $options = null): Operations\GetProductsV1ProductsGetResponse
@@ -384,11 +387,12 @@ class Products
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -459,9 +463,9 @@ class Products
      *     retrieve supported categories and subcategories from
      *     [GET /products/categories endpoint](/reference/api/products/get-product-categories)
      *
-     * @param  Components\ProductUpdate  $productUpdate
+     * @param  \KintsugiTax\SDK\Models\Components\ProductUpdate  $productUpdate
      * @param  string  $productId
-     * @return Operations\UpdateProductV1ProductsProductIdPutResponse
+     * @return \KintsugiTax\SDK\Models\Operations\UpdateProductV1ProductsProductIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function update(Components\ProductUpdate $productUpdate, string $productId, ?Options $options = null): Operations\UpdateProductV1ProductsProductIdPutResponse
@@ -494,11 +498,12 @@ class Products
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '404', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

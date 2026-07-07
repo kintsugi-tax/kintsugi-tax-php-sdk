@@ -21,14 +21,14 @@ class UpdateTransactionV1TransactionsTransactionIdPutRequest
 
     /**
      *
-     * @var Components\TransactionUpdate $transactionUpdate
+     * @var \KintsugiTax\SDK\Models\Components\TransactionUpdate $transactionUpdate
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public Components\TransactionUpdate $transactionUpdate;
 
     /**
      * @param  string  $transactionId
-     * @param  Components\TransactionUpdate  $transactionUpdate
+     * @param  \KintsugiTax\SDK\Models\Components\TransactionUpdate  $transactionUpdate
      * @phpstan-pure
      */
     public function __construct(string $transactionId, Components\TransactionUpdate $transactionUpdate)

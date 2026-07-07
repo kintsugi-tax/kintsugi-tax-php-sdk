@@ -14,7 +14,7 @@ class PageNexusResponse
     /**
      * $items
      *
-     * @var array<NexusResponse> $items
+     * @var array<\KintsugiTax\SDK\Models\Components\NexusResponse> $items
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\NexusResponse>')]
@@ -49,7 +49,7 @@ class PageNexusResponse
     public int $pages;
 
     /**
-     * @param  array<NexusResponse>  $items
+     * @param  array<\KintsugiTax\SDK\Models\Components\NexusResponse>  $items
      * @param  int  $total
      * @param  int  $page
      * @param  int  $size

@@ -76,7 +76,7 @@ class TransactionItemEstimateBase
 
     /**
      *
-     * @var ?SourceEnum $productSource
+     * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $productSource
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
@@ -131,7 +131,7 @@ class TransactionItemEstimateBase
      * @param  ?string  $externalProductId
      * @param  ?string  $productName
      * @param  ?string  $productDescription
-     * @param  ?SourceEnum  $productSource
+     * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $productSource
      * @param  ?string  $productSubcategory
      * @param  ?string  $productCategory
      * @param  ?float  $quantity

@@ -15,7 +15,7 @@ class BackendSrcProductsResponsesValidationErrorResponse
     /**
      * $detail
      *
-     * @var array<Components\BackendSrcProductsResponsesValidationErrorItem> $detail
+     * @var array<\KintsugiTax\SDK\Models\Components\BackendSrcProductsResponsesValidationErrorItem> $detail
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('detail')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\BackendSrcProductsResponsesValidationErrorItem>')]
@@ -31,7 +31,7 @@ class BackendSrcProductsResponsesValidationErrorResponse
     public ?\Psr\Http\Message\ResponseInterface $rawResponse = null;
 
     /**
-     * @param  array<Components\BackendSrcProductsResponsesValidationErrorItem>  $detail
+     * @param  array<\KintsugiTax\SDK\Models\Components\BackendSrcProductsResponsesValidationErrorItem>  $detail
      * @param  ?\Psr\Http\Message\ResponseInterface  $rawResponse
      * @phpstan-pure
      */

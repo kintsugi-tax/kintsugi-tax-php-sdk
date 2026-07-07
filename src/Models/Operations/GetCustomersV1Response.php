@@ -35,7 +35,7 @@ class GetCustomersV1Response
     /**
      * Successfully retrieved customers
      *
-     * @var ?Components\PageCustomerRead $pageCustomerRead
+     * @var ?\KintsugiTax\SDK\Models\Components\PageCustomerRead $pageCustomerRead
      */
     public ?Components\PageCustomerRead $pageCustomerRead = null;
 
@@ -43,7 +43,7 @@ class GetCustomersV1Response
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?Components\PageCustomerRead  $pageCustomerRead
+     * @param  ?\KintsugiTax\SDK\Models\Components\PageCustomerRead  $pageCustomerRead
      * @phpstan-pure
      */
     public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PageCustomerRead $pageCustomerRead = null)

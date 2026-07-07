@@ -14,7 +14,7 @@ class PagePhysicalNexusRead
     /**
      * $items
      *
-     * @var array<PhysicalNexusRead> $items
+     * @var array<\KintsugiTax\SDK\Models\Components\PhysicalNexusRead> $items
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\PhysicalNexusRead>')]
@@ -49,7 +49,7 @@ class PagePhysicalNexusRead
     public int $pages;
 
     /**
-     * @param  array<PhysicalNexusRead>  $items
+     * @param  array<\KintsugiTax\SDK\Models\Components\PhysicalNexusRead>  $items
      * @param  int  $total
      * @param  int  $page
      * @param  int  $size

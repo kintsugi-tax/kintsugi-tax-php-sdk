@@ -53,7 +53,7 @@ class Attachments
      *     like exemption certificates uploaded for a particular exemption record.
      *
      * @param  string  $exemptionId
-     * @return Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse
+     * @return \KintsugiTax\SDK\Models\Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function get(string $exemptionId, ?Options $options = null): Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse
@@ -80,11 +80,12 @@ class Attachments
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '422', '4XX', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

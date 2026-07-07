@@ -47,7 +47,7 @@ class TransactionRead
     /**
      * List of addresses associated.
      *
-     * @var array<TransactionAddressReadOutput> $addresses
+     * @var array<\KintsugiTax\SDK\Models\Components\TransactionAddressReadOutput> $addresses
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('addresses')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionAddressReadOutput>')]
@@ -56,7 +56,7 @@ class TransactionRead
     /**
      * List of items in the transaction.
      *
-     * @var array<TransactionItemRead> $transactionItems
+     * @var array<\KintsugiTax\SDK\Models\Components\TransactionItemRead> $transactionItems
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('transaction_items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionItemRead>')]
@@ -64,7 +64,7 @@ class TransactionRead
 
     /**
      *
-     * @var TransactionTypeEnum $type
+     * @var \KintsugiTax\SDK\Models\Components\TransactionTypeEnum $type
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('type')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionTypeEnum')]
@@ -72,7 +72,7 @@ class TransactionRead
 
     /**
      *
-     * @var ?ExemptionRequired $requiresExemption
+     * @var ?\KintsugiTax\SDK\Models\Components\ExemptionRequired $requiresExemption
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('requires_exemption')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionRequired|null')]
@@ -112,7 +112,7 @@ class TransactionRead
      * If the given order has different status from these 2, we will set the
      * transaction's refund_status to PARTIALLY_REFUNDED by default.
      *
-     * @var ?TransactionRefundStatus $refundStatus
+     * @var ?\KintsugiTax\SDK\Models\Components\TransactionRefundStatus $refundStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('refund_status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionRefundStatus|null')]
@@ -136,7 +136,7 @@ class TransactionRead
      * FULLY_EXEMPT: All items sold in the transaction are EXEMPT
      * ZERO_RATE_NOT_EXEMPT: All items sold in the transaction are zero-rated
      *
-     * @var ?TransactionExemptStatusEnum $exempt
+     * @var ?\KintsugiTax\SDK\Models\Components\TransactionExemptStatusEnum $exempt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exempt')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionExemptStatusEnum|null')]
@@ -146,7 +146,7 @@ class TransactionRead
     /**
      * List of exemptions applied (if any).
      *
-     * @var ?array<Exemption> $exemptions
+     * @var ?array<\KintsugiTax\SDK\Models\Components\Exemption> $exemptions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exemptions')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\Exemption>|null')]
@@ -191,7 +191,7 @@ class TransactionRead
 
     /**
      *
-     * @var ?TaxLiabilitySourceEnum $taxLiabilitySource
+     * @var ?\KintsugiTax\SDK\Models\Components\TaxLiabilitySourceEnum $taxLiabilitySource
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_liability_source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxLiabilitySourceEnum|null')]
@@ -200,7 +200,7 @@ class TransactionRead
 
     /**
      *
-     * @var ?CurrencyEnum $currency
+     * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
@@ -209,7 +209,7 @@ class TransactionRead
 
     /**
      *
-     * @var ?SourceEnum $source
+     * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $source
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
@@ -263,7 +263,7 @@ class TransactionRead
 
     /**
      *
-     * @var ?CountryCodeEnum $country
+     * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $country
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('country')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
@@ -291,7 +291,7 @@ class TransactionRead
 
     /**
      *
-     * @var ?TransactionStatusEnum $status
+     * @var ?\KintsugiTax\SDK\Models\Components\TransactionStatusEnum $status
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TransactionStatusEnum|null')]
@@ -300,7 +300,7 @@ class TransactionRead
 
     /**
      *
-     * @var ?AddressStatus $addressStatus
+     * @var ?\KintsugiTax\SDK\Models\Components\AddressStatus $addressStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
@@ -312,7 +312,7 @@ class TransactionRead
      *
      * processing.
      *
-     * @var ?ProcessingStatusEnum $processingStatus
+     * @var ?\KintsugiTax\SDK\Models\Components\ProcessingStatusEnum $processingStatus
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('processing_status')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProcessingStatusEnum|null')]
@@ -321,7 +321,7 @@ class TransactionRead
 
     /**
      *
-     * @var ?CurrencyEnum $destinationCurrency
+     * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $destinationCurrency
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('destination_currency')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CurrencyEnum|null')]
@@ -402,7 +402,7 @@ class TransactionRead
 
     /**
      *
-     * @var ?CustomerRead $customer
+     * @var ?\KintsugiTax\SDK\Models\Components\CustomerRead $customer
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerRead|null')]
@@ -531,19 +531,19 @@ class TransactionRead
      * @param  string  $externalId
      * @param  \DateTime  $date
      * @param  string  $id
-     * @param  array<TransactionAddressReadOutput>  $addresses
-     * @param  array<TransactionItemRead>  $transactionItems
-     * @param  TransactionTypeEnum  $type
-     * @param  ?ExemptionRequired  $requiresExemption
+     * @param  array<\KintsugiTax\SDK\Models\Components\TransactionAddressReadOutput>  $addresses
+     * @param  array<\KintsugiTax\SDK\Models\Components\TransactionItemRead>  $transactionItems
+     * @param  \KintsugiTax\SDK\Models\Components\TransactionTypeEnum  $type
+     * @param  ?\KintsugiTax\SDK\Models\Components\ExemptionRequired  $requiresExemption
      * @param  ?string  $shopDate
      * @param  ?string  $shopDateTz
      * @param  ?string  $description
-     * @param  ?TransactionRefundStatus  $refundStatus
+     * @param  ?\KintsugiTax\SDK\Models\Components\TransactionRefundStatus  $refundStatus
      * @param  ?string  $totalAmount
      * @param  ?string  $customerId
      * @param  ?bool  $marketplace
-     * @param  ?TransactionExemptStatusEnum  $exempt
-     * @param  ?array<Exemption>  $exemptions
+     * @param  ?\KintsugiTax\SDK\Models\Components\TransactionExemptStatusEnum  $exempt
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\Exemption>  $exemptions
      * @param  ?string  $relatedTo
      * @param  ?string  $secondaryExternalId
      * @param  ?string  $secondarySource
@@ -553,23 +553,23 @@ class TransactionRead
      * @param  ?string  $totalTaxAmountCalculated
      * @param  ?string  $taxRateCalculated
      * @param  ?string  $totalTaxLiabilityAmount
-     * @param  ?TaxLiabilitySourceEnum  $taxLiabilitySource
+     * @param  ?\KintsugiTax\SDK\Models\Components\TaxLiabilitySourceEnum  $taxLiabilitySource
      * @param  ?string  $taxableAmount
-     * @param  ?CurrencyEnum  $currency
+     * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $currency
      * @param  ?bool  $locked
-     * @param  ?SourceEnum  $source
+     * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
      * @param  ?string  $connectionId
      * @param  ?string  $filingId
      * @param  ?string  $city
      * @param  ?string  $county
      * @param  ?string  $state
-     * @param  ?CountryCodeEnum  $country
+     * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $country
      * @param  ?string  $postalCode
      * @param  ?string  $taxId
-     * @param  ?TransactionStatusEnum  $status
-     * @param  ?AddressStatus  $addressStatus
-     * @param  ?ProcessingStatusEnum  $processingStatus
-     * @param  ?CurrencyEnum  $destinationCurrency
+     * @param  ?\KintsugiTax\SDK\Models\Components\TransactionStatusEnum  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\AddressStatus  $addressStatus
+     * @param  ?\KintsugiTax\SDK\Models\Components\ProcessingStatusEnum  $processingStatus
+     * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $destinationCurrency
      * @param  ?string  $convertedTotalAmount
      * @param  ?string  $convertedTotalTaxAmountImported
      * @param  ?string  $convertedTotalTaxAmountCalculated
@@ -578,7 +578,7 @@ class TransactionRead
      * @param  ?string  $convertedTotalDiscount
      * @param  ?string  $convertedSubtotal
      * @param  ?string  $convertedTotalTaxLiabilityAmount
-     * @param  ?CustomerRead  $customer
+     * @param  ?\KintsugiTax\SDK\Models\Components\CustomerRead  $customer
      * @param  ?string  $totalDiscount
      * @param  ?string  $subtotal
      * @param  ?string  $finalTotalAmount

@@ -53,9 +53,9 @@ class AddressValidation
      *     and compliant with geographical and postal standards.
      *     The API also adds additional fields, such as county, when possible.
      *
-     * @param  Operations\SearchV1AddressValidationSearchPostSecurity  $security
-     * @param  Components\AddressBase  $request
-     * @return Operations\SearchV1AddressValidationSearchPostResponse
+     * @param  \KintsugiTax\SDK\Models\Operations\SearchV1AddressValidationSearchPostSecurity  $security
+     * @param  \KintsugiTax\SDK\Models\Components\AddressBase  $request
+     * @return \KintsugiTax\SDK\Models\Operations\SearchV1AddressValidationSearchPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function search(Operations\SearchV1AddressValidationSearchPostSecurity $security, Components\AddressBase $request, ?Options $options = null): Operations\SearchV1AddressValidationSearchPostResponse
@@ -90,11 +90,12 @@ class AddressValidation
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
@@ -166,8 +167,8 @@ class AddressValidation
      *     This improves accuracy, increases speed, reduces errors,
      *     and streamlines the data entry process.
      *
-     * @param  Components\ValidationAddress  $request
-     * @return Operations\SuggestionsV1AddressValidationSuggestionsPostResponse
+     * @param  \KintsugiTax\SDK\Models\Components\ValidationAddress  $request
+     * @return \KintsugiTax\SDK\Models\Operations\SuggestionsV1AddressValidationSuggestionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
     public function suggestions(Components\ValidationAddress $request, ?Options $options = null): Operations\SuggestionsV1AddressValidationSuggestionsPostResponse
@@ -196,11 +197,12 @@ class AddressValidation
         }
         $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
 
-        $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['401', '422', '4XX', '500', '5XX'])) {
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
             $httpResponse = $res;
         }
+
+        $statusCode = $httpResponse->getStatusCode();
         if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);

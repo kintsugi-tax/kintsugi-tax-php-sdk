@@ -35,7 +35,7 @@ class GetRegistrationsV1RegistrationsGetRequest
      *
      *         (e.g., US, CA).
      *
-     * @var ?array<Components\CountryCodeEnum> $countryCodeIn
+     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum> $countryCodeIn
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=country_code__in')]
     public ?array $countryCodeIn = null;
@@ -78,7 +78,7 @@ class GetRegistrationsV1RegistrationsGetRequest
      * @param  ?string  $statusIn
      * @param  ?string  $stateCode
      * @param  ?string  $filingFrequencyIn
-     * @param  ?array<Components\CountryCodeEnum>  $countryCodeIn
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum>  $countryCodeIn
      * @param  ?string  $orderBy
      * @param  ?int  $page
      * @param  ?int  $size

@@ -24,14 +24,14 @@ class UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutRequest
 
     /**
      *
-     * @var Components\PhysicalNexusUpdate $physicalNexusUpdate
+     * @var \KintsugiTax\SDK\Models\Components\PhysicalNexusUpdate $physicalNexusUpdate
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
     public Components\PhysicalNexusUpdate $physicalNexusUpdate;
 
     /**
      * @param  string  $physicalNexusId
-     * @param  Components\PhysicalNexusUpdate  $physicalNexusUpdate
+     * @param  \KintsugiTax\SDK\Models\Components\PhysicalNexusUpdate  $physicalNexusUpdate
      * @phpstan-pure
      */
     public function __construct(string $physicalNexusId, Components\PhysicalNexusUpdate $physicalNexusUpdate)

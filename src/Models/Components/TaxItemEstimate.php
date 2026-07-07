@@ -21,7 +21,7 @@ class TaxItemEstimate
     /**
      * We use this to understand the response from get_tax_items
      *
-     * @var ?TaxItemReturnReasonEnum $exemptReason
+     * @var ?\KintsugiTax\SDK\Models\Components\TaxItemReturnReasonEnum $exemptReason
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exempt_reason')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxItemReturnReasonEnum|null')]
@@ -65,7 +65,7 @@ class TaxItemEstimate
      * @param  ?string  $rate
      * @param  ?string  $amount
      * @param  ?bool  $exempt
-     * @param  ?TaxItemReturnReasonEnum  $exemptReason
+     * @param  ?\KintsugiTax\SDK\Models\Components\TaxItemReturnReasonEnum  $exemptReason
      * @param  ?string  $rule
      * @phpstan-pure
      */
