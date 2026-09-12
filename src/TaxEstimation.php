@@ -46,20 +46,22 @@ class TaxEstimation
     }
 
     /**
-     * Estimate Tax
+     * Estimate tax
      *
      * The Estimate Tax API calculates the estimated tax for a specific
      *     transaction based on the provided details, including organization nexus,
      *     transaction details, customer details, and addresses. Optionally simulates nexus being met for tax calculation purposes. The `simulate_nexus_met` parameter is deprecated and will be removed in future releases.
      *
      * @param  \KintsugiTax\SDK\Models\Components\TransactionEstimatePublicRequest  $transactionEstimatePublicRequest
+     * @param  ?string  $xOrganizationId
      * @param  ?bool  $simulateNexusMet
      * @return \KintsugiTax\SDK\Models\Operations\EstimateTaxV1TaxEstimatePostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function estimate(Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest, ?bool $simulateNexusMet = null, ?Options $options = null): Operations\EstimateTaxV1TaxEstimatePostResponse
+    public function estimate(Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest, ?string $xOrganizationId = null, ?bool $simulateNexusMet = null, ?Options $options = null): Operations\EstimateTaxV1TaxEstimatePostResponse
     {
         $request = new Operations\EstimateTaxV1TaxEstimatePostRequest(
+            xOrganizationId: $xOrganizationId,
             transactionEstimatePublicRequest: $transactionEstimatePublicRequest,
             simulateNexusMet: $simulateNexusMet,
         );
@@ -74,6 +76,10 @@ class TaxEstimation
         $httpOptions = array_merge_recursive($httpOptions, $body);
 
         $qp = Utils\Utils::getQueryParams(Operations\EstimateTaxV1TaxEstimatePostRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
@@ -102,18 +108,18 @@ class TaxEstimation
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\PageTransactionEstimateResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\TransactionEstimateResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\EstimateTaxV1TaxEstimatePostResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    pageTransactionEstimateResponse: $obj);
+                    transactionEstimateResponse: $obj);
 
                 return $response;
             } else {
                 throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['401'])) {
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['400', '401'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -137,7 +143,7 @@ class TaxEstimation
             } else {
                 throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['500'])) {
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['500', '503'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 

@@ -30,13 +30,23 @@ class UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutRequest
     public Components\PhysicalNexusUpdate $physicalNexusUpdate;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * @param  string  $physicalNexusId
      * @param  \KintsugiTax\SDK\Models\Components\PhysicalNexusUpdate  $physicalNexusUpdate
+     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $physicalNexusId, Components\PhysicalNexusUpdate $physicalNexusUpdate)
+    public function __construct(string $physicalNexusId, Components\PhysicalNexusUpdate $physicalNexusUpdate, ?string $xOrganizationId = null)
     {
         $this->physicalNexusId = $physicalNexusId;
         $this->physicalNexusUpdate = $physicalNexusUpdate;
+        $this->xOrganizationId = $xOrganizationId;
     }
 }

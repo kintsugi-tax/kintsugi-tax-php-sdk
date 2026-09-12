@@ -35,18 +35,18 @@ class GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
     /**
      * Successful Response
      *
-     * @var ?array<\KintsugiTax\SDK\Models\Components\TransactionRead> $responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet
+     * @var array<\KintsugiTax\SDK\Models\Components\TransactionRead>|\KintsugiTax\SDK\Models\Components\PageTransactionRead|null $responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet
      */
-    public ?array $responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet = null;
+    public array|Components\PageTransactionRead|null $responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?array<\KintsugiTax\SDK\Models\Components\TransactionRead>  $responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet
+     * @param  array<\KintsugiTax\SDK\Models\Components\TransactionRead>|\KintsugiTax\SDK\Models\Components\PageTransactionRead|null  $responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?array $responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, array|Components\PageTransactionRead|null $responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;

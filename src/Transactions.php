@@ -46,19 +46,21 @@ class Transactions
     }
 
     /**
-     * Create Credit Note By Transaction Id
+     * Create credit note by transaction id
      *
      * Create a new credit note for a specific transaction.
      *
      * @param  \KintsugiTax\SDK\Models\Components\CreditNoteCreate  $creditNoteCreate
      * @param  string  $originalTransactionId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\POSTCreateCreditNoteByTransactionIdResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function createCreditNote(Components\CreditNoteCreate $creditNoteCreate, string $originalTransactionId, ?Options $options = null): Operations\POSTCreateCreditNoteByTransactionIdResponse
+    public function createCreditNote(Components\CreditNoteCreate $creditNoteCreate, string $originalTransactionId, ?string $xOrganizationId = null, ?Options $options = null): Operations\POSTCreateCreditNoteByTransactionIdResponse
     {
         $request = new Operations\POSTCreateCreditNoteByTransactionIdRequest(
             originalTransactionId: $originalTransactionId,
+            xOrganizationId: $xOrganizationId,
             creditNoteCreate: $creditNoteCreate,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -70,6 +72,10 @@ class Transactions
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
@@ -130,21 +136,23 @@ class Transactions
     }
 
     /**
-     * Update Credit Note By Transaction Id
+     * Update credit note by transaction id
      *
      * Update an existing credit note for a specific transaction.
      *
      * @param  \KintsugiTax\SDK\Models\Components\CreditNoteCreate  $creditNoteCreate
      * @param  string  $originalTransactionId
      * @param  string  $creditNoteId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\PUTUpdateCreditNoteByTransactionIdResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function updateCreditNote(Components\CreditNoteCreate $creditNoteCreate, string $originalTransactionId, string $creditNoteId, ?Options $options = null): Operations\PUTUpdateCreditNoteByTransactionIdResponse
+    public function updateCreditNote(Components\CreditNoteCreate $creditNoteCreate, string $originalTransactionId, string $creditNoteId, ?string $xOrganizationId = null, ?Options $options = null): Operations\PUTUpdateCreditNoteByTransactionIdResponse
     {
         $request = new Operations\PUTUpdateCreditNoteByTransactionIdRequest(
             originalTransactionId: $originalTransactionId,
             creditNoteId: $creditNoteId,
+            xOrganizationId: $xOrganizationId,
             creditNoteCreate: $creditNoteCreate,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -156,6 +164,10 @@ class Transactions
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
@@ -216,25 +228,120 @@ class Transactions
     }
 
     /**
-     * Create Transaction
+     * Archive transaction by id
      *
-     * Create a transaction.
+     * Archive transactions by transaction id
      *
-     * @param  \KintsugiTax\SDK\Models\Components\TransactionPublicRequest  $request
+     * @param  string  $transactionId
+     * @param  ?string  $xOrganizationId
+     * @return \KintsugiTax\SDK\Models\Operations\ArchiveTransactionByIdV1TransactionsArchivePostResponse
+     * @throws \KintsugiTax\SDK\Models\Errors\APIException
+     */
+    public function archiveTransactionByIdV1TransactionsArchivePost(string $transactionId, ?string $xOrganizationId = null, ?Options $options = null): Operations\ArchiveTransactionByIdV1TransactionsArchivePostResponse
+    {
+        $request = new Operations\ArchiveTransactionByIdV1TransactionsArchivePostRequest(
+            transactionId: $transactionId,
+            xOrganizationId: $xOrganizationId,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/transactions/archive');
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+
+        $qp = Utils\Utils::getQueryParams(Operations\ArchiveTransactionByIdV1TransactionsArchivePostRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'archive_transaction_by_id_v1_transactions_archive_post', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, 'mixed', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\ArchiveTransactionByIdV1TransactionsArchivePostResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    any: $obj);
+
+                return $response;
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\HTTPValidationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj->rawResponse = $httpResponse;
+                throw $obj->toException();
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
+     * Create transaction
+     *
+     * Create a transaction. Set `marketplace: true` for reseller or marketplace orders where tax was remitted externally; gross sales still count toward nexus, but tax liability is excluded.
+     *
+     * @param  \KintsugiTax\SDK\Models\Components\TransactionPublicRequest  $transactionPublicRequest
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\CreateTransactionV1TransactionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function create(Components\TransactionPublicRequest $request, ?Options $options = null): Operations\CreateTransactionV1TransactionsPostResponse
+    public function create(Components\TransactionPublicRequest $transactionPublicRequest, ?string $xOrganizationId = null, ?Options $options = null): Operations\CreateTransactionV1TransactionsPostResponse
     {
+        $request = new Operations\CreateTransactionV1TransactionsPostRequest(
+            xOrganizationId: $xOrganizationId,
+            transactionPublicRequest: $transactionPublicRequest,
+        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/transactions');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'transactionPublicRequest', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
@@ -319,24 +426,30 @@ class Transactions
     }
 
     /**
-     * Get Transaction By External Id
+     * Get transaction by external id
      *
      * Retrieves a specific transaction based on its external ID.
      *     This allows users to fetch transaction details using an identifier from an external system.
      *
      * @param  string  $externalId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getByExternalId(string $externalId, ?Options $options = null): Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse
+    public function getByExternalId(string $externalId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetResponse
     {
         $request = new Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest(
             externalId: $externalId,
+            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/transactions/external/{external_id}', Operations\GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -421,24 +534,30 @@ class Transactions
     }
 
     /**
-     * Get Transaction By Id
+     * Get transaction by id
      *
      * The Get Transaction By Id API retrieves detailed information
      *     about a specific transaction by providing its unique transaction ID.
      *
      * @param  string  $transactionId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function get(string $transactionId, ?Options $options = null): Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
+    public function get(string $transactionId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetTransactionByIdV1TransactionsTransactionIdGetResponse
     {
         $request = new Operations\GetTransactionByIdV1TransactionsTransactionIdGetRequest(
             transactionId: $transactionId,
+            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/transactions/{transaction_id}', Operations\GetTransactionByIdV1TransactionsTransactionIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -523,23 +642,29 @@ class Transactions
     }
 
     /**
-     * Get Transactions By Filing Id
+     * Get transactions by filing id
      *
      * Retrieve transactions by filing ID.
      *
      * @param  string  $filingId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getByFilingId(string $filingId, ?Options $options = null): Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse
+    public function getByFilingId(string $filingId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetResponse
     {
         $request = new Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetRequest(
             filingId: $filingId,
+            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/transactions/filings/{filing_id}', Operations\GetTransactionsByFilingIdV1TransactionsFilingsFilingIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -624,16 +749,16 @@ class Transactions
     }
 
     /**
-     * Get Transactions
+     * Get transactions
      *
      * The Get Transactions API retrieves a list of transactions with
      *     optional filtering, sorting, and pagination.
      *
-     * @param  ?\KintsugiTax\SDK\Models\Operations\GetTransactionsV1TransactionsGetRequest  $request
+     * @param  \KintsugiTax\SDK\Models\Operations\GetTransactionsV1TransactionsGetRequest  $request
      * @return \KintsugiTax\SDK\Models\Operations\GetTransactionsV1TransactionsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(?Operations\GetTransactionsV1TransactionsGetRequest $request = null, ?Options $options = null): Operations\GetTransactionsV1TransactionsGetResponse
+    public function list(Operations\GetTransactionsV1TransactionsGetRequest $request, ?Options $options = null): Operations\GetTransactionsV1TransactionsGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/transactions');
@@ -641,6 +766,10 @@ class Transactions
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetTransactionsV1TransactionsGetRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -726,19 +855,102 @@ class Transactions
     }
 
     /**
-     * Update Transaction
+     * Set transaction tax only
+     *
+     * Mark or unmark a transaction as tax-only. SALE becomes TAX_COLLECTION; credit notes become TAX_REFUND. Unmark restores SALE or re-derives FULL/PARTIAL credit note. Only the type is changed; amounts are preserved.
+     *
+     * @param  \KintsugiTax\SDK\Models\Components\TaxOnlyUpdate  $taxOnlyUpdate
+     * @param  string  $transactionId
+     * @param  ?string  $xOrganizationId
+     * @return \KintsugiTax\SDK\Models\Operations\SetTransactionTaxOnlyV1TransactionsTransactionIdTaxOnlyPostResponse
+     * @throws \KintsugiTax\SDK\Models\Errors\APIException
+     */
+    public function setTransactionTaxOnlyV1TransactionsTransactionIdTaxOnlyPost(Components\TaxOnlyUpdate $taxOnlyUpdate, string $transactionId, ?string $xOrganizationId = null, ?Options $options = null): Operations\SetTransactionTaxOnlyV1TransactionsTransactionIdTaxOnlyPostResponse
+    {
+        $request = new Operations\SetTransactionTaxOnlyV1TransactionsTransactionIdTaxOnlyPostRequest(
+            transactionId: $transactionId,
+            xOrganizationId: $xOrganizationId,
+            taxOnlyUpdate: $taxOnlyUpdate,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/transactions/{transaction_id}/tax_only', Operations\SetTransactionTaxOnlyV1TransactionsTransactionIdTaxOnlyPostRequest::class, $request);
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'taxOnlyUpdate', 'json');
+        if ($body === null) {
+            throw new \Exception('Request body is required');
+        }
+        $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'set_transaction_tax_only_v1_transactions__transaction_id__tax_only_post', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['204'])) {
+            $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+            return new Operations\SetTransactionTaxOnlyV1TransactionsTransactionIdTaxOnlyPostResponse(
+                statusCode: $statusCode,
+                contentType: $contentType,
+                rawResponse: $httpResponse
+            );
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\HTTPValidationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj->rawResponse = $httpResponse;
+                throw $obj->toException();
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
+     * Update transaction
      *
      * Update a specific transaction by its ID.
      *
      * @param  \KintsugiTax\SDK\Models\Components\TransactionUpdate  $transactionUpdate
      * @param  string  $transactionId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\UpdateTransactionV1TransactionsTransactionIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function update(Components\TransactionUpdate $transactionUpdate, string $transactionId, ?Options $options = null): Operations\UpdateTransactionV1TransactionsTransactionIdPutResponse
+    public function update(Components\TransactionUpdate $transactionUpdate, string $transactionId, ?string $xOrganizationId = null, ?Options $options = null): Operations\UpdateTransactionV1TransactionsTransactionIdPutResponse
     {
         $request = new Operations\UpdateTransactionV1TransactionsTransactionIdPutRequest(
             transactionId: $transactionId,
+            xOrganizationId: $xOrganizationId,
             transactionUpdate: $transactionUpdate,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -750,6 +962,10 @@ class Transactions
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);

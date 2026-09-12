@@ -4,10 +4,10 @@
 
 ### Available Operations
 
-* [list](#list) - Get Exemptions
-* [create](#create) - Create Exemption
-* [getById](#getbyid) - Get Exemption By Id
-* [uploadCertificate](#uploadcertificate) - Upload Exemption Certificate
+* [list](#list) - Get exemptions
+* [create](#create) - Create exemption
+* [getById](#getbyid) - Get exemption by id
+* [uploadCertificate](#uploadcertificate) - Upload exemption certificate
 
 ## list
 
@@ -21,29 +21,31 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\DateTime\LocalDate;
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Models\Operations;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
 $request = new Operations\GetExemptionsV1ExemptionsGetRequest(
     searchQuery: 'John',
+    statusIn: 'ACTIVE,INACTIVE,EXPIRED',
     countryCode: [
-
+        'U',
+        'S',
     ],
     jurisdiction: 'CA',
-    startDate: '2024-01-01',
-    endDate: '2024-01-01',
+    startDate: LocalDate::parse('2024-01-01'),
+    endDate: LocalDate::parse('2024-01-01'),
     customerId: 'cust_1234',
     transactionId: 'trans_1234',
+    connectionIdIn: 'conn_abc123,conn_def456',
+    orderBy: 'end_date,FEIN,sales_tax_id,status',
+    xOrganizationId: 'org_12345',
 );
 
 $response = $sdk->exemptions->list(
@@ -94,19 +96,16 @@ use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
-$request = new Components\ExemptionCreate(
+$exemptionCreate = new Components\ExemptionCreate(
     exemptionType: Components\ExemptionType::Wholesale,
     jurisdiction: 'CA',
     countryCode: Components\CountryCodeEnum::Us,
     startDate: LocalDate::parse('2024-01-01'),
-    endDate: '2026-01-01',
+    endDate: LocalDate::parse('2026-01-01'),
     customerId: 'cust_001',
     transactionId: 'txn_123',
     reseller: true,
@@ -116,7 +115,9 @@ $request = new Components\ExemptionCreate(
 );
 
 $response = $sdk->exemptions->create(
-    request: $request
+    exemptionCreate: $exemptionCreate,
+    xOrganizationId: 'org_12345'
+
 );
 
 if ($response->backendSrcExemptionsSerializersExemptionRead !== null) {
@@ -126,9 +127,10 @@ if ($response->backendSrcExemptionsSerializersExemptionRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `$request`                                                               | [Components\ExemptionCreate](../../Models/Components/ExemptionCreate.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              | Example                                                                  |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `exemptionCreate`                                                        | [Components\ExemptionCreate](../../Models/Components/ExemptionCreate.md) | :heavy_check_mark:                                                       | N/A                                                                      |                                                                          |
+| `xOrganizationId`                                                        | *string*                                                                 | :heavy_check_mark:                                                       | The unique identifier for the organization making the request            | org_12345                                                                |
 
 ### Response
 
@@ -159,21 +161,19 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
 
 
 $response = $sdk->exemptions->getById(
-    exemptionId: '<id>'
+    exemptionId: '<id>',
+    xOrganizationId: 'org_12345'
+
 );
 
 if ($response->backendSrcExemptionsModelsExemptionRead !== null) {
@@ -183,9 +183,10 @@ if ($response->backendSrcExemptionsModelsExemptionRead !== null) {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `exemptionId`                                            | *string*                                                 | :heavy_check_mark:                                       | The unique identifier for the exemption being retrieved. |
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `exemptionId`                                                 | *string*                                                      | :heavy_check_mark:                                            | The unique identifier for the exemption being retrieved.      |                                                               |
+| `xOrganizationId`                                             | *string*                                                      | :heavy_check_mark:                                            | The unique identifier for the organization making the request | org_12345                                                     |
 
 ### Response
 
@@ -220,23 +221,18 @@ use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
 $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost = new Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost(
-    file: new Components\File(
-        fileName: 'example.file',
-        content: file_get_contents('example.file');,
-    ),
+    file: file_get_contents('example.file');,
 );
 
 $response = $sdk->exemptions->uploadCertificate(
     exemptionId: '<id>',
-    bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost: $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost
+    bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost: $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost,
+    xOrganizationId: 'org_12345'
 
 );
 
@@ -247,10 +243,11 @@ if ($response->attachmentRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                                                                          | Type                                                                                                                                                                               | Required                                                                                                                                                                           | Description                                                                                                                                                                        |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `exemptionId`                                                                                                                                                                      | *string*                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                 | The unique identifier for the exemption to which the attachment will be associated.                                                                                                |
-| `bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost`                                                                                                             | [Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost](../../Models/Components/BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost.md) | :heavy_check_mark:                                                                                                                                                                 | N/A                                                                                                                                                                                |
+| Parameter                                                                                                                                                                          | Type                                                                                                                                                                               | Required                                                                                                                                                                           | Description                                                                                                                                                                        | Example                                                                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `exemptionId`                                                                                                                                                                      | *string*                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                 | The unique identifier for the exemption to which the attachment will be associated.                                                                                                |                                                                                                                                                                                    |
+| `bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost`                                                                                                             | [Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost](../../Models/Components/BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost.md) | :heavy_check_mark:                                                                                                                                                                 | N/A                                                                                                                                                                                |                                                                                                                                                                                    |
+| `xOrganizationId`                                                                                                                                                                  | *string*                                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                                 | The unique identifier for the organization making the request                                                                                                                      | org_12345                                                                                                                                                                          |
 
 ### Response
 

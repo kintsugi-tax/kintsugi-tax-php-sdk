@@ -35,22 +35,22 @@ class EstimateTaxV1TaxEstimatePostResponse
     /**
      * Successfully retrieved data
      *
-     * @var ?\KintsugiTax\SDK\Models\Components\PageTransactionEstimateResponse $pageTransactionEstimateResponse
+     * @var ?\KintsugiTax\SDK\Models\Components\TransactionEstimateResponse $transactionEstimateResponse
      */
-    public ?Components\PageTransactionEstimateResponse $pageTransactionEstimateResponse = null;
+    public ?Components\TransactionEstimateResponse $transactionEstimateResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\KintsugiTax\SDK\Models\Components\PageTransactionEstimateResponse  $pageTransactionEstimateResponse
+     * @param  ?\KintsugiTax\SDK\Models\Components\TransactionEstimateResponse  $transactionEstimateResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PageTransactionEstimateResponse $pageTransactionEstimateResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\TransactionEstimateResponse $transactionEstimateResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->pageTransactionEstimateResponse = $pageTransactionEstimateResponse;
+        $this->transactionEstimateResponse = $transactionEstimateResponse;
     }
 }

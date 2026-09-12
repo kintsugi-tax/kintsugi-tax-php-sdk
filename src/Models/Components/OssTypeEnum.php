@@ -14,4 +14,5 @@ enum OssTypeEnum: string
 {
     case Union = 'UNION';
     case NonUnion = 'NON_UNION';
+    case Ioss = 'IOSS';
 }

@@ -45,7 +45,7 @@ class TransactionEstimateResponse
     public array $transactionItems;
 
     /**
-     * List of addresses related to the transaction. At least one BILL_TO or SHIP_TO address must be provided. The address will be validated during estimation, and the transaction may be rejected if the address does not pass validation. The SHIP_TO will be preferred to use for determining tax liability. **Deprecated:** Use of `address.status` in estimate api is ignored and will be removed in the future status will be considered UNVERIFIED by default and always validated
+     * List of addresses related to the transaction. At least one BILL_TO or SHIP_TO address must be provided. The address will be validated during estimation, and the transaction may be rejected if the address does not pass validation. The SHIP_TO will be preferred to use for determining tax liability. Optional per-address `status` is deprecated, accepted for backward compatibility, and ignored; estimation always validates from structured address fields.
      *
      * @var array<\KintsugiTax\SDK\Models\Components\TransactionEstimateResponseAddress> $addresses
      */
@@ -63,22 +63,15 @@ class TransactionEstimateResponse
     public ?string $description = null;
 
     /**
+     * While currently not used, it may be used in the future to determine taxability. The source of the transaction (e.g., OTHER).
      *
      * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $source
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?SourceEnum $source = null;
-
-    /**
-     *
-     * @var ?\KintsugiTax\SDK\Models\Components\CustomerBase $customer
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBase|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CustomerBase $customer = null;
 
     /**
      * Indicates if the transaction involves a marketplace.
@@ -88,6 +81,16 @@ class TransactionEstimateResponse
     #[\Speakeasy\Serializer\Annotation\SerializedName('marketplace')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $marketplace = null;
+
+    /**
+     * Details about the customer. If the customer is not found, it will be ignored.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\CustomerBase $customer
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBase|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CustomerBase $customer = null;
 
     /**
      * The total amount of tax determined for the transaction.
@@ -141,18 +144,18 @@ class TransactionEstimateResponse
      * @param  \KintsugiTax\SDK\Models\Components\CurrencyEnum  $currency
      * @param  array<\KintsugiTax\SDK\Models\Components\TransactionItemEstimateResponse>  $transactionItems
      * @param  array<\KintsugiTax\SDK\Models\Components\TransactionEstimateResponseAddress>  $addresses
-     * @param  ?string  $description
-     * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
-     * @param  ?bool  $marketplace
-     * @param  ?\KintsugiTax\SDK\Models\Components\CustomerBase  $customer
      * @param  ?string  $totalTaxAmountCalculated
      * @param  ?string  $taxableAmount
      * @param  ?string  $taxRateCalculated
      * @param  ?bool  $nexusMet
      * @param  ?bool  $hasActiveRegistration
+     * @param  ?string  $description
+     * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
+     * @param  ?bool  $marketplace
+     * @param  ?\KintsugiTax\SDK\Models\Components\CustomerBase  $customer
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, ?string $description = null, ?SourceEnum $source = null, ?CustomerBase $customer = null, ?bool $marketplace = false, ?string $totalTaxAmountCalculated = '0.00', ?string $taxableAmount = '0.00', ?string $taxRateCalculated = '0.00', ?bool $nexusMet = false, ?bool $hasActiveRegistration = false)
+    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, ?string $description = null, ?SourceEnum $source = null, ?bool $marketplace = null, ?CustomerBase $customer = null, ?string $totalTaxAmountCalculated = '0.00', ?string $taxableAmount = '0.00', ?string $taxRateCalculated = '0.00', ?bool $nexusMet = false, ?bool $hasActiveRegistration = false)
     {
         $this->date = $date;
         $this->externalId = $externalId;
@@ -161,8 +164,8 @@ class TransactionEstimateResponse
         $this->addresses = $addresses;
         $this->description = $description;
         $this->source = $source;
-        $this->customer = $customer;
         $this->marketplace = $marketplace;
+        $this->customer = $customer;
         $this->totalTaxAmountCalculated = $totalTaxAmountCalculated;
         $this->taxableAmount = $taxableAmount;
         $this->taxRateCalculated = $taxRateCalculated;

@@ -52,14 +52,6 @@ class FilingRead
     public string $registrationId;
 
     /**
-     * Get the filing website URL for this filing's jurisdiction
-     *
-     * @var string $filingWebsiteUrl
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('filing_website_url')]
-    public string $filingWebsiteUrl;
-
-    /**
      *
      * @var ?\KintsugiTax\SDK\Models\Components\FilingStatusEnum $status
      */
@@ -69,22 +61,47 @@ class FilingRead
     public ?FilingStatusEnum $status = null;
 
     /**
+     * Tax obligation on a nexus, registration, or filing row.
+     *
+     *
+     * Registrations and filings may be SALES_AND_USE_TAX: one state account and
+     * one return can cover both taxes, and each is stored as a single row.
+     * Nexus rows are only SALES_TAX or USE_TAX. Sales and use tax exposure are
+     * separate obligations with their own met dates, period models, and liability
+     * accrual.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\TaxTypeEnum $taxType
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxTypeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?TaxTypeEnum $taxType = null;
+
+    /**
+     * Get the filing website URL for this filing's jurisdiction
+     *
+     * @var ?string $filingWebsiteUrl
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('filing_website_url')]
+    public ?string $filingWebsiteUrl;
+
+    /**
      * The due date of the filing.
      *
-     * @var ?string $dueDate
+     * @var ?LocalDate $dueDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('due_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $dueDate = null;
+    public ?LocalDate $dueDate = null;
 
     /**
      * The date the filing was completed, if applicable.
      *
-     * @var ?string $dateFiled
+     * @var ?LocalDate $dateFiled
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('date_filed')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $dateFiled = null;
+    public ?LocalDate $dateFiled = null;
 
     /**
      * Indicates if the filing was done manually.
@@ -116,24 +133,31 @@ class FilingRead
     public ?string $stateName = null;
 
     /**
-     * The associated JIRA issue key for tracking the filing,
+     * Indicates if the filing was auto-approved. Defaults to false.
      *
-     *         if available. Can be null.
-     *
-     * @var ?string $jiraIssueKey
+     * @var ?bool $autoApproved
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('jira_issue_key')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('auto_approved')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $jiraIssueKey = null;
+    public ?bool $autoApproved = null;
 
     /**
      * Indicates the date when filing will be unpaused.
      *
-     * @var ?string $pausedUntilDate
+     * @var ?LocalDate $pausedUntilDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('paused_until_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $pausedUntilDate = null;
+    public ?LocalDate $pausedUntilDate = null;
+
+    /**
+     * DevRev ticket DON for the active assistance-pause episode. Cleared when the filing is approved from PAUSED.
+     *
+     * @var ?string $assistanceTicketId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('assistance_ticket_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $assistanceTicketId = null;
 
     /**
      * User ID of who approved the filing.
@@ -147,11 +171,56 @@ class FilingRead
     /**
      * Timestamp when the filing was approved.
      *
-     * @var ?string $approvedAt
+     * @var ?\DateTime $approvedAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('approved_at')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $approvedAt = null;
+    public ?\DateTime $approvedAt = null;
+
+    /**
+     * Reason why the filing has an issue, if applicable.
+     *
+     * @var ?string $issueReason
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('issue_reason')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $issueReason = null;
+
+    /**
+     * Reason why the filing was skipped, if applicable.
+     *
+     * @var ?string $skipReason
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('skip_reason')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $skipReason = null;
+
+    /**
+     * Reason why the filing was cancelled, if applicable.
+     *
+     * @var ?string $cancelledReason
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('cancelled_reason')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $cancelledReason = null;
+
+    /**
+     * Total taxable amount during the filing period.
+     *
+     * @var ?string $totalTaxableSales
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('total_taxable_sales')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $totalTaxableSales = null;
+
+    /**
+     * Estimated schedule line count (distinct jurisdictions). For Tax Ops workload ranking, not portal accuracy.
+     *
+     * @var ?int $estimatedLineCount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('estimated_line_count')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $estimatedLineCount = null;
 
     /**
      * Notes or comments related to the filing.
@@ -169,6 +238,15 @@ class FilingRead
     #[\Speakeasy\Serializer\Annotation\SerializedName('recent_details_report_link')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $recentDetailsReportLink = null;
+
+    /**
+     * Tax remitted when filing was first confirmed. 
+     *
+     * @var ?string $originalTaxRemitted
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('original_tax_remitted')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $originalTaxRemitted = null;
 
     /**
      * Return confirmation ID, if applicable.
@@ -198,6 +276,7 @@ class FilingRead
     public ?bool $blockApproval = null;
 
     /**
+     * Currency code for the filing (e.g., USD, CAD).
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */
@@ -207,20 +286,68 @@ class FilingRead
     public ?CurrencyEnum $currency = null;
 
     /**
-     * Indicates if the filing was auto-approved. Defaults to false.
+     * Filing frequency from the associated registration.
      *
-     * @var ?bool $autoApproved
+     * @var ?string $filingFrequency
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('auto_approved')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('filing_frequency')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $autoApproved = null;
+    public ?string $filingFrequency = null;
+
+    /**
+     * OSS scheme (UNION/NON_UNION/IOSS) from the associated registration, if any.
+     *
+     * @var ?string $ossType
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('oss_type')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $ossType = null;
+
+    /**
+     * Display-only balance-due breakdown for CA Quarterly Prepayment reconciliation filings, populated only when the org toggle is on and the filing qualifies. When present, clients should show balance_due instead of total_tax_liability. Absent means show total_tax_liability as usual.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\QuarterlyPrepayBalanceDisplay $quarterlyPrepayBalance
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('quarterly_prepay_balance')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\QuarterlyPrepayBalanceDisplay|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?QuarterlyPrepayBalanceDisplay $quarterlyPrepayBalance = null;
+
+    /**
+     * Display-only CDTFA Option 2 (135% of May liability) for CA Quarterly Prepayment May prepayment filings. When present, list/CSV/approve copy should prefer prepayment_amount; Tax Overview keeps Total Liability at 100% and adds a separate CDTFA Option 2 row. Absent means show total_tax_liability as usual.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\CaMayPrepaymentDisplay $caMayPrepayment
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ca_may_prepayment')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CaMayPrepaymentDisplay|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CaMayPrepaymentDisplay $caMayPrepayment = null;
+
+    /**
+     * Display-only estimated penalties and interest for BACK_FILING rows. Null means unknown (placeholder). Zero is a genuine not-yet-late or zero-tax outcome. Never persisted on the filing or used for billing.
+     *
+     * @var ?string $estimatedPenaltyInterest
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('estimated_penalty_interest')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $estimatedPenaltyInterest = null;
+
+    /**
+     * Customer-facing P&I timing tag for BACK_FILING rows, e.g. 'Paid with return' or 'State bills you later'.
+     *
+     * @var ?string $penaltyInterestRemittanceTag
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('penalty_interest_remittance_tag')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $penaltyInterestRemittanceTag = null;
 
     /**
      * Category of filing. Common values:
      *
      *                                     REGULAR (standard periodic filing),
-     *                                     PREPAYMENT (prepayment or estimated tax),
+     *                                     BACK_FILING (past-due period),
      *                                     AMENDMENT (amended return).
+     *                                     Prepayment is ``is_prepayment``, not a category.
      *                                     Different categories can have overlapping periods.
      *
      * @var ?string $filingCategory
@@ -228,6 +355,33 @@ class FilingRead
     #[\Speakeasy\Serializer\Annotation\SerializedName('filing_category')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $filingCategory = null;
+
+    /**
+     * True when this filing is a prepayment obligation. Independent of filing_category so a past-due prepayment can still be BACK_FILING.
+     *
+     * @var ?bool $isPrepayment
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_prepayment')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isPrepayment = null;
+
+    /**
+     * True when this filing is a final return for deregistration. Independent of filing_category — finals stay REGULAR.
+     *
+     * @var ?bool $isFinal
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_final')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isFinal = null;
+
+    /**
+     * True when this filing is a state Retail Delivery Fee return, a separate filing from the state's sales tax return.
+     *
+     * @var ?bool $isRdf
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_rdf')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isRdf = null;
 
     /**
      * The calculated amount for the filing. Defaults to 0.00.
@@ -257,7 +411,7 @@ class FilingRead
     public ?string $amountDiscounts = null;
 
     /**
-     * Discounts applied to the amount.
+     * Fees applied to the filing.
      *
      * @var ?string $amountFees
      */
@@ -284,6 +438,24 @@ class FilingRead
     public ?string $amountTaxCollected = null;
 
     /**
+     * Gross tax the buyer owes on purchases. US use tax, or EU/UK reverse-charge self-assessed VAT. Not net of recoverable VAT. Defaults to 0.00.
+     *
+     * @var ?string $amountUseTax
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount_use_tax')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $amountUseTax = null;
+
+    /**
+     * Input VAT recovered on this filing's purchases. Subtracted from liability; always 0.00 outside EU/UK VAT AP filings.
+     *
+     * @var ?string $amountInputVatRecoverable
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount_input_vat_recoverable')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $amountInputVatRecoverable = null;
+
+    /**
      * Total sales amount during the filing period.
      *
      * @var ?string $amountSales
@@ -291,15 +463,6 @@ class FilingRead
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount_sales')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $amountSales = null;
-
-    /**
-     * Total taxable amount during the filing period.
-     *
-     * @var ?string $totalTaxableSales
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('total_taxable_sales')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $totalTaxableSales = null;
 
     /**
      * Final amount due for the filing.
@@ -352,74 +515,108 @@ class FilingRead
      * @param  \KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
      * @param  string  $id
      * @param  string  $registrationId
-     * @param  string  $filingWebsiteUrl
      * @param  ?\KintsugiTax\SDK\Models\Components\FilingStatusEnum  $status
-     * @param  ?string  $dueDate
-     * @param  ?string  $dateFiled
-     * @param  ?bool  $isManual
-     * @param  ?string  $stateCode
-     * @param  ?string  $stateName
-     * @param  ?string  $jiraIssueKey
-     * @param  ?bool  $autoApproved
-     * @param  ?string  $pausedUntilDate
      * @param  ?string  $filingCategory
-     * @param  ?string  $approvedBy
-     * @param  ?string  $approvedAt
+     * @param  ?bool  $isPrepayment
+     * @param  ?bool  $isFinal
+     * @param  ?\KintsugiTax\SDK\Models\Components\TaxTypeEnum  $taxType
+     * @param  ?bool  $isRdf
      * @param  ?string  $amountCalculated
      * @param  ?string  $amountAdjusted
      * @param  ?string  $amountDiscounts
      * @param  ?string  $amountFees
      * @param  ?string  $amountPenalties
      * @param  ?string  $amountTaxCollected
+     * @param  ?string  $amountUseTax
+     * @param  ?string  $amountInputVatRecoverable
      * @param  ?string  $amountSales
-     * @param  ?string  $totalTaxableSales
      * @param  ?string  $amount
      * @param  ?string  $totalTaxLiability
      * @param  ?int  $transactionCount
      * @param  ?int  $marketplaceTransactionCount
+     * @param  ?string  $taxRemitted
+     * @param  ?string  $filingWebsiteUrl
+     * @param  ?LocalDate  $dueDate
+     * @param  ?LocalDate  $dateFiled
+     * @param  ?bool  $isManual
+     * @param  ?string  $stateCode
+     * @param  ?string  $stateName
+     * @param  ?bool  $autoApproved
+     * @param  ?LocalDate  $pausedUntilDate
+     * @param  ?string  $assistanceTicketId
+     * @param  ?string  $approvedBy
+     * @param  ?\DateTime  $approvedAt
+     * @param  ?string  $issueReason
+     * @param  ?string  $skipReason
+     * @param  ?string  $cancelledReason
+     * @param  ?string  $totalTaxableSales
+     * @param  ?int  $estimatedLineCount
      * @param  ?string  $internalNotes
      * @param  ?string  $recentDetailsReportLink
-     * @param  ?string  $taxRemitted
+     * @param  ?string  $originalTaxRemitted
      * @param  ?string  $returnConfirmationId
      * @param  ?string  $paymentConfirmationId
      * @param  ?bool  $blockApproval
      * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $currency
+     * @param  ?string  $filingFrequency
+     * @param  ?string  $ossType
+     * @param  ?\KintsugiTax\SDK\Models\Components\QuarterlyPrepayBalanceDisplay  $quarterlyPrepayBalance
+     * @param  ?\KintsugiTax\SDK\Models\Components\CaMayPrepaymentDisplay  $caMayPrepayment
+     * @param  ?string  $estimatedPenaltyInterest
+     * @param  ?string  $penaltyInterestRemittanceTag
      * @phpstan-pure
      */
-    public function __construct(LocalDate $startDate, LocalDate $endDate, CountryCodeEnum $countryCode, string $id, string $registrationId, string $filingWebsiteUrl, ?FilingStatusEnum $status = null, ?string $dueDate = null, ?string $dateFiled = null, ?bool $isManual = null, ?string $stateCode = null, ?string $stateName = null, ?string $jiraIssueKey = null, ?string $pausedUntilDate = null, ?string $approvedBy = null, ?string $approvedAt = null, ?string $internalNotes = null, ?string $recentDetailsReportLink = null, ?string $returnConfirmationId = null, ?string $paymentConfirmationId = null, ?bool $blockApproval = null, ?CurrencyEnum $currency = null, ?bool $autoApproved = false, ?string $filingCategory = 'REGULAR', ?string $amountCalculated = '0.00', ?string $amountAdjusted = '0.00', ?string $amountDiscounts = '0.00', ?string $amountFees = '0.00', ?string $amountPenalties = '0.00', ?string $amountTaxCollected = '0.00', ?string $amountSales = '0.00', ?string $totalTaxableSales = '0.00', ?string $amount = '0.00', ?string $totalTaxLiability = '0.00', ?int $transactionCount = 0, ?int $marketplaceTransactionCount = 0, ?string $taxRemitted = '0.00')
+    public function __construct(LocalDate $startDate, LocalDate $endDate, CountryCodeEnum $countryCode, string $id, string $registrationId, ?FilingStatusEnum $status = null, ?TaxTypeEnum $taxType = null, ?string $filingWebsiteUrl = null, ?LocalDate $dueDate = null, ?LocalDate $dateFiled = null, ?bool $isManual = null, ?string $stateCode = null, ?string $stateName = null, ?bool $autoApproved = null, ?LocalDate $pausedUntilDate = null, ?string $assistanceTicketId = null, ?string $approvedBy = null, ?\DateTime $approvedAt = null, ?string $issueReason = null, ?string $skipReason = null, ?string $cancelledReason = null, ?string $totalTaxableSales = null, ?int $estimatedLineCount = null, ?string $internalNotes = null, ?string $recentDetailsReportLink = null, ?string $originalTaxRemitted = null, ?string $returnConfirmationId = null, ?string $paymentConfirmationId = null, ?bool $blockApproval = null, ?CurrencyEnum $currency = null, ?string $filingFrequency = null, ?string $ossType = null, ?QuarterlyPrepayBalanceDisplay $quarterlyPrepayBalance = null, ?CaMayPrepaymentDisplay $caMayPrepayment = null, ?string $estimatedPenaltyInterest = null, ?string $penaltyInterestRemittanceTag = null, ?string $filingCategory = 'REGULAR', ?bool $isPrepayment = false, ?bool $isFinal = false, ?bool $isRdf = false, ?string $amountCalculated = '0.00', ?string $amountAdjusted = '0.00', ?string $amountDiscounts = '0.00', ?string $amountFees = '0.00', ?string $amountPenalties = '0.00', ?string $amountTaxCollected = '0.00', ?string $amountUseTax = '0.00', ?string $amountInputVatRecoverable = '0.00', ?string $amountSales = '0.00', ?string $amount = '0.00', ?string $totalTaxLiability = '0.00', ?int $transactionCount = 0, ?int $marketplaceTransactionCount = 0, ?string $taxRemitted = '0.00')
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->countryCode = $countryCode;
         $this->id = $id;
         $this->registrationId = $registrationId;
-        $this->filingWebsiteUrl = $filingWebsiteUrl;
         $this->status = $status;
+        $this->taxType = $taxType;
+        $this->filingWebsiteUrl = $filingWebsiteUrl;
         $this->dueDate = $dueDate;
         $this->dateFiled = $dateFiled;
         $this->isManual = $isManual;
         $this->stateCode = $stateCode;
         $this->stateName = $stateName;
-        $this->jiraIssueKey = $jiraIssueKey;
+        $this->autoApproved = $autoApproved;
         $this->pausedUntilDate = $pausedUntilDate;
+        $this->assistanceTicketId = $assistanceTicketId;
         $this->approvedBy = $approvedBy;
         $this->approvedAt = $approvedAt;
+        $this->issueReason = $issueReason;
+        $this->skipReason = $skipReason;
+        $this->cancelledReason = $cancelledReason;
+        $this->totalTaxableSales = $totalTaxableSales;
+        $this->estimatedLineCount = $estimatedLineCount;
         $this->internalNotes = $internalNotes;
         $this->recentDetailsReportLink = $recentDetailsReportLink;
+        $this->originalTaxRemitted = $originalTaxRemitted;
         $this->returnConfirmationId = $returnConfirmationId;
         $this->paymentConfirmationId = $paymentConfirmationId;
         $this->blockApproval = $blockApproval;
         $this->currency = $currency;
-        $this->autoApproved = $autoApproved;
+        $this->filingFrequency = $filingFrequency;
+        $this->ossType = $ossType;
+        $this->quarterlyPrepayBalance = $quarterlyPrepayBalance;
+        $this->caMayPrepayment = $caMayPrepayment;
+        $this->estimatedPenaltyInterest = $estimatedPenaltyInterest;
+        $this->penaltyInterestRemittanceTag = $penaltyInterestRemittanceTag;
         $this->filingCategory = $filingCategory;
+        $this->isPrepayment = $isPrepayment;
+        $this->isFinal = $isFinal;
+        $this->isRdf = $isRdf;
         $this->amountCalculated = $amountCalculated;
         $this->amountAdjusted = $amountAdjusted;
         $this->amountDiscounts = $amountDiscounts;
         $this->amountFees = $amountFees;
         $this->amountPenalties = $amountPenalties;
         $this->amountTaxCollected = $amountTaxCollected;
+        $this->amountUseTax = $amountUseTax;
+        $this->amountInputVatRecoverable = $amountInputVatRecoverable;
         $this->amountSales = $amountSales;
-        $this->totalTaxableSales = $totalTaxableSales;
         $this->amount = $amount;
         $this->totalTaxLiability = $totalTaxLiability;
         $this->transactionCount = $transactionCount;

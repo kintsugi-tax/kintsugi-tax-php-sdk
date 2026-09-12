@@ -10,6 +10,7 @@ This enum is used to determine if a transaction is exempt from tax.
 | `Product`                 | PRODUCT                   |
 | `Transaction`             | TRANSACTION               |
 | `Customer`                | CUSTOMER                  |
+| `Wholesale`               | WHOLESALE                 |
 | `Region`                  | REGION                    |
 | `ReverseCharge`           | REVERSE_CHARGE            |
 | `ZeroRateTax`             | ZERO_RATE_TAX             |

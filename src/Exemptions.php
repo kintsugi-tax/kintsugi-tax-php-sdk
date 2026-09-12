@@ -49,27 +49,36 @@ class Exemptions
     }
 
     /**
-     * Create Exemption
+     * Create exemption
      *
      * The Create Exemption API allows you to create a new exemption record.
      *     This includes defining details such as exemption type, jurisdiction,
      *     Country, State, validity dates, etc.
      *
-     * @param  \KintsugiTax\SDK\Models\Components\ExemptionCreate  $request
+     * @param  \KintsugiTax\SDK\Models\Components\ExemptionCreate  $exemptionCreate
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\CreateExemptionV1ExemptionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function create(Components\ExemptionCreate $request, ?Options $options = null): Operations\CreateExemptionV1ExemptionsPostResponse
+    public function create(Components\ExemptionCreate $exemptionCreate, ?string $xOrganizationId = null, ?Options $options = null): Operations\CreateExemptionV1ExemptionsPostResponse
     {
+        $request = new Operations\CreateExemptionV1ExemptionsPostRequest(
+            xOrganizationId: $xOrganizationId,
+            exemptionCreate: $exemptionCreate,
+        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/exemptions');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'exemptionCreate', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
@@ -154,7 +163,7 @@ class Exemptions
     }
 
     /**
-     * Get Exemption By Id
+     * Get exemption by id
      *
      * The Get Exemption By ID API retrieves a specific exemption record by
      *     its unique ID. This API is useful for retrieving detailed information
@@ -162,18 +171,24 @@ class Exemptions
      *     customer, organisation id, status, etc.
      *
      * @param  string  $exemptionId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\GetExemptionByIdV1ExemptionsExemptionIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getById(string $exemptionId, ?Options $options = null): Operations\GetExemptionByIdV1ExemptionsExemptionIdGetResponse
+    public function getById(string $exemptionId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetExemptionByIdV1ExemptionsExemptionIdGetResponse
     {
         $request = new Operations\GetExemptionByIdV1ExemptionsExemptionIdGetRequest(
             exemptionId: $exemptionId,
+            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/exemptions/{exemption_id}', Operations\GetExemptionByIdV1ExemptionsExemptionIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -258,15 +273,15 @@ class Exemptions
     }
 
     /**
-     * Get Exemptions
+     * Get exemptions
      *
      * Retrieve a list of exemptions based on filters.
      *
-     * @param  ?\KintsugiTax\SDK\Models\Operations\GetExemptionsV1ExemptionsGetRequest  $request
+     * @param  \KintsugiTax\SDK\Models\Operations\GetExemptionsV1ExemptionsGetRequest  $request
      * @return \KintsugiTax\SDK\Models\Operations\GetExemptionsV1ExemptionsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(?Operations\GetExemptionsV1ExemptionsGetRequest $request = null, ?Options $options = null): Operations\GetExemptionsV1ExemptionsGetResponse
+    public function list(Operations\GetExemptionsV1ExemptionsGetRequest $request, ?Options $options = null): Operations\GetExemptionsV1ExemptionsGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/exemptions');
@@ -274,6 +289,10 @@ class Exemptions
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetExemptionsV1ExemptionsGetRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -359,7 +378,7 @@ class Exemptions
     }
 
     /**
-     * Upload Exemption Certificate
+     * Upload exemption certificate
      *
      * The Upload Exemption Certificate API allows you
      *     to upload a file attachment (e.g., exemption certificate) for a specific exemption.
@@ -368,13 +387,15 @@ class Exemptions
      *
      * @param  \KintsugiTax\SDK\Models\Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost  $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost
      * @param  string  $exemptionId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function uploadCertificate(Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost, string $exemptionId, ?Options $options = null): Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse
+    public function uploadCertificate(Components\BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost, string $exemptionId, ?string $xOrganizationId = null, ?Options $options = null): Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostResponse
     {
         $request = new Operations\UploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPostRequest(
             exemptionId: $exemptionId,
+            xOrganizationId: $xOrganizationId,
             bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost: $bodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -386,6 +407,10 @@ class Exemptions
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);

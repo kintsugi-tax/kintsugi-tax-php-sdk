@@ -53,12 +53,11 @@ class AddressValidation
      *     and compliant with geographical and postal standards.
      *     The API also adds additional fields, such as county, when possible.
      *
-     * @param  \KintsugiTax\SDK\Models\Operations\SearchV1AddressValidationSearchPostSecurity  $security
      * @param  \KintsugiTax\SDK\Models\Components\AddressBase  $request
      * @return \KintsugiTax\SDK\Models\Operations\SearchV1AddressValidationSearchPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function search(Operations\SearchV1AddressValidationSearchPostSecurity $security, Components\AddressBase $request, ?Options $options = null): Operations\SearchV1AddressValidationSearchPostResponse
+    public function search(Components\AddressBase $request, ?Options $options = null): Operations\SearchV1AddressValidationSearchPostResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/address_validation/search');
@@ -72,18 +71,12 @@ class AddressValidation
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
-        if ($security != null) {
-            $client = Utils\Utils::configureSecurityClient($this->sdkConfiguration->client, $security);
-        } else {
-            $client = $this->sdkConfiguration->client;
-        }
-
-        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'search_v1_address_validation_search_post', null, fn () => $security);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'search_v1_address_validation_search_post', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
-            $httpResponse = $client->send($httpRequest, $httpOptions);
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
         } catch (\GuzzleHttp\Exception\GuzzleException $error) {
             $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
             $httpResponse = $res;
@@ -167,21 +160,30 @@ class AddressValidation
      *     This improves accuracy, increases speed, reduces errors,
      *     and streamlines the data entry process.
      *
-     * @param  \KintsugiTax\SDK\Models\Components\ValidationAddress  $request
+     * @param  \KintsugiTax\SDK\Models\Components\ValidationAddress  $validationAddress
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\SuggestionsV1AddressValidationSuggestionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function suggestions(Components\ValidationAddress $request, ?Options $options = null): Operations\SuggestionsV1AddressValidationSuggestionsPostResponse
+    public function suggestions(Components\ValidationAddress $validationAddress, ?string $xOrganizationId = null, ?Options $options = null): Operations\SuggestionsV1AddressValidationSuggestionsPostResponse
     {
+        $request = new Operations\SuggestionsV1AddressValidationSuggestionsPostRequest(
+            xOrganizationId: $xOrganizationId,
+            validationAddress: $validationAddress,
+        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/address_validation/suggestions');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'validationAddress', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);

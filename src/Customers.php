@@ -46,26 +46,35 @@ class Customers
     }
 
     /**
-     * Create Customer
+     * Create customer
      *
      * The Create Customer API enables the creation of a new customer record with essential
      * details like name, contact information, and address, along with optional metadata.
      *
-     * @param  \KintsugiTax\SDK\Models\Components\CustomerCreate  $request
+     * @param  \KintsugiTax\SDK\Models\Components\CustomerCreate  $customerCreate
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\CreateCustomerV1CustomersPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function create(Components\CustomerCreate $request, ?Options $options = null): Operations\CreateCustomerV1CustomersPostResponse
+    public function create(Components\CustomerCreate $customerCreate, ?string $xOrganizationId = null, ?Options $options = null): Operations\CreateCustomerV1CustomersPostResponse
     {
+        $request = new Operations\CreateCustomerV1CustomersPostRequest(
+            xOrganizationId: $xOrganizationId,
+            customerCreate: $customerCreate,
+        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/customers');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'customerCreate', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
@@ -150,19 +159,21 @@ class Customers
     }
 
     /**
-     * Create Transaction By Customer Id
+     * Create transaction by customer id
      *
      * Create a new transaction for a specific customer.
      *
      * @param  \KintsugiTax\SDK\Models\Components\TransactionCreate  $transactionCreate
      * @param  string  $customerId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function createTransaction(Components\TransactionCreate $transactionCreate, string $customerId, ?Options $options = null): Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse
+    public function createTransaction(Components\TransactionCreate $transactionCreate, string $customerId, ?string $xOrganizationId = null, ?Options $options = null): Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostResponse
     {
         $request = new Operations\CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest(
             customerId: $customerId,
+            xOrganizationId: $xOrganizationId,
             transactionCreate: $transactionCreate,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -174,6 +185,10 @@ class Customers
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
@@ -234,25 +249,31 @@ class Customers
     }
 
     /**
-     * Get Customer By External Id
+     * Get customer by external id
      *
      * The Get Customer By External ID API retrieves the details of a single customer using
      * their external identifier. This endpoint is useful for accessing customer data when only
      * an external ID is available.
      *
      * @param  string  $externalId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getByExternalId(string $externalId, ?Options $options = null): Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse
+    public function getByExternalId(string $externalId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse
     {
         $request = new Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetRequest(
             externalId: $externalId,
+            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/customers/external/{external_id}', Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -313,25 +334,31 @@ class Customers
     }
 
     /**
-     * Get Customer By Id
+     * Get customer by id
      *
      * The Get Customer By ID API retrieves the details of a single customer
      *     using their unique identifier. It returns customer-specific data,
      *     including contact information, address, name and metadata, etc.
      *
      * @param  string  $customerId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getById(string $customerId, ?Options $options = null): Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
+    public function getById(string $customerId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetCustomerByIdV1CustomersCustomerIdGetResponse
     {
         $request = new Operations\GetCustomerByIdV1CustomersCustomerIdGetRequest(
             customerId: $customerId,
+            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/customers/{customer_id}', Operations\GetCustomerByIdV1CustomersCustomerIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -392,17 +419,17 @@ class Customers
     }
 
     /**
-     * Get Customers
+     * Get customers
      *
      * The Get Customers API retrieves
      *     a paginated list of customers based on specified filters.
      *     This API allows searching, filtering by country and state, and sorting the results.
      *
-     * @param  ?\KintsugiTax\SDK\Models\Operations\GetCustomersV1Request  $request
+     * @param  \KintsugiTax\SDK\Models\Operations\GetCustomersV1Request  $request
      * @return \KintsugiTax\SDK\Models\Operations\GetCustomersV1Response
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(?Operations\GetCustomersV1Request $request = null, ?Options $options = null): Operations\GetCustomersV1Response
+    public function list(Operations\GetCustomersV1Request $request, ?Options $options = null): Operations\GetCustomersV1Response
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/customers');
@@ -410,6 +437,10 @@ class Customers
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetCustomersV1Request::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -495,28 +526,41 @@ class Customers
     }
 
     /**
-     * Get Transactions By Customer Id
+     * Get transactions by customer id
      *
-     * Get a list of transactions for a customer by their unique ID.
+     * Get a list of transactions for a customer by their unique ID. When pagination params are provided, this endpoint returns a paginated response. When omitted, it returns the legacy list response format (deprecated).
      *
      * @param  string  $customerId
+     * @param  ?string  $xOrganizationId
+     * @param  ?int  $page
+     * @param  ?int  $size
      * @return \KintsugiTax\SDK\Models\Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getTransactions(string $customerId, ?Options $options = null): Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
+    public function getTransactions(string $customerId, ?string $xOrganizationId = null, ?int $page = null, ?int $size = null, ?Options $options = null): Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse
     {
         $request = new Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest(
             customerId: $customerId,
+            xOrganizationId: $xOrganizationId,
+            page: $page,
+            size: $size,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/customers/{customer_id}/transactions', Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+
+        $qp = Utils\Utils::getQueryParams(Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
         $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_transactions_by_customer_id_v1_customers__customer_id__transactions_get', null, $this->sdkConfiguration->securitySource);
         $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
         $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
         $httpRequest = Utils\Utils::removeHeaders($httpRequest);
         try {
@@ -539,7 +583,7 @@ class Customers
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, 'array<\KintsugiTax\SDK\Models\Components\TransactionRead>', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, 'array<\KintsugiTax\SDK\Models\Components\TransactionRead>|\KintsugiTax\SDK\Models\Components\PageTransactionRead', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
@@ -572,7 +616,7 @@ class Customers
     }
 
     /**
-     * Update Customer
+     * Update customer
      *
      * The Update Customer API allows you to modify an existing customer's
      *     information using their unique identifier,
@@ -580,13 +624,15 @@ class Customers
      *
      * @param  \KintsugiTax\SDK\Models\Components\CustomerUpdate  $customerUpdate
      * @param  string  $customerId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\UpdateCustomerV1CustomersCustomerIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function update(Components\CustomerUpdate $customerUpdate, string $customerId, ?Options $options = null): Operations\UpdateCustomerV1CustomersCustomerIdPutResponse
+    public function update(Components\CustomerUpdate $customerUpdate, string $customerId, ?string $xOrganizationId = null, ?Options $options = null): Operations\UpdateCustomerV1CustomersCustomerIdPutResponse
     {
         $request = new Operations\UpdateCustomerV1CustomersCustomerIdPutRequest(
             customerId: $customerId,
+            xOrganizationId: $xOrganizationId,
             customerUpdate: $customerUpdate,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -598,6 +644,10 @@ class Customers
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);

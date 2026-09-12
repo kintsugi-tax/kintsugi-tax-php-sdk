@@ -15,5 +15,6 @@ enum TransactionTypeEnum: string
     case FullCreditNote = 'FULL_CREDIT_NOTE';
     case PartialCreditNote = 'PARTIAL_CREDIT_NOTE';
     case TaxRefund = 'TAX_REFUND';
+    case TaxCollection = 'TAX_COLLECTION';
     case Archive = 'ARCHIVE';
 }

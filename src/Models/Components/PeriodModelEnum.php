@@ -12,9 +12,11 @@ namespace KintsugiTax\SDK\Models\Components;
 enum PeriodModelEnum: string
 {
     case CurrentOrPrevious = 'CURRENT_OR_PREVIOUS';
+    case CurrentOrTwoPrevious = 'CURRENT_OR_TWO_PREVIOUS';
     case PrecedingYearFromOctober = 'PRECEDING_YEAR_FROM_OCTOBER';
     case CalendarYear = 'CALENDAR_YEAR';
     case Previous12Months = 'PREVIOUS_12_MONTHS';
+    case CurrentOrPrevious12Months = 'CURRENT_OR_PREVIOUS_12_MONTHS';
     case Previous4Quarters = 'PREVIOUS_4_QUARTERS';
     case Previous4QuartersOffset = 'PREVIOUS_4_QUARTERS_OFFSET';
     case PrecedingYear = 'PRECEDING_YEAR';

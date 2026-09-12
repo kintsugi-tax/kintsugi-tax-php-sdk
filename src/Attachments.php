@@ -45,7 +45,7 @@ class Attachments
     }
 
     /**
-     * Get Attachments For Exemption
+     * Get attachments for exemption
      *
      * The Get Attachments for Exemption API retrieves all
      *     attachments associated with a specific exemption.
@@ -53,18 +53,24 @@ class Attachments
      *     like exemption certificates uploaded for a particular exemption record.
      *
      * @param  string  $exemptionId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function get(string $exemptionId, ?Options $options = null): Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse
+    public function get(string $exemptionId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetResponse
     {
         $request = new Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest(
             exemptionId: $exemptionId,
+            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/exemptions/{exemption_id}/attachments', Operations\GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);

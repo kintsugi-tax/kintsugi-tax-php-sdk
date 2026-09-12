@@ -19,4 +19,5 @@ enum TaxItemReturnReasonEnum: string
     case ProductExempt = 'PRODUCT_EXEMPT';
     case FromImport = 'FROM_IMPORT';
     case RuleExcludedInCalculation = 'RULE_EXCLUDED_IN_CALCULATION';
+    case ReverseCharge = 'REVERSE_CHARGE';
 }

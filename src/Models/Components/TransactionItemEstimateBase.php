@@ -22,10 +22,21 @@ class TransactionItemEstimateBase
     /**
      * The total amount of the item.
      *
-     * @var float $amount
+     * @var float|string $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    public float $amount;
+    #[\Speakeasy\Serializer\Annotation\Type('float|string')]
+    public float|string $amount;
+
+    /**
+     * Defaults to 1.0. The quantity of the item.
+     *
+     * @var float|string|null $quantity
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('quantity')]
+    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public float|string|null $quantity = null;
 
     /**
      * A unique identifier for the transaction item.
@@ -106,15 +117,6 @@ class TransactionItemEstimateBase
     public ?string $productCategory = null;
 
     /**
-     * Defaults to 1.0. The quantity of the item.
-     *
-     * @var ?float $quantity
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('quantity')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $quantity = null;
-
-    /**
      * Defaults to false. Indicates whether the item is exempt from tax.
      *
      * @var ?bool $exempt
@@ -124,8 +126,27 @@ class TransactionItemEstimateBase
     public ?bool $exempt = null;
 
     /**
+     * **Beta — not yet available in production.** When it is not enabled for your environment the field is accepted but ignored, and the response echoes `false`.
+     *
+     *
+     * Defaults to false. When true, `amount` is the gross (tax-included) price and the tax is backed out of it rather than added on top; for a taxable line, `taxable_amount` in the response is then the net base.
+     *
+     * When the line is not taxed - exempt, or no tax rule applies in the destination - `taxable_amount` is `0.00` rather than the net base, matching how exempt tax-exclusive lines already behave. Read the net amount as `taxable_amount` when `tax_amount` is non-zero, and as `amount` otherwise.
+     *
+     * This applies to the estimate in this request only. Transactions imported through a connection carry no such flag, so an order quoted here as gross is treated as net when it later syncs, and its recorded tax will be higher than this estimate. Send net amounts on the connection side, or reconcile the difference, until tax-inclusive import support ships.
+     *
+     * @var ?bool $isTaxInclusive
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_tax_inclusive')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isTaxInclusive = null;
+
+    /**
      * @param  \DateTime  $date
-     * @param  float  $amount
+     * @param  float|string  $amount
+     * @param  float|string|null  $quantity
+     * @param  ?bool  $exempt
+     * @param  ?bool  $isTaxInclusive
      * @param  ?string  $externalId
      * @param  ?string  $description
      * @param  ?string  $externalProductId
@@ -134,14 +155,13 @@ class TransactionItemEstimateBase
      * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $productSource
      * @param  ?string  $productSubcategory
      * @param  ?string  $productCategory
-     * @param  ?float  $quantity
-     * @param  ?bool  $exempt
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, float $amount, ?string $externalId = null, ?string $description = null, ?string $externalProductId = null, ?string $productName = null, ?string $productDescription = null, ?SourceEnum $productSource = null, ?string $productSubcategory = null, ?string $productCategory = null, ?float $quantity = 1, ?bool $exempt = false)
+    public function __construct(\DateTime $date, float|string $amount, float|string|null $quantity = null, ?string $externalId = null, ?string $description = null, ?string $externalProductId = null, ?string $productName = null, ?string $productDescription = null, ?SourceEnum $productSource = null, ?string $productSubcategory = null, ?string $productCategory = null, ?bool $exempt = false, ?bool $isTaxInclusive = false)
     {
         $this->date = $date;
         $this->amount = $amount;
+        $this->quantity = $quantity;
         $this->externalId = $externalId;
         $this->description = $description;
         $this->externalProductId = $externalProductId;
@@ -150,7 +170,7 @@ class TransactionItemEstimateBase
         $this->productSource = $productSource;
         $this->productSubcategory = $productSubcategory;
         $this->productCategory = $productCategory;
-        $this->quantity = $quantity;
         $this->exempt = $exempt;
+        $this->isTaxInclusive = $isTaxInclusive;
     }
 }

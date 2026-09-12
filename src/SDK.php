@@ -10,17 +10,19 @@ namespace KintsugiTax\SDK;
 
 
 
-/** SDK */
+/** SDK - Kintsugi Customer API: Publicly documented Kintsugi Customer API endpoints. The source (openapi/_source/openapi-master.json) is the platform spec filtered to the documented customer surface (openapi/customer-endpoints.json); scripts/build-specs.mjs re-applies that filter here. Do not edit by hand. */
 class SDK
 {
     public const SERVERS = [
-        /** Production API server URL */
+        /** Production */
         'https://api.trykintsugi.com',
     ];
 
     public AddressValidation $addressValidation;
 
     public Customers $customers;
+
+    public CustomerTaxRegistration $customerTaxRegistration;
 
     public Exemptions $exemptions;
 
@@ -32,9 +34,9 @@ class SDK
 
     public Registrations $registrations;
 
-    public Transactions $transactions;
-
     public TaxEstimation $taxEstimation;
+
+    public Transactions $transactions;
 
     /**
      * Returns a new instance of the SDK builder used to configure and create the SDK instance.
@@ -54,13 +56,14 @@ class SDK
     ) {
         $this->addressValidation = new AddressValidation($this->sdkConfiguration);
         $this->customers = new Customers($this->sdkConfiguration);
+        $this->customerTaxRegistration = new CustomerTaxRegistration($this->sdkConfiguration);
         $this->exemptions = new Exemptions($this->sdkConfiguration);
         $this->filings = new Filings($this->sdkConfiguration);
         $this->nexus = new Nexus($this->sdkConfiguration);
         $this->products = new Products($this->sdkConfiguration);
         $this->registrations = new Registrations($this->sdkConfiguration);
-        $this->transactions = new Transactions($this->sdkConfiguration);
         $this->taxEstimation = new TaxEstimation($this->sdkConfiguration);
+        $this->transactions = new Transactions($this->sdkConfiguration);
         $this->initHooks();
 
     }

@@ -20,11 +20,21 @@ class DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest
     public string $registrationId;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * @param  string  $registrationId
+     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $registrationId)
+    public function __construct(string $registrationId, ?string $xOrganizationId = null)
     {
         $this->registrationId = $registrationId;
+        $this->xOrganizationId = $xOrganizationId;
     }
 }

@@ -22,3 +22,4 @@ processing.
 | `Archived`              | ARCHIVED                |
 | `NeedsRefetch`          | NEEDS_REFETCH           |
 | `ExcludedInCalculation` | EXCLUDED_IN_CALCULATION |
+| `DeferredFromFiling`    | DEFERRED_FROM_FILING    |

@@ -15,4 +15,7 @@ enum FilingStatusEnum: string
     case Filed = 'FILED';
     case Filing = 'FILING';
     case Paused = 'PAUSED';
+    case Skipped = 'SKIPPED';
+    case Cancelled = 'CANCELLED';
+    case Issue = 'ISSUE';
 }

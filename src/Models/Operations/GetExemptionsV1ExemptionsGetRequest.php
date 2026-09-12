@@ -8,10 +8,19 @@ declare(strict_types=1);
 
 namespace KintsugiTax\SDK\Models\Operations;
 
+use Brick\DateTime\LocalDate;
 use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class GetExemptionsV1ExemptionsGetRequest
 {
+    /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
     /**
      * Search term to filter exemptions by exemption ID, customer name, or customer email
      *
@@ -21,9 +30,17 @@ class GetExemptionsV1ExemptionsGetRequest
     public ?string $searchQuery = null;
 
     /**
+     * Filter exemptions by their status
+     *
+     * @var ?string $statusIn
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status__in')]
+    public ?string $statusIn = null;
+
+    /**
      * Country code in ISO 3166-1 alpha-2 format
      *
-     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum> $countryCode
+     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum|string> $countryCode
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=country_code')]
     public ?array $countryCode = null;
@@ -39,18 +56,18 @@ class GetExemptionsV1ExemptionsGetRequest
     /**
      * Start date for filtering exemptions
      *
-     * @var ?string $startDate
+     * @var ?LocalDate $startDate
      */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=start_date')]
-    public ?string $startDate = null;
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=start_date,dateTimeFormat=Y-m-d')]
+    public ?LocalDate $startDate = null;
 
     /**
      * End date for filtering exemptions
      *
-     * @var ?string $endDate
+     * @var ?LocalDate $endDate
      */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=end_date')]
-    public ?string $endDate = null;
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=end_date,dateTimeFormat=Y-m-d')]
+    public ?LocalDate $endDate = null;
 
     /**
      * Customer ID to filter exemptions
@@ -69,12 +86,12 @@ class GetExemptionsV1ExemptionsGetRequest
     public ?string $transactionId = null;
 
     /**
-     * Filter exemptions by their status
+     * Filter exemptions by customer connection ID (comma-separated)
      *
-     * @var ?string $statusIn
+     * @var ?string $connectionIdIn
      */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status__in')]
-    public ?string $statusIn = null;
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=connection_id__in')]
+    public ?string $connectionIdIn = null;
 
     /**
      * Fields to sort by (comma-separated)
@@ -101,29 +118,33 @@ class GetExemptionsV1ExemptionsGetRequest
     public ?int $size = null;
 
     /**
-     * @param  ?string  $searchQuery
-     * @param  ?string  $statusIn
-     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum>  $countryCode
-     * @param  ?string  $jurisdiction
-     * @param  ?string  $startDate
-     * @param  ?string  $endDate
-     * @param  ?string  $customerId
-     * @param  ?string  $transactionId
-     * @param  ?string  $orderBy
      * @param  ?int  $page
      * @param  ?int  $size
+     * @param  ?string  $xOrganizationId
+     * @param  ?string  $searchQuery
+     * @param  ?string  $statusIn
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum|string>  $countryCode
+     * @param  ?string  $jurisdiction
+     * @param  ?LocalDate  $startDate
+     * @param  ?LocalDate  $endDate
+     * @param  ?string  $customerId
+     * @param  ?string  $transactionId
+     * @param  ?string  $connectionIdIn
+     * @param  ?string  $orderBy
      * @phpstan-pure
      */
-    public function __construct(?string $searchQuery = null, ?array $countryCode = null, ?string $jurisdiction = null, ?string $startDate = null, ?string $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $statusIn = 'ACTIVE,INACTIVE,EXPIRED', ?string $orderBy = 'end_date,FEIN,sales_tax_id,status', ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $xOrganizationId = null, ?string $searchQuery = null, ?string $statusIn = null, ?array $countryCode = null, ?string $jurisdiction = null, ?LocalDate $startDate = null, ?LocalDate $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $connectionIdIn = null, ?string $orderBy = null, ?int $page = 1, ?int $size = 50)
     {
+        $this->xOrganizationId = $xOrganizationId;
         $this->searchQuery = $searchQuery;
+        $this->statusIn = $statusIn;
         $this->countryCode = $countryCode;
         $this->jurisdiction = $jurisdiction;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->customerId = $customerId;
         $this->transactionId = $transactionId;
-        $this->statusIn = $statusIn;
+        $this->connectionIdIn = $connectionIdIn;
         $this->orderBy = $orderBy;
         $this->page = $page;
         $this->size = $size;

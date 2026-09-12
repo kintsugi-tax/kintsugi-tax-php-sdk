@@ -1,0 +1,9 @@
+# CreatePhysicalNexusV1NexusPhysicalNexusPostRequest
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `xOrganizationId`                                                                | *string*                                                                         | :heavy_check_mark:                                                               | The unique identifier for the organization making the request                    | org_12345                                                                        |
+| `physicalNexusCreate`                                                            | [Components\PhysicalNexusCreate](../../Models/Components/PhysicalNexusCreate.md) | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |

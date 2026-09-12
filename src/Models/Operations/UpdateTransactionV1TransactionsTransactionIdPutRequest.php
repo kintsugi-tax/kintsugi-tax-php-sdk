@@ -27,13 +27,23 @@ class UpdateTransactionV1TransactionsTransactionIdPutRequest
     public Components\TransactionUpdate $transactionUpdate;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * @param  string  $transactionId
      * @param  \KintsugiTax\SDK\Models\Components\TransactionUpdate  $transactionUpdate
+     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $transactionId, Components\TransactionUpdate $transactionUpdate)
+    public function __construct(string $transactionId, Components\TransactionUpdate $transactionUpdate, ?string $xOrganizationId = null)
     {
         $this->transactionId = $transactionId;
         $this->transactionUpdate = $transactionUpdate;
+        $this->xOrganizationId = $xOrganizationId;
     }
 }
