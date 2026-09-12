@@ -20,11 +20,21 @@ class GetCustomerByIdV1CustomersCustomerIdGetRequest
     public string $customerId;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * @param  string  $customerId
+     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $customerId)
+    public function __construct(string $customerId, ?string $xOrganizationId = null)
     {
         $this->customerId = $customerId;
+        $this->xOrganizationId = $xOrganizationId;
     }
 }

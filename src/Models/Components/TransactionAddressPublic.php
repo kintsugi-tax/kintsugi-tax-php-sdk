@@ -9,7 +9,7 @@ declare(strict_types=1);
 namespace KintsugiTax\SDK\Models\Components;
 
 
-/** TransactionAddressPublic - Public address class for transaction addresses */
+/** TransactionAddressPublic - API-facing transaction address without internal enrichment fields. */
 class TransactionAddressPublic
 {
     /**
@@ -84,6 +84,7 @@ class TransactionAddressPublic
     public ?string $postalCode = null;
 
     /**
+     * Country code in ISO 3166-1 alpha-2 format
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $country
      */
@@ -102,7 +103,17 @@ class TransactionAddressPublic
     public ?string $fullAddress = null;
 
     /**
+     * If true, city-level tax rates are not applied for this address.
+     *
+     * @var ?bool $isUnincorporated
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_unincorporated')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isUnincorporated = null;
+
+    /**
      * @param  \KintsugiTax\SDK\Models\Components\AddressType  $type
+     * @param  ?bool  $isUnincorporated
      * @param  ?string  $phone
      * @param  ?string  $street1
      * @param  ?string  $street2
@@ -114,7 +125,7 @@ class TransactionAddressPublic
      * @param  ?string  $fullAddress
      * @phpstan-pure
      */
-    public function __construct(AddressType $type, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null)
+    public function __construct(AddressType $type, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?bool $isUnincorporated = false)
     {
         $this->type = $type;
         $this->phone = $phone;
@@ -126,5 +137,6 @@ class TransactionAddressPublic
         $this->postalCode = $postalCode;
         $this->country = $country;
         $this->fullAddress = $fullAddress;
+        $this->isUnincorporated = $isUnincorporated;
     }
 }

@@ -6,9 +6,11 @@
 | Name                            | Value                           |
 | ------------------------------- | ------------------------------- |
 | `CurrentOrPrevious`             | CURRENT_OR_PREVIOUS             |
+| `CurrentOrTwoPrevious`          | CURRENT_OR_TWO_PREVIOUS         |
 | `PrecedingYearFromOctober`      | PRECEDING_YEAR_FROM_OCTOBER     |
 | `CalendarYear`                  | CALENDAR_YEAR                   |
 | `Previous12Months`              | PREVIOUS_12_MONTHS              |
+| `CurrentOrPrevious12Months`     | CURRENT_OR_PREVIOUS_12_MONTHS   |
 | `Previous4Quarters`             | PREVIOUS_4_QUARTERS             |
 | `Previous4QuartersOffset`       | PREVIOUS_4_QUARTERS_OFFSET      |
 | `PrecedingYear`                 | PRECEDING_YEAR                  |

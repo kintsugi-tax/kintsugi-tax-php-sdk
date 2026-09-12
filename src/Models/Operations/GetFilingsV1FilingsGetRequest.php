@@ -8,41 +8,58 @@ declare(strict_types=1);
 
 namespace KintsugiTax\SDK\Models\Operations;
 
+use Brick\DateTime\LocalDate;
 use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class GetFilingsV1FilingsGetRequest
 {
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
+     * Filter filings by status
+     *
+     * @var ?string $statusIn
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status__in')]
+    public ?string $statusIn = null;
+
+    /**
      * Filter filings with a start date greater than or equal to this date.
      *
-     * @var ?string $startDate
+     * @var ?LocalDate $startDate
      */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=start_date')]
-    public ?string $startDate = null;
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=start_date,dateTimeFormat=Y-m-d')]
+    public ?LocalDate $startDate = null;
 
     /**
      * Filter filings with an end date less than or equal to this date.
      *
-     * @var ?string $endDate
+     * @var ?LocalDate $endDate
      */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=end_date')]
-    public ?string $endDate = null;
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=end_date,dateTimeFormat=Y-m-d')]
+    public ?LocalDate $endDate = null;
 
     /**
      * Filter filings filed on or after this date.
      *
-     * @var ?string $dateFiledGte
+     * @var ?LocalDate $dateFiledGte
      */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=date_filed__gte')]
-    public ?string $dateFiledGte = null;
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=date_filed__gte,dateTimeFormat=Y-m-d')]
+    public ?LocalDate $dateFiledGte = null;
 
     /**
      * Filter filings filed on or before this date.
      *
-     * @var ?string $dateFiledLte
+     * @var ?LocalDate $dateFiledLte
      */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=date_filed__lte')]
-    public ?string $dateFiledLte = null;
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=date_filed__lte,dateTimeFormat=Y-m-d')]
+    public ?LocalDate $dateFiledLte = null;
 
     /**
      * Comma-separated list of fields to sort the results.
@@ -63,18 +80,28 @@ class GetFilingsV1FilingsGetRequest
     /**
      * Filter filings by country code in ISO 3166-1 alpha-2 format (e.g., US).
      *
-     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum> $countryCode
+     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum|string> $countryCode
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=country_code')]
     public ?array $countryCode = null;
 
     /**
-     * Filter filings by status
+     * Filter filings by category (e.g., REGULAR, BACK_FILING, AMENDMENT).
      *
-     * @var ?string $statusIn
+     * @var ?string $filingCategoryIn
      */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status__in')]
-    public ?string $statusIn = null;
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=filing_category__in')]
+    public ?string $filingCategoryIn = null;
+
+    /**
+     * Filter filings by tax type. Multiple tax types can be
+     *
+     *         passed, separated by commas (SALES_TAX, USE_TAX, SALES_AND_USE_TAX).
+     *
+     * @var ?string $taxTypeIn
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=tax_type__in')]
+    public ?string $taxTypeIn = null;
 
     /**
      * Page number
@@ -93,20 +120,25 @@ class GetFilingsV1FilingsGetRequest
     public ?int $size = null;
 
     /**
-     * @param  ?string  $statusIn
-     * @param  ?string  $startDate
-     * @param  ?string  $endDate
-     * @param  ?string  $dateFiledGte
-     * @param  ?string  $dateFiledLte
-     * @param  ?string  $orderBy
-     * @param  ?string  $stateCode
-     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum>  $countryCode
      * @param  ?int  $page
      * @param  ?int  $size
+     * @param  ?string  $xOrganizationId
+     * @param  ?string  $statusIn
+     * @param  ?LocalDate  $startDate
+     * @param  ?LocalDate  $endDate
+     * @param  ?LocalDate  $dateFiledGte
+     * @param  ?LocalDate  $dateFiledLte
+     * @param  ?string  $orderBy
+     * @param  ?string  $stateCode
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum|string>  $countryCode
+     * @param  ?string  $filingCategoryIn
+     * @param  ?string  $taxTypeIn
      * @phpstan-pure
      */
-    public function __construct(?string $startDate = null, ?string $endDate = null, ?string $dateFiledGte = null, ?string $dateFiledLte = null, ?string $orderBy = null, ?string $stateCode = null, ?array $countryCode = null, ?string $statusIn = 'FILED,FILING,UNFILED,PAUSED', ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $xOrganizationId = null, ?string $statusIn = null, ?LocalDate $startDate = null, ?LocalDate $endDate = null, ?LocalDate $dateFiledGte = null, ?LocalDate $dateFiledLte = null, ?string $orderBy = null, ?string $stateCode = null, ?array $countryCode = null, ?string $filingCategoryIn = null, ?string $taxTypeIn = null, ?int $page = 1, ?int $size = 50)
     {
+        $this->xOrganizationId = $xOrganizationId;
+        $this->statusIn = $statusIn;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->dateFiledGte = $dateFiledGte;
@@ -114,7 +146,8 @@ class GetFilingsV1FilingsGetRequest
         $this->orderBy = $orderBy;
         $this->stateCode = $stateCode;
         $this->countryCode = $countryCode;
-        $this->statusIn = $statusIn;
+        $this->filingCategoryIn = $filingCategoryIn;
+        $this->taxTypeIn = $taxTypeIn;
         $this->page = $page;
         $this->size = $size;
     }

@@ -16,6 +16,8 @@ enum SourceEnum: string
     case Bunny = 'BUNNY';
     case Chargebee = 'CHARGEBEE';
     case Shopify = 'SHOPIFY';
+    case Shopline = 'SHOPLINE';
+    case Ecwid = 'ECWID';
     case Stripe = 'STRIPE';
     case Amazon = 'AMAZON';
     case Tiktok = 'TIKTOK';
@@ -41,6 +43,7 @@ enum SourceEnum: string
     case Squarespace = 'SQUARESPACE';
     case Woocommerce = 'WOOCOMMERCE';
     case Magento = 'MAGENTO';
+    case Macys = 'MACYS';
     case BillingPlatform = 'BILLING_PLATFORM';
     case Deel = 'DEEL';
     case Rippling = 'RIPPLING';
@@ -71,4 +74,16 @@ enum SourceEnum: string
     case MicrosoftDynamics365 = 'MICROSOFT_DYNAMICS_365';
     case Kickstarter = 'KICKSTARTER';
     case InternalErp = 'INTERNAL_ERP';
+    case Rillet = 'RILLET';
+    case Campfire = 'CAMPFIRE';
+    case KillBill = 'KILL_BILL';
+    case Provision = 'PROVISION';
+    case VertexOSeries = 'VERTEX_O_SERIES';
+    case Checkoutchamp = 'CHECKOUTCHAMP';
+    case Dualentry = 'DUALENTRY';
+    case Odoo = 'ODOO';
+    case BillCom = 'BILL_COM';
+    case IntuitEnterpriseSuite = 'INTUIT_ENTERPRISE_SUITE';
+    case Acumatica = 'ACUMATICA';
+    case Plentyone = 'PLENTYONE';
 }

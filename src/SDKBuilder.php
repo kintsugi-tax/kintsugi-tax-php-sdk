@@ -36,11 +36,14 @@ class SDKBuilder
     /**
      * setSecurity is used to configure the security required for the SDK.
      *
-     * @param  Models\Components\Security  $security
+     * @param  string  $apiKeyHeader
      * @return SDKBuilder
      */
-    public function setSecurity(Models\Components\Security $security): SDKBuilder
+    public function setSecurity(string $apiKeyHeader): SDKBuilder
     {
+        $security = new Models\Components\Security(
+            apiKeyHeader: $apiKeyHeader
+        );
         $this->sdkConfig->securitySource = fn () => $security;
 
         return $this;
@@ -50,12 +53,12 @@ class SDKBuilder
      * setSecuritySource is usd to configure the security required for the SDK.
      * unlike setSecurity, setSecuritySource accepts a closure that will be called to retrieve the security information.
      *
-     * @param  pure-Closure(): Models\Components\Security  $securitySource
+     * @param  pure-Closure(): string  $securitySource
      * @return SDKBuilder
      */
     public function setSecuritySource(\Closure $securitySource): SDKBuilder
     {
-        $this->sdkConfig->securitySource = $securitySource;
+        $this->sdkConfig->securitySource = fn () => new Models\Components\Security(apiKeyHeader: $securitySource());
 
         return $this;
     }

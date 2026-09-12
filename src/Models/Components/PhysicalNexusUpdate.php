@@ -34,11 +34,11 @@ class PhysicalNexusUpdate
      *
      *                                         nexus ends, if applicable (YYYY-MM-DD).
      *
-     * @var ?string $endDate
+     * @var ?LocalDate $endDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('end_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $endDate = null;
+    public ?LocalDate $endDate = null;
 
     /**
      * Primary street address for the physical presence location.
@@ -79,14 +79,14 @@ class PhysicalNexusUpdate
     /**
      * @param  LocalDate  $startDate
      * @param  \KintsugiTax\SDK\Models\Components\PhysicalNexusCategory  $category
-     * @param  ?string  $endDate
+     * @param  ?LocalDate  $endDate
      * @param  ?string  $street1
      * @param  ?string  $street2
      * @param  ?string  $city
      * @param  ?string  $postalCode
      * @phpstan-pure
      */
-    public function __construct(LocalDate $startDate, PhysicalNexusCategory $category, ?string $endDate = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $postalCode = null)
+    public function __construct(LocalDate $startDate, PhysicalNexusCategory $category, ?LocalDate $endDate = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $postalCode = null)
     {
         $this->startDate = $startDate;
         $this->category = $category;

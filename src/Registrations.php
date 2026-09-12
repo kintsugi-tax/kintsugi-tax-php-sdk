@@ -46,26 +46,35 @@ class Registrations
     }
 
     /**
-     * Create Registration
+     * Create registration
      *
      * The Create Registration API allows users to create a new registration
      *     for tracking and managing tax filings efficiently across multiple jurisdictions.
      *
-     * @param  \KintsugiTax\SDK\Models\Components\RegistrationCreatePayload|\KintsugiTax\SDK\Models\Components\OSSRegistrationCreatePayload|\KintsugiTax\SDK\Models\Components\SSTRegistrationCreatePayload  $request
+     * @param  \KintsugiTax\SDK\Models\Components\AlabamaRegistrationPayload|\KintsugiTax\SDK\Models\Components\ArizonaRegistrationPayload|\KintsugiTax\SDK\Models\Components\ArkansasRegistrationPayload|\KintsugiTax\SDK\Models\Components\CaliforniaRegistrationPayload|\KintsugiTax\SDK\Models\Components\ConnecticutRegistrationPayload|\KintsugiTax\SDK\Models\Components\ColoradoRegistrationPayload|\KintsugiTax\SDK\Models\Components\DistrictOfColumbiaRegistrationPayload|\KintsugiTax\SDK\Models\Components\GeorgiaRegistrationPayload|\KintsugiTax\SDK\Models\Components\HawaiiRegistrationPayload|\KintsugiTax\SDK\Models\Components\IdahoRegistrationPayload|\KintsugiTax\SDK\Models\Components\IllinoisRegistrationPayload|\KintsugiTax\SDK\Models\Components\IndianaRegistrationPayload|\KintsugiTax\SDK\Models\Components\IowaRegistrationPayload|\KintsugiTax\SDK\Models\Components\KansasRegistrationPayload|\KintsugiTax\SDK\Models\Components\MassachusettsRegistrationPayload|\KintsugiTax\SDK\Models\Components\MississippiRegistrationPayload|\KintsugiTax\SDK\Models\Components\MichiganRegistrationPayload|\KintsugiTax\SDK\Models\Components\MissouriRegistrationPayload|\KintsugiTax\SDK\Models\Components\TennesseeRegistrationPayload|\KintsugiTax\SDK\Models\Components\TexasRegistrationPayload|\KintsugiTax\SDK\Models\Components\UtahRegistrationPayload|\KintsugiTax\SDK\Models\Components\VermontRegistrationPayload|\KintsugiTax\SDK\Models\Components\VirginiaRegistrationPayload|\KintsugiTax\SDK\Models\Components\WashingtonRegistrationPayload|\KintsugiTax\SDK\Models\Components\WestVirginiaRegistrationPayload|\KintsugiTax\SDK\Models\Components\WisconsinRegistrationPayload|\KintsugiTax\SDK\Models\Components\MaineRegistrationPayload|\KintsugiTax\SDK\Models\Components\MinnesotaRegistrationPayload|\KintsugiTax\SDK\Models\Components\RegistrationCreatePayload|\KintsugiTax\SDK\Models\Components\OSSRegistrationCreatePayload|\KintsugiTax\SDK\Models\Components\SSTRegistrationCreatePayload|\KintsugiTax\SDK\Models\Components\KentuckyRegistrationPayload|\KintsugiTax\SDK\Models\Components\MarylandRegistrationPayload|\KintsugiTax\SDK\Models\Components\NebraskaRegistrationPayload|\KintsugiTax\SDK\Models\Components\NevadaRegistrationPayload|\KintsugiTax\SDK\Models\Components\NewJerseyRegistrationPayload|\KintsugiTax\SDK\Models\Components\NewMexicoRegistrationPayload|\KintsugiTax\SDK\Models\Components\NewYorkRegistrationPayload|\KintsugiTax\SDK\Models\Components\NorthDakotaRegistrationPayload|\KintsugiTax\SDK\Models\Components\SouthCarolinaRegistrationPayload|\KintsugiTax\SDK\Models\Components\OklahomaRegistrationPayload|\KintsugiTax\SDK\Models\Components\LouisianaRegistrationPayload|\KintsugiTax\SDK\Models\Components\OhioRegistrationPayload|\KintsugiTax\SDK\Models\Components\PennsylvaniaRegistrationPayload|\KintsugiTax\SDK\Models\Components\RhodeIslandRegistrationPayload|\KintsugiTax\SDK\Models\Components\SouthDakotaRegistrationPayload|\KintsugiTax\SDK\Models\Components\FloridaRegistrationPayload|\KintsugiTax\SDK\Models\Components\NorthCarolinaRegistrationPayload|\KintsugiTax\SDK\Models\Components\WyomingRegistrationPayload  $requestBody
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\CreateRegistrationV1RegistrationsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function create(Components\RegistrationCreatePayload|Components\OSSRegistrationCreatePayload|Components\SSTRegistrationCreatePayload $request, ?Options $options = null): Operations\CreateRegistrationV1RegistrationsPostResponse
+    public function create(Components\AlabamaRegistrationPayload|Components\ArizonaRegistrationPayload|Components\ArkansasRegistrationPayload|Components\CaliforniaRegistrationPayload|Components\ConnecticutRegistrationPayload|Components\ColoradoRegistrationPayload|Components\DistrictOfColumbiaRegistrationPayload|Components\GeorgiaRegistrationPayload|Components\HawaiiRegistrationPayload|Components\IdahoRegistrationPayload|Components\IllinoisRegistrationPayload|Components\IndianaRegistrationPayload|Components\IowaRegistrationPayload|Components\KansasRegistrationPayload|Components\MassachusettsRegistrationPayload|Components\MississippiRegistrationPayload|Components\MichiganRegistrationPayload|Components\MissouriRegistrationPayload|Components\TennesseeRegistrationPayload|Components\TexasRegistrationPayload|Components\UtahRegistrationPayload|Components\VermontRegistrationPayload|Components\VirginiaRegistrationPayload|Components\WashingtonRegistrationPayload|Components\WestVirginiaRegistrationPayload|Components\WisconsinRegistrationPayload|Components\MaineRegistrationPayload|Components\MinnesotaRegistrationPayload|Components\RegistrationCreatePayload|Components\OSSRegistrationCreatePayload|Components\SSTRegistrationCreatePayload|Components\KentuckyRegistrationPayload|Components\MarylandRegistrationPayload|Components\NebraskaRegistrationPayload|Components\NevadaRegistrationPayload|Components\NewJerseyRegistrationPayload|Components\NewMexicoRegistrationPayload|Components\NewYorkRegistrationPayload|Components\NorthDakotaRegistrationPayload|Components\SouthCarolinaRegistrationPayload|Components\OklahomaRegistrationPayload|Components\LouisianaRegistrationPayload|Components\OhioRegistrationPayload|Components\PennsylvaniaRegistrationPayload|Components\RhodeIslandRegistrationPayload|Components\SouthDakotaRegistrationPayload|Components\FloridaRegistrationPayload|Components\NorthCarolinaRegistrationPayload|Components\WyomingRegistrationPayload $requestBody, ?string $xOrganizationId = null, ?Options $options = null): Operations\CreateRegistrationV1RegistrationsPostResponse
     {
+        $request = new Operations\CreateRegistrationV1RegistrationsPostRequest(
+            xOrganizationId: $xOrganizationId,
+            requestBody: $requestBody,
+        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/registrations');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
@@ -150,23 +159,29 @@ class Registrations
     }
 
     /**
-     * Deregister Registration
+     * Deregister registration
      *
      * Deregister an existing registration.
      *
      * @param  string  $registrationId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function deregister(string $registrationId, ?Options $options = null): Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse
+    public function deregister(string $registrationId, ?string $xOrganizationId = null, ?Options $options = null): Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse
     {
         $request = new Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest(
             registrationId: $registrationId,
+            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/registrations/{registration_id}/deregister', Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
@@ -251,20 +266,194 @@ class Registrations
     }
 
     /**
-     * Get Registration By Id
+     * Get jurisdiction specific fields
+     *
+     * Returns the JSON Schema and UI metadata for a state-specific registration form
+     *
+     * @param  string  $countryCode
+     * @param  string  $stateCode
+     * @param  ?string  $xOrganizationId
+     * @return \KintsugiTax\SDK\Models\Operations\GetJurisdictionSpecificFieldsV1RegistrationsJurisdictionSpecificFieldsGetResponse
+     * @throws \KintsugiTax\SDK\Models\Errors\APIException
+     */
+    public function getJurisdictionSpecificFieldsV1RegistrationsJurisdictionSpecificFieldsGet(string $countryCode, string $stateCode, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetJurisdictionSpecificFieldsV1RegistrationsJurisdictionSpecificFieldsGetResponse
+    {
+        $request = new Operations\GetJurisdictionSpecificFieldsV1RegistrationsJurisdictionSpecificFieldsGetRequest(
+            countryCode: $countryCode,
+            stateCode: $stateCode,
+            xOrganizationId: $xOrganizationId,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/registrations/jurisdiction-specific-fields');
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+
+        $qp = Utils\Utils::getQueryParams(Operations\GetJurisdictionSpecificFieldsV1RegistrationsJurisdictionSpecificFieldsGetRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_jurisdiction_specific_fields_v1_registrations_jurisdiction_specific_fields_get', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\JurisdictionSpecificFieldsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetJurisdictionSpecificFieldsV1RegistrationsJurisdictionSpecificFieldsGetResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    jurisdictionSpecificFieldsResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\HTTPValidationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj->rawResponse = $httpResponse;
+                throw $obj->toException();
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
+     * Get oss countries for registration
+     *
+     * Get all OSS countries for a specific registration. This endpoint returns
+     *     a list of EU countries that are covered by the OSS registration.
+     *
+     * @param  string  $registrationId
+     * @param  ?string  $xOrganizationId
+     * @return \KintsugiTax\SDK\Models\Operations\GetOssCountriesForRegistrationV1RegistrationsRegistrationIdOssCountriesGetResponse
+     * @throws \KintsugiTax\SDK\Models\Errors\APIException
+     */
+    public function getOssCountriesForRegistrationV1RegistrationsRegistrationIdOssCountriesGet(string $registrationId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetOssCountriesForRegistrationV1RegistrationsRegistrationIdOssCountriesGetResponse
+    {
+        $request = new Operations\GetOssCountriesForRegistrationV1RegistrationsRegistrationIdOssCountriesGetRequest(
+            registrationId: $registrationId,
+            xOrganizationId: $xOrganizationId,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/registrations/{registration_id}/oss-countries', Operations\GetOssCountriesForRegistrationV1RegistrationsRegistrationIdOssCountriesGetRequest::class, $request);
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_oss_countries_for_registration_v1_registrations__registration_id__oss_countries_get', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, 'array<\KintsugiTax\SDK\Models\Components\OssRegistrationCountryRead>', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetOssCountriesForRegistrationV1RegistrationsRegistrationIdOssCountriesGetResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    responseGetOssCountriesForRegistrationV1RegistrationsRegistrationIdOssCountriesGet: $obj);
+
+                return $response;
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\HTTPValidationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj->rawResponse = $httpResponse;
+                throw $obj->toException();
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
+     * Get registration by id
      *
      * The Get Registration By ID API retrieves a single registration record
      *     based on its unique identifier.
      *
      * @param  string  $registrationId
+     * @param  ?string  $xOrganizationId
      * @param  ?string  $reveal
      * @return \KintsugiTax\SDK\Models\Operations\GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getById(string $registrationId, ?string $reveal = null, ?Options $options = null): Operations\GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse
+    public function getById(string $registrationId, ?string $xOrganizationId = null, ?string $reveal = null, ?Options $options = null): Operations\GetRegistrationByIdV1RegistrationsRegistrationIdGetResponse
     {
         $request = new Operations\GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest(
             registrationId: $registrationId,
+            xOrganizationId: $xOrganizationId,
             reveal: $reveal,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -273,6 +462,10 @@ class Registrations
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -358,18 +551,18 @@ class Registrations
     }
 
     /**
-     * Get Registrations
+     * Get registrations
      *
      * The Get Registrations API retrieves a
      *     paginated list of registrations.
      *     This API helps in tracking and managing registrations efficiently across multiple
      *     jurisdictions.
      *
-     * @param  ?\KintsugiTax\SDK\Models\Operations\GetRegistrationsV1RegistrationsGetRequest  $request
+     * @param  \KintsugiTax\SDK\Models\Operations\GetRegistrationsV1RegistrationsGetRequest  $request
      * @return \KintsugiTax\SDK\Models\Operations\GetRegistrationsV1RegistrationsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(?Operations\GetRegistrationsV1RegistrationsGetRequest $request = null, ?Options $options = null): Operations\GetRegistrationsV1RegistrationsGetResponse
+    public function list(Operations\GetRegistrationsV1RegistrationsGetRequest $request, ?Options $options = null): Operations\GetRegistrationsV1RegistrationsGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/registrations');
@@ -377,6 +570,10 @@ class Registrations
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetRegistrationsV1RegistrationsGetRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -462,20 +659,108 @@ class Registrations
     }
 
     /**
-     * Update Registration
+     * List registration jurisdictions
+     *
+     * Distinct registration jurisdictions (country + state) for filter dropdowns. Non-SST only. Default status__in matches GET /registrations (all statuses).
+     *
+     * @param  ?string  $xOrganizationId
+     * @param  ?string  $statusIn
+     * @return \KintsugiTax\SDK\Models\Operations\ListRegistrationJurisdictionsV1RegistrationsJurisdictionsGetResponse
+     * @throws \KintsugiTax\SDK\Models\Errors\APIException
+     */
+    public function listRegistrationJurisdictionsV1RegistrationsJurisdictionsGet(?string $xOrganizationId = null, ?string $statusIn = null, ?Options $options = null): Operations\ListRegistrationJurisdictionsV1RegistrationsJurisdictionsGetResponse
+    {
+        $request = new Operations\ListRegistrationJurisdictionsV1RegistrationsJurisdictionsGetRequest(
+            xOrganizationId: $xOrganizationId,
+            statusIn: $statusIn,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/registrations/jurisdictions');
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+
+        $qp = Utils\Utils::getQueryParams(Operations\ListRegistrationJurisdictionsV1RegistrationsJurisdictionsGetRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'list_registration_jurisdictions_v1_registrations_jurisdictions_get', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, 'array<\KintsugiTax\SDK\Models\Components\RegistrationJurisdictionOptionRead>', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\ListRegistrationJurisdictionsV1RegistrationsJurisdictionsGetResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    responseListRegistrationJurisdictionsV1RegistrationsJurisdictionsGet: $obj);
+
+                return $response;
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\HTTPValidationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj->rawResponse = $httpResponse;
+                throw $obj->toException();
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
+     * Update registration
      *
      * The Update Registration API allows you to modify
      *     an existing registration using its unique registration_id.
      *
      * @param  \KintsugiTax\SDK\Models\Components\RegistrationUpdateAPI  $registrationUpdateAPI
      * @param  string  $registrationId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\UpdateRegistrationV1RegistrationsRegistrationIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function update(Components\RegistrationUpdateAPI $registrationUpdateAPI, string $registrationId, ?Options $options = null): Operations\UpdateRegistrationV1RegistrationsRegistrationIdPutResponse
+    public function update(Components\RegistrationUpdateAPI $registrationUpdateAPI, string $registrationId, ?string $xOrganizationId = null, ?Options $options = null): Operations\UpdateRegistrationV1RegistrationsRegistrationIdPutResponse
     {
         $request = new Operations\UpdateRegistrationV1RegistrationsRegistrationIdPutRequest(
             registrationId: $registrationId,
+            xOrganizationId: $xOrganizationId,
             registrationUpdateAPI: $registrationUpdateAPI,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -487,6 +772,10 @@ class Registrations
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
@@ -562,6 +851,96 @@ class Registrations
                 throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['404', '4XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
+     * Upload registration attachment
+     *
+     * Upload an attachment for a specific registration.
+     *
+     * @param  \KintsugiTax\SDK\Models\Components\BodyUploadRegistrationAttachmentV1RegistrationsRegistrationIdAttachmentsPost  $bodyUploadRegistrationAttachmentV1RegistrationsRegistrationIdAttachmentsPost
+     * @param  string  $registrationId
+     * @param  ?string  $xOrganizationId
+     * @return \KintsugiTax\SDK\Models\Operations\UploadRegistrationAttachmentV1RegistrationsRegistrationIdAttachmentsPostResponse
+     * @throws \KintsugiTax\SDK\Models\Errors\APIException
+     */
+    public function uploadRegistrationAttachmentV1RegistrationsRegistrationIdAttachmentsPost(Components\BodyUploadRegistrationAttachmentV1RegistrationsRegistrationIdAttachmentsPost $bodyUploadRegistrationAttachmentV1RegistrationsRegistrationIdAttachmentsPost, string $registrationId, ?string $xOrganizationId = null, ?Options $options = null): Operations\UploadRegistrationAttachmentV1RegistrationsRegistrationIdAttachmentsPostResponse
+    {
+        $request = new Operations\UploadRegistrationAttachmentV1RegistrationsRegistrationIdAttachmentsPostRequest(
+            registrationId: $registrationId,
+            xOrganizationId: $xOrganizationId,
+            bodyUploadRegistrationAttachmentV1RegistrationsRegistrationIdAttachmentsPost: $bodyUploadRegistrationAttachmentV1RegistrationsRegistrationIdAttachmentsPost,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/registrations/{registration_id}/attachments', Operations\UploadRegistrationAttachmentV1RegistrationsRegistrationIdAttachmentsPostRequest::class, $request);
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'bodyUploadRegistrationAttachmentV1RegistrationsRegistrationIdAttachmentsPost', 'multipart');
+        if ($body === null) {
+            throw new \Exception('Request body is required');
+        }
+        $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'upload_registration_attachment_v1_registrations__registration_id__attachments_post', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\Attachment', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\UploadRegistrationAttachmentV1RegistrationsRegistrationIdAttachmentsPostResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    attachment: $obj);
+
+                return $response;
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\HTTPValidationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj->rawResponse = $httpResponse;
+                throw $obj->toException();
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
             throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
         } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
             throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);

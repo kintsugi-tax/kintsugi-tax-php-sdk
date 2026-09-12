@@ -31,14 +31,32 @@ class GetRegistrationsV1RegistrationsGetRequest
     public ?string $filingFrequencyIn = null;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * Filter registrations by country code in ISO 3166-1 alpha-2 format
      *
      *         (e.g., US, CA).
      *
-     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum> $countryCodeIn
+     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum|string> $countryCodeIn
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=country_code__in')]
     public ?array $countryCodeIn = null;
+
+    /**
+     * Filter registrations by tax type. Multiple tax types can be
+     *
+     *         passed, separated by commas (SALES_TAX, USE_TAX, SALES_AND_USE_TAX).
+     *
+     * @var ?string $taxTypeIn
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=tax_type__in')]
+    public ?string $taxTypeIn = null;
 
     /**
      * Order results by specified fields (comma-separated)
@@ -78,17 +96,21 @@ class GetRegistrationsV1RegistrationsGetRequest
      * @param  ?string  $statusIn
      * @param  ?string  $stateCode
      * @param  ?string  $filingFrequencyIn
-     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum>  $countryCodeIn
-     * @param  ?string  $orderBy
      * @param  ?int  $page
      * @param  ?int  $size
+     * @param  ?string  $xOrganizationId
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum|string>  $countryCodeIn
+     * @param  ?string  $taxTypeIn
+     * @param  ?string  $orderBy
      * @phpstan-pure
      */
-    public function __construct(?string $stateCode = null, ?string $filingFrequencyIn = null, ?array $countryCodeIn = null, ?string $orderBy = null, ?string $statusIn = 'REGISTERED,PROCESSING,UNREGISTERED,DEREGISTERING,DEREGISTERED,VALIDATING,AWAITING_CLARIFICATION', ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $stateCode = null, ?string $filingFrequencyIn = null, ?string $xOrganizationId = null, ?array $countryCodeIn = null, ?string $taxTypeIn = null, ?string $orderBy = null, ?string $statusIn = 'REGISTERED,PROCESSING,UNREGISTERED,DEREGISTERING,DEREGISTERED,CANCELLED,VALIDATING,AWAITING_CLARIFICATION,SELF_MANAGED', ?int $page = 1, ?int $size = 50)
     {
         $this->stateCode = $stateCode;
         $this->filingFrequencyIn = $filingFrequencyIn;
+        $this->xOrganizationId = $xOrganizationId;
         $this->countryCodeIn = $countryCodeIn;
+        $this->taxTypeIn = $taxTypeIn;
         $this->orderBy = $orderBy;
         $this->statusIn = $statusIn;
         $this->page = $page;

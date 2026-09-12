@@ -13,6 +13,14 @@ use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class GetCustomersV1Request
 {
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * Search term to filter customers by name or other details
      *
      * @var ?string $searchQuery
@@ -23,7 +31,7 @@ class GetCustomersV1Request
     /**
      * Country code in ISO 3166-1 alpha-2 format (e.g., 'US')
      *
-     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum> $country
+     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum|string> $country
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=country')]
     public ?array $country = null;
@@ -43,6 +51,14 @@ class GetCustomersV1Request
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=source__in')]
     public ?string $sourceIn = null;
+
+    /**
+     * Filter customers by connection ID (comma-separated)
+     *
+     * @var ?string $connectionIdIn
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=connection_id__in')]
+    public ?string $connectionIdIn = null;
 
     /**
      * Comma-separated list of fields to sort results by.
@@ -69,21 +85,25 @@ class GetCustomersV1Request
     public ?int $size = null;
 
     /**
-     * @param  ?string  $searchQuery
-     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum>  $country
-     * @param  ?string  $state
-     * @param  ?string  $sourceIn
-     * @param  ?string  $orderBy
      * @param  ?int  $page
      * @param  ?int  $size
+     * @param  ?string  $xOrganizationId
+     * @param  ?string  $searchQuery
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum|string>  $country
+     * @param  ?string  $state
+     * @param  ?string  $sourceIn
+     * @param  ?string  $connectionIdIn
+     * @param  ?string  $orderBy
      * @phpstan-pure
      */
-    public function __construct(?string $searchQuery = null, ?array $country = null, ?string $state = null, ?string $sourceIn = null, ?string $orderBy = null, ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $xOrganizationId = null, ?string $searchQuery = null, ?array $country = null, ?string $state = null, ?string $sourceIn = null, ?string $connectionIdIn = null, ?string $orderBy = null, ?int $page = 1, ?int $size = 50)
     {
+        $this->xOrganizationId = $xOrganizationId;
         $this->searchQuery = $searchQuery;
         $this->country = $country;
         $this->state = $state;
         $this->sourceIn = $sourceIn;
+        $this->connectionIdIn = $connectionIdIn;
         $this->orderBy = $orderBy;
         $this->page = $page;
         $this->size = $size;

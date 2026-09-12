@@ -19,6 +19,24 @@ class CustomerBaseBase
     public string $organizationId;
 
     /**
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\StatusEnum $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\StatusEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?StatusEnum $status = null;
+
+    /**
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\AddressStatus $addressStatus
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?AddressStatus $addressStatus = null;
+
+    /**
      * Phone number associated with the address.
      *
      * @var ?string $phone
@@ -82,6 +100,7 @@ class CustomerBaseBase
     public ?string $postalCode = null;
 
     /**
+     * Country code in ISO 3166-1 alpha-2 format
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $country
      */
@@ -118,15 +137,6 @@ class CustomerBaseBase
     public ?string $externalId = null;
 
     /**
-     *
-     * @var ?\KintsugiTax\SDK\Models\Components\StatusEnum $status
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\StatusEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?StatusEnum $status = null;
-
-    /**
      * Email address of the customer.
      *
      * @var ?string $email
@@ -136,15 +146,16 @@ class CustomerBaseBase
     public ?string $email = null;
 
     /**
+     * Registered or legal business name of the customer.
      *
-     * @var ?\KintsugiTax\SDK\Models\Components\AddressStatus $addressStatus
+     * @var ?string $companyName
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('company_name')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?AddressStatus $addressStatus = null;
+    public ?string $companyName = null;
 
     /**
+     * Source of the customer information (e.g., BIGCOMMERCE, STRIPE, etc.).
      *
      * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $source
      */
@@ -189,6 +200,9 @@ class CustomerBaseBase
 
     /**
      * @param  string  $organizationId
+     * @param  ?\KintsugiTax\SDK\Models\Components\StatusEnum  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\AddressStatus  $addressStatus
+     * @param  ?bool  $isTestData
      * @param  ?string  $phone
      * @param  ?string  $street1
      * @param  ?string  $street2
@@ -200,19 +214,19 @@ class CustomerBaseBase
      * @param  ?string  $fullAddress
      * @param  ?string  $name
      * @param  ?string  $externalId
-     * @param  ?\KintsugiTax\SDK\Models\Components\StatusEnum  $status
      * @param  ?string  $email
-     * @param  ?\KintsugiTax\SDK\Models\Components\AddressStatus  $addressStatus
+     * @param  ?string  $companyName
      * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
      * @param  ?string  $registrationNumber
      * @param  ?string  $connectionId
      * @param  ?string  $enrichedFields
-     * @param  ?bool  $isTestData
      * @phpstan-pure
      */
-    public function __construct(string $organizationId, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?string $externalId = null, ?StatusEnum $status = null, ?string $email = null, ?AddressStatus $addressStatus = null, ?SourceEnum $source = null, ?string $registrationNumber = null, ?string $connectionId = null, ?string $enrichedFields = null, ?bool $isTestData = false)
+    public function __construct(string $organizationId, ?StatusEnum $status = null, ?AddressStatus $addressStatus = null, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?string $externalId = null, ?string $email = null, ?string $companyName = null, ?SourceEnum $source = null, ?string $registrationNumber = null, ?string $connectionId = null, ?string $enrichedFields = null, ?bool $isTestData = false)
     {
         $this->organizationId = $organizationId;
+        $this->status = $status;
+        $this->addressStatus = $addressStatus;
         $this->phone = $phone;
         $this->street1 = $street1;
         $this->street2 = $street2;
@@ -224,9 +238,8 @@ class CustomerBaseBase
         $this->fullAddress = $fullAddress;
         $this->name = $name;
         $this->externalId = $externalId;
-        $this->status = $status;
         $this->email = $email;
-        $this->addressStatus = $addressStatus;
+        $this->companyName = $companyName;
         $this->source = $source;
         $this->registrationNumber = $registrationNumber;
         $this->connectionId = $connectionId;

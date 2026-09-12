@@ -35,22 +35,22 @@ class GetProductCategoriesV1ProductsCategoriesGetResponse
     /**
      * Successfully retrieved product categories
      *
-     * @var ?\KintsugiTax\SDK\Models\Components\ProductCategories $productCategories
+     * @var ?\KintsugiTax\SDK\Models\Components\ProductCategoryRead $productCategoryRead
      */
-    public ?Components\ProductCategories $productCategories = null;
+    public ?Components\ProductCategoryRead $productCategoryRead = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\KintsugiTax\SDK\Models\Components\ProductCategories  $productCategories
+     * @param  ?\KintsugiTax\SDK\Models\Components\ProductCategoryRead  $productCategoryRead
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\ProductCategories $productCategories = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\ProductCategoryRead $productCategoryRead = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->productCategories = $productCategories;
+        $this->productCategoryRead = $productCategoryRead;
     }
 }

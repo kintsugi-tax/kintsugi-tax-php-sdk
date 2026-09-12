@@ -19,7 +19,6 @@ class TaxItemEstimate
     public string $name;
 
     /**
-     * We use this to understand the response from get_tax_items
      *
      * @var ?\KintsugiTax\SDK\Models\Components\TaxItemReturnReasonEnum $exemptReason
      */

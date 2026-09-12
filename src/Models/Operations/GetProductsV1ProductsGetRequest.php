@@ -12,6 +12,14 @@ use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class GetProductsV1ProductsGetRequest
 {
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * Search term to filter products by name or other details.
      *
      * @var ?string $query
@@ -52,6 +60,14 @@ class GetProductsV1ProductsGetRequest
     public ?string $sourceIn = null;
 
     /**
+     * Filter products by connection ID (comma-separated). Use __direct_api__ for products without a connection.
+     *
+     * @var ?string $connectionIdIn
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=connection_id__in')]
+    public ?string $connectionIdIn = null;
+
+    /**
      * Order results by specified fields (comma-separated)
      *
      * @var ?string $orderBy
@@ -76,23 +92,27 @@ class GetProductsV1ProductsGetRequest
     public ?int $size = null;
 
     /**
+     * @param  ?int  $page
+     * @param  ?int  $size
+     * @param  ?string  $xOrganizationId
      * @param  ?string  $query
      * @param  ?string  $statusIn
      * @param  ?string  $productCategoryIn
      * @param  ?string  $productSubcategoryIn
      * @param  ?string  $sourceIn
+     * @param  ?string  $connectionIdIn
      * @param  ?string  $orderBy
-     * @param  ?int  $page
-     * @param  ?int  $size
      * @phpstan-pure
      */
-    public function __construct(?string $query = null, ?string $statusIn = null, ?string $productCategoryIn = null, ?string $productSubcategoryIn = null, ?string $sourceIn = null, ?string $orderBy = null, ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $xOrganizationId = null, ?string $query = null, ?string $statusIn = null, ?string $productCategoryIn = null, ?string $productSubcategoryIn = null, ?string $sourceIn = null, ?string $connectionIdIn = null, ?string $orderBy = null, ?int $page = 1, ?int $size = 50)
     {
+        $this->xOrganizationId = $xOrganizationId;
         $this->query = $query;
         $this->statusIn = $statusIn;
         $this->productCategoryIn = $productCategoryIn;
         $this->productSubcategoryIn = $productSubcategoryIn;
         $this->sourceIn = $sourceIn;
+        $this->connectionIdIn = $connectionIdIn;
         $this->orderBy = $orderBy;
         $this->page = $page;
         $this->size = $size;

@@ -20,6 +20,15 @@ class TransactionAddressBuilder
     public AddressType $type;
 
     /**
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\AddressStatus $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?AddressStatus $status = null;
+
+    /**
      * Phone number associated with the address.
      *
      * @var ?string $phone
@@ -83,6 +92,7 @@ class TransactionAddressBuilder
     public ?string $postalCode = null;
 
     /**
+     * Country code in ISO 3166-1 alpha-2 format
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $country
      */
@@ -111,15 +121,6 @@ class TransactionAddressBuilder
 
     /**
      *
-     * @var ?\KintsugiTax\SDK\Models\Components\AddressStatus $status
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?AddressStatus $status = null;
-
-    /**
-     *
      * @var ?string $organizationId
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
@@ -127,7 +128,18 @@ class TransactionAddressBuilder
     public ?string $organizationId = null;
 
     /**
+     * If true, city-level tax rates are not applied for this address.
+     *
+     * @var ?bool $isUnincorporated
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_unincorporated')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isUnincorporated = null;
+
+    /**
      * @param  \KintsugiTax\SDK\Models\Components\AddressType  $type
+     * @param  ?bool  $isUnincorporated
+     * @param  ?\KintsugiTax\SDK\Models\Components\AddressStatus  $status
      * @param  ?string  $phone
      * @param  ?string  $street1
      * @param  ?string  $street2
@@ -138,13 +150,13 @@ class TransactionAddressBuilder
      * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $country
      * @param  ?string  $fullAddress
      * @param  ?string  $enrichedFields
-     * @param  ?\KintsugiTax\SDK\Models\Components\AddressStatus  $status
      * @param  ?string  $organizationId
      * @phpstan-pure
      */
-    public function __construct(AddressType $type, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $enrichedFields = null, ?AddressStatus $status = null, ?string $organizationId = null)
+    public function __construct(AddressType $type, ?AddressStatus $status = null, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $enrichedFields = null, ?string $organizationId = null, ?bool $isUnincorporated = false)
     {
         $this->type = $type;
+        $this->status = $status;
         $this->phone = $phone;
         $this->street1 = $street1;
         $this->street2 = $street2;
@@ -155,7 +167,7 @@ class TransactionAddressBuilder
         $this->country = $country;
         $this->fullAddress = $fullAddress;
         $this->enrichedFields = $enrichedFields;
-        $this->status = $status;
         $this->organizationId = $organizationId;
+        $this->isUnincorporated = $isUnincorporated;
     }
 }

@@ -16,6 +16,8 @@ enum RegistrationStatusEnum: string
     case Unregistered = 'UNREGISTERED';
     case Deregistering = 'DEREGISTERING';
     case Deregistered = 'DEREGISTERED';
+    case Cancelled = 'CANCELLED';
     case Validating = 'VALIDATING';
     case AwaitingClarification = 'AWAITING_CLARIFICATION';
+    case SelfManaged = 'SELF_MANAGED';
 }

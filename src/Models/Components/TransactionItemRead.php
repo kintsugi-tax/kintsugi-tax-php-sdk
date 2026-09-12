@@ -12,15 +12,6 @@ namespace KintsugiTax\SDK\Models\Components;
 class TransactionItemRead
 {
     /**
-     * Unique identifier of the organization. This field is deprecated, and should no longer be used. The value is populated through the 'x-organization-id' header.
-     *
-     * @var string $organizationId
-     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
-    public string $organizationId;
-
-    /**
      * Date/time of item.
      *
      * @var \DateTime $date
@@ -52,6 +43,15 @@ class TransactionItemRead
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
     #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemRead>')]
     public array $taxItems;
+
+    /**
+     * Unique identifier of the organization. This field is deprecated, and should no longer be used. The value is populated through the 'x-organization-id' header.
+     *
+     * @var ?string $organizationId
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
+    public ?string $organizationId;
 
     /**
      * External item identifier.
@@ -108,6 +108,7 @@ class TransactionItemRead
     public ?string $productDescription = null;
 
     /**
+     * Original currency code.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $originalCurrency
      */
@@ -117,6 +118,7 @@ class TransactionItemRead
     public ?CurrencyEnum $originalCurrency = null;
 
     /**
+     * Destination currency code.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $destinationCurrency
      */
@@ -180,7 +182,7 @@ class TransactionItemRead
     public ?string $convertedSubtotal = null;
 
     /**
-     * This enum is used to determine if a transaction is exempt from tax.
+     * Tax exemption status.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum $taxExemption
      */
@@ -206,6 +208,15 @@ class TransactionItemRead
     #[\Speakeasy\Serializer\Annotation\SerializedName('subtotal')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $subtotal = null;
+
+    /**
+     * Input VAT recoverability 0-100. Blank means 100%.
+     *
+     * @var ?string $recoverabilityPercent
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('recoverability_percent')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $recoverabilityPercent = null;
 
     /**
      * Quantity of item.
@@ -280,23 +291,35 @@ class TransactionItemRead
     public ?bool $exempt = null;
 
     /**
-     * @param  string  $organizationId
+     * Whether this purchase line is reverse-charged.
+     *
+     * @var ?bool $isReverseChargeSelfAccounted
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_reverse_charge_self_accounted')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isReverseChargeSelfAccounted = null;
+
+    /**
      * @param  \DateTime  $date
      * @param  string  $externalProductId
      * @param  string  $id
      * @param  array<\KintsugiTax\SDK\Models\Components\TaxItemRead>  $taxItems
-     * @param  ?string  $externalId
-     * @param  ?string  $description
-     * @param  ?string  $product
-     * @param  ?string  $productId
-     * @param  ?string  $productName
-     * @param  ?string  $productDescription
+     * @param  ?string  $organizationId
      * @param  ?string  $quantity
      * @param  ?string  $amount
      * @param  ?string  $taxAmountImported
      * @param  ?string  $taxRateImported
      * @param  ?string  $taxAmountCalculated
      * @param  ?string  $taxRateCalculated
+     * @param  ?string  $taxableAmount
+     * @param  ?bool  $exempt
+     * @param  ?bool  $isReverseChargeSelfAccounted
+     * @param  ?string  $externalId
+     * @param  ?string  $description
+     * @param  ?string  $product
+     * @param  ?string  $productId
+     * @param  ?string  $productName
+     * @param  ?string  $productDescription
      * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $originalCurrency
      * @param  ?\KintsugiTax\SDK\Models\Components\CurrencyEnum  $destinationCurrency
      * @param  ?string  $convertedAmount
@@ -305,20 +328,19 @@ class TransactionItemRead
      * @param  ?string  $convertedTaxAmountCalculated
      * @param  ?string  $convertedTotalDiscount
      * @param  ?string  $convertedSubtotal
-     * @param  ?string  $taxableAmount
      * @param  ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum  $taxExemption
-     * @param  ?bool  $exempt
      * @param  ?string  $totalDiscount
      * @param  ?string  $subtotal
+     * @param  ?string  $recoverabilityPercent
      * @phpstan-pure
      */
-    public function __construct(string $organizationId, \DateTime $date, string $externalProductId, string $id, array $taxItems, ?string $externalId = null, ?string $description = null, ?string $product = null, ?string $productId = null, ?string $productName = null, ?string $productDescription = null, ?CurrencyEnum $originalCurrency = null, ?CurrencyEnum $destinationCurrency = null, ?string $convertedAmount = null, ?string $convertedTaxableAmount = null, ?string $convertedTaxAmountImported = null, ?string $convertedTaxAmountCalculated = null, ?string $convertedTotalDiscount = null, ?string $convertedSubtotal = null, ?TaxExemptionEnum $taxExemption = null, ?string $totalDiscount = null, ?string $subtotal = null, ?string $quantity = '1.0', ?string $amount = '0.00', ?string $taxAmountImported = '0.00', ?string $taxRateImported = '0.00', ?string $taxAmountCalculated = '0.00', ?string $taxRateCalculated = '0.00', ?string $taxableAmount = '0.00', ?bool $exempt = false)
+    public function __construct(\DateTime $date, string $externalProductId, string $id, array $taxItems, ?string $organizationId = null, ?string $externalId = null, ?string $description = null, ?string $product = null, ?string $productId = null, ?string $productName = null, ?string $productDescription = null, ?CurrencyEnum $originalCurrency = null, ?CurrencyEnum $destinationCurrency = null, ?string $convertedAmount = null, ?string $convertedTaxableAmount = null, ?string $convertedTaxAmountImported = null, ?string $convertedTaxAmountCalculated = null, ?string $convertedTotalDiscount = null, ?string $convertedSubtotal = null, ?TaxExemptionEnum $taxExemption = null, ?string $totalDiscount = null, ?string $subtotal = null, ?string $recoverabilityPercent = null, ?string $quantity = '1.0', ?string $amount = '0.00', ?string $taxAmountImported = '0.00', ?string $taxRateImported = '0.00', ?string $taxAmountCalculated = '0.00', ?string $taxRateCalculated = '0.00', ?string $taxableAmount = '0.00', ?bool $exempt = false, ?bool $isReverseChargeSelfAccounted = false)
     {
-        $this->organizationId = $organizationId;
         $this->date = $date;
         $this->externalProductId = $externalProductId;
         $this->id = $id;
         $this->taxItems = $taxItems;
+        $this->organizationId = $organizationId;
         $this->externalId = $externalId;
         $this->description = $description;
         $this->product = $product;
@@ -336,6 +358,7 @@ class TransactionItemRead
         $this->taxExemption = $taxExemption;
         $this->totalDiscount = $totalDiscount;
         $this->subtotal = $subtotal;
+        $this->recoverabilityPercent = $recoverabilityPercent;
         $this->quantity = $quantity;
         $this->amount = $amount;
         $this->taxAmountImported = $taxAmountImported;
@@ -344,5 +367,6 @@ class TransactionItemRead
         $this->taxRateCalculated = $taxRateCalculated;
         $this->taxableAmount = $taxableAmount;
         $this->exempt = $exempt;
+        $this->isReverseChargeSelfAccounted = $isReverseChargeSelfAccounted;
     }
 }

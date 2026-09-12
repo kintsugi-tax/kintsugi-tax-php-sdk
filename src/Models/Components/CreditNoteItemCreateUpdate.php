@@ -38,18 +38,30 @@ class CreditNoteItemCreateUpdate
     /**
      * Number of units or amount of the product being credited.
      *
-     * @var float $quantity
+     * @var float|string $quantity
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('quantity')]
-    public float $quantity;
+    #[\Speakeasy\Serializer\Annotation\Type('float|string')]
+    public float|string $quantity;
 
     /**
      * Total monetary value of the credit note item before taxes.
      *
-     * @var float $amount
+     * @var float|string $amount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount')]
-    public float $amount;
+    #[\Speakeasy\Serializer\Annotation\Type('float|string')]
+    public float|string $amount;
+
+    /**
+     * Detailed breakdown of individual tax components applied to this item.
+     *
+     * @var ?array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder> $taxItems
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $taxItems = null;
 
     /**
      * Brief explanation or details about the credit note item.
@@ -63,32 +75,35 @@ class CreditNoteItemCreateUpdate
     /**
      * Pre-calculated tax amount for the item, if provided by the external system.
      *
-     * @var ?float $taxAmountImported
+     * @var float|string|null $taxAmountImported
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_amount_imported')]
+    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $taxAmountImported = null;
+    public float|string|null $taxAmountImported = null;
 
     /**
      * Pre-calculated tax rate for the item, if provided by the external system.
      *
-     * @var ?float $taxRateImported
+     * @var float|string|null $taxRateImported
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_rate_imported')]
+    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $taxRateImported = null;
+    public float|string|null $taxRateImported = null;
 
     /**
      * Portion of the item amount subject to taxation.
      *
-     * @var ?float $taxableAmount
+     * @var float|string|null $taxableAmount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('taxable_amount')]
+    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $taxableAmount = null;
+    public float|string|null $taxableAmount = null;
 
     /**
-     * This enum is used to determine if a transaction is exempt from tax.
+     * Specific tax exemption status applied to this item, if any.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum $taxExemption
      */
@@ -98,41 +113,31 @@ class CreditNoteItemCreateUpdate
     public ?TaxExemptionEnum $taxExemption = null;
 
     /**
-     * Detailed breakdown of individual tax components applied to this item.
-     *
-     * @var ?array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder> $taxItems
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $taxItems = null;
-
-    /**
      * @param  string  $externalId
      * @param  \DateTime  $date
      * @param  string  $externalProductId
-     * @param  float  $quantity
-     * @param  float  $amount
-     * @param  ?string  $description
-     * @param  ?float  $taxAmountImported
-     * @param  ?float  $taxRateImported
-     * @param  ?float  $taxableAmount
-     * @param  ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum  $taxExemption
+     * @param  float|string  $quantity
+     * @param  float|string  $amount
      * @param  ?array<\KintsugiTax\SDK\Models\Components\TaxItemBuilder>  $taxItems
+     * @param  ?string  $description
+     * @param  float|string|null  $taxAmountImported
+     * @param  float|string|null  $taxRateImported
+     * @param  float|string|null  $taxableAmount
+     * @param  ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum  $taxExemption
      * @phpstan-pure
      */
-    public function __construct(string $externalId, \DateTime $date, string $externalProductId, float $quantity, float $amount, ?string $description = null, ?float $taxAmountImported = null, ?float $taxRateImported = null, ?float $taxableAmount = null, ?TaxExemptionEnum $taxExemption = null, ?array $taxItems = null)
+    public function __construct(string $externalId, \DateTime $date, string $externalProductId, float|string $quantity, float|string $amount, ?array $taxItems = null, ?string $description = null, float|string|null $taxAmountImported = null, float|string|null $taxRateImported = null, float|string|null $taxableAmount = null, ?TaxExemptionEnum $taxExemption = null)
     {
         $this->externalId = $externalId;
         $this->date = $date;
         $this->externalProductId = $externalProductId;
         $this->quantity = $quantity;
         $this->amount = $amount;
+        $this->taxItems = $taxItems;
         $this->description = $description;
         $this->taxAmountImported = $taxAmountImported;
         $this->taxRateImported = $taxRateImported;
         $this->taxableAmount = $taxableAmount;
         $this->taxExemption = $taxExemption;
-        $this->taxItems = $taxItems;
     }
 }

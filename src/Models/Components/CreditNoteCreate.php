@@ -39,10 +39,11 @@ class CreditNoteCreate
     /**
      * Total monetary value of the credit note, including all items and taxes.
      *
-     * @var float $totalAmount
+     * @var float|string $totalAmount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('total_amount')]
-    public float $totalAmount;
+    #[\Speakeasy\Serializer\Annotation\Type('float|string')]
+    public float|string $totalAmount;
 
     /**
      *
@@ -62,6 +63,24 @@ class CreditNoteCreate
     public array $transactionItems;
 
     /**
+     * Human-readable identifier for the credit note, often used for display purposes.
+     *
+     * @var ?string $externalFriendlyId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('external_friendly_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $externalFriendlyId = null;
+
+    /**
+     * Secondary external identifier, reserved for marketplace/channel source ids (paired with secondary_source).
+     *
+     * @var ?string $secondaryExternalId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('secondary_external_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $secondaryExternalId = null;
+
+    /**
      * Brief explanation or reason for issuing the credit note.
      *
      * @var ?string $description
@@ -71,31 +90,43 @@ class CreditNoteCreate
     public ?string $description = null;
 
     /**
+     * Indicates whether this credit note is associated with a marketplace transaction.
+     *
+     * @var ?bool $marketplace
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('marketplace')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $marketplace = null;
+
+    /**
      * Pre-calculated total tax amount for the entire credit note, if provided by the external system.
      *
-     * @var ?float $taxAmountImported
+     * @var float|string|null $taxAmountImported
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_amount_imported')]
+    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $taxAmountImported = null;
+    public float|string|null $taxAmountImported = null;
 
     /**
      * Pre-calculated overall tax rate for the credit note, if provided by the external system.
      *
-     * @var ?float $taxRateImported
+     * @var float|string|null $taxRateImported
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_rate_imported')]
+    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $taxRateImported = null;
+    public float|string|null $taxRateImported = null;
 
     /**
      * Total portion of the credit note amount subject to taxation.
      *
-     * @var ?float $taxableAmount
+     * @var float|string|null $taxableAmount
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('taxable_amount')]
+    #[\Speakeasy\Serializer\Annotation\Type('float|string|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?float $taxableAmount = null;
+    public float|string|null $taxableAmount = null;
 
     /**
      * A list of TransactionAddressBuilder objects or None if no addresses are provided. This field represents the addresses associated with the transaction.
@@ -108,30 +139,23 @@ class CreditNoteCreate
     public ?array $addresses = null;
 
     /**
-     * Indicates whether this credit note is associated with a marketplace transaction.
-     *
-     * @var ?bool $marketplace
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('marketplace')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $marketplace = null;
-
-    /**
      * @param  string  $externalId
      * @param  \DateTime  $date
      * @param  \KintsugiTax\SDK\Models\Components\Status  $status
-     * @param  float  $totalAmount
+     * @param  float|string  $totalAmount
      * @param  \KintsugiTax\SDK\Models\Components\CurrencyEnum  $currency
      * @param  array<\KintsugiTax\SDK\Models\Components\CreditNoteItemCreateUpdate>  $transactionItems
+     * @param  ?string  $externalFriendlyId
+     * @param  ?string  $secondaryExternalId
      * @param  ?string  $description
      * @param  ?bool  $marketplace
-     * @param  ?float  $taxAmountImported
-     * @param  ?float  $taxRateImported
-     * @param  ?float  $taxableAmount
+     * @param  float|string|null  $taxAmountImported
+     * @param  float|string|null  $taxRateImported
+     * @param  float|string|null  $taxableAmount
      * @param  ?array<\KintsugiTax\SDK\Models\Components\TransactionAddressBuilder>  $addresses
      * @phpstan-pure
      */
-    public function __construct(string $externalId, \DateTime $date, Status $status, float $totalAmount, CurrencyEnum $currency, array $transactionItems, ?string $description = null, ?float $taxAmountImported = null, ?float $taxRateImported = null, ?float $taxableAmount = null, ?array $addresses = null, ?bool $marketplace = false)
+    public function __construct(string $externalId, \DateTime $date, Status $status, float|string $totalAmount, CurrencyEnum $currency, array $transactionItems, ?string $externalFriendlyId = null, ?string $secondaryExternalId = null, ?string $description = null, ?bool $marketplace = null, float|string|null $taxAmountImported = null, float|string|null $taxRateImported = null, float|string|null $taxableAmount = null, ?array $addresses = null)
     {
         $this->externalId = $externalId;
         $this->date = $date;
@@ -139,11 +163,13 @@ class CreditNoteCreate
         $this->totalAmount = $totalAmount;
         $this->currency = $currency;
         $this->transactionItems = $transactionItems;
+        $this->externalFriendlyId = $externalFriendlyId;
+        $this->secondaryExternalId = $secondaryExternalId;
         $this->description = $description;
+        $this->marketplace = $marketplace;
         $this->taxAmountImported = $taxAmountImported;
         $this->taxRateImported = $taxRateImported;
         $this->taxableAmount = $taxableAmount;
         $this->addresses = $addresses;
-        $this->marketplace = $marketplace;
     }
 }

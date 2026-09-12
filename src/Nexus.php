@@ -46,27 +46,36 @@ class Nexus
     }
 
     /**
-     * Create Physical Nexus
+     * Create physical nexus
      *
      * The Create Physical Nexus API allows you to create a new physical
      *     nexus by specifying its attributes, including the location,
      *     start date, end date, etc.
      *
-     * @param  \KintsugiTax\SDK\Models\Components\PhysicalNexusCreate  $request
+     * @param  \KintsugiTax\SDK\Models\Components\PhysicalNexusCreate  $physicalNexusCreate
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\CreatePhysicalNexusV1NexusPhysicalNexusPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function createPhysical(Components\PhysicalNexusCreate $request, ?Options $options = null): Operations\CreatePhysicalNexusV1NexusPhysicalNexusPostResponse
+    public function createPhysical(Components\PhysicalNexusCreate $physicalNexusCreate, ?string $xOrganizationId = null, ?Options $options = null): Operations\CreatePhysicalNexusV1NexusPhysicalNexusPostResponse
     {
+        $request = new Operations\CreatePhysicalNexusV1NexusPhysicalNexusPostRequest(
+            xOrganizationId: $xOrganizationId,
+            physicalNexusCreate: $physicalNexusCreate,
+        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/nexus/physical_nexus');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'physicalNexusCreate', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
@@ -151,24 +160,30 @@ class Nexus
     }
 
     /**
-     * Delete Physical Nexus
+     * Delete physical nexus
      *
      * The Delete Physical Nexus API allows you to remove an existing
      *     physical nexus by its unique ID.
      *
      * @param  string  $physicalNexusId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function delete(string $physicalNexusId, ?Options $options = null): Operations\DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteResponse
+    public function delete(string $physicalNexusId, ?string $xOrganizationId = null, ?Options $options = null): Operations\DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteResponse
     {
         $request = new Operations\DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteRequest(
             physicalNexusId: $physicalNexusId,
+            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/nexus/physical_nexus/{physical_nexus_id}', Operations\DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('DELETE', $url);
@@ -253,15 +268,98 @@ class Nexus
     }
 
     /**
-     * Get Nexus For Org
+     * Get nexus details for id
+     *
+     * Get details for a specific nexus by its ID.
+     *
+     * @param  string  $nexusId
+     * @param  ?string  $xOrganizationId
+     * @return \KintsugiTax\SDK\Models\Operations\GetNexusDetailsForIdV1NexusNexusIdGetResponse
+     * @throws \KintsugiTax\SDK\Models\Errors\APIException
+     */
+    public function getNexusDetailsForIdV1NexusNexusIdGet(string $nexusId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetNexusDetailsForIdV1NexusNexusIdGetResponse
+    {
+        $request = new Operations\GetNexusDetailsForIdV1NexusNexusIdGetRequest(
+            nexusId: $nexusId,
+            xOrganizationId: $xOrganizationId,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/nexus/{nexus_id}', Operations\GetNexusDetailsForIdV1NexusNexusIdGetRequest::class, $request);
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_nexus_details_for_id_v1_nexus__nexus_id__get', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\NexusResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetNexusDetailsForIdV1NexusNexusIdGetResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    nexusResponse: $obj);
+
+                return $response;
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\HTTPValidationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj->rawResponse = $httpResponse;
+                throw $obj->toException();
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
+     * Get nexus for org
      *
      * Get a list of all nexuses for the organization.
      *
-     * @param  ?\KintsugiTax\SDK\Models\Operations\GetNexusForOrgV1NexusGetRequest  $request
+     * @param  \KintsugiTax\SDK\Models\Operations\GetNexusForOrgV1NexusGetRequest  $request
      * @return \KintsugiTax\SDK\Models\Operations\GetNexusForOrgV1NexusGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function list(?Operations\GetNexusForOrgV1NexusGetRequest $request = null, ?Options $options = null): Operations\GetNexusForOrgV1NexusGetResponse
+    public function list(Operations\GetNexusForOrgV1NexusGetRequest $request, ?Options $options = null): Operations\GetNexusForOrgV1NexusGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/nexus');
@@ -269,6 +367,10 @@ class Nexus
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetNexusForOrgV1NexusGetRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -297,12 +399,12 @@ class Nexus
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\PageNexusResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\PageNexusResponse|array<\KintsugiTax\SDK\Models\Components\NexusResponse>', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\GetNexusForOrgV1NexusGetResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    pageNexusResponse: $obj);
+                    responseGetNexusForOrgV1NexusGet: $obj);
 
                 return $response;
             } else {
@@ -330,16 +432,104 @@ class Nexus
     }
 
     /**
-     * Get Physical Nexus
+     * Get physical nexus categories
+     *
+     * Get physical nexus categories
+     *
+     * @param  ?string  $xOrganizationId
+     * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
+     * @param  ?string  $stateCode
+     * @return \KintsugiTax\SDK\Models\Operations\GetPhysicalNexusCategoriesV1NexusPhysicalNexusCategoriesGetResponse
+     * @throws \KintsugiTax\SDK\Models\Errors\APIException
+     */
+    public function getPhysicalNexusCategoriesV1NexusPhysicalNexusCategoriesGet(?string $xOrganizationId = null, ?Components\CountryCodeEnum $countryCode = null, ?string $stateCode = null, ?Options $options = null): Operations\GetPhysicalNexusCategoriesV1NexusPhysicalNexusCategoriesGetResponse
+    {
+        $request = new Operations\GetPhysicalNexusCategoriesV1NexusPhysicalNexusCategoriesGetRequest(
+            xOrganizationId: $xOrganizationId,
+            countryCode: $countryCode,
+            stateCode: $stateCode,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/nexus/physical_nexus/categories');
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+
+        $qp = Utils\Utils::getQueryParams(Operations\GetPhysicalNexusCategoriesV1NexusPhysicalNexusCategoriesGetRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'get_physical_nexus_categories_v1_nexus_physical_nexus_categories_get', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions['query'] = Utils\QueryParameters::standardizeQueryParams($httpRequest, $qp);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, 'array<\KintsugiTax\SDK\Models\Components\PhysicalNexusCategories>', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\GetPhysicalNexusCategoriesV1NexusPhysicalNexusCategoriesGetResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    responseGetPhysicalNexusCategoriesV1NexusPhysicalNexusCategoriesGet: $obj);
+
+                return $response;
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\HTTPValidationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj->rawResponse = $httpResponse;
+                throw $obj->toException();
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
+     * Get physical nexus
      *
      * Retrieve a paginated list of
      *     physical nexuses for a specific organization.
      *
-     * @param  ?\KintsugiTax\SDK\Models\Operations\GetPhysicalNexusV1NexusPhysicalNexusGetRequest  $request
+     * @param  \KintsugiTax\SDK\Models\Operations\GetPhysicalNexusV1NexusPhysicalNexusGetRequest  $request
      * @return \KintsugiTax\SDK\Models\Operations\GetPhysicalNexusV1NexusPhysicalNexusGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function listPhysical(?Operations\GetPhysicalNexusV1NexusPhysicalNexusGetRequest $request = null, ?Options $options = null): Operations\GetPhysicalNexusV1NexusPhysicalNexusGetResponse
+    public function listPhysical(Operations\GetPhysicalNexusV1NexusPhysicalNexusGetRequest $request, ?Options $options = null): Operations\GetPhysicalNexusV1NexusPhysicalNexusGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/nexus/physical_nexus');
@@ -347,6 +537,10 @@ class Nexus
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetPhysicalNexusV1NexusPhysicalNexusGetRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -432,20 +626,22 @@ class Nexus
     }
 
     /**
-     * Update Physical Nexus
+     * Update physical nexus
      *
      * The Update Physical Nexus API allows you to modify the details of
      *     an existing physical nexus by its unique ID.
      *
      * @param  \KintsugiTax\SDK\Models\Components\PhysicalNexusUpdate  $physicalNexusUpdate
      * @param  string  $physicalNexusId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function updatePhysical(Components\PhysicalNexusUpdate $physicalNexusUpdate, string $physicalNexusId, ?Options $options = null): Operations\UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutResponse
+    public function updatePhysical(Components\PhysicalNexusUpdate $physicalNexusUpdate, string $physicalNexusId, ?string $xOrganizationId = null, ?Options $options = null): Operations\UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutResponse
     {
         $request = new Operations\UpdatePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdPutRequest(
             physicalNexusId: $physicalNexusId,
+            xOrganizationId: $xOrganizationId,
             physicalNexusUpdate: $physicalNexusUpdate,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
@@ -457,6 +653,10 @@ class Nexus
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);

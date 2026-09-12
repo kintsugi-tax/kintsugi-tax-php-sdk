@@ -12,7 +12,7 @@ Developer-friendly & type-safe Php SDK specifically catered to leverage *kintsug
 <!-- Start Summary [summary] -->
 ## Summary
 
-
+Kintsugi Customer API: Publicly documented Kintsugi Customer API endpoints. The source (openapi/_source/openapi-master.json) is the platform spec filtered to the documented customer surface (openapi/customer-endpoints.json); scripts/build-specs.mjs re-applies that filter here. Do not edit by hand.
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
@@ -54,9 +54,12 @@ require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        '<YOUR_API_KEY_HERE>'
+    )
+    ->build();
 
 $request = new Components\AddressBase(
     phone: '555-123-4567',
@@ -69,13 +72,9 @@ $request = new Components\AddressBase(
     country: Components\CountryCodeEnum::Us,
     fullAddress: '1600 Amphitheatre Parkway, Mountain View, CA 94043',
 );
-$requestSecurity = new Operations\SearchV1AddressValidationSearchPostSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->addressValidation->search(
-    request: $request,
-    security: $requestSecurity
+    request: $request
 );
 
 if ($response->response200SearchV1AddressValidationSearchPost !== null) {
@@ -89,14 +88,13 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 
 ### Per-Client Security Schemes
 
-This SDK supports the following security schemes globally:
+This SDK supports the following security scheme globally:
 
 | Name           | Type   | Scheme  |
 | -------------- | ------ | ------- |
 | `apiKeyHeader` | apiKey | API key |
-| `customHeader` | apiKey | API key |
 
-You can set the security parameters through the `setSecurity` function on the `SDKBuilder` when initializing the SDK. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
+To authenticate with the API the `apiKeyHeader` parameter must be set when initializing the SDK. For example:
 ```php
 declare(strict_types=1);
 
@@ -107,47 +105,9 @@ use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
-
-$request = new Components\ValidationAddress(
-    line1: '1600 Amphitheatre Parkway',
-    line2: '',
-    line3: '',
-    city: 'Mountain View',
-    state: 'CA',
-    postalCode: '94043',
-    id: 215,
-    county: '',
-    fullAddress: '1600 Amphitheatre Parkway, Mountain View, CA 94043',
-);
-
-$response = $sdk->addressValidation->suggestions(
-    request: $request
-);
-
-if ($response->any !== null) {
-    // handle response
-}
-```
-
-### Per-Operation Security Schemes
-
-Some operations in this SDK require the security scheme to be specified at the request level. For example:
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
-
-$sdk = SDK\SDK::builder()->build();
 
 $request = new Components\AddressBase(
     phone: '555-123-4567',
@@ -160,13 +120,9 @@ $request = new Components\AddressBase(
     country: Components\CountryCodeEnum::Us,
     fullAddress: '1600 Amphitheatre Parkway, Mountain View, CA 94043',
 );
-$requestSecurity = new Operations\SearchV1AddressValidationSearchPostSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->addressValidation->search(
-    request: $request,
-    security: $requestSecurity
+    request: $request
 );
 
 if ($response->response200SearchV1AddressValidationSearchPost !== null) {
@@ -186,71 +142,84 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 * [search](docs/sdks/addressvalidation/README.md#search) - Search
 * [suggestions](docs/sdks/addressvalidation/README.md#suggestions) - Suggestions
 
+### [CustomerTaxRegistration](docs/sdks/customertaxregistration/README.md)
+
+* [upsertCustomerTaxRegistrationV1CustomersCustomerIdTaxRegistrationsPost](docs/sdks/customertaxregistration/README.md#upsertcustomertaxregistrationv1customerscustomeridtaxregistrationspost) - Upsert customer tax registration
+
 ### [Customers](docs/sdks/customers/README.md)
 
-* [list](docs/sdks/customers/README.md#list) - Get Customers
-* [create](docs/sdks/customers/README.md#create) - Create Customer
-* [getById](docs/sdks/customers/README.md#getbyid) - Get Customer By Id
-* [update](docs/sdks/customers/README.md#update) - Update Customer
-* [getByExternalId](docs/sdks/customers/README.md#getbyexternalid) - Get Customer By External Id
-* [getTransactions](docs/sdks/customers/README.md#gettransactions) - Get Transactions By Customer Id
-* [createTransaction](docs/sdks/customers/README.md#createtransaction) - Create Transaction By Customer Id
+* [list](docs/sdks/customers/README.md#list) - Get customers
+* [create](docs/sdks/customers/README.md#create) - Create customer
+* [getByExternalId](docs/sdks/customers/README.md#getbyexternalid) - Get customer by external id
+* [getById](docs/sdks/customers/README.md#getbyid) - Get customer by id
+* [update](docs/sdks/customers/README.md#update) - Update customer
+* [getTransactions](docs/sdks/customers/README.md#gettransactions) - Get transactions by customer id
+* [createTransaction](docs/sdks/customers/README.md#createtransaction) - Create transaction by customer id
 
 ### [Exemptions](docs/sdks/exemptions/README.md)
 
-* [list](docs/sdks/exemptions/README.md#list) - Get Exemptions
-* [create](docs/sdks/exemptions/README.md#create) - Create Exemption
-* [getById](docs/sdks/exemptions/README.md#getbyid) - Get Exemption By Id
-* [uploadCertificate](docs/sdks/exemptions/README.md#uploadcertificate) - Upload Exemption Certificate
+* [list](docs/sdks/exemptions/README.md#list) - Get exemptions
+* [create](docs/sdks/exemptions/README.md#create) - Create exemption
+* [getById](docs/sdks/exemptions/README.md#getbyid) - Get exemption by id
+* [uploadCertificate](docs/sdks/exemptions/README.md#uploadcertificate) - Upload exemption certificate
 
 ### [Exemptions.Attachments](docs/sdks/attachments/README.md)
 
-* [get](docs/sdks/attachments/README.md#get) - Get Attachments For Exemption
+* [get](docs/sdks/attachments/README.md#get) - Get attachments for exemption
 
 ### [Filings](docs/sdks/filings/README.md)
 
-* [get](docs/sdks/filings/README.md#get) - Get Filings
-* [getById](docs/sdks/filings/README.md#getbyid) - Get Filing By Id
-* [getByRegistrationId](docs/sdks/filings/README.md#getbyregistrationid) - Get Filings By Registration Id
+* [get](docs/sdks/filings/README.md#get) - Get filings
+* [getByRegistrationId](docs/sdks/filings/README.md#getbyregistrationid) - Get filings by registration id
+* [getById](docs/sdks/filings/README.md#getbyid) - Get filing by id
+* [approveFilingV1FilingsFilingIdApprovePut](docs/sdks/filings/README.md#approvefilingv1filingsfilingidapproveput) - Approve filing
 
 ### [Nexus](docs/sdks/nexus/README.md)
 
-* [listPhysical](docs/sdks/nexus/README.md#listphysical) - Get Physical Nexus
-* [createPhysical](docs/sdks/nexus/README.md#createphysical) - Create Physical Nexus
-* [updatePhysical](docs/sdks/nexus/README.md#updatephysical) - Update Physical Nexus
-* [delete](docs/sdks/nexus/README.md#delete) - Delete Physical Nexus
-* [list](docs/sdks/nexus/README.md#list) - Get Nexus For Org
+* [list](docs/sdks/nexus/README.md#list) - Get nexus for org
+* [listPhysical](docs/sdks/nexus/README.md#listphysical) - Get physical nexus
+* [createPhysical](docs/sdks/nexus/README.md#createphysical) - Create physical nexus
+* [getPhysicalNexusCategoriesV1NexusPhysicalNexusCategoriesGet](docs/sdks/nexus/README.md#getphysicalnexuscategoriesv1nexusphysicalnexuscategoriesget) - Get physical nexus categories
+* [delete](docs/sdks/nexus/README.md#delete) - Delete physical nexus
+* [updatePhysical](docs/sdks/nexus/README.md#updatephysical) - Update physical nexus
+* [getNexusDetailsForIdV1NexusNexusIdGet](docs/sdks/nexus/README.md#getnexusdetailsforidv1nexusnexusidget) - Get nexus details for id
 
 ### [Products](docs/sdks/products/README.md)
 
-* [getProductsV1ProductsGet](docs/sdks/products/README.md#getproductsv1productsget) - Get Products
-* [createProductV1ProductsPost](docs/sdks/products/README.md#createproductv1productspost) - Create Product
-* [getProductCategoriesV1ProductsCategoriesGet](docs/sdks/products/README.md#getproductcategoriesv1productscategoriesget) - Get Product Categories
-* [get](docs/sdks/products/README.md#get) - Get Product By Id
-* [update](docs/sdks/products/README.md#update) - Update Product
+* [getProductsV1ProductsGet](docs/sdks/products/README.md#getproductsv1productsget) - Get products
+* [createProductV1ProductsPost](docs/sdks/products/README.md#createproductv1productspost) - Create product
+* [getProductCategoriesV1ProductsCategoriesGet](docs/sdks/products/README.md#getproductcategoriesv1productscategoriesget) - Get product categories
+* [get](docs/sdks/products/README.md#get) - Get product by id
+* [update](docs/sdks/products/README.md#update) - Update product
 
 ### [Registrations](docs/sdks/registrations/README.md)
 
-* [list](docs/sdks/registrations/README.md#list) - Get Registrations
-* [create](docs/sdks/registrations/README.md#create) - Create Registration
-* [getById](docs/sdks/registrations/README.md#getbyid) - Get Registration By Id
-* [update](docs/sdks/registrations/README.md#update) - Update Registration
-* [deregister](docs/sdks/registrations/README.md#deregister) - Deregister Registration
+* [list](docs/sdks/registrations/README.md#list) - Get registrations
+* [create](docs/sdks/registrations/README.md#create) - Create registration
+* [getJurisdictionSpecificFieldsV1RegistrationsJurisdictionSpecificFieldsGet](docs/sdks/registrations/README.md#getjurisdictionspecificfieldsv1registrationsjurisdictionspecificfieldsget) - Get jurisdiction specific fields
+* [listRegistrationJurisdictionsV1RegistrationsJurisdictionsGet](docs/sdks/registrations/README.md#listregistrationjurisdictionsv1registrationsjurisdictionsget) - List registration jurisdictions
+* [getById](docs/sdks/registrations/README.md#getbyid) - Get registration by id
+* [update](docs/sdks/registrations/README.md#update) - Update registration
+* [uploadRegistrationAttachmentV1RegistrationsRegistrationIdAttachmentsPost](docs/sdks/registrations/README.md#uploadregistrationattachmentv1registrationsregistrationidattachmentspost) - Upload registration attachment
+* [deregister](docs/sdks/registrations/README.md#deregister) - Deregister registration
+* [getOssCountriesForRegistrationV1RegistrationsRegistrationIdOssCountriesGet](docs/sdks/registrations/README.md#getosscountriesforregistrationv1registrationsregistrationidosscountriesget) - Get oss countries for registration
 
 ### [TaxEstimation](docs/sdks/taxestimation/README.md)
 
-* [estimate](docs/sdks/taxestimation/README.md#estimate) - Estimate Tax
+* [estimate](docs/sdks/taxestimation/README.md#estimate) - Estimate tax
 
 ### [Transactions](docs/sdks/transactions/README.md)
 
-* [list](docs/sdks/transactions/README.md#list) - Get Transactions
-* [create](docs/sdks/transactions/README.md#create) - Create Transaction
-* [getByExternalId](docs/sdks/transactions/README.md#getbyexternalid) - Get Transaction By External Id
-* [update](docs/sdks/transactions/README.md#update) - Update Transaction
-* [get](docs/sdks/transactions/README.md#get) - Get Transaction By Id
-* [getByFilingId](docs/sdks/transactions/README.md#getbyfilingid) - Get Transactions By Filing Id
-* [createCreditNote](docs/sdks/transactions/README.md#createcreditnote) - Create Credit Note By Transaction Id
-* [updateCreditNote](docs/sdks/transactions/README.md#updatecreditnote) - Update Credit Note By Transaction Id
+* [list](docs/sdks/transactions/README.md#list) - Get transactions
+* [create](docs/sdks/transactions/README.md#create) - Create transaction
+* [archiveTransactionByIdV1TransactionsArchivePost](docs/sdks/transactions/README.md#archivetransactionbyidv1transactionsarchivepost) - Archive transaction by id
+* [getByExternalId](docs/sdks/transactions/README.md#getbyexternalid) - Get transaction by external id
+* [getByFilingId](docs/sdks/transactions/README.md#getbyfilingid) - Get transactions by filing id
+* [createCreditNote](docs/sdks/transactions/README.md#createcreditnote) - Create credit note by transaction id
+* [updateCreditNote](docs/sdks/transactions/README.md#updatecreditnote) - Update credit note by transaction id
+* [get](docs/sdks/transactions/README.md#get) - Get transaction by id
+* [update](docs/sdks/transactions/README.md#update) - Update transaction
+* [setTransactionTaxOnlyV1TransactionsTransactionIdTaxOnlyPost](docs/sdks/transactions/README.md#settransactiontaxonlyv1transactionstransactionidtaxonlypost) - Set transaction tax only
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -288,9 +257,12 @@ require 'vendor/autoload.php';
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Models\Errors;
-use KintsugiTax\SDK\Models\Operations;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        '<YOUR_API_KEY_HERE>'
+    )
+    ->build();
 
 try {
     $request = new Components\AddressBase(
@@ -304,13 +276,9 @@ try {
         country: Components\CountryCodeEnum::Us,
         fullAddress: '1600 Amphitheatre Parkway, Mountain View, CA 94043',
     );
-    $requestSecurity = new Operations\SearchV1AddressValidationSearchPostSecurity(
-        apiKeyHeader: '<YOUR_API_KEY_HERE>',
-    );
 
     $response = $sdk->addressValidation->search(
-        request: $request,
-        security: $requestSecurity
+        request: $request
     );
 
     if ($response->response200SearchV1AddressValidationSearchPost !== null) {
@@ -345,10 +313,12 @@ require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
 
 $sdk = SDK\SDK::builder()
     ->setServerURL('https://api.trykintsugi.com')
+    ->setSecurity(
+        '<YOUR_API_KEY_HERE>'
+    )
     ->build();
 
 $request = new Components\AddressBase(
@@ -362,13 +332,9 @@ $request = new Components\AddressBase(
     country: Components\CountryCodeEnum::Us,
     fullAddress: '1600 Amphitheatre Parkway, Mountain View, CA 94043',
 );
-$requestSecurity = new Operations\SearchV1AddressValidationSearchPostSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->addressValidation->search(
-    request: $request,
-    security: $requestSecurity
+    request: $request
 );
 
 if ($response->response200SearchV1AddressValidationSearchPost !== null) {

@@ -1,0 +1,15 @@
+# GeorgiaFields
+
+State-specific fields for Georgia GTC registration import.
+
+
+## Fields
+
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `registrationType`                                                                       | [Components\GeorgiaRegistrationType](../../Models/Components/GeorgiaRegistrationType.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `mfaCompleted`                                                                           | *?bool*                                                                                  | :heavy_minus_sign:                                                                       | Whether the customer has completed MFA setup in their Georgia GTC account.               |
+| `businessName`                                                                           | *string*                                                                                 | :heavy_check_mark:                                                                       | Business name as registered with the state of Georgia.                                   |
+| `salesTaxId`                                                                             | *string*                                                                                 | :heavy_check_mark:                                                                       | Georgia State Tax ID.                                                                    |
+| `zipCode`                                                                                | *string*                                                                                 | :heavy_check_mark:                                                                       | Georgia ZIP code on file with the Georgia Department of Revenue.                         |
+| `lastPaymentToState`                                                                     | *string*                                                                                 | :heavy_check_mark:                                                                       | Last payment amount made to the state ('0.00' if no payments made).                      |
