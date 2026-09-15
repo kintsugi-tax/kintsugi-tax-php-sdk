@@ -28,20 +28,22 @@ class ProductCreateManual
     public string $name;
 
     /**
+     * Top-level tax category for a product.
      *
-     * @var \KintsugiTax\SDK\Models\Components\ProductCategoryEnum $productCategory
+     * @var \KintsugiTax\SDK\Models\Components\PublicProductCategoryEnum $productCategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_category')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductCategoryEnum')]
-    public ProductCategoryEnum $productCategory;
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\PublicProductCategoryEnum')]
+    public PublicProductCategoryEnum $productCategory;
 
     /**
+     * The subcategory of the product.
      *
-     * @var \KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum $productSubcategory
+     * @var \KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum|string $productSubcategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_subcategory')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum')]
-    public ProductSubCategoryEnum $productSubcategory;
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum|string')]
+    public ProductSubCategoryEnum|string $productSubcategory;
 
     /**
      * Specifies whether the product is tax-exempt.
@@ -50,15 +52,6 @@ class ProductCreateManual
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('tax_exempt')]
     public bool $taxExempt;
-
-    /**
-     * A description of the product.
-     *
-     * @var ?string $description
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $description = null;
 
     /**
      *
@@ -79,25 +72,34 @@ class ProductCreateManual
     public ?SourceEnum $source = null;
 
     /**
+     * A description of the product.
+     *
+     * @var ?string $description
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $description = null;
+
+    /**
      * @param  string  $externalId
      * @param  string  $name
-     * @param  \KintsugiTax\SDK\Models\Components\ProductCategoryEnum  $productCategory
-     * @param  \KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum  $productSubcategory
+     * @param  \KintsugiTax\SDK\Models\Components\PublicProductCategoryEnum  $productCategory
+     * @param  \KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum|string  $productSubcategory
      * @param  bool  $taxExempt
-     * @param  ?string  $description
      * @param  ?\KintsugiTax\SDK\Models\Components\ProductStatusEnum  $status
      * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
+     * @param  ?string  $description
      * @phpstan-pure
      */
-    public function __construct(string $externalId, string $name, ProductCategoryEnum $productCategory, ProductSubCategoryEnum $productSubcategory, bool $taxExempt, ?string $description = null, ?ProductStatusEnum $status = null, ?SourceEnum $source = null)
+    public function __construct(string $externalId, string $name, PublicProductCategoryEnum $productCategory, ProductSubCategoryEnum|string $productSubcategory, bool $taxExempt, ?ProductStatusEnum $status = null, ?SourceEnum $source = null, ?string $description = null)
     {
         $this->externalId = $externalId;
         $this->name = $name;
         $this->productCategory = $productCategory;
         $this->productSubcategory = $productSubcategory;
         $this->taxExempt = $taxExempt;
-        $this->description = $description;
         $this->status = $status;
         $this->source = $source;
+        $this->description = $description;
     }
 }

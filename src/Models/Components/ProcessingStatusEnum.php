@@ -30,4 +30,5 @@ enum ProcessingStatusEnum: string
     case Archived = 'ARCHIVED';
     case NeedsRefetch = 'NEEDS_REFETCH';
     case ExcludedInCalculation = 'EXCLUDED_IN_CALCULATION';
+    case DeferredFromFiling = 'DEFERRED_FROM_FILING';
 }

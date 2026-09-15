@@ -68,22 +68,15 @@ class TransactionEstimatePublicRequest
     public ?string $description = null;
 
     /**
+     * While currently not used, it may be used in the future to determine taxability. The source of the transaction (e.g., OTHER).
      *
      * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $source
+     * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?SourceEnum $source = null;
-
-    /**
-     *
-     * @var ?\KintsugiTax\SDK\Models\Components\CustomerBasePublic $customer
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBasePublic|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CustomerBasePublic $customer = null;
 
     /**
      * Indicates if the transaction involves a marketplace.
@@ -93,6 +86,16 @@ class TransactionEstimatePublicRequest
     #[\Speakeasy\Serializer\Annotation\SerializedName('marketplace')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $marketplace = null;
+
+    /**
+     * Details about the customer. If the customer is not found, it will be ignored.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\CustomerBasePublic $customer
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('customer')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CustomerBasePublic|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CustomerBasePublic $customer = null;
 
     /**
      * @param  \DateTime  $date
@@ -106,7 +109,7 @@ class TransactionEstimatePublicRequest
      * @param  ?\KintsugiTax\SDK\Models\Components\CustomerBasePublic  $customer
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, ?string $description = null, ?SourceEnum $source = null, ?CustomerBasePublic $customer = null, ?bool $marketplace = false)
+    public function __construct(\DateTime $date, string $externalId, CurrencyEnum $currency, array $transactionItems, array $addresses, ?string $description = null, ?SourceEnum $source = null, ?bool $marketplace = null, ?CustomerBasePublic $customer = null)
     {
         $this->date = $date;
         $this->externalId = $externalId;
@@ -115,7 +118,7 @@ class TransactionEstimatePublicRequest
         $this->addresses = $addresses;
         $this->description = $description;
         $this->source = $source;
-        $this->customer = $customer;
         $this->marketplace = $marketplace;
+        $this->customer = $customer;
     }
 }

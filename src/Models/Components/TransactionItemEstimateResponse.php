@@ -28,6 +28,16 @@ class TransactionItemEstimateResponse
     public string $amount;
 
     /**
+     * List of tax items applied to the transaction item.
+     *
+     * @var ?array<\KintsugiTax\SDK\Models\Components\TaxItemEstimate> $taxItems
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemEstimate>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $taxItems = null;
+
+    /**
      * A unique identifier for the transaction item.
      *
      * @var ?string $externalId
@@ -106,7 +116,7 @@ class TransactionItemEstimateResponse
     public ?string $productCategory = null;
 
     /**
-     * This enum is used to determine if a transaction is exempt from tax.
+     * Reason for exemption, if applicable.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum $exemptReason
      */
@@ -114,16 +124,6 @@ class TransactionItemEstimateResponse
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxExemptionEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?TaxExemptionEnum $exemptReason = null;
-
-    /**
-     * List of tax items applied to the transaction item.
-     *
-     * @var ?array<\KintsugiTax\SDK\Models\Components\TaxItemEstimate> $taxItems
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_items')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxItemEstimate>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $taxItems = null;
 
     /**
      * Defaults to 1.0. The quantity of the item.
@@ -142,6 +142,22 @@ class TransactionItemEstimateResponse
     #[\Speakeasy\Serializer\Annotation\SerializedName('exempt')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $exempt = null;
+
+    /**
+     * **Beta — not yet available in production.** When it is not enabled for your environment the field is accepted but ignored, and the response echoes `false`.
+     *
+     *
+     * Defaults to false. When true, `amount` is the gross (tax-included) price and the tax is backed out of it rather than added on top; for a taxable line, `taxable_amount` in the response is then the net base.
+     *
+     * When the line is not taxed - exempt, or no tax rule applies in the destination - `taxable_amount` is `0.00` rather than the net base, matching how exempt tax-exclusive lines already behave. Read the net amount as `taxable_amount` when `tax_amount` is non-zero, and as `amount` otherwise.
+     *
+     * This applies to the estimate in this request only. Transactions imported through a connection carry no such flag, so an order quoted here as gross is treated as net when it later syncs, and its recorded tax will be higher than this estimate. Send net amounts on the connection side, or reconcile the difference, until tax-inclusive import support ships.
+     *
+     * @var ?bool $isTaxInclusive
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_tax_inclusive')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isTaxInclusive = null;
 
     /**
      * The total tax amount for the transaction item.
@@ -173,6 +189,13 @@ class TransactionItemEstimateResponse
     /**
      * @param  \DateTime  $date
      * @param  string  $amount
+     * @param  ?string  $quantity
+     * @param  ?bool  $exempt
+     * @param  ?bool  $isTaxInclusive
+     * @param  ?string  $taxAmount
+     * @param  ?string  $taxableAmount
+     * @param  ?string  $taxRate
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\TaxItemEstimate>  $taxItems
      * @param  ?string  $externalId
      * @param  ?string  $description
      * @param  ?string  $externalProductId
@@ -181,19 +204,14 @@ class TransactionItemEstimateResponse
      * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $productSource
      * @param  ?string  $productSubcategory
      * @param  ?string  $productCategory
-     * @param  ?string  $quantity
-     * @param  ?bool  $exempt
-     * @param  ?string  $taxAmount
-     * @param  ?string  $taxableAmount
-     * @param  ?string  $taxRate
      * @param  ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum  $exemptReason
-     * @param  ?array<\KintsugiTax\SDK\Models\Components\TaxItemEstimate>  $taxItems
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, string $amount, ?string $externalId = null, ?string $description = null, ?string $externalProductId = null, ?string $productName = null, ?string $productDescription = null, ?SourceEnum $productSource = null, ?string $productSubcategory = null, ?string $productCategory = null, ?TaxExemptionEnum $exemptReason = null, ?array $taxItems = null, ?string $quantity = '1.0', ?bool $exempt = false, ?string $taxAmount = '0.00', ?string $taxableAmount = '0.00', ?string $taxRate = '0.00')
+    public function __construct(\DateTime $date, string $amount, ?array $taxItems = null, ?string $externalId = null, ?string $description = null, ?string $externalProductId = null, ?string $productName = null, ?string $productDescription = null, ?SourceEnum $productSource = null, ?string $productSubcategory = null, ?string $productCategory = null, ?TaxExemptionEnum $exemptReason = null, ?string $quantity = '1.0', ?bool $exempt = false, ?bool $isTaxInclusive = false, ?string $taxAmount = '0.00', ?string $taxableAmount = '0.00', ?string $taxRate = '0.00')
     {
         $this->date = $date;
         $this->amount = $amount;
+        $this->taxItems = $taxItems;
         $this->externalId = $externalId;
         $this->description = $description;
         $this->externalProductId = $externalProductId;
@@ -203,9 +221,9 @@ class TransactionItemEstimateResponse
         $this->productSubcategory = $productSubcategory;
         $this->productCategory = $productCategory;
         $this->exemptReason = $exemptReason;
-        $this->taxItems = $taxItems;
         $this->quantity = $quantity;
         $this->exempt = $exempt;
+        $this->isTaxInclusive = $isTaxInclusive;
         $this->taxAmount = $taxAmount;
         $this->taxableAmount = $taxableAmount;
         $this->taxRate = $taxRate;

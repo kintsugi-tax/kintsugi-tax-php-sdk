@@ -14,4 +14,5 @@ enum ExemptionType: string
     case Customer = 'customer';
     case Wholesale = 'wholesale';
     case Transaction = 'transaction';
+    case ReverseCharge = 'reverse_charge';
 }

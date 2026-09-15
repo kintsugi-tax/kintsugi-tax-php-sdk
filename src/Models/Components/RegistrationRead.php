@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace KintsugiTax\SDK\Models\Components;
 
-
+use Brick\DateTime\LocalDate;
 class RegistrationRead
 {
     /**
@@ -75,13 +75,47 @@ class RegistrationRead
     public RegistrationTypeEnum $registrationType;
 
     /**
+     * Tax obligation on a nexus, registration, or filing row.
+     *
+     *
+     * Registrations and filings may be SALES_AND_USE_TAX: one state account and
+     * one return can cover both taxes, and each is stored as a single row.
+     * Nexus rows are only SALES_TAX or USE_TAX. Sales and use tax exposure are
+     * separate obligations with their own met dates, period models, and liability
+     * accrual.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\TaxTypeEnum $taxType
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxTypeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?TaxTypeEnum $taxType = null;
+
+    /**
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\RegistrationCategoryEnum $registrationCategory
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('registration_category')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\RegistrationCategoryEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?RegistrationCategoryEnum $registrationCategory = null;
+
+    /**
+     * State tax portal URL for this registration's jurisdiction.
+     *
+     * @var ?string $filingWebsiteUrl
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('filing_website_url')]
+    public ?string $filingWebsiteUrl;
+
+    /**
      * The date when the registration was created. Format: YYYY-MM-DD.
      *
-     * @var ?string $registrationDate
+     * @var ?LocalDate $registrationDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registration_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $registrationDate = null;
+    public ?LocalDate $registrationDate = null;
 
     /**
      * Email address associated with the registration.
@@ -93,60 +127,52 @@ class RegistrationRead
     public ?string $registrationEmail = null;
 
     /**
-     * A unique key assigned to the registration.
-     *
-     * @var ?string $registrationKey
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('registration_key')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $registrationKey = null;
-
-    /**
-     * A unique key assigned for deregistration.
-     *
-     * @var ?string $deregistrationKey
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('deregistration_key')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $deregistrationKey = null;
-
-    /**
      * Timestamp when the registration was requested.
      *
-     * @var ?string $registrationRequested
+     * @var ?\DateTime $registrationRequested
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registration_requested')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $registrationRequested = null;
+    public ?\DateTime $registrationRequested = null;
 
     /**
      * Timestamp when the registration was completed.
      *
-     * @var ?string $registrationCompleted
+     * @var ?\DateTime $registrationCompleted
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registration_completed')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $registrationCompleted = null;
+    public ?\DateTime $registrationCompleted = null;
 
     /**
      * Timestamp when deregistration was requested.
      *
-     * @var ?string $deregistrationRequested
+     * @var ?\DateTime $deregistrationRequested
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('deregistration_requested')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $deregistrationRequested = null;
+    public ?\DateTime $deregistrationRequested = null;
 
     /**
      * Timestamp when the deregistration was completed.
      *
-     * @var ?string $deregistrationCompleted
+     * @var ?\DateTime $deregistrationCompleted
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('deregistration_completed')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $deregistrationCompleted = null;
+    public ?\DateTime $deregistrationCompleted = null;
 
     /**
+     * Indicates whether the registration was completed automatically.
+     *
+     * @var ?bool $autoRegistered
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('auto_registered')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $autoRegistered = null;
+
+    /**
+     * The tax registration regime (e.g., STANDARD, SIMPLIFIED).
      *
      * @var ?\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum $registrationsRegime
      */
@@ -165,6 +191,15 @@ class RegistrationRead
     public ?ChangeRegimeStatusEnum $changeRegimeStatus = null;
 
     /**
+     * Indicates whether third-party access is enabled for this registration.
+     *
+     * @var ?bool $thirdPartyEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('third_party_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $thirdPartyEnabled = null;
+
+    /**
      * Indicates whether two-factor authentication (2FA) is enabled for this registration.
      *
      * @var ?bool $twoFactorEnabled
@@ -181,6 +216,55 @@ class RegistrationRead
     #[\Speakeasy\Serializer\Annotation\SerializedName('marked_collecting')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $markedCollecting = null;
+
+    /**
+     * The first non-UNKNOWN filing frequency this registration
+     *
+     *         was ever assigned.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum $initialFilingFrequency
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('initial_filing_frequency')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?FilingFrequencyEnum $initialFilingFrequency = null;
+
+    /**
+     * The filing frequency that will automatically replace
+     *
+     *         `filing_frequency` on `filing_frequency_effective_date`. Null when no
+     *         frequency change is pending.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum $scheduledFilingFrequency
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('scheduled_filing_frequency')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?FilingFrequencyEnum $scheduledFilingFrequency = null;
+
+    /**
+     * The date on which `scheduled_filing_frequency` should
+     *
+     *         automatically become the registration's `filing_frequency`. Null when
+     *         no frequency change is pending.
+     *
+     * @var ?LocalDate $filingFrequencyEffectiveDate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('filing_frequency_effective_date')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?LocalDate $filingFrequencyEffectiveDate = null;
+
+    /**
+     * Month (1-12) on which this registration's filing period ends,
+     *
+     *         for fiscal-year filers whose quarterly/semiannual periods are offset from the
+     *         calendar. Null means calendar-aligned periods.
+     *
+     * @var ?int $periodEndMonth
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('period_end_month')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $periodEndMonth = null;
 
     /**
      * Username for accessing tax registration details.
@@ -205,93 +289,20 @@ class RegistrationRead
      *
      *         should start (YYYY-MM-DD).
      *
-     * @var ?string $createFilingsFrom
+     * @var ?LocalDate $createFilingsFrom
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('create_filings_from')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $createFilingsFrom = null;
+    public ?LocalDate $createFilingsFrom = null;
 
     /**
-     * Whether the registration was imported from another system.
+     * First date from which retail delivery fee filings may be generated. Periods that closed before this date must not get those filings.
      *
-     * @var ?bool $imported
+     * @var ?LocalDate $retailDeliveryFeeEffectiveFrom
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('imported')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('retail_delivery_fee_effective_from')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $imported = null;
-
-    /**
-     * The sales tax ID associated with the registration.
-     *
-     * @var ?string $salesTaxId
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sales_tax_id')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $salesTaxId = null;
-
-    /**
-     * Type of OSS registration.
-     *
-     * @var ?\KintsugiTax\SDK\Models\Components\OssTypeEnum $ossType
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('oss_type')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\OssTypeEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?OssTypeEnum $ossType = null;
-
-    /**
-     *
-     * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $ossMemberStateOfIdentificationCode
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('oss_member_state_of_identification_code')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?CountryCodeEnum $ossMemberStateOfIdentificationCode = null;
-
-    /**
-     * The date when the registration was marked as collecting.
-     *
-     * @var ?string $markedCollectingDate
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('marked_collecting_date')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $markedCollectingDate = null;
-
-    /**
-     *
-     * @var ?\KintsugiTax\SDK\Models\Components\RegistrationCategoryEnum $registrationCategory
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('registration_category')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\RegistrationCategoryEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?RegistrationCategoryEnum $registrationCategory = null;
-
-    /**
-     * Indicates whether the registration was completed automatically.
-     *
-     * @var ?bool $autoRegistered
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('auto_registered')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $autoRegistered = null;
-
-    /**
-     * Indicates whether third-party access is enabled for this registration.
-     *
-     * @var ?bool $thirdPartyEnabled
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('third_party_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $thirdPartyEnabled = null;
-
-    /**
-     * If true, do not file for this registration (treated as False by default).
-     *
-     * @var ?bool $doNotFile
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('do_not_file')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $doNotFile = null;
+    public ?LocalDate $retailDeliveryFeeEffectiveFrom = null;
 
     /**
      * Indicates whether an initial synchronization should be performed.
@@ -303,15 +314,6 @@ class RegistrationRead
     public ?bool $initialSync = null;
 
     /**
-     * The amount of fees associated with the registration.
-     *
-     * @var ?string $amountFees
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('amount_fees')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $amountFees = null;
-
-    /**
      * Indicates whether a Voluntary Disclosure Agreement (VDA) applies.
      *
      * @var ?bool $vda
@@ -319,6 +321,45 @@ class RegistrationRead
     #[\Speakeasy\Serializer\Annotation\SerializedName('vda')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $vda = null;
+
+    /**
+     * Whether the registration was imported from another system.
+     *
+     * @var ?bool $imported
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('imported')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $imported = null;
+
+    /**
+     * Account number for this registration. Holds the sales tax ID on a sales or combined permit, and the consumer use tax account number on a use tax registration.
+     *
+     * @var ?string $salesTaxId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('sales_tax_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $salesTaxId = null;
+
+    /**
+     * The Importer of Record (IOR) number associated with the registration.
+     *
+     * @var ?string $iorNumber
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ior_number')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $iorNumber = null;
+
+    /**
+     * The date the Importer of Record (IOR) became effective (YYYY-MM-DD).
+     *
+     *         For jurisdictions where tax collection starts after the IOR date rather than the
+     *         registration date, this is the date on/after which tax is collected.
+     *
+     * @var ?LocalDate $iorDate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ior_date')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?LocalDate $iorDate = null;
 
     /**
      * Indicates whether the registration is an SST Import.
@@ -330,6 +371,35 @@ class RegistrationRead
     public ?bool $sstImport = null;
 
     /**
+     * The type of OSS registration. Should be filled for ZZ_EU OSS registrations.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\OssTypeEnum $ossType
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('oss_type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\OssTypeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?OssTypeEnum $ossType = null;
+
+    /**
+     * The Member State of Identification code for OSS registrations.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $ossMemberStateOfIdentificationCode
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('oss_member_state_of_identification_code')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CountryCodeEnum $ossMemberStateOfIdentificationCode = null;
+
+    /**
+     * The date when the registration was marked as collecting.
+     *
+     * @var ?\DateTime $markedCollectingDate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('marked_collecting_date')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\DateTime $markedCollectingDate = null;
+
+    /**
      * Indicates whether the registration needs to be marked as collecting.
      *
      * @var ?bool $needsMarkAsCollecting
@@ -337,6 +407,61 @@ class RegistrationRead
     #[\Speakeasy\Serializer\Annotation\SerializedName('needs_mark_as_collecting')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $needsMarkAsCollecting = null;
+
+    /**
+     * Timestamp when this registration was created in Kintsugi.
+     *
+     * @var ?\DateTime $createdAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('created_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\DateTime $createdAt = null;
+
+    /**
+     * Jurisdiction-specific registration fields.
+     *
+     * @var ?array<string, mixed> $jurisdictionSpecificFields
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('jurisdiction_specific_fields')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $jurisdictionSpecificFields = null;
+
+    /**
+     * If true, do not file for this registration (treated as False by default).
+     *
+     * @var ?bool $doNotFile
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('do_not_file')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $doNotFile = null;
+
+    /**
+     * Whether to also file the single period preceding the first filing period.
+     *
+     * @var ?bool $createBackFiling
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('create_back_filing')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $createBackFiling = null;
+
+    /**
+     * Whether this registration is declared obligated to file a Retail Delivery Fee return (e.g. Colorado DR 1786).
+     *
+     * @var ?bool $retailDeliveryFeeObligated
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('retail_delivery_fee_obligated')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $retailDeliveryFeeObligated = null;
+
+    /**
+     * The amount of fees associated with the registration.
+     *
+     * @var ?string $amountFees
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount_fees')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $amountFees = null;
 
     /**
      *
@@ -355,39 +480,50 @@ class RegistrationRead
      * @param  string  $id
      * @param  int  $filingDays
      * @param  \KintsugiTax\SDK\Models\Components\RegistrationTypeEnum  $registrationType
-     * @param  ?string  $registrationDate
+     * @param  ?bool  $doNotFile
+     * @param  ?bool  $createBackFiling
+     * @param  ?bool  $retailDeliveryFeeObligated
+     * @param  ?string  $amountFees
+     * @param  ?\KintsugiTax\SDK\Models\Components\TaxTypeEnum  $taxType
+     * @param  ?string  $creditsTotalAvailable
+     * @param  ?\KintsugiTax\SDK\Models\Components\RegistrationCategoryEnum  $registrationCategory
+     * @param  ?string  $filingWebsiteUrl
+     * @param  ?LocalDate  $registrationDate
      * @param  ?string  $registrationEmail
-     * @param  ?string  $registrationKey
-     * @param  ?string  $deregistrationKey
-     * @param  ?string  $registrationRequested
-     * @param  ?string  $registrationCompleted
-     * @param  ?string  $deregistrationRequested
-     * @param  ?string  $deregistrationCompleted
+     * @param  ?\DateTime  $registrationRequested
+     * @param  ?\DateTime  $registrationCompleted
+     * @param  ?\DateTime  $deregistrationRequested
+     * @param  ?\DateTime  $deregistrationCompleted
      * @param  ?bool  $autoRegistered
      * @param  ?\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum  $registrationsRegime
      * @param  ?\KintsugiTax\SDK\Models\Components\ChangeRegimeStatusEnum  $changeRegimeStatus
      * @param  ?bool  $thirdPartyEnabled
-     * @param  ?bool  $doNotFile
      * @param  ?bool  $twoFactorEnabled
      * @param  ?bool  $markedCollecting
+     * @param  ?\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum  $initialFilingFrequency
+     * @param  ?\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum  $scheduledFilingFrequency
+     * @param  ?LocalDate  $filingFrequencyEffectiveDate
+     * @param  ?int  $periodEndMonth
      * @param  ?string  $username
      * @param  ?string  $comment
-     * @param  ?string  $createFilingsFrom
+     * @param  ?LocalDate  $createFilingsFrom
+     * @param  ?LocalDate  $retailDeliveryFeeEffectiveFrom
      * @param  ?bool  $initialSync
-     * @param  ?string  $amountFees
      * @param  ?bool  $vda
      * @param  ?bool  $imported
      * @param  ?string  $salesTaxId
+     * @param  ?string  $iorNumber
+     * @param  ?LocalDate  $iorDate
      * @param  ?bool  $sstImport
      * @param  ?\KintsugiTax\SDK\Models\Components\OssTypeEnum  $ossType
      * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $ossMemberStateOfIdentificationCode
-     * @param  ?string  $markedCollectingDate
+     * @param  ?\DateTime  $markedCollectingDate
      * @param  ?bool  $needsMarkAsCollecting
-     * @param  ?string  $creditsTotalAvailable
-     * @param  ?\KintsugiTax\SDK\Models\Components\RegistrationCategoryEnum  $registrationCategory
+     * @param  ?\DateTime  $createdAt
+     * @param  ?array<string, mixed>  $jurisdictionSpecificFields
      * @phpstan-pure
      */
-    public function __construct(RegistrationStatusEnum $status, CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, string $id, int $filingDays, RegistrationTypeEnum $registrationType, ?string $registrationDate = null, ?string $registrationEmail = null, ?string $registrationKey = null, ?string $deregistrationKey = null, ?string $registrationRequested = null, ?string $registrationCompleted = null, ?string $deregistrationRequested = null, ?string $deregistrationCompleted = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $twoFactorEnabled = null, ?bool $markedCollecting = null, ?string $username = null, ?string $comment = null, ?string $createFilingsFrom = null, ?bool $imported = null, ?string $salesTaxId = null, ?OssTypeEnum $ossType = null, ?CountryCodeEnum $ossMemberStateOfIdentificationCode = null, ?string $markedCollectingDate = null, ?RegistrationCategoryEnum $registrationCategory = null, ?bool $autoRegistered = false, ?bool $thirdPartyEnabled = false, ?bool $doNotFile = false, ?bool $initialSync = false, ?string $amountFees = '0.00', ?bool $vda = false, ?bool $sstImport = false, ?bool $needsMarkAsCollecting = false, ?string $creditsTotalAvailable = '0.00')
+    public function __construct(RegistrationStatusEnum $status, CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, string $id, int $filingDays, RegistrationTypeEnum $registrationType, ?TaxTypeEnum $taxType = null, ?RegistrationCategoryEnum $registrationCategory = null, ?string $filingWebsiteUrl = null, ?LocalDate $registrationDate = null, ?string $registrationEmail = null, ?\DateTime $registrationRequested = null, ?\DateTime $registrationCompleted = null, ?\DateTime $deregistrationRequested = null, ?\DateTime $deregistrationCompleted = null, ?bool $autoRegistered = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $thirdPartyEnabled = null, ?bool $twoFactorEnabled = null, ?bool $markedCollecting = null, ?FilingFrequencyEnum $initialFilingFrequency = null, ?FilingFrequencyEnum $scheduledFilingFrequency = null, ?LocalDate $filingFrequencyEffectiveDate = null, ?int $periodEndMonth = null, ?string $username = null, ?string $comment = null, ?LocalDate $createFilingsFrom = null, ?LocalDate $retailDeliveryFeeEffectiveFrom = null, ?bool $initialSync = null, ?bool $vda = null, ?bool $imported = null, ?string $salesTaxId = null, ?string $iorNumber = null, ?LocalDate $iorDate = null, ?bool $sstImport = null, ?OssTypeEnum $ossType = null, ?CountryCodeEnum $ossMemberStateOfIdentificationCode = null, ?\DateTime $markedCollectingDate = null, ?bool $needsMarkAsCollecting = null, ?\DateTime $createdAt = null, ?array $jurisdictionSpecificFields = null, ?bool $doNotFile = false, ?bool $createBackFiling = false, ?bool $retailDeliveryFeeObligated = false, ?string $amountFees = '0.00', ?string $creditsTotalAvailable = '0.00')
     {
         $this->status = $status;
         $this->countryCode = $countryCode;
@@ -397,35 +533,46 @@ class RegistrationRead
         $this->id = $id;
         $this->filingDays = $filingDays;
         $this->registrationType = $registrationType;
+        $this->taxType = $taxType;
+        $this->registrationCategory = $registrationCategory;
+        $this->filingWebsiteUrl = $filingWebsiteUrl;
         $this->registrationDate = $registrationDate;
         $this->registrationEmail = $registrationEmail;
-        $this->registrationKey = $registrationKey;
-        $this->deregistrationKey = $deregistrationKey;
         $this->registrationRequested = $registrationRequested;
         $this->registrationCompleted = $registrationCompleted;
         $this->deregistrationRequested = $deregistrationRequested;
         $this->deregistrationCompleted = $deregistrationCompleted;
+        $this->autoRegistered = $autoRegistered;
         $this->registrationsRegime = $registrationsRegime;
         $this->changeRegimeStatus = $changeRegimeStatus;
+        $this->thirdPartyEnabled = $thirdPartyEnabled;
         $this->twoFactorEnabled = $twoFactorEnabled;
         $this->markedCollecting = $markedCollecting;
+        $this->initialFilingFrequency = $initialFilingFrequency;
+        $this->scheduledFilingFrequency = $scheduledFilingFrequency;
+        $this->filingFrequencyEffectiveDate = $filingFrequencyEffectiveDate;
+        $this->periodEndMonth = $periodEndMonth;
         $this->username = $username;
         $this->comment = $comment;
         $this->createFilingsFrom = $createFilingsFrom;
+        $this->retailDeliveryFeeEffectiveFrom = $retailDeliveryFeeEffectiveFrom;
+        $this->initialSync = $initialSync;
+        $this->vda = $vda;
         $this->imported = $imported;
         $this->salesTaxId = $salesTaxId;
+        $this->iorNumber = $iorNumber;
+        $this->iorDate = $iorDate;
+        $this->sstImport = $sstImport;
         $this->ossType = $ossType;
         $this->ossMemberStateOfIdentificationCode = $ossMemberStateOfIdentificationCode;
         $this->markedCollectingDate = $markedCollectingDate;
-        $this->registrationCategory = $registrationCategory;
-        $this->autoRegistered = $autoRegistered;
-        $this->thirdPartyEnabled = $thirdPartyEnabled;
-        $this->doNotFile = $doNotFile;
-        $this->initialSync = $initialSync;
-        $this->amountFees = $amountFees;
-        $this->vda = $vda;
-        $this->sstImport = $sstImport;
         $this->needsMarkAsCollecting = $needsMarkAsCollecting;
+        $this->createdAt = $createdAt;
+        $this->jurisdictionSpecificFields = $jurisdictionSpecificFields;
+        $this->doNotFile = $doNotFile;
+        $this->createBackFiling = $createBackFiling;
+        $this->retailDeliveryFeeObligated = $retailDeliveryFeeObligated;
+        $this->amountFees = $amountFees;
         $this->creditsTotalAvailable = $creditsTotalAvailable;
     }
 }

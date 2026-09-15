@@ -19,11 +19,39 @@ class GetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGetRequest
     public string $customerId;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
+     *
+     * @var ?int $page
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=page')]
+    public ?int $page = null;
+
+    /**
+     *
+     * @var ?int $size
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=size')]
+    public ?int $size = null;
+
+    /**
      * @param  string  $customerId
+     * @param  ?string  $xOrganizationId
+     * @param  ?int  $page
+     * @param  ?int  $size
      * @phpstan-pure
      */
-    public function __construct(string $customerId)
+    public function __construct(string $customerId, ?string $xOrganizationId = null, ?int $page = null, ?int $size = null)
     {
         $this->customerId = $customerId;
+        $this->xOrganizationId = $xOrganizationId;
+        $this->page = $page;
+        $this->size = $size;
     }
 }

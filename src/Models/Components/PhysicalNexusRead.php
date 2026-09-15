@@ -56,15 +56,24 @@ class PhysicalNexusRead
     public string $id;
 
     /**
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\PhysicalNexusSource $source
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\PhysicalNexusSource|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?PhysicalNexusSource $source = null;
+
+    /**
      * The date when the
      *
      *                                         nexus ended, if applicable.
      *
-     * @var ?string $endDate
+     * @var ?LocalDate $endDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('end_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $endDate = null;
+    public ?LocalDate $endDate = null;
 
     /**
      * Optional
@@ -76,15 +85,6 @@ class PhysicalNexusRead
     #[\Speakeasy\Serializer\Annotation\SerializedName('external_id')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $externalId = null;
-
-    /**
-     *
-     * @var ?\KintsugiTax\SDK\Models\Components\PhysicalNexusSource $source
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\PhysicalNexusSource|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?PhysicalNexusSource $source = null;
 
     /**
      * Primary street address for the physical presence location.
@@ -128,25 +128,25 @@ class PhysicalNexusRead
      * @param  LocalDate  $startDate
      * @param  \KintsugiTax\SDK\Models\Components\PhysicalNexusCategory  $category
      * @param  string  $id
-     * @param  ?string  $endDate
-     * @param  ?string  $externalId
      * @param  ?\KintsugiTax\SDK\Models\Components\PhysicalNexusSource  $source
+     * @param  ?LocalDate  $endDate
+     * @param  ?string  $externalId
      * @param  ?string  $street1
      * @param  ?string  $street2
      * @param  ?string  $city
      * @param  ?string  $postalCode
      * @phpstan-pure
      */
-    public function __construct(CountryCodeEnum $countryCode, string $stateCode, LocalDate $startDate, PhysicalNexusCategory $category, string $id, ?string $endDate = null, ?string $externalId = null, ?PhysicalNexusSource $source = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $postalCode = null)
+    public function __construct(CountryCodeEnum $countryCode, string $stateCode, LocalDate $startDate, PhysicalNexusCategory $category, string $id, ?PhysicalNexusSource $source = null, ?LocalDate $endDate = null, ?string $externalId = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $postalCode = null)
     {
         $this->countryCode = $countryCode;
         $this->stateCode = $stateCode;
         $this->startDate = $startDate;
         $this->category = $category;
         $this->id = $id;
+        $this->source = $source;
         $this->endDate = $endDate;
         $this->externalId = $externalId;
-        $this->source = $source;
         $this->street1 = $street1;
         $this->street2 = $street2;
         $this->city = $city;

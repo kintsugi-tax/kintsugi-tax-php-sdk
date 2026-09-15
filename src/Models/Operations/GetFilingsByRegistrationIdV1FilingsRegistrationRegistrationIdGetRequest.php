@@ -22,6 +22,14 @@ class GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetRequest
     public string $registrationId;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * Page number
      *
      * @var ?int $page
@@ -41,11 +49,13 @@ class GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetRequest
      * @param  string  $registrationId
      * @param  ?int  $page
      * @param  ?int  $size
+     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $registrationId, ?int $page = 1, ?int $size = 50)
+    public function __construct(string $registrationId, ?string $xOrganizationId = null, ?int $page = 1, ?int $size = 50)
     {
         $this->registrationId = $registrationId;
+        $this->xOrganizationId = $xOrganizationId;
         $this->page = $page;
         $this->size = $size;
     }

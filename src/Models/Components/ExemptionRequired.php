@@ -67,6 +67,48 @@ class ExemptionRequired
     public ?string $customerId = null;
 
     /**
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $countryCode
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('country_code')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\CountryCodeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?CountryCodeEnum $countryCode = null;
+
+    /**
+     *
+     * @var ?\DateTime $endDate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('end_date')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\DateTime $endDate = null;
+
+    /**
+     *
+     * @var ?string $fein
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('FEIN')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $fein = null;
+
+    /**
+     *
+     * @var ?string $salesTaxId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('sales_tax_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $salesTaxId = null;
+
+    /**
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\ExemptionSourceEnum $source
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionSourceEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?ExemptionSourceEnum $source = null;
+
+    /**
      * @param  string  $organizationId
      * @param  \KintsugiTax\SDK\Models\Components\ExemptionType  $exemptionType
      * @param  \DateTime  $startDate
@@ -74,9 +116,14 @@ class ExemptionRequired
      * @param  bool  $reseller
      * @param  ?string  $jurisdiction
      * @param  ?string  $customerId
+     * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
+     * @param  ?\DateTime  $endDate
+     * @param  ?string  $fein
+     * @param  ?string  $salesTaxId
+     * @param  ?\KintsugiTax\SDK\Models\Components\ExemptionSourceEnum  $source
      * @phpstan-pure
      */
-    public function __construct(string $organizationId, ExemptionType $exemptionType, \DateTime $startDate, ExemptionStatus $status, bool $reseller, ?string $jurisdiction = null, ?string $customerId = null)
+    public function __construct(string $organizationId, ExemptionType $exemptionType, \DateTime $startDate, ExemptionStatus $status, bool $reseller, ?string $jurisdiction = null, ?string $customerId = null, ?CountryCodeEnum $countryCode = null, ?\DateTime $endDate = null, ?string $fein = null, ?string $salesTaxId = null, ?ExemptionSourceEnum $source = null)
     {
         $this->organizationId = $organizationId;
         $this->exemptionType = $exemptionType;
@@ -85,5 +132,10 @@ class ExemptionRequired
         $this->reseller = $reseller;
         $this->jurisdiction = $jurisdiction;
         $this->customerId = $customerId;
+        $this->countryCode = $countryCode;
+        $this->endDate = $endDate;
+        $this->fein = $fein;
+        $this->salesTaxId = $salesTaxId;
+        $this->source = $source;
     }
 }

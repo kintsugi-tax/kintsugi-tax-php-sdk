@@ -101,7 +101,7 @@ class TransactionEstimatePublicRequestAddress
     public ?string $fullAddress = null;
 
     /**
-     * Status of the address. Deprecated and ignored.
+     * Deprecated: ignored on estimate. Accepted for backward compatibility; each address is validated from structured fields.
      *
      * @var ?string $status
      * @deprecated  field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -109,6 +109,15 @@ class TransactionEstimatePublicRequestAddress
     #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $status = null;
+
+    /**
+     * If true, city-level tax rates are not applied for this address.
+     *
+     * @var ?bool $isUnincorporated
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_unincorporated')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isUnincorporated = null;
 
     /**
      * @param  \KintsugiTax\SDK\Models\Components\TransactionEstimatePublicRequestType  $type
@@ -122,9 +131,10 @@ class TransactionEstimatePublicRequestAddress
      * @param  ?string  $county
      * @param  ?string  $fullAddress
      * @param  ?string  $status
+     * @param  ?bool  $isUnincorporated
      * @phpstan-pure
      */
-    public function __construct(TransactionEstimatePublicRequestType $type, string $state, string $postalCode, string $country, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $fullAddress = null, ?string $status = null)
+    public function __construct(TransactionEstimatePublicRequestType $type, string $state, string $postalCode, string $country, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $fullAddress = null, ?string $status = null, ?bool $isUnincorporated = false)
     {
         $this->type = $type;
         $this->state = $state;
@@ -137,5 +147,6 @@ class TransactionEstimatePublicRequestAddress
         $this->county = $county;
         $this->fullAddress = $fullAddress;
         $this->status = $status;
+        $this->isUnincorporated = $isUnincorporated;
     }
 }

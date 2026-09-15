@@ -1,0 +1,8 @@
+# GeorgiaRegistrationType
+
+
+## Values
+
+| Name       | Value      |
+| ---------- | ---------- |
+| `SalesTax` | SALES_TAX  |

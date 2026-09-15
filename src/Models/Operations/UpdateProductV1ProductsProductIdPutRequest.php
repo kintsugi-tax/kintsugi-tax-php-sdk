@@ -22,19 +22,29 @@ class UpdateProductV1ProductsProductIdPutRequest
 
     /**
      *
-     * @var \KintsugiTax\SDK\Models\Components\ProductUpdate $productUpdate
+     * @var \KintsugiTax\SDK\Models\Components\ProductUpdate|\KintsugiTax\SDK\Models\Components\ProductUpdateV2 $requestBody
      */
     #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public Components\ProductUpdate $productUpdate;
+    public Components\ProductUpdate|Components\ProductUpdateV2 $requestBody;
+
+    /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
 
     /**
      * @param  string  $productId
-     * @param  \KintsugiTax\SDK\Models\Components\ProductUpdate  $productUpdate
+     * @param  \KintsugiTax\SDK\Models\Components\ProductUpdate|\KintsugiTax\SDK\Models\Components\ProductUpdateV2  $requestBody
+     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $productId, Components\ProductUpdate $productUpdate)
+    public function __construct(string $productId, Components\ProductUpdate|Components\ProductUpdateV2 $requestBody, ?string $xOrganizationId = null)
     {
         $this->productId = $productId;
-        $this->productUpdate = $productUpdate;
+        $this->requestBody = $requestBody;
+        $this->xOrganizationId = $xOrganizationId;
     }
 }

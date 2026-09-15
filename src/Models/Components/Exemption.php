@@ -46,13 +46,21 @@ class Exemption
     public ?\DateTime $createdAt = null;
 
     /**
+     *
+     * @var ?string $organizationId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $organizationId = null;
+
+    /**
      * Timestamp when transaction was last updated.
      *
-     * @var ?string $updatedAt
+     * @var ?\DateTime $updatedAt
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('updated_at')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $updatedAt = null;
+    public ?\DateTime $updatedAt = null;
 
     /**
      * The jurisdiction identifier for the exemption
@@ -64,6 +72,7 @@ class Exemption
     public ?string $jurisdiction = null;
 
     /**
+     * Country code in ISO 3166-1 alpha-2 format (e.g., 'US')
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $countryCode
      */
@@ -75,11 +84,11 @@ class Exemption
     /**
      * End date for the exemption validity period (YYYY-MM-DD format)
      *
-     * @var ?string $endDate
+     * @var ?LocalDate $endDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('end_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $endDate = null;
+    public ?LocalDate $endDate = null;
 
     /**
      * Unique identifier for the customer associated with the exemption
@@ -122,6 +131,9 @@ class Exemption
     public ?string $salesTaxId = null;
 
     /**
+     * The status of the exemption.
+     *
+     *         Defaults to ACTIVE if not provided.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\ExemptionStatus $status
      */
@@ -131,12 +143,23 @@ class Exemption
     public ?ExemptionStatus $status = null;
 
     /**
+     * FK to bulk-imported certificate; NULL for manually-created exemptions
      *
-     * @var ?string $organizationId
+     * @var ?string $certificateImportId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('organization_id')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('certificate_import_id')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $organizationId = null;
+    public ?string $certificateImportId = null;
+
+    /**
+     * Source of exemption.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\ExemptionSourceEnum $source
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ExemptionSourceEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?ExemptionSourceEnum $source = null;
 
     /**
      * Indicates whether the exemption is for a reseller
@@ -152,25 +175,28 @@ class Exemption
      * @param  LocalDate  $startDate
      * @param  ?string  $id
      * @param  ?\DateTime  $createdAt
-     * @param  ?string  $updatedAt
+     * @param  ?bool  $reseller
+     * @param  ?string  $organizationId
+     * @param  ?\DateTime  $updatedAt
      * @param  ?string  $jurisdiction
      * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
-     * @param  ?string  $endDate
+     * @param  ?LocalDate  $endDate
      * @param  ?string  $customerId
      * @param  ?string  $transactionId
-     * @param  ?bool  $reseller
      * @param  ?string  $fein
      * @param  ?string  $salesTaxId
      * @param  ?\KintsugiTax\SDK\Models\Components\ExemptionStatus  $status
-     * @param  ?string  $organizationId
+     * @param  ?string  $certificateImportId
+     * @param  ?\KintsugiTax\SDK\Models\Components\ExemptionSourceEnum  $source
      * @phpstan-pure
      */
-    public function __construct(ExemptionType $exemptionType, LocalDate $startDate, ?string $id = null, ?\DateTime $createdAt = null, ?string $updatedAt = null, ?string $jurisdiction = null, ?CountryCodeEnum $countryCode = null, ?string $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?ExemptionStatus $status = null, ?string $organizationId = null, ?bool $reseller = false)
+    public function __construct(ExemptionType $exemptionType, LocalDate $startDate, ?string $id = null, ?\DateTime $createdAt = null, ?string $organizationId = null, ?\DateTime $updatedAt = null, ?string $jurisdiction = null, ?CountryCodeEnum $countryCode = null, ?LocalDate $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?ExemptionStatus $status = null, ?string $certificateImportId = null, ?ExemptionSourceEnum $source = null, ?bool $reseller = false)
     {
         $this->exemptionType = $exemptionType;
         $this->startDate = $startDate;
         $this->id = $id;
         $this->createdAt = $createdAt;
+        $this->organizationId = $organizationId;
         $this->updatedAt = $updatedAt;
         $this->jurisdiction = $jurisdiction;
         $this->countryCode = $countryCode;
@@ -180,7 +206,8 @@ class Exemption
         $this->fein = $fein;
         $this->salesTaxId = $salesTaxId;
         $this->status = $status;
-        $this->organizationId = $organizationId;
+        $this->certificateImportId = $certificateImportId;
+        $this->source = $source;
         $this->reseller = $reseller;
     }
 }

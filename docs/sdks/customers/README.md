@@ -4,13 +4,13 @@
 
 ### Available Operations
 
-* [list](#list) - Get Customers
-* [create](#create) - Create Customer
-* [getById](#getbyid) - Get Customer By Id
-* [update](#update) - Update Customer
-* [getByExternalId](#getbyexternalid) - Get Customer By External Id
-* [getTransactions](#gettransactions) - Get Transactions By Customer Id
-* [createTransaction](#createtransaction) - Create Transaction By Customer Id
+* [list](#list) - Get customers
+* [create](#create) - Create customer
+* [getByExternalId](#getbyexternalid) - Get customer by external id
+* [getById](#getbyid) - Get customer by id
+* [update](#update) - Update customer
+* [getTransactions](#gettransactions) - Get transactions by customer id
+* [createTransaction](#createtransaction) - Create transaction by customer id
 
 ## list
 
@@ -27,26 +27,25 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Models\Operations;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
 $request = new Operations\GetCustomersV1Request(
     searchQuery: 'John',
     country: [
-
+        'U',
+        'S',
     ],
     state: 'CA',
     sourceIn: 'SHOPIFY,API',
+    connectionIdIn: 'conn_abc123,conn_def456',
     orderBy: 'created_at,street_1,street_2,city,state,postal_code,country,status',
+    xOrganizationId: 'org_12345',
 );
 
 $response = $sdk->customers->list(
@@ -95,14 +94,11 @@ use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
-$request = new Components\CustomerCreate(
+$customerCreate = new Components\CustomerCreate(
     phone: '987-654-3210',
     street1: '456 Elm St',
     street2: 'Suite 202',
@@ -120,7 +116,9 @@ $request = new Components\CustomerCreate(
 );
 
 $response = $sdk->customers->create(
-    request: $request
+    customerCreate: $customerCreate,
+    xOrganizationId: 'org_12345'
+
 );
 
 if ($response->customerRead !== null) {
@@ -130,9 +128,10 @@ if ($response->customerRead !== null) {
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `$request`                                                             | [Components\CustomerCreate](../../Models/Components/CustomerCreate.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            | Example                                                                |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `customerCreate`                                                       | [Components\CustomerCreate](../../Models/Components/CustomerCreate.md) | :heavy_check_mark:                                                     | N/A                                                                    |                                                                        |
+| `xOrganizationId`                                                      | *string*                                                               | :heavy_check_mark:                                                     | The unique identifier for the organization making the request          | org_12345                                                              |
 
 ### Response
 
@@ -146,6 +145,59 @@ if ($response->customerRead !== null) {
 | Errors\BackendSrcCustomersResponsesValidationErrorResponse | 422                                                        | application/json                                           |
 | Errors\ErrorResponse                                       | 500                                                        | application/json                                           |
 | Errors\APIException                                        | 4XX, 5XX                                                   | \*/\*                                                      |
+
+## getByExternalId
+
+The Get Customer By External ID API retrieves the details of a single customer using
+their external identifier. This endpoint is useful for accessing customer data when only
+an external ID is available.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="get_customer_by_external_id_v1_customers_external__external_id__get" method="get" path="/v1/customers/external/{external_id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        '<YOUR_API_KEY_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->customers->getByExternalId(
+    externalId: 'external_12345',
+    xOrganizationId: 'org_12345'
+
+);
+
+if ($response->customerRead !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `externalId`                                                  | *string*                                                      | :heavy_check_mark:                                            | The external identifier of the customer to retrieve.          | external_12345                                                |
+| `xOrganizationId`                                             | *string*                                                      | :heavy_check_mark:                                            | The unique identifier for the organization making the request | org_12345                                                     |
+
+### Response
+
+**[?Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse](../../Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| Errors\HTTPValidationError | 422                        | application/json           |
+| Errors\APIException        | 4XX, 5XX                   | \*/\*                      |
 
 ## getById
 
@@ -162,21 +214,19 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
 
 
 $response = $sdk->customers->getById(
-    customerId: 'cust_abc123'
+    customerId: 'cust_abc123',
+    xOrganizationId: 'org_12345'
+
 );
 
 if ($response->customerRead !== null) {
@@ -186,9 +236,10 @@ if ($response->customerRead !== null) {
 
 ### Parameters
 
-| Parameter                         | Type                              | Required                          | Description                       | Example                           |
-| --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- |
-| `customerId`                      | *string*                          | :heavy_check_mark:                | Unique identifier of the customer | cust_abc123                       |
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `customerId`                                                  | *string*                                                      | :heavy_check_mark:                                            | Unique identifier of the customer                             | cust_abc123                                                   |
+| `xOrganizationId`                                             | *string*                                                      | :heavy_check_mark:                                            | The unique identifier for the organization making the request | org_12345                                                     |
 
 ### Response
 
@@ -220,10 +271,7 @@ use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
@@ -247,7 +295,8 @@ $customerUpdate = new Components\CustomerUpdate(
 
 $response = $sdk->customers->update(
     customerId: '<id>',
-    customerUpdate: $customerUpdate
+    customerUpdate: $customerUpdate,
+    xOrganizationId: 'org_12345'
 
 );
 
@@ -258,10 +307,11 @@ if ($response->customerRead !== null) {
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `customerId`                                                           | *string*                                                               | :heavy_check_mark:                                                     | Unique identifier of the customer to be retrieved.                     |
-| `customerUpdate`                                                       | [Components\CustomerUpdate](../../Models/Components/CustomerUpdate.md) | :heavy_check_mark:                                                     | N/A                                                                    |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            | Example                                                                |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `customerId`                                                           | *string*                                                               | :heavy_check_mark:                                                     | Unique identifier of the customer to be retrieved.                     |                                                                        |
+| `customerUpdate`                                                       | [Components\CustomerUpdate](../../Models/Components/CustomerUpdate.md) | :heavy_check_mark:                                                     | N/A                                                                    |                                                                        |
+| `xOrganizationId`                                                      | *string*                                                               | :heavy_check_mark:                                                     | The unique identifier for the organization making the request          | org_12345                                                              |
 
 ### Response
 
@@ -276,63 +326,9 @@ if ($response->customerRead !== null) {
 | Errors\ErrorResponse                                       | 500                                                        | application/json                                           |
 | Errors\APIException                                        | 4XX, 5XX                                                   | \*/\*                                                      |
 
-## getByExternalId
-
-The Get Customer By External ID API retrieves the details of a single customer using
-their external identifier. This endpoint is useful for accessing customer data when only
-an external ID is available.
-
-### Example Usage
-
-<!-- UsageSnippet language="php" operationID="get_customer_by_external_id_v1_customers_external__external_id__get" method="get" path="/v1/customers/external/{external_id}" -->
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
-
-$sdk = SDK\SDK::builder()
-    ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
-    )
-    ->build();
-
-
-
-$response = $sdk->customers->getByExternalId(
-    externalId: 'external_12345'
-);
-
-if ($response->customerRead !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                            | Type                                                 | Required                                             | Description                                          | Example                                              |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| `externalId`                                         | *string*                                             | :heavy_check_mark:                                   | The external identifier of the customer to retrieve. | external_12345                                       |
-
-### Response
-
-**[?Operations\GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse](../../Models/Operations/GetCustomerByExternalIdV1CustomersExternalExternalIdGetResponse.md)**
-
-### Errors
-
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| Errors\HTTPValidationError | 422                        | application/json           |
-| Errors\APIException        | 4XX, 5XX                   | \*/\*                      |
-
 ## getTransactions
 
-Get a list of transactions for a customer by their unique ID.
+Get a list of transactions for a customer by their unique ID. When pagination params are provided, this endpoint returns a paginated response. When omitted, it returns the legacy list response format (deprecated).
 
 ### Example Usage
 
@@ -343,21 +339,19 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
 
 
 $response = $sdk->customers->getTransactions(
-    customerId: '<id>'
+    customerId: '<id>',
+    xOrganizationId: 'org_12345'
+
 );
 
 if ($response->responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransactionsGet !== null) {
@@ -367,9 +361,12 @@ if ($response->responseGetTransactionsByCustomerIdV1CustomersCustomerIdTransacti
 
 ### Parameters
 
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `customerId`       | *string*           | :heavy_check_mark: | N/A                |
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `customerId`                                                  | *string*                                                      | :heavy_check_mark:                                            | N/A                                                           |                                                               |
+| `page`                                                        | *?int*                                                        | :heavy_minus_sign:                                            | N/A                                                           |                                                               |
+| `size`                                                        | *?int*                                                        | :heavy_minus_sign:                                            | N/A                                                           |                                                               |
+| `xOrganizationId`                                             | *string*                                                      | :heavy_check_mark:                                            | The unique identifier for the organization making the request | org_12345                                                     |
 
 ### Response
 
@@ -400,10 +397,7 @@ use KintsugiTax\SDK\Utils;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
@@ -417,13 +411,21 @@ $transactionCreate = new Components\TransactionCreate(
             organizationId: '<id>',
             date: Utils\Utils::parseDateTime('2024-05-13T04:49:24.946Z'),
             externalProductId: '<id>',
+            quantity: 1,
+            amount: 0,
+            taxAmountImported: 0,
+            taxRateImported: 0,
+            taxAmountCalculated: 0,
+            taxRateCalculated: 0,
+            taxableAmount: 0,
         ),
     ],
 );
 
 $response = $sdk->customers->createTransaction(
     customerId: '<id>',
-    transactionCreate: $transactionCreate
+    transactionCreate: $transactionCreate,
+    xOrganizationId: 'org_12345'
 
 );
 
@@ -434,10 +436,11 @@ if ($response->transactionRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `customerId`                                                                 | *string*                                                                     | :heavy_check_mark:                                                           | N/A                                                                          |
-| `transactionCreate`                                                          | [Components\TransactionCreate](../../Models/Components/TransactionCreate.md) | :heavy_check_mark:                                                           | N/A                                                                          |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  | Example                                                                      |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `customerId`                                                                 | *string*                                                                     | :heavy_check_mark:                                                           | N/A                                                                          |                                                                              |
+| `transactionCreate`                                                          | [Components\TransactionCreate](../../Models/Components/TransactionCreate.md) | :heavy_check_mark:                                                           | N/A                                                                          |                                                                              |
+| `xOrganizationId`                                                            | *string*                                                                     | :heavy_check_mark:                                                           | The unique identifier for the organization making the request                | org_12345                                                                    |
 
 ### Response
 

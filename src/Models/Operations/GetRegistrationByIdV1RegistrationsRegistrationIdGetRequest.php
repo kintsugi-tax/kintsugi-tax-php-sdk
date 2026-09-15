@@ -22,6 +22,14 @@ class GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest
     public string $registrationId;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * Name of field to reveal
      *
      * @var ?string $reveal
@@ -31,12 +39,14 @@ class GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest
 
     /**
      * @param  string  $registrationId
+     * @param  ?string  $xOrganizationId
      * @param  ?string  $reveal
      * @phpstan-pure
      */
-    public function __construct(string $registrationId, ?string $reveal = null)
+    public function __construct(string $registrationId, ?string $xOrganizationId = null, ?string $reveal = null)
     {
         $this->registrationId = $registrationId;
+        $this->xOrganizationId = $xOrganizationId;
         $this->reveal = $reveal;
     }
 }

@@ -8,17 +8,17 @@ declare(strict_types=1);
 
 namespace KintsugiTax\SDK\Models\Components;
 
-
+use Brick\DateTime\LocalDate;
 class RegistrationUpdateAPI
 {
     /**
      * The date when the registration was created. Format: YYYY-MM-DD.
      *
-     * @var ?string $registrationDate
+     * @var ?LocalDate $registrationDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registration_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $registrationDate = null;
+    public ?LocalDate $registrationDate = null;
 
     /**
      * Email address associated with the registration.
@@ -30,60 +30,52 @@ class RegistrationUpdateAPI
     public ?string $registrationEmail = null;
 
     /**
-     * A unique key assigned to the registration.
-     *
-     * @var ?string $registrationKey
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('registration_key')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $registrationKey = null;
-
-    /**
-     * A unique key assigned for deregistration.
-     *
-     * @var ?string $deregistrationKey
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('deregistration_key')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $deregistrationKey = null;
-
-    /**
      * Timestamp when the registration was requested.
      *
-     * @var ?string $registrationRequested
+     * @var ?\DateTime $registrationRequested
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registration_requested')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $registrationRequested = null;
+    public ?\DateTime $registrationRequested = null;
 
     /**
      * Timestamp when the registration was completed.
      *
-     * @var ?string $registrationCompleted
+     * @var ?\DateTime $registrationCompleted
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('registration_completed')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $registrationCompleted = null;
+    public ?\DateTime $registrationCompleted = null;
 
     /**
      * Timestamp when deregistration was requested.
      *
-     * @var ?string $deregistrationRequested
+     * @var ?\DateTime $deregistrationRequested
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('deregistration_requested')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $deregistrationRequested = null;
+    public ?\DateTime $deregistrationRequested = null;
 
     /**
      * Timestamp when the deregistration was completed.
      *
-     * @var ?string $deregistrationCompleted
+     * @var ?\DateTime $deregistrationCompleted
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('deregistration_completed')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $deregistrationCompleted = null;
+    public ?\DateTime $deregistrationCompleted = null;
 
     /**
+     * Indicates whether the registration was completed automatically.
+     *
+     * @var ?bool $autoRegistered
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('auto_registered')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $autoRegistered = null;
+
+    /**
+     * The tax registration regime (e.g., STANDARD, SIMPLIFIED).
      *
      * @var ?\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum $registrationsRegime
      */
@@ -100,6 +92,15 @@ class RegistrationUpdateAPI
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ChangeRegimeStatusEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?ChangeRegimeStatusEnum $changeRegimeStatus = null;
+
+    /**
+     * Indicates whether third-party access is enabled for this registration.
+     *
+     * @var ?bool $thirdPartyEnabled
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('third_party_enabled')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $thirdPartyEnabled = null;
 
     /**
      * Indicates whether two-factor authentication (2FA) is enabled for this registration.
@@ -138,6 +139,7 @@ class RegistrationUpdateAPI
     public ?string $username = null;
 
     /**
+     * The updated filing frequency (MONTHLY, QUARTERLY, etc.).
      *
      * @var ?\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum $filingFrequency
      */
@@ -149,11 +151,11 @@ class RegistrationUpdateAPI
     /**
      * The updated date from which filings should start (YYYY-MM-DD).
      *
-     * @var ?string $createFilingsFrom
+     * @var ?LocalDate $createFilingsFrom
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('create_filings_from')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $createFilingsFrom = null;
+    public ?LocalDate $createFilingsFrom = null;
 
     /**
      * Indicates whether the registration is approaching an action (e.g., renewal).
@@ -192,22 +194,13 @@ class RegistrationUpdateAPI
     public ?string $taxId = null;
 
     /**
-     * Indicates whether the registration was completed automatically.
+     * The Importer of Record (IOR) number for the registration.
      *
-     * @var ?bool $autoRegistered
+     * @var ?string $iorNumber
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('auto_registered')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ior_number')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $autoRegistered = null;
-
-    /**
-     * Indicates whether third-party access is enabled for this registration.
-     *
-     * @var ?bool $thirdPartyEnabled
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('third_party_enabled')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $thirdPartyEnabled = null;
+    public ?string $iorNumber = null;
 
     /**
      * If true, do not file for this registration (treated as False by default).
@@ -219,43 +212,52 @@ class RegistrationUpdateAPI
     public ?bool $doNotFile = null;
 
     /**
-     * @param  ?string  $registrationDate
+     * Whether to also file the single period preceding the first filing period.
+     *
+     * @var ?bool $createBackFiling
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('create_back_filing')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $createBackFiling = null;
+
+    /**
+     * @param  ?bool  $doNotFile
+     * @param  ?bool  $createBackFiling
+     * @param  ?LocalDate  $registrationDate
      * @param  ?string  $registrationEmail
-     * @param  ?string  $registrationKey
-     * @param  ?string  $deregistrationKey
-     * @param  ?string  $registrationRequested
-     * @param  ?string  $registrationCompleted
-     * @param  ?string  $deregistrationRequested
-     * @param  ?string  $deregistrationCompleted
+     * @param  ?\DateTime  $registrationRequested
+     * @param  ?\DateTime  $registrationCompleted
+     * @param  ?\DateTime  $deregistrationRequested
+     * @param  ?\DateTime  $deregistrationCompleted
      * @param  ?bool  $autoRegistered
      * @param  ?\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum  $registrationsRegime
      * @param  ?\KintsugiTax\SDK\Models\Components\ChangeRegimeStatusEnum  $changeRegimeStatus
      * @param  ?bool  $thirdPartyEnabled
-     * @param  ?bool  $doNotFile
      * @param  ?bool  $twoFactorEnabled
      * @param  ?bool  $markedCollecting
      * @param  ?string  $encryptedUsername
      * @param  ?string  $username
      * @param  ?\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum  $filingFrequency
-     * @param  ?string  $createFilingsFrom
+     * @param  ?LocalDate  $createFilingsFrom
      * @param  ?bool  $isApproaching
      * @param  ?string  $comment
      * @param  ?bool  $vda
      * @param  ?string  $taxId
+     * @param  ?string  $iorNumber
      * @phpstan-pure
      */
-    public function __construct(?string $registrationDate = null, ?string $registrationEmail = null, ?string $registrationKey = null, ?string $deregistrationKey = null, ?string $registrationRequested = null, ?string $registrationCompleted = null, ?string $deregistrationRequested = null, ?string $deregistrationCompleted = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $twoFactorEnabled = null, ?bool $markedCollecting = null, ?string $encryptedUsername = null, ?string $username = null, ?FilingFrequencyEnum $filingFrequency = null, ?string $createFilingsFrom = null, ?bool $isApproaching = null, ?string $comment = null, ?bool $vda = null, ?string $taxId = null, ?bool $autoRegistered = false, ?bool $thirdPartyEnabled = false, ?bool $doNotFile = false)
+    public function __construct(?LocalDate $registrationDate = null, ?string $registrationEmail = null, ?\DateTime $registrationRequested = null, ?\DateTime $registrationCompleted = null, ?\DateTime $deregistrationRequested = null, ?\DateTime $deregistrationCompleted = null, ?bool $autoRegistered = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $thirdPartyEnabled = null, ?bool $twoFactorEnabled = null, ?bool $markedCollecting = null, ?string $encryptedUsername = null, ?string $username = null, ?FilingFrequencyEnum $filingFrequency = null, ?LocalDate $createFilingsFrom = null, ?bool $isApproaching = null, ?string $comment = null, ?bool $vda = null, ?string $taxId = null, ?string $iorNumber = null, ?bool $doNotFile = false, ?bool $createBackFiling = false)
     {
         $this->registrationDate = $registrationDate;
         $this->registrationEmail = $registrationEmail;
-        $this->registrationKey = $registrationKey;
-        $this->deregistrationKey = $deregistrationKey;
         $this->registrationRequested = $registrationRequested;
         $this->registrationCompleted = $registrationCompleted;
         $this->deregistrationRequested = $deregistrationRequested;
         $this->deregistrationCompleted = $deregistrationCompleted;
+        $this->autoRegistered = $autoRegistered;
         $this->registrationsRegime = $registrationsRegime;
         $this->changeRegimeStatus = $changeRegimeStatus;
+        $this->thirdPartyEnabled = $thirdPartyEnabled;
         $this->twoFactorEnabled = $twoFactorEnabled;
         $this->markedCollecting = $markedCollecting;
         $this->encryptedUsername = $encryptedUsername;
@@ -266,8 +268,8 @@ class RegistrationUpdateAPI
         $this->comment = $comment;
         $this->vda = $vda;
         $this->taxId = $taxId;
-        $this->autoRegistered = $autoRegistered;
-        $this->thirdPartyEnabled = $thirdPartyEnabled;
+        $this->iorNumber = $iorNumber;
         $this->doNotFile = $doNotFile;
+        $this->createBackFiling = $createBackFiling;
     }
 }

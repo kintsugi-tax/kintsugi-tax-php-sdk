@@ -14,16 +14,16 @@ class BodyUploadExemptionCertificateV1ExemptionsExemptionIdAttachmentsPost
     /**
      * The file to be uploaded. Supported format: PDF. Max size: 10 MB.
      *
-     * @var \KintsugiTax\SDK\Models\Components\File $file
+     * @var string $file
      */
-    #[SpeakeasyMetadata('multipartForm:file=true,name=file')]
-    public File $file;
+    #[SpeakeasyMetadata('multipartForm:name=file')]
+    public string $file;
 
     /**
-     * @param  \KintsugiTax\SDK\Models\Components\File  $file
+     * @param  string  $file
      * @phpstan-pure
      */
-    public function __construct(File $file)
+    public function __construct(string $file)
     {
         $this->file = $file;
     }

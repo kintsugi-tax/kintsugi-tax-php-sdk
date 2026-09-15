@@ -20,11 +20,21 @@ class GetTransactionByExternalIdV1TransactionsExternalExternalIdGetRequest
     public string $externalId;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * @param  string  $externalId
+     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $externalId)
+    public function __construct(string $externalId, ?string $xOrganizationId = null)
     {
         $this->externalId = $externalId;
+        $this->xOrganizationId = $xOrganizationId;
     }
 }

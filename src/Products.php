@@ -46,29 +46,40 @@ class Products
     }
 
     /**
-     * Create Product
+     * Create product
      *
      * The Create Product API allows users to manually create a new product
      *     in the system. This includes specifying product details such as category,
      *     subcategory, and tax exemption status, etc. You can
-     *     retrieve supported categories and subcategories from
-     *     [GET /products/categories endpoint](/reference/api/products/get-product-categories)
+     *     retrieve supported categories and subcategories from the
+     *     [GET /products/categories endpoint](/reference/api/products/get-product-categories),
+     *     or browse the full catalog with descriptions and examples in the
+     *     [Product Categories guide](/docs/guides/product-categories)
      *
-     * @param  \KintsugiTax\SDK\Models\Components\ProductCreateManual  $request
+     * @param  \KintsugiTax\SDK\Models\Components\ProductCreateManual  $productCreateManual
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\CreateProductV1ProductsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function createProductV1ProductsPost(Components\ProductCreateManual $request, ?Options $options = null): Operations\CreateProductV1ProductsPostResponse
+    public function createProductV1ProductsPost(Components\ProductCreateManual $productCreateManual, ?string $xOrganizationId = null, ?Options $options = null): Operations\CreateProductV1ProductsPostResponse
     {
+        $request = new Operations\CreateProductV1ProductsPostRequest(
+            xOrganizationId: $xOrganizationId,
+            productCreateManual: $productCreateManual,
+        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'request', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'productCreateManual', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('POST', $url);
@@ -125,7 +136,7 @@ class Products
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\BackendSrcProductsResponsesValidationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\BackendSrcProductsSchemasResponsesValidationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $obj->rawResponse = $httpResponse;
                 throw $obj->toException();
             } else {
@@ -153,25 +164,31 @@ class Products
     }
 
     /**
-     * Get Product By Id
+     * Get product by id
      *
      * The Get Product By ID API retrieves detailed information about
      *     a single product by its unique ID. This API helps in viewing the specific details
      *     of a product, including its attributes, status, and categorization.
      *
      * @param  string  $productId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\GetProductByIdV1ProductsProductIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function get(string $productId, ?Options $options = null): Operations\GetProductByIdV1ProductsProductIdGetResponse
+    public function get(string $productId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetProductByIdV1ProductsProductIdGetResponse
     {
         $request = new Operations\GetProductByIdV1ProductsProductIdGetRequest(
             productId: $productId,
+            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/{product_id}', Operations\GetProductByIdV1ProductsProductIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -228,7 +245,7 @@ class Products
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\BackendSrcProductsResponsesValidationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\BackendSrcProductsSchemasResponsesValidationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $obj->rawResponse = $httpResponse;
                 throw $obj->toException();
             } else {
@@ -256,21 +273,29 @@ class Products
     }
 
     /**
-     * Get Product Categories
+     * Get product categories
      *
      * The Get Product Categories API retrieves all
      *     product categories.  This endpoint helps users understand and select the
      *     appropriate categories for their products.
      *
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getProductCategoriesV1ProductsCategoriesGet(?Options $options = null): Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
+    public function getProductCategoriesV1ProductsCategoriesGet(?string $xOrganizationId = null, ?Options $options = null): Operations\GetProductCategoriesV1ProductsCategoriesGetResponse
     {
+        $request = new Operations\GetProductCategoriesV1ProductsCategoriesGetRequest(
+            xOrganizationId: $xOrganizationId,
+        );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/categories');
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -298,12 +323,12 @@ class Products
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\ProductCategories', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\ProductCategoryRead', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\GetProductCategoriesV1ProductsCategoriesGetResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    productCategories: $obj);
+                    productCategoryRead: $obj);
 
                 return $response;
             } else {
@@ -327,7 +352,7 @@ class Products
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\BackendSrcProductsResponsesValidationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\BackendSrcProductsSchemasResponsesValidationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $obj->rawResponse = $httpResponse;
                 throw $obj->toException();
             } else {
@@ -355,15 +380,15 @@ class Products
     }
 
     /**
-     * Get Products
+     * Get products
      *
      * Retrieve a paginated list of products based on filters and search query.
      *
-     * @param  ?\KintsugiTax\SDK\Models\Operations\GetProductsV1ProductsGetRequest  $request
+     * @param  \KintsugiTax\SDK\Models\Operations\GetProductsV1ProductsGetRequest  $request
      * @return \KintsugiTax\SDK\Models\Operations\GetProductsV1ProductsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getProductsV1ProductsGet(?Operations\GetProductsV1ProductsGetRequest $request = null, ?Options $options = null): Operations\GetProductsV1ProductsGetResponse
+    public function getProductsV1ProductsGet(Operations\GetProductsV1ProductsGetRequest $request, ?Options $options = null): Operations\GetProductsV1ProductsGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products');
@@ -371,6 +396,10 @@ class Products
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetProductsV1ProductsGetRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -428,7 +457,7 @@ class Products
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\BackendSrcProductsResponsesValidationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\BackendSrcProductsSchemasResponsesValidationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $obj->rawResponse = $httpResponse;
                 throw $obj->toException();
             } else {
@@ -456,33 +485,41 @@ class Products
     }
 
     /**
-     * Update Product
+     * Update product
      *
      * The Update Product API allows users to modify the details of
      *     an existing product identified by its unique product_id. You can
-     *     retrieve supported categories and subcategories from
-     *     [GET /products/categories endpoint](/reference/api/products/get-product-categories)
+     *     retrieve supported categories and subcategories from the
+     *     [GET /products/categories endpoint](/reference/api/products/get-product-categories),
+     *     or browse the full catalog with descriptions and examples in the
+     *     [Product Categories guide](/docs/guides/product-categories)
      *
-     * @param  \KintsugiTax\SDK\Models\Components\ProductUpdate  $productUpdate
+     * @param  \KintsugiTax\SDK\Models\Components\ProductUpdate|\KintsugiTax\SDK\Models\Components\ProductUpdateV2  $requestBody
      * @param  string  $productId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\UpdateProductV1ProductsProductIdPutResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function update(Components\ProductUpdate $productUpdate, string $productId, ?Options $options = null): Operations\UpdateProductV1ProductsProductIdPutResponse
+    public function update(Components\ProductUpdate|Components\ProductUpdateV2 $requestBody, string $productId, ?string $xOrganizationId = null, ?Options $options = null): Operations\UpdateProductV1ProductsProductIdPutResponse
     {
         $request = new Operations\UpdateProductV1ProductsProductIdPutRequest(
             productId: $productId,
-            productUpdate: $productUpdate,
+            xOrganizationId: $xOrganizationId,
+            requestBody: $requestBody,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/products/{product_id}', Operations\UpdateProductV1ProductsProductIdPutRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
-        $body = Utils\Utils::serializeRequestBody($request, 'productUpdate', 'json');
+        $body = Utils\Utils::serializeRequestBody($request, 'requestBody', 'json');
         if ($body === null) {
             throw new \Exception('Request body is required');
         }
         $httpOptions = array_merge_recursive($httpOptions, $body);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
@@ -539,7 +576,7 @@ class Products
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\BackendSrcProductsResponsesValidationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\BackendSrcProductsSchemasResponsesValidationErrorResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $obj->rawResponse = $httpResponse;
                 throw $obj->toException();
             } else {

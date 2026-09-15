@@ -27,13 +27,23 @@ class CreateTransactionByCustomerIdV1CustomersCustomerIdTransactionsPostRequest
     public Components\TransactionCreate $transactionCreate;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * @param  string  $customerId
      * @param  \KintsugiTax\SDK\Models\Components\TransactionCreate  $transactionCreate
+     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $customerId, Components\TransactionCreate $transactionCreate)
+    public function __construct(string $customerId, Components\TransactionCreate $transactionCreate, ?string $xOrganizationId = null)
     {
         $this->customerId = $customerId;
         $this->transactionCreate = $transactionCreate;
+        $this->xOrganizationId = $xOrganizationId;
     }
 }

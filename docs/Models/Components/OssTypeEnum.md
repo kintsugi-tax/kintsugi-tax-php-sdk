@@ -9,3 +9,4 @@ Type of OSS registration.
 | ---------- | ---------- |
 | `Union`    | UNION      |
 | `NonUnion` | NON_UNION  |
+| `Ioss`     | IOSS       |

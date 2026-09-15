@@ -4,9 +4,10 @@
 
 ### Available Operations
 
-* [get](#get) - Get Filings
-* [getById](#getbyid) - Get Filing By Id
-* [getByRegistrationId](#getbyregistrationid) - Get Filings By Registration Id
+* [get](#get) - Get filings
+* [getByRegistrationId](#getbyregistrationid) - Get filings by registration id
+* [getById](#getbyid) - Get filing by id
+* [approveFilingV1FilingsFilingIdApprovePut](#approvefilingv1filingsfilingidapproveput) - Approve filing
 
 ## get
 
@@ -22,29 +23,31 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\DateTime\LocalDate;
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Models\Operations;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
 $request = new Operations\GetFilingsV1FilingsGetRequest(
-    startDate: '2024-01-01',
-    endDate: '2024-12-31',
-    dateFiledGte: '2024-01-01',
-    dateFiledLte: '2024-12-31',
+    statusIn: 'FILED,FILING,UNFILED,PAUSED,CANCELLED,ISSUE,SKIPPED',
+    startDate: LocalDate::parse('2024-01-01'),
+    endDate: LocalDate::parse('2024-12-31'),
+    dateFiledGte: LocalDate::parse('2024-01-01'),
+    dateFiledLte: LocalDate::parse('2024-12-31'),
     orderBy: 'status,start_date,end_date,amount',
     stateCode: 'CA',
     countryCode: [
-
+        'U',
+        'S',
     ],
+    filingCategoryIn: 'REGULAR',
+    taxTypeIn: 'SALES_TAX,USE_TAX',
+    xOrganizationId: 'org_12345',
 );
 
 $response = $sdk->filings->get(
@@ -75,61 +78,6 @@ if ($response->pageFilingRead !== null) {
 | Errors\ErrorResponse                                     | 500                                                      | application/json                                         |
 | Errors\APIException                                      | 4XX, 5XX                                                 | \*/\*                                                    |
 
-## getById
-
-This API retrieves detailed information about a specific
-    filing using its unique identifier (filing_id).
-
-### Example Usage
-
-<!-- UsageSnippet language="php" operationID="get_filing_by_id_v1_filings__filing_id__get" method="get" path="/v1/filings/{filing_id}" -->
-```php
-declare(strict_types=1);
-
-require 'vendor/autoload.php';
-
-use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
-
-$sdk = SDK\SDK::builder()
-    ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
-    )
-    ->build();
-
-
-
-$response = $sdk->filings->getById(
-    filingId: '<id>'
-);
-
-if ($response->filingDetailsRead !== null) {
-    // handle response
-}
-```
-
-### Parameters
-
-| Parameter                                     | Type                                          | Required                                      | Description                                   |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `filingId`                                    | *string*                                      | :heavy_check_mark:                            | Unique identifier for the filing to retrieve. |
-
-### Response
-
-**[?Operations\GetFilingByIdV1FilingsFilingIdGetResponse](../../Models/Operations/GetFilingByIdV1FilingsFilingIdGetResponse.md)**
-
-### Errors
-
-| Error Type                                               | Status Code                                              | Content Type                                             |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| Errors\ErrorResponse                                     | 401, 404                                                 | application/json                                         |
-| Errors\BackendSrcFilingsResponsesValidationErrorResponse | 422                                                      | application/json                                         |
-| Errors\ErrorResponse                                     | 500                                                      | application/json                                         |
-| Errors\APIException                                      | 4XX, 5XX                                                 | \*/\*                                                    |
-
 ## getByRegistrationId
 
 The Get Filings By Registration ID API
@@ -147,14 +95,10 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
@@ -163,7 +107,8 @@ $sdk = SDK\SDK::builder()
 $response = $sdk->filings->getByRegistrationId(
     registrationId: '<id>',
     page: 1,
-    size: 50
+    size: 50,
+    xOrganizationId: 'org_12345'
 
 );
 
@@ -174,11 +119,12 @@ if ($response->pageFilingRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `registrationId`                                                            | *string*                                                                    | :heavy_check_mark:                                                          | Unique identifier for the registration<br/>        associated with the filings. |
-| `page`                                                                      | *?int*                                                                      | :heavy_minus_sign:                                                          | Page number                                                                 |
-| `size`                                                                      | *?int*                                                                      | :heavy_minus_sign:                                                          | Page size                                                                   |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `registrationId`                                                            | *string*                                                                    | :heavy_check_mark:                                                          | Unique identifier for the registration<br/>        associated with the filings. |                                                                             |
+| `page`                                                                      | *?int*                                                                      | :heavy_minus_sign:                                                          | Page number                                                                 |                                                                             |
+| `size`                                                                      | *?int*                                                                      | :heavy_minus_sign:                                                          | Page size                                                                   |                                                                             |
+| `xOrganizationId`                                                           | *string*                                                                    | :heavy_check_mark:                                                          | The unique identifier for the organization making the request               | org_12345                                                                   |
 
 ### Response
 
@@ -192,3 +138,110 @@ if ($response->pageFilingRead !== null) {
 | Errors\BackendSrcFilingsResponsesValidationErrorResponse | 422                                                      | application/json                                         |
 | Errors\ErrorResponse                                     | 500                                                      | application/json                                         |
 | Errors\APIException                                      | 4XX, 5XX                                                 | \*/\*                                                    |
+
+## getById
+
+This API retrieves detailed information about a specific
+    filing using its unique identifier (filing_id).
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="get_filing_by_id_v1_filings__filing_id__get" method="get" path="/v1/filings/{filing_id}" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        '<YOUR_API_KEY_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->filings->getById(
+    filingId: '<id>',
+    xOrganizationId: 'org_12345'
+
+);
+
+if ($response->filingDetailsRead !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `filingId`                                                    | *string*                                                      | :heavy_check_mark:                                            | Unique identifier for the filing to retrieve.                 |                                                               |
+| `xOrganizationId`                                             | *string*                                                      | :heavy_check_mark:                                            | The unique identifier for the organization making the request | org_12345                                                     |
+
+### Response
+
+**[?Operations\GetFilingByIdV1FilingsFilingIdGetResponse](../../Models/Operations/GetFilingByIdV1FilingsFilingIdGetResponse.md)**
+
+### Errors
+
+| Error Type                                               | Status Code                                              | Content Type                                             |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| Errors\ErrorResponse                                     | 401, 404                                                 | application/json                                         |
+| Errors\BackendSrcFilingsResponsesValidationErrorResponse | 422                                                      | application/json                                         |
+| Errors\ErrorResponse                                     | 500                                                      | application/json                                         |
+| Errors\APIException                                      | 4XX, 5XX                                                 | \*/\*                                                    |
+
+## approveFilingV1FilingsFilingIdApprovePut
+
+Approve a specific filing by its ID.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="approve_filing_v1_filings__filing_id__approve_put" method="put" path="/v1/filings/{filing_id}/approve" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        '<YOUR_API_KEY_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->filings->approveFilingV1FilingsFilingIdApprovePut(
+    filingId: '<id>',
+    xOrganizationId: 'org_12345',
+    filingApproveRequest: $filingApproveRequest
+
+);
+
+if ($response->filingRead !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         | Example                                                                             |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `filingId`                                                                          | *string*                                                                            | :heavy_check_mark:                                                                  | N/A                                                                                 |                                                                                     |
+| `xOrganizationId`                                                                   | *string*                                                                            | :heavy_check_mark:                                                                  | The unique identifier for the organization making the request                       | org_12345                                                                           |
+| `filingApproveRequest`                                                              | [?Components\FilingApproveRequest](../../Models/Components/FilingApproveRequest.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |                                                                                     |
+
+### Response
+
+**[?Operations\ApproveFilingV1FilingsFilingIdApprovePutResponse](../../Models/Operations/ApproveFilingV1FilingsFilingIdApprovePutResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| Errors\HTTPValidationError | 422                        | application/json           |
+| Errors\APIException        | 4XX, 5XX                   | \*/\*                      |

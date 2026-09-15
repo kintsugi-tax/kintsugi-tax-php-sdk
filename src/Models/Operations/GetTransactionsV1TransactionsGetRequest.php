@@ -13,6 +13,14 @@ use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class GetTransactionsV1TransactionsGetRequest
 {
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * Filter transactions by state code.
      *
      * @var ?string $stateCode
@@ -53,7 +61,7 @@ class GetTransactionsV1TransactionsGetRequest
      *
      *         (ISO 3166-1 alpha-2 format, e.g., US).
      *
-     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum> $country
+     * @var ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum|string> $country
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=country')]
     public ?array $country = null;
@@ -67,14 +75,34 @@ class GetTransactionsV1TransactionsGetRequest
     public ?string $state = null;
 
     /**
+     * Filter by address status (e.g., UNVERIFIED, INVALID,
+     *
+     *         PARTIALLY_VERIFIED, VERIFIED, UNVERIFIABLE).
+     *
+     * @var ?string $addressStatusIn
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=address_status__in')]
+    public ?string $addressStatusIn = null;
+
+    /**
      * Filter by transaction status (e.g., PENDING, COMMITTED,
      *
-     *         CANCELLED, FULLY_REFUNDED, PARTIALLY_REFUNDED, ARCHIVED).
+     *         CANCELLED, ARCHIVED). For refund filtering use the refund_status parameter.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\TransactionStatusEnum $status
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status')]
     public ?Components\TransactionStatusEnum $status = null;
+
+    /**
+     * Filter by refund status (e.g., FULLY_REFUNDED,
+     *
+     *         PARTIALLY_REFUNDED).
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\TransactionRefundStatus $refundStatus
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=refund_status')]
+    public ?Components\TransactionRefundStatus $refundStatus = null;
 
     /**
      * Retrieve transactions linked to a specific filing ID.
@@ -85,9 +113,20 @@ class GetTransactionsV1TransactionsGetRequest
     public ?string $filingId = null;
 
     /**
-     * Retrieve transactions with a date
+     * Sort results based on specified fields.
      *
-     *         greater than or equal to (YYYY-MM-DD).
+     *         Prefix with - for descending order (e.g., -date for newest first).
+     *
+     * @var ?string $orderBy
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
+    public ?string $orderBy = null;
+
+    /**
+     * Retrieve transactions with a date greater than or equal to the bound
+     *
+     *         (YYYY-MM-DD or ISO datetime in UTC).
+     *         Defaults to 12 months ago when neither date__gte nor date__lte is provided.
      *
      * @var ?string $dateGte
      */
@@ -95,9 +134,9 @@ class GetTransactionsV1TransactionsGetRequest
     public ?string $dateGte = null;
 
     /**
-     * Retrieve transactions with a date
+     * Retrieve transactions with a date less than or equal to the bound
      *
-     *         less than or equal to (YYYY-MM-DD).
+     *         (YYYY-MM-DD or ISO datetime in UTC).
      *
      * @var ?string $dateLte
      */
@@ -133,24 +172,33 @@ class GetTransactionsV1TransactionsGetRequest
     public ?string $exemptIn = null;
 
     /**
-     * Filter by address status (e.g., UNVERIFIED, INVALID,
+     * Filter transactions by connection ID (comma-separated)
      *
-     *         PARTIALLY_VERIFIED, VERIFIED, UNVERIFIABLE).
-     *
-     * @var ?string $addressStatusIn
+     * @var ?string $connectionIdIn
      */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=address_status__in')]
-    public ?string $addressStatusIn = null;
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=connection_id__in')]
+    public ?string $connectionIdIn = null;
 
     /**
-     * Sort results based on specified fields.
+     * Filter by transaction direction (SALE or PURCHASE). When unset, the list includes both directions.
      *
-     *         Prefix with - for descending order (e.g., -date for newest first).
-     *
-     * @var ?string $orderBy
+     * @var ?\KintsugiTax\SDK\Models\Components\TransactionDirectionEnum $direction
      */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
-    public ?string $orderBy = null;
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=direction')]
+    public ?Components\TransactionDirectionEnum $direction = null;
+
+    /**
+     * Optional upper bound for the pagination COUNT query.
+     *
+     *         When set, the returned `total` is capped at this value and `pages`
+     *         is derived from the capped total, making large result sets faster
+     *         to paginate at the cost of approximate totals. When unset, `total`
+     *         and `pages` reflect the exact count (existing behavior).
+     *
+     * @var ?int $countLimit
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=count_limit')]
+    public ?int $countLimit = null;
 
     /**
      * Page number
@@ -169,14 +217,18 @@ class GetTransactionsV1TransactionsGetRequest
     public ?int $size = null;
 
     /**
+     * @param  ?int  $page
+     * @param  ?int  $size
+     * @param  ?string  $xOrganizationId
      * @param  ?string  $stateCode
      * @param  ?string  $transactionType
      * @param  ?string  $transactionSource
      * @param  ?string  $searchQuery
-     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum>  $country
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\CountryCodeEnum|string>  $country
      * @param  ?string  $state
      * @param  ?string  $addressStatusIn
      * @param  ?\KintsugiTax\SDK\Models\Components\TransactionStatusEnum  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\TransactionRefundStatus  $refundStatus
      * @param  ?string  $filingId
      * @param  ?string  $orderBy
      * @param  ?string  $dateGte
@@ -184,27 +236,33 @@ class GetTransactionsV1TransactionsGetRequest
      * @param  ?string  $processingStatusIn
      * @param  ?bool  $marketplace
      * @param  ?string  $exemptIn
-     * @param  ?int  $page
-     * @param  ?int  $size
+     * @param  ?string  $connectionIdIn
+     * @param  ?\KintsugiTax\SDK\Models\Components\TransactionDirectionEnum  $direction
+     * @param  ?int  $countLimit
      * @phpstan-pure
      */
-    public function __construct(?string $stateCode = null, ?string $transactionType = null, ?string $transactionSource = null, ?string $searchQuery = null, ?array $country = null, ?string $state = null, ?Components\TransactionStatusEnum $status = null, ?string $filingId = null, ?string $dateGte = null, ?string $dateLte = null, ?string $processingStatusIn = null, ?bool $marketplace = null, ?string $exemptIn = null, ?string $addressStatusIn = 'UNVERIFIED,INVALID,PARTIALLY_VERIFIED,VERIFIED,UNVERIFIABLE', ?string $orderBy = 'date,state,customer_name,status', ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $xOrganizationId = null, ?string $stateCode = null, ?string $transactionType = null, ?string $transactionSource = null, ?string $searchQuery = null, ?array $country = null, ?string $state = null, ?string $addressStatusIn = null, ?Components\TransactionStatusEnum $status = null, ?Components\TransactionRefundStatus $refundStatus = null, ?string $filingId = null, ?string $orderBy = null, ?string $dateGte = null, ?string $dateLte = null, ?string $processingStatusIn = null, ?bool $marketplace = null, ?string $exemptIn = null, ?string $connectionIdIn = null, ?Components\TransactionDirectionEnum $direction = null, ?int $countLimit = null, ?int $page = 1, ?int $size = 50)
     {
+        $this->xOrganizationId = $xOrganizationId;
         $this->stateCode = $stateCode;
         $this->transactionType = $transactionType;
         $this->transactionSource = $transactionSource;
         $this->searchQuery = $searchQuery;
         $this->country = $country;
         $this->state = $state;
+        $this->addressStatusIn = $addressStatusIn;
         $this->status = $status;
+        $this->refundStatus = $refundStatus;
         $this->filingId = $filingId;
+        $this->orderBy = $orderBy;
         $this->dateGte = $dateGte;
         $this->dateLte = $dateLte;
         $this->processingStatusIn = $processingStatusIn;
         $this->marketplace = $marketplace;
         $this->exemptIn = $exemptIn;
-        $this->addressStatusIn = $addressStatusIn;
-        $this->orderBy = $orderBy;
+        $this->connectionIdIn = $connectionIdIn;
+        $this->direction = $direction;
+        $this->countLimit = $countLimit;
         $this->page = $page;
         $this->size = $size;
     }

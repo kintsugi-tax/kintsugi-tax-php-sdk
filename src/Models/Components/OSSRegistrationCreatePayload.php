@@ -12,6 +12,16 @@ namespace KintsugiTax\SDK\Models\Components;
 class OSSRegistrationCreatePayload
 {
     /**
+     * Type of OSS registration.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\OssTypeEnum $ossType
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('oss_type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\OssTypeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?OssTypeEnum $ossType = null;
+
+    /**
      * The plaintext password for accessing the tax registration account.
      *
      * @var ?string $passwordPlainText
@@ -30,6 +40,7 @@ class OSSRegistrationCreatePayload
     public ?string $passwordMetadataPlainText = null;
 
     /**
+     * If importing an OSS registration, specify the Member State of Identification.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $memberStateOfIdentificationCode
      */
@@ -39,13 +50,13 @@ class OSSRegistrationCreatePayload
     public ?CountryCodeEnum $memberStateOfIdentificationCode = null;
 
     /**
-     * Specifies this is an OSS registration import.
+     * Optional client-minted id for this confirm attempt.
      *
-     * @var ?string $registrationImportType
+     * @var ?string $requestId
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('registration_import_type')]
+    #[\Speakeasy\Serializer\Annotation\SerializedName('request_id')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $registrationImportType = null;
+    public ?string $requestId = null;
 
     /**
      * Whether the registration was imported from another system.
@@ -57,19 +68,32 @@ class OSSRegistrationCreatePayload
     public ?bool $imported = null;
 
     /**
+     * Specifies this is an OSS registration import.
+     *
+     * @var ?string $registrationImportType
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('registration_import_type')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $registrationImportType = null;
+
+    /**
      * @param  ?string  $registrationImportType
+     * @param  ?\KintsugiTax\SDK\Models\Components\OssTypeEnum  $ossType
+     * @param  ?bool  $imported
      * @param  ?string  $passwordPlainText
      * @param  ?string  $passwordMetadataPlainText
      * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $memberStateOfIdentificationCode
-     * @param  ?bool  $imported
+     * @param  ?string  $requestId
      * @phpstan-pure
      */
-    public function __construct(?string $passwordPlainText = null, ?string $passwordMetadataPlainText = null, ?CountryCodeEnum $memberStateOfIdentificationCode = null, ?string $registrationImportType = 'OSS', ?bool $imported = false)
+    public function __construct(?OssTypeEnum $ossType = null, ?string $passwordPlainText = null, ?string $passwordMetadataPlainText = null, ?CountryCodeEnum $memberStateOfIdentificationCode = null, ?string $requestId = null, ?bool $imported = false, ?string $registrationImportType = 'OSS')
     {
+        $this->ossType = $ossType;
         $this->passwordPlainText = $passwordPlainText;
         $this->passwordMetadataPlainText = $passwordMetadataPlainText;
         $this->memberStateOfIdentificationCode = $memberStateOfIdentificationCode;
-        $this->registrationImportType = $registrationImportType;
+        $this->requestId = $requestId;
         $this->imported = $imported;
+        $this->registrationImportType = $registrationImportType;
     }
 }

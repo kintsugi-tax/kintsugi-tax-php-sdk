@@ -35,22 +35,22 @@ class GetNexusForOrgV1NexusGetResponse
     /**
      * Successful Response
      *
-     * @var ?\KintsugiTax\SDK\Models\Components\PageNexusResponse $pageNexusResponse
+     * @var \KintsugiTax\SDK\Models\Components\PageNexusResponse|array<\KintsugiTax\SDK\Models\Components\NexusResponse>|null $responseGetNexusForOrgV1NexusGet
      */
-    public ?Components\PageNexusResponse $pageNexusResponse = null;
+    public Components\PageNexusResponse|array|null $responseGetNexusForOrgV1NexusGet = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\KintsugiTax\SDK\Models\Components\PageNexusResponse  $pageNexusResponse
+     * @param  \KintsugiTax\SDK\Models\Components\PageNexusResponse|array<\KintsugiTax\SDK\Models\Components\NexusResponse>|null  $responseGetNexusForOrgV1NexusGet
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\PageNexusResponse $pageNexusResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, Components\PageNexusResponse|array|null $responseGetNexusForOrgV1NexusGet = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->pageNexusResponse = $pageNexusResponse;
+        $this->responseGetNexusForOrgV1NexusGet = $responseGetNexusForOrgV1NexusGet;
     }
 }

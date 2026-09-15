@@ -3,9 +3,12 @@
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Unfiled` | UNFILED   |
-| `Filed`   | FILED     |
-| `Filing`  | FILING    |
-| `Paused`  | PAUSED    |
+| Name        | Value       |
+| ----------- | ----------- |
+| `Unfiled`   | UNFILED     |
+| `Filed`     | FILED       |
+| `Filing`    | FILING      |
+| `Paused`    | PAUSED      |
+| `Skipped`   | SKIPPED     |
+| `Cancelled` | CANCELLED   |
+| `Issue`     | ISSUE       |

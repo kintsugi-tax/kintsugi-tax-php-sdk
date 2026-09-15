@@ -35,22 +35,22 @@ class GetExemptionByIdV1ExemptionsExemptionIdGetResponse
     /**
      * Successfully retrieved exemption by id
      *
-     * @var ?\KintsugiTax\SDK\Models\Components\BackendSrcExemptionsModelsExemptionRead $backendSrcExemptionsModelsExemptionRead
+     * @var ?\KintsugiTax\SDK\Models\Components\BackendSrcExemptionsSchemasExemptionExemptionRead $backendSrcExemptionsSchemasExemptionExemptionRead
      */
-    public ?Components\BackendSrcExemptionsModelsExemptionRead $backendSrcExemptionsModelsExemptionRead = null;
+    public ?Components\BackendSrcExemptionsSchemasExemptionExemptionRead $backendSrcExemptionsSchemasExemptionExemptionRead = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\KintsugiTax\SDK\Models\Components\BackendSrcExemptionsModelsExemptionRead  $backendSrcExemptionsModelsExemptionRead
+     * @param  ?\KintsugiTax\SDK\Models\Components\BackendSrcExemptionsSchemasExemptionExemptionRead  $backendSrcExemptionsSchemasExemptionExemptionRead
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\BackendSrcExemptionsModelsExemptionRead $backendSrcExemptionsModelsExemptionRead = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\BackendSrcExemptionsSchemasExemptionExemptionRead $backendSrcExemptionsSchemasExemptionExemptionRead = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->backendSrcExemptionsModelsExemptionRead = $backendSrcExemptionsModelsExemptionRead;
+        $this->backendSrcExemptionsSchemasExemptionExemptionRead = $backendSrcExemptionsSchemasExemptionExemptionRead;
     }
 }
