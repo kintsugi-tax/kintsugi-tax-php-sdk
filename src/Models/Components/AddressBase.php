@@ -75,6 +75,7 @@ class AddressBase
     public ?string $postalCode = null;
 
     /**
+     * Country code in ISO 3166-1 alpha-2 format
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $country
      */

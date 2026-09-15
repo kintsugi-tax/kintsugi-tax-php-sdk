@@ -13,6 +13,7 @@ enum NexusTypeEnum: string
 {
     case CanadaFederal = 'CANADA_FEDERAL';
     case EuAggregator = 'EU_AGGREGATOR';
+    case EuIoss = 'EU_IOSS';
     case State = 'STATE';
     case EuMemberState = 'EU_MEMBER_STATE';
 }

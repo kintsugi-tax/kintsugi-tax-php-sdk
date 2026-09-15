@@ -4,7 +4,7 @@
 
 ### Available Operations
 
-* [estimate](#estimate) - Estimate Tax
+* [estimate](#estimate) - Estimate tax
 
 ## estimate
 
@@ -26,10 +26,7 @@ use KintsugiTax\SDK\Utils;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
@@ -49,6 +46,7 @@ $transactionEstimatePublicRequest = new Components\TransactionEstimatePublicRequ
             externalId: 'item_B',
             date: Utils\Utils::parseDateTime('2024-10-28T10:00:00Z'),
             externalProductId: 'prod_xyz',
+            quantity: 1,
             amount: 75.5,
         ),
     ],
@@ -65,20 +63,23 @@ $transactionEstimatePublicRequest = new Components\TransactionEstimatePublicRequ
 );
 
 $response = $sdk->taxEstimation->estimate(
-    transactionEstimatePublicRequest: $transactionEstimatePublicRequest
+    transactionEstimatePublicRequest: $transactionEstimatePublicRequest,
+    xOrganizationId: 'org_12345'
+
 );
 
-if ($response->pageTransactionEstimateResponse !== null) {
+if ($response->transactionEstimateResponse !== null) {
     // handle response
 }
 ```
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                | Type                                                                                                                                                                                                     | Required                                                                                                                                                                                                 | Description                                                                                                                                                                                              |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `transactionEstimatePublicRequest`                                                                                                                                                                       | [Components\TransactionEstimatePublicRequest](../../Models/Components/TransactionEstimatePublicRequest.md)                                                                                               | :heavy_check_mark:                                                                                                                                                                                       | N/A                                                                                                                                                                                                      |
-| `simulateNexusMet`                                                                                                                                                                                       | *?bool*                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                       | : warning: ** DEPRECATED **: This will be removed in a future release, please migrate away from it as soon as possible.<br/><br/>**Deprecated:** Use `simulate_active_registration` in the request body instead. |
+| Parameter                                                                                                                                                                                                | Type                                                                                                                                                                                                     | Required                                                                                                                                                                                                 | Description                                                                                                                                                                                              | Example                                                                                                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `transactionEstimatePublicRequest`                                                                                                                                                                       | [Components\TransactionEstimatePublicRequest](../../Models/Components/TransactionEstimatePublicRequest.md)                                                                                               | :heavy_check_mark:                                                                                                                                                                                       | N/A                                                                                                                                                                                                      |                                                                                                                                                                                                          |
+| `simulateNexusMet`                                                                                                                                                                                       | *?bool*                                                                                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                                                       | : warning: ** DEPRECATED **: This will be removed in a future release, please migrate away from it as soon as possible.<br/><br/>**Deprecated:** Use `simulate_active_registration` in the request body instead. |                                                                                                                                                                                                          |
+| `xOrganizationId`                                                                                                                                                                                        | *string*                                                                                                                                                                                                 | :heavy_check_mark:                                                                                                                                                                                       | The unique identifier for the organization making the request                                                                                                                                            | org_12345                                                                                                                                                                                                |
 
 ### Response
 
@@ -88,7 +89,7 @@ if ($response->pageTransactionEstimateResponse !== null) {
 
 | Error Type                                                     | Status Code                                                    | Content Type                                                   |
 | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| Errors\ErrorResponse                                           | 401                                                            | application/json                                               |
+| Errors\ErrorResponse                                           | 400, 401                                                       | application/json                                               |
 | Errors\BackendSrcTaxEstimationResponsesValidationErrorResponse | 422                                                            | application/json                                               |
-| Errors\ErrorResponse                                           | 500                                                            | application/json                                               |
+| Errors\ErrorResponse                                           | 500, 503                                                       | application/json                                               |
 | Errors\APIException                                            | 4XX, 5XX                                                       | \*/\*                                                          |

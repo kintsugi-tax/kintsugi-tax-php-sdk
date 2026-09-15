@@ -28,13 +28,23 @@ class UpdateRegistrationV1RegistrationsRegistrationIdPutRequest
     public Components\RegistrationUpdateAPI $registrationUpdateAPI;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * @param  string  $registrationId
      * @param  \KintsugiTax\SDK\Models\Components\RegistrationUpdateAPI  $registrationUpdateAPI
+     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $registrationId, Components\RegistrationUpdateAPI $registrationUpdateAPI)
+    public function __construct(string $registrationId, Components\RegistrationUpdateAPI $registrationUpdateAPI, ?string $xOrganizationId = null)
     {
         $this->registrationId = $registrationId;
         $this->registrationUpdateAPI = $registrationUpdateAPI;
+        $this->xOrganizationId = $xOrganizationId;
     }
 }

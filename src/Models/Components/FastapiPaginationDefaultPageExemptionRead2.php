@@ -14,10 +14,10 @@ class FastapiPaginationDefaultPageExemptionRead2
     /**
      * $items
      *
-     * @var array<\KintsugiTax\SDK\Models\Components\BackendSrcExemptionsModelsExemptionRead> $items
+     * @var array<\KintsugiTax\SDK\Models\Components\BackendSrcExemptionsSchemasExemptionExemptionRead> $items
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('items')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\BackendSrcExemptionsModelsExemptionRead>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\BackendSrcExemptionsSchemasExemptionExemptionRead>')]
     public array $items;
 
     /**
@@ -49,7 +49,7 @@ class FastapiPaginationDefaultPageExemptionRead2
     public int $pages;
 
     /**
-     * @param  array<\KintsugiTax\SDK\Models\Components\BackendSrcExemptionsModelsExemptionRead>  $items
+     * @param  array<\KintsugiTax\SDK\Models\Components\BackendSrcExemptionsSchemasExemptionExemptionRead>  $items
      * @param  int  $total
      * @param  int  $page
      * @param  int  $size

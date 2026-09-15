@@ -22,11 +22,21 @@ class DeletePhysicalNexusV1NexusPhysicalNexusPhysicalNexusIdDeleteRequest
     public string $physicalNexusId;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * @param  string  $physicalNexusId
+     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $physicalNexusId)
+    public function __construct(string $physicalNexusId, ?string $xOrganizationId = null)
     {
         $this->physicalNexusId = $physicalNexusId;
+        $this->xOrganizationId = $xOrganizationId;
     }
 }

@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace KintsugiTax\SDK;
 
 use KintsugiTax\SDK\Hooks\HookContext;
+use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Models\Operations;
 use KintsugiTax\SDK\Utils\Options;
 use Speakeasy\Serializer\DeserializationContext;
@@ -45,24 +46,119 @@ class Filings
     }
 
     /**
-     * Get Filing By Id
+     * Approve filing
+     *
+     * Approve a specific filing by its ID.
+     *
+     * @param  string  $filingId
+     * @param  ?string  $xOrganizationId
+     * @param  ?\KintsugiTax\SDK\Models\Components\FilingApproveRequest  $filingApproveRequest
+     * @return \KintsugiTax\SDK\Models\Operations\ApproveFilingV1FilingsFilingIdApprovePutResponse
+     * @throws \KintsugiTax\SDK\Models\Errors\APIException
+     */
+    public function approveFilingV1FilingsFilingIdApprovePut(string $filingId, ?string $xOrganizationId = null, ?Components\FilingApproveRequest $filingApproveRequest = null, ?Options $options = null): Operations\ApproveFilingV1FilingsFilingIdApprovePutResponse
+    {
+        $request = new Operations\ApproveFilingV1FilingsFilingIdApprovePutRequest(
+            filingId: $filingId,
+            xOrganizationId: $xOrganizationId,
+            filingApproveRequest: $filingApproveRequest,
+        );
+        $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
+        $url = Utils\Utils::generateUrl($baseUrl, '/v1/filings/{filing_id}/approve', Operations\ApproveFilingV1FilingsFilingIdApprovePutRequest::class, $request);
+        $urlOverride = null;
+        $httpOptions = ['http_errors' => false];
+        $body = Utils\Utils::serializeRequestBody($request, 'filingApproveRequest', 'json');
+        if ($body !== null) {
+            $httpOptions = array_merge_recursive($httpOptions, $body);
+        }
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
+        $httpOptions['headers']['Accept'] = 'application/json';
+        $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
+        $httpRequest = new \GuzzleHttp\Psr7\Request('PUT', $url);
+        $hookContext = new HookContext($this->sdkConfiguration, $baseUrl, 'approve_filing_v1_filings__filing_id__approve_put', null, $this->sdkConfiguration->securitySource);
+        $httpRequest = $this->sdkConfiguration->hooks->beforeRequest(new Hooks\BeforeRequestContext($hookContext), $httpRequest);
+        $httpOptions = Utils\Utils::convertHeadersToOptions($httpRequest, $httpOptions);
+        $httpRequest = Utils\Utils::removeHeaders($httpRequest);
+        try {
+            $httpResponse = $this->sdkConfiguration->client->send($httpRequest, $httpOptions);
+        } catch (\GuzzleHttp\Exception\GuzzleException $error) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), null, $error);
+            $httpResponse = $res;
+        }
+        $contentType = $httpResponse->getHeader('Content-Type')[0] ?? '';
+
+        if (Utils\Utils::matchStatusCodes($httpResponse->getStatusCode(), ['4XX', '5XX'])) {
+            $res = $this->sdkConfiguration->hooks->afterError(new Hooks\AfterErrorContext($hookContext), $httpResponse, null);
+            $httpResponse = $res;
+        }
+
+        $statusCode = $httpResponse->getStatusCode();
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\FilingRead', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $response = new Operations\ApproveFilingV1FilingsFilingIdApprovePutResponse(
+                    statusCode: $statusCode,
+                    contentType: $contentType,
+                    rawResponse: $httpResponse,
+                    filingRead: $obj);
+
+                return $response;
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['422'])) {
+            if (Utils\Utils::matchContentType($contentType, 'application/json')) {
+                $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
+
+                $serializer = Utils\JSON::createSerializer();
+                $responseData = (string) $httpResponse->getBody();
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Errors\HTTPValidationError', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj->rawResponse = $httpResponse;
+                throw $obj->toException();
+            } else {
+                throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+            }
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['4XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['5XX'])) {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('API error occurred', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        } else {
+            throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown status code received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
+        }
+    }
+
+    /**
+     * Get filing by id
      *
      * This API retrieves detailed information about a specific
      *     filing using its unique identifier (filing_id).
      *
      * @param  string  $filingId
+     * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\GetFilingByIdV1FilingsFilingIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getById(string $filingId, ?Options $options = null): Operations\GetFilingByIdV1FilingsFilingIdGetResponse
+    public function getById(string $filingId, ?string $xOrganizationId = null, ?Options $options = null): Operations\GetFilingByIdV1FilingsFilingIdGetResponse
     {
         $request = new Operations\GetFilingByIdV1FilingsFilingIdGetRequest(
             filingId: $filingId,
+            xOrganizationId: $xOrganizationId,
         );
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/filings/{filing_id}', Operations\GetFilingByIdV1FilingsFilingIdGetRequest::class, $request);
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -147,7 +243,7 @@ class Filings
     }
 
     /**
-     * Get Filings By Registration Id
+     * Get filings by registration id
      *
      * The Get Filings By Registration ID API
      *     retrieves all filings
@@ -156,15 +252,17 @@ class Filings
      *     a specific registration record.
      *
      * @param  string  $registrationId
+     * @param  ?string  $xOrganizationId
      * @param  ?int  $page
      * @param  ?int  $size
      * @return \KintsugiTax\SDK\Models\Operations\GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function getByRegistrationId(string $registrationId, ?int $page = null, ?int $size = null, ?Options $options = null): Operations\GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetResponse
+    public function getByRegistrationId(string $registrationId, ?string $xOrganizationId = null, ?int $page = null, ?int $size = null, ?Options $options = null): Operations\GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetResponse
     {
         $request = new Operations\GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetRequest(
             registrationId: $registrationId,
+            xOrganizationId: $xOrganizationId,
             page: $page,
             size: $size,
         );
@@ -174,6 +272,10 @@ class Filings
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetFilingsByRegistrationIdV1FilingsRegistrationRegistrationIdGetRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);
@@ -259,17 +361,17 @@ class Filings
     }
 
     /**
-     * Get Filings
+     * Get filings
      *
      * The Get Filings API retrieves a paginated list of filings based on
      *     filters such as dates, jurisdiction, Country, status, etc. This helps track
      *     and manage tax filings efficiently across multiple jurisdictions.
      *
-     * @param  ?\KintsugiTax\SDK\Models\Operations\GetFilingsV1FilingsGetRequest  $request
+     * @param  \KintsugiTax\SDK\Models\Operations\GetFilingsV1FilingsGetRequest  $request
      * @return \KintsugiTax\SDK\Models\Operations\GetFilingsV1FilingsGetResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function get(?Operations\GetFilingsV1FilingsGetRequest $request = null, ?Options $options = null): Operations\GetFilingsV1FilingsGetResponse
+    public function get(Operations\GetFilingsV1FilingsGetRequest $request, ?Options $options = null): Operations\GetFilingsV1FilingsGetResponse
     {
         $baseUrl = $this->sdkConfiguration->getTemplatedServerUrl();
         $url = Utils\Utils::generateUrl($baseUrl, '/v1/filings');
@@ -277,6 +379,10 @@ class Filings
         $httpOptions = ['http_errors' => false];
 
         $qp = Utils\Utils::getQueryParams(Operations\GetFilingsV1FilingsGetRequest::class, $request, $urlOverride);
+        $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
+        if (! array_key_exists('headers', $httpOptions)) {
+            $httpOptions['headers'] = [];
+        }
         $httpOptions['headers']['Accept'] = 'application/json';
         $httpOptions['headers']['user-agent'] = $this->sdkConfiguration->userAgent;
         $httpRequest = new \GuzzleHttp\Psr7\Request('GET', $url);

@@ -1,0 +1,10 @@
+# GetPhysicalNexusCategoriesV1NexusPhysicalNexusCategoriesGetRequest
+
+
+## Fields
+
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               | Example                                                                   |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `countryCode`                                                             | [?Components\CountryCodeEnum](../../Models/Components/CountryCodeEnum.md) | :heavy_minus_sign:                                                        | N/A                                                                       |                                                                           |
+| `stateCode`                                                               | *?string*                                                                 | :heavy_minus_sign:                                                        | N/A                                                                       |                                                                           |
+| `xOrganizationId`                                                         | *string*                                                                  | :heavy_check_mark:                                                        | The unique identifier for the organization making the request             | org_12345                                                                 |

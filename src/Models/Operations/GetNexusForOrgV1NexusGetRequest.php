@@ -12,12 +12,35 @@ use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class GetNexusForOrgV1NexusGetRequest
 {
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * Filter nexuses by disregard view: 'exposed' or 'disregarded'
      *
      * @var ?string $disregardView
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=disregard_view')]
     public ?string $disregardView = null;
+
+    /**
+     * Search nexuses by state code or state name
+     *
+     * @var ?string $searchQuery
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=search_query')]
+    public ?string $searchQuery = null;
+
+    /**
+     *
+     * @var ?string $statusIn
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status__in')]
+    public ?string $statusIn = null;
 
     /**
      *
@@ -28,10 +51,31 @@ class GetNexusForOrgV1NexusGetRequest
 
     /**
      *
+     * @var ?string $stateCodeIn
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=state_code__in')]
+    public ?string $stateCodeIn = null;
+
+    /**
+     *
      * @var ?string $countryCodeIn
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=country_code__in')]
     public ?string $countryCodeIn = null;
+
+    /**
+     *
+     * @var ?string $taxTypeIn
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=tax_type__in')]
+    public ?string $taxTypeIn = null;
+
+    /**
+     *
+     * @var ?string $orderBy
+     */
+    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
+    public ?string $orderBy = null;
 
     /**
      *
@@ -50,20 +94,6 @@ class GetNexusForOrgV1NexusGetRequest
 
     /**
      *
-     * @var ?string $statusIn
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=status__in')]
-    public ?string $statusIn = null;
-
-    /**
-     *
-     * @var ?string $orderBy
-     */
-    #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=order_by')]
-    public ?string $orderBy = null;
-
-    /**
-     *
      * @var ?int $page
      */
     #[SpeakeasyMetadata('queryParam:style=form,explode=true,name=page')]
@@ -78,25 +108,33 @@ class GetNexusForOrgV1NexusGetRequest
 
     /**
      * @param  ?bool  $withoutPagination
-     * @param  ?string  $disregardView
-     * @param  ?string  $statusIn
-     * @param  ?string  $stateCode
-     * @param  ?string  $countryCodeIn
-     * @param  ?string  $orderBy
-     * @param  ?bool  $collectedTaxNexusMet
      * @param  ?int  $page
      * @param  ?int  $size
+     * @param  ?string  $xOrganizationId
+     * @param  ?string  $disregardView
+     * @param  ?string  $searchQuery
+     * @param  ?string  $statusIn
+     * @param  ?string  $stateCode
+     * @param  ?string  $stateCodeIn
+     * @param  ?string  $countryCodeIn
+     * @param  ?string  $taxTypeIn
+     * @param  ?string  $orderBy
+     * @param  ?bool  $collectedTaxNexusMet
      * @phpstan-pure
      */
-    public function __construct(?string $disregardView = null, ?string $stateCode = null, ?string $countryCodeIn = null, ?bool $collectedTaxNexusMet = null, ?bool $withoutPagination = false, ?string $statusIn = 'APPROACHING,NOT_EXPOSED,PENDING_REGISTRATION,EXPOSED,APPROACHING,REGISTERED', ?string $orderBy = 'state_code,country_code', ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $xOrganizationId = null, ?string $disregardView = null, ?string $searchQuery = null, ?string $statusIn = null, ?string $stateCode = null, ?string $stateCodeIn = null, ?string $countryCodeIn = null, ?string $taxTypeIn = null, ?string $orderBy = null, ?bool $collectedTaxNexusMet = null, ?bool $withoutPagination = false, ?int $page = 1, ?int $size = 50)
     {
+        $this->xOrganizationId = $xOrganizationId;
         $this->disregardView = $disregardView;
+        $this->searchQuery = $searchQuery;
+        $this->statusIn = $statusIn;
         $this->stateCode = $stateCode;
+        $this->stateCodeIn = $stateCodeIn;
         $this->countryCodeIn = $countryCodeIn;
+        $this->taxTypeIn = $taxTypeIn;
+        $this->orderBy = $orderBy;
         $this->collectedTaxNexusMet = $collectedTaxNexusMet;
         $this->withoutPagination = $withoutPagination;
-        $this->statusIn = $statusIn;
-        $this->orderBy = $orderBy;
         $this->page = $page;
         $this->size = $size;
     }

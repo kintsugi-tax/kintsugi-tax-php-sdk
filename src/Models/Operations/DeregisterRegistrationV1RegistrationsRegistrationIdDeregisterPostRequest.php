@@ -8,6 +8,7 @@ declare(strict_types=1);
 
 namespace KintsugiTax\SDK\Models\Operations;
 
+use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest
 {
@@ -20,11 +21,30 @@ class DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest
     public string $registrationId;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\DeregisterRegistrationRequest $deregisterRegistrationRequest
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public ?Components\DeregisterRegistrationRequest $deregisterRegistrationRequest = null;
+
+    /**
      * @param  string  $registrationId
+     * @param  ?string  $xOrganizationId
+     * @param  ?\KintsugiTax\SDK\Models\Components\DeregisterRegistrationRequest  $deregisterRegistrationRequest
      * @phpstan-pure
      */
-    public function __construct(string $registrationId)
+    public function __construct(string $registrationId, ?string $xOrganizationId = null, ?Components\DeregisterRegistrationRequest $deregisterRegistrationRequest = null)
     {
         $this->registrationId = $registrationId;
+        $this->xOrganizationId = $xOrganizationId;
+        $this->deregisterRegistrationRequest = $deregisterRegistrationRequest;
     }
 }

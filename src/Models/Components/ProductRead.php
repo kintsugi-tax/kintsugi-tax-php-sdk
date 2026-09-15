@@ -26,15 +26,6 @@ class ProductRead
     public string $externalId;
 
     /**
-     * $sku
-     *
-     * @var array<string> $sku
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sku')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
-    public array $sku;
-
-    /**
      *
      * @var string $code
      */
@@ -47,13 +38,6 @@ class ProductRead
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('name')]
     public string $name;
-
-    /**
-     *
-     * @var string $description
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
-    public string $description;
 
     /**
      *
@@ -101,49 +85,139 @@ class ProductRead
     public SourceEnum $source;
 
     /**
+     * $sku
      *
-     * @var string $connectionId
+     * @var ?array<string> $sku
      */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('connection_id')]
-    public string $connectionId;
+    #[\Speakeasy\Serializer\Annotation\SerializedName('sku')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string>|null')]
+    public ?array $sku;
 
     /**
      *
-     * @var bool $classificationFailed
+     * @var ?string $description
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('description')]
+    public ?string $description;
+
+    /**
+     *
+     * @var ?string $connectionId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('connection_id')]
+    public ?string $connectionId;
+
+    /**
+     *
+     * @var ?bool $classificationFailed
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('classification_failed')]
-    public bool $classificationFailed;
+    public ?bool $classificationFailed;
+
+    /**
+     *
+     * @var ?string $storeName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('store_name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $storeName = null;
+
+    /**
+     *
+     * @var ?string $sourceTaxonomyType
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source_taxonomy_type')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $sourceTaxonomyType = null;
+
+    /**
+     *
+     * @var ?string $sourceTaxonomyCode
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source_taxonomy_code')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $sourceTaxonomyCode = null;
+
+    /**
+     *
+     * @var ?string $sourceTaxonomyId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source_taxonomy_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $sourceTaxonomyId = null;
+
+    /**
+     *
+     * @var ?string $sourceTaxonomyName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source_taxonomy_name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $sourceTaxonomyName = null;
+
+    /**
+     * $sourceTaxonomyCategories
+     *
+     * @var ?array<array<string, mixed>> $sourceTaxonomyCategories
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source_taxonomy_categories')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<array<string, mixed>>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $sourceTaxonomyCategories = null;
+
+    /**
+     * $sourceTaxonomyMetadata
+     *
+     * @var ?array<string, mixed> $sourceTaxonomyMetadata
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('source_taxonomy_metadata')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string, mixed>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $sourceTaxonomyMetadata = null;
 
     /**
      * @param  string  $id
      * @param  string  $externalId
-     * @param  array<string>  $sku
      * @param  string  $code
      * @param  string  $name
-     * @param  string  $description
      * @param  \KintsugiTax\SDK\Models\Components\ProductStatusEnum  $status
      * @param  string  $productCategory
      * @param  string  $productSubcategory
      * @param  bool  $taxExempt
      * @param  \KintsugiTax\SDK\Models\Components\SourceEnum  $source
-     * @param  string  $connectionId
-     * @param  bool  $classificationFailed
+     * @param  ?array<string>  $sku
+     * @param  ?string  $description
+     * @param  ?string  $connectionId
+     * @param  ?bool  $classificationFailed
+     * @param  ?string  $storeName
+     * @param  ?string  $sourceTaxonomyType
+     * @param  ?string  $sourceTaxonomyCode
+     * @param  ?string  $sourceTaxonomyId
+     * @param  ?string  $sourceTaxonomyName
+     * @param  ?array<array<string, mixed>>  $sourceTaxonomyCategories
+     * @param  ?array<string, mixed>  $sourceTaxonomyMetadata
      * @phpstan-pure
      */
-    public function __construct(string $id, string $externalId, array $sku, string $code, string $name, string $description, ProductStatusEnum $status, string $productCategory, string $productSubcategory, bool $taxExempt, SourceEnum $source, string $connectionId, bool $classificationFailed)
+    public function __construct(string $id, string $externalId, string $code, string $name, ProductStatusEnum $status, string $productCategory, string $productSubcategory, bool $taxExempt, SourceEnum $source, ?array $sku = null, ?string $description = null, ?string $connectionId = null, ?bool $classificationFailed = null, ?string $storeName = null, ?string $sourceTaxonomyType = null, ?string $sourceTaxonomyCode = null, ?string $sourceTaxonomyId = null, ?string $sourceTaxonomyName = null, ?array $sourceTaxonomyCategories = null, ?array $sourceTaxonomyMetadata = null)
     {
         $this->id = $id;
         $this->externalId = $externalId;
-        $this->sku = $sku;
         $this->code = $code;
         $this->name = $name;
-        $this->description = $description;
         $this->status = $status;
         $this->productCategory = $productCategory;
         $this->productSubcategory = $productSubcategory;
         $this->taxExempt = $taxExempt;
         $this->source = $source;
+        $this->sku = $sku;
+        $this->description = $description;
         $this->connectionId = $connectionId;
         $this->classificationFailed = $classificationFailed;
+        $this->storeName = $storeName;
+        $this->sourceTaxonomyType = $sourceTaxonomyType;
+        $this->sourceTaxonomyCode = $sourceTaxonomyCode;
+        $this->sourceTaxonomyId = $sourceTaxonomyId;
+        $this->sourceTaxonomyName = $sourceTaxonomyName;
+        $this->sourceTaxonomyCategories = $sourceTaxonomyCategories;
+        $this->sourceTaxonomyMetadata = $sourceTaxonomyMetadata;
     }
 }

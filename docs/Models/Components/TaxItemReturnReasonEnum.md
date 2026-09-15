@@ -14,3 +14,4 @@ We use this to understand the response from get_tax_items
 | `ProductExempt`              | PRODUCT_EXEMPT               |
 | `FromImport`                 | FROM_IMPORT                  |
 | `RuleExcludedInCalculation`  | RULE_EXCLUDED_IN_CALCULATION |
+| `ReverseCharge`              | REVERSE_CHARGE               |

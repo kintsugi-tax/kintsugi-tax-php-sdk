@@ -15,24 +15,15 @@ class Security
      *
      * @var string $apiKeyHeader
      */
-    #[SpeakeasyMetadata('security:scheme=true,type=apiKey,subtype=header,composite=true,name=X-API-KEY')]
+    #[SpeakeasyMetadata('security:scheme=true,type=apiKey,subtype=header,name=X-API-KEY')]
     public string $apiKeyHeader;
 
     /**
-     *
-     * @var string $customHeader
-     */
-    #[SpeakeasyMetadata('security:scheme=true,type=apiKey,subtype=header,composite=true,name=x-organization-id')]
-    public string $customHeader;
-
-    /**
      * @param  string  $apiKeyHeader
-     * @param  string  $customHeader
      * @phpstan-pure
      */
-    public function __construct(string $apiKeyHeader, string $customHeader)
+    public function __construct(string $apiKeyHeader)
     {
         $this->apiKeyHeader = $apiKeyHeader;
-        $this->customHeader = $customHeader;
     }
 }

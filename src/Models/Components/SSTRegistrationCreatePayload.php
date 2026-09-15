@@ -39,6 +39,15 @@ class SSTRegistrationCreatePayload
     public ?string $username = null;
 
     /**
+     * Optional client-minted id for this confirm attempt.
+     *
+     * @var ?string $requestId
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('request_id')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $requestId = null;
+
+    /**
      * Specifies this is an SST registration import.
      *
      * @var ?string $registrationImportType
@@ -52,13 +61,15 @@ class SSTRegistrationCreatePayload
      * @param  ?string  $passwordPlainText
      * @param  ?string  $passwordMetadataPlainText
      * @param  ?string  $username
+     * @param  ?string  $requestId
      * @phpstan-pure
      */
-    public function __construct(?string $passwordPlainText = null, ?string $passwordMetadataPlainText = null, ?string $username = null, ?string $registrationImportType = 'SST')
+    public function __construct(?string $passwordPlainText = null, ?string $passwordMetadataPlainText = null, ?string $username = null, ?string $requestId = null, ?string $registrationImportType = 'SST')
     {
         $this->passwordPlainText = $passwordPlainText;
         $this->passwordMetadataPlainText = $passwordMetadataPlainText;
         $this->username = $username;
+        $this->requestId = $requestId;
         $this->registrationImportType = $registrationImportType;
     }
 }

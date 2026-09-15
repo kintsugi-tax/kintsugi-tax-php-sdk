@@ -12,6 +12,15 @@ namespace KintsugiTax\SDK\Models\Components;
 class CustomerUpdate
 {
     /**
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\AddressStatus $addressStatus
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?AddressStatus $addressStatus = null;
+
+    /**
      * Phone number associated with the customer.
      *
      * @var ?string $phone
@@ -75,6 +84,7 @@ class CustomerUpdate
     public ?string $postalCode = null;
 
     /**
+     * Country code in ISO 3166-1 alpha-2 format
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $country
      */
@@ -102,6 +112,7 @@ class CustomerUpdate
     public ?string $name = null;
 
     /**
+     * Status of the customer.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\StatusEnum $status
      */
@@ -120,6 +131,16 @@ class CustomerUpdate
     public ?string $email = null;
 
     /**
+     * Registered or legal business name of the customer.
+     *
+     * @var ?string $companyName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('company_name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $companyName = null;
+
+    /**
+     * Source of the customer's record
      *
      * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $source
      */
@@ -127,15 +148,6 @@ class CustomerUpdate
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\SourceEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?SourceEnum $source = null;
-
-    /**
-     *
-     * @var ?\KintsugiTax\SDK\Models\Components\AddressStatus $addressStatus
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?AddressStatus $addressStatus = null;
 
     /**
      * External identifier associated with the customer
@@ -156,6 +168,7 @@ class CustomerUpdate
     public ?string $externalFriendlyId = null;
 
     /**
+     * @param  ?\KintsugiTax\SDK\Models\Components\AddressStatus  $addressStatus
      * @param  ?string  $phone
      * @param  ?string  $street1
      * @param  ?string  $street2
@@ -168,14 +181,15 @@ class CustomerUpdate
      * @param  ?string  $name
      * @param  ?\KintsugiTax\SDK\Models\Components\StatusEnum  $status
      * @param  ?string  $email
+     * @param  ?string  $companyName
      * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
-     * @param  ?\KintsugiTax\SDK\Models\Components\AddressStatus  $addressStatus
      * @param  ?string  $externalId
      * @param  ?string  $externalFriendlyId
      * @phpstan-pure
      */
-    public function __construct(?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?StatusEnum $status = null, ?string $email = null, ?SourceEnum $source = null, ?AddressStatus $addressStatus = null, ?string $externalId = null, ?string $externalFriendlyId = null)
+    public function __construct(?AddressStatus $addressStatus = null, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?StatusEnum $status = null, ?string $email = null, ?string $companyName = null, ?SourceEnum $source = null, ?string $externalId = null, ?string $externalFriendlyId = null)
     {
+        $this->addressStatus = $addressStatus;
         $this->phone = $phone;
         $this->street1 = $street1;
         $this->street2 = $street2;
@@ -188,8 +202,8 @@ class CustomerUpdate
         $this->name = $name;
         $this->status = $status;
         $this->email = $email;
+        $this->companyName = $companyName;
         $this->source = $source;
-        $this->addressStatus = $addressStatus;
         $this->externalId = $externalId;
         $this->externalFriendlyId = $externalFriendlyId;
     }

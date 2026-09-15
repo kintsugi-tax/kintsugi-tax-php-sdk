@@ -20,11 +20,21 @@ class GetTransactionByIdV1TransactionsTransactionIdGetRequest
     public string $transactionId;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * @param  string  $transactionId
+     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(string $transactionId)
+    public function __construct(string $transactionId, ?string $xOrganizationId = null)
     {
         $this->transactionId = $transactionId;
+        $this->xOrganizationId = $xOrganizationId;
     }
 }

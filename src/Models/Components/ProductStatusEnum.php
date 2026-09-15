@@ -14,4 +14,5 @@ enum ProductStatusEnum: string
     case Approved = 'APPROVED';
     case PartiallyApproved = 'PARTIALLY_APPROVED';
     case Pending = 'PENDING';
+    case Archived = 'ARCHIVED';
 }

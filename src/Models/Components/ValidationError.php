@@ -14,10 +14,10 @@ class ValidationError
     /**
      * $loc
      *
-     * @var array<string> $loc
+     * @var array<string|int> $loc
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('loc')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<string>')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<string|int>')]
     public array $loc;
 
     /**
@@ -35,15 +35,37 @@ class ValidationError
     public string $type;
 
     /**
-     * @param  array<string>  $loc
+     *
+     * @var mixed $input
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('input')]
+    #[\Speakeasy\Serializer\Annotation\Type('mixed')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public mixed $input = null;
+
+    /**
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\Context $ctx
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('ctx')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\Context|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?Context $ctx = null;
+
+    /**
+     * @param  array<string|int>  $loc
      * @param  string  $msg
      * @param  string  $type
+     * @param  mixed  $input
+     * @param  ?\KintsugiTax\SDK\Models\Components\Context  $ctx
      * @phpstan-pure
      */
-    public function __construct(array $loc, string $msg, string $type)
+    public function __construct(array $loc, string $msg, string $type, mixed $input = null, ?Context $ctx = null)
     {
         $this->loc = $loc;
         $this->msg = $msg;
         $this->type = $type;
+        $this->input = $input;
+        $this->ctx = $ctx;
     }
 }

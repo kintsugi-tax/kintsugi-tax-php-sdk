@@ -4,11 +4,11 @@
 
 ### Available Operations
 
-* [getProductsV1ProductsGet](#getproductsv1productsget) - Get Products
-* [createProductV1ProductsPost](#createproductv1productspost) - Create Product
-* [getProductCategoriesV1ProductsCategoriesGet](#getproductcategoriesv1productscategoriesget) - Get Product Categories
-* [get](#get) - Get Product By Id
-* [update](#update) - Update Product
+* [getProductsV1ProductsGet](#getproductsv1productsget) - Get products
+* [createProductV1ProductsPost](#createproductv1productspost) - Create product
+* [getProductCategoriesV1ProductsCategoriesGet](#getproductcategoriesv1productscategoriesget) - Get product categories
+* [get](#get) - Get product by id
+* [update](#update) - Update product
 
 ## getProductsV1ProductsGet
 
@@ -23,19 +23,17 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
 use KintsugiTax\SDK\Models\Operations;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
-$request = new Operations\GetProductsV1ProductsGetRequest();
+$request = new Operations\GetProductsV1ProductsGetRequest(
+    xOrganizationId: 'org_12345',
+);
 
 $response = $sdk->products->getProductsV1ProductsGet(
     request: $request
@@ -58,20 +56,22 @@ if ($response->pageProductRead !== null) {
 
 ### Errors
 
-| Error Type                                                | Status Code                                               | Content Type                                              |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| Errors\ErrorResponse                                      | 401, 404                                                  | application/json                                          |
-| Errors\BackendSrcProductsResponsesValidationErrorResponse | 422                                                       | application/json                                          |
-| Errors\ErrorResponse                                      | 500                                                       | application/json                                          |
-| Errors\APIException                                       | 4XX, 5XX                                                  | \*/\*                                                     |
+| Error Type                                                       | Status Code                                                      | Content Type                                                     |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Errors\ErrorResponse                                             | 401, 404                                                         | application/json                                                 |
+| Errors\BackendSrcProductsSchemasResponsesValidationErrorResponse | 422                                                              | application/json                                                 |
+| Errors\ErrorResponse                                             | 500                                                              | application/json                                                 |
+| Errors\APIException                                              | 4XX, 5XX                                                         | \*/\*                                                            |
 
 ## createProductV1ProductsPost
 
 The Create Product API allows users to manually create a new product
     in the system. This includes specifying product details such as category,
     subcategory, and tax exemption status, etc. You can
-    retrieve supported categories and subcategories from
-    [GET /products/categories endpoint](/reference/api/products/get-product-categories)
+    retrieve supported categories and subcategories from the
+    [GET /products/categories endpoint](/reference/api/products/get-product-categories),
+    or browse the full catalog with descriptions and examples in the
+    [Product Categories guide](/docs/guides/product-categories)
 
 ### Example Usage
 
@@ -86,24 +86,25 @@ use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
-$request = new Components\ProductCreateManual(
+$productCreateManual = new Components\ProductCreateManual(
     externalId: 'prod_001',
     name: 'T-shirts',
     description: 'Common items of everyday wearing apparel designed for human use, covering a wide variety of non-specialized garments.',
     status: Components\ProductStatusEnum::Approved,
+    productCategory: Components\PublicProductCategoryEnum::Physical,
+    productSubcategory: 'General Clothing',
     taxExempt: false,
     source: Components\SourceEnum::Bigcommerce,
 );
 
 $response = $sdk->products->createProductV1ProductsPost(
-    request: $request
+    productCreateManual: $productCreateManual,
+    xOrganizationId: 'org_12345'
+
 );
 
 if ($response->productRead !== null) {
@@ -113,9 +114,10 @@ if ($response->productRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `$request`                                                                       | [Components\ProductCreateManual](../../Models/Components/ProductCreateManual.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `productCreateManual`                                                            | [Components\ProductCreateManual](../../Models/Components/ProductCreateManual.md) | :heavy_check_mark:                                                               | N/A                                                                              |                                                                                  |
+| `xOrganizationId`                                                                | *string*                                                                         | :heavy_check_mark:                                                               | The unique identifier for the organization making the request                    | org_12345                                                                        |
 
 ### Response
 
@@ -123,12 +125,12 @@ if ($response->productRead !== null) {
 
 ### Errors
 
-| Error Type                                                | Status Code                                               | Content Type                                              |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| Errors\ErrorResponse                                      | 401                                                       | application/json                                          |
-| Errors\BackendSrcProductsResponsesValidationErrorResponse | 422                                                       | application/json                                          |
-| Errors\ErrorResponse                                      | 500                                                       | application/json                                          |
-| Errors\APIException                                       | 4XX, 5XX                                                  | \*/\*                                                     |
+| Error Type                                                       | Status Code                                                      | Content Type                                                     |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Errors\ErrorResponse                                             | 401                                                              | application/json                                                 |
+| Errors\BackendSrcProductsSchemasResponsesValidationErrorResponse | 422                                                              | application/json                                                 |
+| Errors\ErrorResponse                                             | 500                                                              | application/json                                                 |
+| Errors\APIException                                              | 4XX, 5XX                                                         | \*/\*                                                            |
 
 ## getProductCategoriesV1ProductsCategoriesGet
 
@@ -145,27 +147,29 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
 
 
 $response = $sdk->products->getProductCategoriesV1ProductsCategoriesGet(
-
+    xOrganizationId: 'org_12345'
 );
 
-if ($response->productCategories !== null) {
+if ($response->productCategoryRead !== null) {
     // handle response
 }
 ```
+
+### Parameters
+
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `xOrganizationId`                                             | *string*                                                      | :heavy_check_mark:                                            | The unique identifier for the organization making the request | org_12345                                                     |
 
 ### Response
 
@@ -173,12 +177,12 @@ if ($response->productCategories !== null) {
 
 ### Errors
 
-| Error Type                                                | Status Code                                               | Content Type                                              |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| Errors\ErrorResponse                                      | 401                                                       | application/json                                          |
-| Errors\BackendSrcProductsResponsesValidationErrorResponse | 422                                                       | application/json                                          |
-| Errors\ErrorResponse                                      | 500                                                       | application/json                                          |
-| Errors\APIException                                       | 4XX, 5XX                                                  | \*/\*                                                     |
+| Error Type                                                       | Status Code                                                      | Content Type                                                     |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Errors\ErrorResponse                                             | 401                                                              | application/json                                                 |
+| Errors\BackendSrcProductsSchemasResponsesValidationErrorResponse | 422                                                              | application/json                                                 |
+| Errors\ErrorResponse                                             | 500                                                              | application/json                                                 |
+| Errors\APIException                                              | 4XX, 5XX                                                         | \*/\*                                                            |
 
 ## get
 
@@ -195,21 +199,19 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
 
 
 $response = $sdk->products->get(
-    productId: '<id>'
+    productId: '<id>',
+    xOrganizationId: 'org_12345'
+
 );
 
 if ($response->productRead !== null) {
@@ -219,9 +221,10 @@ if ($response->productRead !== null) {
 
 ### Parameters
 
-| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `productId`                                                 | *string*                                                    | :heavy_check_mark:                                          | The unique identifier for the product you want to retrieve. |
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `productId`                                                   | *string*                                                      | :heavy_check_mark:                                            | The unique identifier for the product you want to retrieve.   |                                                               |
+| `xOrganizationId`                                             | *string*                                                      | :heavy_check_mark:                                            | The unique identifier for the organization making the request | org_12345                                                     |
 
 ### Response
 
@@ -229,19 +232,21 @@ if ($response->productRead !== null) {
 
 ### Errors
 
-| Error Type                                                | Status Code                                               | Content Type                                              |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| Errors\ErrorResponse                                      | 401                                                       | application/json                                          |
-| Errors\BackendSrcProductsResponsesValidationErrorResponse | 422                                                       | application/json                                          |
-| Errors\ErrorResponse                                      | 500                                                       | application/json                                          |
-| Errors\APIException                                       | 4XX, 5XX                                                  | \*/\*                                                     |
+| Error Type                                                       | Status Code                                                      | Content Type                                                     |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Errors\ErrorResponse                                             | 401                                                              | application/json                                                 |
+| Errors\BackendSrcProductsSchemasResponsesValidationErrorResponse | 422                                                              | application/json                                                 |
+| Errors\ErrorResponse                                             | 500                                                              | application/json                                                 |
+| Errors\APIException                                              | 4XX, 5XX                                                         | \*/\*                                                            |
 
 ## update
 
 The Update Product API allows users to modify the details of
     an existing product identified by its unique product_id. You can
-    retrieve supported categories and subcategories from
-    [GET /products/categories endpoint](/reference/api/products/get-product-categories)
+    retrieve supported categories and subcategories from the
+    [GET /products/categories endpoint](/reference/api/products/get-product-categories),
+    or browse the full catalog with descriptions and examples in the
+    [Product Categories guide](/docs/guides/product-categories)
 
 ### Example Usage
 
@@ -256,26 +261,25 @@ use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
-$productUpdate = new Components\ProductUpdate(
-    externalId: 'prod_001',
-    name: 'Updated T-Shirt',
-    description: 'An updated description for the product',
-    status: Components\ProductStatusEnum::Approved,
-    productCategory: 'Physical',
-    productSubcategory: 'General Clothing',
-    taxExempt: false,
-);
+
 
 $response = $sdk->products->update(
     productId: '<id>',
-    productUpdate: $productUpdate
+    requestBody: new Components\ProductUpdateV2(
+        name: 'Updated T-Shirt',
+        status: Components\ProductStatusEnum::Approved,
+        productCategory: 'Physical',
+        productSubcategory: 'General Clothing',
+        taxExempt: false,
+        externalId: 'prod_001',
+        description: 'An updated description for the product',
+        classificationFailed: false,
+    ),
+    xOrganizationId: 'org_12345'
 
 );
 
@@ -286,10 +290,11 @@ if ($response->productRead !== null) {
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `productId`                                                          | *string*                                                             | :heavy_check_mark:                                                   | Unique identifier of the product to be updated.                      |
-| `productUpdate`                                                      | [Components\ProductUpdate](../../Models/Components/ProductUpdate.md) | :heavy_check_mark:                                                   | N/A                                                                  |
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `productId`                                                                               | *string*                                                                                  | :heavy_check_mark:                                                                        | Unique identifier of the product to be updated.                                           |                                                                                           |
+| `requestBody`                                                                             | [Components\ProductUpdate\|Components\ProductUpdateV2](../../Models/Operations/Product.md) | :heavy_check_mark:                                                                        | N/A                                                                                       |                                                                                           |
+| `xOrganizationId`                                                                         | *string*                                                                                  | :heavy_check_mark:                                                                        | The unique identifier for the organization making the request                             | org_12345                                                                                 |
 
 ### Response
 
@@ -297,9 +302,9 @@ if ($response->productRead !== null) {
 
 ### Errors
 
-| Error Type                                                | Status Code                                               | Content Type                                              |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| Errors\ErrorResponse                                      | 401                                                       | application/json                                          |
-| Errors\BackendSrcProductsResponsesValidationErrorResponse | 422                                                       | application/json                                          |
-| Errors\ErrorResponse                                      | 500                                                       | application/json                                          |
-| Errors\APIException                                       | 4XX, 5XX                                                  | \*/\*                                                     |
+| Error Type                                                       | Status Code                                                      | Content Type                                                     |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| Errors\ErrorResponse                                             | 401                                                              | application/json                                                 |
+| Errors\BackendSrcProductsSchemasResponsesValidationErrorResponse | 422                                                              | application/json                                                 |
+| Errors\ErrorResponse                                             | 500                                                              | application/json                                                 |
+| Errors\APIException                                              | 4XX, 5XX                                                         | \*/\*                                                            |

@@ -3,6 +3,7 @@
 
 ## Fields
 
-| Field                                         | Type                                          | Required                                      | Description                                   |
-| --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `filingId`                                    | *string*                                      | :heavy_check_mark:                            | Unique identifier for the filing to retrieve. |
+| Field                                                         | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `filingId`                                                    | *string*                                                      | :heavy_check_mark:                                            | Unique identifier for the filing to retrieve.                 |                                                               |
+| `xOrganizationId`                                             | *string*                                                      | :heavy_check_mark:                                            | The unique identifier for the organization making the request | org_12345                                                     |

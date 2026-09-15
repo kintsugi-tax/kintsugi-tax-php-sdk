@@ -24,9 +24,12 @@ require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        '<YOUR_API_KEY_HERE>'
+    )
+    ->build();
 
 $request = new Components\AddressBase(
     phone: '555-123-4567',
@@ -39,13 +42,9 @@ $request = new Components\AddressBase(
     country: Components\CountryCodeEnum::Us,
     fullAddress: '1600 Amphitheatre Parkway, Mountain View, CA 94043',
 );
-$requestSecurity = new Operations\SearchV1AddressValidationSearchPostSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->addressValidation->search(
-    request: $request,
-    security: $requestSecurity
+    request: $request
 );
 
 if ($response->response200SearchV1AddressValidationSearchPost !== null) {
@@ -55,10 +54,9 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 
 ### Parameters
 
-| Parameter                                                                                                                        | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      |
-| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `$request`                                                                                                                       | [Components\AddressBase](../../Models/Components/AddressBase.md)                                                                 | :heavy_check_mark:                                                                                                               | The request object to use for the request.                                                                                       |
-| `security`                                                                                                                       | [Operations\SearchV1AddressValidationSearchPostSecurity](../../Models/Operations/SearchV1AddressValidationSearchPostSecurity.md) | :heavy_check_mark:                                                                                                               | The security requirements to use for the request.                                                                                |
+| Parameter                                                        | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `$request`                                                       | [Components\AddressBase](../../Models/Components/AddressBase.md) | :heavy_check_mark:                                               | The request object to use for the request.                       |
 
 ### Response
 
@@ -94,27 +92,26 @@ use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
-$request = new Components\ValidationAddress(
+$validationAddress = new Components\ValidationAddress(
     line1: '1600 Amphitheatre Parkway',
     line2: '',
     line3: '',
     city: 'Mountain View',
     state: 'CA',
+    country: 'US',
     postalCode: '94043',
     id: 215,
     county: '',
-    fullAddress: '1600 Amphitheatre Parkway, Mountain View, CA 94043',
 );
 
 $response = $sdk->addressValidation->suggestions(
-    request: $request
+    validationAddress: $validationAddress,
+    xOrganizationId: 'org_12345'
+
 );
 
 if ($response->any !== null) {
@@ -124,9 +121,10 @@ if ($response->any !== null) {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `$request`                                                                   | [Components\ValidationAddress](../../Models/Components/ValidationAddress.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  | Example                                                                      |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `validationAddress`                                                          | [Components\ValidationAddress](../../Models/Components/ValidationAddress.md) | :heavy_check_mark:                                                           | N/A                                                                          |                                                                              |
+| `xOrganizationId`                                                            | *string*                                                                     | :heavy_check_mark:                                                           | The unique identifier for the organization making the request                | org_12345                                                                    |
 
 ### Response
 

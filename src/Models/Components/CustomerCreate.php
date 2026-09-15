@@ -12,6 +12,34 @@ namespace KintsugiTax\SDK\Models\Components;
 class CustomerCreate
 {
     /**
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\StatusEnum $status
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\StatusEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?StatusEnum $status = null;
+
+    /**
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\AddressStatus $addressStatus
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?AddressStatus $addressStatus = null;
+
+    /**
+     * Customer tax registrations associated with the customer.
+     *
+     * @var ?array<\KintsugiTax\SDK\Models\Components\CustomerTaxRegistrationRead> $customerTaxRegistrations
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('customer_tax_registrations')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\CustomerTaxRegistrationRead>|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?array $customerTaxRegistrations = null;
+
+    /**
      * Customer's phone number
      *
      * @var ?string $phone
@@ -75,6 +103,7 @@ class CustomerCreate
     public ?string $postalCode = null;
 
     /**
+     * Country code in ISO 3166-1 alpha-2 format
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $country
      */
@@ -111,15 +140,6 @@ class CustomerCreate
     public ?string $externalId = null;
 
     /**
-     *
-     * @var ?\KintsugiTax\SDK\Models\Components\StatusEnum $status
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\StatusEnum|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?StatusEnum $status = null;
-
-    /**
      * Customer's email address
      *
      * @var ?string $email
@@ -129,6 +149,16 @@ class CustomerCreate
     public ?string $email = null;
 
     /**
+     * Registered or legal business name of the customer.
+     *
+     * @var ?string $companyName
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('company_name')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $companyName = null;
+
+    /**
+     * Source of the customer's record.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\SourceEnum $source
      */
@@ -145,15 +175,6 @@ class CustomerCreate
     #[\Speakeasy\Serializer\Annotation\SerializedName('connection_id')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $connectionId = null;
-
-    /**
-     *
-     * @var ?\KintsugiTax\SDK\Models\Components\AddressStatus $addressStatus
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('address_status')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\AddressStatus|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?AddressStatus $addressStatus = null;
 
     /**
      * Registration number of the customer.
@@ -174,16 +195,9 @@ class CustomerCreate
     public ?string $externalFriendlyId = null;
 
     /**
-     * Customer tax registrations associated with the customer.
-     *
-     * @var ?array<\KintsugiTax\SDK\Models\Components\CustomerTaxRegistrationRead> $customerTaxRegistrations
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('customer_tax_registrations')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\CustomerTaxRegistrationRead>|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?array $customerTaxRegistrations = null;
-
-    /**
+     * @param  ?\KintsugiTax\SDK\Models\Components\StatusEnum  $status
+     * @param  ?\KintsugiTax\SDK\Models\Components\AddressStatus  $addressStatus
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\CustomerTaxRegistrationRead>  $customerTaxRegistrations
      * @param  ?string  $phone
      * @param  ?string  $street1
      * @param  ?string  $street2
@@ -195,18 +209,19 @@ class CustomerCreate
      * @param  ?string  $fullAddress
      * @param  ?string  $name
      * @param  ?string  $externalId
-     * @param  ?\KintsugiTax\SDK\Models\Components\StatusEnum  $status
      * @param  ?string  $email
+     * @param  ?string  $companyName
      * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
      * @param  ?string  $connectionId
-     * @param  ?\KintsugiTax\SDK\Models\Components\AddressStatus  $addressStatus
      * @param  ?string  $registrationNumber
      * @param  ?string  $externalFriendlyId
-     * @param  ?array<\KintsugiTax\SDK\Models\Components\CustomerTaxRegistrationRead>  $customerTaxRegistrations
      * @phpstan-pure
      */
-    public function __construct(?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?string $externalId = null, ?StatusEnum $status = null, ?string $email = null, ?SourceEnum $source = null, ?string $connectionId = null, ?AddressStatus $addressStatus = null, ?string $registrationNumber = null, ?string $externalFriendlyId = null, ?array $customerTaxRegistrations = null)
+    public function __construct(?StatusEnum $status = null, ?AddressStatus $addressStatus = null, ?array $customerTaxRegistrations = null, ?string $phone = null, ?string $street1 = null, ?string $street2 = null, ?string $city = null, ?string $county = null, ?string $state = null, ?string $postalCode = null, ?CountryCodeEnum $country = null, ?string $fullAddress = null, ?string $name = null, ?string $externalId = null, ?string $email = null, ?string $companyName = null, ?SourceEnum $source = null, ?string $connectionId = null, ?string $registrationNumber = null, ?string $externalFriendlyId = null)
     {
+        $this->status = $status;
+        $this->addressStatus = $addressStatus;
+        $this->customerTaxRegistrations = $customerTaxRegistrations;
         $this->phone = $phone;
         $this->street1 = $street1;
         $this->street2 = $street2;
@@ -218,13 +233,11 @@ class CustomerCreate
         $this->fullAddress = $fullAddress;
         $this->name = $name;
         $this->externalId = $externalId;
-        $this->status = $status;
         $this->email = $email;
+        $this->companyName = $companyName;
         $this->source = $source;
         $this->connectionId = $connectionId;
-        $this->addressStatus = $addressStatus;
         $this->registrationNumber = $registrationNumber;
         $this->externalFriendlyId = $externalFriendlyId;
-        $this->customerTaxRegistrations = $customerTaxRegistrations;
     }
 }

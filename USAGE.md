@@ -6,9 +6,12 @@ require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
 use KintsugiTax\SDK\Models\Components;
-use KintsugiTax\SDK\Models\Operations;
 
-$sdk = SDK\SDK::builder()->build();
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        '<YOUR_API_KEY_HERE>'
+    )
+    ->build();
 
 $request = new Components\AddressBase(
     phone: '555-123-4567',
@@ -21,13 +24,9 @@ $request = new Components\AddressBase(
     country: Components\CountryCodeEnum::Us,
     fullAddress: '1600 Amphitheatre Parkway, Mountain View, CA 94043',
 );
-$requestSecurity = new Operations\SearchV1AddressValidationSearchPostSecurity(
-    apiKeyHeader: '<YOUR_API_KEY_HERE>',
-);
 
 $response = $sdk->addressValidation->search(
-    request: $request,
-    security: $requestSecurity
+    request: $request
 );
 
 if ($response->response200SearchV1AddressValidationSearchPost !== null) {

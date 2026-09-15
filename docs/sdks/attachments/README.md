@@ -4,7 +4,7 @@
 
 ### Available Operations
 
-* [get](#get) - Get Attachments For Exemption
+* [get](#get) - Get attachments for exemption
 
 ## get
 
@@ -22,21 +22,19 @@ declare(strict_types=1);
 require 'vendor/autoload.php';
 
 use KintsugiTax\SDK;
-use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
-        new Components\Security(
-            apiKeyHeader: '<YOUR_API_KEY_HERE>',
-            customHeader: '<YOUR_API_KEY_HERE>',
-        )
+        '<YOUR_API_KEY_HERE>'
     )
     ->build();
 
 
 
 $response = $sdk->exemptions->attachments->get(
-    exemptionId: '<id>'
+    exemptionId: '<id>',
+    xOrganizationId: 'org_12345'
+
 );
 
 if ($response->response200GetAttachmentsForExemptionV1ExemptionsExemptionIdAttachmentsGet !== null) {
@@ -46,9 +44,10 @@ if ($response->response200GetAttachmentsForExemptionV1ExemptionsExemptionIdAttac
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `exemptionId`                                                                          | *string*                                                                               | :heavy_check_mark:                                                                     | The unique identifier for the exemption<br/>        whose attachments are being retrieved. |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            | Example                                                                                |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `exemptionId`                                                                          | *string*                                                                               | :heavy_check_mark:                                                                     | The unique identifier for the exemption<br/>        whose attachments are being retrieved. |                                                                                        |
+| `xOrganizationId`                                                                      | *string*                                                                               | :heavy_check_mark:                                                                     | The unique identifier for the organization making the request                          | org_12345                                                                              |
 
 ### Response
 

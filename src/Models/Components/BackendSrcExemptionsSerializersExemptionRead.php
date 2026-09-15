@@ -44,6 +44,7 @@ class BackendSrcExemptionsSerializersExemptionRead
     public ExemptionStatus $status;
 
     /**
+     * Country code in ISO 3166-1 alpha-2 format (e.g., 'US')
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum $countryCode
      */
@@ -64,11 +65,11 @@ class BackendSrcExemptionsSerializersExemptionRead
     /**
      * End date for the exemption validity period (YYYY-MM-DD format)
      *
-     * @var ?string $endDate
+     * @var ?LocalDate $endDate
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('end_date')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $endDate = null;
+    public ?LocalDate $endDate = null;
 
     /**
      * Unique identifier for the transaction, if applicable
@@ -98,6 +99,7 @@ class BackendSrcExemptionsSerializersExemptionRead
     public ?string $salesTaxId = null;
 
     /**
+     * Details of the customer associated with the exemption
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CustomerRead $customer
      */
@@ -130,18 +132,18 @@ class BackendSrcExemptionsSerializersExemptionRead
      * @param  string  $id
      * @param  \KintsugiTax\SDK\Models\Components\ExemptionType  $exemptionType
      * @param  \KintsugiTax\SDK\Models\Components\ExemptionStatus  $status
+     * @param  ?bool  $reseller
      * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
      * @param  ?string  $jurisdiction
-     * @param  ?string  $endDate
+     * @param  ?LocalDate  $endDate
      * @param  ?string  $transactionId
-     * @param  ?bool  $reseller
      * @param  ?string  $fein
      * @param  ?string  $salesTaxId
      * @param  ?\KintsugiTax\SDK\Models\Components\CustomerRead  $customer
      * @param  ?array<\KintsugiTax\SDK\Models\Components\AttachmentRead>  $attachment
      * @phpstan-pure
      */
-    public function __construct(LocalDate $startDate, string $id, ExemptionType $exemptionType, ExemptionStatus $status, ?CountryCodeEnum $countryCode = null, ?string $jurisdiction = null, ?string $endDate = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?CustomerRead $customer = null, ?array $attachment = null, ?bool $reseller = false)
+    public function __construct(LocalDate $startDate, string $id, ExemptionType $exemptionType, ExemptionStatus $status, ?CountryCodeEnum $countryCode = null, ?string $jurisdiction = null, ?LocalDate $endDate = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?CustomerRead $customer = null, ?array $attachment = null, ?bool $reseller = false)
     {
         $this->startDate = $startDate;
         $this->id = $id;

@@ -12,6 +12,14 @@ use KintsugiTax\SDK\Utils\SpeakeasyMetadata;
 class GetPhysicalNexusV1NexusPhysicalNexusGetRequest
 {
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      *
      * @var ?string $countryCode
      */
@@ -49,15 +57,17 @@ class GetPhysicalNexusV1NexusPhysicalNexusGetRequest
     public ?int $size = null;
 
     /**
+     * @param  ?int  $page
+     * @param  ?int  $size
+     * @param  ?string  $xOrganizationId
      * @param  ?string  $countryCode
      * @param  ?string  $stateCode
      * @param  ?string  $orderBy
-     * @param  ?int  $page
-     * @param  ?int  $size
      * @phpstan-pure
      */
-    public function __construct(?string $countryCode = null, ?string $stateCode = null, ?string $orderBy = 'country_code,state_code,start_date,end_date', ?int $page = 1, ?int $size = 50)
+    public function __construct(?string $xOrganizationId = null, ?string $countryCode = null, ?string $stateCode = null, ?string $orderBy = null, ?int $page = 1, ?int $size = 50)
     {
+        $this->xOrganizationId = $xOrganizationId;
         $this->countryCode = $countryCode;
         $this->stateCode = $stateCode;
         $this->orderBy = $orderBy;

@@ -29,13 +29,23 @@ class EstimateTaxV1TaxEstimatePostRequest
     public ?bool $simulateNexusMet = null;
 
     /**
+     * The unique identifier for the organization making the request
+     *
+     * @var ?string $xOrganizationId
+     */
+    #[SpeakeasyMetadata('header:style=simple,explode=false,name=x-organization-id')]
+    public ?string $xOrganizationId;
+
+    /**
      * @param  \KintsugiTax\SDK\Models\Components\TransactionEstimatePublicRequest  $transactionEstimatePublicRequest
      * @param  ?bool  $simulateNexusMet
+     * @param  ?string  $xOrganizationId
      * @phpstan-pure
      */
-    public function __construct(Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest, ?bool $simulateNexusMet = null)
+    public function __construct(Components\TransactionEstimatePublicRequest $transactionEstimatePublicRequest, ?bool $simulateNexusMet = null, ?string $xOrganizationId = null)
     {
         $this->transactionEstimatePublicRequest = $transactionEstimatePublicRequest;
         $this->simulateNexusMet = $simulateNexusMet;
+        $this->xOrganizationId = $xOrganizationId;
     }
 }
