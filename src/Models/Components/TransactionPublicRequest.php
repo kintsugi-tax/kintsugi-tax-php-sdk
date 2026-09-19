@@ -141,6 +141,7 @@ class TransactionPublicRequest
     public float|string|null $taxableAmount = null;
 
     /**
+     * ISO-4217 currency code. Pair with a monetary amount on the same object.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */
@@ -245,10 +246,10 @@ class TransactionPublicRequest
     /**
      * List of exemptions applied (if any).
      *
-     * @var ?array<\KintsugiTax\SDK\Models\Components\Exemption> $exemptions
+     * @var ?array<\KintsugiTax\SDK\Models\Components\TransactionEmbeddedExemption> $exemptions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exemptions')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\Exemption>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionEmbeddedExemption>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $exemptions = null;
 
@@ -427,7 +428,7 @@ class TransactionPublicRequest
      * @param  ?string  $customerId
      * @param  ?bool  $marketplace
      * @param  ?\KintsugiTax\SDK\Models\Components\TransactionExemptStatusEnum  $exempt
-     * @param  ?array<\KintsugiTax\SDK\Models\Components\Exemption>  $exemptions
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\TransactionEmbeddedExemption>  $exemptions
      * @param  ?string  $relatedTo
      * @param  ?string  $secondaryExternalId
      * @param  ?string  $secondarySource

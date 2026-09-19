@@ -46,6 +46,7 @@ class CreditNoteCreate
     public float|string $totalAmount;
 
     /**
+     * ISO-4217 currency code. Pair with a monetary amount on the same object.
      *
      * @var \KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */

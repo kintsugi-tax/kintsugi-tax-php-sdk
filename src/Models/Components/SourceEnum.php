@@ -86,4 +86,5 @@ enum SourceEnum: string
     case IntuitEnterpriseSuite = 'INTUIT_ENTERPRISE_SUITE';
     case Acumatica = 'ACUMATICA';
     case Plentyone = 'PLENTYONE';
+    case Hyperline = 'HYPERLINE';
 }

@@ -80,3 +80,4 @@
 | `IntuitEnterpriseSuite` | INTUIT_ENTERPRISE_SUITE |
 | `Acumatica`             | ACUMATICA               |
 | `Plentyone`             | PLENTYONE               |
+| `Hyperline`             | HYPERLINE               |

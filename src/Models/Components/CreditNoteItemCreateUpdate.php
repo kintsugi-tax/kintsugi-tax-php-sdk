@@ -113,6 +113,16 @@ class CreditNoteItemCreateUpdate
     public ?TaxExemptionEnum $taxExemption = null;
 
     /**
+     * Line-level discount for this credit note item, if any.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\DiscountBuilder $discountBuilder
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('discount_builder')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\DiscountBuilder|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?DiscountBuilder $discountBuilder = null;
+
+    /**
      * @param  string  $externalId
      * @param  \DateTime  $date
      * @param  string  $externalProductId
@@ -124,9 +134,10 @@ class CreditNoteItemCreateUpdate
      * @param  float|string|null  $taxRateImported
      * @param  float|string|null  $taxableAmount
      * @param  ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum  $taxExemption
+     * @param  ?\KintsugiTax\SDK\Models\Components\DiscountBuilder  $discountBuilder
      * @phpstan-pure
      */
-    public function __construct(string $externalId, \DateTime $date, string $externalProductId, float|string $quantity, float|string $amount, ?array $taxItems = null, ?string $description = null, float|string|null $taxAmountImported = null, float|string|null $taxRateImported = null, float|string|null $taxableAmount = null, ?TaxExemptionEnum $taxExemption = null)
+    public function __construct(string $externalId, \DateTime $date, string $externalProductId, float|string $quantity, float|string $amount, ?array $taxItems = null, ?string $description = null, float|string|null $taxAmountImported = null, float|string|null $taxRateImported = null, float|string|null $taxableAmount = null, ?TaxExemptionEnum $taxExemption = null, ?DiscountBuilder $discountBuilder = null)
     {
         $this->externalId = $externalId;
         $this->date = $date;
@@ -139,5 +150,6 @@ class CreditNoteItemCreateUpdate
         $this->taxRateImported = $taxRateImported;
         $this->taxableAmount = $taxableAmount;
         $this->taxExemption = $taxExemption;
+        $this->discountBuilder = $discountBuilder;
     }
 }
