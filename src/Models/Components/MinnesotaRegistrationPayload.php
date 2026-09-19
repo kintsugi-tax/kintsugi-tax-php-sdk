@@ -146,10 +146,11 @@ class MinnesotaRegistrationPayload
     public ?ChangeRegimeStatusEnum $changeRegimeStatus = null;
 
     /**
-     * Fiscal-year anchor month (1-12) on which each quarterly/semiannual
+     * Fiscal-year anchor month (1-12) on which each recurring period
      *
-     *         period ends, for Hawaii (US-HI) filers whose periods are offset from the calendar.
-     *         Null (default) keeps the standard calendar grid.
+     *         ends, for filers whose periods are offset from the calendar: Hawaii (US-HI)
+     *         quarterly/semiannual, British Columbia (CA-BC) quarterly, and California (US-CA)
+     *         annual. Null (default) keeps the standard calendar grid.
      *
      * @var ?int $periodEndMonth
      */

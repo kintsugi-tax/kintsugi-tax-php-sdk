@@ -31,10 +31,10 @@ class TransactionRead
     /**
      * Transaction date and time
      *
-     * @var \DateTime $date
+     * @var string $date
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('date')]
-    public \DateTime $date;
+    public string $date;
 
     /**
      * The unique transaction identifier.
@@ -71,6 +71,7 @@ class TransactionRead
     public TransactionTypeEnum $type;
 
     /**
+     * ISO-4217 currency code. Pair with a monetary amount on the same object.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */
@@ -205,10 +206,10 @@ class TransactionRead
     /**
      * List of exemptions applied (if any).
      *
-     * @var ?array<\KintsugiTax\SDK\Models\Components\Exemption> $exemptions
+     * @var ?array<\KintsugiTax\SDK\Models\Components\TransactionEmbeddedExemption> $exemptions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exemptions')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\Exemption>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionEmbeddedExemption>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $exemptions = null;
 
@@ -443,6 +444,24 @@ class TransactionRead
     public ?string $storeName = null;
 
     /**
+     * Recoverable input VAT across this transaction's lines in the destination currency. Null when the transaction is unconverted.
+     *
+     * @var ?string $convertedTotalRecoverableInputVat
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('converted_total_recoverable_input_vat')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $convertedTotalRecoverableInputVat = null;
+
+    /**
+     * Pro-rata coefficient 0-100 used to scale recoverable input VAT on this purchase. Null for sales and outside the EU and UK. 100 when the organization has no partial exemption rate for the tax-point year.
+     *
+     * @var ?string $inputVatRecoveryRate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('input_vat_recovery_rate')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $inputVatRecoveryRate = null;
+
+    /**
      * Customer information associated with the transaction.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CustomerRead $customer
@@ -578,9 +597,18 @@ class TransactionRead
     public ?bool $isDeferredTransaction = null;
 
     /**
+     * Recoverable input VAT across this transaction's lines, in the transaction's currency. 0.00 for sales and outside the EU and UK.
+     *
+     * @var ?string $totalRecoverableInputVat
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('total_recoverable_input_vat')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $totalRecoverableInputVat = null;
+
+    /**
      * @param  string  $organizationId
      * @param  string  $externalId
-     * @param  \DateTime  $date
+     * @param  string  $date
      * @param  string  $id
      * @param  array<\KintsugiTax\SDK\Models\Components\TransactionAddressReadOutput>  $addresses
      * @param  array<\KintsugiTax\SDK\Models\Components\TransactionItemRead>  $transactionItems
@@ -601,6 +629,7 @@ class TransactionRead
      * @param  ?bool  $isDuplicate
      * @param  ?bool  $isDeferredTransaction
      * @param  ?\KintsugiTax\SDK\Models\Components\TransactionDirectionEnum  $direction
+     * @param  ?string  $totalRecoverableInputVat
      * @param  ?\KintsugiTax\SDK\Models\Components\ExemptionRequired  $requiresExemption
      * @param  ?LocalDate  $shopDate
      * @param  ?string  $shopDateTz
@@ -609,7 +638,7 @@ class TransactionRead
      * @param  ?string  $customerId
      * @param  ?bool  $marketplace
      * @param  ?\KintsugiTax\SDK\Models\Components\TransactionExemptStatusEnum  $exempt
-     * @param  ?array<\KintsugiTax\SDK\Models\Components\Exemption>  $exemptions
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\TransactionEmbeddedExemption>  $exemptions
      * @param  ?string  $relatedTo
      * @param  ?string  $secondaryExternalId
      * @param  ?string  $secondarySource
@@ -635,6 +664,8 @@ class TransactionRead
      * @param  ?string  $convertedSubtotal
      * @param  ?string  $convertedTotalTaxLiabilityAmount
      * @param  ?string  $storeName
+     * @param  ?string  $convertedTotalRecoverableInputVat
+     * @param  ?string  $inputVatRecoveryRate
      * @param  ?\KintsugiTax\SDK\Models\Components\CustomerRead  $customer
      * @param  ?string  $totalDiscount
      * @param  ?string  $subtotal
@@ -642,7 +673,7 @@ class TransactionRead
      * @param  ?string  $convertedFinalTotalAmount
      * @phpstan-pure
      */
-    public function __construct(string $organizationId, string $externalId, \DateTime $date, string $id, array $addresses, array $transactionItems, TransactionTypeEnum $type, ?CurrencyEnum $currency = null, ?SourceEnum $source = null, ?TransactionStatusEnum $status = null, ?AddressStatus $addressStatus = null, ?ProcessingStatusEnum $processingStatus = null, ?TransactionDirectionEnum $direction = null, ?ExemptionRequired $requiresExemption = null, ?LocalDate $shopDate = null, ?string $shopDateTz = null, ?string $description = null, ?TransactionRefundStatus $refundStatus = null, ?string $customerId = null, ?bool $marketplace = null, ?TransactionExemptStatusEnum $exempt = null, ?array $exemptions = null, ?string $relatedTo = null, ?string $secondaryExternalId = null, ?string $secondarySource = null, ?string $externalFriendlyId = null, ?TaxLiabilitySourceEnum $taxLiabilitySource = null, ?string $connectionId = null, ?string $filingId = null, ?string $city = null, ?string $county = null, ?string $state = null, ?CountryCodeEnum $country = null, ?string $postalCode = null, ?string $taxId = null, ?DocumentTypeEnum $documentType = null, ?string $createdFrom = null, ?CurrencyEnum $destinationCurrency = null, ?string $convertedTotalAmount = null, ?string $convertedTotalTaxAmountImported = null, ?string $convertedTotalTaxAmountCalculated = null, ?string $conversionRate = null, ?string $convertedTaxableAmount = null, ?string $convertedTotalDiscount = null, ?string $convertedSubtotal = null, ?string $convertedTotalTaxLiabilityAmount = null, ?string $storeName = null, ?CustomerRead $customer = null, ?string $totalDiscount = null, ?string $subtotal = null, ?string $finalTotalAmount = null, ?string $convertedFinalTotalAmount = null, ?string $totalAmount = '0.00', ?string $totalTaxAmountImported = '0.00', ?string $taxRateImported = '0.00', ?string $totalTaxAmountCalculated = '0.00', ?string $taxRateCalculated = '0.00', ?string $totalTaxLiabilityAmount = '0.00', ?string $taxableAmount = '0.00', ?bool $locked = false, ?bool $isDuplicate = false, ?bool $isDeferredTransaction = false)
+    public function __construct(string $organizationId, string $externalId, string $date, string $id, array $addresses, array $transactionItems, TransactionTypeEnum $type, ?CurrencyEnum $currency = null, ?SourceEnum $source = null, ?TransactionStatusEnum $status = null, ?AddressStatus $addressStatus = null, ?ProcessingStatusEnum $processingStatus = null, ?TransactionDirectionEnum $direction = null, ?ExemptionRequired $requiresExemption = null, ?LocalDate $shopDate = null, ?string $shopDateTz = null, ?string $description = null, ?TransactionRefundStatus $refundStatus = null, ?string $customerId = null, ?bool $marketplace = null, ?TransactionExemptStatusEnum $exempt = null, ?array $exemptions = null, ?string $relatedTo = null, ?string $secondaryExternalId = null, ?string $secondarySource = null, ?string $externalFriendlyId = null, ?TaxLiabilitySourceEnum $taxLiabilitySource = null, ?string $connectionId = null, ?string $filingId = null, ?string $city = null, ?string $county = null, ?string $state = null, ?CountryCodeEnum $country = null, ?string $postalCode = null, ?string $taxId = null, ?DocumentTypeEnum $documentType = null, ?string $createdFrom = null, ?CurrencyEnum $destinationCurrency = null, ?string $convertedTotalAmount = null, ?string $convertedTotalTaxAmountImported = null, ?string $convertedTotalTaxAmountCalculated = null, ?string $conversionRate = null, ?string $convertedTaxableAmount = null, ?string $convertedTotalDiscount = null, ?string $convertedSubtotal = null, ?string $convertedTotalTaxLiabilityAmount = null, ?string $storeName = null, ?string $convertedTotalRecoverableInputVat = null, ?string $inputVatRecoveryRate = null, ?CustomerRead $customer = null, ?string $totalDiscount = null, ?string $subtotal = null, ?string $finalTotalAmount = null, ?string $convertedFinalTotalAmount = null, ?string $totalAmount = '0.00', ?string $totalTaxAmountImported = '0.00', ?string $taxRateImported = '0.00', ?string $totalTaxAmountCalculated = '0.00', ?string $taxRateCalculated = '0.00', ?string $totalTaxLiabilityAmount = '0.00', ?string $taxableAmount = '0.00', ?bool $locked = false, ?bool $isDuplicate = false, ?bool $isDeferredTransaction = false, ?string $totalRecoverableInputVat = '0.00')
     {
         $this->organizationId = $organizationId;
         $this->externalId = $externalId;
@@ -691,6 +722,8 @@ class TransactionRead
         $this->convertedSubtotal = $convertedSubtotal;
         $this->convertedTotalTaxLiabilityAmount = $convertedTotalTaxLiabilityAmount;
         $this->storeName = $storeName;
+        $this->convertedTotalRecoverableInputVat = $convertedTotalRecoverableInputVat;
+        $this->inputVatRecoveryRate = $inputVatRecoveryRate;
         $this->customer = $customer;
         $this->totalDiscount = $totalDiscount;
         $this->subtotal = $subtotal;
@@ -706,5 +739,6 @@ class TransactionRead
         $this->locked = $locked;
         $this->isDuplicate = $isDuplicate;
         $this->isDeferredTransaction = $isDeferredTransaction;
+        $this->totalRecoverableInputVat = $totalRecoverableInputVat;
     }
 }
