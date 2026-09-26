@@ -49,6 +49,7 @@ enum SourceEnum: string
     case Rippling = 'RIPPLING';
     case Gusto = 'GUSTO';
     case Facebook = 'FACEBOOK';
+    case Freshbooks = 'FRESHBOOKS';
     case Other = 'OTHER';
     case Ordway = 'ORDWAY';
     case Instagram = 'INSTAGRAM';
@@ -86,4 +87,5 @@ enum SourceEnum: string
     case IntuitEnterpriseSuite = 'INTUIT_ENTERPRISE_SUITE';
     case Acumatica = 'ACUMATICA';
     case Plentyone = 'PLENTYONE';
+    case Hyperline = 'HYPERLINE';
 }

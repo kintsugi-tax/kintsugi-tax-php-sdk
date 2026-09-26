@@ -34,6 +34,7 @@ enum ExemptionSourceEnum: string
     case Shopline = 'SHOPLINE';
     case Orb = 'ORB';
     case Zenskar = 'ZENSKAR';
+    case Hyperline = 'HYPERLINE';
     case Manual = 'MANUAL';
     case BulkUpload = 'BULK_UPLOAD';
     case Email = 'EMAIL';

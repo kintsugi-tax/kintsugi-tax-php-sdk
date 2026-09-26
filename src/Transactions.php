@@ -48,7 +48,7 @@ class Transactions
     /**
      * Create credit note by transaction id
      *
-     * Create a new credit note for a specific transaction.
+     * Create a new credit note for a specific transaction. Idempotent on ``(organization_id, connection_id, source, external_id)`` for the same parent: a re-POST returns ``200`` with the stored credit note unchanged. The same external id against a different parent still conflicts. Use PUT to update fields.
      *
      * @param  \KintsugiTax\SDK\Models\Components\CreditNoteCreate  $creditNoteCreate
      * @param  string  $originalTransactionId
@@ -97,7 +97,7 @@ class Transactions
         }
 
         $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+        if (Utils\Utils::matchStatusCodes($statusCode, ['201'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 

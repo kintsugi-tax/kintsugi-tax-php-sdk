@@ -2703,7 +2703,9 @@ declare(strict_types=1);
 
 require 'vendor/autoload.php';
 
+use Brick\DateTime\LocalDate;
 use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
 
 $sdk = SDK\SDK::builder()
     ->setSecurity(
@@ -2711,12 +2713,15 @@ $sdk = SDK\SDK::builder()
     )
     ->build();
 
-
+$deregisterRegistrationRequest = new Components\DeregisterRegistrationRequest(
+    closureDate: LocalDate::parse('2026-01-04'),
+    reason: Components\DeregistrationReasonEnum::ClosingNexusInState,
+);
 
 $response = $sdk->registrations->deregister(
     registrationId: 'regs_123456',
-    xOrganizationId: 'org_12345',
-    deregisterRegistrationRequest: $deregisterRegistrationRequest
+    deregisterRegistrationRequest: $deregisterRegistrationRequest,
+    xOrganizationId: 'org_12345'
 
 );
 
@@ -2727,11 +2732,11 @@ if ($response->registrationRead !== null) {
 
 ### Parameters
 
-| Parameter                                                                                             | Type                                                                                                  | Required                                                                                              | Description                                                                                           | Example                                                                                               |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
-| `registrationId`                                                                                      | *string*                                                                                              | :heavy_check_mark:                                                                                    | The unique identifier of the registration to deregister.                                              | regs_123456                                                                                           |
-| `xOrganizationId`                                                                                     | *string*                                                                                              | :heavy_check_mark:                                                                                    | The unique identifier for the organization making the request                                         | org_12345                                                                                             |
-| `deregisterRegistrationRequest`                                                                       | [?Components\DeregisterRegistrationRequest](../../Models/Components/DeregisterRegistrationRequest.md) | :heavy_minus_sign:                                                                                    | N/A                                                                                                   |                                                                                                       |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          | Example                                                                                              |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `registrationId`                                                                                     | *string*                                                                                             | :heavy_check_mark:                                                                                   | The unique identifier of the registration to deregister.                                             | regs_123456                                                                                          |
+| `deregisterRegistrationRequest`                                                                      | [Components\DeregisterRegistrationRequest](../../Models/Components/DeregisterRegistrationRequest.md) | :heavy_check_mark:                                                                                   | N/A                                                                                                  |                                                                                                      |
+| `xOrganizationId`                                                                                    | *string*                                                                                             | :heavy_check_mark:                                                                                   | The unique identifier for the organization making the request                                        | org_12345                                                                                            |
 
 ### Response
 

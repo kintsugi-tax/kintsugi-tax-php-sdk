@@ -9,6 +9,7 @@ declare(strict_types=1);
 namespace KintsugiTax\SDK\Models\Components;
 
 
+/** ISO-4217 currency code. Pair with a monetary amount on the same object. */
 enum CurrencyEnum: string
 {
     case Aed = 'AED';

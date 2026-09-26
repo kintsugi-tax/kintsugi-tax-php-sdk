@@ -21,6 +21,13 @@ class DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest
     public string $registrationId;
 
     /**
+     *
+     * @var \KintsugiTax\SDK\Models\Components\DeregisterRegistrationRequest $deregisterRegistrationRequest
+     */
+    #[SpeakeasyMetadata('request:mediaType=application/json')]
+    public Components\DeregisterRegistrationRequest $deregisterRegistrationRequest;
+
+    /**
      * The unique identifier for the organization making the request
      *
      * @var ?string $xOrganizationId
@@ -29,22 +36,15 @@ class DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest
     public ?string $xOrganizationId;
 
     /**
-     *
-     * @var ?\KintsugiTax\SDK\Models\Components\DeregisterRegistrationRequest $deregisterRegistrationRequest
-     */
-    #[SpeakeasyMetadata('request:mediaType=application/json')]
-    public ?Components\DeregisterRegistrationRequest $deregisterRegistrationRequest = null;
-
-    /**
      * @param  string  $registrationId
+     * @param  \KintsugiTax\SDK\Models\Components\DeregisterRegistrationRequest  $deregisterRegistrationRequest
      * @param  ?string  $xOrganizationId
-     * @param  ?\KintsugiTax\SDK\Models\Components\DeregisterRegistrationRequest  $deregisterRegistrationRequest
      * @phpstan-pure
      */
-    public function __construct(string $registrationId, ?string $xOrganizationId = null, ?Components\DeregisterRegistrationRequest $deregisterRegistrationRequest = null)
+    public function __construct(string $registrationId, Components\DeregisterRegistrationRequest $deregisterRegistrationRequest, ?string $xOrganizationId = null)
     {
         $this->registrationId = $registrationId;
-        $this->xOrganizationId = $xOrganizationId;
         $this->deregisterRegistrationRequest = $deregisterRegistrationRequest;
+        $this->xOrganizationId = $xOrganizationId;
     }
 }

@@ -43,6 +43,7 @@
 | `Rippling`              | RIPPLING                |
 | `Gusto`                 | GUSTO                   |
 | `Facebook`              | FACEBOOK                |
+| `Freshbooks`            | FRESHBOOKS              |
 | `Other`                 | OTHER                   |
 | `Ordway`                | ORDWAY                  |
 | `Instagram`             | INSTAGRAM               |
@@ -80,3 +81,4 @@
 | `IntuitEnterpriseSuite` | INTUIT_ENTERPRISE_SUITE |
 | `Acumatica`             | ACUMATICA               |
 | `Plentyone`             | PLENTYONE               |
+| `Hyperline`             | HYPERLINE               |
