@@ -80,9 +80,9 @@ class RegistrationRead
      *
      * Registrations and filings may be SALES_AND_USE_TAX: one state account and
      * one return can cover both taxes, and each is stored as a single row.
-     * Nexus rows are only SALES_TAX or USE_TAX. Sales and use tax exposure are
-     * separate obligations with their own met dates, period models, and liability
-     * accrual.
+     * Nexus rows are SALES_TAX, USE_TAX, or RETAIL_DELIVERY_FEE. Sales tax, use
+     * tax, and the retail delivery fee are separate obligations with their own
+     * met dates, period models, and liability accrual.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\TaxTypeEnum $taxType
      */
@@ -428,6 +428,34 @@ class RegistrationRead
     public ?array $jurisdictionSpecificFields = null;
 
     /**
+     * Effective date the registration closes with the jurisdiction.
+     *
+     * @var ?LocalDate $deregistrationClosureDate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('deregistration_closure_date')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?LocalDate $deregistrationClosureDate = null;
+
+    /**
+     * Reason the registration is being closed.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\DeregistrationReasonEnum $deregistrationReason
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('deregistration_reason')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\DeregistrationReasonEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?DeregistrationReasonEnum $deregistrationReason = null;
+
+    /**
+     * When final-return acknowledgement was recorded.
+     *
+     * @var ?\DateTime $deregistrationAcknowledgedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('deregistration_acknowledged_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\DateTime $deregistrationAcknowledgedAt = null;
+
+    /**
      * If true, do not file for this registration (treated as False by default).
      *
      * @var ?bool $doNotFile
@@ -521,9 +549,12 @@ class RegistrationRead
      * @param  ?bool  $needsMarkAsCollecting
      * @param  ?\DateTime  $createdAt
      * @param  ?array<string, mixed>  $jurisdictionSpecificFields
+     * @param  ?LocalDate  $deregistrationClosureDate
+     * @param  ?\KintsugiTax\SDK\Models\Components\DeregistrationReasonEnum  $deregistrationReason
+     * @param  ?\DateTime  $deregistrationAcknowledgedAt
      * @phpstan-pure
      */
-    public function __construct(RegistrationStatusEnum $status, CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, string $id, int $filingDays, RegistrationTypeEnum $registrationType, ?TaxTypeEnum $taxType = null, ?RegistrationCategoryEnum $registrationCategory = null, ?string $filingWebsiteUrl = null, ?LocalDate $registrationDate = null, ?string $registrationEmail = null, ?\DateTime $registrationRequested = null, ?\DateTime $registrationCompleted = null, ?\DateTime $deregistrationRequested = null, ?\DateTime $deregistrationCompleted = null, ?bool $autoRegistered = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $thirdPartyEnabled = null, ?bool $twoFactorEnabled = null, ?bool $markedCollecting = null, ?FilingFrequencyEnum $initialFilingFrequency = null, ?FilingFrequencyEnum $scheduledFilingFrequency = null, ?LocalDate $filingFrequencyEffectiveDate = null, ?int $periodEndMonth = null, ?string $username = null, ?string $comment = null, ?LocalDate $createFilingsFrom = null, ?LocalDate $retailDeliveryFeeEffectiveFrom = null, ?bool $initialSync = null, ?bool $vda = null, ?bool $imported = null, ?string $salesTaxId = null, ?string $iorNumber = null, ?LocalDate $iorDate = null, ?bool $sstImport = null, ?OssTypeEnum $ossType = null, ?CountryCodeEnum $ossMemberStateOfIdentificationCode = null, ?\DateTime $markedCollectingDate = null, ?bool $needsMarkAsCollecting = null, ?\DateTime $createdAt = null, ?array $jurisdictionSpecificFields = null, ?bool $doNotFile = false, ?bool $createBackFiling = false, ?bool $retailDeliveryFeeObligated = false, ?string $amountFees = '0.00', ?string $creditsTotalAvailable = '0.00')
+    public function __construct(RegistrationStatusEnum $status, CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, string $id, int $filingDays, RegistrationTypeEnum $registrationType, ?TaxTypeEnum $taxType = null, ?RegistrationCategoryEnum $registrationCategory = null, ?string $filingWebsiteUrl = null, ?LocalDate $registrationDate = null, ?string $registrationEmail = null, ?\DateTime $registrationRequested = null, ?\DateTime $registrationCompleted = null, ?\DateTime $deregistrationRequested = null, ?\DateTime $deregistrationCompleted = null, ?bool $autoRegistered = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $thirdPartyEnabled = null, ?bool $twoFactorEnabled = null, ?bool $markedCollecting = null, ?FilingFrequencyEnum $initialFilingFrequency = null, ?FilingFrequencyEnum $scheduledFilingFrequency = null, ?LocalDate $filingFrequencyEffectiveDate = null, ?int $periodEndMonth = null, ?string $username = null, ?string $comment = null, ?LocalDate $createFilingsFrom = null, ?LocalDate $retailDeliveryFeeEffectiveFrom = null, ?bool $initialSync = null, ?bool $vda = null, ?bool $imported = null, ?string $salesTaxId = null, ?string $iorNumber = null, ?LocalDate $iorDate = null, ?bool $sstImport = null, ?OssTypeEnum $ossType = null, ?CountryCodeEnum $ossMemberStateOfIdentificationCode = null, ?\DateTime $markedCollectingDate = null, ?bool $needsMarkAsCollecting = null, ?\DateTime $createdAt = null, ?array $jurisdictionSpecificFields = null, ?LocalDate $deregistrationClosureDate = null, ?DeregistrationReasonEnum $deregistrationReason = null, ?\DateTime $deregistrationAcknowledgedAt = null, ?bool $doNotFile = false, ?bool $createBackFiling = false, ?bool $retailDeliveryFeeObligated = false, ?string $amountFees = '0.00', ?string $creditsTotalAvailable = '0.00')
     {
         $this->status = $status;
         $this->countryCode = $countryCode;
@@ -569,6 +600,9 @@ class RegistrationRead
         $this->needsMarkAsCollecting = $needsMarkAsCollecting;
         $this->createdAt = $createdAt;
         $this->jurisdictionSpecificFields = $jurisdictionSpecificFields;
+        $this->deregistrationClosureDate = $deregistrationClosureDate;
+        $this->deregistrationReason = $deregistrationReason;
+        $this->deregistrationAcknowledgedAt = $deregistrationAcknowledgedAt;
         $this->doNotFile = $doNotFile;
         $this->createBackFiling = $createBackFiling;
         $this->retailDeliveryFeeObligated = $retailDeliveryFeeObligated;
