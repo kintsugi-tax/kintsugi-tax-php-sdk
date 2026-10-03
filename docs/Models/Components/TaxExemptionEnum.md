@@ -11,6 +11,7 @@ This enum is used to determine if a transaction is exempt from tax.
 | `Transaction`             | TRANSACTION               |
 | `Customer`                | CUSTOMER                  |
 | `Wholesale`               | WHOLESALE                 |
+| `PartialCertificate`      | PARTIAL_CERTIFICATE       |
 | `Region`                  | REGION                    |
 | `ReverseCharge`           | REVERSE_CHARGE            |
 | `ZeroRateTax`             | ZERO_RATE_TAX             |

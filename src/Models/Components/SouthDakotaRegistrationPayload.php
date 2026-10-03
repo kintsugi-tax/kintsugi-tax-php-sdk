@@ -37,14 +37,6 @@ class SouthDakotaRegistrationPayload
     public string $stateName;
 
     /**
-     *
-     * @var \KintsugiTax\SDK\Models\Components\FilingFrequencyEnum $filingFrequency
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('filing_frequency')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum')]
-    public FilingFrequencyEnum $filingFrequency;
-
-    /**
      * State-specific fields for South Dakota (EPath) registration import.
      *
      *
@@ -151,10 +143,22 @@ class SouthDakotaRegistrationPayload
     public ?ChangeRegimeStatusEnum $changeRegimeStatus = null;
 
     /**
-     * Fiscal-year anchor month (1-12) on which each quarterly/semiannual
+     * Specifies how often tax filings should be made. Possible values: MONTHLY, QUARTERLY, ANNUALLY, UNKNOWN. Required unless isPreCollecting is set.
      *
-     *         period ends, for Hawaii (US-HI) filers whose periods are offset from the calendar.
-     *         Null (default) keeps the standard calendar grid.
+     * @var ?\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum $filingFrequency
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('filing_frequency')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?FilingFrequencyEnum $filingFrequency = null;
+
+    /**
+     * Fiscal-year anchor month (1-12) on which each recurring period
+     *
+     *         ends, for filers whose periods are offset from the calendar: Hawaii (US-HI)
+     *         quarterly/semiannual, British Columbia (CA-BC) quarterly, and California (US-CA)
+     *         and District of Columbia (US-DC) annual. Null (default) keeps the standard
+     *         calendar grid.
      *
      * @var ?int $periodEndMonth
      */
@@ -289,6 +293,15 @@ class SouthDakotaRegistrationPayload
     public ?bool $doNotFile = null;
 
     /**
+     * Set true to mark the organization as collecting tax in this jurisdiction ahead of registration details, instead of a normal import. Opens the registration in PROCESSING; filing frequency and credentials are not required.
+     *
+     * @var ?bool $isPreCollecting
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_pre_collecting')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isPreCollecting = null;
+
+    /**
      * Specifies this is a regular jurisdiction registration import.
      *
      * @var ?string $registrationImportType
@@ -301,10 +314,10 @@ class SouthDakotaRegistrationPayload
      * @param  \KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
      * @param  string  $stateCode
      * @param  string  $stateName
-     * @param  \KintsugiTax\SDK\Models\Components\FilingFrequencyEnum  $filingFrequency
      * @param  \KintsugiTax\SDK\Models\Components\SouthDakotaFields  $jurisdictionSpecificFields
      * @param  ?string  $registrationImportType
      * @param  ?bool  $doNotFile
+     * @param  ?bool  $isPreCollecting
      * @param  float|string|null  $amountFees
      * @param  ?LocalDate  $registrationDate
      * @param  ?string  $registrationEmail
@@ -315,6 +328,7 @@ class SouthDakotaRegistrationPayload
      * @param  ?bool  $autoRegistered
      * @param  ?\KintsugiTax\SDK\Models\Components\RegistrationsRegimeEnum  $registrationsRegime
      * @param  ?\KintsugiTax\SDK\Models\Components\ChangeRegimeStatusEnum  $changeRegimeStatus
+     * @param  ?\KintsugiTax\SDK\Models\Components\FilingFrequencyEnum  $filingFrequency
      * @param  ?int  $periodEndMonth
      * @param  ?string  $username
      * @param  ?string  $comment
@@ -331,12 +345,11 @@ class SouthDakotaRegistrationPayload
      * @param  ?string  $requestId
      * @phpstan-pure
      */
-    public function __construct(CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, SouthDakotaFields $jurisdictionSpecificFields, float|string|null $amountFees = null, ?LocalDate $registrationDate = null, ?string $registrationEmail = null, ?\DateTime $registrationRequested = null, ?\DateTime $registrationCompleted = null, ?\DateTime $deregistrationRequested = null, ?\DateTime $deregistrationCompleted = null, ?bool $autoRegistered = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?int $periodEndMonth = null, ?string $username = null, ?string $comment = null, ?LocalDate $createFilingsFrom = null, ?bool $initialSync = null, ?bool $vda = null, ?bool $imported = null, ?string $salesTaxId = null, ?string $iorNumber = null, ?bool $sstImport = null, ?string $taxId = null, ?string $passwordPlainText = null, ?string $passwordMetadataPlainText = null, ?string $requestId = null, ?bool $doNotFile = false, ?string $registrationImportType = 'REGULAR')
+    public function __construct(CountryCodeEnum $countryCode, string $stateCode, string $stateName, SouthDakotaFields $jurisdictionSpecificFields, float|string|null $amountFees = null, ?LocalDate $registrationDate = null, ?string $registrationEmail = null, ?\DateTime $registrationRequested = null, ?\DateTime $registrationCompleted = null, ?\DateTime $deregistrationRequested = null, ?\DateTime $deregistrationCompleted = null, ?bool $autoRegistered = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?FilingFrequencyEnum $filingFrequency = null, ?int $periodEndMonth = null, ?string $username = null, ?string $comment = null, ?LocalDate $createFilingsFrom = null, ?bool $initialSync = null, ?bool $vda = null, ?bool $imported = null, ?string $salesTaxId = null, ?string $iorNumber = null, ?bool $sstImport = null, ?string $taxId = null, ?string $passwordPlainText = null, ?string $passwordMetadataPlainText = null, ?string $requestId = null, ?bool $doNotFile = false, ?bool $isPreCollecting = false, ?string $registrationImportType = 'REGULAR')
     {
         $this->countryCode = $countryCode;
         $this->stateCode = $stateCode;
         $this->stateName = $stateName;
-        $this->filingFrequency = $filingFrequency;
         $this->jurisdictionSpecificFields = $jurisdictionSpecificFields;
         $this->amountFees = $amountFees;
         $this->registrationDate = $registrationDate;
@@ -348,6 +361,7 @@ class SouthDakotaRegistrationPayload
         $this->autoRegistered = $autoRegistered;
         $this->registrationsRegime = $registrationsRegime;
         $this->changeRegimeStatus = $changeRegimeStatus;
+        $this->filingFrequency = $filingFrequency;
         $this->periodEndMonth = $periodEndMonth;
         $this->username = $username;
         $this->comment = $comment;
@@ -363,6 +377,7 @@ class SouthDakotaRegistrationPayload
         $this->passwordMetadataPlainText = $passwordMetadataPlainText;
         $this->requestId = $requestId;
         $this->doNotFile = $doNotFile;
+        $this->isPreCollecting = $isPreCollecting;
         $this->registrationImportType = $registrationImportType;
     }
 }

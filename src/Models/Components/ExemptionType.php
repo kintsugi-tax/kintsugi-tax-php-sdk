@@ -15,4 +15,5 @@ enum ExemptionType: string
     case Wholesale = 'wholesale';
     case Transaction = 'transaction';
     case ReverseCharge = 'reverse_charge';
+    case Partial = 'partial';
 }
