@@ -15,4 +15,5 @@ enum RelatedEntityType: string
     case Registration = 'REGISTRATION';
     case Filing = 'FILING';
     case FilingPayment = 'FILING_PAYMENT';
+    case Task = 'TASK';
 }

@@ -163,13 +163,13 @@ class Registrations
      *
      * Deregister an existing registration.
      *
+     * @param  \KintsugiTax\SDK\Models\Components\DeregisterRegistrationRequest  $deregisterRegistrationRequest
      * @param  string  $registrationId
      * @param  ?string  $xOrganizationId
-     * @param  ?\KintsugiTax\SDK\Models\Components\DeregisterRegistrationRequest  $deregisterRegistrationRequest
      * @return \KintsugiTax\SDK\Models\Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function deregister(string $registrationId, ?string $xOrganizationId = null, ?Components\DeregisterRegistrationRequest $deregisterRegistrationRequest = null, ?Options $options = null): Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse
+    public function deregister(Components\DeregisterRegistrationRequest $deregisterRegistrationRequest, string $registrationId, ?string $xOrganizationId = null, ?Options $options = null): Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse
     {
         $request = new Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest(
             registrationId: $registrationId,
@@ -181,9 +181,10 @@ class Registrations
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'deregisterRegistrationRequest', 'json');
-        if ($body !== null) {
-            $httpOptions = array_merge_recursive($httpOptions, $body);
+        if ($body === null) {
+            throw new \Exception('Request body is required');
         }
+        $httpOptions = array_merge_recursive($httpOptions, $body);
         $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
         if (! array_key_exists('headers', $httpOptions)) {
             $httpOptions['headers'] = [];
