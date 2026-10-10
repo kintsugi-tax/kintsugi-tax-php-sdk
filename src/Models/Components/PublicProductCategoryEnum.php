@@ -12,8 +12,8 @@ namespace KintsugiTax\SDK\Models\Components;
 /** Top-level tax category for a product. */
 enum PublicProductCategoryEnum: string
 {
+    case Physical = 'Physical';
     case Digital = 'Digital';
     case Misc = 'Misc';
-    case Physical = 'Physical';
     case Services = 'Services';
 }

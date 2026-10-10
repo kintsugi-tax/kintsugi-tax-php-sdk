@@ -160,6 +160,7 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 
 * [list](docs/sdks/exemptions/README.md#list) - Get exemptions
 * [create](docs/sdks/exemptions/README.md#create) - Create exemption
+* [listPartialCertificateTypesV1ExemptionsPartialCertificateTypesGet](docs/sdks/exemptions/README.md#listpartialcertificatetypesv1exemptionspartialcertificatetypesget) - List partial certificate types
 * [getById](docs/sdks/exemptions/README.md#getbyid) - Get exemption by id
 * [uploadCertificate](docs/sdks/exemptions/README.md#uploadcertificate) - Upload exemption certificate
 
@@ -170,6 +171,9 @@ if ($response->response200SearchV1AddressValidationSearchPost !== null) {
 ### [Filings](docs/sdks/filings/README.md)
 
 * [get](docs/sdks/filings/README.md#get) - Get filings
+* [createBackFilingRequestV1FilingsBackFilingRequestPost](docs/sdks/filings/README.md#createbackfilingrequestv1filingsbackfilingrequestpost) - Create back filing request
+* [getBackFilingRequestOptionsV1FilingsBackFilingRequestOptionsGet](docs/sdks/filings/README.md#getbackfilingrequestoptionsv1filingsbackfilingrequestoptionsget) - Get back filing request options
+* [getCurrentBackFilingTermsV1FilingsBackFilingTermsCurrentGet](docs/sdks/filings/README.md#getcurrentbackfilingtermsv1filingsbackfilingtermscurrentget) - Get current back filing terms
 * [getByRegistrationId](docs/sdks/filings/README.md#getbyregistrationid) - Get filings by registration id
 * [getById](docs/sdks/filings/README.md#getbyid) - Get filing by id
 * [approveFilingV1FilingsFilingIdApprovePut](docs/sdks/filings/README.md#approvefilingv1filingsfilingidapproveput) - Approve filing

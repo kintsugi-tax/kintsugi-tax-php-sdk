@@ -8,11 +8,29 @@ declare(strict_types=1);
 
 namespace KintsugiTax\SDK\Models\Components;
 
-
-/** DeregisterRegistrationRequest - Optional body for POST /registrations/{id}/deregister (CP-4742). */
+use Brick\DateTime\LocalDate;
+/** DeregisterRegistrationRequest - Body for POST /registrations/{id}/deregister. */
 class DeregisterRegistrationRequest
 {
     /**
+     * Effective date the permit closes with the jurisdiction (YYYY-MM-DD). Past and future dates are accepted.
+     *
+     * @var LocalDate $closureDate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('closure_date')]
+    public LocalDate $closureDate;
+
+    /**
+     * Reason a registration is being closed.
+     *
+     * @var \KintsugiTax\SDK\Models\Components\DeregistrationReasonEnum $reason
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('reason')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\DeregistrationReasonEnum')]
+    public DeregistrationReasonEnum $reason;
+
+    /**
+     * Optional client-minted id for this confirm attempt.
      *
      * @var ?string $requestId
      */
@@ -21,11 +39,25 @@ class DeregisterRegistrationRequest
     public ?string $requestId = null;
 
     /**
+     * Must be true: the actor confirms a final return is still owed.
+     *
+     * @var bool $finalReturnAcknowledged
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('final_return_acknowledged')]
+    public bool $finalReturnAcknowledged;
+
+    /**
+     * @param  LocalDate  $closureDate
+     * @param  \KintsugiTax\SDK\Models\Components\DeregistrationReasonEnum  $reason
+     * @param  bool  $finalReturnAcknowledged
      * @param  ?string  $requestId
      * @phpstan-pure
      */
-    public function __construct(?string $requestId = null)
+    public function __construct(LocalDate $closureDate, DeregistrationReasonEnum $reason, ?string $requestId = null, bool $finalReturnAcknowledged = true)
     {
+        $this->closureDate = $closureDate;
+        $this->reason = $reason;
         $this->requestId = $requestId;
+        $this->finalReturnAcknowledged = $finalReturnAcknowledged;
     }
 }

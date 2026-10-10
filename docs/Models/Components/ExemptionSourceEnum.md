@@ -26,6 +26,8 @@ multi-state exemptions
 | `Shopline`              | SHOPLINE                |
 | `Orb`                   | ORB                     |
 | `Zenskar`               | ZENSKAR                 |
+| `Hyperline`             | HYPERLINE               |
+| `Odoo`                  | ODOO                    |
 | `Manual`                | MANUAL                  |
 | `BulkUpload`            | BULK_UPLOAD             |
 | `Email`                 | EMAIL                   |

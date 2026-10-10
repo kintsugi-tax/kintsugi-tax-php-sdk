@@ -9,7 +9,14 @@ declare(strict_types=1);
 namespace KintsugiTax\SDK\Models\Components;
 
 
-class JurisdictionSpecificFieldsResponse
+/**
+ * CustomerJurisdictionSpecificFieldsResponse - Customer import fields, including the tax types that jurisdiction allows.
+ *
+ *
+ * The partner and public jurisdiction-fields routes stay on the base response.
+ * Allowed tax types depend on the organization, and those contracts do not.
+ */
+class CustomerJurisdictionSpecificFieldsResponse
 {
     /**
      *
@@ -52,19 +59,30 @@ class JurisdictionSpecificFieldsResponse
     public array $metadata;
 
     /**
+     * Tax types that can be imported for this jurisdiction.
+     *
+     * @var array<\KintsugiTax\SDK\Models\Components\TaxTypeEnum> $taxTypes
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('tax_types')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TaxTypeEnum>')]
+    public array $taxTypes;
+
+    /**
      * @param  string  $countryCode
      * @param  string  $stateCode
      * @param  bool  $defaultForm
      * @param  array<string, mixed>  $jurisdictionFieldsJsonSchema
      * @param  array<string, mixed>  $metadata
+     * @param  array<\KintsugiTax\SDK\Models\Components\TaxTypeEnum>  $taxTypes
      * @phpstan-pure
      */
-    public function __construct(string $countryCode, string $stateCode, bool $defaultForm, array $jurisdictionFieldsJsonSchema, array $metadata)
+    public function __construct(string $countryCode, string $stateCode, bool $defaultForm, array $jurisdictionFieldsJsonSchema, array $metadata, array $taxTypes)
     {
         $this->countryCode = $countryCode;
         $this->stateCode = $stateCode;
         $this->defaultForm = $defaultForm;
         $this->jurisdictionFieldsJsonSchema = $jurisdictionFieldsJsonSchema;
         $this->metadata = $metadata;
+        $this->taxTypes = $taxTypes;
     }
 }

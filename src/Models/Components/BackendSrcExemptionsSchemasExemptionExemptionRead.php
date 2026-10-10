@@ -131,6 +131,14 @@ class BackendSrcExemptionsSchemasExemptionExemptionRead
     public ?string $attachmentId = null;
 
     /**
+     *
+     * @var ?string $certificateType
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('certificate_type')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $certificateType = null;
+
+    /**
      * Indicates whether the exemption is for a reseller
      *
      * @var ?bool $reseller
@@ -154,9 +162,10 @@ class BackendSrcExemptionsSchemasExemptionExemptionRead
      * @param  ?\KintsugiTax\SDK\Models\Components\ExemptionStatus  $status
      * @param  ?string  $customerName
      * @param  ?string  $attachmentId
+     * @param  ?string  $certificateType
      * @phpstan-pure
      */
-    public function __construct(ExemptionType $exemptionType, LocalDate $startDate, string $id, ?string $jurisdiction = null, ?CountryCodeEnum $countryCode = null, ?LocalDate $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?ExemptionStatus $status = null, ?string $customerName = null, ?string $attachmentId = null, ?bool $reseller = false)
+    public function __construct(ExemptionType $exemptionType, LocalDate $startDate, string $id, ?string $jurisdiction = null, ?CountryCodeEnum $countryCode = null, ?LocalDate $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?ExemptionStatus $status = null, ?string $customerName = null, ?string $attachmentId = null, ?string $certificateType = null, ?bool $reseller = false)
     {
         $this->exemptionType = $exemptionType;
         $this->startDate = $startDate;
@@ -171,6 +180,7 @@ class BackendSrcExemptionsSchemasExemptionExemptionRead
         $this->status = $status;
         $this->customerName = $customerName;
         $this->attachmentId = $attachmentId;
+        $this->certificateType = $certificateType;
         $this->reseller = $reseller;
     }
 }
