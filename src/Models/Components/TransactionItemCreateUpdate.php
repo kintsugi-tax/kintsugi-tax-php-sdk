@@ -261,6 +261,15 @@ class TransactionItemCreateUpdate
     public ?TaxExemptionEnum $taxExemption = null;
 
     /**
+     * Whether this line's source amount includes tax. NULL means the source did not say.
+     *
+     * @var ?bool $isTaxInclusive
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_tax_inclusive')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isTaxInclusive = null;
+
+    /**
      *
      * @var ?\KintsugiTax\SDK\Models\Components\DiscountBuilder $discountBuilder
      */
@@ -306,10 +315,11 @@ class TransactionItemCreateUpdate
      * @param  float|string|null  $convertedTotalDiscount
      * @param  float|string|null  $convertedSubtotal
      * @param  ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum  $taxExemption
+     * @param  ?bool  $isTaxInclusive
      * @param  ?\KintsugiTax\SDK\Models\Components\DiscountBuilder  $discountBuilder
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, string $externalProductId, ?string $organizationId = null, float|string|null $quantity = null, float|string|null $amount = null, float|string|null $taxAmountImported = null, float|string|null $taxRateImported = null, float|string|null $taxAmountCalculated = null, float|string|null $taxRateCalculated = null, float|string|null $taxableAmount = null, ?array $taxItems = null, ?string $externalId = null, ?string $description = null, ?string $product = null, ?string $productId = null, ?string $productName = null, ?string $productDescription = null, ?CurrencyEnum $originalCurrency = null, ?CurrencyEnum $destinationCurrency = null, float|string|null $convertedAmount = null, float|string|null $convertedTaxableAmount = null, float|string|null $convertedTaxAmountImported = null, float|string|null $convertedTaxAmountCalculated = null, float|string|null $convertedTotalDiscount = null, float|string|null $convertedSubtotal = null, ?TaxExemptionEnum $taxExemption = null, ?DiscountBuilder $discountBuilder = null, ?bool $exempt = false)
+    public function __construct(\DateTime $date, string $externalProductId, ?string $organizationId = null, float|string|null $quantity = null, float|string|null $amount = null, float|string|null $taxAmountImported = null, float|string|null $taxRateImported = null, float|string|null $taxAmountCalculated = null, float|string|null $taxRateCalculated = null, float|string|null $taxableAmount = null, ?array $taxItems = null, ?string $externalId = null, ?string $description = null, ?string $product = null, ?string $productId = null, ?string $productName = null, ?string $productDescription = null, ?CurrencyEnum $originalCurrency = null, ?CurrencyEnum $destinationCurrency = null, float|string|null $convertedAmount = null, float|string|null $convertedTaxableAmount = null, float|string|null $convertedTaxAmountImported = null, float|string|null $convertedTaxAmountCalculated = null, float|string|null $convertedTotalDiscount = null, float|string|null $convertedSubtotal = null, ?TaxExemptionEnum $taxExemption = null, ?bool $isTaxInclusive = null, ?DiscountBuilder $discountBuilder = null, ?bool $exempt = false)
     {
         $this->date = $date;
         $this->externalProductId = $externalProductId;
@@ -337,6 +347,7 @@ class TransactionItemCreateUpdate
         $this->convertedTotalDiscount = $convertedTotalDiscount;
         $this->convertedSubtotal = $convertedSubtotal;
         $this->taxExemption = $taxExemption;
+        $this->isTaxInclusive = $isTaxInclusive;
         $this->discountBuilder = $discountBuilder;
         $this->exempt = $exempt;
     }

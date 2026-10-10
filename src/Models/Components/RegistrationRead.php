@@ -80,9 +80,9 @@ class RegistrationRead
      *
      * Registrations and filings may be SALES_AND_USE_TAX: one state account and
      * one return can cover both taxes, and each is stored as a single row.
-     * Nexus rows are only SALES_TAX or USE_TAX. Sales and use tax exposure are
-     * separate obligations with their own met dates, period models, and liability
-     * accrual.
+     * Nexus rows are SALES_TAX, USE_TAX, or RETAIL_DELIVERY_FEE. Sales tax, use
+     * tax, and the retail delivery fee are separate obligations with their own
+     * met dates, period models, and liability accrual.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\TaxTypeEnum $taxType
      */
@@ -296,15 +296,6 @@ class RegistrationRead
     public ?LocalDate $createFilingsFrom = null;
 
     /**
-     * First date from which retail delivery fee filings may be generated. Periods that closed before this date must not get those filings.
-     *
-     * @var ?LocalDate $retailDeliveryFeeEffectiveFrom
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('retail_delivery_fee_effective_from')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?LocalDate $retailDeliveryFeeEffectiveFrom = null;
-
-    /**
      * Indicates whether an initial synchronization should be performed.
      *
      * @var ?bool $initialSync
@@ -428,6 +419,34 @@ class RegistrationRead
     public ?array $jurisdictionSpecificFields = null;
 
     /**
+     * Effective date the registration closes with the jurisdiction.
+     *
+     * @var ?LocalDate $deregistrationClosureDate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('deregistration_closure_date')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?LocalDate $deregistrationClosureDate = null;
+
+    /**
+     * Reason the registration is being closed.
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\DeregistrationReasonEnum $deregistrationReason
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('deregistration_reason')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\DeregistrationReasonEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?DeregistrationReasonEnum $deregistrationReason = null;
+
+    /**
+     * When final-return acknowledgement was recorded.
+     *
+     * @var ?\DateTime $deregistrationAcknowledgedAt
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('deregistration_acknowledged_at')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?\DateTime $deregistrationAcknowledgedAt = null;
+
+    /**
      * If true, do not file for this registration (treated as False by default).
      *
      * @var ?bool $doNotFile
@@ -437,6 +456,15 @@ class RegistrationRead
     public ?bool $doNotFile = null;
 
     /**
+     * True when this PROCESSING registration marks the organization as collecting tax in the jurisdiction ahead of registration details. It skips the Tax Ops registration task until the flag is cleared.
+     *
+     * @var ?bool $isPreCollecting
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_pre_collecting')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isPreCollecting = null;
+
+    /**
      * Whether to also file the single period preceding the first filing period.
      *
      * @var ?bool $createBackFiling
@@ -444,15 +472,6 @@ class RegistrationRead
     #[\Speakeasy\Serializer\Annotation\SerializedName('create_back_filing')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?bool $createBackFiling = null;
-
-    /**
-     * Whether this registration is declared obligated to file a Retail Delivery Fee return (e.g. Colorado DR 1786).
-     *
-     * @var ?bool $retailDeliveryFeeObligated
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('retail_delivery_fee_obligated')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $retailDeliveryFeeObligated = null;
 
     /**
      * The amount of fees associated with the registration.
@@ -481,8 +500,8 @@ class RegistrationRead
      * @param  int  $filingDays
      * @param  \KintsugiTax\SDK\Models\Components\RegistrationTypeEnum  $registrationType
      * @param  ?bool  $doNotFile
+     * @param  ?bool  $isPreCollecting
      * @param  ?bool  $createBackFiling
-     * @param  ?bool  $retailDeliveryFeeObligated
      * @param  ?string  $amountFees
      * @param  ?\KintsugiTax\SDK\Models\Components\TaxTypeEnum  $taxType
      * @param  ?string  $creditsTotalAvailable
@@ -507,7 +526,6 @@ class RegistrationRead
      * @param  ?string  $username
      * @param  ?string  $comment
      * @param  ?LocalDate  $createFilingsFrom
-     * @param  ?LocalDate  $retailDeliveryFeeEffectiveFrom
      * @param  ?bool  $initialSync
      * @param  ?bool  $vda
      * @param  ?bool  $imported
@@ -521,9 +539,12 @@ class RegistrationRead
      * @param  ?bool  $needsMarkAsCollecting
      * @param  ?\DateTime  $createdAt
      * @param  ?array<string, mixed>  $jurisdictionSpecificFields
+     * @param  ?LocalDate  $deregistrationClosureDate
+     * @param  ?\KintsugiTax\SDK\Models\Components\DeregistrationReasonEnum  $deregistrationReason
+     * @param  ?\DateTime  $deregistrationAcknowledgedAt
      * @phpstan-pure
      */
-    public function __construct(RegistrationStatusEnum $status, CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, string $id, int $filingDays, RegistrationTypeEnum $registrationType, ?TaxTypeEnum $taxType = null, ?RegistrationCategoryEnum $registrationCategory = null, ?string $filingWebsiteUrl = null, ?LocalDate $registrationDate = null, ?string $registrationEmail = null, ?\DateTime $registrationRequested = null, ?\DateTime $registrationCompleted = null, ?\DateTime $deregistrationRequested = null, ?\DateTime $deregistrationCompleted = null, ?bool $autoRegistered = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $thirdPartyEnabled = null, ?bool $twoFactorEnabled = null, ?bool $markedCollecting = null, ?FilingFrequencyEnum $initialFilingFrequency = null, ?FilingFrequencyEnum $scheduledFilingFrequency = null, ?LocalDate $filingFrequencyEffectiveDate = null, ?int $periodEndMonth = null, ?string $username = null, ?string $comment = null, ?LocalDate $createFilingsFrom = null, ?LocalDate $retailDeliveryFeeEffectiveFrom = null, ?bool $initialSync = null, ?bool $vda = null, ?bool $imported = null, ?string $salesTaxId = null, ?string $iorNumber = null, ?LocalDate $iorDate = null, ?bool $sstImport = null, ?OssTypeEnum $ossType = null, ?CountryCodeEnum $ossMemberStateOfIdentificationCode = null, ?\DateTime $markedCollectingDate = null, ?bool $needsMarkAsCollecting = null, ?\DateTime $createdAt = null, ?array $jurisdictionSpecificFields = null, ?bool $doNotFile = false, ?bool $createBackFiling = false, ?bool $retailDeliveryFeeObligated = false, ?string $amountFees = '0.00', ?string $creditsTotalAvailable = '0.00')
+    public function __construct(RegistrationStatusEnum $status, CountryCodeEnum $countryCode, string $stateCode, string $stateName, FilingFrequencyEnum $filingFrequency, string $id, int $filingDays, RegistrationTypeEnum $registrationType, ?TaxTypeEnum $taxType = null, ?RegistrationCategoryEnum $registrationCategory = null, ?string $filingWebsiteUrl = null, ?LocalDate $registrationDate = null, ?string $registrationEmail = null, ?\DateTime $registrationRequested = null, ?\DateTime $registrationCompleted = null, ?\DateTime $deregistrationRequested = null, ?\DateTime $deregistrationCompleted = null, ?bool $autoRegistered = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $thirdPartyEnabled = null, ?bool $twoFactorEnabled = null, ?bool $markedCollecting = null, ?FilingFrequencyEnum $initialFilingFrequency = null, ?FilingFrequencyEnum $scheduledFilingFrequency = null, ?LocalDate $filingFrequencyEffectiveDate = null, ?int $periodEndMonth = null, ?string $username = null, ?string $comment = null, ?LocalDate $createFilingsFrom = null, ?bool $initialSync = null, ?bool $vda = null, ?bool $imported = null, ?string $salesTaxId = null, ?string $iorNumber = null, ?LocalDate $iorDate = null, ?bool $sstImport = null, ?OssTypeEnum $ossType = null, ?CountryCodeEnum $ossMemberStateOfIdentificationCode = null, ?\DateTime $markedCollectingDate = null, ?bool $needsMarkAsCollecting = null, ?\DateTime $createdAt = null, ?array $jurisdictionSpecificFields = null, ?LocalDate $deregistrationClosureDate = null, ?DeregistrationReasonEnum $deregistrationReason = null, ?\DateTime $deregistrationAcknowledgedAt = null, ?bool $doNotFile = false, ?bool $isPreCollecting = false, ?bool $createBackFiling = false, ?string $amountFees = '0.00', ?string $creditsTotalAvailable = '0.00')
     {
         $this->status = $status;
         $this->countryCode = $countryCode;
@@ -555,7 +576,6 @@ class RegistrationRead
         $this->username = $username;
         $this->comment = $comment;
         $this->createFilingsFrom = $createFilingsFrom;
-        $this->retailDeliveryFeeEffectiveFrom = $retailDeliveryFeeEffectiveFrom;
         $this->initialSync = $initialSync;
         $this->vda = $vda;
         $this->imported = $imported;
@@ -569,9 +589,12 @@ class RegistrationRead
         $this->needsMarkAsCollecting = $needsMarkAsCollecting;
         $this->createdAt = $createdAt;
         $this->jurisdictionSpecificFields = $jurisdictionSpecificFields;
+        $this->deregistrationClosureDate = $deregistrationClosureDate;
+        $this->deregistrationReason = $deregistrationReason;
+        $this->deregistrationAcknowledgedAt = $deregistrationAcknowledgedAt;
         $this->doNotFile = $doNotFile;
+        $this->isPreCollecting = $isPreCollecting;
         $this->createBackFiling = $createBackFiling;
-        $this->retailDeliveryFeeObligated = $retailDeliveryFeeObligated;
         $this->amountFees = $amountFees;
         $this->creditsTotalAvailable = $creditsTotalAvailable;
     }
