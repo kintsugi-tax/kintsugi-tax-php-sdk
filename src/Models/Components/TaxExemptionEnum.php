@@ -16,6 +16,7 @@ enum TaxExemptionEnum: string
     case Transaction = 'TRANSACTION';
     case Customer = 'CUSTOMER';
     case Wholesale = 'WHOLESALE';
+    case PartialCertificate = 'PARTIAL_CERTIFICATE';
     case Region = 'REGION';
     case ReverseCharge = 'REVERSE_CHARGE';
     case ZeroRateTax = 'ZERO_RATE_TAX';

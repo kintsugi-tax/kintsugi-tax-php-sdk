@@ -33,7 +33,7 @@ class CreateProductV1ProductsPostResponse
     public \Psr\Http\Message\ResponseInterface $rawResponse;
 
     /**
-     * Successfully created product
+     * An existing product matched on external_id and source; no new product was created. A live match is returned unchanged. A previously deleted match is revived and re-enters classification (its status returns to PENDING), so it may differ from its pre-deletion state.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\ProductRead $productRead
      */

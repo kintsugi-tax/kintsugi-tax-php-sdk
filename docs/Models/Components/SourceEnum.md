@@ -43,6 +43,7 @@
 | `Rippling`              | RIPPLING                |
 | `Gusto`                 | GUSTO                   |
 | `Facebook`              | FACEBOOK                |
+| `Freshbooks`            | FRESHBOOKS              |
 | `Other`                 | OTHER                   |
 | `Ordway`                | ORDWAY                  |
 | `Instagram`             | INSTAGRAM               |
@@ -61,6 +62,7 @@
 | `Faire`                 | FAIRE                   |
 | `Shopware`              | SHOPWARE                |
 | `Zoho`                  | ZOHO                    |
+| `ZohoBooks`             | ZOHO_BOOKS              |
 | `SageIntacct`           | SAGE-INTACCT            |
 | `Airwallex`             | AIRWALLEX               |
 | `Orb`                   | ORB                     |
@@ -80,3 +82,5 @@
 | `IntuitEnterpriseSuite` | INTUIT_ENTERPRISE_SUITE |
 | `Acumatica`             | ACUMATICA               |
 | `Plentyone`             | PLENTYONE               |
+| `Hyperline`             | HYPERLINE               |
+| `Openmeter`             | OPENMETER               |

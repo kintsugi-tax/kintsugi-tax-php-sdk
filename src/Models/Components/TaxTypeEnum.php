@@ -15,13 +15,14 @@ namespace KintsugiTax\SDK\Models\Components;
  *
  * Registrations and filings may be SALES_AND_USE_TAX: one state account and
  * one return can cover both taxes, and each is stored as a single row.
- * Nexus rows are only SALES_TAX or USE_TAX. Sales and use tax exposure are
- * separate obligations with their own met dates, period models, and liability
- * accrual.
+ * Nexus rows are SALES_TAX, USE_TAX, or RETAIL_DELIVERY_FEE. Sales tax, use
+ * tax, and the retail delivery fee are separate obligations with their own
+ * met dates, period models, and liability accrual.
  */
 enum TaxTypeEnum: string
 {
     case SalesTax = 'SALES_TAX';
     case UseTax = 'USE_TAX';
     case SalesAndUseTax = 'SALES_AND_USE_TAX';
+    case RetailDeliveryFee = 'RETAIL_DELIVERY_FEE';
 }
