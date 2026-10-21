@@ -212,6 +212,15 @@ class RegistrationUpdateAPI
     public ?bool $doNotFile = null;
 
     /**
+     * True when this PROCESSING registration marks the organization as collecting tax in the jurisdiction ahead of registration details. It skips the Tax Ops registration task until the flag is cleared.
+     *
+     * @var ?bool $isPreCollecting
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_pre_collecting')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isPreCollecting = null;
+
+    /**
      * Whether to also file the single period preceding the first filing period.
      *
      * @var ?bool $createBackFiling
@@ -222,6 +231,7 @@ class RegistrationUpdateAPI
 
     /**
      * @param  ?bool  $doNotFile
+     * @param  ?bool  $isPreCollecting
      * @param  ?bool  $createBackFiling
      * @param  ?LocalDate  $registrationDate
      * @param  ?string  $registrationEmail
@@ -246,7 +256,7 @@ class RegistrationUpdateAPI
      * @param  ?string  $iorNumber
      * @phpstan-pure
      */
-    public function __construct(?LocalDate $registrationDate = null, ?string $registrationEmail = null, ?\DateTime $registrationRequested = null, ?\DateTime $registrationCompleted = null, ?\DateTime $deregistrationRequested = null, ?\DateTime $deregistrationCompleted = null, ?bool $autoRegistered = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $thirdPartyEnabled = null, ?bool $twoFactorEnabled = null, ?bool $markedCollecting = null, ?string $encryptedUsername = null, ?string $username = null, ?FilingFrequencyEnum $filingFrequency = null, ?LocalDate $createFilingsFrom = null, ?bool $isApproaching = null, ?string $comment = null, ?bool $vda = null, ?string $taxId = null, ?string $iorNumber = null, ?bool $doNotFile = false, ?bool $createBackFiling = false)
+    public function __construct(?LocalDate $registrationDate = null, ?string $registrationEmail = null, ?\DateTime $registrationRequested = null, ?\DateTime $registrationCompleted = null, ?\DateTime $deregistrationRequested = null, ?\DateTime $deregistrationCompleted = null, ?bool $autoRegistered = null, ?RegistrationsRegimeEnum $registrationsRegime = null, ?ChangeRegimeStatusEnum $changeRegimeStatus = null, ?bool $thirdPartyEnabled = null, ?bool $twoFactorEnabled = null, ?bool $markedCollecting = null, ?string $encryptedUsername = null, ?string $username = null, ?FilingFrequencyEnum $filingFrequency = null, ?LocalDate $createFilingsFrom = null, ?bool $isApproaching = null, ?string $comment = null, ?bool $vda = null, ?string $taxId = null, ?string $iorNumber = null, ?bool $doNotFile = false, ?bool $isPreCollecting = false, ?bool $createBackFiling = false)
     {
         $this->registrationDate = $registrationDate;
         $this->registrationEmail = $registrationEmail;
@@ -270,6 +280,7 @@ class RegistrationUpdateAPI
         $this->taxId = $taxId;
         $this->iorNumber = $iorNumber;
         $this->doNotFile = $doNotFile;
+        $this->isPreCollecting = $isPreCollecting;
         $this->createBackFiling = $createBackFiling;
     }
 }
