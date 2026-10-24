@@ -37,13 +37,12 @@ class ProductCreateManual
     public PublicProductCategoryEnum $productCategory;
 
     /**
-     * The subcategory of the product.
+     * Tax subcategory display label within the category (e.g. 'General Clothing'). Together with product_category it resolves to a product tax code; an unrecognized pair returns 400. List supported values from [GET /products/categories](/reference/api/products/get-product-categories).
      *
-     * @var \KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum|string $productSubcategory
+     * @var string $productSubcategory
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('product_subcategory')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum|string')]
-    public ProductSubCategoryEnum|string $productSubcategory;
+    public string $productSubcategory;
 
     /**
      * Specifies whether the product is tax-exempt.
@@ -84,14 +83,14 @@ class ProductCreateManual
      * @param  string  $externalId
      * @param  string  $name
      * @param  \KintsugiTax\SDK\Models\Components\PublicProductCategoryEnum  $productCategory
-     * @param  \KintsugiTax\SDK\Models\Components\ProductSubCategoryEnum|string  $productSubcategory
+     * @param  string  $productSubcategory
      * @param  bool  $taxExempt
      * @param  ?\KintsugiTax\SDK\Models\Components\ProductStatusEnum  $status
      * @param  ?\KintsugiTax\SDK\Models\Components\SourceEnum  $source
      * @param  ?string  $description
      * @phpstan-pure
      */
-    public function __construct(string $externalId, string $name, PublicProductCategoryEnum $productCategory, ProductSubCategoryEnum|string $productSubcategory, bool $taxExempt, ?ProductStatusEnum $status = null, ?SourceEnum $source = null, ?string $description = null)
+    public function __construct(string $externalId, string $name, PublicProductCategoryEnum $productCategory, string $productSubcategory, bool $taxExempt, ?ProductStatusEnum $status = null, ?SourceEnum $source = null, ?string $description = null)
     {
         $this->externalId = $externalId;
         $this->name = $name;
