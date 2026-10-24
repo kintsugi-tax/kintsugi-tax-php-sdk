@@ -14,10 +14,10 @@ class TransactionItemRead
     /**
      * Date/time of item.
      *
-     * @var \DateTime $date
+     * @var string $date
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('date')]
-    public \DateTime $date;
+    public string $date;
 
     /**
      * External product identifier.
@@ -192,6 +192,15 @@ class TransactionItemRead
     public ?TaxExemptionEnum $taxExemption = null;
 
     /**
+     * Whether this line's source amount includes tax. NULL means the source did not say.
+     *
+     * @var ?bool $isTaxInclusive
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_tax_inclusive')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isTaxInclusive = null;
+
+    /**
      * Total discount amount applied to this transaction item.
      *
      * @var ?string $totalDiscount
@@ -217,6 +226,15 @@ class TransactionItemRead
     #[\Speakeasy\Serializer\Annotation\SerializedName('recoverability_percent')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $recoverabilityPercent = null;
+
+    /**
+     * Recoverable VAT on this line in the destination currency. Null when the line has no converted amount.
+     *
+     * @var ?string $convertedRecoverableInputVat
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('converted_recoverable_input_vat')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $convertedRecoverableInputVat = null;
 
     /**
      * Quantity of item.
@@ -300,7 +318,16 @@ class TransactionItemRead
     public ?bool $isReverseChargeSelfAccounted = null;
 
     /**
-     * @param  \DateTime  $date
+     * VAT recoverable on this line in the transaction's currency, after the line's recoverability percentage and the organization's pro-rata recovery rate. 0.00 for sales and outside the EU and UK.
+     *
+     * @var ?string $recoverableInputVat
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('recoverable_input_vat')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $recoverableInputVat = null;
+
+    /**
+     * @param  string  $date
      * @param  string  $externalProductId
      * @param  string  $id
      * @param  array<\KintsugiTax\SDK\Models\Components\TaxItemRead>  $taxItems
@@ -314,6 +341,7 @@ class TransactionItemRead
      * @param  ?string  $taxableAmount
      * @param  ?bool  $exempt
      * @param  ?bool  $isReverseChargeSelfAccounted
+     * @param  ?string  $recoverableInputVat
      * @param  ?string  $externalId
      * @param  ?string  $description
      * @param  ?string  $product
@@ -329,12 +357,14 @@ class TransactionItemRead
      * @param  ?string  $convertedTotalDiscount
      * @param  ?string  $convertedSubtotal
      * @param  ?\KintsugiTax\SDK\Models\Components\TaxExemptionEnum  $taxExemption
+     * @param  ?bool  $isTaxInclusive
      * @param  ?string  $totalDiscount
      * @param  ?string  $subtotal
      * @param  ?string  $recoverabilityPercent
+     * @param  ?string  $convertedRecoverableInputVat
      * @phpstan-pure
      */
-    public function __construct(\DateTime $date, string $externalProductId, string $id, array $taxItems, ?string $organizationId = null, ?string $externalId = null, ?string $description = null, ?string $product = null, ?string $productId = null, ?string $productName = null, ?string $productDescription = null, ?CurrencyEnum $originalCurrency = null, ?CurrencyEnum $destinationCurrency = null, ?string $convertedAmount = null, ?string $convertedTaxableAmount = null, ?string $convertedTaxAmountImported = null, ?string $convertedTaxAmountCalculated = null, ?string $convertedTotalDiscount = null, ?string $convertedSubtotal = null, ?TaxExemptionEnum $taxExemption = null, ?string $totalDiscount = null, ?string $subtotal = null, ?string $recoverabilityPercent = null, ?string $quantity = '1.0', ?string $amount = '0.00', ?string $taxAmountImported = '0.00', ?string $taxRateImported = '0.00', ?string $taxAmountCalculated = '0.00', ?string $taxRateCalculated = '0.00', ?string $taxableAmount = '0.00', ?bool $exempt = false, ?bool $isReverseChargeSelfAccounted = false)
+    public function __construct(string $date, string $externalProductId, string $id, array $taxItems, ?string $organizationId = null, ?string $externalId = null, ?string $description = null, ?string $product = null, ?string $productId = null, ?string $productName = null, ?string $productDescription = null, ?CurrencyEnum $originalCurrency = null, ?CurrencyEnum $destinationCurrency = null, ?string $convertedAmount = null, ?string $convertedTaxableAmount = null, ?string $convertedTaxAmountImported = null, ?string $convertedTaxAmountCalculated = null, ?string $convertedTotalDiscount = null, ?string $convertedSubtotal = null, ?TaxExemptionEnum $taxExemption = null, ?bool $isTaxInclusive = null, ?string $totalDiscount = null, ?string $subtotal = null, ?string $recoverabilityPercent = null, ?string $convertedRecoverableInputVat = null, ?string $quantity = '1.0', ?string $amount = '0.00', ?string $taxAmountImported = '0.00', ?string $taxRateImported = '0.00', ?string $taxAmountCalculated = '0.00', ?string $taxRateCalculated = '0.00', ?string $taxableAmount = '0.00', ?bool $exempt = false, ?bool $isReverseChargeSelfAccounted = false, ?string $recoverableInputVat = '0.00')
     {
         $this->date = $date;
         $this->externalProductId = $externalProductId;
@@ -356,9 +386,11 @@ class TransactionItemRead
         $this->convertedTotalDiscount = $convertedTotalDiscount;
         $this->convertedSubtotal = $convertedSubtotal;
         $this->taxExemption = $taxExemption;
+        $this->isTaxInclusive = $isTaxInclusive;
         $this->totalDiscount = $totalDiscount;
         $this->subtotal = $subtotal;
         $this->recoverabilityPercent = $recoverabilityPercent;
+        $this->convertedRecoverableInputVat = $convertedRecoverableInputVat;
         $this->quantity = $quantity;
         $this->amount = $amount;
         $this->taxAmountImported = $taxAmountImported;
@@ -368,5 +400,6 @@ class TransactionItemRead
         $this->taxableAmount = $taxableAmount;
         $this->exempt = $exempt;
         $this->isReverseChargeSelfAccounted = $isReverseChargeSelfAccounted;
+        $this->recoverableInputVat = $recoverableInputVat;
     }
 }

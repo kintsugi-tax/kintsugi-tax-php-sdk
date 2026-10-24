@@ -35,22 +35,22 @@ class GetJurisdictionSpecificFieldsV1RegistrationsJurisdictionSpecificFieldsGetR
     /**
      * Successful Response
      *
-     * @var ?\KintsugiTax\SDK\Models\Components\JurisdictionSpecificFieldsResponse $jurisdictionSpecificFieldsResponse
+     * @var ?\KintsugiTax\SDK\Models\Components\CustomerJurisdictionSpecificFieldsResponse $customerJurisdictionSpecificFieldsResponse
      */
-    public ?Components\JurisdictionSpecificFieldsResponse $jurisdictionSpecificFieldsResponse = null;
+    public ?Components\CustomerJurisdictionSpecificFieldsResponse $customerJurisdictionSpecificFieldsResponse = null;
 
     /**
      * @param  string  $contentType
      * @param  int  $statusCode
      * @param  \Psr\Http\Message\ResponseInterface  $rawResponse
-     * @param  ?\KintsugiTax\SDK\Models\Components\JurisdictionSpecificFieldsResponse  $jurisdictionSpecificFieldsResponse
+     * @param  ?\KintsugiTax\SDK\Models\Components\CustomerJurisdictionSpecificFieldsResponse  $customerJurisdictionSpecificFieldsResponse
      * @phpstan-pure
      */
-    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\JurisdictionSpecificFieldsResponse $jurisdictionSpecificFieldsResponse = null)
+    public function __construct(string $contentType, int $statusCode, \Psr\Http\Message\ResponseInterface $rawResponse, ?Components\CustomerJurisdictionSpecificFieldsResponse $customerJurisdictionSpecificFieldsResponse = null)
     {
         $this->contentType = $contentType;
         $this->statusCode = $statusCode;
         $this->rawResponse = $rawResponse;
-        $this->jurisdictionSpecificFieldsResponse = $jurisdictionSpecificFieldsResponse;
+        $this->customerJurisdictionSpecificFieldsResponse = $customerJurisdictionSpecificFieldsResponse;
     }
 }

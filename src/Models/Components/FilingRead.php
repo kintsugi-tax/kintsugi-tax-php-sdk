@@ -66,9 +66,9 @@ class FilingRead
      *
      * Registrations and filings may be SALES_AND_USE_TAX: one state account and
      * one return can cover both taxes, and each is stored as a single row.
-     * Nexus rows are only SALES_TAX or USE_TAX. Sales and use tax exposure are
-     * separate obligations with their own met dates, period models, and liability
-     * accrual.
+     * Nexus rows are SALES_TAX, USE_TAX, or RETAIL_DELIVERY_FEE. Sales tax, use
+     * tax, and the retail delivery fee are separate obligations with their own
+     * met dates, period models, and liability accrual.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\TaxTypeEnum $taxType
      */
@@ -203,6 +203,25 @@ class FilingRead
     #[\Speakeasy\Serializer\Annotation\SerializedName('cancelled_reason')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $cancelledReason = null;
+
+    /**
+     * Whether amount_fees is a penalty, interest, or other fee. Null when unknown (legacy rows).
+     *
+     * @var ?\KintsugiTax\SDK\Models\Components\FeeTypeEnum $feeType
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('fee_type')]
+    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\FeeTypeEnum|null')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?FeeTypeEnum $feeType = null;
+
+    /**
+     * Rate actually used on this filing's reclaim. Null when this filing is not EU/UK VAT.
+     *
+     * @var ?string $inputVatRecoveryRateApplied
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('input_vat_recovery_rate_applied')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $inputVatRecoveryRateApplied = null;
 
     /**
      * Total taxable amount during the filing period.
@@ -393,15 +412,6 @@ class FilingRead
     public ?bool $isFinal = null;
 
     /**
-     * True when this filing is a state Retail Delivery Fee return, a separate filing from the state's sales tax return.
-     *
-     * @var ?bool $isRdf
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('is_rdf')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?bool $isRdf = null;
-
-    /**
      * The calculated amount for the filing. Defaults to 0.00.
      *
      * @var ?string $amountCalculated
@@ -465,7 +475,7 @@ class FilingRead
     public ?string $amountUseTax = null;
 
     /**
-     * Input VAT recovered on this filing's purchases. Subtracted from liability; always 0.00 outside EU/UK VAT AP filings.
+     * Input VAT this filing actually claimed. Subtracted from liability; always 0.00 outside EU/UK VAT filings.
      *
      * @var ?string $amountInputVatRecoverable
      */
@@ -474,13 +484,22 @@ class FilingRead
     public ?string $amountInputVatRecoverable = null;
 
     /**
-     * Prior-year input VAT pro-rata true-up on this filing. Positive claims more, negative repays. Always 0.00 until posted.
+     * Prior-year input VAT pro-rata true-up on this filing. Negative claims more, positive repays. Always 0.00 until posted.
      *
      * @var ?string $amountInputVatTrueUp
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('amount_input_vat_true_up')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?string $amountInputVatTrueUp = null;
+
+    /**
+     * Input VAT this filing would have claimed at a 100% rate. Always 0.00 outside EU/UK VAT filings.
+     *
+     * @var ?string $amountInputVatRecoverableBase
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount_input_vat_recoverable_base')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $amountInputVatRecoverableBase = null;
 
     /**
      * Total sales amount during the filing period.
@@ -547,7 +566,6 @@ class FilingRead
      * @param  ?bool  $isPrepayment
      * @param  ?bool  $isFinal
      * @param  ?\KintsugiTax\SDK\Models\Components\TaxTypeEnum  $taxType
-     * @param  ?bool  $isRdf
      * @param  ?string  $amountCalculated
      * @param  ?string  $amountAdjusted
      * @param  ?string  $amountDiscounts
@@ -557,6 +575,7 @@ class FilingRead
      * @param  ?string  $amountUseTax
      * @param  ?string  $amountInputVatRecoverable
      * @param  ?string  $amountInputVatTrueUp
+     * @param  ?string  $amountInputVatRecoverableBase
      * @param  ?string  $amountSales
      * @param  ?string  $amount
      * @param  ?string  $totalTaxLiability
@@ -577,6 +596,8 @@ class FilingRead
      * @param  ?string  $issueReason
      * @param  ?string  $skipReason
      * @param  ?string  $cancelledReason
+     * @param  ?\KintsugiTax\SDK\Models\Components\FeeTypeEnum  $feeType
+     * @param  ?string  $inputVatRecoveryRateApplied
      * @param  ?string  $totalTaxableSales
      * @param  ?int  $estimatedLineCount
      * @param  ?string  $internalNotes
@@ -596,7 +617,7 @@ class FilingRead
      * @param  ?string  $penaltyInterestRemittanceTag
      * @phpstan-pure
      */
-    public function __construct(LocalDate $startDate, LocalDate $endDate, CountryCodeEnum $countryCode, string $id, string $registrationId, ?FilingStatusEnum $status = null, ?TaxTypeEnum $taxType = null, ?string $filingWebsiteUrl = null, ?LocalDate $dueDate = null, ?LocalDate $dateFiled = null, ?bool $isManual = null, ?string $stateCode = null, ?string $stateName = null, ?bool $autoApproved = null, ?LocalDate $pausedUntilDate = null, ?string $assistanceTicketId = null, ?string $approvedBy = null, ?\DateTime $approvedAt = null, ?string $issueReason = null, ?string $skipReason = null, ?string $cancelledReason = null, ?string $totalTaxableSales = null, ?int $estimatedLineCount = null, ?string $internalNotes = null, ?string $recentDetailsReportLink = null, ?string $originalTaxRemitted = null, ?string $returnConfirmationId = null, ?string $paymentConfirmationId = null, ?string $submittedReturnConfirmationId = null, ?string $submittedPaymentConfirmationId = null, ?bool $blockApproval = null, ?CurrencyEnum $currency = null, ?string $filingFrequency = null, ?string $ossType = null, ?QuarterlyPrepayBalanceDisplay $quarterlyPrepayBalance = null, ?CaMayPrepaymentDisplay $caMayPrepayment = null, ?string $estimatedPenaltyInterest = null, ?string $penaltyInterestRemittanceTag = null, ?string $filingCategory = 'REGULAR', ?bool $isPrepayment = false, ?bool $isFinal = false, ?bool $isRdf = false, ?string $amountCalculated = '0.00', ?string $amountAdjusted = '0.00', ?string $amountDiscounts = '0.00', ?string $amountFees = '0.00', ?string $amountPenalties = '0.00', ?string $amountTaxCollected = '0.00', ?string $amountUseTax = '0.00', ?string $amountInputVatRecoverable = '0.00', ?string $amountInputVatTrueUp = '0.00', ?string $amountSales = '0.00', ?string $amount = '0.00', ?string $totalTaxLiability = '0.00', ?int $transactionCount = 0, ?int $marketplaceTransactionCount = 0, ?string $taxRemitted = '0.00')
+    public function __construct(LocalDate $startDate, LocalDate $endDate, CountryCodeEnum $countryCode, string $id, string $registrationId, ?FilingStatusEnum $status = null, ?TaxTypeEnum $taxType = null, ?string $filingWebsiteUrl = null, ?LocalDate $dueDate = null, ?LocalDate $dateFiled = null, ?bool $isManual = null, ?string $stateCode = null, ?string $stateName = null, ?bool $autoApproved = null, ?LocalDate $pausedUntilDate = null, ?string $assistanceTicketId = null, ?string $approvedBy = null, ?\DateTime $approvedAt = null, ?string $issueReason = null, ?string $skipReason = null, ?string $cancelledReason = null, ?FeeTypeEnum $feeType = null, ?string $inputVatRecoveryRateApplied = null, ?string $totalTaxableSales = null, ?int $estimatedLineCount = null, ?string $internalNotes = null, ?string $recentDetailsReportLink = null, ?string $originalTaxRemitted = null, ?string $returnConfirmationId = null, ?string $paymentConfirmationId = null, ?string $submittedReturnConfirmationId = null, ?string $submittedPaymentConfirmationId = null, ?bool $blockApproval = null, ?CurrencyEnum $currency = null, ?string $filingFrequency = null, ?string $ossType = null, ?QuarterlyPrepayBalanceDisplay $quarterlyPrepayBalance = null, ?CaMayPrepaymentDisplay $caMayPrepayment = null, ?string $estimatedPenaltyInterest = null, ?string $penaltyInterestRemittanceTag = null, ?string $filingCategory = 'REGULAR', ?bool $isPrepayment = false, ?bool $isFinal = false, ?string $amountCalculated = '0.00', ?string $amountAdjusted = '0.00', ?string $amountDiscounts = '0.00', ?string $amountFees = '0.00', ?string $amountPenalties = '0.00', ?string $amountTaxCollected = '0.00', ?string $amountUseTax = '0.00', ?string $amountInputVatRecoverable = '0.00', ?string $amountInputVatTrueUp = '0.00', ?string $amountInputVatRecoverableBase = '0.00', ?string $amountSales = '0.00', ?string $amount = '0.00', ?string $totalTaxLiability = '0.00', ?int $transactionCount = 0, ?int $marketplaceTransactionCount = 0, ?string $taxRemitted = '0.00')
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
@@ -619,6 +640,8 @@ class FilingRead
         $this->issueReason = $issueReason;
         $this->skipReason = $skipReason;
         $this->cancelledReason = $cancelledReason;
+        $this->feeType = $feeType;
+        $this->inputVatRecoveryRateApplied = $inputVatRecoveryRateApplied;
         $this->totalTaxableSales = $totalTaxableSales;
         $this->estimatedLineCount = $estimatedLineCount;
         $this->internalNotes = $internalNotes;
@@ -639,7 +662,6 @@ class FilingRead
         $this->filingCategory = $filingCategory;
         $this->isPrepayment = $isPrepayment;
         $this->isFinal = $isFinal;
-        $this->isRdf = $isRdf;
         $this->amountCalculated = $amountCalculated;
         $this->amountAdjusted = $amountAdjusted;
         $this->amountDiscounts = $amountDiscounts;
@@ -649,6 +671,7 @@ class FilingRead
         $this->amountUseTax = $amountUseTax;
         $this->amountInputVatRecoverable = $amountInputVatRecoverable;
         $this->amountInputVatTrueUp = $amountInputVatTrueUp;
+        $this->amountInputVatRecoverableBase = $amountInputVatRecoverableBase;
         $this->amountSales = $amountSales;
         $this->amount = $amount;
         $this->totalTaxLiability = $totalTaxLiability;

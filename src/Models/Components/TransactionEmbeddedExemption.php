@@ -9,7 +9,20 @@ declare(strict_types=1);
 namespace KintsugiTax\SDK\Models\Components;
 
 use Brick\DateTime\LocalDate;
-class Exemption
+/**
+ * TransactionEmbeddedExemption - Public read schema mirroring the ORM ``Exemption`` for /v1 transaction embedding.
+ *
+ *
+ * A non-table twin of ``exemptions.models.Exemption``: it re-declares the exact fields
+ * the ORM adds on top of ``ExemptionBase``/``TableBase`` (id, organization_id,
+ * certificate_import_id, source, certificate_type) so
+ * ``TransactionSerializerBase.exemptions`` can be
+ * typed without importing the private ORM model (CP-4895). Its serialized shape is
+ * byte-identical to the ORM's — ``from_attributes`` reads the same attributes off each
+ * ORM row — so the /v1 response payload is unchanged. Keep it in lockstep with
+ * ``Exemption`` if the ORM's public columns change (a JSON-schema parity test guards it).
+ */
+class TransactionEmbeddedExemption
 {
     /**
      *
@@ -162,6 +175,15 @@ class Exemption
     public ?ExemptionSourceEnum $source = null;
 
     /**
+     * Partial-exemption certificate form code. Null when the exemption is not a partial exemption.
+     *
+     * @var ?string $certificateType
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('certificate_type')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $certificateType = null;
+
+    /**
      * Indicates whether the exemption is for a reseller
      *
      * @var ?bool $reseller
@@ -188,9 +210,10 @@ class Exemption
      * @param  ?\KintsugiTax\SDK\Models\Components\ExemptionStatus  $status
      * @param  ?string  $certificateImportId
      * @param  ?\KintsugiTax\SDK\Models\Components\ExemptionSourceEnum  $source
+     * @param  ?string  $certificateType
      * @phpstan-pure
      */
-    public function __construct(ExemptionType $exemptionType, LocalDate $startDate, ?string $id = null, ?\DateTime $createdAt = null, ?string $organizationId = null, ?\DateTime $updatedAt = null, ?string $jurisdiction = null, ?CountryCodeEnum $countryCode = null, ?LocalDate $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?ExemptionStatus $status = null, ?string $certificateImportId = null, ?ExemptionSourceEnum $source = null, ?bool $reseller = false)
+    public function __construct(ExemptionType $exemptionType, LocalDate $startDate, ?string $id = null, ?\DateTime $createdAt = null, ?string $organizationId = null, ?\DateTime $updatedAt = null, ?string $jurisdiction = null, ?CountryCodeEnum $countryCode = null, ?LocalDate $endDate = null, ?string $customerId = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?ExemptionStatus $status = null, ?string $certificateImportId = null, ?ExemptionSourceEnum $source = null, ?string $certificateType = null, ?bool $reseller = false)
     {
         $this->exemptionType = $exemptionType;
         $this->startDate = $startDate;
@@ -208,6 +231,7 @@ class Exemption
         $this->status = $status;
         $this->certificateImportId = $certificateImportId;
         $this->source = $source;
+        $this->certificateType = $certificateType;
         $this->reseller = $reseller;
     }
 }

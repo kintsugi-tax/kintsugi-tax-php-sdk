@@ -6,6 +6,7 @@
 
 * [list](#list) - Get exemptions
 * [create](#create) - Create exemption
+* [listPartialCertificateTypesV1ExemptionsPartialCertificateTypesGet](#listpartialcertificatetypesv1exemptionspartialcertificatetypesget) - List partial certificate types
 * [getById](#getbyid) - Get exemption by id
 * [uploadCertificate](#uploadcertificate) - Upload exemption certificate
 
@@ -144,6 +145,57 @@ if ($response->backendSrcExemptionsSerializersExemptionRead !== null) {
 | Errors\BackendSrcExemptionsResponsesValidationErrorResponse | 422                                                         | application/json                                            |
 | Errors\ErrorResponse                                        | 500                                                         | application/json                                            |
 | Errors\APIException                                         | 4XX, 5XX                                                    | \*/\*                                                       |
+
+## listPartialCertificateTypesV1ExemptionsPartialCertificateTypesGet
+
+Certificate forms a partial exemption may use. Pass jurisdiction to limit the list to that state.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="list_partial_certificate_types_v1_exemptions_partial_certificate_types_get" method="get" path="/v1/exemptions/partial-certificate-types" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        '<YOUR_API_KEY_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->exemptions->listPartialCertificateTypesV1ExemptionsPartialCertificateTypesGet(
+    jurisdiction: 'CA',
+    xOrganizationId: 'org_12345'
+
+);
+
+if ($response->responseListPartialCertificateTypesV1ExemptionsPartialCertificateTypesGet !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       | Example                                                           |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `jurisdiction`                                                    | *?string*                                                         | :heavy_minus_sign:                                                | Jurisdiction code. Only forms for this jurisdiction are returned. | CA                                                                |
+| `xOrganizationId`                                                 | *string*                                                          | :heavy_check_mark:                                                | The unique identifier for the organization making the request     | org_12345                                                         |
+
+### Response
+
+**[?Operations\ListPartialCertificateTypesV1ExemptionsPartialCertificateTypesGetResponse](../../Models/Operations/ListPartialCertificateTypesV1ExemptionsPartialCertificateTypesGetResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| Errors\HTTPValidationError | 422                        | application/json           |
+| Errors\APIException        | 4XX, 5XX                   | \*/\*                      |
 
 ## getById
 
