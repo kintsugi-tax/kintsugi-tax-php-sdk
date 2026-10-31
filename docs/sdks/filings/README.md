@@ -5,6 +5,9 @@
 ### Available Operations
 
 * [get](#get) - Get filings
+* [createBackFilingRequestV1FilingsBackFilingRequestPost](#createbackfilingrequestv1filingsbackfilingrequestpost) - Create back filing request
+* [getBackFilingRequestOptionsV1FilingsBackFilingRequestOptionsGet](#getbackfilingrequestoptionsv1filingsbackfilingrequestoptionsget) - Get back filing request options
+* [getCurrentBackFilingTermsV1FilingsBackFilingTermsCurrentGet](#getcurrentbackfilingtermsv1filingsbackfilingtermscurrentget) - Get current back filing terms
 * [getByRegistrationId](#getbyregistrationid) - Get filings by registration id
 * [getById](#getbyid) - Get filing by id
 * [approveFilingV1FilingsFilingIdApprovePut](#approvefilingv1filingsfilingidapproveput) - Approve filing
@@ -34,7 +37,7 @@ $sdk = SDK\SDK::builder()
     ->build();
 
 $request = new Operations\GetFilingsV1FilingsGetRequest(
-    statusIn: 'FILED,FILING,UNFILED,PAUSED,CANCELLED,ISSUE,SKIPPED',
+    statusIn: 'FILED,FILING,SUBMITTED,UNFILED,PAUSED,CANCELLED,ISSUE,SKIPPED',
     startDate: LocalDate::parse('2024-01-01'),
     endDate: LocalDate::parse('2024-12-31'),
     dateFiledGte: LocalDate::parse('2024-01-01'),
@@ -77,6 +80,167 @@ if ($response->pageFilingRead !== null) {
 | Errors\BackendSrcFilingsResponsesValidationErrorResponse | 422                                                      | application/json                                         |
 | Errors\ErrorResponse                                     | 500                                                      | application/json                                         |
 | Errors\APIException                                      | 4XX, 5XX                                                 | \*/\*                                                    |
+
+## createBackFilingRequestV1FilingsBackFilingRequestPost
+
+Create unapproved BACK_FILING rows for requested in-bounds periods.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="create_back_filing_request_v1_filings_back_filing_request_post" method="post" path="/v1/filings/back-filing-request" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use Brick\DateTime\LocalDate;
+use KintsugiTax\SDK;
+use KintsugiTax\SDK\Models\Components;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        '<YOUR_API_KEY_HERE>'
+    )
+    ->build();
+
+$backFilingRequestCreate = new Components\BackFilingRequestCreate(
+    requests: [
+        new Components\BackFilingRequestRegistrationInput(
+            registrationId: '<id>',
+            periods: [
+                new Components\BackFilingRequestPeriodInput(
+                    startDate: LocalDate::parse('2026-03-03'),
+                    endDate: LocalDate::parse('2026-08-19'),
+                ),
+            ],
+        ),
+    ],
+);
+
+$response = $sdk->filings->createBackFilingRequestV1FilingsBackFilingRequestPost(
+    backFilingRequestCreate: $backFilingRequestCreate,
+    xOrganizationId: '<id>'
+
+);
+
+if ($response->backFilingRequestCreateResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `backFilingRequestCreate`                                                                | [Components\BackFilingRequestCreate](../../Models/Components/BackFilingRequestCreate.md) | :heavy_check_mark:                                                                       | N/A                                                                                      |
+| `xOrganizationId`                                                                        | *string*                                                                                 | :heavy_check_mark:                                                                       | N/A                                                                                      |
+
+### Response
+
+**[?Operations\CreateBackFilingRequestV1FilingsBackFilingRequestPostResponse](../../Models/Operations/CreateBackFilingRequestV1FilingsBackFilingRequestPostResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| Errors\HTTPValidationError | 422                        | application/json           |
+| Errors\APIException        | 4XX, 5XX                   | \*/\*                      |
+
+## getBackFilingRequestOptionsV1FilingsBackFilingRequestOptionsGet
+
+Eligible US registrations and periods for a customer back-filing request.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="get_back_filing_request_options_v1_filings_back_filing_request_options_get" method="get" path="/v1/filings/back-filing-request/options" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        '<YOUR_API_KEY_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->filings->getBackFilingRequestOptionsV1FilingsBackFilingRequestOptionsGet(
+    xOrganizationId: 'org_12345'
+);
+
+if ($response->backFilingRequestOptionsResponse !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `xOrganizationId`                                             | *string*                                                      | :heavy_check_mark:                                            | The unique identifier for the organization making the request | org_12345                                                     |
+
+### Response
+
+**[?Operations\GetBackFilingRequestOptionsV1FilingsBackFilingRequestOptionsGetResponse](../../Models/Operations/GetBackFilingRequestOptionsV1FilingsBackFilingRequestOptionsGetResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| Errors\HTTPValidationError | 422                        | application/json           |
+| Errors\APIException        | 4XX, 5XX                   | \*/\*                      |
+
+## getCurrentBackFilingTermsV1FilingsBackFilingTermsCurrentGet
+
+Current back filing terms shown before BACK_FILING approval.
+
+### Example Usage
+
+<!-- UsageSnippet language="php" operationID="get_current_back_filing_terms_v1_filings_back_filing_terms_current_get" method="get" path="/v1/filings/back-filing-terms/current" -->
+```php
+declare(strict_types=1);
+
+require 'vendor/autoload.php';
+
+use KintsugiTax\SDK;
+
+$sdk = SDK\SDK::builder()
+    ->setSecurity(
+        '<YOUR_API_KEY_HERE>'
+    )
+    ->build();
+
+
+
+$response = $sdk->filings->getCurrentBackFilingTermsV1FilingsBackFilingTermsCurrentGet(
+    xOrganizationId: 'org_12345'
+);
+
+if ($response->backFilingTermsRead !== null) {
+    // handle response
+}
+```
+
+### Parameters
+
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `xOrganizationId`                                             | *string*                                                      | :heavy_check_mark:                                            | The unique identifier for the organization making the request | org_12345                                                     |
+
+### Response
+
+**[?Operations\GetCurrentBackFilingTermsV1FilingsBackFilingTermsCurrentGetResponse](../../Models/Operations/GetCurrentBackFilingTermsV1FilingsBackFilingTermsCurrentGetResponse.md)**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| Errors\HTTPValidationError | 422                        | application/json           |
+| Errors\APIException        | 4XX, 5XX                   | \*/\*                      |
 
 ## getByRegistrationId
 

@@ -13,6 +13,7 @@ namespace KintsugiTax\SDK\Models\Components;
 enum TaxItemReturnReasonEnum: string
 {
     case NoRuleFound = 'NO_RULE_FOUND';
+    case AllRatesOptedOut = 'ALL_RATES_OPTED_OUT';
     case RuleFoundTaxable = 'RULE_FOUND_TAXABLE';
     case RuleFoundNotTaxable = 'RULE_FOUND_NOT_TAXABLE';
     case RuleFoundTaxableZeroRate = 'RULE_FOUND_TAXABLE_ZERO_RATE';
@@ -20,4 +21,5 @@ enum TaxItemReturnReasonEnum: string
     case FromImport = 'FROM_IMPORT';
     case RuleExcludedInCalculation = 'RULE_EXCLUDED_IN_CALCULATION';
     case ReverseCharge = 'REVERSE_CHARGE';
+    case RuleFoundSuppressedByCounty = 'RULE_FOUND_SUPPRESSED_BY_COUNTY';
 }

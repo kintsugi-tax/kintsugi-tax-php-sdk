@@ -6,6 +6,5 @@ vendor
 .DS_Store
 **/.speakeasy/temp/
 **/.speakeasy/logs/
-
 # Local planning docs (plans, design notes); see the planning-doc-placement rule.
 docs/plans/
