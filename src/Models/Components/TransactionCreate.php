@@ -124,6 +124,7 @@ class TransactionCreate
     public float|string|null $taxableAmount = null;
 
     /**
+     * ISO-4217 currency code. Pair with a monetary amount on the same object.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */
@@ -249,10 +250,10 @@ class TransactionCreate
     /**
      * List of exemptions applied (if any).
      *
-     * @var ?array<\KintsugiTax\SDK\Models\Components\Exemption> $exemptions
+     * @var ?array<\KintsugiTax\SDK\Models\Components\TransactionEmbeddedExemption> $exemptions
      */
     #[\Speakeasy\Serializer\Annotation\SerializedName('exemptions')]
-    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\Exemption>|null')]
+    #[\Speakeasy\Serializer\Annotation\Type('array<\KintsugiTax\SDK\Models\Components\TransactionEmbeddedExemption>|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?array $exemptions = null;
 
@@ -301,6 +302,15 @@ class TransactionCreate
     #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TaxLiabilitySourceEnum|null')]
     #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
     public ?TaxLiabilitySourceEnum $taxLiabilitySource = null;
+
+    /**
+     * Whether source amounts include tax. NULL means the source did not say.
+     *
+     * @var ?bool $isTaxInclusive
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_tax_inclusive')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isTaxInclusive = null;
 
     /**
      * Connection Identifier
@@ -539,12 +549,13 @@ class TransactionCreate
      * @param  ?string  $customerId
      * @param  ?bool  $marketplace
      * @param  ?\KintsugiTax\SDK\Models\Components\TransactionExemptStatusEnum  $exempt
-     * @param  ?array<\KintsugiTax\SDK\Models\Components\Exemption>  $exemptions
+     * @param  ?array<\KintsugiTax\SDK\Models\Components\TransactionEmbeddedExemption>  $exemptions
      * @param  ?string  $relatedTo
      * @param  ?string  $secondaryExternalId
      * @param  ?string  $secondarySource
      * @param  ?string  $externalFriendlyId
      * @param  ?\KintsugiTax\SDK\Models\Components\TaxLiabilitySourceEnum  $taxLiabilitySource
+     * @param  ?bool  $isTaxInclusive
      * @param  ?string  $connectionId
      * @param  ?string  $filingId
      * @param  ?string  $city
@@ -567,7 +578,7 @@ class TransactionCreate
      * @param  ?\KintsugiTax\SDK\Models\Components\CustomerCreate  $customer
      * @phpstan-pure
      */
-    public function __construct(string $organizationId, string $externalId, \DateTime $date, array $addresses, array $transactionItems, float|string|null $totalAmount = null, float|string|null $totalTaxAmountImported = null, float|string|null $taxRateImported = null, float|string|null $totalTaxAmountCalculated = null, float|string|null $taxRateCalculated = null, float|string|null $totalTaxLiabilityAmount = null, float|string|null $taxableAmount = null, ?CurrencyEnum $currency = null, ?SourceEnum $source = null, ?TransactionStatusEnum $status = null, ?AddressStatus $addressStatus = null, ?ProcessingStatusEnum $processingStatus = null, ?ExemptionRequired $requiresExemption = null, ?LocalDate $shopDate = null, ?string $shopDateTz = null, ?string $description = null, ?TransactionRefundStatus $refundStatus = null, ?string $customerId = null, ?bool $marketplace = null, ?TransactionExemptStatusEnum $exempt = null, ?array $exemptions = null, ?string $relatedTo = null, ?string $secondaryExternalId = null, ?string $secondarySource = null, ?string $externalFriendlyId = null, ?TaxLiabilitySourceEnum $taxLiabilitySource = null, ?string $connectionId = null, ?string $filingId = null, ?string $city = null, ?string $county = null, ?string $state = null, ?CountryCodeEnum $country = null, ?string $postalCode = null, ?string $taxId = null, ?DocumentTypeEnum $documentType = null, ?string $createdFrom = null, ?CurrencyEnum $destinationCurrency = null, float|string|null $convertedTotalAmount = null, float|string|null $convertedTotalTaxAmountImported = null, float|string|null $convertedTotalTaxAmountCalculated = null, float|string|null $conversionRate = null, float|string|null $convertedTaxableAmount = null, float|string|null $convertedTotalDiscount = null, float|string|null $convertedSubtotal = null, float|string|null $convertedTotalTaxLiabilityAmount = null, ?CustomerCreate $customer = null, ?bool $locked = false, ?bool $isDuplicate = false)
+    public function __construct(string $organizationId, string $externalId, \DateTime $date, array $addresses, array $transactionItems, float|string|null $totalAmount = null, float|string|null $totalTaxAmountImported = null, float|string|null $taxRateImported = null, float|string|null $totalTaxAmountCalculated = null, float|string|null $taxRateCalculated = null, float|string|null $totalTaxLiabilityAmount = null, float|string|null $taxableAmount = null, ?CurrencyEnum $currency = null, ?SourceEnum $source = null, ?TransactionStatusEnum $status = null, ?AddressStatus $addressStatus = null, ?ProcessingStatusEnum $processingStatus = null, ?ExemptionRequired $requiresExemption = null, ?LocalDate $shopDate = null, ?string $shopDateTz = null, ?string $description = null, ?TransactionRefundStatus $refundStatus = null, ?string $customerId = null, ?bool $marketplace = null, ?TransactionExemptStatusEnum $exempt = null, ?array $exemptions = null, ?string $relatedTo = null, ?string $secondaryExternalId = null, ?string $secondarySource = null, ?string $externalFriendlyId = null, ?TaxLiabilitySourceEnum $taxLiabilitySource = null, ?bool $isTaxInclusive = null, ?string $connectionId = null, ?string $filingId = null, ?string $city = null, ?string $county = null, ?string $state = null, ?CountryCodeEnum $country = null, ?string $postalCode = null, ?string $taxId = null, ?DocumentTypeEnum $documentType = null, ?string $createdFrom = null, ?CurrencyEnum $destinationCurrency = null, float|string|null $convertedTotalAmount = null, float|string|null $convertedTotalTaxAmountImported = null, float|string|null $convertedTotalTaxAmountCalculated = null, float|string|null $conversionRate = null, float|string|null $convertedTaxableAmount = null, float|string|null $convertedTotalDiscount = null, float|string|null $convertedSubtotal = null, float|string|null $convertedTotalTaxLiabilityAmount = null, ?CustomerCreate $customer = null, ?bool $locked = false, ?bool $isDuplicate = false)
     {
         $this->organizationId = $organizationId;
         $this->externalId = $externalId;
@@ -600,6 +611,7 @@ class TransactionCreate
         $this->secondarySource = $secondarySource;
         $this->externalFriendlyId = $externalFriendlyId;
         $this->taxLiabilitySource = $taxLiabilitySource;
+        $this->isTaxInclusive = $isTaxInclusive;
         $this->connectionId = $connectionId;
         $this->filingId = $filingId;
         $this->city = $city;
