@@ -49,6 +49,7 @@ enum SourceEnum: string
     case Rippling = 'RIPPLING';
     case Gusto = 'GUSTO';
     case Facebook = 'FACEBOOK';
+    case Freshbooks = 'FRESHBOOKS';
     case Other = 'OTHER';
     case Ordway = 'ORDWAY';
     case Instagram = 'INSTAGRAM';
@@ -65,8 +66,10 @@ enum SourceEnum: string
     case Modalyst = 'MODALYST';
     case Nordstrom = 'NORDSTROM';
     case Faire = 'FAIRE';
+    case FrisbiiBilling = 'FRISBII_BILLING';
     case Shopware = 'SHOPWARE';
     case Zoho = 'ZOHO';
+    case ZohoBooks = 'ZOHO_BOOKS';
     case SageIntacct = 'SAGE-INTACCT';
     case Airwallex = 'AIRWALLEX';
     case Orb = 'ORB';
@@ -86,4 +89,7 @@ enum SourceEnum: string
     case IntuitEnterpriseSuite = 'INTUIT_ENTERPRISE_SUITE';
     case Acumatica = 'ACUMATICA';
     case Plentyone = 'PLENTYONE';
+    case Hyperline = 'HYPERLINE';
+    case Openmeter = 'OPENMETER';
+    case Saleor = 'SALEOR';
 }
