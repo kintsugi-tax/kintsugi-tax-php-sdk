@@ -30,7 +30,7 @@ class GetRegistrationByIdV1RegistrationsRegistrationIdGetRequest
     public ?string $xOrganizationId;
 
     /**
-     * Name of field to reveal
+     * Comma-separated credential fields to return decrypted. Only an Owner of the organization or a Kintsugi Portfolio user who can open it may use it. An API key counts as the user it belongs to, and a service key as the user who created it. Other callers, and automated assistant integrations, get 403. Without this parameter, credential fields come back masked.
      *
      * @var ?string $reveal
      */

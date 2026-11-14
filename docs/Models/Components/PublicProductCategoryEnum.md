@@ -7,7 +7,7 @@ Top-level tax category for a product.
 
 | Name       | Value      |
 | ---------- | ---------- |
+| `Physical` | Physical   |
 | `Digital`  | Digital    |
 | `Misc`     | Misc       |
-| `Physical` | Physical   |
 | `Services` | Services   |

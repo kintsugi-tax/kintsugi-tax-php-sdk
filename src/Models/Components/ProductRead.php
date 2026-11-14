@@ -59,10 +59,7 @@ class ProductRead
     public string $productCategory;
 
     /**
-     * Subcategory of the product.
-     *
-     *         For example, General Clothing, UNKNOWN, etc. You can
-     *         retrieve supported subcategories from [GET /products/categories endpoint](/reference/api/products/get-product-categories)
+     * Tax subcategory display label of the product (e.g. 'General Clothing'). List supported values from [GET /products/categories](/reference/api/products/get-product-categories).
      *
      * @var string $productSubcategory
      */
