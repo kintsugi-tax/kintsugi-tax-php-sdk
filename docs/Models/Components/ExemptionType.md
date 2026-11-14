@@ -9,3 +9,4 @@
 | `Wholesale`     | wholesale       |
 | `Transaction`   | transaction     |
 | `ReverseCharge` | reverse_charge  |
+| `Partial`       | partial         |
