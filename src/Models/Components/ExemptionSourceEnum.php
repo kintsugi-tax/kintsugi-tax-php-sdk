@@ -34,6 +34,9 @@ enum ExemptionSourceEnum: string
     case Shopline = 'SHOPLINE';
     case Orb = 'ORB';
     case Zenskar = 'ZENSKAR';
+    case Hyperline = 'HYPERLINE';
+    case Odoo = 'ODOO';
+    case ZohoBooks = 'ZOHO_BOOKS';
     case Manual = 'MANUAL';
     case BulkUpload = 'BULK_UPLOAD';
     case Email = 'EMAIL';

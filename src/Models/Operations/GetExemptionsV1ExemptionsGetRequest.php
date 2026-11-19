@@ -54,7 +54,7 @@ class GetExemptionsV1ExemptionsGetRequest
     public ?string $jurisdiction = null;
 
     /**
-     * Start date for filtering exemptions
+     * Include exemptions whose validity start date is on or after this date (YYYY-MM-DD)
      *
      * @var ?LocalDate $startDate
      */
@@ -62,7 +62,7 @@ class GetExemptionsV1ExemptionsGetRequest
     public ?LocalDate $startDate = null;
 
     /**
-     * End date for filtering exemptions
+     * Include exemptions whose validity end date is on or before this date (YYYY-MM-DD). Open-ended exemptions (null end date) are excluded when this filter is set.
      *
      * @var ?LocalDate $endDate
      */

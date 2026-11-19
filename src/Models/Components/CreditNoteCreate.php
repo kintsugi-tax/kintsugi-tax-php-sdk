@@ -46,6 +46,7 @@ class CreditNoteCreate
     public float|string $totalAmount;
 
     /**
+     * ISO-4217 currency code. Pair with a monetary amount on the same object.
      *
      * @var \KintsugiTax\SDK\Models\Components\CurrencyEnum $currency
      */
@@ -139,6 +140,15 @@ class CreditNoteCreate
     public ?array $addresses = null;
 
     /**
+     * Whether the source amounts include tax (EI-1534). None means the source did not say. Mirrors the parent order's signal; netting stays EI-1538.
+     *
+     * @var ?bool $isTaxInclusive
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('is_tax_inclusive')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?bool $isTaxInclusive = null;
+
+    /**
      * @param  string  $externalId
      * @param  \DateTime  $date
      * @param  \KintsugiTax\SDK\Models\Components\Status  $status
@@ -153,9 +163,10 @@ class CreditNoteCreate
      * @param  float|string|null  $taxRateImported
      * @param  float|string|null  $taxableAmount
      * @param  ?array<\KintsugiTax\SDK\Models\Components\TransactionAddressBuilder>  $addresses
+     * @param  ?bool  $isTaxInclusive
      * @phpstan-pure
      */
-    public function __construct(string $externalId, \DateTime $date, Status $status, float|string $totalAmount, CurrencyEnum $currency, array $transactionItems, ?string $externalFriendlyId = null, ?string $secondaryExternalId = null, ?string $description = null, ?bool $marketplace = null, float|string|null $taxAmountImported = null, float|string|null $taxRateImported = null, float|string|null $taxableAmount = null, ?array $addresses = null)
+    public function __construct(string $externalId, \DateTime $date, Status $status, float|string $totalAmount, CurrencyEnum $currency, array $transactionItems, ?string $externalFriendlyId = null, ?string $secondaryExternalId = null, ?string $description = null, ?bool $marketplace = null, float|string|null $taxAmountImported = null, float|string|null $taxRateImported = null, float|string|null $taxableAmount = null, ?array $addresses = null, ?bool $isTaxInclusive = null)
     {
         $this->externalId = $externalId;
         $this->date = $date;
@@ -171,5 +182,6 @@ class CreditNoteCreate
         $this->taxRateImported = $taxRateImported;
         $this->taxableAmount = $taxableAmount;
         $this->addresses = $addresses;
+        $this->isTaxInclusive = $isTaxInclusive;
     }
 }

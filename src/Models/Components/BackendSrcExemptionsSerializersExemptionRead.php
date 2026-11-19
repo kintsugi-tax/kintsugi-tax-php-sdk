@@ -119,6 +119,15 @@ class BackendSrcExemptionsSerializersExemptionRead
     public ?array $attachment = null;
 
     /**
+     * Partial-exemption certificate form code. Null when the exemption is not a partial exemption.
+     *
+     * @var ?string $certificateType
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('certificate_type')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $certificateType = null;
+
+    /**
      * Indicates whether the exemption is for a reseller
      *
      * @var ?bool $reseller
@@ -141,9 +150,10 @@ class BackendSrcExemptionsSerializersExemptionRead
      * @param  ?string  $salesTaxId
      * @param  ?\KintsugiTax\SDK\Models\Components\CustomerRead  $customer
      * @param  ?array<\KintsugiTax\SDK\Models\Components\AttachmentRead>  $attachment
+     * @param  ?string  $certificateType
      * @phpstan-pure
      */
-    public function __construct(LocalDate $startDate, string $id, ExemptionType $exemptionType, ExemptionStatus $status, ?CountryCodeEnum $countryCode = null, ?string $jurisdiction = null, ?LocalDate $endDate = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?CustomerRead $customer = null, ?array $attachment = null, ?bool $reseller = false)
+    public function __construct(LocalDate $startDate, string $id, ExemptionType $exemptionType, ExemptionStatus $status, ?CountryCodeEnum $countryCode = null, ?string $jurisdiction = null, ?LocalDate $endDate = null, ?string $transactionId = null, ?string $fein = null, ?string $salesTaxId = null, ?CustomerRead $customer = null, ?array $attachment = null, ?string $certificateType = null, ?bool $reseller = false)
     {
         $this->startDate = $startDate;
         $this->id = $id;
@@ -157,6 +167,7 @@ class BackendSrcExemptionsSerializersExemptionRead
         $this->salesTaxId = $salesTaxId;
         $this->customer = $customer;
         $this->attachment = $attachment;
+        $this->certificateType = $certificateType;
         $this->reseller = $reseller;
     }
 }
