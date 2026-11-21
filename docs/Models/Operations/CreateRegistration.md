@@ -48,15 +48,6 @@ Components\CaliforniaRegistrationPayload $value = /* values here */
 Components\ConnecticutRegistrationPayload $value = /* values here */
 ```
 
-### `Components\ColoradoRegistrationPayload`
-
-```php
-/**
-* @var \KintsugiTax\SDK\Models\Components\ColoradoRegistrationPayload
-*/
-Components\ColoradoRegistrationPayload $value = /* values here */
-```
-
 ### `Components\DistrictOfColumbiaRegistrationPayload`
 
 ```php

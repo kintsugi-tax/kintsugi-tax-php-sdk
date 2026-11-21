@@ -51,12 +51,12 @@ class Registrations
      * The Create Registration API allows users to create a new registration
      *     for tracking and managing tax filings efficiently across multiple jurisdictions.
      *
-     * @param  \KintsugiTax\SDK\Models\Components\AlabamaRegistrationPayload|\KintsugiTax\SDK\Models\Components\ArizonaRegistrationPayload|\KintsugiTax\SDK\Models\Components\ArkansasRegistrationPayload|\KintsugiTax\SDK\Models\Components\CaliforniaRegistrationPayload|\KintsugiTax\SDK\Models\Components\ConnecticutRegistrationPayload|\KintsugiTax\SDK\Models\Components\ColoradoRegistrationPayload|\KintsugiTax\SDK\Models\Components\DistrictOfColumbiaRegistrationPayload|\KintsugiTax\SDK\Models\Components\GeorgiaRegistrationPayload|\KintsugiTax\SDK\Models\Components\HawaiiRegistrationPayload|\KintsugiTax\SDK\Models\Components\IdahoRegistrationPayload|\KintsugiTax\SDK\Models\Components\IllinoisRegistrationPayload|\KintsugiTax\SDK\Models\Components\IndianaRegistrationPayload|\KintsugiTax\SDK\Models\Components\IowaRegistrationPayload|\KintsugiTax\SDK\Models\Components\KansasRegistrationPayload|\KintsugiTax\SDK\Models\Components\MassachusettsRegistrationPayload|\KintsugiTax\SDK\Models\Components\MississippiRegistrationPayload|\KintsugiTax\SDK\Models\Components\MichiganRegistrationPayload|\KintsugiTax\SDK\Models\Components\MissouriRegistrationPayload|\KintsugiTax\SDK\Models\Components\TennesseeRegistrationPayload|\KintsugiTax\SDK\Models\Components\TexasRegistrationPayload|\KintsugiTax\SDK\Models\Components\UtahRegistrationPayload|\KintsugiTax\SDK\Models\Components\VermontRegistrationPayload|\KintsugiTax\SDK\Models\Components\VirginiaRegistrationPayload|\KintsugiTax\SDK\Models\Components\WashingtonRegistrationPayload|\KintsugiTax\SDK\Models\Components\WestVirginiaRegistrationPayload|\KintsugiTax\SDK\Models\Components\WisconsinRegistrationPayload|\KintsugiTax\SDK\Models\Components\MaineRegistrationPayload|\KintsugiTax\SDK\Models\Components\MinnesotaRegistrationPayload|\KintsugiTax\SDK\Models\Components\RegistrationCreatePayload|\KintsugiTax\SDK\Models\Components\OSSRegistrationCreatePayload|\KintsugiTax\SDK\Models\Components\SSTRegistrationCreatePayload|\KintsugiTax\SDK\Models\Components\KentuckyRegistrationPayload|\KintsugiTax\SDK\Models\Components\MarylandRegistrationPayload|\KintsugiTax\SDK\Models\Components\NebraskaRegistrationPayload|\KintsugiTax\SDK\Models\Components\NevadaRegistrationPayload|\KintsugiTax\SDK\Models\Components\NewJerseyRegistrationPayload|\KintsugiTax\SDK\Models\Components\NewMexicoRegistrationPayload|\KintsugiTax\SDK\Models\Components\NewYorkRegistrationPayload|\KintsugiTax\SDK\Models\Components\NorthDakotaRegistrationPayload|\KintsugiTax\SDK\Models\Components\SouthCarolinaRegistrationPayload|\KintsugiTax\SDK\Models\Components\OklahomaRegistrationPayload|\KintsugiTax\SDK\Models\Components\LouisianaRegistrationPayload|\KintsugiTax\SDK\Models\Components\OhioRegistrationPayload|\KintsugiTax\SDK\Models\Components\PennsylvaniaRegistrationPayload|\KintsugiTax\SDK\Models\Components\RhodeIslandRegistrationPayload|\KintsugiTax\SDK\Models\Components\SouthDakotaRegistrationPayload|\KintsugiTax\SDK\Models\Components\FloridaRegistrationPayload|\KintsugiTax\SDK\Models\Components\NorthCarolinaRegistrationPayload|\KintsugiTax\SDK\Models\Components\WyomingRegistrationPayload  $requestBody
+     * @param  \KintsugiTax\SDK\Models\Components\AlabamaRegistrationPayload|\KintsugiTax\SDK\Models\Components\ArizonaRegistrationPayload|\KintsugiTax\SDK\Models\Components\ArkansasRegistrationPayload|\KintsugiTax\SDK\Models\Components\CaliforniaRegistrationPayload|\KintsugiTax\SDK\Models\Components\ConnecticutRegistrationPayload|\KintsugiTax\SDK\Models\Components\DistrictOfColumbiaRegistrationPayload|\KintsugiTax\SDK\Models\Components\GeorgiaRegistrationPayload|\KintsugiTax\SDK\Models\Components\HawaiiRegistrationPayload|\KintsugiTax\SDK\Models\Components\IdahoRegistrationPayload|\KintsugiTax\SDK\Models\Components\IllinoisRegistrationPayload|\KintsugiTax\SDK\Models\Components\IndianaRegistrationPayload|\KintsugiTax\SDK\Models\Components\IowaRegistrationPayload|\KintsugiTax\SDK\Models\Components\KansasRegistrationPayload|\KintsugiTax\SDK\Models\Components\MassachusettsRegistrationPayload|\KintsugiTax\SDK\Models\Components\MississippiRegistrationPayload|\KintsugiTax\SDK\Models\Components\MichiganRegistrationPayload|\KintsugiTax\SDK\Models\Components\MissouriRegistrationPayload|\KintsugiTax\SDK\Models\Components\TennesseeRegistrationPayload|\KintsugiTax\SDK\Models\Components\TexasRegistrationPayload|\KintsugiTax\SDK\Models\Components\UtahRegistrationPayload|\KintsugiTax\SDK\Models\Components\VermontRegistrationPayload|\KintsugiTax\SDK\Models\Components\VirginiaRegistrationPayload|\KintsugiTax\SDK\Models\Components\WashingtonRegistrationPayload|\KintsugiTax\SDK\Models\Components\WestVirginiaRegistrationPayload|\KintsugiTax\SDK\Models\Components\WisconsinRegistrationPayload|\KintsugiTax\SDK\Models\Components\MaineRegistrationPayload|\KintsugiTax\SDK\Models\Components\MinnesotaRegistrationPayload|\KintsugiTax\SDK\Models\Components\RegistrationCreatePayload|\KintsugiTax\SDK\Models\Components\OSSRegistrationCreatePayload|\KintsugiTax\SDK\Models\Components\SSTRegistrationCreatePayload|\KintsugiTax\SDK\Models\Components\KentuckyRegistrationPayload|\KintsugiTax\SDK\Models\Components\MarylandRegistrationPayload|\KintsugiTax\SDK\Models\Components\NebraskaRegistrationPayload|\KintsugiTax\SDK\Models\Components\NevadaRegistrationPayload|\KintsugiTax\SDK\Models\Components\NewJerseyRegistrationPayload|\KintsugiTax\SDK\Models\Components\NewMexicoRegistrationPayload|\KintsugiTax\SDK\Models\Components\NewYorkRegistrationPayload|\KintsugiTax\SDK\Models\Components\NorthDakotaRegistrationPayload|\KintsugiTax\SDK\Models\Components\SouthCarolinaRegistrationPayload|\KintsugiTax\SDK\Models\Components\OklahomaRegistrationPayload|\KintsugiTax\SDK\Models\Components\LouisianaRegistrationPayload|\KintsugiTax\SDK\Models\Components\OhioRegistrationPayload|\KintsugiTax\SDK\Models\Components\PennsylvaniaRegistrationPayload|\KintsugiTax\SDK\Models\Components\RhodeIslandRegistrationPayload|\KintsugiTax\SDK\Models\Components\SouthDakotaRegistrationPayload|\KintsugiTax\SDK\Models\Components\FloridaRegistrationPayload|\KintsugiTax\SDK\Models\Components\NorthCarolinaRegistrationPayload|\KintsugiTax\SDK\Models\Components\WyomingRegistrationPayload  $requestBody
      * @param  ?string  $xOrganizationId
      * @return \KintsugiTax\SDK\Models\Operations\CreateRegistrationV1RegistrationsPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function create(Components\AlabamaRegistrationPayload|Components\ArizonaRegistrationPayload|Components\ArkansasRegistrationPayload|Components\CaliforniaRegistrationPayload|Components\ConnecticutRegistrationPayload|Components\ColoradoRegistrationPayload|Components\DistrictOfColumbiaRegistrationPayload|Components\GeorgiaRegistrationPayload|Components\HawaiiRegistrationPayload|Components\IdahoRegistrationPayload|Components\IllinoisRegistrationPayload|Components\IndianaRegistrationPayload|Components\IowaRegistrationPayload|Components\KansasRegistrationPayload|Components\MassachusettsRegistrationPayload|Components\MississippiRegistrationPayload|Components\MichiganRegistrationPayload|Components\MissouriRegistrationPayload|Components\TennesseeRegistrationPayload|Components\TexasRegistrationPayload|Components\UtahRegistrationPayload|Components\VermontRegistrationPayload|Components\VirginiaRegistrationPayload|Components\WashingtonRegistrationPayload|Components\WestVirginiaRegistrationPayload|Components\WisconsinRegistrationPayload|Components\MaineRegistrationPayload|Components\MinnesotaRegistrationPayload|Components\RegistrationCreatePayload|Components\OSSRegistrationCreatePayload|Components\SSTRegistrationCreatePayload|Components\KentuckyRegistrationPayload|Components\MarylandRegistrationPayload|Components\NebraskaRegistrationPayload|Components\NevadaRegistrationPayload|Components\NewJerseyRegistrationPayload|Components\NewMexicoRegistrationPayload|Components\NewYorkRegistrationPayload|Components\NorthDakotaRegistrationPayload|Components\SouthCarolinaRegistrationPayload|Components\OklahomaRegistrationPayload|Components\LouisianaRegistrationPayload|Components\OhioRegistrationPayload|Components\PennsylvaniaRegistrationPayload|Components\RhodeIslandRegistrationPayload|Components\SouthDakotaRegistrationPayload|Components\FloridaRegistrationPayload|Components\NorthCarolinaRegistrationPayload|Components\WyomingRegistrationPayload $requestBody, ?string $xOrganizationId = null, ?Options $options = null): Operations\CreateRegistrationV1RegistrationsPostResponse
+    public function create(Components\AlabamaRegistrationPayload|Components\ArizonaRegistrationPayload|Components\ArkansasRegistrationPayload|Components\CaliforniaRegistrationPayload|Components\ConnecticutRegistrationPayload|Components\DistrictOfColumbiaRegistrationPayload|Components\GeorgiaRegistrationPayload|Components\HawaiiRegistrationPayload|Components\IdahoRegistrationPayload|Components\IllinoisRegistrationPayload|Components\IndianaRegistrationPayload|Components\IowaRegistrationPayload|Components\KansasRegistrationPayload|Components\MassachusettsRegistrationPayload|Components\MississippiRegistrationPayload|Components\MichiganRegistrationPayload|Components\MissouriRegistrationPayload|Components\TennesseeRegistrationPayload|Components\TexasRegistrationPayload|Components\UtahRegistrationPayload|Components\VermontRegistrationPayload|Components\VirginiaRegistrationPayload|Components\WashingtonRegistrationPayload|Components\WestVirginiaRegistrationPayload|Components\WisconsinRegistrationPayload|Components\MaineRegistrationPayload|Components\MinnesotaRegistrationPayload|Components\RegistrationCreatePayload|Components\OSSRegistrationCreatePayload|Components\SSTRegistrationCreatePayload|Components\KentuckyRegistrationPayload|Components\MarylandRegistrationPayload|Components\NebraskaRegistrationPayload|Components\NevadaRegistrationPayload|Components\NewJerseyRegistrationPayload|Components\NewMexicoRegistrationPayload|Components\NewYorkRegistrationPayload|Components\NorthDakotaRegistrationPayload|Components\SouthCarolinaRegistrationPayload|Components\OklahomaRegistrationPayload|Components\LouisianaRegistrationPayload|Components\OhioRegistrationPayload|Components\PennsylvaniaRegistrationPayload|Components\RhodeIslandRegistrationPayload|Components\SouthDakotaRegistrationPayload|Components\FloridaRegistrationPayload|Components\NorthCarolinaRegistrationPayload|Components\WyomingRegistrationPayload $requestBody, ?string $xOrganizationId = null, ?Options $options = null): Operations\CreateRegistrationV1RegistrationsPostResponse
     {
         $request = new Operations\CreateRegistrationV1RegistrationsPostRequest(
             xOrganizationId: $xOrganizationId,
@@ -161,15 +161,16 @@ class Registrations
     /**
      * Deregister registration
      *
-     * Deregister an existing registration.
+     * Deregister an existing registration. Stored credential fields in the
+     *     response come back masked.
      *
+     * @param  \KintsugiTax\SDK\Models\Components\DeregisterRegistrationRequest  $deregisterRegistrationRequest
      * @param  string  $registrationId
      * @param  ?string  $xOrganizationId
-     * @param  ?\KintsugiTax\SDK\Models\Components\DeregisterRegistrationRequest  $deregisterRegistrationRequest
      * @return \KintsugiTax\SDK\Models\Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse
      * @throws \KintsugiTax\SDK\Models\Errors\APIException
      */
-    public function deregister(string $registrationId, ?string $xOrganizationId = null, ?Components\DeregisterRegistrationRequest $deregisterRegistrationRequest = null, ?Options $options = null): Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse
+    public function deregister(Components\DeregisterRegistrationRequest $deregisterRegistrationRequest, string $registrationId, ?string $xOrganizationId = null, ?Options $options = null): Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostResponse
     {
         $request = new Operations\DeregisterRegistrationV1RegistrationsRegistrationIdDeregisterPostRequest(
             registrationId: $registrationId,
@@ -181,9 +182,10 @@ class Registrations
         $urlOverride = null;
         $httpOptions = ['http_errors' => false];
         $body = Utils\Utils::serializeRequestBody($request, 'deregisterRegistrationRequest', 'json');
-        if ($body !== null) {
-            $httpOptions = array_merge_recursive($httpOptions, $body);
+        if ($body === null) {
+            throw new \Exception('Request body is required');
         }
+        $httpOptions = array_merge_recursive($httpOptions, $body);
         $httpOptions = array_merge_recursive($httpOptions, Utils\Utils::getHeaders($request));
         if (! array_key_exists('headers', $httpOptions)) {
             $httpOptions['headers'] = [];
@@ -274,7 +276,7 @@ class Registrations
     /**
      * Get jurisdiction specific fields
      *
-     * Returns the JSON Schema and UI metadata for a state-specific registration form
+     * Returns the JSON Schema and UI metadata for a state-specific registration form, and the tax types that can be imported there.
      *
      * @param  string  $countryCode
      * @param  string  $stateCode
@@ -327,12 +329,12 @@ class Registrations
 
                 $serializer = Utils\JSON::createSerializer();
                 $responseData = (string) $httpResponse->getBody();
-                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\JurisdictionSpecificFieldsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
+                $obj = $serializer->deserialize($responseData, '\KintsugiTax\SDK\Models\Components\CustomerJurisdictionSpecificFieldsResponse', 'json', DeserializationContext::create()->setRequireAllRequiredProperties(true));
                 $response = new Operations\GetJurisdictionSpecificFieldsV1RegistrationsJurisdictionSpecificFieldsGetResponse(
                     statusCode: $statusCode,
                     contentType: $contentType,
                     rawResponse: $httpResponse,
-                    jurisdictionSpecificFieldsResponse: $obj);
+                    customerJurisdictionSpecificFieldsResponse: $obj);
 
                 return $response;
             } else {
@@ -511,7 +513,7 @@ class Registrations
             } else {
                 throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['401'])) {
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['401', '403'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
@@ -562,7 +564,8 @@ class Registrations
      * The Get Registrations API retrieves a
      *     paginated list of registrations.
      *     This API helps in tracking and managing registrations efficiently across multiple
-     *     jurisdictions.
+     *     jurisdictions. Stored credential fields come back masked; use the reveal parameter
+     *     of the Get Registration By ID API to read them.
      *
      * @param  \KintsugiTax\SDK\Models\Operations\GetRegistrationsV1RegistrationsGetRequest  $request
      * @return \KintsugiTax\SDK\Models\Operations\GetRegistrationsV1RegistrationsGetResponse
@@ -754,7 +757,17 @@ class Registrations
      * Update registration
      *
      * The Update Registration API allows you to modify
-     *     an existing registration using its unique registration_id.
+     *     an existing registration using its unique registration_id. Sending a value for,
+     *     or clearing, a credential that is already stored (username, password, security
+     *     questions or a portal access code) needs an Owner of the organization or a
+     *     Kintsugi Portfolio user who can open it. An API key counts as the user it belongs
+     *     to, and a service key as the user who created it. Other callers, and automated
+     *     assistant integrations, get 403, even when the value matches the stored one.
+     *     Any caller who can edit the registration may fill a credential that has no
+     *     stored value, except that a stored password also guards the username and security
+     *     questions. A masked username sent back unchanged is ignored. A password made
+     *     only of asterisks, the mask a read shows, gets 400. Stored credential fields in the
+     *     response come back masked.
      *
      * @param  \KintsugiTax\SDK\Models\Components\RegistrationUpdateAPI  $registrationUpdateAPI
      * @param  string  $registrationId
@@ -820,7 +833,7 @@ class Registrations
             } else {
                 throw new \KintsugiTax\SDK\Models\Errors\APIException('Unknown content type received', $statusCode, $httpResponse->getBody()->getContents(), $httpResponse);
             }
-        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['401'])) {
+        } elseif (Utils\Utils::matchStatusCodes($statusCode, ['401', '403'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 
