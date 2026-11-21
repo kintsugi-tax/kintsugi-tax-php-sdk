@@ -63,25 +63,6 @@ class TexasFields
     public ?string $registeredAddress = null;
 
     /**
-     * Whether the remote seller elected the Single Local Tax Rate (SLTR) option: Yes, No, or Unsure.
-     *
-     * @var ?\KintsugiTax\SDK\Models\Components\TexasSltrElection $sltrElected
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('sltr_elected')]
-    #[\Speakeasy\Serializer\Annotation\Type('\KintsugiTax\SDK\Models\Components\TexasSltrElection|null')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?TexasSltrElection $sltrElected = null;
-
-    /**
-     * Optional Single Local Tax Rate (SLTR) for remote sellers; can change year to year.
-     *
-     * @var ?string $singleLocalTaxRate
-     */
-    #[\Speakeasy\Serializer\Annotation\SerializedName('single_local_tax_rate')]
-    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
-    public ?string $singleLocalTaxRate = null;
-
-    /**
      * Whether the customer completed MFA with Kintsugi virtual mail on their Texas tax account.
      *
      * @var ?bool $mfaCompleted
@@ -98,11 +79,9 @@ class TexasFields
      * @param  ?bool  $mfaCompleted
      * @param  ?string  $registeredLocationNumber
      * @param  ?string  $registeredAddress
-     * @param  ?\KintsugiTax\SDK\Models\Components\TexasSltrElection  $sltrElected
-     * @param  ?string  $singleLocalTaxRate
      * @phpstan-pure
      */
-    public function __construct(TexasRegistrationType $registrationType, string $businessName, string $texasTaxpayerNumber, string $webfileNumber, ?string $registeredLocationNumber = null, ?string $registeredAddress = null, ?TexasSltrElection $sltrElected = null, ?string $singleLocalTaxRate = null, ?bool $mfaCompleted = false)
+    public function __construct(TexasRegistrationType $registrationType, string $businessName, string $texasTaxpayerNumber, string $webfileNumber, ?string $registeredLocationNumber = null, ?string $registeredAddress = null, ?bool $mfaCompleted = false)
     {
         $this->registrationType = $registrationType;
         $this->businessName = $businessName;
@@ -110,8 +89,6 @@ class TexasFields
         $this->webfileNumber = $webfileNumber;
         $this->registeredLocationNumber = $registeredLocationNumber;
         $this->registeredAddress = $registeredAddress;
-        $this->sltrElected = $sltrElected;
-        $this->singleLocalTaxRate = $singleLocalTaxRate;
         $this->mfaCompleted = $mfaCompleted;
     }
 }
