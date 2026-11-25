@@ -12,9 +12,7 @@ namespace KintsugiTax\SDK\Models\Components;
 class ProductCategoryRead
 {
     /**
-     * Name of the product category
-     *
-     *             (e.g., PHYSICAL, SERVICE, DIGITAL, MISCELLANEOUS)
+     * Tax category display label (e.g. 'Physical', 'Services', 'Digital', 'Misc').
      *
      * @var string $name
      */

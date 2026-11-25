@@ -54,7 +54,12 @@ class Products
      *     retrieve supported categories and subcategories from the
      *     [GET /products/categories endpoint](/reference/api/products/get-product-categories),
      *     or browse the full catalog with descriptions and examples in the
-     *     [Product Categories guide](/docs/guides/product-categories)
+     *     [Product Categories guide](/docs/guides/product-categories).
+     *
+     *     Idempotent on ``(organization_id, external_id, source)`` for connectionless
+     *     creates (CP-4726): a re-POST of an existing identity returns ``200``. A live
+     *     match is unchanged; a previously deleted match is revived (status returns to
+     *     ``PENDING``). Use PUT to update fields.
      *
      * @param  \KintsugiTax\SDK\Models\Components\ProductCreateManual  $productCreateManual
      * @param  ?string  $xOrganizationId
@@ -101,7 +106,7 @@ class Products
         }
 
         $statusCode = $httpResponse->getStatusCode();
-        if (Utils\Utils::matchStatusCodes($statusCode, ['200'])) {
+        if (Utils\Utils::matchStatusCodes($statusCode, ['200', '201'])) {
             if (Utils\Utils::matchContentType($contentType, 'application/json')) {
                 $httpResponse = $this->sdkConfiguration->hooks->afterSuccess(new Hooks\AfterSuccessContext($hookContext), $httpResponse);
 

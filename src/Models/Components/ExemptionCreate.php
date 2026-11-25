@@ -97,6 +97,15 @@ class ExemptionCreate
     public ?string $transactionId = null;
 
     /**
+     * Partial-exemption certificate form code. Required when exemption_type is partial; must be absent otherwise.
+     *
+     * @var ?string $certificateType
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('certificate_type')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $certificateType = null;
+
+    /**
      * Indicates whether the exemption is for a reseller
      *
      * @var ?bool $reseller
@@ -117,9 +126,10 @@ class ExemptionCreate
      * @param  ?\KintsugiTax\SDK\Models\Components\CountryCodeEnum  $countryCode
      * @param  ?LocalDate  $endDate
      * @param  ?string  $transactionId
+     * @param  ?string  $certificateType
      * @phpstan-pure
      */
-    public function __construct(ExemptionType $exemptionType, LocalDate $startDate, string $customerId, string $fein, string $salesTaxId, ExemptionStatus $status, ?string $jurisdiction = null, ?CountryCodeEnum $countryCode = null, ?LocalDate $endDate = null, ?string $transactionId = null, ?bool $reseller = false)
+    public function __construct(ExemptionType $exemptionType, LocalDate $startDate, string $customerId, string $fein, string $salesTaxId, ExemptionStatus $status, ?string $jurisdiction = null, ?CountryCodeEnum $countryCode = null, ?LocalDate $endDate = null, ?string $transactionId = null, ?string $certificateType = null, ?bool $reseller = false)
     {
         $this->exemptionType = $exemptionType;
         $this->startDate = $startDate;
@@ -131,6 +141,7 @@ class ExemptionCreate
         $this->countryCode = $countryCode;
         $this->endDate = $endDate;
         $this->transactionId = $transactionId;
+        $this->certificateType = $certificateType;
         $this->reseller = $reseller;
     }
 }
