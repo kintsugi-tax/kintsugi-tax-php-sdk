@@ -12,9 +12,7 @@ namespace KintsugiTax\SDK\Models\Components;
 class ProductSubCategory
 {
     /**
-     * Name of the product subcategory
-     *
-     *             (e.g., ORAL_HYGIENE, MEDICAL_DEVICES, etc.)
+     * Tax subcategory display label (e.g. 'Oral Hygiene', 'Medical Devices').
      *
      * @var string $name
      */
