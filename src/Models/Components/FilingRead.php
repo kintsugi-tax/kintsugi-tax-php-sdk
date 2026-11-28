@@ -66,11 +66,12 @@ class FilingRead
      *
      * Registrations and filings may be SALES_AND_USE_TAX: one state account and
      * one return can cover both taxes, and each is stored as a single row.
-     * Nexus rows are SALES_TAX, USE_TAX, RETAIL_DELIVERY_FEE, or
-     * SMALL_PARCEL_VAT. Sales tax, use tax, the retail delivery fee, and the
-     * Swiss small-parcel threshold are separate obligations with their own met
-     * dates and period models. SMALL_PARCEL_VAT is a threshold only. A sales
-     * tax registration covers it, and it has no account and no return of its own.
+     * Nexus rows are SALES_TAX, USE_TAX, RETAIL_DELIVERY_FEE, SMALL_PARCEL_VAT,
+     * or LEASE_TAX. Each of these is a separate obligation. Each has its own met
+     * dates and period models. SMALL_PARCEL_VAT is a threshold only. A sales tax
+     * registration covers it, and it has no account and no return of its own.
+     * LEASE_TAX is a city tax on leased goods, such as the
+     * Chicago lease tax. It has its own account and return.
      *
      * @var ?\KintsugiTax\SDK\Models\Components\TaxTypeEnum $taxType
      */
@@ -504,6 +505,42 @@ class FilingRead
     public ?string $amountInputVatRecoverableBase = null;
 
     /**
+     * Estimated purchase tax this return leaves out because the org does not have Use Tax or Input VAT/GST. 0.00 when nothing is left out.
+     *
+     * @var ?string $excludedPurchaseTaxEstimate
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('excluded_purchase_tax_estimate')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $excludedPurchaseTaxEstimate = null;
+
+    /**
+     * Number of purchases a sales and use tax return covers.
+     *
+     * @var ?int $purchaseCount
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('purchase_count')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?int $purchaseCount = null;
+
+    /**
+     * Gross purchases a sales and use tax return covers.
+     *
+     * @var ?string $amountPurchases
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('amount_purchases')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $amountPurchases = null;
+
+    /**
+     * Taxable purchases a sales and use tax return covers.
+     *
+     * @var ?string $totalTaxablePurchases
+     */
+    #[\Speakeasy\Serializer\Annotation\SerializedName('total_taxable_purchases')]
+    #[\Speakeasy\Serializer\Annotation\SkipWhenNull]
+    public ?string $totalTaxablePurchases = null;
+
+    /**
      * Total sales amount during the filing period.
      *
      * @var ?string $amountSales
@@ -578,6 +615,10 @@ class FilingRead
      * @param  ?string  $amountInputVatRecoverable
      * @param  ?string  $amountInputVatTrueUp
      * @param  ?string  $amountInputVatRecoverableBase
+     * @param  ?string  $excludedPurchaseTaxEstimate
+     * @param  ?int  $purchaseCount
+     * @param  ?string  $amountPurchases
+     * @param  ?string  $totalTaxablePurchases
      * @param  ?string  $amountSales
      * @param  ?string  $amount
      * @param  ?string  $totalTaxLiability
@@ -619,7 +660,7 @@ class FilingRead
      * @param  ?string  $penaltyInterestRemittanceTag
      * @phpstan-pure
      */
-    public function __construct(LocalDate $startDate, LocalDate $endDate, CountryCodeEnum $countryCode, string $id, string $registrationId, ?FilingStatusEnum $status = null, ?TaxTypeEnum $taxType = null, ?string $filingWebsiteUrl = null, ?LocalDate $dueDate = null, ?LocalDate $dateFiled = null, ?bool $isManual = null, ?string $stateCode = null, ?string $stateName = null, ?bool $autoApproved = null, ?LocalDate $pausedUntilDate = null, ?string $assistanceTicketId = null, ?string $approvedBy = null, ?\DateTime $approvedAt = null, ?string $issueReason = null, ?string $skipReason = null, ?string $cancelledReason = null, ?FeeTypeEnum $feeType = null, ?string $inputVatRecoveryRateApplied = null, ?string $totalTaxableSales = null, ?int $estimatedLineCount = null, ?string $internalNotes = null, ?string $recentDetailsReportLink = null, ?string $originalTaxRemitted = null, ?string $returnConfirmationId = null, ?string $paymentConfirmationId = null, ?string $submittedReturnConfirmationId = null, ?string $submittedPaymentConfirmationId = null, ?bool $blockApproval = null, ?CurrencyEnum $currency = null, ?string $filingFrequency = null, ?string $ossType = null, ?QuarterlyPrepayBalanceDisplay $quarterlyPrepayBalance = null, ?CaMayPrepaymentDisplay $caMayPrepayment = null, ?string $estimatedPenaltyInterest = null, ?string $penaltyInterestRemittanceTag = null, ?string $filingCategory = 'REGULAR', ?bool $isPrepayment = false, ?bool $isFinal = false, ?string $amountCalculated = '0.00', ?string $amountAdjusted = '0.00', ?string $amountDiscounts = '0.00', ?string $amountFees = '0.00', ?string $amountPenalties = '0.00', ?string $amountTaxCollected = '0.00', ?string $amountUseTax = '0.00', ?string $amountInputVatRecoverable = '0.00', ?string $amountInputVatTrueUp = '0.00', ?string $amountInputVatRecoverableBase = '0.00', ?string $amountSales = '0.00', ?string $amount = '0.00', ?string $totalTaxLiability = '0.00', ?int $transactionCount = 0, ?int $marketplaceTransactionCount = 0, ?string $taxRemitted = '0.00')
+    public function __construct(LocalDate $startDate, LocalDate $endDate, CountryCodeEnum $countryCode, string $id, string $registrationId, ?FilingStatusEnum $status = null, ?TaxTypeEnum $taxType = null, ?string $filingWebsiteUrl = null, ?LocalDate $dueDate = null, ?LocalDate $dateFiled = null, ?bool $isManual = null, ?string $stateCode = null, ?string $stateName = null, ?bool $autoApproved = null, ?LocalDate $pausedUntilDate = null, ?string $assistanceTicketId = null, ?string $approvedBy = null, ?\DateTime $approvedAt = null, ?string $issueReason = null, ?string $skipReason = null, ?string $cancelledReason = null, ?FeeTypeEnum $feeType = null, ?string $inputVatRecoveryRateApplied = null, ?string $totalTaxableSales = null, ?int $estimatedLineCount = null, ?string $internalNotes = null, ?string $recentDetailsReportLink = null, ?string $originalTaxRemitted = null, ?string $returnConfirmationId = null, ?string $paymentConfirmationId = null, ?string $submittedReturnConfirmationId = null, ?string $submittedPaymentConfirmationId = null, ?bool $blockApproval = null, ?CurrencyEnum $currency = null, ?string $filingFrequency = null, ?string $ossType = null, ?QuarterlyPrepayBalanceDisplay $quarterlyPrepayBalance = null, ?CaMayPrepaymentDisplay $caMayPrepayment = null, ?string $estimatedPenaltyInterest = null, ?string $penaltyInterestRemittanceTag = null, ?string $filingCategory = 'REGULAR', ?bool $isPrepayment = false, ?bool $isFinal = false, ?string $amountCalculated = '0.00', ?string $amountAdjusted = '0.00', ?string $amountDiscounts = '0.00', ?string $amountFees = '0.00', ?string $amountPenalties = '0.00', ?string $amountTaxCollected = '0.00', ?string $amountUseTax = '0.00', ?string $amountInputVatRecoverable = '0.00', ?string $amountInputVatTrueUp = '0.00', ?string $amountInputVatRecoverableBase = '0.00', ?string $excludedPurchaseTaxEstimate = '0.00', ?int $purchaseCount = 0, ?string $amountPurchases = '0.00', ?string $totalTaxablePurchases = '0.00', ?string $amountSales = '0.00', ?string $amount = '0.00', ?string $totalTaxLiability = '0.00', ?int $transactionCount = 0, ?int $marketplaceTransactionCount = 0, ?string $taxRemitted = '0.00')
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
@@ -674,6 +715,10 @@ class FilingRead
         $this->amountInputVatRecoverable = $amountInputVatRecoverable;
         $this->amountInputVatTrueUp = $amountInputVatTrueUp;
         $this->amountInputVatRecoverableBase = $amountInputVatRecoverableBase;
+        $this->excludedPurchaseTaxEstimate = $excludedPurchaseTaxEstimate;
+        $this->purchaseCount = $purchaseCount;
+        $this->amountPurchases = $amountPurchases;
+        $this->totalTaxablePurchases = $totalTaxablePurchases;
         $this->amountSales = $amountSales;
         $this->amount = $amount;
         $this->totalTaxLiability = $totalTaxLiability;
